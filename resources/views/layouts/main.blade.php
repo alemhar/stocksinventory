@@ -183,7 +183,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!--  menu-open-->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-cogs"></i>
+              <i class="nav-icon fas fa-cogs active"></i>
               <p>
                 Preference
                 <i class="right fas fa-angle-left"></i>
@@ -191,7 +191,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link>
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Active Page</p>
                 </a>
