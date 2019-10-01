@@ -327,8 +327,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- AdminLTE App -->
 <!--script src="dist/js/adminlte.min.js"></script -->
 
-<script type="/js/app.js"></script>
-<script type="/js/adminlte.js"></script>
+<script type="/js/app2.js"></script>
+<!-- script type="/js/adminlte.js"></script -->
 
 </body>
 </html>
