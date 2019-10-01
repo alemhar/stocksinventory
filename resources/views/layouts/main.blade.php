@@ -11,7 +11,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
   <title>Dashboard | Stocks Inventory</title>
-  <!--link rel="stylesheet" type="text/css" href="/css/app.css" -->
+  <link rel="stylesheet" type="text/css" href="/css/app.css">
   <!-- Font Awesome Icons -->
   <!--link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css"-->
   <!-- Theme style -->
@@ -327,6 +327,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- AdminLTE App -->
 <!--script src="dist/js/adminlte.min.js"></script -->
 
-<script type="/js/app.js"></script>
+<!-- script type="/js/app.js"></script -->
 </body>
 </html>
