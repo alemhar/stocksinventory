@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Stocks Inventory ©
+                    Stocks Inventory 2©
                 </div>
 
                 <div class="links">
