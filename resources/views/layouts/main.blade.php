@@ -148,9 +148,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <a href="index3.html" class="brand-link">
       <!--img src="img/si_logo_200x200.png" alt="Stocks Inventory Logo" class="brand-image elevation-3"
            style="opacity: .8" --> 
-      <i class="fas fa-cubes"></i>     
+      <i class="fas fa-cubes" style="font-size: 1.5rem;"></i>     
       <!-- img-circle  -->     
-      <span class="brand-text font-weight-light">StockInventory 2.1</span>
+      <span class="brand-text font-weight-light"  style="font-size: 1.2rem;">Stock Inventory 2.1</span>
     </a>
 
     <!-- Sidebar -->
