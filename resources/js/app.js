@@ -13,13 +13,12 @@ Vue.use(VueRouter)
 
 
 let routes = [
-  { path: '/dashboard', component: require('./components/Dashboard.vue') },
-  { path: '/account', component: require('./components/Account.vue') }
+  { path: '/dashboard', component: require('./components/Dashboard.vue').default },
+  { path: '/account', component: require('./components/Account.vue').default }
 ]
 
 const router = new VueRouter({
   routes // short for `routes: routes`
-  
 })
 
 /**
