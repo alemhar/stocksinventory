@@ -150,7 +150,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
            style="opacity: .8" --> 
       <i class="fas fa-cubes" style="font-size: 1.5rem;"></i>     
       <!-- img-circle  -->     
-      <span class="brand-text font-weight-light"  style="font-size: 1.2rem;">Stock Inventory <span style="font-size: 0.5rem;">2.01</span></span>
+      <span class="brand-text font-weight-light"  style="font-size: 1.2rem;">Stock Inventory <span style="font-size: 0.6rem;">2.01</span></span>
     </a>
 
     <!-- Sidebar -->
