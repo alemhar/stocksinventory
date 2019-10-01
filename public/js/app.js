@@ -52420,6 +52420,7 @@ var routes = [{
   component: __webpack_require__(/*! ./components/Account.vue */ "./resources/js/components/Account.vue")["default"]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
+  mode: 'history',
   routes: routes // short for `routes: routes`
 
 });
