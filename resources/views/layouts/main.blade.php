@@ -157,11 +157,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex" style="margin: auto;">
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <!-- div class="image">
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div -->
-        <div class="info">
+        <div class="info" style="margin: auto;">
           <a href="#" class="d-block">Hi {{ isset(Auth::user()->name) ? ucwords(Auth::user()->name) : '' }}!</a>
         </div>
       </div>
