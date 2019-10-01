@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Virtual Work Hub ©
+                    Stocks Inventory ©
                 </div>
 
                 <div class="links">
