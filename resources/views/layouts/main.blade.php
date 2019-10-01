@@ -179,8 +179,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           
           
-
-          <li class="nav-item has-treeview menu-open">
+          <!--  menu-open-->
+          <li class="nav-item has-treeview">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-cogs"></i>
               <p>
