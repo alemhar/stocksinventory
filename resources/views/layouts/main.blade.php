@@ -149,7 +149,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <img src="img/si_logo_200x200.png" alt="Stocks Inventory Logo" class="brand-image elevation-3"
            style="opacity: .8"> 
       <!-- img-circle  -->     
-      <span class="brand-text font-weight-light">Stock Inventory 2.0</span>
+      <span class="brand-text font-weight-light">StockInventory 2.1</span>
     </a>
 
     <!-- Sidebar -->
