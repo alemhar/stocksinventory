@@ -6,7 +6,7 @@
             <div class="box-header">
               <h3 class="box-title">Users List</h3>
               <div class="box-tools">
-                <button class="btn btn-success">Add New  <i class="fas fa-user-plus"></i></button>
+                <button class="btn btn-success">Add New  <i class="fas fa-user-plus fa-fw"></i></button>
               </div>
             </div>
 
