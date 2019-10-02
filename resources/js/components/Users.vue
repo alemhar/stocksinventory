@@ -44,8 +44,6 @@
       </div>
 
 
-
-
       <!-- Modal -->
       <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -61,7 +59,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Create</button>
+              <button type="button" class="btn btn-success">Create</button>
             </div>
           </div>
         </div>
@@ -72,6 +70,11 @@
 
 <script>
     export default {
+        data() {
+          return {
+
+          }
+        },
         mounted() {
             console.log('Component mounted.')
         }
