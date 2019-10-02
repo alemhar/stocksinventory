@@ -150,7 +150,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <a href="index3.html" class="brand-link" style="text-align: center;">
       <img src="img/si_logo2_200x200.png" alt="Stocks Inventory Logo" class="brand-image elevation-3 img-circle"
            style="background-color: white;padding: 2px;/*opacity: .8*/"> 
-      <span class="brand-text font-weight-light"  style="font-size: 1.2rem;">Stock Inventory <br><span style="font-size: 0.6rem;">2.01</span></span>
+      <span class="brand-text font-weight-light"  style="font-size: 1.2rem;">Stock Inventoryx</span>
     </a>
 
     <!-- Sidebar -->
