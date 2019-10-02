@@ -1993,6 +1993,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -37455,13 +37459,13 @@ var staticRenderFns = [
                   _c("tr", [
                     _c("th", [_vm._v("ID")]),
                     _vm._v(" "),
-                    _c("th", [_vm._v("User")]),
+                    _c("th", [_vm._v("Name")]),
                     _vm._v(" "),
-                    _c("th", [_vm._v("Date")]),
+                    _c("th", [_vm._v("Email")]),
                     _vm._v(" "),
-                    _c("th", [_vm._v("Status")]),
+                    _c("th", [_vm._v("Type")]),
                     _vm._v(" "),
-                    _c("th", [_vm._v("Reason")])
+                    _c("th", [_vm._v("Modify")])
                   ]),
                   _vm._v(" "),
                   _c("tr", [
@@ -37478,9 +37482,10 @@ var staticRenderFns = [
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(
-                        "Bacon ipsum dolor sit amet salami venison chicken flank fatback doner."
-                      )
+                      _c("a", { attrs: { href: "#" } }, [
+                        _vm._v("Edit\n                  "),
+                        _c("i", { staticClass: "fa fa-edit" })
+                      ])
                     ])
                   ])
                 ])

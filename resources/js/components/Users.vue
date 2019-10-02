@@ -15,17 +15,21 @@
               <table class="table table-hover">
                 <tbody><tr>
                   <th>ID</th>
-                  <th>User</th>
-                  <th>Date</th>
-                  <th>Status</th>
-                  <th>Reason</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Type</th>
+                  <th>Modify</th>
                 </tr>
                 <tr>
                   <td>183</td>
                   <td>John Doe</td>
                   <td>11-7-2014</td>
                   <td><span class="label label-success">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                  <td>
+                    <a href="#">Edit
+                      <i class="fa fa-edit"></i>
+                    </a>
+                  </td>
                 </tr>
               </tbody></table>
             </div>
