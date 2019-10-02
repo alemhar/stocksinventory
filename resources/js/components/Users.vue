@@ -6,7 +6,7 @@
             <div class="box-header">
               <h3 class="box-title">Users List</h3>
               <div class="box-tools">
-                <button class="btn btn-success">Add New  <i class="fas fa-user-plus fa-fw"></i></button>
+                <button class="btn btn-success"  data-toggle="modal" data-target="#addNew">Add New  <i class="fas fa-user-plus fa-fw"></i></button>
               </div>
             </div>
 
@@ -42,6 +42,31 @@
           <!-- /.box -->
         </div>
       </div>
+
+
+
+
+      <!-- Modal -->
+      <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addNewLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 </template>
 
