@@ -146,7 +146,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link" style="text-align: center;">
-      <img src="img/si_logo2_200x200.png" alt="Stocks Inventory Logo" class="brand-image elevation-3"
+      <img src="img/si_logo2_200x200.png" alt="Stocks Inventory Logo" class="brand-image elevation-3 img-circle"
            style="opacity: .8"> 
       <!-- i class="fas fa-cubes" style="font-size: 1.5rem;"></i -->     
       <!-- img-circle  -->     
