@@ -37557,7 +37557,10 @@ var staticRenderFns = [
         [
           _c(
             "div",
-            { staticClass: "modal-dialog", attrs: { role: "document" } },
+            {
+              staticClass: "modal-dialog modal-dialog-centered",
+              attrs: { role: "document" }
+            },
             [
               _c("div", { staticClass: "modal-content" }, [
                 _c("div", { staticClass: "modal-header" }, [
