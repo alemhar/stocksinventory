@@ -37507,7 +37507,7 @@ var staticRenderFns = [
               _c(
                 "div",
                 {
-                  staticClass: "dataTables_wrapper form-inline dt-bootstrap",
+                  staticClass: "dataTables_wrapper dt-bootstrap",
                   attrs: { id: "example1_wrapper" }
                 },
                 [
@@ -37555,7 +37555,7 @@ var staticRenderFns = [
                       _c(
                         "div",
                         {
-                          staticClass: "dataTables_filter",
+                          staticClass: "dataTables_filter float-right",
                           attrs: { id: "example1_filter" }
                         },
                         [
