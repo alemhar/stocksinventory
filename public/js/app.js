@@ -37555,7 +37555,7 @@ var staticRenderFns = [
                       _c(
                         "div",
                         {
-                          staticClass: "dataTables_filter float-right",
+                          staticClass: "dataTables_filter",
                           attrs: { id: "example1_filter" }
                         },
                         [
