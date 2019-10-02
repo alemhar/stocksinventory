@@ -54,6 +54,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+            <form @submit.prevent="createUser">
             <div class="modal-body">
               
               <div class="form-group">
@@ -82,7 +83,7 @@
                       <option value="">Select User Role</option>
                       <option value="admin">Admin</option>
                       <option value="user">Standard User</option>
-                      <option value="author">Author</option>
+                      <!-- option value="author">Author</option -->
                   </select>
                   <has-error :form="form" field="type"></has-error>
               </div>
@@ -99,6 +100,8 @@
               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-success">Create</button>
             </div>
+
+            </form>
           </div>
         </div>
       </div>
@@ -119,6 +122,12 @@
                   photo: ''
               })
           }
+        },
+        methods: {
+          createUser(){
+            this.form.post('api/user');
+          }
+          
         },
         mounted() {
             console.log('Component mounted.')
