@@ -98,7 +98,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-success">Create</button>
+              <button type="submit" class="btn btn-success">Create</button>
             </div>
 
             </form>
@@ -127,7 +127,7 @@
           createUser(){
             this.form.post('api/user');
           }
-          
+
         },
         mounted() {
             console.log('Component mounted.')
