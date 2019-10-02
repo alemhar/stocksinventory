@@ -37454,7 +37454,12 @@ var staticRenderFns = [
             _c("div", { staticClass: "box-header" }, [
               _c("h3", { staticClass: "box-title" }, [_vm._v("Users List")]),
               _vm._v(" "),
-              _c("div", { staticClass: "box-tools" })
+              _c("div", { staticClass: "box-tools" }, [
+                _c("button", { staticClass: "btn btn-success" }, [
+                  _vm._v("Add New  "),
+                  _c("i", { staticClass: "fa fas-user-plus" })
+                ])
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "box-body table-responsive no-padding" }, [
