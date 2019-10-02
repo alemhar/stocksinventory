@@ -88,11 +88,12 @@
               </div>
 
               <div class="form-group">
+                  <label>Password</label>
                   <input v-model="form.password" type="password" name="password" id="password"
                   class="form-control" :class="{ 'is-invalid': form.errors.has('password') }">
                   <has-error :form="form" field="password"></has-error>
               </div>
-              
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>

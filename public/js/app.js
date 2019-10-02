@@ -2060,6 +2060,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -38741,6 +38742,8 @@ var render = function() {
                   "div",
                   { staticClass: "form-group" },
                   [
+                    _c("label", [_vm._v("Password")]),
+                    _vm._v(" "),
                     _c("input", {
                       directives: [
                         {
