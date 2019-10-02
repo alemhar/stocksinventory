@@ -25,7 +25,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        return ['message' => 'I have receive your data!'];
+        return $request->all();
     }
 
     /**
