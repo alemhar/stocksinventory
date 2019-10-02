@@ -6,7 +6,7 @@
             <div class="box-header">
               <h3 class="box-title">Users List</h3>
               <div class="box-tools">
-                <button class="btn btn-success">Add New  <i class="fa fas-user-plus"></i></button>
+                <button class="btn btn-success">Add New  <i class="fas fa-user-plus"></i></button>
               </div>
             </div>
 
@@ -27,11 +27,11 @@
                   <td><span class="label label-success">Approved</span></td>
                   <td>
                     <a href="#">Edit
-                      <i class="fa fa-edit black"></i>
+                      <i class="fa fa-edit"></i>
                     </a>
                     |
                     <a href="#"><span class="red">Delete</span>
-                      <i class="fa fa-trash black"></i>
+                      <i class="fa fa-trash"></i>
                     </a>
                   </td>
                 </tr>

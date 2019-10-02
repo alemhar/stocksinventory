@@ -37457,7 +37457,7 @@ var staticRenderFns = [
               _c("div", { staticClass: "box-tools" }, [
                 _c("button", { staticClass: "btn btn-success" }, [
                   _vm._v("Add New  "),
-                  _c("i", { staticClass: "fa fas-user-plus" })
+                  _c("i", { staticClass: "fas fa-user-plus" })
                 ])
               ])
             ]),
@@ -37493,13 +37493,13 @@ var staticRenderFns = [
                     _c("td", [
                       _c("a", { attrs: { href: "#" } }, [
                         _vm._v("Edit\n                  "),
-                        _c("i", { staticClass: "fa fa-edit black" })
+                        _c("i", { staticClass: "fa fa-edit" })
                       ]),
                       _vm._v("\n                |\n                "),
                       _c("a", { attrs: { href: "#" } }, [
                         _c("span", { staticClass: "red" }, [_vm._v("Delete")]),
                         _vm._v(" "),
-                        _c("i", { staticClass: "fa fa-trash black" })
+                        _c("i", { staticClass: "fa fa-trash" })
                       ])
                     ])
                   ])
