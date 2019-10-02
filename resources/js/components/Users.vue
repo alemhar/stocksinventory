@@ -27,11 +27,11 @@
                   <td><span class="label label-success">Approved</span></td>
                   <td>
                     <a href="#">Edit
-                      <i class="fa fa-edit"></i>
+                      <i class="fa fa-edit black"></i>
                     </a>
                     |
-                    <a href="#">Delete
-                      <i class="fa fa-trash red"></i>
+                    <a href="#"><span class="red">Delete</span>
+                      <i class="fa fa-trash black"></i>
                     </a>
                   </td>
                 </tr>
