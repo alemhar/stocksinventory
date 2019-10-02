@@ -30,7 +30,7 @@
                       <i class="fa fa-edit"></i>
                     </a>
                     <a href="#">Delete
-                      <i class="fa fa-delete"></i>
+                      <i class="fa fa-trash"></i>
                     </a>
                   </td>
                 </tr>

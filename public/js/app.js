@@ -37492,7 +37492,7 @@ var staticRenderFns = [
                       _vm._v(" "),
                       _c("a", { attrs: { href: "#" } }, [
                         _vm._v("Delete\n                  "),
-                        _c("i", { staticClass: "fa fa-delete" })
+                        _c("i", { staticClass: "fa fa-trash" })
                       ])
                     ])
                   ])
