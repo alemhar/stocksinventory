@@ -29,6 +29,9 @@
                     <a href="#">Edit
                       <i class="fa fa-edit"></i>
                     </a>
+                    <a href="#">Delete
+                      <i class="fa fa-delete"></i>
+                    </a>
                   </td>
                 </tr>
               </tbody></table>
