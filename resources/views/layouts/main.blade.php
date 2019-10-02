@@ -146,9 +146,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link" style="text-align: center;">
-      <!--img src="img/si_logo_200x200.png" alt="Stocks Inventory Logo" class="brand-image elevation-3"
-           style="opacity: .8" --> 
-      <i class="fas fa-cubes" style="font-size: 1.5rem;"></i>     
+      <img src="img/si_logo2_200x200.png" alt="Stocks Inventory Logo" class="brand-image elevation-3"
+           style="opacity: .8"> 
+      <!-- i class="fas fa-cubes" style="font-size: 1.5rem;"></i -->     
       <!-- img-circle  -->     
       <span class="brand-text font-weight-light"  style="font-size: 1.2rem;">Stock Inventory <span style="font-size: 0.6rem;">2.01</span></span>
     </a>
@@ -160,7 +160,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- div class="image">
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div -->
-        <div class="info" style="margin: auto;">
+        <div class="info" style="/*margin: auto;*/">
           <a href="#" class="d-block">Hi {{ isset(Auth::user()->name) ? ucwords(Auth::user()->name) : '' }}!</a>
         </div>
       </div>
