@@ -38,8 +38,8 @@ Vue.filter('upText',function(text){
 
 Vue.filter('formatDate',function(created){
 
-	return created.moment().format('MMMM Do YYYY');
-	
+	return moment(created).format('MMMM Do YYYY');
+
 });
 /**
  * The following block of code may be used to automatically register your
