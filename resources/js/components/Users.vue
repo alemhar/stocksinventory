@@ -112,7 +112,7 @@
     export default {
         data() {
           return {
-              users : {},
+              users: {},
               form: new Form({
                   id:'',
                   name : '',
