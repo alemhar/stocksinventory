@@ -32,7 +32,7 @@ const router = new VueRouter({
 
 
 Vue.filter('upText',function(text){
-	return text.toUpperCase();
+	return text.charAt(0).toUpperCase() + text.slice(1);
 });
 /**
  * The following block of code may be used to automatically register your
