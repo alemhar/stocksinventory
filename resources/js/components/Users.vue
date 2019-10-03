@@ -20,7 +20,7 @@
                   <th>Type</th>
                   <th>Modify</th>
                 </tr>
-                <tr>
+                <tr v-for="user in users" :key="user.id">
                   <td>183</td>
                   <td>John Doe</td>
                   <td>11-7-2014</td>
@@ -126,7 +126,7 @@
         },
         methods: {
           loadUsers(){
-             axios.get("api/user").then(({ data }) => (this.users = data));
+             axios.get("api/user").then(({ data }) => (this.users = data.data));
           },
           createUser(){
             this.form.post('api/user');
