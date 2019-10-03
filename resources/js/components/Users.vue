@@ -21,10 +21,10 @@
                   <th>Modify</th>
                 </tr>
                 <tr v-for="user in users" :key="user.id">
-                  <td>183</td>
-                  <td>John Doe</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-success">Approved</span></td>
+                  <td>{{ user.id }}</td>
+                  <td>{{ user.name }}</td>
+                  <td>{{ user.email }}</td>
+                  <td><span class="label label-success">{{ user.type }}</span></td>
                   <td>
                     <a href="#">Edit
                       <i class="fa fa-edit"></i>
