@@ -26,7 +26,7 @@
                   <td>{{ user.name }}</td>
                   <td>{{ user.email }}</td>
                   <td>{{ user.type | upText }}</td>
-                  <td>{{ user.created_at }}</td>
+                  <td>{{ user.created_at \ formatDate }}</td>
                   <td>
                     <a href="#">Edit
                       <i class="fa fa-edit"></i>
