@@ -18,13 +18,15 @@
                   <th>Name</th>
                   <th>Email</th>
                   <th>Type</th>
+                  <th>Registered</th>
                   <th>Modify</th>
                 </tr>
                 <tr v-for="user in users" :key="user.id">
                   <td>{{ user.id }}</td>
                   <td>{{ user.name }}</td>
                   <td>{{ user.email }}</td>
-                  <td><span class="label label-success">{{ user.type }}</span></td>
+                  <td>{{ user.type | upText }}</td>
+                  <td>{{ user.created_at }}</td>
                   <td>
                     <a href="#">Edit
                       <i class="fa fa-edit"></i>
