@@ -2093,6 +2093,7 @@ __webpack_require__.r(__webpack_exports__);
     createUser: function createUser() {
       this.$Progress.start();
       this.form.post('api/user');
+      $('#addNew').modal('hide');
       toast.fire({
         type: 'success',
         title: 'User created successfully'
