@@ -10,6 +10,19 @@ window.Vue = require('vue');
 import moment from 'moment';
 import { Form, HasError, AlertError } from 'vform';
 
+//npm install vue-progressbar --save
+import swal from 'sweetalert2'
+window.swal = swal;
+
+const toast = swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+window.toast = toast;
+
 //npm i axios vform | https://github.com/cretueusebiu/vform
 window.Form = Form;
 Vue.component(HasError.name, HasError)
