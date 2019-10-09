@@ -137,7 +137,7 @@
             this.form.post('api/user');
 
             $('#addNew').modal('hide')
-            
+
             toast.fire({
               type: 'success',
               title: 'User created successfully'
@@ -148,8 +148,10 @@
 
 
         },
+        
         created() {
             this.loadUsers();
+            setInterval(() => this.loadUsers(),3000);
         }
     }
 </script>
