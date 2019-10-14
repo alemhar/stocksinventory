@@ -128,7 +128,7 @@
         },
         methods: {
           deleteUser(id){
-              Swal.fire({
+              swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
                     type: 'warning',
