@@ -129,7 +129,8 @@
         },
         methods: {
           deleteUser(id){
-              Swal.fire({s
+
+              Swal.fire({
                       title: 'Are you sure?',
                       text: "You won't be able to revert this!",
                       type: 'warning',
@@ -147,6 +148,7 @@
                         )
                       }
                     })
+                    
           },
           loadUsers(){
              axios.get("api/user").then(({ data }) => (this.users = data.data));
