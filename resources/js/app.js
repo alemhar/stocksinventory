@@ -39,6 +39,7 @@ Vue.use(VueProgressBar, {
     height: '3px'
   })
 
+window.Fire = new Vue();
 
 let routes = [
   { path: '/dashboard', component: require('./components/Dashboard.vue').default },
