@@ -2122,12 +2122,13 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this3 = this;
-
     this.loadUsers();
-    Fire.on('AfterUserCreate', function () {
-      _this3.loadUsers();
-    }); //setInterval(() => this.loadUsers(),3000);
+    /*
+    Fire.on('AfterUserCreate',() => {
+      this.loadUsers();
+    });
+    */
+    //setInterval(() => this.loadUsers(),3000);
   }
 });
 
