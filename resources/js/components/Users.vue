@@ -138,7 +138,7 @@
                     confirmButtonText: 'Yes, delete it!'
                   }).then((result) => {
                     if (result.value) {
-                      Swal.fire(
+                      swal.fire(
                         'Deleted!',
                         'User has been deleted.',
                         'success'

@@ -2093,7 +2093,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.value) {
-          Swal.fire('Deleted!', 'User has been deleted.', 'success');
+          swal.fire('Deleted!', 'User has been deleted.', 'success');
         }
       });
     },
