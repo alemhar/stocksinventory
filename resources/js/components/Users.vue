@@ -111,7 +111,6 @@
     </div>
 </template>
 <script>
-
     export default {
         data() {
           return {
@@ -129,26 +128,23 @@
         },
         methods: {
           deleteUser(id){
-
               Swal.fire({
-                      title: 'Are you sure?',
-                      text: "You won't be able to revert this!",
-                      type: 'warning',
-                      showCancelButton: true,
-                      confirmButtonColor: '#3085d6',
-                      cancelButtonColor: '#d33',
-                      confirmButtonText: 'Yes, delete it!'
-                    }).then((result) => {
-                      // Send request to the server
-                      if (result.value) {
-                        Swal.fire(
-                          'Deleted!',
-                          'User has been deleted.',
-                          'success'
-                        )
-                      }
-                    })
-
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                  }).then((result) => {
+                    if (result.value) {
+                      Swal.fire(
+                        'Deleted!',
+                        'User has been deleted.',
+                        'success'
+                      )
+                    }
+                  })
           },
           loadUsers(){
              axios.get("api/user").then(({ data }) => (this.users = data.data));
@@ -173,7 +169,10 @@
             });
             
           }
-          ,
+
+
+        },
+
         created() {
             this.loadUsers();
             Fire.on('AfterUserCreate',() => {
