@@ -144,7 +144,7 @@
                         'success'
                       )
                     }
-                  })
+                  });
           },
           loadUsers(){
              axios.get("api/user").then(({ data }) => (this.users = data.data));
