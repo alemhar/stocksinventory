@@ -148,7 +148,7 @@
                         )
                       }
                     })
-                    
+
           },
           loadUsers(){
              axios.get("api/user").then(({ data }) => (this.users = data.data));
@@ -173,10 +173,7 @@
             });
             
           }
-
-
-        },
-
+          ,
         created() {
             this.loadUsers();
             Fire.on('AfterUserCreate',() => {
@@ -184,5 +181,5 @@
             });
             //setInterval(() => this.loadUsers(),3000);
         }
-    }
+    }s
 </script>
