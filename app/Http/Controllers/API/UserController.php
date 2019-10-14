@@ -79,6 +79,6 @@ class UserController extends Controller
 
         // Send Request
 
-        return ['message' => 'User Deleted']
+        return ['message' => 'User Deleted'];
     }
 }
