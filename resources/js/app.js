@@ -37,12 +37,10 @@ Vue.use(VueProgressBar, {
     color: 'rgb(143, 255, 199)',
     failedColor: 'red',
     height: '3px'
-  })
+  });
 
 
 window.Fire = new Vue();
-
-
 
 
 let routes = [
@@ -50,12 +48,12 @@ let routes = [
   { path: '/account', component: require('./components/Account.vue').default },
   { path: '/users', component: require('./components/Users.vue').default }
   
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
   routes // short for `routes: routes`
-})
+});
 
 
 Vue.filter('upText',function(text){
