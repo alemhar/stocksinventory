@@ -181,5 +181,5 @@
             });
             //setInterval(() => this.loadUsers(),3000);
         }
-    }s
+    }
 </script>
