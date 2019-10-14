@@ -39,7 +39,11 @@ Vue.use(VueProgressBar, {
     height: '3px'
   })
 
+
 window.Fire = new Vue();
+
+
+
 
 let routes = [
   { path: '/dashboard', component: require('./components/Dashboard.vue').default },
@@ -80,7 +84,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
- 
+
 const app = new Vue({
     el: '#app',
     router
