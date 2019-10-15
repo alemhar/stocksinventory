@@ -61,7 +61,7 @@ Vue.filter('formatDate',function(created){
 	return moment(created).format('ll');
 });
 
-VueListen = new Vue();
+const VueListen = new Vue();
 //window.VueListen = VueListen;
 
 

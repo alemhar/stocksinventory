@@ -74661,7 +74661,7 @@ Vue.filter('upText', function (text) {
 Vue.filter('formatDate', function (created) {
   return moment__WEBPACK_IMPORTED_MODULE_0___default()(created).format('ll');
 });
-VueListen = new Vue(); //window.VueListen = VueListen;
+var VueListen = new Vue(); //window.VueListen = VueListen;
 
 /**
  * The following block of code may be used to automatically register your
