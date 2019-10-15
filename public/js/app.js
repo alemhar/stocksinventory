@@ -2093,7 +2093,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.value) {
-          swal.fire('Deleted!', 'User has been deleted.', 'success');
+          sswal.fire('Deleted!', 'User has been deleted.', 'success');
         }
       });
     },
@@ -2122,10 +2122,12 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.loadUsers(); //Fire.on('AfterUserCreate',() => {
-    //this.loadUsers();
-    //});
-    //setInterval(() => this.loadUsers(),3000);
+    var _this3 = this;
+
+    this.loadUsers();
+    Fire.on('AfterUserCreate', function () {
+      _this3.loadUsers();
+    }); //setInterval(() => this.loadUsers(),3000);
   }
 });
 

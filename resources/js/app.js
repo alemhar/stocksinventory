@@ -11,7 +11,7 @@ import moment from 'moment';
 import { Form, HasError, AlertError } from 'vform';
 
 //npm install vue-progressbar --save
-import swal from 'sweetalert2'
+import swal from 'sweetalert2';
 window.swal = swal;
 
 const toast = swal.mixin({
@@ -28,8 +28,8 @@ window.Form = Form;
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 
-import VueRouter from 'vue-router'
-Vue.use(VueRouter)
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
 
 //npm install vue-progressbar | http://hilongjw.github.io/vue-progressbar/index.html 
 import VueProgressBar from 'vue-progressbar'

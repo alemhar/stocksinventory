@@ -138,7 +138,7 @@
                     confirmButtonText: 'Yes, delete it!'
                   }).then((result) => {
                     if (result.value) {
-                      swal.fire(
+                      sswal.fire(
                         'Deleted!',
                         'User has been deleted.',
                         'success'
@@ -175,9 +175,9 @@
 
         created() {
             this.loadUsers();
-            //Fire.on('AfterUserCreate',() => {
-              //this.loadUsers();
-            //});
+            Fire.on('AfterUserCreate',() => {
+              this.loadUsers();
+            });
             //setInterval(() => this.loadUsers(),3000);
         }
     }
