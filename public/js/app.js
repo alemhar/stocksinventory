@@ -2127,10 +2127,7 @@ __webpack_require__.r(__webpack_exports__);
     this.loadUsers();
     VueListen.on('AfterUserCreate', function () {
       _this3.loadUsers();
-    });
-    setInterval(function () {
-      return _this3.loadUsers();
-    }, 3000);
+    }); //setInterval(() => this.loadUsers(),3000);
   }
 });
 

@@ -175,12 +175,14 @@
 
         created() {
             this.loadUsers();
-            
+
             VueListen.on('AfterUserCreate',() => {
-              this.loadUsers();
+              
+               this.loadUsers();
             });
             
-            setInterval(() => this.loadUsers(),3000);
+
+            //setInterval(() => this.loadUsers(),3000);
         }
     }
 </script>
