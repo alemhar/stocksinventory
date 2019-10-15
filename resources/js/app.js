@@ -66,7 +66,7 @@ Vue.filter('formatDate',function(created){
 });
 
 Fire = new Vue();
-window.Fire = Fire;
+//window.Fire = Fire;
 
 
 
