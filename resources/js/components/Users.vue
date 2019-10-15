@@ -6,7 +6,7 @@
             <div class="box-header">
               <h3 class="box-title">Users List</h3>
               <div class="box-tools">
-                <button class="btn btn-success"  data-toggle="modal" data-target="#addNew">Add New  <i class="fas fa-user-plus fa-fw"></i></button>
+                <button class="btn btn-success" @click="newUser">Add New  <i class="fas fa-user-plus fa-fw"></i></button>
               </div>
             </div>
 
@@ -47,7 +47,7 @@
 
 
       <!-- Modal -->
-      <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
+      <div class="modal fade" id="UserDetails" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -127,6 +127,9 @@
           }
         },
         methods: {
+          newUser(){
+              $('#UserDetails').modal('show');
+          },
           deleteUser(id){
               swal.fire({
                     title: 'Are you sure?',
@@ -138,11 +141,25 @@
                     confirmButtonText: 'Yes, delete it!'
                   }).then((result) => {
                     if (result.value) {
-                      sswal.fire(
-                        'Deleted!',
-                        'User has been deleted.',
-                        'success'
-                      )
+                      
+                      this.form.delete('api/user/'+id)
+                      .then(()=>{
+                          swal.fire(
+                            'Deleted!',
+                            'User has been deleted.',
+                            'success'
+                          );
+
+                          Fire.$emit('RefreshUsersTable');
+                      })
+                      .catch(()=>{
+                        swal("Failed!","Failed to delete user!", "warning");
+
+                      });
+                      
+
+
+
                     }
                   });
           },
@@ -155,14 +172,14 @@
             this.$Progress.start()
             this.form.post('api/user')
             .then(()=>{
-                Fire.$emit('AfterUserCreate');
-                $('#addNew').modal('hide')
+                Fire.$emit('RefreshUsersTable');
+                $('#UserDetails').modal('hide');
 
                 toast.fire({
                   type: 'success',
                   title: 'User created successfully'
                 })
-                this.$Progress.finish()
+                this.$Progress.finish();
             })
             .catch(()=>{
 
@@ -176,7 +193,7 @@
         created() {
             this.loadUsers();
 
-            VueListen.on('AfterUserCreate',() => {
+            VueListen.on('RefreshUsersTable',() => {
               
                this.loadUsers();
             });

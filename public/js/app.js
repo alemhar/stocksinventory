@@ -2082,7 +2082,12 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    newUser: function newUser() {
+      $('#UserDetails').modal('show');
+    },
     deleteUser: function deleteUser(id) {
+      var _this = this;
+
       swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -2093,40 +2098,45 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.value) {
-          sswal.fire('Deleted!', 'User has been deleted.', 'success');
+          _this.form["delete"]('api/user/' + id).then(function () {
+            swal.fire('Deleted!', 'User has been deleted.', 'success');
+            Fire.$emit('RefreshUsersTable');
+          })["catch"](function () {
+            swal("Failed!", "Failed to delete user!", "warning");
+          });
         }
       });
     },
     loadUsers: function loadUsers() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get("api/user").then(function (_ref) {
         var data = _ref.data;
-        return _this.users = data.data;
+        return _this2.users = data.data;
       });
     },
     createUser: function createUser() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.$Progress.start();
       this.form.post('api/user').then(function () {
-        Fire.$emit('AfterUserCreate');
-        $('#addNew').modal('hide');
+        Fire.$emit('RefreshUsersTable');
+        $('#UserDetails').modal('hide');
         toast.fire({
           type: 'success',
           title: 'User created successfully'
         });
 
-        _this2.$Progress.finish();
+        _this3.$Progress.finish();
       })["catch"](function () {});
     }
   },
   created: function created() {
-    var _this3 = this;
+    var _this4 = this;
 
     this.loadUsers();
-    VueListen.on('AfterUserCreate', function () {
-      _this3.loadUsers();
+    VueListen.on('RefreshUsersTable', function () {
+      _this4.loadUsers();
     }); //setInterval(() => this.loadUsers(),3000);
   }
 });
@@ -59115,14 +59125,27 @@ var render = function() {
     _c("div", { staticClass: "row mt-5" }, [
       _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "box" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "box-header" }, [
+            _c("h3", { staticClass: "box-title" }, [_vm._v("Users List")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "box-tools" }, [
+              _c(
+                "button",
+                { staticClass: "btn btn-success", on: { click: _vm.newUser } },
+                [
+                  _vm._v("Add New  "),
+                  _c("i", { staticClass: "fas fa-user-plus fa-fw" })
+                ]
+              )
+            ])
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "box-body table-responsive no-padding" }, [
             _c("table", { staticClass: "table table-hover" }, [
               _c(
                 "tbody",
                 [
-                  _vm._m(1),
+                  _vm._m(0),
                   _vm._v(" "),
                   _vm._l(_vm.users, function(user) {
                     return _c("tr", { key: user.id }, [
@@ -59139,7 +59162,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("td", [
-                        _vm._m(2, true),
+                        _vm._m(1, true),
                         _vm._v("\n                |\n                "),
                         _c(
                           "a",
@@ -59176,7 +59199,7 @@ var render = function() {
       {
         staticClass: "modal fade",
         attrs: {
-          id: "addNew",
+          id: "UserDetails",
           tabindex: "-1",
           role: "dialog",
           "aria-labelledby": "addNewLabel",
@@ -59192,7 +59215,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(3),
+              _vm._m(2),
               _vm._v(" "),
               _c(
                 "form",
@@ -59429,7 +59452,7 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._m(4)
+                  _vm._m(3)
                 ]
               )
             ])
@@ -59440,28 +59463,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box-header" }, [
-      _c("h3", { staticClass: "box-title" }, [_vm._v("Users List")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "box-tools" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-success",
-            attrs: { "data-toggle": "modal", "data-target": "#addNew" }
-          },
-          [
-            _vm._v("Add New  "),
-            _c("i", { staticClass: "fas fa-user-plus fa-fw" })
-          ]
-        )
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
