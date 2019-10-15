@@ -74610,7 +74610,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
- //npm install vue-progressbar --save
+
+window.Fire = new Vue(); //npm install vue-progressbar --save
 
 
 window.swal = sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a;
@@ -74676,7 +74677,6 @@ var app = new Vue({
   el: '#app',
   router: router
 });
-window.Fire = new Vue();
 
 /***/ }),
 
