@@ -175,7 +175,8 @@
 
         created() {
             this.loadUsers();
-            Fire.on('AfterUserCreate',() => {
+            
+            VueListen.on('AfterUserCreate',() => {
               this.loadUsers();
             });
             
