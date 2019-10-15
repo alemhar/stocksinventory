@@ -175,11 +175,10 @@
 
         created() {
             this.loadUsers();
-            /*
             Fire.on('AfterUserCreate',() => {
               this.loadUsers();
             });
-            */
+            
             setInterval(() => this.loadUsers(),3000);
         }
     }
