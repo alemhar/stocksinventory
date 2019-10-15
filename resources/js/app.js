@@ -40,10 +40,6 @@ Vue.use(VueProgressBar, {
     height: '3px'
   });
 
-
-
-
-
 let routes = [
   { path: '/dashboard', component: require('./components/Dashboard.vue').default },
   { path: '/account', component: require('./components/Account.vue').default },
@@ -65,8 +61,8 @@ Vue.filter('formatDate',function(created){
 	return moment(created).format('ll');
 });
 
-Fire = new Vue();
-//window.Fire = Fire;
+VueListen = new Vue();
+window.VueListen = VueListen;
 
 
 
