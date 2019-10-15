@@ -74660,9 +74660,9 @@ Vue.filter('upText', function (text) {
 });
 Vue.filter('formatDate', function (created) {
   return moment__WEBPACK_IMPORTED_MODULE_0___default()(created).format('ll');
-}); //Fire = new Vue();
-//window.Fire = Fire;
-
+});
+Fire = new Vue();
+window.Fire = Fire;
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
