@@ -66,8 +66,8 @@ Vue.filter('formatDate',function(created){
 });
 
 
-Fire = new Vue();
-window.Fire = Fire;
+//Fire = new Vue();
+//window.Fire = Fire;
 
 /**
  * The following block of code may be used to automatically register your
