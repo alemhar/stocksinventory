@@ -10,8 +10,8 @@ window.Vue = require('vue');
 import moment from 'moment';
 import { Form, HasError, AlertError } from 'vform';
 
-
-window.Fire = new Vue();
+Fire = new Vue();
+window.Fire = Fire;
 
 //npm install vue-progressbar --save
 import swal from 'sweetalert2';
