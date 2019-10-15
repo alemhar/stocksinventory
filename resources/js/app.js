@@ -40,7 +40,7 @@ Vue.use(VueProgressBar, {
   });
 
 
-window.Fire = new Vue();
+
 
 
 let routes = [
@@ -88,3 +88,4 @@ const app = new Vue({
     router
 });
 
+window.Fire = new Vue();

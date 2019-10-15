@@ -74634,7 +74634,6 @@ Vue.use(vue_progressbar__WEBPACK_IMPORTED_MODULE_4___default.a, {
   failedColor: 'red',
   height: '3px'
 });
-window.Fire = new Vue();
 var routes = [{
   path: '/dashboard',
   component: __webpack_require__(/*! ./components/Dashboard.vue */ "./resources/js/components/Dashboard.vue")["default"]
@@ -74677,6 +74676,7 @@ var app = new Vue({
   el: '#app',
   router: router
 });
+window.Fire = new Vue();
 
 /***/ }),
 
