@@ -62,7 +62,7 @@ Vue.filter('formatDate',function(created){
 });
 
 const VueListen = new Vue();
-//window.VueListen = VueListen;
+window.VueListen = VueListen;
 
 
 
