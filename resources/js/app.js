@@ -10,8 +10,6 @@ window.Vue = require('vue');
 import moment from 'moment';
 import { Form, HasError, AlertError } from 'vform';
 
-Fire = new Vue();
-window.Fire = Fire;
 
 //npm install vue-progressbar --save
 import swal from 'sweetalert2';
@@ -64,10 +62,13 @@ Vue.filter('upText',function(text){
 });
 
 Vue.filter('formatDate',function(created){
-
 	return moment(created).format('ll');
-
 });
+
+Fire = new Vue();
+window.Fire = Fire;
+
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
