@@ -28,7 +28,7 @@
                   <td>{{ user.type | upText }}</td>
                   <td>{{ user.created_at | formatDate }}</td>
                   <td>
-                    <a href="#">Edit
+                    <a href="#" @click="editUser(user)">Edit
                       <i class="fa fa-edit"></i>
                     </a>
                     |
@@ -127,7 +127,14 @@
           }
         },
         methods: {
+          editUser(user){
+              this.form.reset();
+              $('#UserDetails').modal('show');
+              this.form.fill(user);
+          },
           newUser(){
+              
+              this.form.reset();
               $('#UserDetails').modal('show');
           },
           deleteUser(id){
