@@ -199,7 +199,24 @@
             
           },
           updateUser(){
+            this.$Progress.start();
+            this.form.put('api/user/'+this.form.id)
+            .then(() => {
+                $('#UserDetails').modal('hide');
+                swal.fire(
+                    'Updated!',
+                    'User information has been updated.',
+                    'success'
+                  );
+                  this.$Progress.finish();
+                  Fire.$emit('RefreshUsersTable');
+            })
+            .catch(() => {
+                this.$Progress.fail();
+            });
+
             console.log('Edit User');
+
           }
 
 

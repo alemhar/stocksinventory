@@ -2142,15 +2142,28 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {});
     },
     updateUser: function updateUser() {
+      var _this4 = this;
+
+      this.$Progress.start();
+      this.form.put('api/user/' + this.form.id).then(function () {
+        $('#UserDetails').modal('hide');
+        swal.fire('Updated!', 'User information has been updated.', 'success');
+
+        _this4.$Progress.finish();
+
+        Fire.$emit('RefreshUsersTable');
+      })["catch"](function () {
+        _this4.$Progress.fail();
+      });
       console.log('Edit User');
     }
   },
   created: function created() {
-    var _this4 = this;
+    var _this5 = this;
 
     this.loadUsers();
     VueListen.on('RefreshUsersTable', function () {
-      _this4.loadUsers();
+      _this5.loadUsers();
     }); //setInterval(() => this.loadUsers(),3000);
   }
 });
