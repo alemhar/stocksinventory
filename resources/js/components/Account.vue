@@ -1,3 +1,14 @@
+<style>
+.widget-user-header{
+    background-position: center center;
+    background-size: cover;
+    height: 250px !important;
+}
+.widget-user .card-footer{
+    padding: 0;
+}
+</style>
+
 <template>
     <div class="container">
         <div class="row justify-content-center">
@@ -125,7 +136,7 @@
                 <!-- /.nav-tabs-custom -->
           </div>
           <!-- end tabs -->
-          
+
         </div>
     </div>
 </template>
@@ -134,6 +145,68 @@
     export default {
         mounted() {
             console.log('Component mounted.')
+        }
+    }
+</script>
+
+<script>
+    export default {
+        data(){
+            return {
+                 form: new Form({
+                    id:'',
+                    name : '',
+                    email: '',
+                    password: '',
+                    type: '',
+                    bio: '',
+                    photo: ''
+                })
+            }
+        },
+        mounted() {
+            console.log('Component mounted.')
+        },
+        methods:{
+            getProfilePhoto(){
+                let photo = (this.form.photo.length > 200) ? this.form.photo : "img/profile/"+ this.form.photo ;
+                return photo;
+            },
+            updateInfo(){
+                this.$Progress.start();
+                if(this.form.password == ''){
+                    this.form.password = undefined;
+                }
+                this.form.put('api/profile')
+                .then(()=>{
+                     Fire.$emit('AfterCreate');
+                    this.$Progress.finish();
+                })
+                .catch(() => {
+                    this.$Progress.fail();
+                });
+            },
+            updateProfile(e){
+                let file = e.target.files[0];
+                let reader = new FileReader();
+                let limit = 1024 * 1024 * 2;
+                if(file['size'] > limit){
+                    swal({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'You are uploading a large file',
+                    })
+                    return false;
+                }
+                reader.onloadend = (file) => {
+                    this.form.photo = reader.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        },
+        created() {
+            axios.get("api/profile")
+            .then(({ data }) => (this.form.fill(data)));
         }
     }
 </script>
