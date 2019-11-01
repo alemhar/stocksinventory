@@ -184,7 +184,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!--  menu-open-->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-cog"></i>
+              <i class="nav-icon fas fa-cogs"></i>
               <p>
                 Preference
                 <i class="right fas fa-angle-left"></i>
@@ -208,7 +208,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           
           <li class="nav-item">
             <router-link to="/developer" class="nav-link">
-              <i class="nav-icon fas fa-cogs"></i>
+              <i class="nav-icon fas fa-cog"></i>
               <p>
                 Developer
               </p>
