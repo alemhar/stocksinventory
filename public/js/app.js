@@ -60601,7 +60601,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "col-md-12 mt-3" }, [
           _c("div", { staticClass: "box box-widget widget-user" }, [
             _c("div", { staticClass: "widget-user-header bg-aqua-active" }, [
               _c("h3", { staticClass: "widget-user-username" }, [
