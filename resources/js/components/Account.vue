@@ -205,7 +205,7 @@
             }
         },
         created() {
-            axios.get("api/profile")
+            axios.get("api/account")
             .then(({ data }) => (this.form.fill(data)));
         }
     }

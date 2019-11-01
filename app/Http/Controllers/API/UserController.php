@@ -54,6 +54,12 @@ class UserController extends Controller
         ]);
     }
 
+
+    public function account()
+    {
+        return auth('api')->user();
+    }
+
     /**
      * Display the specified resource.
      *
