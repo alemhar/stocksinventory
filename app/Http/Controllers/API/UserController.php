@@ -90,7 +90,10 @@ class UserController extends Controller
 
         $user->update($request->all());
         */
-        return ['message' => "Success"];
+
+        //return ['message' => "Success"];
+
+        return $currentPhoto;
     }
 
     public function account()
