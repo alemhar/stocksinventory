@@ -68,9 +68,9 @@ class UserController extends Controller
         */
         
         //if($request->photo != $currentPhoto){
-        //if($request->photo){
+        if($request->photo){
             
-            //$name = time().'.' . explode('/', explode(':', substr($request->photo, 0, strpos($request->photo, ';')))[1])[1];
+            $name = time().'.' . explode('/', explode(':', substr($request->photo, 0, strpos($request->photo, ';')))[1])[1];
 
             //\Image::make($request->photo)->save(public_path('img/profile/').$name);
 
@@ -82,7 +82,7 @@ class UserController extends Controller
             }
             */
             
-        //}
+        }
         
         /*
         if(!empty($request->password)){
@@ -94,7 +94,7 @@ class UserController extends Controller
 
         //return ['message' => "Success"];
 
-        return $request->photo;
+        return $name;
     }
 
     public function account()
