@@ -93,7 +93,7 @@ class UserController extends Controller
 
         //return ['message' => "Success"];
 
-        return $currentPhoto;
+        return $request->photo;
     }
 
     public function account()
