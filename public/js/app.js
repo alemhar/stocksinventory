@@ -2037,7 +2037,7 @@ __webpack_require__.r(__webpack_exports__);
         this.form.password = undefined;
       }
 
-      this.form.put('api/profile').then(function () {
+      this.form.put('api/account').then(function () {
         Fire.$emit('AfterCreate');
 
         _this.$Progress.finish();

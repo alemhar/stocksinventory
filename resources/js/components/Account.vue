@@ -177,9 +177,9 @@
                 if(this.form.password == ''){
                     this.form.password = undefined;
                 }
-                this.form.put('api/profile')
+                this.form.put('api/account')
                 .then(()=>{
-                     Fire.$emit('AfterCreate');
+                    Fire.$emit('AfterCreate');
                     this.$Progress.finish();
                 })
                 .catch(() => {
