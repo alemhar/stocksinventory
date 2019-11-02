@@ -187,6 +187,7 @@
                 .catch(() => {
                     //this.$Progress.fail();
                 });
+                
             },
             updateProfile(e){
                 let file = e.target.files[0];
