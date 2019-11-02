@@ -173,17 +173,19 @@
                 return photo;
             },
             updateInfo(){
-                this.$Progress.start();
+                //this.$Progress.start();
+                /*
                 if(this.form.password == ''){
                     this.form.password = undefined;
                 }
+                */
                 this.form.put('api/account')
                 .then(()=>{
-                    Fire.$emit('AfterCreate');
-                    this.$Progress.finish();
+                    //Fire.$emit('AfterCreate');
+                    //this.$Progress.finish();
                 })
                 .catch(() => {
-                    this.$Progress.fail();
+                    //this.$Progress.fail();
                 });
             },
             updateProfile(e){

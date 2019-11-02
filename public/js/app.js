@@ -2029,24 +2029,20 @@ __webpack_require__.r(__webpack_exports__);
       return photo;
     },
     updateInfo: function updateInfo() {
-      var _this = this;
+      //this.$Progress.start();
 
-      this.$Progress.start();
-
-      if (this.form.password == '') {
-        this.form.password = undefined;
+      /*
+      if(this.form.password == ''){
+          this.form.password = undefined;
       }
-
-      this.form.put('api/account').then(function () {
-        Fire.$emit('AfterCreate');
-
-        _this.$Progress.finish();
-      })["catch"](function () {
-        _this.$Progress.fail();
+      */
+      this.form.put('api/account').then(function () {//Fire.$emit('AfterCreate');
+        //this.$Progress.finish();
+      })["catch"](function () {//this.$Progress.fail();
       });
     },
     updateProfile: function updateProfile(e) {
-      var _this2 = this;
+      var _this = this;
 
       var file = e.target.files[0];
       var reader = new FileReader();
@@ -2062,18 +2058,18 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       reader.onloadend = function (file) {
-        _this2.form.photo = reader.result;
+        _this.form.photo = reader.result;
       };
 
       reader.readAsDataURL(file);
     }
   },
   created: function created() {
-    var _this3 = this;
+    var _this2 = this;
 
     axios.get("api/account").then(function (_ref) {
       var data = _ref.data;
-      return _this3.form.fill(data);
+      return _this2.form.fill(data);
     });
   }
 });
