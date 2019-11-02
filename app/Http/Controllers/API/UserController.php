@@ -64,25 +64,26 @@ class UserController extends Controller
             'email' => 'required|string|email|max:191|unique:users,email,'.$user->id,
             'password' => 'sometimes|required|min:6'
         ]);
-        */
-        /*
         $currentPhoto = $user->photo;
-        if($request->photo != $currentPhoto){
+        */
+        
+        //if($request->photo != $currentPhoto){
+        if($request->photo){
             
             $name = time().'.' . explode('/', explode(':', substr($request->photo, 0, strpos($request->photo, ';')))[1])[1];
 
             //\Image::make($request->photo)->save(public_path('img/profile/').$name);
 
-            
+            /*
             $request->merge(['photo' => $name]);
             $userPhoto = public_path('img/profile/').$currentPhoto;
             if(file_exists($userPhoto)){
                 @unlink($userPhoto);
             }
+            */
             
         }
-        */
-
+        
         /*
         if(!empty($request->password)){
             $request->merge(['password' => Hash::make($request['password'])]);
