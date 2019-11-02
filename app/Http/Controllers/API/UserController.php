@@ -68,7 +68,7 @@ class UserController extends Controller
         */
         
         //if($request->photo != $currentPhoto){
-        if($request->photo){
+        //if($request->photo){
             
             //$name = time().'.' . explode('/', explode(':', substr($request->photo, 0, strpos($request->photo, ';')))[1])[1];
 
@@ -82,7 +82,7 @@ class UserController extends Controller
             }
             */
             
-        }
+        //}
         
         /*
         if(!empty($request->password)){
