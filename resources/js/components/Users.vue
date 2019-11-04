@@ -43,9 +43,11 @@
           </div>
           <!-- /.box -->
         </div>
-      </div>
+        </div>
 
-
+        <div class="row mt-5" v-if="!$gate.isAdminOrAuthor()">
+          <not-found></not-found>
+        </div>  
       <!-- Modal -->
       <div class="modal fade" id="UserDetails" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -177,10 +179,10 @@
           },
           loadUsers(){
 
-            //if(this.$gate.isAdminOrAuthor()){
+            if(this.$gate.isAdminOrAuthor()){
                 //axios.get("api/user").then(({ data }) => (this.users = data));
                 axios.get("api/user").then(({ data }) => (this.users = data.data));
-            //} 
+            } 
              
           },
           createUser(){

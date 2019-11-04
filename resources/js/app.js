@@ -65,6 +65,7 @@ Vue.filter('formatDate',function(created){
 	return moment(created).format('ll');
 });
 
+
 const VueListen = new Vue();
 window.VueListen = VueListen;
 
@@ -95,6 +96,10 @@ Vue.component(
     require('./components/passport/PersonalAccessTokens.vue').default
 );
 
+Vue.component(
+    'not-found',
+    require('./components/NotFound.vue').default
+);
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 /**
