@@ -214,7 +214,7 @@
                     'success'
                   );
                   this.$Progress.finish();
-                  Fire.$emit('RefreshUsersTable');
+                  VueListen.$emit('RefreshUsersTable');
             })
             .catch(() => {
                 this.$Progress.fail();
@@ -230,7 +230,7 @@
         created() {
             this.loadUsers();
 
-            VueListen.on('RefreshUsersTable',() => {
+            VueListen.$on('RefreshUsersTable',() => {
               
                this.loadUsers();
             });

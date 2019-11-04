@@ -181,7 +181,7 @@
                 
                 this.form.put('api/account')
                 .then(()=>{
-                    Fire.$emit('RefreshUsersInfo');
+                    VueListen.$emit('RefreshUsersInfo');
                     this.$Progress.finish();
                 })
                 .catch(() => {
@@ -212,7 +212,7 @@
             axios.get("api/account")
             .then(({ data }) => (this.form.fill(data)));
 
-            VueListen.on('RefreshUsersInfo',() => {
+            VueListen.$on('RefreshUsersInfo',() => {
                 axios.get("api/account")
                 .then(({ data }) => (this.form.fill(data)));
             });

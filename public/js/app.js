@@ -2038,7 +2038,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.form.put('api/account').then(function () {
-        Fire.$emit('RefreshUsersInfo');
+        VueListen.$emit('RefreshUsersInfo');
 
         _this.$Progress.finish();
       })["catch"](function () {
@@ -2075,7 +2075,7 @@ __webpack_require__.r(__webpack_exports__);
       var data = _ref.data;
       return _this3.form.fill(data);
     });
-    VueListen.on('RefreshUsersInfo', function () {
+    VueListen.$on('RefreshUsersInfo', function () {
       axios.get("api/account").then(function (_ref2) {
         var data = _ref2.data;
         return _this3.form.fill(data);
@@ -2390,7 +2390,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this4.$Progress.finish();
 
-        Fire.$emit('RefreshUsersTable');
+        VueListen.$emit('RefreshUsersTable');
       })["catch"](function () {
         _this4.$Progress.fail();
       });
@@ -2401,7 +2401,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this5 = this;
 
     this.loadUsers();
-    VueListen.on('RefreshUsersTable', function () {
+    VueListen.$on('RefreshUsersTable', function () {
       _this5.loadUsers();
     }); //setInterval(() => this.loadUsers(),3000);
   }
