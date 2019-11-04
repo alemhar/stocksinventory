@@ -61509,7 +61509,7 @@ var render = function() {
                   on: {
                     submit: function($event) {
                       $event.preventDefault()
-                      _vm.editmode ? _vm.updateUser : _vm.createUser
+                      _vm.editmode ? _vm.updateUser() : _vm.createUser()
                     }
                   }
                 },

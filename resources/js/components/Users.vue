@@ -57,7 +57,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form @submit.prevent="editmode ? updateUser : createUser">
+            <form @submit.prevent="editmode ? updateUser() : createUser()">
             <div class="modal-body">
               
               <div class="form-group">
