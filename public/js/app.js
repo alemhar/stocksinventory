@@ -60827,7 +60827,7 @@ var render = function() {
           _c("div", { staticClass: "widget-user-image" }, [
             _c("img", {
               staticClass: "img-circle",
-              attrs: { src: _vm.getProfilePhoto(), alt: "User Avatar" }
+              attrs: { src: _vm.getProfilePhoto, alt: "User Avatar" }
             })
           ]),
           _vm._v(" "),
