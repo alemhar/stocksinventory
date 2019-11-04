@@ -189,7 +189,7 @@
             this.$Progress.start()
             this.form.post('api/user')
             .then(()=>{
-                Fire.$emit('RefreshUsersTable');
+                VueListen.$emit('RefreshUsersTable');
                 $('#UserDetails').modal('hide');
 
                 toast.fire({

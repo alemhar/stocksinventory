@@ -2371,7 +2371,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$Progress.start();
       this.form.post('api/user').then(function () {
-        Fire.$emit('RefreshUsersTable');
+        VueListen.$emit('RefreshUsersTable');
         $('#UserDetails').modal('hide');
         toast.fire({
           type: 'success',
