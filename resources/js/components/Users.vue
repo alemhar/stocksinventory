@@ -177,10 +177,10 @@
           },
           loadUsers(){
 
-            if(this.$gate.isAdminOrAuthor()){
+            //if(this.$gate.isAdminOrAuthor()){
                 //axios.get("api/user").then(({ data }) => (this.users = data));
                 axios.get("api/user").then(({ data }) => (this.users = data.data));
-            } 
+            //} 
              
           },
           createUser(){

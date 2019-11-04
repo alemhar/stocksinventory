@@ -2358,13 +2358,12 @@ __webpack_require__.r(__webpack_exports__);
     loadUsers: function loadUsers() {
       var _this2 = this;
 
-      if (this.$gate.isAdminOrAuthor()) {
-        //axios.get("api/user").then(({ data }) => (this.users = data));
-        axios.get("api/user").then(function (_ref) {
-          var data = _ref.data;
-          return _this2.users = data.data;
-        });
-      }
+      //if(this.$gate.isAdminOrAuthor()){
+      //axios.get("api/user").then(({ data }) => (this.users = data));
+      axios.get("api/user").then(function (_ref) {
+        var data = _ref.data;
+        return _this2.users = data.data;
+      }); //} 
     },
     createUser: function createUser() {
       var _this3 = this;
