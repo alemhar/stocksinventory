@@ -2025,10 +2025,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     getProfilePhoto: function getProfilePhoto() {
-      //let photo = (this.form.photo.length > 200) ? this.form.photo : "img/profile/"+ this.form.photo ;
-      //return photo;
-      console.log("img/profile/" + this.form.photo);
-      return "img/profile/" + this.form.photo;
+      var photo = this.form.photo.length > 200 ? this.form.photo : "img/profile/" + this.form.photo;
+      return photo;
     },
     updateInfo: function updateInfo() {
       var _this = this;
@@ -2386,6 +2384,7 @@ __webpack_require__.r(__webpack_exports__);
     updateUser: function updateUser() {
       var _this4 = this;
 
+      console.log('Edit User');
       this.$Progress.start();
       this.form.put('api/user/' + this.form.id).then(function () {
         $('#UserDetails').modal('hide');
@@ -2397,7 +2396,6 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {
         _this4.$Progress.fail();
       });
-      console.log('Edit User');
     }
   },
   created: function created() {

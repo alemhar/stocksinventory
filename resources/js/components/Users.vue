@@ -204,6 +204,7 @@
             
           },
           updateUser(){
+            console.log('Edit User');
             this.$Progress.start();
             this.form.put('api/user/'+this.form.id)
             .then(() => {
@@ -220,7 +221,7 @@
                 this.$Progress.fail();
             });
 
-            console.log('Edit User');
+            
 
           }
 

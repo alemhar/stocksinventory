@@ -169,11 +169,9 @@
         },
         methods:{
             getProfilePhoto(){
-                //let photo = (this.form.photo.length > 200) ? this.form.photo : "img/profile/"+ this.form.photo ;
-                //return photo;
-                console.log("img/profile/"+ this.form.photo);
-                return "img/profile/"+ this.form.photo;
-
+                let photo = (this.form.photo.length > 200) ? this.form.photo : "img/profile/"+ this.form.photo ;
+                return photo;
+                
             },
             updateInfo(){
                 this.$Progress.start();
