@@ -26,7 +26,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::latest()->paginate(10);
+        if (\Gate::allows('isAdmin') || \Gate::allows('isAuthor')) {
+            return User::latest()->paginate(10);
+        }    
     }
 
     /**
@@ -144,7 +146,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         $this->authorize('isAdmin');
-        
+
         $user = User::findOrFail($id);
 
         // Send Request
