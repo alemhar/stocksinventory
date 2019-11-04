@@ -2027,6 +2027,7 @@ __webpack_require__.r(__webpack_exports__);
     getProfilePhoto: function getProfilePhoto() {
       //let photo = (this.form.photo.length > 200) ? this.form.photo : "img/profile/"+ this.form.photo ;
       //return photo;
+      console.log("img/profile/" + this.form.photo);
       return "img/profile/" + this.form.photo;
     },
     updateInfo: function updateInfo() {
