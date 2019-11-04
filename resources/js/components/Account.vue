@@ -20,7 +20,7 @@
               <h5 class="widget-user-desc">Founder &amp; CEO</h5>
             </div>
             <div class="widget-user-image">
-              <img class="img-circle" src="" alt="User Avatar">
+              <img class="img-circle" :src="getProfilePhoto()" alt="User Avatar">
             </div>
             <div class="box-footer">
               <div class="row">
@@ -114,7 +114,7 @@
                                         v-model="form.password"
                                         class="form-control"
                                         id="password"
-                                        placeholder="Passport"
+                                        placeholder="Password"
                                         :class="{ 'is-invalid': form.errors.has('password') }"
                                     >
                                      <has-error :form="form" field="password"></has-error>
@@ -173,21 +173,21 @@
                 return photo;
             },
             updateInfo(){
-                //this.$Progress.start();
-                /*
+                this.$Progress.start();
+                
                 if(this.form.password == ''){
                     this.form.password = undefined;
                 }
-                */
+                
                 this.form.put('api/account')
                 .then(()=>{
-                    //Fire.$emit('AfterCreate');
-                    //this.$Progress.finish();
+                    Fire.$emit('RefreshUsersInfo');
+                    this.$Progress.finish();
                 })
                 .catch(() => {
-                    //this.$Progress.fail();
+                    this.$Progress.fail();
                 });
-                
+
             },
             updateProfile(e){
                 let file = e.target.files[0];
@@ -208,8 +208,17 @@
             }
         },
         created() {
+
             axios.get("api/account")
             .then(({ data }) => (this.form.fill(data)));
+
+            VueListen.on('RefreshUsersInfo',() => {
+              
+                axios.get("api/account")
+                .then(({ data }) => (this.form.fill(data)));
+            });
+            
+
         }
     }
 </script>

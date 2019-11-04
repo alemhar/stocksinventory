@@ -180,7 +180,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </router-link>
           </li>
           
-          
+          @can('isAdmin')
           <!--  menu-open-->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -214,6 +214,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </router-link>
           </li>
+          @endcan
           <li class="nav-item">
             <router-link to="/account" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
@@ -277,6 +278,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
   </footer>
 </div>
+
+@auth
+<script>
+    window.user = @json(auth()->user())
+</script>
+@endauth
+
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->

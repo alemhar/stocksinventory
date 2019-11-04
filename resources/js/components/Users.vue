@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="row mt-5">
+        <div class="row mt-5" v-if="$gate.isAdminOrAuthor()">
         <div class="col-md-12">
           <div class="box">
             <div class="box-header">
@@ -176,7 +176,12 @@
                   });
           },
           loadUsers(){
-             axios.get("api/user").then(({ data }) => (this.users = data.data));
+
+            if(this.$gate.isAdminOrAuthor()){
+                axios.get("api/user").then(({ data }) => (this.users = data));
+                //axios.get("api/user").then(({ data }) => (this.users = data.data));
+            } 
+             
           },
           createUser(){
             
