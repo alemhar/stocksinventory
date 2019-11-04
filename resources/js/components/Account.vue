@@ -213,7 +213,6 @@
             .then(({ data }) => (this.form.fill(data)));
 
             VueListen.on('RefreshUsersInfo',() => {
-              
                 axios.get("api/account")
                 .then(({ data }) => (this.form.fill(data)));
             });
