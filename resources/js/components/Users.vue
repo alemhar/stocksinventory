@@ -240,6 +240,19 @@
         },
 
         created() {
+
+            VueListen.$on('Search',() => {
+                let query = this.$parent.search;
+                axios.get('api/findUser?q='+query)
+                .then((data)=>{
+                  this.users = data.data;
+                })
+                .catch(()=>{
+
+                });
+               //this.loadUsers();
+            });
+            
             this.loadUsers();
 
             VueListen.$on('RefreshUsersTable',() => {

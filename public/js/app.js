@@ -2439,6 +2439,12 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this6 = this;
 
+    VueListen.$on('Search', function () {
+      var query = _this6.$parent.search;
+      axios.get('api/findUser?q=' + query).then(function (data) {
+        _this6.users = data.data;
+      })["catch"](function () {}); //this.loadUsers();
+    });
     this.loadUsers();
     VueListen.$on('RefreshUsersTable', function () {
       _this6.loadUsers();
@@ -78988,7 +78994,8 @@ var app = new Vue({
   },
   methods: {
     SearchIt: function SearchIt() {
-      console.log('searching'); //VueListen.$emit('Search');
+      //console.log('searching');
+      VueListen.$emit('Search');
     }
   }
 });
