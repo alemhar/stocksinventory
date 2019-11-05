@@ -118,10 +118,10 @@ const app = new Vue({
       search: ''
     },
     methods:{
-      SearchIt(){
-        //console.log('searching');
-        VueListen.$emit('Search');
-      }
+      SearchIt: _.debounce(() => {
+            VueListen.$emit('Search');
+        },1000)
+
     }
 });
 
