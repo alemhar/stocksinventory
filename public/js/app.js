@@ -78988,7 +78988,7 @@ var app = new Vue({
   },
   methods: {
     SearchIt: function SearchIt() {
-      VueListen.$emit('Search');
+      console.log('searching'); //VueListen.$emit('Search');
     }
   }
 });
