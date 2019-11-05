@@ -117,8 +117,10 @@ const app = new Vue({
     data: {
       search: ''
     },
-    methods: {
-      VueListen.$emit('Search');
+    methods:{
+      SearchIt(){
+        VueListen.$emit('Search');
+      }
     }
 });
 
