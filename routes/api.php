@@ -22,4 +22,5 @@ Route::apiResources([
 ]);
 
 Route::get('account', 'API\UserController@account');
+Route::get('findUser', 'API\UserController@search');
 Route::put('account', 'API\UserController@updateAccountInfo');

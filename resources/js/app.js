@@ -68,7 +68,6 @@ Vue.filter('formatDate',function(created){
 	return moment(created).format('ll');
 });
 
-
 const VueListen = new Vue();
 window.VueListen = VueListen;
 
@@ -111,11 +110,15 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+
 const app = new Vue({
     el: '#app',
     router,
     data: {
       search: ''
+    },
+    methods: {
+      VueListen.$emit('Search');
     }
 });
 
