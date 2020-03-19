@@ -82,7 +82,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    AIA Books ©
+                    AIA Books ®
                 </div>
 
                 <!-- div class="links">
