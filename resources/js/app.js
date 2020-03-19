@@ -120,7 +120,11 @@ const app = new Vue({
     methods:{
       SearchIt: _.debounce(() => {
             VueListen.$emit('Search');
-        },1000)
+        },1000),
+
+        printme() {
+            window.print();
+        }
 
     }
 });

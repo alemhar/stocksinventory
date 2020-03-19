@@ -78995,7 +78995,10 @@ var app = new Vue({
   methods: {
     SearchIt: _.debounce(function () {
       VueListen.$emit('Search');
-    }, 1000)
+    }, 1000),
+    printme: function printme() {
+      window.print();
+    }
   }
 });
 
