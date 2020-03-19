@@ -95,7 +95,7 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div -->
-                <div>Alemhar-Ivan-Alfonzo Online Accounting</div>
+                <div>Online Accounting</div>
             </div>
         </div>
     </body>
