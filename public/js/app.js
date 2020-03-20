@@ -62384,7 +62384,7 @@ var render = function() {
                       },
                       [
                         _vm._v("New CD "),
-                        _c("i", { staticClass: "fas fa-user-plus fa-fw" })
+                        _c("i", { staticClass: "fas fa-plus-circle fa-fw" })
                       ]
                     )
                   ])

@@ -11,7 +11,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Cash Disbursement</h3>
               <div class="box-tools">
-                <button class="btn btn-success" @click="newCD">New CD <i class="fas fa-user-plus fa-fw"></i></button>
+                <button class="btn btn-success" @click="newCD">New CD <i class="fas fa-plus-circle fa-fw"></i></button>
               </div>
             </div>
             <!-- /.box-header -->
