@@ -2214,6 +2214,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -62367,78 +62375,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "box-body table-responsive no-padding" },
-                [
-                  _c("table", { staticClass: "table table-hover" }, [
-                    _c(
-                      "tbody",
-                      [
-                        _vm._m(0),
-                        _vm._v(" "),
-                        _vm._l(_vm.users.data, function(user) {
-                          return _c("tr", { key: user.id }, [
-                            _c("td", [_vm._v(_vm._s(user.id))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(user.name))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(user.email))]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(_vm._s(_vm._f("upText")(user.type)))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(
-                                _vm._s(_vm._f("formatDate")(user.created_at))
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.editUser(user)
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm._v("Edit\n                  "),
-                                  _c("i", { staticClass: "fa fa-edit" })
-                                ]
-                              ),
-                              _vm._v("\n                |\n                "),
-                              _c(
-                                "a",
-                                {
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.deleteUser(user.id)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("span", { staticClass: "red" }, [
-                                    _vm._v("Delete")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("i", { staticClass: "fa fa-trash" })
-                                ]
-                              )
-                            ])
-                          ])
-                        })
-                      ],
-                      2
-                    )
-                  ])
-                ]
-              ),
+              _vm._m(0),
               _vm._v(" "),
               _c(
                 "div",
@@ -62812,18 +62749,71 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", [_vm._v("ID")]),
+    return _c("div", { staticClass: "box box-primary" }, [
+      _c("div", { staticClass: "box-header with-border" }, [
+        _c("h3", { staticClass: "box-title" }, [_vm._v("Cash Disbursement")])
+      ]),
       _vm._v(" "),
-      _c("th", [_vm._v("Name")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Email")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Type")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Registered")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Modify")])
+      _c("form", { attrs: { role: "form" } }, [
+        _c("div", { staticClass: "box-body" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "exampleInputEmail1" } }, [
+              _vm._v("Email address")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "email",
+                id: "exampleInputEmail1",
+                placeholder: "Enter email"
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "exampleInputPassword1" } }, [
+              _vm._v("Password")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "password",
+                id: "exampleInputPassword1",
+                placeholder: "Password"
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "exampleInputFile" } }, [
+              _vm._v("File input")
+            ]),
+            _vm._v(" "),
+            _c("input", { attrs: { type: "file", id: "exampleInputFile" } }),
+            _vm._v(" "),
+            _c("p", { staticClass: "help-block" }, [
+              _vm._v("Example block-level help text here.")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "checkbox" }, [
+            _c("label", [
+              _c("input", { attrs: { type: "checkbox" } }),
+              _vm._v(" Check me out\n              ")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "box-footer" }, [
+          _c(
+            "button",
+            { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+            [_vm._v("Submit")]
+          )
+        ])
+      ])
     ])
   },
   function() {

@@ -10,36 +10,44 @@
               </div>
             </div>
 
-            <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
-                <tbody><tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Type</th>
-                  <th>Registered</th>
-                  <th>Modify</th>
-                </tr>
-                <tr v-for="user in users.data" :key="user.id">
-                  <td>{{ user.id }}</td>
-                  <td>{{ user.name }}</td>
-                  <td>{{ user.email }}</td>
-                  <td>{{ user.type | upText }}</td>
-                  <td>{{ user.created_at | formatDate }}</td>
-                  <td>
-                    <a href="#" @click="editUser(user)">Edit
-                      <i class="fa fa-edit"></i>
-                    </a>
-                    |
-                    <a href="#" @click="deleteUser(user.id)"><span class="red">Delete</span>
-                      <i class="fa fa-trash"></i>
-                    </a>
-                  </td>
-                </tr>
-              </tbody></table>
+            <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Cash Disbursement</h3>
             </div>
-            <!-- /.box-body -->
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputFile">File input</label>
+                  <input type="file" id="exampleInputFile">
+
+                  <p class="help-block">Example block-level help text here.</p>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> Check me out
+                  </label>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.box -->
+          
             <div class="box-footer">
               <pagination :data="users" @pagination-change-page="getResults"></pagination>
             </div> 
