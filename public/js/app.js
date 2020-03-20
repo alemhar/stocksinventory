@@ -2216,6 +2216,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -62349,27 +62351,29 @@ var render = function() {
       ? _c("div", { staticClass: "row mt-5" }, [
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "box" }, [
-              _c("div", { staticClass: "box-header" }, [
-                _c("h3", { staticClass: "box-title" }, [
-                  _vm._v("Cash Disbursement")
+              _c("div", { staticClass: "box box-primary" }, [
+                _c("div", { staticClass: "box-header with-border" }, [
+                  _c("h3", { staticClass: "box-title" }, [
+                    _vm._v("Cash Disbursement")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "box-tools" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        on: { click: _vm.newUser }
+                      },
+                      [
+                        _vm._v("Add New  "),
+                        _c("i", { staticClass: "fas fa-user-plus fa-fw" })
+                      ]
+                    )
+                  ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "box-tools" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-success",
-                      on: { click: _vm.newUser }
-                    },
-                    [
-                      _vm._v("Add New  "),
-                      _c("i", { staticClass: "fas fa-user-plus fa-fw" })
-                    ]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _vm._m(0)
+                _vm._m(0)
+              ])
             ])
           ])
         ])
@@ -62731,66 +62735,64 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box box-primary" }, [
-      _c("form", { attrs: { role: "form" } }, [
-        _c("div", { staticClass: "box-body" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "exampleInputEmail1" } }, [
-              _vm._v("Email address")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "email",
-                id: "exampleInputEmail1",
-                placeholder: "Enter email"
-              }
-            })
+    return _c("form", { attrs: { role: "form" } }, [
+      _c("div", { staticClass: "box-body" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "exampleInputEmail1" } }, [
+            _vm._v("Email address")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "exampleInputPassword1" } }, [
-              _vm._v("Password")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "password",
-                id: "exampleInputPassword1",
-                placeholder: "Password"
-              }
-            })
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "email",
+              id: "exampleInputEmail1",
+              placeholder: "Enter email"
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "exampleInputPassword1" } }, [
+            _vm._v("Password")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "exampleInputFile" } }, [
-              _vm._v("File input")
-            ]),
-            _vm._v(" "),
-            _c("input", { attrs: { type: "file", id: "exampleInputFile" } }),
-            _vm._v(" "),
-            _c("p", { staticClass: "help-block" }, [
-              _vm._v("Example block-level help text here.")
-            ])
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "password",
+              id: "exampleInputPassword1",
+              placeholder: "Password"
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "exampleInputFile" } }, [
+            _vm._v("File input")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "checkbox" }, [
-            _c("label", [
-              _c("input", { attrs: { type: "checkbox" } }),
-              _vm._v(" With VAT\n              ")
-            ])
+          _c("input", { attrs: { type: "file", id: "exampleInputFile" } }),
+          _vm._v(" "),
+          _c("p", { staticClass: "help-block" }, [
+            _vm._v("Example block-level help text here.")
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "box-footer" }, [
-          _c(
-            "button",
-            { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-            [_vm._v("Submit")]
-          )
+        _c("div", { staticClass: "checkbox" }, [
+          _c("label", [
+            _c("input", { attrs: { type: "checkbox" } }),
+            _vm._v(" with VAT\n              ")
+          ])
         ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "box-footer" }, [
+        _c(
+          "button",
+          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+          [_vm._v("Submit")]
+        )
       ])
     ])
   },

@@ -3,15 +3,18 @@
         <div class="row mt-5" v-if="$gate.isAdminOrAuthor()">
         <div class="col-md-12">
           <div class="box">
-            <div class="box-header">
+            
+
+            <!-- general form elements -->
+          <div class="box box-primary">
+
+            <div class="box-header with-border">
               <h3 class="box-title">Cash Disbursement</h3>
               <div class="box-tools">
                 <button class="btn btn-success" @click="newUser">Add New  <i class="fas fa-user-plus fa-fw"></i></button>
               </div>
             </div>
-
-            <!-- general form elements -->
-          <div class="box box-primary">
+            <!-- /.box-header -->
             <!-- form start -->
             <form role="form">
               <div class="box-body">
@@ -31,7 +34,7 @@
                 </div>
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox"> With VAT
+                    <input type="checkbox"> with VAT
                   </label>
                 </div>
               </div>
@@ -43,8 +46,7 @@
             </form>
           </div>
           <!-- /.box -->
-
-           
+       
           </div>
           <!-- /.box -->
         </div>
