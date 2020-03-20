@@ -19,8 +19,8 @@
             <form role="form">
               <div class="box-body">
                 <div class="form-group">
-                  <label for="inputPayeesName">Payees Name
-                  <input type="text" class="form-control col-6" id="inputPayeesName" placeholder="Payees Name"></label>
+                  <label for="inputPayeesName">Payees Name</label>
+                  <input type="text" class="form-control col-6" id="inputPayeesName" placeholder="Payees Name">
                 </div>
                 <div class="form-group">
                   <label for="inputPayeesAddress">Address</label>
