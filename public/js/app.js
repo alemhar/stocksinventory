@@ -62348,7 +62348,9 @@ var render = function() {
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "box" }, [
               _c("div", { staticClass: "box-header" }, [
-                _c("h3", { staticClass: "box-title" }, [_vm._v("Users List")]),
+                _c("h3", { staticClass: "box-title" }, [
+                  _vm._v("Cash Disbursement")
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "box-tools" }, [
                   _c(

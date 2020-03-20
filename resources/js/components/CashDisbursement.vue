@@ -4,7 +4,7 @@
         <div class="col-md-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Users List</h3>
+              <h3 class="box-title">Cash Disbursement</h3>
               <div class="box-tools">
                 <button class="btn btn-success" @click="newUser">Add New  <i class="fas fa-user-plus fa-fw"></i></button>
               </div>
