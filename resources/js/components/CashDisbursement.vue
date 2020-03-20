@@ -20,7 +20,7 @@
               <div class="box-body">
                 <div class="form-group">
                   <label for="inputPayeesName">Payees Name</label>
-                  <input type="text" class="form-control" id="inputPayeesName" placeholder="Payees Name">
+                  <input type="text" class="form-control col-6" id="inputPayeesName" placeholder="Payees Name">
                 </div>
                 <div class="form-group">
                   <label for="inputPayeesAddress">Address</label>
@@ -28,11 +28,11 @@
                 </div>
                 <div class="form-group">
                   <label for="inputPayeesTIN">TIN</label>
-                  <input type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN">
+                  <input type="text" class="form-control col-3" id="inputPayeesTIN" placeholder="TIN">
                 </div>
                 <div class="form-group">
                   <label>Account</label>
-                  <select class="form-control">
+                  <select class="form-control col-6">
                     <option>SALARIES AND WAGES</option>
                     <option>TRAININGS AND SEMINARS</option>
                     <option>TRAVEL AND TRANSPORTATION</option>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="form-group">
                   <label for="inputPayeesAmount">Amount</label>
-                  <input type="text" class="form-control" id="inputPayeesAmount" placeholder="Amount">
+                  <input type="text" class="form-control col-3" id="inputPayeesAmount" placeholder="Amount">
                 </div>
 
                 <!-- div class="form-group">

@@ -62763,7 +62763,7 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("input", {
-            staticClass: "form-control",
+            staticClass: "form-control col-6",
             attrs: {
               type: "text",
               id: "inputPayeesName",
@@ -62791,7 +62791,7 @@ var staticRenderFns = [
           _c("label", { attrs: { for: "inputPayeesTIN" } }, [_vm._v("TIN")]),
           _vm._v(" "),
           _c("input", {
-            staticClass: "form-control",
+            staticClass: "form-control col-3",
             attrs: { type: "text", id: "inputPayeesTIN", placeholder: "TIN" }
           })
         ]),
@@ -62799,7 +62799,7 @@ var staticRenderFns = [
         _c("div", { staticClass: "form-group" }, [
           _c("label", [_vm._v("Account")]),
           _vm._v(" "),
-          _c("select", { staticClass: "form-control" }, [
+          _c("select", { staticClass: "form-control col-6" }, [
             _c("option", [_vm._v("SALARIES AND WAGES")]),
             _vm._v(" "),
             _c("option", [_vm._v("TRAININGS AND SEMINARS")]),
@@ -62818,7 +62818,7 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("input", {
-            staticClass: "form-control",
+            staticClass: "form-control col-3",
             attrs: {
               type: "text",
               id: "inputPayeesAmount",
