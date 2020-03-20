@@ -62368,7 +62368,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _vm.$gate.isAdminOrAuthor()
-      ? _c("div", { staticClass: "row mt-5" }, [
+      ? _c("div", { staticClass: "row mt-1" }, [
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "box" }, [
               _c("div", { staticClass: "box box-primary" }, [
@@ -62400,7 +62400,7 @@ var render = function() {
       : _vm._e(),
     _vm._v(" "),
     !_vm.$gate.isAdminOrAuthor()
-      ? _c("div", { staticClass: "row mt-5" }, [_c("not-found")], 1)
+      ? _c("div", { staticClass: "row mt-1" }, [_c("not-found")], 1)
       : _vm._e(),
     _vm._v(" "),
     _c(

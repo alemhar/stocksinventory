@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="row mt-5" v-if="$gate.isAdminOrAuthor()">
+        <div class="row mt-1" v-if="$gate.isAdminOrAuthor()">
         <div class="col-md-12">
           <div class="box">
             
@@ -72,7 +72,7 @@
         </div>
         </div>
 
-        <div class="row mt-5" v-if="!$gate.isAdminOrAuthor()">
+        <div class="row mt-1" v-if="!$gate.isAdminOrAuthor()">
           <not-found></not-found>
         </div>  
       <!-- Modal -->
