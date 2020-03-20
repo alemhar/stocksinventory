@@ -62759,17 +62759,16 @@ var staticRenderFns = [
       _c("div", { staticClass: "box-body" }, [
         _c("div", { staticClass: "form-group" }, [
           _c("label", { attrs: { for: "inputPayeesName" } }, [
-            _vm._v("Payees Name")
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control col-6",
-            attrs: {
-              type: "text",
-              id: "inputPayeesName",
-              placeholder: "Payees Name"
-            }
-          })
+            _vm._v("Payees Name\n              "),
+            _c("input", {
+              staticClass: "form-control col-6",
+              attrs: {
+                type: "text",
+                id: "inputPayeesName",
+                placeholder: "Payees Name"
+              }
+            })
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
