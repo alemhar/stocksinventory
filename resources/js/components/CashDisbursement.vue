@@ -19,15 +19,13 @@
             <form role="form">
               <div class="box-body">
                 <div class="form-group">
-                  <label for="inputPayeesName">Payees Name</label>
+                  <label for="inputPayeesName">Payee</label>
                   <input type="text" class="form-control col-6" id="inputPayeesName" placeholder="Payees Name">
                 </div>
                 <div class="form-group">
-                  <label for="inputPayeesAddress">Address</label>
                   <input type="text" class="form-control" id="inputPayeesAddress" placeholder="Address">
                 </div>
                 <div class="form-group">
-                  <label for="inputPayeesTIN">TIN</label>
                   <input type="text" class="form-control col-3" id="inputPayeesTIN" placeholder="TIN">
                 </div>
                 <div class="form-group">
