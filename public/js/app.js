@@ -2218,6 +2218,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -62362,10 +62366,10 @@ var render = function() {
                       "button",
                       {
                         staticClass: "btn btn-success",
-                        on: { click: _vm.newUser }
+                        on: { click: _vm.newCD }
                       },
                       [
-                        _vm._v("Add New  "),
+                        _vm._v("New CD "),
                         _c("i", { staticClass: "fas fa-user-plus fa-fw" })
                       ]
                     )
@@ -62738,45 +62742,42 @@ var staticRenderFns = [
     return _c("form", { attrs: { role: "form" } }, [
       _c("div", { staticClass: "box-body" }, [
         _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "exampleInputEmail1" } }, [
-            _vm._v("Email address")
+          _c("label", { attrs: { for: "inputPayeesName" } }, [
+            _vm._v("Payees Name")
           ]),
           _vm._v(" "),
           _c("input", {
             staticClass: "form-control",
             attrs: {
-              type: "email",
-              id: "exampleInputEmail1",
-              placeholder: "Enter email"
+              type: "text",
+              id: "inputPayeesName",
+              placeholder: "Payees Name"
             }
           })
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "exampleInputPassword1" } }, [
-            _vm._v("Password")
+          _c("label", { attrs: { for: "inputPayeesAddress" } }, [
+            _vm._v("Address")
           ]),
           _vm._v(" "),
           _c("input", {
             staticClass: "form-control",
             attrs: {
-              type: "password",
-              id: "exampleInputPassword1",
-              placeholder: "Password"
+              type: "text",
+              id: "inputPayeesAddress",
+              placeholder: "Address"
             }
           })
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "exampleInputFile" } }, [
-            _vm._v("File input")
-          ]),
+          _c("label", { attrs: { for: "inputPayeesTIN" } }, [_vm._v("TIN")]),
           _vm._v(" "),
-          _c("input", { attrs: { type: "file", id: "exampleInputFile" } }),
-          _vm._v(" "),
-          _c("p", { staticClass: "help-block" }, [
-            _vm._v("Example block-level help text here.")
-          ])
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "text", id: "inputPayeesTIN", placeholder: "TIN" }
+          })
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "checkbox" }, [
