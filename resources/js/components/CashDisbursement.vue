@@ -46,8 +46,7 @@
 
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Save</button>
-                <button type="submit" class="btn btn-
-                danger">Cancel</button>
+                <button type="submit" class="btn btn-danger">Cancel</button>
               </div>
             </form>
           </div>
