@@ -2223,6 +2223,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -62778,6 +62793,37 @@ var staticRenderFns = [
           _c("input", {
             staticClass: "form-control",
             attrs: { type: "text", id: "inputPayeesTIN", placeholder: "TIN" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Account")]),
+          _vm._v(" "),
+          _c("select", { staticClass: "form-control" }, [
+            _c("option", [_vm._v("SALARIES AND WAGES")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("TRAININGS AND SEMINARS")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("TRAVEL AND TRANSPORTATION")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("MEALS AMD SNACKS")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("REPRESENTATION EXPENSES")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "inputPayeesAmount" } }, [
+            _vm._v("Amount")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              id: "inputPayeesAmount",
+              placeholder: "Amount"
+            }
           })
         ]),
         _vm._v(" "),

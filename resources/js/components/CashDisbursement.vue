@@ -30,6 +30,21 @@
                   <label for="inputPayeesTIN">TIN</label>
                   <input type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN">
                 </div>
+                <div class="form-group">
+                  <label>Account</label>
+                  <select class="form-control">
+                    <option>SALARIES AND WAGES</option>
+                    <option>TRAININGS AND SEMINARS</option>
+                    <option>TRAVEL AND TRANSPORTATION</option>
+                    <option>MEALS AMD SNACKS</option>
+                    <option>REPRESENTATION EXPENSES</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="inputPayeesAmount">Amount</label>
+                  <input type="text" class="form-control" id="inputPayeesAmount" placeholder="Amount">
+                </div>
+
                 <!-- div class="form-group">
                   <label for="exampleInputFile">File input</label>
                   <input type="file" id="exampleInputFile">
