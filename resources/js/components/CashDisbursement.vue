@@ -12,10 +12,6 @@
 
             <!-- general form elements -->
           <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Cash Disbursement</h3>
-            </div>
-            <!-- /.box-header -->
             <!-- form start -->
             <form role="form">
               <div class="box-body">
@@ -35,7 +31,7 @@
                 </div>
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox"> Check me out
+                    <input type="checkbox"> With VAT
                   </label>
                 </div>
               </div>
@@ -47,10 +43,8 @@
             </form>
           </div>
           <!-- /.box -->
-          
-            <div class="box-footer">
-              <pagination :data="users" @pagination-change-page="getResults"></pagination>
-            </div> 
+
+           
           </div>
           <!-- /.box -->
         </div>
