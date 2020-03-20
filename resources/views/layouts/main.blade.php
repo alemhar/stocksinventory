@@ -193,16 +193,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <router-link to="/users" class="nav-link">
-                  <i class="nav-icon fas fa-users"></i>
-                  <p>Users</p>
+                <router-link to="/cd" class="nav-link">
+                  <i class="nav-icon fas fa-minus-circle"></i>
+                  <p>Cash Disbursements</p>
                 </router-link>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
-                </a>
+                <router-link to="/cr" class="nav-link">
+                  <i class="nav-icon fas fa-plus-circle"></i>
+                  <p>Cash Receipts/p>
+                </router-link>
               </li>
             </ul>
           </li>
