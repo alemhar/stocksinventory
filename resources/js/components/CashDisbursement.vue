@@ -76,7 +76,7 @@
             </form>
           </div>
 
-          <div class="box box-warning">
+          <div class="box box-warning mt-5">
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
