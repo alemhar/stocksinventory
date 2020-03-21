@@ -59,6 +59,7 @@
                     <input type="text" class="form-control col-12" id="inputDCNo" placeholder="CD Number">
                   </div>
                   <div class="form-group">
+                    <label for="inputAmount">Amount</label>
                     <input type="text" class="form-control col-12" id="inputAmount" placeholder="Amount">
                   </div>
                 </div>

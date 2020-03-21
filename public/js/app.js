@@ -2258,6 +2258,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -62876,6 +62877,8 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "inputAmount" } }, [_vm._v("Amount")]),
+            _vm._v(" "),
             _c("input", {
               staticClass: "form-control col-12",
               attrs: { type: "text", id: "inputAmount", placeholder: "Amount" }
