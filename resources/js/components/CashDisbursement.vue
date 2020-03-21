@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="row mt-1" v-if="$gate.isAdminOrAuthor()">
+        <div class="row mt-1">
         <div class="col-md-12">
           <div class="box mt-4">
             <!-- general form elements -->
@@ -92,9 +92,7 @@
             </form>
           </div>
           <!-- /.box -->
-          <div class="box box-warning">
-           
-          </div> 
+          
           </div>  
 
           </div>
