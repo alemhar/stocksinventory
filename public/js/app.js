@@ -2266,7 +2266,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -62420,20 +62419,11 @@ var render = function() {
                       _c(
                         "button",
                         {
-                          staticClass: "btn btn-danger",
-                          attrs: { type: "submit" }
-                        },
-                        [_vm._v("Cancel")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
                           staticClass: "btn btn-success",
                           on: { click: _vm.newCD }
                         },
                         [
-                          _vm._v("New CD "),
+                          _vm._v("New"),
                           _c("i", { staticClass: "fas fa-plus-circle fa-fw" })
                         ]
                       )

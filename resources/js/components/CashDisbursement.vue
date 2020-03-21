@@ -14,8 +14,7 @@
                 <h3 class="box-title">Cash Disbursement</h3>
                 <div class="box-tools">
                   <button type="submit" class="btn btn-primary">Save</button>
-                  <button type="submit" class="btn btn-danger">Cancel</button>
-                  <button class="btn btn-success" @click="newCD">New CD <i class="fas fa-plus-circle fa-fw"></i></button>
+                  <button class="btn btn-success" @click="newCD">New<i class="fas fa-plus-circle fa-fw"></i></button>
                 </div>
               </div>
               <div class="box-body row">
