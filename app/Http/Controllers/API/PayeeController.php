@@ -25,7 +25,17 @@ class PayeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required|string|max:191',
+            'address' => 'required|string|email|max:191'
+        ]);
+
+        return User::create([
+            'name' => $request['name'],
+            'address' => $request['address'],
+            'tin' => $request['tin'],
+            'bio' => $request['bio'],
+        ]);
     }
 
     /**
