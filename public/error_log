@@ -1,0 +1,20 @@
+[01-Oct-2019 02:15:58 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Application' not found in /home3/fyn0myp8/stocksinventory/bootstrap/app.php:14
+Stack trace:
+#0 /home3/fyn0myp8/stocksinventory/public/index.php(38): require_once()
+#1 {main}
+  thrown in /home3/fyn0myp8/stocksinventory/bootstrap/app.php on line 14
+[01-Oct-2019 02:16:03 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Application' not found in /home3/fyn0myp8/stocksinventory/bootstrap/app.php:14
+Stack trace:
+#0 /home3/fyn0myp8/stocksinventory/public/index.php(38): require_once()
+#1 {main}
+  thrown in /home3/fyn0myp8/stocksinventory/bootstrap/app.php on line 14
+[01-Oct-2019 02:16:05 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Application' not found in /home3/fyn0myp8/stocksinventory/bootstrap/app.php:14
+Stack trace:
+#0 /home3/fyn0myp8/stocksinventory/public/index.php(38): require_once()
+#1 {main}
+  thrown in /home3/fyn0myp8/stocksinventory/bootstrap/app.php on line 14
+[01-Oct-2019 02:16:06 America/Chicago] PHP Fatal error:  Uncaught Error: Class 'Illuminate\Foundation\Application' not found in /home3/fyn0myp8/stocksinventory/bootstrap/app.php:14
+Stack trace:
+#0 /home3/fyn0myp8/stocksinventory/public/index.php(38): require_once()
+#1 {main}
+  thrown in /home3/fyn0myp8/stocksinventory/bootstrap/app.php on line 14

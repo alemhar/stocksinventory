@@ -1,0 +1,2 @@
+[21-Mar-2020 03:40:23 America/Chicago] PHP Warning:  Unsupported declare 'strict_types' in /home3/fyn0myp8/stocksinventory/vendor/zendframework/zend-diactoros/src/functions/create_uploaded_file.php on line 8
+[21-Mar-2020 03:40:23 America/Chicago] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home3/fyn0myp8/stocksinventory/vendor/zendframework/zend-diactoros/src/functions/create_uploaded_file.php on line 19
