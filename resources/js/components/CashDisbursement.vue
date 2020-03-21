@@ -93,38 +93,7 @@
           </div>
           <!-- /.box -->
           <div class="box box-warning">
-           <div class="col-md-12">
-            <div class="box">
-              <div class="box-header">
-                <h3 class="box-title">Debits</h3>
-                <div class="box-tools">
-                  <button class="btn btn-success" @click="newUser">Add New  <i class="fas fa-user-plus fa-fw"></i></button>
-                </div>
-              </div>
-
-              <!-- /.box-header -->
-              <div class="box-body table-responsive no-padding">
-                <table class="table table-hover">
-                  <tbody><tr>
-                    <th>Account No.</th>
-                    <th>Name</th>
-                    <th>Item</th>
-                    <th>Description</th>
-                    <th>Branch</th>
-                    <th>Tax Type</th>
-                    <th>Amount</th>
-                  </tr>
-                  
-                </tbody>
-              </table>
-              </div>
-              <!-- /.box-body -->
-              <div class="box-footer">
-                
-              </div> 
-            </div>
-            <!-- /.box -->
-          </div>
+           
           </div> 
           </div>  
 
