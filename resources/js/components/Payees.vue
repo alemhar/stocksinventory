@@ -52,7 +52,7 @@
           <not-found></not-found>
         </div>  
       <!-- Modal -->
-      <div class="modal fade" id="UserDetails" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
+      <div class="modal fade" id="PayeeDetails" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -125,13 +125,13 @@
           editPayee(user){
               this.editmode = true;
               this.form.reset();
-              $('#UserDetails').modal('show');
+              $('#PayeeDetails').modal('show');
               this.form.fill(user);
           },
           newPayee(){
               this.editmode = false;
               this.form.reset();
-              $('#UserDetails').modal('show');
+              $('#PayeeDetails').modal('show');
           },
           deletePayee(id){
               swal.fire({
@@ -156,7 +156,7 @@
                           Fire.$emit('RefreshUsersTable');
                       })
                       .catch(()=>{
-                        swal("Failed!","Failed to delete user!", "warning");
+                        swal("Failed!","Failed to delete payee!", "warning");
 
                       });
                       
@@ -178,14 +178,14 @@
             
 
             this.$Progress.start()
-            this.form.post('api/user')
+            this.form.post('api/payee')
             .then(()=>{
                 VueListen.$emit('RefreshUsersTable');
-                $('#UserDetails').modal('hide');
+                $('#PayeeDetails').modal('hide');
 
                 toast.fire({
                   type: 'success',
-                  title: 'User created successfully'
+                  title: 'Payee created successfully'
                 })
                 this.$Progress.finish();
             })
@@ -199,7 +199,7 @@
             this.$Progress.start();
             this.form.put('api/user/'+this.form.id)
             .then(() => {
-                $('#UserDetails').modal('hide');
+                $('#PayeeDetails').modal('hide');
                 swal.fire(
                     'Updated!',
                     'User information has been updated.',

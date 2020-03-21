@@ -2962,13 +2962,13 @@ __webpack_require__.r(__webpack_exports__);
     editPayee: function editPayee(user) {
       this.editmode = true;
       this.form.reset();
-      $('#UserDetails').modal('show');
+      $('#PayeeDetails').modal('show');
       this.form.fill(user);
     },
     newPayee: function newPayee() {
       this.editmode = false;
       this.form.reset();
-      $('#UserDetails').modal('show');
+      $('#PayeeDetails').modal('show');
     },
     deletePayee: function deletePayee(id) {
       var _this2 = this;
@@ -2987,7 +2987,7 @@ __webpack_require__.r(__webpack_exports__);
             swal.fire('Deleted!', 'User has been deleted.', 'success');
             Fire.$emit('RefreshUsersTable');
           })["catch"](function () {
-            swal("Failed!", "Failed to delete user!", "warning");
+            swal("Failed!", "Failed to delete payee!", "warning");
           });
         }
       });
@@ -3006,12 +3006,12 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       this.$Progress.start();
-      this.form.post('api/user').then(function () {
+      this.form.post('api/payee').then(function () {
         VueListen.$emit('RefreshUsersTable');
-        $('#UserDetails').modal('hide');
+        $('#PayeeDetails').modal('hide');
         toast.fire({
           type: 'success',
-          title: 'User created successfully'
+          title: 'Payee created successfully'
         });
 
         _this4.$Progress.finish();
@@ -3023,7 +3023,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log('Edit Payee');
       this.$Progress.start();
       this.form.put('api/user/' + this.form.id).then(function () {
-        $('#UserDetails').modal('hide');
+        $('#PayeeDetails').modal('hide');
         swal.fire('Updated!', 'User information has been updated.', 'success');
 
         _this5.$Progress.finish();
@@ -64422,7 +64422,7 @@ var render = function() {
       {
         staticClass: "modal fade",
         attrs: {
-          id: "UserDetails",
+          id: "PayeeDetails",
           tabindex: "-1",
           role: "dialog",
           "aria-labelledby": "addNewLabel",
