@@ -62775,7 +62775,7 @@ var staticRenderFns = [
             ]),
             _vm._v(" "),
             _c("input", {
-              staticClass: "form-control col-6",
+              staticClass: "form-control col-12",
               attrs: {
                 type: "text",
                 id: "inputPayeesName",
@@ -62786,7 +62786,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
             _c("input", {
-              staticClass: "form-control col-6",
+              staticClass: "form-control col-12",
               attrs: {
                 type: "text",
                 id: "inputPayeesAddress",
@@ -62796,7 +62796,7 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group row" }, [
-            _c("div", { staticClass: "col-3" }, [
+            _c("div", { staticClass: "col-6" }, [
               _c("input", {
                 staticClass: "form-control",
                 attrs: {
@@ -62807,7 +62807,7 @@ var staticRenderFns = [
               })
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-3" }, [
+            _c("div", { staticClass: "col-6" }, [
               _c("input", {
                 staticClass: "form-control",
                 attrs: {
@@ -62822,7 +62822,7 @@ var staticRenderFns = [
           _c("div", { staticClass: "form-group" }, [
             _c("label", [_vm._v("Account")]),
             _vm._v(" "),
-            _c("select", { staticClass: "form-control col-6" }, [
+            _c("select", { staticClass: "form-control col-12" }, [
               _c("option", [_vm._v("SALARIES AND WAGES")]),
               _vm._v(" "),
               _c("option", [_vm._v("TRAININGS AND SEMINARS")]),

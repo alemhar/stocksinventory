@@ -20,22 +20,22 @@
                 <div class="col-6">
                   <div class="form-group">
                     <label for="inputPayeesName">Payee</label>
-                    <input type="text" class="form-control col-6" id="inputPayeesName" placeholder="Payees Name">
+                    <input type="text" class="form-control col-12" id="inputPayeesName" placeholder="Payees Name">
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control col-6" id="inputPayeesAddress" placeholder="Address">
+                    <input type="text" class="form-control col-12" id="inputPayeesAddress" placeholder="Address">
                   </div>
                   <div class="form-group row">
-                    <div class="col-3">
+                    <div class="col-6">
                       <input type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN">
                     </div>
-                    <div class="col-3">
+                    <div class="col-6">
                       <input type="text" class="form-control" id="inputPayeesTaxType" placeholder="Tax Type">
                     </div>  
                   </div>
                   <div class="form-group">
                     <label>Account</label>
-                    <select class="form-control col-6">
+                    <select class="form-control col-12">
                       <option>SALARIES AND WAGES</option>
                       <option>TRAININGS AND SEMINARS</option>
                       <option>TRAVEL AND TRANSPORTATION</option>
