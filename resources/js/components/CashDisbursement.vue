@@ -23,7 +23,7 @@
                 <div class="form-group">
                   <input type="text" class="form-control col-6" id="inputPayeesAddress" placeholder="Address">
                 </div>
-                <div class="form-group">
+                <div class="form-group row">
                   <div class="col-3">
                     <input type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN">
                   </div>
