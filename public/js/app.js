@@ -2234,6 +2234,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -62778,18 +62783,23 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
-          _c("input", {
-            staticClass: "form-control col-3",
-            attrs: { type: "text", id: "inputPayeesTIN", placeholder: "TIN" }
-          }),
-          _c("input", {
-            staticClass: "form-control col-3",
-            attrs: {
-              type: "text",
-              id: "inputPayeesTaxType",
-              placeholder: "Tax Type"
-            }
-          })
+          _c("div", { staticClass: "col" }, [
+            _c("input", {
+              staticClass: "form-control col-3",
+              attrs: { type: "text", id: "inputPayeesTIN", placeholder: "TIN" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col" }, [
+            _c("input", {
+              staticClass: "form-control col-3",
+              attrs: {
+                type: "text",
+                id: "inputPayeesTaxType",
+                placeholder: "Tax Type"
+              }
+            })
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
