@@ -15,6 +15,18 @@ class CreatePayeesTable extends Migration
     {
         Schema::create('payees', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('address');
+            $table->string('city');
+            $table->string('tin');
+            
+            $table->string('mailing');
+            $table->string('phone');
+            $table->string('contactname');
+            $table->string('contactno');
+            $table->string('contactemail');
+            $table->string('website');
+            
             $table->timestamps();
         });
     }
