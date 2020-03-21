@@ -62366,7 +62366,7 @@ var render = function() {
     _vm.$gate.isAdminOrAuthor()
       ? _c("div", { staticClass: "row mt-1" }, [
           _c("div", { staticClass: "col-md-12" }, [
-            _c("div", { staticClass: "box mt-2" }, [
+            _c("div", { staticClass: "box mt-4" }, [
               _c("div", { staticClass: "box box-primary" }, [
                 _c("div", { staticClass: "box-header with-border" }, [
                   _c("h3", { staticClass: "box-title" }, [
@@ -62768,7 +62768,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
           _c("input", {
-            staticClass: "form-control",
+            staticClass: "form-control col-6",
             attrs: {
               type: "text",
               id: "inputPayeesAddress",
@@ -62781,6 +62781,14 @@ var staticRenderFns = [
           _c("input", {
             staticClass: "form-control col-3",
             attrs: { type: "text", id: "inputPayeesTIN", placeholder: "TIN" }
+          }),
+          _c("input", {
+            staticClass: "form-control col-3",
+            attrs: {
+              type: "text",
+              id: "inputPayeesTaxType",
+              placeholder: "Tax Type"
+            }
           })
         ]),
         _vm._v(" "),

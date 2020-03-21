@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row mt-1" v-if="$gate.isAdminOrAuthor()">
         <div class="col-md-12">
-          <div class="box mt-2">
+          <div class="box mt-4">
             <!-- general form elements -->
           <div class="box box-primary">
 
@@ -21,10 +21,10 @@
                   <input type="text" class="form-control col-6" id="inputPayeesName" placeholder="Payees Name">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" id="inputPayeesAddress" placeholder="Address">
+                  <input type="text" class="form-control col-6" id="inputPayeesAddress" placeholder="Address">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control col-3" id="inputPayeesTIN" placeholder="TIN">
+                  <input type="text" class="form-control col-3" id="inputPayeesTIN" placeholder="TIN"><input type="text" class="form-control col-3" id="inputPayeesTaxType" placeholder="Tax Type">
                 </div>
                 <div class="form-group">
                   <label>Account</label>
