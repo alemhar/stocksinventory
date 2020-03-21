@@ -49,8 +49,18 @@
                 <!--Right Col-->
                 <div class="col-3">
                   <div class="form-group">
-                    <label for="inputPayeesAmount">Amount</label>
-                    <input type="text" class="form-control col-3" id="inputPayeesAmount" placeholder="Amount">
+                    <label for="inputDate">Date</label>
+                    <input type="text" class="form-control col-12" id="inputDate" placeholder="Date">
+                  </div>
+                  <div class="form-group">
+                    <label for="inputDCNo">CD No.</label>
+                    <input type="text" class="form-control col-12" id="inputDCNo" placeholder="CD Number">
+                  </div><div class="form-group">
+                    <label for="inputReferenceNo">Reference No.</label>
+                    <input type="text" class="form-control col-12" id="inputReferenceNo" placeholder="Reference No">
+                  </div><div class="form-group">
+                    <label for="inputAmount">Amount</label>
+                    <input type="text" class="form-control col-12" id="inputAmount" placeholder="Amount">
                   </div>
                 </div>
 
