@@ -76,7 +76,7 @@
             </form>
           </div>
 
-          <div class="box box-warning mt-5">
+          <div class="box box-warning mt-2">
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
@@ -142,7 +142,7 @@
             <div class="box box-warning mt-2">
               
               <div class="form-group col-12 float-right">
-                <div class="row">
+                <div class="row mt-2">
                 <label for="inputAmountExclusiveTax" class="col-sm-9 col-form-label" style="text-align: right;">Amount Exclusive of Tax</label>
                 <div class="col-sm-3">
                   <input type="text" class="form-control" id="inputAmountExclusiveTax" placeholder="Amount Exclusive of Tax">
