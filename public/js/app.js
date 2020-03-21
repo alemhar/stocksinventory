@@ -2306,6 +2306,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -63004,8 +63012,8 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "box box-warning mt-2" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c("div", { staticClass: "form-group row float-right" }, [
+      _c("div", { staticClass: "form-group col-12 float-right" }, [
+        _c("div", { staticClass: "row" }, [
           _c(
             "label",
             {
@@ -63025,9 +63033,11 @@ var staticRenderFns = [
               }
             })
           ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group row float-right" }, [
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group col-12 float-right" }, [
+        _c("div", { staticClass: "row" }, [
           _c(
             "label",
             {
@@ -63043,9 +63053,11 @@ var staticRenderFns = [
               attrs: { type: "text", id: "inputVAT", placeholder: "VAT" }
             })
           ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group row float-right" }, [
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group col-12 float-right" }, [
+        _c("div", { staticClass: "row" }, [
           _c(
             "label",
             {
