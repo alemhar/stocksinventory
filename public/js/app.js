@@ -2239,6 +2239,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -62758,85 +62768,88 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("form", { attrs: { role: "form" } }, [
       _c("div", { staticClass: "box-body" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "inputPayeesName" } }, [_vm._v("Payee")]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control col-6",
-            attrs: {
-              type: "text",
-              id: "inputPayeesName",
-              placeholder: "Payees Name"
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("input", {
-            staticClass: "form-control col-6",
-            attrs: {
-              type: "text",
-              id: "inputPayeesAddress",
-              placeholder: "Address"
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group row" }, [
-          _c("div", { staticClass: "col-3" }, [
+        _c("div", { staticClass: "col-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "inputPayeesName" } }, [
+              _vm._v("Payee")
+            ]),
+            _vm._v(" "),
             _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", id: "inputPayeesTIN", placeholder: "TIN" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-3" }, [
-            _c("input", {
-              staticClass: "form-control",
+              staticClass: "form-control col-6",
               attrs: {
                 type: "text",
-                id: "inputPayeesTaxType",
-                placeholder: "Tax Type"
+                id: "inputPayeesName",
+                placeholder: "Payees Name"
               }
             })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", [_vm._v("Account")]),
-          _vm._v(" "),
-          _c("select", { staticClass: "form-control col-6" }, [
-            _c("option", [_vm._v("SALARIES AND WAGES")]),
-            _vm._v(" "),
-            _c("option", [_vm._v("TRAININGS AND SEMINARS")]),
-            _vm._v(" "),
-            _c("option", [_vm._v("TRAVEL AND TRANSPORTATION")]),
-            _vm._v(" "),
-            _c("option", [_vm._v("MEALS AMD SNACKS")]),
-            _vm._v(" "),
-            _c("option", [_vm._v("REPRESENTATION EXPENSES")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "inputPayeesAmount" } }, [
-            _vm._v("Amount")
           ]),
           _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control col-3",
-            attrs: {
-              type: "text",
-              id: "inputPayeesAmount",
-              placeholder: "Amount"
-            }
-          })
+          _c("div", { staticClass: "form-group" }, [
+            _c("input", {
+              staticClass: "form-control col-6",
+              attrs: {
+                type: "text",
+                id: "inputPayeesAddress",
+                placeholder: "Address"
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group row" }, [
+            _c("div", { staticClass: "col-3" }, [
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "inputPayeesTIN",
+                  placeholder: "TIN"
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-3" }, [
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "inputPayeesTaxType",
+                  placeholder: "Tax Type"
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Account")]),
+            _vm._v(" "),
+            _c("select", { staticClass: "form-control col-6" }, [
+              _c("option", [_vm._v("SALARIES AND WAGES")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("TRAININGS AND SEMINARS")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("TRAVEL AND TRANSPORTATION")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("MEALS AMD SNACKS")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("REPRESENTATION EXPENSES")])
+            ])
+          ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "checkbox" }, [
-          _c("label", [
-            _c("input", { attrs: { type: "checkbox" } }),
-            _vm._v(" with VAT\n              ")
+        _c("div", { staticClass: "col-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "inputPayeesAmount" } }, [
+              _vm._v("Amount")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control col-3",
+              attrs: {
+                type: "text",
+                id: "inputPayeesAmount",
+                placeholder: "Amount"
+              }
+            })
           ])
         ])
       ]),

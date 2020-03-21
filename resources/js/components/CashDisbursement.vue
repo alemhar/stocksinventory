@@ -16,34 +16,42 @@
             <!-- form start -->
             <form role="form">
               <div class="box-body">
-                <div class="form-group">
-                  <label for="inputPayeesName">Payee</label>
-                  <input type="text" class="form-control col-6" id="inputPayeesName" placeholder="Payees Name">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control col-6" id="inputPayeesAddress" placeholder="Address">
-                </div>
-                <div class="form-group row">
-                  <div class="col-3">
-                    <input type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN">
+                <!--Left Col-->
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="inputPayeesName">Payee</label>
+                    <input type="text" class="form-control col-6" id="inputPayeesName" placeholder="Payees Name">
                   </div>
-                  <div class="col-3">
-                    <input type="text" class="form-control" id="inputPayeesTaxType" placeholder="Tax Type">
-                  </div>  
+                  <div class="form-group">
+                    <input type="text" class="form-control col-6" id="inputPayeesAddress" placeholder="Address">
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-3">
+                      <input type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN">
+                    </div>
+                    <div class="col-3">
+                      <input type="text" class="form-control" id="inputPayeesTaxType" placeholder="Tax Type">
+                    </div>  
+                  </div>
+                  <div class="form-group">
+                    <label>Account</label>
+                    <select class="form-control col-6">
+                      <option>SALARIES AND WAGES</option>
+                      <option>TRAININGS AND SEMINARS</option>
+                      <option>TRAVEL AND TRANSPORTATION</option>
+                      <option>MEALS AMD SNACKS</option>
+                      <option>REPRESENTATION EXPENSES</option>
+                    </select>
+                  </div>
+                  
+
                 </div>
-                <div class="form-group">
-                  <label>Account</label>
-                  <select class="form-control col-6">
-                    <option>SALARIES AND WAGES</option>
-                    <option>TRAININGS AND SEMINARS</option>
-                    <option>TRAVEL AND TRANSPORTATION</option>
-                    <option>MEALS AMD SNACKS</option>
-                    <option>REPRESENTATION EXPENSES</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="inputPayeesAmount">Amount</label>
-                  <input type="text" class="form-control col-3" id="inputPayeesAmount" placeholder="Amount">
+                <!--Right Col-->
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="inputPayeesAmount">Amount</label>
+                    <input type="text" class="form-control col-3" id="inputPayeesAmount" placeholder="Amount">
+                  </div>
                 </div>
 
                 <!-- div class="form-group">
@@ -52,11 +60,13 @@
 
                   <p class="help-block">Example block-level help text here.</p>
                 </div -->
-                <div class="checkbox">
+                <!-- div class="checkbox">
                   <label>
                     <input type="checkbox"> with VAT
                   </label>
-                </div>
+                </div -->
+
+
               </div>
               <!-- /.box-body -->
 
