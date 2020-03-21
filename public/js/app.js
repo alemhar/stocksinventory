@@ -2292,6 +2292,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -62990,23 +63002,63 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "box box-warning mt-2" }, [
-      _c("div", { staticClass: "form-group row" }, [
+      _c("div", { staticClass: "form-group row float-right" }, [
         _c(
           "label",
           {
-            staticClass: "col-sm-3 col-form-label",
+            staticClass: "col-sm-6 col-form-label",
             attrs: { for: "inputAmountExclusiveTax" }
           },
           [_vm._v("Amount Exclusive of Tax")]
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
+        _c("div", { staticClass: "col-sm-6" }, [
           _c("input", {
             staticClass: "form-control",
             attrs: {
               type: "text",
               id: "inputAmountExclusiveTax",
               placeholder: "Amount Exclusive of Tax"
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group row float-right" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-sm-6 col-form-label",
+            attrs: { for: "inputVAT" }
+          },
+          [_vm._v("VAT")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-6" }, [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "text", id: "inputVAT", placeholder: "VAT" }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group row float-right" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-sm-6 col-form-label",
+            attrs: { for: "inputTotalAmount" }
+          },
+          [_vm._v("Total Amount")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-6" }, [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              id: "inputTotalAmount",
+              placeholder: "Total Amount"
             }
           })
         ])
