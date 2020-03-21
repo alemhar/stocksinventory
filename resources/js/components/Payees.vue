@@ -79,9 +79,9 @@
               </div>
 
               <div class="form-group">
-                  <textarea v-model="form.tin" name="tin" id="tin"
+                  <input v-model="form.tin" name="tin" id="tin"
                   placeholder="TIN"
-                  class="form-control" :class="{ 'is-invalid': form.errors.has('tin') }"></textarea>
+                  class="form-control" :class="{ 'is-invalid': form.errors.has('tin') }">
                   <has-error :form="form" field="tin"></has-error>
               </div>
 

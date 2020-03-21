@@ -64570,7 +64570,7 @@ var render = function() {
                       "div",
                       { staticClass: "form-group" },
                       [
-                        _c("textarea", {
+                        _c("input", {
                           directives: [
                             {
                               name: "model",
