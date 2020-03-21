@@ -62783,16 +62783,16 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
-          _c("div", { staticClass: "col" }, [
+          _c("div", { staticClass: "col-3" }, [
             _c("input", {
-              staticClass: "form-control col-3",
+              staticClass: "form-control",
               attrs: { type: "text", id: "inputPayeesTIN", placeholder: "TIN" }
             })
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col" }, [
+          _c("div", { staticClass: "col-3" }, [
             _c("input", {
-              staticClass: "form-control col-3",
+              staticClass: "form-control",
               attrs: {
                 type: "text",
                 id: "inputPayeesTaxType",

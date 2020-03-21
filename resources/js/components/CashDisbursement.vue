@@ -24,11 +24,11 @@
                   <input type="text" class="form-control col-6" id="inputPayeesAddress" placeholder="Address">
                 </div>
                 <div class="form-group">
-                  <div class="col">
-                    <input type="text" class="form-control col-3" id="inputPayeesTIN" placeholder="TIN">
+                  <div class="col-3">
+                    <input type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN">
                   </div>
-                  <div class="col">
-                    <input type="text" class="form-control col-3" id="inputPayeesTaxType" placeholder="Tax Type">
+                  <div class="col-3">
+                    <input type="text" class="form-control" id="inputPayeesTaxType" placeholder="Tax Type">
                   </div>  
                 </div>
                 <div class="form-group">
