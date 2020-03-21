@@ -2234,8 +2234,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -62368,7 +62366,7 @@ var render = function() {
     _vm.$gate.isAdminOrAuthor()
       ? _c("div", { staticClass: "row mt-1" }, [
           _c("div", { staticClass: "col-md-12" }, [
-            _c("div", { staticClass: "box" }, [
+            _c("div", { staticClass: "box mt-2" }, [
               _c("div", { staticClass: "box box-primary" }, [
                 _c("div", { staticClass: "box-header with-border" }, [
                   _c("h3", { staticClass: "box-title" }, [

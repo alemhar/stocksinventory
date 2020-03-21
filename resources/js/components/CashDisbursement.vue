@@ -2,9 +2,7 @@
     <div class="container">
         <div class="row mt-1" v-if="$gate.isAdminOrAuthor()">
         <div class="col-md-12">
-          <div class="box">
-            
-
+          <div class="box mt-2">
             <!-- general form elements -->
           <div class="box box-primary">
 
