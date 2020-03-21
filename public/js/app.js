@@ -62767,7 +62767,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("form", { attrs: { role: "form" } }, [
-      _c("div", { staticClass: "box-body" }, [
+      _c("div", { staticClass: "box-body row" }, [
         _c("div", { staticClass: "col-6" }, [
           _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "inputPayeesName" } }, [

@@ -15,7 +15,7 @@
             <!-- /.box-header -->
             <!-- form start -->
             <form role="form">
-              <div class="box-body">
+              <div class="box-body row">
                 <!--Left Col-->
                 <div class="col-6">
                   <div class="form-group">
