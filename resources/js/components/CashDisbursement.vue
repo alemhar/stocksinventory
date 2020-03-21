@@ -112,10 +112,10 @@
 
           </div>  
           <!-- /.box -->
-            <div class="box box-warning mt-5">
+            <div class="box box-warning mt-2">
               <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Amount Exclusive of Tax</label>
-                <div class="col-sm-10">
+                <label for="inputAmountExclusiveTax" class="col-sm-3 col-form-label">Amount Exclusive of Tax</label>
+                <div class="col-sm-3">
                   <input type="text" class="form-control" id="inputAmountExclusiveTax" placeholder="Amount Exclusive of Tax">
                 </div>
               </div>
