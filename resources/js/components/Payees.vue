@@ -57,12 +57,12 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add New</h5>
-              <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update User's Info</h5>
+              <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update Payee's Info</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form @submit.prevent="editmode ? updateUser() : createUser()">
+            <form @submit.prevent="editmode ? updatePayee() : createPayee()">
             <div class="modal-body">
               
               <div class="form-group">
@@ -72,35 +72,17 @@
                 <has-error :form="form" field="name"></has-error>
               </div>
               <div class="form-group">
-                <input v-model="form.email" type="email" name="email"
-                  placeholder="Email Address"
-                  class="form-control" :class="{ 'is-invalid': form.errors.has('email') }" >
-                <has-error :form="form" field="email"></has-error>
+                <input v-model="form.address" type="text" name="address"
+                  placeholder="Address"
+                  class="form-control" :class="{ 'is-invalid': form.errors.has('address') }" >
+                <has-error :form="form" field="address"></has-error>
               </div>
 
               <div class="form-group">
-                  <textarea v-model="form.bio" name="bio" id="bio"
-                  placeholder="Short bio for user (Optional)"
-                  class="form-control" :class="{ 'is-invalid': form.errors.has('bio') }"></textarea>
-                  <has-error :form="form" field="bio"></has-error>
-              </div>
-
-
-              <div class="form-group">
-                  <select name="type" v-model="form.type" id="type" class="form-control" :class="{ 'is-invalid': form.errors.has('type') }">
-                      <option value="">Select User Role</option>
-                      <option value="admin">Admin</option>
-                      <option value="user">Standard User</option>
-                      <!-- option value="author">Author</option -->
-                  </select>
-                  <has-error :form="form" field="type"></has-error>
-              </div>
-
-              <div class="form-group">
-                  <label>Password</label>
-                  <input v-model="form.password" type="password" name="password" id="password"
-                  class="form-control" :class="{ 'is-invalid': form.errors.has('password') }">
-                  <has-error :form="form" field="password"></has-error>
+                  <textarea v-model="form.tin" name="tin" id="tin"
+                  placeholder="TIN"
+                  class="form-control" :class="{ 'is-invalid': form.errors.has('tin') }"></textarea>
+                  <has-error :form="form" field="tin"></has-error>
               </div>
 
             </div>
@@ -127,11 +109,9 @@
 
                   id:'',
                   name : '',
-                  email: '',
-                  password: '',
-                  type: '',
-                  bio: '',
-                  photo: ''
+                  address: '',
+                  tin: '',
+                  created_at: ''
               })
           }
         },
