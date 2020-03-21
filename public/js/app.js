@@ -2266,6 +2266,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -62399,7 +62417,7 @@ var render = function() {
       ? _c("div", { staticClass: "row mt-1" }, [
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "box mt-4" }, [
-              _c("div", { staticClass: "box box-primary" }, [
+              _c("div", { staticClass: "box box-warning" }, [
                 _c("form", { attrs: { role: "form" } }, [
                   _c("div", { staticClass: "box-header with-border" }, [
                     _c("h3", { staticClass: "box-title" }, [
@@ -62431,6 +62449,36 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _vm._m(0)
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "box box-warning" }, [
+                _c("div", { staticClass: "col-md-12" }, [
+                  _c("div", { staticClass: "box" }, [
+                    _c("div", { staticClass: "box-header" }, [
+                      _c("h3", { staticClass: "box-title" }, [
+                        _vm._v("Debits")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "box-tools" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-success",
+                            on: { click: _vm.newUser }
+                          },
+                          [
+                            _vm._v("Add New  "),
+                            _c("i", { staticClass: "fas fa-user-plus fa-fw" })
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "box-footer" })
+                  ])
                 ])
               ])
             ])
@@ -62498,7 +62546,7 @@ var render = function() {
                   [_vm._v("Update User's Info")]
                 ),
                 _vm._v(" "),
-                _vm._m(1)
+                _vm._m(2)
               ]),
               _vm._v(" "),
               _c(
@@ -62897,6 +62945,32 @@ var staticRenderFns = [
             staticClass: "form-control col-12",
             attrs: { type: "text", id: "inputAmount", placeholder: "Amount" }
           })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-body table-responsive no-padding" }, [
+      _c("table", { staticClass: "table table-hover" }, [
+        _c("tbody", [
+          _c("tr", [
+            _c("th", [_vm._v("Account No.")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Name")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Item")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Description")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Branch")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Tax Type")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Amount")])
+          ])
         ])
       ])
     ])

@@ -4,7 +4,7 @@
         <div class="col-md-12">
           <div class="box mt-4">
             <!-- general form elements -->
-          <div class="box box-primary">
+          <div class="box box-warning">
 
 
             <!-- /.box-header -->
@@ -71,28 +71,46 @@
                     <input type="text" class="form-control col-12" id="inputAmount" placeholder="Amount">
                   </div>
                 </div>
-
-                <!-- div class="form-group">
-                  <label for="exampleInputFile">File input</label>
-                  <input type="file" id="exampleInputFile">
-
-                  <p class="help-block">Example block-level help text here.</p>
-                </div -->
-                <!-- div class="checkbox">
-                  <label>
-                    <input type="checkbox"> with VAT
-                  </label>
-                </div -->
-
-
               </div>
               <!-- /.box-body -->
-
-              <!-- div class="box-footer">
-                
-              </div -->
             </form>
           </div>
+
+          <div class="box box-warning">
+            <div class="col-md-12">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Debits</h3>
+                  <div class="box-tools">
+                    <button class="btn btn-success" @click="newUser">Add New  <i class="fas fa-user-plus fa-fw"></i></button>
+                  </div>
+                </div>
+
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                  <table class="table table-hover">
+                    <tbody><tr>
+                      <th>Account No.</th>
+                      <th>Name</th>
+                      <th>Item</th>
+                      <th>Description</th>
+                      <th>Branch</th>
+                      <th>Tax Type</th>
+                      <th>Amount</th>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                  
+                </div> 
+              </div>
+              <!-- /.box -->
+            </div>
+
+          </div>  
           <!-- /.box -->
        
           </div>
