@@ -62768,7 +62768,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("form", { attrs: { role: "form" } }, [
       _c("div", { staticClass: "box-body row" }, [
-        _c("div", { staticClass: "col-6" }, [
+        _c("div", { staticClass: "col-9" }, [
           _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "inputPayeesName" } }, [
               _vm._v("Payee")
@@ -62836,7 +62836,7 @@ var staticRenderFns = [
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-6" }, [
+        _c("div", { staticClass: "col-3" }, [
           _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "inputPayeesAmount" } }, [
               _vm._v("Amount")

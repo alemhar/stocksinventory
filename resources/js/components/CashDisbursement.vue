@@ -17,7 +17,7 @@
             <form role="form">
               <div class="box-body row">
                 <!--Left Col-->
-                <div class="col-6">
+                <div class="col-9">
                   <div class="form-group">
                     <label for="inputPayeesName">Payee</label>
                     <input type="text" class="form-control col-12" id="inputPayeesName" placeholder="Payees Name">
@@ -47,7 +47,7 @@
 
                 </div>
                 <!--Right Col-->
-                <div class="col-6">
+                <div class="col-3">
                   <div class="form-group">
                     <label for="inputPayeesAmount">Amount</label>
                     <input type="text" class="form-control col-3" id="inputPayeesAmount" placeholder="Amount">
