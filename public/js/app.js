@@ -2979,18 +2979,18 @@ __webpack_require__.r(__webpack_exports__);
         _this.users = response.data;
       });
     },
-    editUser: function editUser(user) {
+    editPayee: function editPayee(user) {
       this.editmode = true;
       this.form.reset();
       $('#UserDetails').modal('show');
       this.form.fill(user);
     },
-    newUser: function newUser() {
+    newPayee: function newPayee() {
       this.editmode = false;
       this.form.reset();
       $('#UserDetails').modal('show');
     },
-    deleteUser: function deleteUser(id) {
+    deletePayee: function deletePayee(id) {
       var _this2 = this;
 
       swal.fire({
@@ -3012,7 +3012,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    loadUsers: function loadUsers() {
+    loadPayees: function loadPayees() {
       var _this3 = this;
 
       if (this.$gate.isAdminOrAuthor()) {
@@ -3022,7 +3022,7 @@ __webpack_require__.r(__webpack_exports__);
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
     },
-    createUser: function createUser() {
+    createPayee: function createPayee() {
       var _this4 = this;
 
       this.$Progress.start();
@@ -3037,10 +3037,10 @@ __webpack_require__.r(__webpack_exports__);
         _this4.$Progress.finish();
       })["catch"](function () {});
     },
-    updateUser: function updateUser() {
+    updatePayee: function updatePayee() {
       var _this5 = this;
 
-      console.log('Edit User');
+      console.log('Edit Payee');
       this.$Progress.start();
       this.form.put('api/user/' + this.form.id).then(function () {
         $('#UserDetails').modal('hide');
@@ -3063,9 +3063,9 @@ __webpack_require__.r(__webpack_exports__);
         _this6.users = data.data;
       })["catch"](function () {}); //this.loadUsers();
     });
-    this.loadUsers();
+    this.loadPayees();
     VueListen.$on('RefreshUsersTable', function () {
-      _this6.loadUsers();
+      _this6.loadPayees();
     }); //setInterval(() => this.loadUsers(),3000);
   }
 });
@@ -64334,7 +64334,7 @@ var render = function() {
                     "button",
                     {
                       staticClass: "btn btn-success",
-                      on: { click: _vm.newUser }
+                      on: { click: _vm.newPayee }
                     },
                     [
                       _vm._v("Add New  "),

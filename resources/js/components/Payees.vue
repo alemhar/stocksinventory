@@ -6,7 +6,7 @@
             <div class="box-header">
               <h3 class="box-title">Payees List</h3>
               <div class="box-tools">
-                <button class="btn btn-success" @click="newUser">Add New  <i class="fas fa-user-plus fa-fw"></i></button>
+                <button class="btn btn-success" @click="newPayee">Add New  <i class="fas fa-user-plus fa-fw"></i></button>
               </div>
             </div>
 
@@ -142,18 +142,18 @@
                 this.users = response.data;
               });
           },
-          editUser(user){
+          editPayee(user){
               this.editmode = true;
               this.form.reset();
               $('#UserDetails').modal('show');
               this.form.fill(user);
           },
-          newUser(){
+          newPayee(){
               this.editmode = false;
               this.form.reset();
               $('#UserDetails').modal('show');
           },
-          deleteUser(id){
+          deletePayee(id){
               swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -186,7 +186,7 @@
                     }
                   });
           },
-          loadUsers(){
+          loadPayees(){
 
             if(this.$gate.isAdminOrAuthor()){
                 axios.get("api/user").then(({ data }) => (this.users = data));
@@ -194,7 +194,7 @@
             } 
              
           },
-          createUser(){
+          createPayee(){
             
 
             this.$Progress.start()
@@ -214,8 +214,8 @@
             });
             
           },
-          updateUser(){
-            console.log('Edit User');
+          updatePayee(){
+            console.log('Edit Payee');
             this.$Progress.start();
             this.form.put('api/user/'+this.form.id)
             .then(() => {
@@ -253,11 +253,11 @@
                //this.loadUsers();
             });
             
-            this.loadUsers();
+            this.loadPayees();
 
             VueListen.$on('RefreshUsersTable',() => {
               
-               this.loadUsers();
+               this.loadPayees();
             });
             
 
