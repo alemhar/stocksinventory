@@ -62399,7 +62399,7 @@ var render = function() {
       ? _c("div", { staticClass: "row mt-1" }, [
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "box mt-4" }, [
-              _c("div", { staticClass: "box box-primary" }, [
+              _c("div", { staticClass: "box box-warning" }, [
                 _c("form", { attrs: { role: "form" } }, [
                   _c("div", { staticClass: "box-header with-border" }, [
                     _c("h3", { staticClass: "box-title" }, [

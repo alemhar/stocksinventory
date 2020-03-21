@@ -4,7 +4,7 @@
         <div class="col-md-12">
           <div class="box mt-4">
             <!-- general form elements -->
-          <div class="box box-primary">
+          <div class="box box-warning">
 
 
             <!-- /.box-header -->
