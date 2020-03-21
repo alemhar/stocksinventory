@@ -113,24 +113,26 @@
           </div>  
           <!-- /.box -->
             <div class="box box-warning mt-2">
-              <div class="form-group col-12 float-right">
+              <div class="col-12">
+              <div class="form-group row float-right">
                 <label for="inputAmountExclusiveTax" class="col-sm-6 col-form-label">Amount Exclusive of Tax</label>
                 <div class="col-sm-6">
                   <input type="text" class="form-control" id="inputAmountExclusiveTax" placeholder="Amount Exclusive of Tax">
                 </div>
               </div>
-              <div class="form-group col-12 float-right">
+              <div class="form-group row float-right">
                 <label for="inputVAT" class="col-sm-6 col-form-label">VAT</label>
                 <div class="col-sm-6">
                   <input type="text" class="form-control" id="inputVAT" placeholder="VAT">
                 </div>
               </div>
-              <div class="form-group col-12 float-right">
+              <div class="form-group row float-right">
                 <label for="inputTotalAmount" class="col-sm-6 col-form-label">Total Amount</label>
                 <div class="col-sm-6">
                   <input type="text" class="form-control" id="inputTotalAmount" placeholder="Total Amount">
                 </div>
               </div>
+            </div>
             </div>
           
           </div>
