@@ -27,14 +27,13 @@ class PayeeController extends Controller
     {
         $this->validate($request,[
             'name' => 'required|string|max:191',
-            'address' => 'required|string|email|max:191'
+            'address' => 'required|string|max:191'
         ]);
 
         return User::create([
             'name' => $request['name'],
             'address' => $request['address'],
-            'tin' => $request['tin'],
-            'bio' => $request['bio'],
+            'tin' => $request['tin']
         ]);
     }
 
