@@ -63017,13 +63017,13 @@ var staticRenderFns = [
           _c(
             "label",
             {
-              staticClass: "col-sm-6 col-form-label",
+              staticClass: "col-sm-9 col-form-label float-right",
               attrs: { for: "inputAmountExclusiveTax" }
             },
             [_vm._v("Amount Exclusive of Tax")]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "col-sm-6" }, [
+          _c("div", { staticClass: "col-sm-3" }, [
             _c("input", {
               staticClass: "form-control",
               attrs: {
@@ -63041,13 +63041,13 @@ var staticRenderFns = [
           _c(
             "label",
             {
-              staticClass: "col-sm-6 col-form-label",
+              staticClass: "col-sm-9 col-form-label float-right",
               attrs: { for: "inputVAT" }
             },
             [_vm._v("VAT")]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "col-sm-6" }, [
+          _c("div", { staticClass: "col-sm-3" }, [
             _c("input", {
               staticClass: "form-control",
               attrs: { type: "text", id: "inputVAT", placeholder: "VAT" }
@@ -63061,13 +63061,13 @@ var staticRenderFns = [
           _c(
             "label",
             {
-              staticClass: "col-sm-6 col-form-label",
+              staticClass: "col-sm-9 col-form-label float-right",
               attrs: { for: "inputTotalAmount" }
             },
             [_vm._v("Total Amount")]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "col-sm-6" }, [
+          _c("div", { staticClass: "col-sm-3" }, [
             _c("input", {
               staticClass: "form-control",
               attrs: {

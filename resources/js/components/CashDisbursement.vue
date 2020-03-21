@@ -116,8 +116,8 @@
               
               <div class="form-group col-12 float-right">
                 <div class="row">
-                <label for="inputAmountExclusiveTax" class="col-sm-6 col-form-label">Amount Exclusive of Tax</label>
-                <div class="col-sm-6">
+                <label for="inputAmountExclusiveTax" class="col-sm-9 col-form-label float-right">Amount Exclusive of Tax</label>
+                <div class="col-sm-3">
                   <input type="text" class="form-control" id="inputAmountExclusiveTax" placeholder="Amount Exclusive of Tax">
                 </div>
                 </div>
@@ -125,8 +125,8 @@
               <div class="form-group col-12 float-right">
                 <div class="row">
                 
-                <label for="inputVAT" class="col-sm-6 col-form-label">VAT</label>
-                <div class="col-sm-6">
+                <label for="inputVAT" class="col-sm-9 col-form-label float-right">VAT</label>
+                <div class="col-sm-3">
                   <input type="text" class="form-control" id="inputVAT" placeholder="VAT">
                 </div>
               </div>
@@ -134,8 +134,8 @@
               <div class="form-group col-12 float-right">
                 <div class="row">
                 
-                <label for="inputTotalAmount" class="col-sm-6 col-form-label">Total Amount</label>
-                <div class="col-sm-6">
+                <label for="inputTotalAmount" class="col-sm-9 col-form-label float-right">Total Amount</label>
+                <div class="col-sm-3">
                   <input type="text" class="form-control" id="inputTotalAmount" placeholder="Total Amount">
                 </div>
               </div>
