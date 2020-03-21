@@ -2265,6 +2265,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -62399,27 +62401,47 @@ var render = function() {
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "box mt-4" }, [
               _c("div", { staticClass: "box box-primary" }, [
-                _c("div", { staticClass: "box-header with-border" }, [
-                  _c("h3", { staticClass: "box-title" }, [
-                    _vm._v("Cash Disbursement")
+                _c("form", { attrs: { role: "form" } }, [
+                  _c("div", { staticClass: "box-header with-border" }, [
+                    _c("h3", { staticClass: "box-title" }, [
+                      _vm._v("Cash Disbursement")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "box-tools" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "submit" }
+                        },
+                        [_vm._v("Save")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          attrs: { type: "submit" }
+                        },
+                        [_vm._v("Cancel")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success",
+                          on: { click: _vm.newCD }
+                        },
+                        [
+                          _vm._v("New CD "),
+                          _c("i", { staticClass: "fas fa-plus-circle fa-fw" })
+                        ]
+                      )
+                    ])
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "box-tools" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-success",
-                        on: { click: _vm.newCD }
-                      },
-                      [
-                        _vm._v("New CD "),
-                        _c("i", { staticClass: "fas fa-plus-circle fa-fw" })
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _vm._m(0)
+                  _vm._m(0)
+                ])
               ])
             ])
           ])
@@ -62782,132 +62804,110 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("form", { attrs: { role: "form" } }, [
-      _c("div", { staticClass: "box-body row" }, [
-        _c("div", { staticClass: "col-9" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "inputPayeesName" } }, [
-              _vm._v("Payee")
-            ]),
-            _vm._v(" "),
+    return _c("div", { staticClass: "box-body row" }, [
+      _c("div", { staticClass: "col-9" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "inputPayeesName" } }, [_vm._v("Payee")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control col-12",
+            attrs: {
+              type: "text",
+              id: "inputPayeesName",
+              placeholder: "Payees Name"
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("input", {
+            staticClass: "form-control col-12",
+            attrs: {
+              type: "text",
+              id: "inputPayeesAddress",
+              placeholder: "Address"
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group row" }, [
+          _c("div", { staticClass: "col-6" }, [
             _c("input", {
-              staticClass: "form-control col-12",
-              attrs: {
-                type: "text",
-                id: "inputPayeesName",
-                placeholder: "Payees Name"
-              }
+              staticClass: "form-control",
+              attrs: { type: "text", id: "inputPayeesTIN", placeholder: "TIN" }
             })
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("input", {
-              staticClass: "form-control col-12",
-              attrs: {
-                type: "text",
-                id: "inputPayeesAddress",
-                placeholder: "Address"
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group row" }, [
-            _c("div", { staticClass: "col-6" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "inputPayeesTIN",
-                  placeholder: "TIN"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-6" }, [
-              _c("select", { staticClass: "form-control col-12" }, [
-                _c("option", [_vm._v("TAX TYPE")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("VAT REG")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("NON VAT")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("VAT EXEMPT")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("ZERO RATED")])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v("Account")]),
-            _vm._v(" "),
+          _c("div", { staticClass: "col-6" }, [
             _c("select", { staticClass: "form-control col-12" }, [
-              _c("option", [_vm._v("SALARIES AND WAGES")]),
+              _c("option", [_vm._v("TAX TYPE")]),
               _vm._v(" "),
-              _c("option", [_vm._v("TRAININGS AND SEMINARS")]),
+              _c("option", [_vm._v("VAT REG")]),
               _vm._v(" "),
-              _c("option", [_vm._v("TRAVEL AND TRANSPORTATION")]),
+              _c("option", [_vm._v("NON VAT")]),
               _vm._v(" "),
-              _c("option", [_vm._v("MEALS AMD SNACKS")]),
+              _c("option", [_vm._v("VAT EXEMPT")]),
               _vm._v(" "),
-              _c("option", [_vm._v("REPRESENTATION EXPENSES")])
+              _c("option", [_vm._v("ZERO RATED")])
             ])
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-3" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "inputReferenceNo" } }, [
-              _vm._v("Reference No.")
-            ]),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Account")]),
+          _vm._v(" "),
+          _c("select", { staticClass: "form-control col-12" }, [
+            _c("option", [_vm._v("SALARIES AND WAGES")]),
             _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control col-12",
-              attrs: {
-                type: "text",
-                id: "inputReferenceNo",
-                placeholder: "Reference No"
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("input", {
-              staticClass: "form-control col-12",
-              attrs: { type: "text", id: "inputDate", placeholder: "Date" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("input", {
-              staticClass: "form-control col-12",
-              attrs: { type: "text", id: "inputDCNo", placeholder: "CD Number" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "inputAmount" } }, [_vm._v("Amount")]),
+            _c("option", [_vm._v("TRAININGS AND SEMINARS")]),
             _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control col-12",
-              attrs: { type: "text", id: "inputAmount", placeholder: "Amount" }
-            })
+            _c("option", [_vm._v("TRAVEL AND TRANSPORTATION")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("MEALS AMD SNACKS")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("REPRESENTATION EXPENSES")])
           ])
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "box-footer" }, [
-        _c(
-          "button",
-          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-          [_vm._v("Save")]
-        ),
+      _c("div", { staticClass: "col-3" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "inputReferenceNo" } }, [
+            _vm._v("Reference No.")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control col-12",
+            attrs: {
+              type: "text",
+              id: "inputReferenceNo",
+              placeholder: "Reference No"
+            }
+          })
+        ]),
         _vm._v(" "),
-        _c(
-          "button",
-          { staticClass: "btn btn-danger", attrs: { type: "submit" } },
-          [_vm._v("Cancel")]
-        )
+        _c("div", { staticClass: "form-group" }, [
+          _c("input", {
+            staticClass: "form-control col-12",
+            attrs: { type: "text", id: "inputDate", placeholder: "Date" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("input", {
+            staticClass: "form-control col-12",
+            attrs: { type: "text", id: "inputDCNo", placeholder: "CD Number" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "inputAmount" } }, [_vm._v("Amount")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control col-12",
+            attrs: { type: "text", id: "inputAmount", placeholder: "Amount" }
+          })
+        ])
       ])
     ])
   },

@@ -6,15 +6,18 @@
             <!-- general form elements -->
           <div class="box box-primary">
 
-            <div class="box-header with-border">
-              <h3 class="box-title">Cash Disbursement</h3>
-              <div class="box-tools">
-                <button class="btn btn-success" @click="newCD">New CD <i class="fas fa-plus-circle fa-fw"></i></button>
-              </div>
-            </div>
+
             <!-- /.box-header -->
             <!-- form start -->
             <form role="form">
+              <div class="box-header with-border">
+                <h3 class="box-title">Cash Disbursement</h3>
+                <div class="box-tools">
+                  <button type="submit" class="btn btn-primary">Save</button>
+                  <button type="submit" class="btn btn-danger">Cancel</button>
+                  <button class="btn btn-success" @click="newCD">New CD <i class="fas fa-plus-circle fa-fw"></i></button>
+                </div>
+              </div>
               <div class="box-body row">
                 <!--Left Col-->
                 <div class="col-9">
@@ -86,10 +89,9 @@
               </div>
               <!-- /.box-body -->
 
-              <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Save</button>
-                <button type="submit" class="btn btn-danger">Cancel</button>
-              </div>
+              <!-- div class="box-footer">
+                
+              </div -->
             </form>
           </div>
           <!-- /.box -->
