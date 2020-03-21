@@ -82,7 +82,7 @@
                 <div class="box-header">
                   <h3 class="box-title">Debits</h3>
                   <div class="box-tools">
-                    <button class="btn btn-success" @click="newUser">Add New  <i class="fas fa-user-plus fa-fw"></i></button>
+                    <button class="btn btn-success" @click="addItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
                 </div>
 

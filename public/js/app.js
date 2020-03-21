@@ -62465,11 +62465,11 @@ var render = function() {
                           "button",
                           {
                             staticClass: "btn btn-success",
-                            on: { click: _vm.newUser }
+                            on: { click: _vm.addItem }
                           },
                           [
-                            _vm._v("Add New  "),
-                            _c("i", { staticClass: "fas fa-user-plus fa-fw" })
+                            _vm._v("Add Items "),
+                            _c("i", { staticClass: "fas fa-plus-circle fa-fw" })
                           ]
                         )
                       ])
