@@ -2090,11 +2090,9 @@ __webpack_require__.r(__webpack_exports__);
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CashDisbursement.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
 //
 //
 //
@@ -2191,183 +2189,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      editmode: false,
-      users: {},
-      form: new Form({
-        id: '',
-        name: '',
-        email: '',
-        password: '',
-        type: '',
-        bio: '',
-        photo: ''
-      })
-    };
-  },
-  methods: {
-    getResults: function getResults() {
-      var _this = this;
-
-      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      axios.get('api/user?page=' + page).then(function (response) {
-        _this.users = response.data;
-      });
-    },
-    editUser: function editUser(user) {
-      this.editmode = true;
-      this.form.reset();
-      $('#UserDetails').modal('show');
-      this.form.fill(user);
-    },
-    newUser: function newUser() {
-      this.editmode = false;
-      this.form.reset();
-      $('#UserDetails').modal('show');
-    },
-    deleteUser: function deleteUser(id) {
-      var _this2 = this;
-
-      swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then(function (result) {
-        if (result.value) {
-          _this2.form["delete"]('api/user/' + id).then(function () {
-            swal.fire('Deleted!', 'User has been deleted.', 'success');
-            Fire.$emit('RefreshUsersTable');
-          })["catch"](function () {
-            swal("Failed!", "Failed to delete user!", "warning");
-          });
-        }
-      });
-    },
-    loadUsers: function loadUsers() {
-      var _this3 = this;
-
-      if (this.$gate.isAdminOrAuthor()) {
-        axios.get("api/user").then(function (_ref) {
-          var data = _ref.data;
-          return _this3.users = data;
-        }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
-      }
-    },
-    createUser: function createUser() {
-      var _this4 = this;
-
-      this.$Progress.start();
-      this.form.post('api/user').then(function () {
-        VueListen.$emit('RefreshUsersTable');
-        $('#UserDetails').modal('hide');
-        toast.fire({
-          type: 'success',
-          title: 'User created successfully'
-        });
-
-        _this4.$Progress.finish();
-      })["catch"](function () {});
-    },
-    updateUser: function updateUser() {
-      var _this5 = this;
-
-      console.log('Edit User');
-      this.$Progress.start();
-      this.form.put('api/user/' + this.form.id).then(function () {
-        $('#UserDetails').modal('hide');
-        swal.fire('Updated!', 'User information has been updated.', 'success');
-
-        _this5.$Progress.finish();
-
-        VueListen.$emit('RefreshUsersTable');
-      })["catch"](function () {
-        _this5.$Progress.fail();
-      });
-    }
-  },
-  created: function created() {
-    var _this6 = this;
-
-    VueListen.$on('Search', function () {
-      var query = _this6.$parent.search;
-      axios.get('api/findUser?q=' + query).then(function (data) {
-        _this6.users = data.data;
-      })["catch"](function () {}); //this.loadUsers();
-    });
-    this.loadUsers();
-    VueListen.$on('RefreshUsersTable', function () {
-      _this6.loadUsers();
-    }); //setInterval(() => this.loadUsers(),3000);
-  }
-});
 
 /***/ }),
 
@@ -80230,14 +80051,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************************************!*\
   !*** ./resources/js/components/CashDisbursement.vue ***!
   \******************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CashDisbursement_vue_vue_type_template_id_4946dc5f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CashDisbursement.vue?vue&type=template&id=4946dc5f& */ "./resources/js/components/CashDisbursement.vue?vue&type=template&id=4946dc5f&");
 /* harmony import */ var _CashDisbursement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CashDisbursement.vue?vue&type=script&lang=js& */ "./resources/js/components/CashDisbursement.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _CashDisbursement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _CashDisbursement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -80267,13 +80089,15 @@ component.options.__file = "resources/js/components/CashDisbursement.vue"
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/CashDisbursement.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CashDisbursement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./CashDisbursement.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CashDisbursement.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CashDisbursement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CashDisbursement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CashDisbursement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CashDisbursement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CashDisbursement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CashDisbursement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
