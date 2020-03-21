@@ -89,16 +89,43 @@
                 <!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                   <table class="table table-hover">
-                    <tbody><tr>
-                      <th>Account No.</th>
-                      <th>Name</th>
-                      <th>Item</th>
-                      <th>Description</th>
-                      <th>Branch</th>
-                      <th>Tax Type</th>
-                      <th>Amount</th>
-                    </tr>
-                    
+                    <tbody>
+                      <tr>
+                        <th>Account No.</th>
+                        <th>Name</th>
+                        <th>Item</th>
+                        <th>Description</th>
+                        <th>Branch</th>
+                        <th>Tax Type</th>
+                        <th>Amount</th>
+                      </tr>
+                      <tr>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                      </tr>
+                      <tr>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                      </tr>
+                      <tr>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                      </tr>
                   </tbody>
                 </table>
                 </div>
