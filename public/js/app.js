@@ -2259,6 +2259,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -62818,14 +62824,17 @@ var staticRenderFns = [
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-6" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "inputPayeesTaxType",
-                  placeholder: "Tax Type"
-                }
-              })
+              _c("select", { staticClass: "form-control col-12" }, [
+                _c("option", [_vm._v("TAX TYPE")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("VAT REG")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("NON VAT")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("VAT EXEMPT")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("ZERO RATED")])
+              ])
             ])
           ]),
           _vm._v(" "),

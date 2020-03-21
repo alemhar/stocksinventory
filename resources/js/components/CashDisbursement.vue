@@ -30,7 +30,13 @@
                       <input type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN">
                     </div>
                     <div class="col-6">
-                      <input type="text" class="form-control" id="inputPayeesTaxType" placeholder="Tax Type">
+                      <select class="form-control col-12">
+                        <option>TAX TYPE</option>
+                        <option>VAT REG</option>
+                        <option>NON VAT</option>
+                        <option>VAT EXEMPT</option>
+                        <option>ZERO RATED</option>
+                      </select>
                     </div>  
                   </div>
                   <div class="form-group">
