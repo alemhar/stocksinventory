@@ -2284,6 +2284,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -62441,7 +62449,7 @@ var render = function() {
                           on: { click: _vm.newCD }
                         },
                         [
-                          _vm._v("New"),
+                          _vm._v("New "),
                           _c("i", { staticClass: "fas fa-plus-circle fa-fw" })
                         ]
                       )
@@ -62480,7 +62488,9 @@ var render = function() {
                     _c("div", { staticClass: "box-footer" })
                   ])
                 ])
-              ])
+              ]),
+              _vm._v(" "),
+              _vm._m(2)
             ])
           ])
         ])
@@ -62546,7 +62556,7 @@ var render = function() {
                   [_vm._v("Update User's Info")]
                 ),
                 _vm._v(" "),
-                _vm._m(2)
+                _vm._m(3)
               ]),
               _vm._v(" "),
               _c(
@@ -62971,6 +62981,34 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("th", [_vm._v("Amount")])
           ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "form-group row" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-sm-2 col-form-label",
+            attrs: { for: "inputEmail3" }
+          },
+          [_vm._v("Amount Exclusive of Tax")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-10" }, [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              id: "inputAmountExclusiveTax",
+              placeholder: "Amount Exclusive of Tax"
+            }
+          })
         ])
       ])
     ])

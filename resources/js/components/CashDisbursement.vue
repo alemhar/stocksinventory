@@ -14,7 +14,7 @@
                 <h3 class="box-title">Cash Disbursement</h3>
                 <div class="box-tools">
                   <button type="submit" class="btn btn-primary">Save</button>
-                  <button class="btn btn-success" @click="newCD">New<i class="fas fa-plus-circle fa-fw"></i></button>
+                  <button class="btn btn-success" @click="newCD">New <i class="fas fa-plus-circle fa-fw"></i></button>
                 </div>
               </div>
               <div class="box-body row">
@@ -112,7 +112,15 @@
 
           </div>  
           <!-- /.box -->
-       
+            <div class="row">
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Amount Exclusive of Tax</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="inputAmountExclusiveTax" placeholder="Amount Exclusive of Tax">
+                </div>
+              </div>
+            </div>
+          
           </div>
           <!-- /.box -->
         </div>
