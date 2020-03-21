@@ -63017,7 +63017,8 @@ var staticRenderFns = [
           _c(
             "label",
             {
-              staticClass: "col-sm-9 col-form-label float-right",
+              staticClass: "col-sm-9 col-form-label",
+              staticStyle: { "text-align": "right" },
               attrs: { for: "inputAmountExclusiveTax" }
             },
             [_vm._v("Amount Exclusive of Tax")]
@@ -63041,7 +63042,8 @@ var staticRenderFns = [
           _c(
             "label",
             {
-              staticClass: "col-sm-9 col-form-label float-right",
+              staticClass: "col-sm-9 col-form-label",
+              staticStyle: { "text-align": "right" },
               attrs: { for: "inputVAT" }
             },
             [_vm._v("VAT")]
@@ -63061,7 +63063,8 @@ var staticRenderFns = [
           _c(
             "label",
             {
-              staticClass: "col-sm-9 col-form-label float-right",
+              staticClass: "col-sm-9 col-form-label",
+              staticStyle: { "text-align": "right" },
               attrs: { for: "inputTotalAmount" }
             },
             [_vm._v("Total Amount")]
