@@ -21,18 +21,18 @@
                   <th>Created</th>
                   <th>Modify</th>
                 </tr>
-                <tr v-for="user in users.data" :key="user.id">
-                  <td>{{ user.id }}</td>
-                  <td>{{ user.name }}</td>
-                  <td>{{ user.email }}</td>
-                  <td>{{ user.type | upText }}</td>
-                  <td>{{ user.created_at | formatDate }}</td>
+                <tr v-for="user in payee.data" :key="payee.id">
+                  <td>{{ payee.id }}</td>
+                  <td>{{ payee.name }}</td>
+                  <td>{{ payee.address }}</td>
+                  <td>{{ payee.tin }}</td>
+                  <td>{{ payee.created_at | formatDate }}</td>
                   <td>
-                    <a href="#" @click="editUser(user)">Edit
+                    <a href="#" @click="editUser(payee)">Edit
                       <i class="fa fa-edit"></i>
                     </a>
                     |
-                    <a href="#" @click="deleteUser(user.id)"><span class="red">Delete</span>
+                    <a href="#" @click="deleteUser(payee.id)"><span class="red">Delete</span>
                       <i class="fa fa-trash"></i>
                     </a>
                   </td>
@@ -41,7 +41,7 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-              <pagination :data="users" @pagination-change-page="getResults"></pagination>
+              <pagination :data="payee" @pagination-change-page="getResults"></pagination>
             </div> 
           </div>
           <!-- /.box -->

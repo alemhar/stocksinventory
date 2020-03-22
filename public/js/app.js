@@ -64333,21 +64333,21 @@ var render = function() {
                       [
                         _vm._m(0),
                         _vm._v(" "),
-                        _vm._l(_vm.users.data, function(user) {
-                          return _c("tr", { key: user.id }, [
-                            _c("td", [_vm._v(_vm._s(user.id))]),
+                        _vm._l(_vm.payee.data, function(user) {
+                          return _c("tr", { key: _vm.payee.id }, [
+                            _c("td", [_vm._v(_vm._s(_vm.payee.id))]),
                             _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(user.name))]),
+                            _c("td", [_vm._v(_vm._s(_vm.payee.name))]),
                             _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(user.email))]),
+                            _c("td", [_vm._v(_vm._s(_vm.payee.address))]),
                             _vm._v(" "),
-                            _c("td", [
-                              _vm._v(_vm._s(_vm._f("upText")(user.type)))
-                            ]),
+                            _c("td", [_vm._v(_vm._s(_vm.payee.tin))]),
                             _vm._v(" "),
                             _c("td", [
                               _vm._v(
-                                _vm._s(_vm._f("formatDate")(user.created_at))
+                                _vm._s(
+                                  _vm._f("formatDate")(_vm.payee.created_at)
+                                )
                               )
                             ]),
                             _vm._v(" "),
@@ -64358,7 +64358,7 @@ var render = function() {
                                   attrs: { href: "#" },
                                   on: {
                                     click: function($event) {
-                                      return _vm.editUser(user)
+                                      return _vm.editUser(_vm.payee)
                                     }
                                   }
                                 },
@@ -64374,7 +64374,7 @@ var render = function() {
                                   attrs: { href: "#" },
                                   on: {
                                     click: function($event) {
-                                      return _vm.deleteUser(user.id)
+                                      return _vm.deleteUser(_vm.payee.id)
                                     }
                                   }
                                 },
@@ -64401,7 +64401,7 @@ var render = function() {
                 { staticClass: "box-footer" },
                 [
                   _c("pagination", {
-                    attrs: { data: _vm.users },
+                    attrs: { data: _vm.payee },
                     on: { "pagination-change-page": _vm.getResults }
                   })
                 ],
