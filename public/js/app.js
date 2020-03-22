@@ -2297,7 +2297,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -63215,7 +63214,6 @@ var render = function() {
                               "option-text": "name",
                               placeholder: "type to search"
                             },
-                            on: { search: _vm.onSearchEventHandler },
                             model: {
                               value: _vm.form.payee_id,
                               callback: function($$v) {
