@@ -63329,8 +63329,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.dc_date,
-                              expression: "form.dc_date"
+                              value: _vm.form.cd_date,
+                              expression: "form.cd_date"
                             }
                           ],
                           staticClass: "form-control col-12",
@@ -63339,13 +63339,13 @@ var render = function() {
                             id: "inputDate",
                             placeholder: "Date"
                           },
-                          domProps: { value: _vm.form.dc_date },
+                          domProps: { value: _vm.form.cd_date },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.$set(_vm.form, "dc_date", $event.target.value)
+                              _vm.$set(_vm.form, "cd_date", $event.target.value)
                             }
                           }
                         })
