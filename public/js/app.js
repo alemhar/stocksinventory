@@ -2376,8 +2376,8 @@ __webpack_require__.r(__webpack_exports__);
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
     },
-    eventChild: function eventChild() {
-      console.log('child event');
+    eventChild: function eventChild(Obj) {
+      console.log(Obj);
     } // ,
     // createUser(){
     //   this.$Progress.start()

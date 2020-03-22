@@ -290,8 +290,8 @@
             } 
              
           },
-          eventChild(){
-            console.log('child event');
+          eventChild(Obj){
+            console.log(Obj);
           }
           // ,
           // createUser(){
