@@ -38,9 +38,9 @@
 
                   <div class="form-group">
                     <dynamic-select 
-                      :options="payees.data"
-                      option-value="payees.id"
-                      option-text="payees.name"
+                      :options="payees"
+                      option-value="id"
+                      option-text="name"
                       placeholder="type to search"
                       v-model="form.payee_id" />
                   </div>
@@ -289,7 +289,7 @@
           loadPayees(){
 
             if(this.$gate.isAdminOrAuthor()){
-                axios.get("api/payee").then(({data}) => (this.payees = data.data ));
+                axios.get("api/payee").then(({data}) => (this.payees = data ));
                 //axios.get("api/user").then(({ data }) => (this.users = data.data));
             } 
              

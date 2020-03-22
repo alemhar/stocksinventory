@@ -2378,7 +2378,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.$gate.isAdminOrAuthor()) {
         axios.get("api/payee").then(function (_ref2) {
           var data = _ref2.data;
-          return _this.payees = data.data;
+          return _this.payees = data;
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
     } // ,
@@ -63221,9 +63221,9 @@ var render = function() {
                         [
                           _c("dynamic-select", {
                             attrs: {
-                              options: _vm.payees.data,
-                              "option-value": "payees.id",
-                              "option-text": "payees.name",
+                              options: _vm.payees,
+                              "option-value": "id",
+                              "option-text": "name",
                               placeholder: "type to search"
                             },
                             model: {
