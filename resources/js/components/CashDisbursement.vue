@@ -41,9 +41,8 @@
                       :options="payees.data"
                       option-value="id"
                       option-text="name"
-                      value="form.payee_id"
                       placeholder="type to search"
-                       />
+                      v-model="form.payee_id />
                   </div>
                   
 
