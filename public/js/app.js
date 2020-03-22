@@ -63291,8 +63291,8 @@ var render = function() {
                           _c("dynamic-select", {
                             attrs: {
                               options: _vm.payees.data,
-                              "option-value": "id",
-                              "option-text": "name",
+                              "option-value": "payees.data.id",
+                              "option-text": "payees.data.name",
                               placeholder: "type to search"
                             },
                             model: {
