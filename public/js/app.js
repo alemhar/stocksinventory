@@ -2300,6 +2300,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2374,6 +2375,9 @@ __webpack_require__.r(__webpack_exports__);
           return _this.payees = data;
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
+    },
+    eventChild: function eventChild() {
+      console.log('child event');
     } // ,
     // createUser(){
     //   this.$Progress.start()
@@ -63219,6 +63223,7 @@ var render = function() {
                               "option-text": "name",
                               placeholder: "type to search"
                             },
+                            on: { input: _vm.eventChild },
                             model: {
                               value: _vm.selected_payee,
                               callback: function($$v) {

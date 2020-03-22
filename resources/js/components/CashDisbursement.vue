@@ -41,6 +41,7 @@
                       option-text="name"
                       placeholder="type to search"
                       v-model='selected_payee'
+                      v-on:input="eventChild"
                       />
                   </div>
                   
@@ -288,6 +289,9 @@
                 //axios.get("api/user").then(({ data }) => (this.users = data.data));
             } 
              
+          },
+          eventChild(){
+            console.log('child event');
           }
           // ,
           // createUser(){
