@@ -2419,7 +2419,8 @@ __webpack_require__.r(__webpack_exports__);
     VueListen.$on('RefreshUsersTable', function () {
       _this2.loadPayees(); //this.loadUsers();
 
-    }); //setInterval(() => this.loadUsers(),3000);
+    });
+    console.log(this.payees); //setInterval(() => this.loadUsers(),3000);
   }
 });
 

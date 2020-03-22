@@ -340,12 +340,13 @@
             
             //this.loadUsers();
             this.loadPayees();
+
             VueListen.$on('RefreshUsersTable',() => {
               
                this.loadPayees();
                //this.loadUsers();
             });
-            
+            console.log(this.payees);
 
             //setInterval(() => this.loadUsers(),3000);
         }
