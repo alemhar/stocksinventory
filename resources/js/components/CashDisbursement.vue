@@ -215,7 +215,8 @@
               form: new Form({
 
                   id:'',
-                  name : ''
+                  name : '',
+                  payee_id: ''
                   
               }),
               payees: {},
@@ -291,7 +292,8 @@
              
           },
           eventChild(Obj){
-            console.log(Obj);
+            console.log(Obj.id);
+            this.payee_id = Obj.id;
           }
           // ,
           // createUser(){

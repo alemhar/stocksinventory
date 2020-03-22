@@ -2310,7 +2310,8 @@ __webpack_require__.r(__webpack_exports__);
       cd: {},
       form: new Form({
         id: '',
-        name: ''
+        name: '',
+        payee_id: ''
       }),
       payees: {},
       selected_payee: {}
@@ -2377,7 +2378,8 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     eventChild: function eventChild(Obj) {
-      console.log(Obj);
+      console.log(Obj.id);
+      this.payee_id = Obj.id;
     } // ,
     // createUser(){
     //   this.$Progress.start()
