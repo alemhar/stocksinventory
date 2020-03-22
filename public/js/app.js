@@ -2091,9 +2091,337 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CashDisbursement.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: D:\\stocksinventory\\resources\\js\\components\\CashDisbursement.vue: Unexpected token, expected \",\" (279:43)\n\n  277 |                 response \n  278 |               }) => (\n> 279 |                 this.payees = response.data;\n      |                                            ^\n  280 |               )\n  281 | \n  282 |               );\n    at Parser.raise (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:6400:17)\n    at Parser.unexpected (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:7728:16)\n    at Parser.expect (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:7714:28)\n    at Parser.parseParenAndDistinguishExpression (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9061:14)\n    at Parser.parseExprAtom (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8861:21)\n    at Parser.parseExprSubscripts (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8507:23)\n    at Parser.parseMaybeUnary (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8487:21)\n    at Parser.parseExprOps (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8353:23)\n    at Parser.parseMaybeConditional (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8326:23)\n    at Parser.parseMaybeAssign (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8273:21)\n    at Parser.parseFunctionBody (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9505:24)\n    at Parser.parseArrowExpression (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9464:10)\n    at Parser.parseParenAndDistinguishExpression (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9101:12)\n    at Parser.parseExprAtom (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8861:21)\n    at Parser.parseExprSubscripts (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8507:23)\n    at Parser.parseMaybeUnary (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8487:21)\n    at Parser.parseExprOps (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8353:23)\n    at Parser.parseMaybeConditional (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8326:23)\n    at Parser.parseMaybeAssign (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8273:21)\n    at Parser.parseExprListItem (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9590:18)\n    at Parser.parseCallExpressionArguments (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8720:22)\n    at Parser.parseSubscript (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8613:29)\n    at Parser.parseSubscripts (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8528:19)\n    at Parser.parseExprSubscripts (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8517:17)\n    at Parser.parseMaybeUnary (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8487:21)\n    at Parser.parseExprOps (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8353:23)\n    at Parser.parseMaybeConditional (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8326:23)\n    at Parser.parseMaybeAssign (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8273:21)\n    at Parser.parseExpression (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8221:23)\n    at Parser.parseStatementContent (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10061:23)\n    at Parser.parseStatement (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9932:17)\n    at Parser.parseBlockOrModuleBlockBody (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10508:25)\n    at Parser.parseBlockBody (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10495:10)\n    at Parser.parseBlock (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10479:10)\n    at Parser.parseStatementContent (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10008:21)\n    at Parser.parseStatement (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9932:17)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      editmode: false,
+      cd: {},
+      form: new Form({
+        id: '',
+        name: '',
+        payee_id: '',
+        password: '',
+        type: '',
+        bio: '',
+        photo: ''
+      }),
+      payees: {}
+    };
+  },
+  methods: {
+    // getResults(page = 1) {
+    //   axios.get('api/user?page=' + page)
+    //     .then(response => {
+    //       this.users = response.data;
+    //     });
+    // },
+    // editUser(user){
+    //     this.editmode = true;
+    //     this.form.reset();
+    //     $('#UserDetails').modal('show');
+    //     this.form.fill(user);
+    // },
+    // newUser(){
+    //     this.editmode = false;
+    //     this.form.reset();
+    //     $('#UserDetails').modal('show');
+    // },
+    // deleteUser(id){
+    //     swal.fire({
+    //           title: 'Are you sure?',
+    //           text: "You won't be able to revert this!",
+    //           type: 'warning',
+    //           showCancelButton: true,
+    //           confirmButtonColor: '#3085d6',
+    //           cancelButtonColor: '#d33',
+    //           confirmButtonText: 'Yes, delete it!'
+    //         }).then((result) => {
+    //           if (result.value) {
+    //             this.form.delete('api/user/'+id)
+    //             .then(()=>{
+    //                 swal.fire(
+    //                   'Deleted!',
+    //                   'User has been deleted.',
+    //                   'success'
+    //                 );
+    //                 Fire.$emit('RefreshUsersTable');
+    //             })
+    //             .catch(()=>{
+    //               swal("Failed!","Failed to delete user!", "warning");
+    //             });
+    //           }
+    //         });
+    // },
+    // loadUsers(){
+    //   if(this.$gate.isAdminOrAuthor()){
+    //       axios.get("api/user").then(({ data }) => (this.users = data));
+    //       //axios.get("api/user").then(({ data }) => (this.users = data.data));
+    //   } 
+    // },
+    loadPayees: function loadPayees() {
+      var _this = this;
+
+      if (this.$gate.isAdminOrAuthor()) {
+        axios.get("api/payee").then(function (_ref) {
+          var response = _ref.response;
+          return _this.payees = response.data;
+        }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
+      }
+    } // ,
+    // createUser(){
+    //   this.$Progress.start()
+    //   this.form.post('api/user')
+    //   .then(()=>{
+    //       VueListen.$emit('RefreshUsersTable');
+    //       $('#UserDetails').modal('hide');
+    //       toast.fire({
+    //         type: 'success',
+    //         title: 'User created successfully'
+    //       })
+    //       this.$Progress.finish();
+    //   })
+    //   .catch(()=>{
+    //   });
+    // },
+    // updateUser(){
+    //   console.log('Edit User');
+    //   this.$Progress.start();
+    //   this.form.put('api/user/'+this.form.id)
+    //   .then(() => {
+    //       $('#UserDetails').modal('hide');
+    //       swal.fire(
+    //           'Updated!',
+    //           'User information has been updated.',
+    //           'success'
+    //         );
+    //         this.$Progress.finish();
+    //         VueListen.$emit('RefreshUsersTable');
+    //   })
+    //   .catch(() => {
+    //       this.$Progress.fail();
+    //   });
+    //}
+
+  },
+  created: function created() {
+    var _this2 = this;
+
+    /*
+    VueListen.$on('Search',() => {
+        let query = this.$parent.search;
+        axios.get('api/findUser?q='+query)
+        .then((data)=>{
+          this.users = data.data;
+        })
+        .catch(()=>{
+         });
+       //this.loadUsers();
+    });
+    */
+    //this.loadUsers();
+    this.loadPayees();
+    VueListen.$on('RefreshUsersTable', function () {
+      _this2.loadPayees(); //this.loadUsers();
+
+    }); //setInterval(() => this.loadUsers(),3000);
+  }
+});
 
 /***/ }),
 

@@ -276,7 +276,7 @@
                   ({ 
                     response 
                   }) => (
-                    this.payees = response.data;
+                    this.payees = response.data
                   )
 
                   );
