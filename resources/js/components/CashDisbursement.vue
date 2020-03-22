@@ -220,7 +220,7 @@
                   transaction_no: '',
                   transaction_date: this.getDate(),
                   transaction_amt: '',
-                  tax_type: '',
+                  tax_type: 'TAX TYPE',
                   account_code: ''
                   
                   
