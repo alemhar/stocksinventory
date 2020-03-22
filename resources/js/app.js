@@ -45,8 +45,7 @@ Vue.use(VueProgressBar, {
     height: '3px'
   });
 
-//import DynamicSelect from 'vue-dynamic-select'
-//Vue.use(DynamicSelect);
+
 
 
 let routes = [
