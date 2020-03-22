@@ -45,8 +45,8 @@ Vue.use(VueProgressBar, {
     height: '3px'
   });
 
-
-
+import ModelSelect from 'vue-search-select';
+Vue.use(ModelSelect);
 
 let routes = [
   { path: '/dashboard', component: require('./components/Dashboard.vue').default },

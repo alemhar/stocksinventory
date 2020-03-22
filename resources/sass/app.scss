@@ -8,13 +8,17 @@ $fa-font-path: "../webfonts";
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+//node_modules Folder
 @import '~admin-lte/dist/css/adminlte.css';
 
+// vendor Folder
 @import "@fortawesome/fontawesome-free/scss/fontawesome.scss";
 
 @import "@fortawesome/fontawesome-free/scss/solid.scss";
 
 @import "@fortawesome/fontawesome-free/scss/brands.scss";
+
+import '~vue-search-select/dist/VueSearchSelect.css'
 
 @import "../css/custom.css";
 
