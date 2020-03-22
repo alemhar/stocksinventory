@@ -63616,7 +63616,21 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _vm._m(1)
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.cr_created,
+                      expression: "cr_created"
+                    }
+                  ],
+                  staticClass: "box box-warning mt-2"
+                },
+                [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3)]
+              )
             ])
           ])
         ])
@@ -63713,75 +63727,81 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box box-warning mt-2" }, [
-      _c("div", { staticClass: "form-group col-12 float-right" }, [
-        _c("div", { staticClass: "row mt-2" }, [
-          _c(
-            "label",
-            {
-              staticClass: "col-sm-9 col-form-label",
-              staticStyle: { "text-align": "right" },
-              attrs: { for: "inputAmountExclusiveTax" }
-            },
-            [_vm._v("Amount Exclusive of Tax")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-3" }, [
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                id: "inputAmountExclusiveTax",
-                placeholder: "Amount Exclusive of Tax"
-              }
-            })
-          ])
+    return _c("div", { staticClass: "form-group col-12 float-right" }, [
+      _c("div", { staticClass: "row mt-2" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-sm-9 col-form-label",
+            staticStyle: { "text-align": "right" },
+            attrs: { for: "inputAmountExclusiveTax" }
+          },
+          [_vm._v("Amount Exclusive of Tax")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-3" }, [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              id: "inputAmountExclusiveTax",
+              placeholder: "Amount Exclusive of Tax"
+            }
+          })
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-12 float-right" }, [
-        _c("div", { staticClass: "row" }, [
-          _c(
-            "label",
-            {
-              staticClass: "col-sm-9 col-form-label",
-              staticStyle: { "text-align": "right" },
-              attrs: { for: "inputVAT" }
-            },
-            [_vm._v("VAT")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-3" }, [
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", id: "inputVAT", placeholder: "VAT" }
-            })
-          ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-12 float-right" }, [
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-sm-9 col-form-label",
+            staticStyle: { "text-align": "right" },
+            attrs: { for: "inputVAT" }
+          },
+          [_vm._v("VAT")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-3" }, [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "text", id: "inputVAT", placeholder: "VAT" }
+          })
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-12 float-right" }, [
-        _c("div", { staticClass: "row" }, [
-          _c(
-            "label",
-            {
-              staticClass: "col-sm-9 col-form-label",
-              staticStyle: { "text-align": "right" },
-              attrs: { for: "inputTotalAmount" }
-            },
-            [_vm._v("Total Amount")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-3" }, [
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                id: "inputTotalAmount",
-                placeholder: "Total Amount"
-              }
-            })
-          ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-12 float-right" }, [
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-sm-9 col-form-label",
+            staticStyle: { "text-align": "right" },
+            attrs: { for: "inputTotalAmount" }
+          },
+          [_vm._v("Total Amount")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-3" }, [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              id: "inputTotalAmount",
+              placeholder: "Total Amount"
+            }
+          })
         ])
       ])
     ])

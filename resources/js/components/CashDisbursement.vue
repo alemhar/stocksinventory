@@ -160,7 +160,7 @@
 
           </div>  
           <!-- /.box -->
-            <div class="box box-warning mt-2">
+            <div v-show="cr_created" class="box box-warning mt-2">
               
               <div class="form-group col-12 float-right">
                 <div class="row mt-2">
