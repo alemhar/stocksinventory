@@ -2962,7 +2962,7 @@ __webpack_require__.r(__webpack_exports__);
       this.editmode = true;
       this.form.reset();
       $('#PayeeDetails').modal('show');
-      this.form.fill(user);
+      this.form.fill(payee);
     },
     newPayee: function newPayee() {
       this.editmode = false;
@@ -64361,7 +64361,7 @@ var render = function() {
                                   attrs: { href: "#" },
                                   on: {
                                     click: function($event) {
-                                      return _vm.editUser(payee)
+                                      return _vm.editPayee(payee)
                                     }
                                   }
                                 },
@@ -64377,7 +64377,7 @@ var render = function() {
                                   attrs: { href: "#" },
                                   on: {
                                     click: function($event) {
-                                      return _vm.deleteUser(payee.id)
+                                      return _vm.deletePayee(payee.id)
                                     }
                                   }
                                 },

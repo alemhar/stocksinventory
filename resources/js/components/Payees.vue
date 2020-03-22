@@ -28,11 +28,11 @@
                   <td>{{ payee.tin }}</td>
                   <td>{{ payee.created_at | formatDate }}</td>
                   <td>
-                    <a href="#" @click="editUser(payee)">Edit
+                    <a href="#" @click="editPayee(payee)">Edit
                       <i class="fa fa-edit"></i>
                     </a>
                     |
-                    <a href="#" @click="deleteUser(payee.id)"><span class="red">Delete</span>
+                    <a href="#" @click="deletePayee(payee.id)"><span class="red">Delete</span>
                       <i class="fa fa-trash"></i>
                     </a>
                   </td>
@@ -125,7 +125,7 @@
               this.editmode = true;
               this.form.reset();
               $('#PayeeDetails').modal('show');
-              this.form.fill(user);
+              this.form.fill(payee);
           },
           newPayee(){
               this.editmode = false;
