@@ -216,7 +216,7 @@
                   id:'',
                   name : '',
                   payee_id: '',
-                  cd_date: new Date()
+                  cd_date: new Date().toJSON().slice(0,10).replace(/-/g,'/')
                   
               }),
               payees: {},
