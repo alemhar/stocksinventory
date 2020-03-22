@@ -98,7 +98,7 @@
             </form>
           </div>
 
-          <div  v-show="cr_created" class="box box-warning mt-2">
+          <div  v-show="cd_created" class="box box-warning mt-2">
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
@@ -161,7 +161,7 @@
 
           </div>  
           <!-- /.box -->
-            <div v-show="cr_created" class="box box-warning mt-2">
+            <div v-show="cd_created" class="box box-warning mt-2">
               
               <div class="form-group col-12 float-right">
                 <div class="row mt-2">
