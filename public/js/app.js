@@ -2287,6 +2287,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2419,8 +2425,8 @@ __webpack_require__.r(__webpack_exports__);
     VueListen.$on('RefreshUsersTable', function () {
       _this2.loadPayees(); //this.loadUsers();
 
-    });
-    console.log(this.payees); //setInterval(() => this.loadUsers(),3000);
+    }); //console.log(this.payees);
+    //setInterval(() => this.loadUsers(),3000);
   }
 });
 
@@ -63232,15 +63238,23 @@ var render = function() {
                               _vm._v("Please choose one...")
                             ]),
                             _vm._v(" "),
-                            _vm._l(_vm.payees.data, function(payee) {
-                              return _c(
-                                "option",
-                                { domProps: { value: payee.id } },
-                                [_vm._v(_vm._s(payee.name))]
-                              )
+                            _c("dynamic-select", {
+                              attrs: {
+                                options: _vm.payees.data,
+                                "option-value": "id",
+                                "option-text": "name",
+                                placeholder: "type to search"
+                              },
+                              model: {
+                                value: _vm.payee.id,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.payee, "id", $$v)
+                                },
+                                expression: "payee.id"
+                              }
                             })
                           ],
-                          2
+                          1
                         )
                       ]),
                       _vm._v(" "),

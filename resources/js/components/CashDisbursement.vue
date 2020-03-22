@@ -28,7 +28,13 @@
                   <div class="form-group">
                     <select name='payee_id' v-model='form.payee_id' class="form-control col-12">
                       <option value=''>Please choose one...</option>
-                      <option v-for="payee in payees.data" v-bind:value="payee.id">{{ payee.name }}</option>
+                      <!-- option v-for="payee in payees.data" v-bind:value="payee.id">{{ payee.name }}</option -->
+                      <dynamic-select 
+                        :options="payees.data"
+                        option-value="id"
+                        option-text="name"
+                        placeholder="type to search"
+                        v-model="payee.id" />
                     </select>
                   </div>
 
@@ -346,7 +352,7 @@
                this.loadPayees();
                //this.loadUsers();
             });
-            console.log(this.payees);
+            //console.log(this.payees);
 
             //setInterval(() => this.loadUsers(),3000);
         }
