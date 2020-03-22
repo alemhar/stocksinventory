@@ -43,7 +43,7 @@
                     </model-select>
                   </div>
                   
-                    
+
                   <div class="form-group">
                     <input type="text" class="form-control col-12" id="inputPayeesAddress" placeholder="Address">
                   </div>
@@ -203,7 +203,7 @@
     </div>
 </template>
 <script>
-    
+    import { ModelSelect } from 'vue-search-select'
     export default {
         data() {
           return {
@@ -220,7 +220,18 @@
                   photo: '',
                   payee_id: ''
               }),
-              payees: {}
+              payees: {},
+              options: [
+                { value: '1', text: 'aa' + ' - ' + '1' },
+                { value: '2', text: 'ab' + ' - ' + '2' },
+                { value: '3', text: 'bc' + ' - ' + '3' },
+                { value: '4', text: 'cd' + ' - ' + '4' },
+                { value: '5', text: 'de' + ' - ' + '5' }
+              ],
+              item: {
+                value: '',
+                text: ''
+              }
           }
         },
         methods: {
@@ -363,6 +374,9 @@
             //console.log(this.payees);
 
             //setInterval(() => this.loadUsers(),3000);
+        },
+        components: {
+          ModelSelect
         }
     }
 </script>

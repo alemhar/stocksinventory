@@ -2095,6 +2095,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-search-select */ "./node_modules/vue-search-select/dist/VueSearchSelect.common.js");
+/* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_search_select__WEBPACK_IMPORTED_MODULE_0__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
@@ -2301,6 +2303,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2315,7 +2318,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         bio: '',
         photo: ''
       }, "payee_id", '')),
-      payees: {}
+      payees: {},
+      options: [{
+        value: '1',
+        text: 'aa' + ' - ' + '1'
+      }, {
+        value: '2',
+        text: 'ab' + ' - ' + '2'
+      }, {
+        value: '3',
+        text: 'bc' + ' - ' + '3'
+      }, {
+        value: '4',
+        text: 'cd' + ' - ' + '4'
+      }, {
+        value: '5',
+        text: 'de' + ' - ' + '5'
+      }],
+      item: {
+        value: '',
+        text: ''
+      }
     };
   },
   methods: {
@@ -2435,6 +2458,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     }); //console.log(this.payees);
     //setInterval(() => this.loadUsers(),3000);
+  },
+  components: {
+    ModelSelect: vue_search_select__WEBPACK_IMPORTED_MODULE_0__["ModelSelect"]
   }
 });
 
@@ -86219,8 +86245,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var vue_progressbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-progressbar */ "./node_modules/vue-progressbar/dist/vue-progressbar.js");
 /* harmony import */ var vue_progressbar__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_progressbar__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-search-select */ "./node_modules/vue-search-select/dist/VueSearchSelect.common.js");
-/* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_search_select__WEBPACK_IMPORTED_MODULE_6__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -86256,9 +86280,9 @@ Vue.use(vue_progressbar__WEBPACK_IMPORTED_MODULE_5___default.a, {
   color: 'rgb(143, 255, 199)',
   failedColor: 'red',
   height: '3px'
-});
+}); //import ModelSelect from 'vue-search-select';
+//Vue.use(ModelSelect);
 
-Vue.use(vue_search_select__WEBPACK_IMPORTED_MODULE_6__);
 var routes = [{
   path: '/dashboard',
   component: __webpack_require__(/*! ./components/Dashboard.vue */ "./resources/js/components/Dashboard.vue")["default"]
