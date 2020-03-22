@@ -62818,11 +62818,11 @@ var render = function() {
                               placeholder: "select item"
                             },
                             model: {
-                              value: _vm.item,
+                              value: _vm.form.payee_id,
                               callback: function($$v) {
-                                _vm.item = $$v
+                                _vm.$set(_vm.form, "payee_id", $$v)
                               },
-                              expression: "item"
+                              expression: "form.payee_id"
                             }
                           })
                         ],
