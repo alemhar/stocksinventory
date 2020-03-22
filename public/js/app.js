@@ -2348,6 +2348,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2469,6 +2470,7 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {}); //this.loadUsers();
     });
     this.loadUsers();
+    this.loadPayees();
     VueListen.$on('RefreshUsersTable', function () {
       _this7.loadUsers();
     }); //setInterval(() => this.loadUsers(),3000);
@@ -63248,10 +63250,20 @@ var render = function() {
                         _c(
                           "select",
                           { staticClass: "form-control col-12" },
-                          _vm._l(_vm.payees, function(payee) {
-                            return _c("option", [_vm._v(_vm._s(payee))])
-                          }),
-                          0
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("Please choose one...")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.payees, function(payee) {
+                              return _c(
+                                "option",
+                                { domProps: { value: payee.id } },
+                                [_vm._v("@" + _vm._s(payee.name))]
+                              )
+                            })
+                          ],
+                          2
                         )
                       ]),
                       _vm._v(" "),

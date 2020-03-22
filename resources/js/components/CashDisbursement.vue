@@ -27,7 +27,8 @@
 
                   <div class="form-group">
                     <select class="form-control col-12">
-                      <option v-for="payee in payees">{{ payee}}</option>
+                      <option value=''>Please choose one...</option>
+                      <option v-for='payee in payees' v-bind:value='payee.id'>@{{ payee.name }}</option>
                     </select>
                   </div>
 
@@ -397,7 +398,7 @@
             });
             
             this.loadUsers();
-
+            this.loadPayees();
             VueListen.$on('RefreshUsersTable',() => {
               
                this.loadUsers();
