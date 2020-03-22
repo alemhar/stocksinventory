@@ -2397,6 +2397,9 @@ __webpack_require__.r(__webpack_exports__);
       var month = toTwoDigits(today.getMonth() + 1);
       var day = toTwoDigits(today.getDate());
       return "".concat(year, "-").concat(month, "-").concat(day);
+    },
+    createCD: function createCD() {
+      this.cr_created = true;
     } // ,
     // createUser(){
     //   this.$Progress.start()
@@ -63196,7 +63199,23 @@ var render = function() {
             _c("div", { staticClass: "box mt-4" }, [
               _c("div", { staticClass: "box box-warning" }, [
                 _c("form", { attrs: { role: "form" } }, [
-                  _vm._m(0),
+                  _c("div", { staticClass: "box-header with-border" }, [
+                    _c("h3", { staticClass: "box-title" }, [
+                      _vm._v("Cash Disbursement")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "box-tools" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success",
+                          attrs: { type: "submit" },
+                          on: { click: _vm.createCD }
+                        },
+                        [_vm._v("Create")]
+                      )
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "box-body row" }, [
                     _c("div", { staticClass: "col-9" }, [
@@ -63581,7 +63600,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _vm._m(1),
+                      _vm._m(0),
                       _vm._v(" "),
                       _c("div", { staticClass: "box-footer" })
                     ])
@@ -63602,7 +63621,7 @@ var render = function() {
                   ],
                   staticClass: "box box-warning mt-2"
                 },
-                [_vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4)]
+                [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3)]
               )
             ])
           ])
@@ -63615,22 +63634,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box-header with-border" }, [
-      _c("h3", { staticClass: "box-title" }, [_vm._v("Cash Disbursement")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "box-tools" }, [
-        _c(
-          "button",
-          { staticClass: "btn btn-success", attrs: { type: "submit" } },
-          [_vm._v("Create")]
-        )
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
