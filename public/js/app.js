@@ -2400,7 +2400,7 @@ __webpack_require__.r(__webpack_exports__);
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
     createCD: function createCD() {
-      this.cr_created = true;
+      this.cd_created = true;
     },
     saveCD: function saveCD() {},
     cancelCD: function cancelCD() {} // ,

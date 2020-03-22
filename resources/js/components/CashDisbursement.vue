@@ -313,7 +313,7 @@
             return `${year}-${month}-${day}`;
           },
           createCD(){
-            this.cr_created = true;
+            this.cd_created = true;
           },
           saveCD(){
 
