@@ -216,7 +216,13 @@
                   id:'',
                   name : '',
                   payee_id: '',
-                  cd_date: this.getDate()
+                  reference_no: '',
+                  transaction_no: '',
+                  transaction_date: this.getDate(),
+                  transaction_amt: '',
+                  tax_type: '',
+                  account_code: ''
+                  
                   
               }),
               payees: {},
