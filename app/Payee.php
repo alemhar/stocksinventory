@@ -12,5 +12,5 @@ class Payee extends Model
 
     $companyId = isset(Auth::user()->name) ? Auth::user()->company_id : '');
 	
-	protected $connection = 'mysql_'.$companyId;
+	//protected $connection = 'mysql_'.$companyId;
 }
