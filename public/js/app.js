@@ -62789,7 +62789,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("model-list-select", {
                             attrs: {
-                              options: _vm.payees.data,
+                              options: _vm.payees,
                               placeholder: "select item"
                             },
                             model: {
