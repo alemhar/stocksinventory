@@ -293,7 +293,7 @@
           },
           eventChild(Obj){
             console.log(Obj.id);
-            form.payee_id = Obj.id;
+            this.form.payee_id = Obj.id;
           }
           // ,
           // createUser(){
