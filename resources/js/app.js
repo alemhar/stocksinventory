@@ -37,6 +37,9 @@ Vue.component('pagination', require('laravel-vue-pagination'));
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
+import DynamicSelect from 'vue-dynamic-select';
+Vue.use(DynamicSelect);
+
 //npm install vue-progressbar | http://hilongjw.github.io/vue-progressbar/index.html 
 import VueProgressBar from 'vue-progressbar'
 Vue.use(VueProgressBar, {
