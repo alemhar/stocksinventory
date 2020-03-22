@@ -362,7 +362,7 @@
             //setInterval(() => this.loadUsers(),3000);
         },
         components: {
-          ModelSelect
+          ModelListSelect
         }
     }
 </script>

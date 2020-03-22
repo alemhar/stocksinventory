@@ -2436,7 +2436,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     //setInterval(() => this.loadUsers(),3000);
   },
   components: {
-    ModelSelect: ModelSelect
+    ModelListSelect: vue_search_select__WEBPACK_IMPORTED_MODULE_0__["ModelListSelect"]
   }
 });
 
