@@ -2095,6 +2095,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2298,7 +2300,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       editmode: false,
       cd: {},
-      form: new Form({
+      form: new Form(_defineProperty({
         id: '',
         name: '',
         payee_id: '',
@@ -2306,7 +2308,7 @@ __webpack_require__.r(__webpack_exports__);
         type: '',
         bio: '',
         photo: ''
-      }),
+      }, "payee_id", '')),
       payees: {}
     };
   },
@@ -2364,8 +2366,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       if (this.$gate.isAdminOrAuthor()) {
-        axios.get("api/payee").then(function (_ref) {
-          var data = _ref.data;
+        axios.get("api/payee").then(function (_ref2) {
+          var data = _ref2.data;
           return _this.payees = data;
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
@@ -63246,11 +63248,11 @@ var render = function() {
                                 placeholder: "type to search"
                               },
                               model: {
-                                value: _vm.payee.id,
+                                value: _vm.form.payee_id,
                                 callback: function($$v) {
-                                  _vm.$set(_vm.payee, "id", $$v)
+                                  _vm.$set(_vm.form, "payee_id", $$v)
                                 },
-                                expression: "payee.id"
+                                expression: "form.payee_id"
                               }
                             })
                           ],

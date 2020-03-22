@@ -34,7 +34,7 @@
                         option-value="id"
                         option-text="name"
                         placeholder="type to search"
-                        v-model="payee.id" />
+                        v-model="form.payee_id" />
                     </select>
                   </div>
 
@@ -210,7 +210,8 @@
                   password: '',
                   type: '',
                   bio: '',
-                  photo: ''
+                  photo: '',
+                  payee_id: ''
               }),
               payees: {}
           }
