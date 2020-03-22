@@ -8,6 +8,17 @@ use App\Payee;
 
 class PayeeController extends Controller
 {
+    
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +26,9 @@ class PayeeController extends Controller
      */
     public function index()
     {
-        //
+        if (\Gate::allows('isAdmin') || \Gate::allows('isAuthor')) {
+            return Payee::latest()->paginate(5);
+        }  
     }
 
     /**
