@@ -2360,7 +2360,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.$gate.isAdminOrAuthor()) {
         axios.get("api/payee").then(function (_ref) {
           var data = _ref.data;
-          return _this.payees = data;
+          return _this.payees = data.data;
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
     } // ,
