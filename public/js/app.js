@@ -63204,65 +63204,29 @@ var render = function() {
                     _c("div", { staticClass: "col-9" }, [
                       _vm._m(0),
                       _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c(
-                          "select",
-                          {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.payee_id,
-                                expression: "form.payee_id"
-                              }
-                            ],
-                            staticClass: "form-control col-12",
-                            attrs: { name: "payee_id" },
-                            on: {
-                              change: function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.$set(
-                                  _vm.form,
-                                  "payee_id",
-                                  $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                )
-                              }
-                            }
-                          },
-                          [
-                            _c("option", { attrs: { value: "" } }, [
-                              _vm._v("Please choose one...")
-                            ]),
-                            _vm._v(" "),
-                            _c("dynamic-select", {
-                              attrs: {
-                                options: _vm.payees.data,
-                                "option-value": "id",
-                                "option-text": "name",
-                                placeholder: "type to search"
+                      _c(
+                        "div",
+                        { staticClass: "form-group" },
+                        [
+                          _c("dynamic-select", {
+                            attrs: {
+                              options: _vm.payees.data,
+                              "option-value": "id",
+                              "option-text": "name",
+                              placeholder: "type to search"
+                            },
+                            on: { search: _vm.onSearchEventHandler },
+                            model: {
+                              value: _vm.form.payee_id,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "payee_id", $$v)
                               },
-                              on: { search: _vm.onSearchEventHandler },
-                              model: {
-                                value: _vm.form.payee_id,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.form, "payee_id", $$v)
-                                },
-                                expression: "form.payee_id"
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ]),
+                              expression: "form.payee_id"
+                            }
+                          })
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _vm._m(1),
                       _vm._v(" "),
