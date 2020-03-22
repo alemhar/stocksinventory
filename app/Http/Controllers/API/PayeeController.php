@@ -43,13 +43,18 @@ class PayeeController extends Controller
         //return ['message' => 'I have received you request!'];
         $this->validate($request,[
             'name' => 'required|string|max:191',
-            'address' => 'required|string|max:191'
+            'address' => 'required|string|max:191',
+            'city' => 'required|string|max:191',
+            'phone' => 'required|string|max:191'
+
         ]);
 
         return Payee::create([
             'name' => $request['name'],
             'address' => $request['address'],
-            'tin' => $request['tin']
+            'city' => $request['city'],
+            'tin' => $request['tin'],
+            'phone' => $request['phone']
         ]);
     }
 
@@ -77,8 +82,12 @@ class PayeeController extends Controller
 
         $this->validate($request,[
             'name' => 'required|string|max:191',
-            'address' => 'required|string|max:191'
+            'address' => 'required|string|max:191',
+            'city' => 'required|string|max:191',
+            'phone' => 'required|string|max:191'
+
         ]);
+
 
         $payee->update($request->all());
 

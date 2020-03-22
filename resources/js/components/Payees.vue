@@ -77,6 +77,18 @@
                   class="form-control" :class="{ 'is-invalid': form.errors.has('address') }" >
                 <has-error :form="form" field="address"></has-error>
               </div>
+              <div class="form-group">
+                <input v-model="form.city" type="text" name="city"
+                  placeholder="City"
+                  class="form-control" :class="{ 'is-invalid': form.errors.has('city') }" >
+                <has-error :form="form" field="city"></has-error>
+              </div>
+              <div class="form-group">
+                <input v-model="form.phone" type="text" name="phone"
+                  placeholder="Phone"
+                  class="form-control" :class="{ 'is-invalid': form.errors.has('phone') }" >
+                <has-error :form="form" field="phone"></has-error>
+              </div>
 
               <div class="form-group">
                   <input v-model="form.tin" name="tin" id="tin"
