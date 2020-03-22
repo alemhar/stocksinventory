@@ -378,7 +378,7 @@
             //setInterval(() => this.loadUsers(),3000);
         },
         components: {
-          //ModelSelect
+          DynamicSelect
         }
     }
 </script>

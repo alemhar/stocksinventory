@@ -2459,7 +2459,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }); //console.log(this.payees);
     //setInterval(() => this.loadUsers(),3000);
   },
-  components: {//ModelSelect
+  components: {
+    DynamicSelect: DynamicSelect
   }
 });
 
