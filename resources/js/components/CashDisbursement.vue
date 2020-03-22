@@ -30,7 +30,6 @@
                       <option value=''>Please select payee...</option>
                       <option v-for="payee in payees.data" v-bind:value="payee.id">{{ payee.name }}</option>
                       
-                      
                     </select -->
 
 
