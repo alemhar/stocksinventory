@@ -2390,7 +2390,7 @@ __webpack_require__.r(__webpack_exports__);
       var year = today.getFullYear();
       var month = toTwoDigits(today.getMonth() + 1);
       var day = toTwoDigits(today.getDate());
-      return "".concat(year, "-").concat(month, "-").concat(day);
+      return "".concat(year, "/").concat(month, "/").concat(day);
     } // ,
     // createUser(){
     //   this.$Progress.start()

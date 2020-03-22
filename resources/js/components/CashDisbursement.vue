@@ -302,7 +302,7 @@
             let year = today.getFullYear();
             let month = toTwoDigits(today.getMonth() + 1);
             let day = toTwoDigits(today.getDate());
-            return `${year}-${month}-${day}`;
+            return `${year}/${month}/${day}`;
           }
           // ,
           // createUser(){
