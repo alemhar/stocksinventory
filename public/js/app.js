@@ -63570,50 +63570,51 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "box box-warning mt-2" }, [
-                _c("div", { staticClass: "col-md-12" }, [
-                  _c("div", { staticClass: "box" }, [
-                    _c("div", { staticClass: "box-header" }, [
-                      _c("h3", { staticClass: "box-title" }, [
-                        _vm._v("Debits")
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.cr_created,
+                      expression: "cr_created"
+                    }
+                  ],
+                  staticClass: "box box-warning mt-2"
+                },
+                [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "box" }, [
+                      _c("div", { staticClass: "box-header" }, [
+                        _c("h3", { staticClass: "box-title" }, [
+                          _vm._v("Debits")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "box-tools" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success",
+                              on: { click: function($event) {} }
+                            },
+                            [
+                              _vm._v("Add Items "),
+                              _c("i", {
+                                staticClass: "fas fa-plus-circle fa-fw"
+                              })
+                            ]
+                          )
+                        ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "box-tools" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-success",
-                            on: { click: function($event) {} }
-                          },
-                          [
-                            _vm._v("Add Items "),
-                            _c("i", { staticClass: "fas fa-plus-circle fa-fw" })
-                          ]
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.cr_created,
-                            expression: "cr_created"
-                          }
-                        ],
-                        staticClass: "box-body table-responsive no-padding",
-                        attrs: { id: "debits-list" }
-                      },
-                      [_vm._m(0)]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "box-footer" })
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "box-footer" })
+                    ])
                   ])
-                ])
-              ]),
+                ]
+              ),
               _vm._v(" "),
               _vm._m(1)
             ])
@@ -63631,73 +63632,82 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("table", { staticClass: "table table-hover" }, [
-      _c("tbody", [
-        _c("tr", [
-          _c("th", [_vm._v("Account No.")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("Name")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("Item")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("Description")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("Branch")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("Tax Type")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("Amount")])
-        ]),
-        _vm._v(" "),
-        _c("tr", [
-          _c("td", [_vm._v(" - ")]),
-          _vm._v(" "),
-          _c("td", [_vm._v(" - ")]),
-          _vm._v(" "),
-          _c("td", [_vm._v(" - ")]),
-          _vm._v(" "),
-          _c("td", [_vm._v(" - ")]),
-          _vm._v(" "),
-          _c("td", [_vm._v(" - ")]),
-          _vm._v(" "),
-          _c("td", [_vm._v(" - ")]),
-          _vm._v(" "),
-          _c("td", [_vm._v(" - ")])
-        ]),
-        _vm._v(" "),
-        _c("tr", [
-          _c("td", [_vm._v(" - ")]),
-          _vm._v(" "),
-          _c("td", [_vm._v(" - ")]),
-          _vm._v(" "),
-          _c("td", [_vm._v(" - ")]),
-          _vm._v(" "),
-          _c("td", [_vm._v(" - ")]),
-          _vm._v(" "),
-          _c("td", [_vm._v(" - ")]),
-          _vm._v(" "),
-          _c("td", [_vm._v(" - ")]),
-          _vm._v(" "),
-          _c("td", [_vm._v(" - ")])
-        ]),
-        _vm._v(" "),
-        _c("tr", [
-          _c("td", [_vm._v(" - ")]),
-          _vm._v(" "),
-          _c("td", [_vm._v(" - ")]),
-          _vm._v(" "),
-          _c("td", [_vm._v(" - ")]),
-          _vm._v(" "),
-          _c("td", [_vm._v(" - ")]),
-          _vm._v(" "),
-          _c("td", [_vm._v(" - ")]),
-          _vm._v(" "),
-          _c("td", [_vm._v(" - ")]),
-          _vm._v(" "),
-          _c("td", [_vm._v(" - ")])
+    return _c(
+      "div",
+      {
+        staticClass: "box-body table-responsive no-padding",
+        attrs: { id: "debits-list" }
+      },
+      [
+        _c("table", { staticClass: "table table-hover" }, [
+          _c("tbody", [
+            _c("tr", [
+              _c("th", [_vm._v("Account No.")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Name")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Item")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Description")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Branch")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Tax Type")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Amount")])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")])
+            ])
+          ])
         ])
-      ])
-    ])
+      ]
+    )
   },
   function() {
     var _vm = this
