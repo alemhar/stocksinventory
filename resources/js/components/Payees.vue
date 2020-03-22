@@ -166,7 +166,7 @@
                             'success'
                           );
 
-                          Fire.$emit('RefreshUsersTable');
+                          Fire.$emit('RefreshPayeesTable');
                       })
                       .catch(()=>{
                         swal("Failed!","Failed to delete payee!", "warning");
@@ -193,7 +193,7 @@
             this.$Progress.start()
             this.form.post('api/payee')
             .then(()=>{
-                VueListen.$emit('RefreshUsersTable');
+                VueListen.$emit('RefreshPayeesTable');
                 $('#PayeeDetails').modal('hide');
 
                 toast.fire({
@@ -219,7 +219,7 @@
                     'success'
                   );
                   this.$Progress.finish();
-                  VueListen.$emit('RefreshUsersTable');
+                  VueListen.$emit('RefreshPayeesTable');
             })
             .catch(() => {
                 this.$Progress.fail();
@@ -248,7 +248,7 @@
             
             this.loadPayees();
 
-            VueListen.$on('RefreshUsersTable',() => {
+            VueListen.$on('RefreshPayeesTable',() => {
               
                this.loadPayees();
             });

@@ -2998,7 +2998,7 @@ __webpack_require__.r(__webpack_exports__);
         if (result.value) {
           _this2.form["delete"]('api/payee/' + id).then(function () {
             swal.fire('Deleted!', 'Payee has been deleted.', 'success');
-            Fire.$emit('RefreshUsersTable');
+            Fire.$emit('RefreshPayeesTable');
           })["catch"](function () {
             swal("Failed!", "Failed to delete payee!", "warning");
           });
@@ -3021,7 +3021,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log('Create Payee');
       this.$Progress.start();
       this.form.post('api/payee').then(function () {
-        VueListen.$emit('RefreshUsersTable');
+        VueListen.$emit('RefreshPayeesTable');
         $('#PayeeDetails').modal('hide');
         toast.fire({
           type: 'success',
@@ -3042,7 +3042,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this5.$Progress.finish();
 
-        VueListen.$emit('RefreshUsersTable');
+        VueListen.$emit('RefreshPayeesTable');
       })["catch"](function () {
         _this5.$Progress.fail();
       });
@@ -3058,7 +3058,7 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {}); //this.loadUsers();
     });
     this.loadPayees();
-    VueListen.$on('RefreshUsersTable', function () {
+    VueListen.$on('RefreshPayeesTable', function () {
       _this6.loadPayees();
     }); //setInterval(() => this.loadUsers(),3000);
   }
