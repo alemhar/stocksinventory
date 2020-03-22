@@ -9,7 +9,7 @@ class Payee extends Model
 	protected $companyId = '1';
     //$companyId = (isset(Auth::user()->name) ? Auth::user()->company_id : '');
 	
-	protected $table = 'payees_'.$companyId;
+	protected $table = 'payees_1';
 
     protected $fillable = [
         'name', 'address', 'tin', 'city', 'phone'
