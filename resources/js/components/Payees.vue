@@ -162,7 +162,7 @@
                       .then(()=>{
                           swal.fire(
                             'Deleted!',
-                            'User has been deleted.',
+                            'Payee has been deleted.',
                             'success'
                           );
 

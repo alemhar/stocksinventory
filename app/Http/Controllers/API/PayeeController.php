@@ -102,7 +102,7 @@ class PayeeController extends Controller
      */
     public function destroy($id)
     {
-        $this->authorize('isAdmin');
+        //$this->authorize('isAdmin');
 
         $payee = Payee::findOrFail($id);
 
