@@ -32,7 +32,7 @@ class PayeeController extends Controller
             'address' => 'required|string|max:191'
         ]);
 
-        return User::create([
+        return Payee::create([
             'name' => $request['name'],
             'address' => $request['address'],
             'tin' => $request['tin']
