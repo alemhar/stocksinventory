@@ -2407,11 +2407,12 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('api/findUser?q=' + query).then(function (data) {
         _this2.users = data.data;
       })["catch"](function () {}); //this.loadUsers();
-    });
-    this.loadUsers();
+    }); //this.loadUsers();
+
     this.loadPayees();
     VueListen.$on('RefreshUsersTable', function () {
-      _this2.loadUsers();
+      _this2.loadPayees(); //this.loadUsers();
+
     }); //setInterval(() => this.loadUsers(),3000);
   }
 });

@@ -337,11 +337,12 @@
                //this.loadUsers();
             });
             
-            this.loadUsers();
+            //this.loadUsers();
             this.loadPayees();
             VueListen.$on('RefreshUsersTable',() => {
               
-               this.loadUsers();
+               this.loadPayees();
+               //this.loadUsers();
             });
             
 
