@@ -2299,11 +2299,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
 //import { ModelSelect } from 'vue-search-select'
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -63286,28 +63281,7 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "form-group" },
-                        [
-                          _c("dynamic-select", {
-                            attrs: {
-                              options: _vm.payees.data,
-                              "option-value": "id",
-                              "option-text": "name",
-                              placeholder: "type to search"
-                            },
-                            model: {
-                              value: _vm.form.payee_id,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "payee_id", $$v)
-                              },
-                              expression: "form.payee_id"
-                            }
-                          })
-                        ],
-                        1
-                      ),
+                      _c("div", { staticClass: "form-group" }),
                       _vm._v(" "),
                       _vm._m(1),
                       _vm._v(" "),
