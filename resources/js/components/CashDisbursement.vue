@@ -199,7 +199,8 @@
     </div>
 </template>
 <script>
-    import { ModelSelect } from 'vue-search-select'
+    import { ModelListSelect } from 'vue-search-select'
+    
     export default {
         data() {
           return {
