@@ -64395,17 +64395,7 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "box-footer" },
-                [
-                  _c("pagination", {
-                    attrs: { data: _vm.payee },
-                    on: { "pagination-change-page": _vm.getResults }
-                  })
-                ],
-                1
-              )
+              _c("div", { staticClass: "box-footer" })
             ])
           ])
         ])

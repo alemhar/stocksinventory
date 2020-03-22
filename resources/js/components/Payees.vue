@@ -41,7 +41,7 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-              <pagination :data="payee" @pagination-change-page="getResults"></pagination>
+              <!-- pagination :data="payee" @pagination-change-page="getResults"></pagination -->
             </div> 
           </div>
           <!-- /.box -->
