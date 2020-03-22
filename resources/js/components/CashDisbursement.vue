@@ -14,7 +14,7 @@
                 <h3 class="box-title">Cash Disbursement</h3>
                 <div class="box-tools">
                   <button type="submit" class="btn btn-primary">Save</button>
-                  <button class="btn btn-success" @click="newCD">New <i class="fas fa-plus-circle fa-fw"></i></button>
+                  <button class="btn btn-success" @click="">New <i class="fas fa-plus-circle fa-fw"></i></button>
                 </div>
               </div>
               <div class="box-body row">
@@ -90,7 +90,7 @@
                 <div class="box-header">
                   <h3 class="box-title">Debits</h3>
                   <div class="box-tools">
-                    <button class="btn btn-success" @click="addItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
+                    <button class="btn btn-success" @click="">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
                 </div>
 

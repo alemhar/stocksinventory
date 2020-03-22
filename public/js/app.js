@@ -63179,7 +63179,7 @@ var render = function() {
                         "button",
                         {
                           staticClass: "btn btn-success",
-                          on: { click: _vm.newCD }
+                          on: { click: function($event) {} }
                         },
                         [
                           _vm._v("New "),
@@ -63269,7 +63269,7 @@ var render = function() {
                           "button",
                           {
                             staticClass: "btn btn-success",
-                            on: { click: _vm.addItem }
+                            on: { click: function($event) {} }
                           },
                           [
                             _vm._v("Add Items "),
