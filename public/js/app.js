@@ -63219,7 +63219,7 @@ var render = function() {
                               expression: "!cd_created"
                             }
                           ],
-                          staticClass: "btn btn-success",
+                          staticClass: "btn btn-warning",
                           attrs: { type: "button" },
                           on: { click: _vm.createCD }
                         },
@@ -63237,7 +63237,7 @@ var render = function() {
                               expression: "cd_created"
                             }
                           ],
-                          staticClass: "btn btn-success",
+                          staticClass: "btn btn-primary",
                           attrs: { type: "button" },
                           on: { click: _vm.saveCD }
                         },
@@ -63258,7 +63258,7 @@ var render = function() {
                               expression: "cd_created"
                             }
                           ],
-                          staticClass: "btn btn-success",
+                          staticClass: "btn btn-danger",
                           attrs: { type: "button" },
                           on: { click: _vm.cancelCD }
                         },
