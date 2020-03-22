@@ -86229,7 +86229,7 @@ Vue.use(vue_progressbar__WEBPACK_IMPORTED_MODULE_5___default.a, {
   height: '3px'
 });
 
-Vue.use(vue_search_select__WEBPACK_IMPORTED_MODULE_6___default.a);
+Vue.use(vue_search_select__WEBPACK_IMPORTED_MODULE_6__);
 var routes = [{
   path: '/dashboard',
   component: __webpack_require__(/*! ./components/Dashboard.vue */ "./resources/js/components/Dashboard.vue")["default"]

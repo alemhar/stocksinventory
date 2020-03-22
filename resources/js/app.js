@@ -45,7 +45,7 @@ Vue.use(VueProgressBar, {
     height: '3px'
   });
 
-import ModelSelect from 'vue-search-select';
+import * as ModelSelect from 'vue-search-select';
 Vue.use(ModelSelect);
 
 let routes = [
