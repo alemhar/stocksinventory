@@ -63215,7 +63215,7 @@ var render = function() {
                           _c("dynamic-select", {
                             attrs: {
                               options: _vm.payees.data,
-                              value: _vm.form.payee_id,
+                              value: _vm.selectedOpt,
                               "option-value": "id",
                               "option-text": "name",
                               placeholder: "type to search"
