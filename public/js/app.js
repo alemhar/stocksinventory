@@ -2957,6 +2957,8 @@ __webpack_require__.r(__webpack_exports__);
         id: '',
         name: '',
         address: '',
+        city: '',
+        phone: '',
         tin: ''
       })
     };

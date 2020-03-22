@@ -122,6 +122,8 @@
                   id:'',
                   name : '',
                   address: '',
+                  city: '',
+                  phone: '',
                   tin: ''
               })
           }
