@@ -216,7 +216,7 @@
                   id:'',
                   name : '',
                   payee_id: '',
-                  cd_date: getDate()
+                  cd_date: this.getDate()
                   
               }),
               payees: {},
