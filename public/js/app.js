@@ -2095,6 +2095,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_dynamic_select__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-dynamic-select */ "./node_modules/vue-dynamic-select/dist/vue-dynamic-select.esm.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
@@ -2304,6 +2305,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //import { ModelSelect } from 'vue-search-select'
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2460,7 +2462,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     //setInterval(() => this.loadUsers(),3000);
   },
   components: {
-    DynamicSelect: DynamicSelect
+    DynamicSelect: vue_dynamic_select__WEBPACK_IMPORTED_MODULE_0__["DynamicSelect"]
   }
 });
 
@@ -81714,9 +81716,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var vue_dynamic_select__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-dynamic-select */ "./node_modules/vue-dynamic-select/dist/vue-dynamic-select.esm.js");
-/* harmony import */ var vue_progressbar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-progressbar */ "./node_modules/vue-progressbar/dist/vue-progressbar.js");
-/* harmony import */ var vue_progressbar__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_progressbar__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var vue_progressbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-progressbar */ "./node_modules/vue-progressbar/dist/vue-progressbar.js");
+/* harmony import */ var vue_progressbar__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_progressbar__WEBPACK_IMPORTED_MODULE_5__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -81745,12 +81746,12 @@ Vue.component(vform__WEBPACK_IMPORTED_MODULE_1__["HasError"].name, vform__WEBPAC
 Vue.component(vform__WEBPACK_IMPORTED_MODULE_1__["AlertError"].name, vform__WEBPACK_IMPORTED_MODULE_1__["AlertError"]);
 Vue.component('pagination', __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js"));
 
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]);
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]); //import DynamicSelect from 'vue-dynamic-select';
+//Vue.use(DynamicSelect);
+//npm install vue-progressbar | http://hilongjw.github.io/vue-progressbar/index.html 
 
-Vue.use(vue_dynamic_select__WEBPACK_IMPORTED_MODULE_5__["default"]); //npm install vue-progressbar | http://hilongjw.github.io/vue-progressbar/index.html 
 
-
-Vue.use(vue_progressbar__WEBPACK_IMPORTED_MODULE_6___default.a, {
+Vue.use(vue_progressbar__WEBPACK_IMPORTED_MODULE_5___default.a, {
   color: 'rgb(143, 255, 199)',
   failedColor: 'red',
   height: '3px'

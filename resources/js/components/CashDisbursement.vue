@@ -206,6 +206,7 @@
 </template>
 <script>
     //import { ModelSelect } from 'vue-search-select'
+    import { DynamicSelect } from 'vue-dynamic-select'
     export default {
         data() {
           return {
