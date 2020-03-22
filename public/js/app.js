@@ -2996,7 +2996,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.value) {
-          _this2.form["delete"]('api/user/' + id).then(function () {
+          _this2.form["delete"]('api/payee/' + id).then(function () {
             swal.fire('Deleted!', 'User has been deleted.', 'success');
             Fire.$emit('RefreshUsersTable');
           })["catch"](function () {

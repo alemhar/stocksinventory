@@ -158,7 +158,7 @@
                   }).then((result) => {
                     if (result.value) {
                       
-                      this.form.delete('api/user/'+id)
+                      this.form.delete('api/payee/'+id)
                       .then(()=>{
                           swal.fire(
                             'Deleted!',

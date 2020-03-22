@@ -102,6 +102,13 @@ class PayeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->authorize('isAdmin');
+
+        $payee = Payee::findOrFail($id);
+
+        // Send Request
+        $payee->delete();
+        
+        return ['message' => 'Payee Deleted'];
     }
 }
