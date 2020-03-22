@@ -50,7 +50,7 @@
                   </div>
                   <div class="form-group row">
                     <div class="col-6">
-                      <input type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN">
+                      <input type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN"  v-model="current_payee.tin">
                     </div>
                     <div class="col-6">
                       <select class="form-control col-12">

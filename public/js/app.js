@@ -63269,7 +63269,41 @@ var render = function() {
                         })
                       ]),
                       _vm._v(" "),
-                      _vm._m(0),
+                      _c("div", { staticClass: "form-group row" }, [
+                        _c("div", { staticClass: "col-6" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.current_payee.tin,
+                                expression: "current_payee.tin"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: "inputPayeesTIN",
+                              placeholder: "TIN"
+                            },
+                            domProps: { value: _vm.current_payee.tin },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.current_payee,
+                                  "tin",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(0)
+                      ]),
                       _vm._v(" "),
                       _vm._m(1)
                     ]),
@@ -63325,26 +63359,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group row" }, [
-      _c("div", { staticClass: "col-6" }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", id: "inputPayeesTIN", placeholder: "TIN" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-6" }, [
-        _c("select", { staticClass: "form-control col-12" }, [
-          _c("option", [_vm._v("TAX TYPE")]),
-          _vm._v(" "),
-          _c("option", [_vm._v("VAT REG")]),
-          _vm._v(" "),
-          _c("option", [_vm._v("NON VAT")]),
-          _vm._v(" "),
-          _c("option", [_vm._v("VAT EXEMPT")]),
-          _vm._v(" "),
-          _c("option", [_vm._v("ZERO RATED")])
-        ])
+    return _c("div", { staticClass: "col-6" }, [
+      _c("select", { staticClass: "form-control col-12" }, [
+        _c("option", [_vm._v("TAX TYPE")]),
+        _vm._v(" "),
+        _c("option", [_vm._v("VAT REG")]),
+        _vm._v(" "),
+        _c("option", [_vm._v("NON VAT")]),
+        _vm._v(" "),
+        _c("option", [_vm._v("VAT EXEMPT")]),
+        _vm._v(" "),
+        _c("option", [_vm._v("ZERO RATED")])
       ])
     ])
   },
