@@ -2301,6 +2301,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -63289,6 +63291,8 @@ var render = function() {
                           _c("dynamic-select", {
                             attrs: {
                               options: _vm.payees.data,
+                              "option-value": "",
+                              "option-text": "",
                               placeholder: "type to search"
                             },
                             model: {
