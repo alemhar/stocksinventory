@@ -18,7 +18,7 @@ class PayeeController extends Controller
     {
         $this->middleware('auth:api');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -73,7 +73,16 @@ class PayeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $payee = Payee::findOrFail($id);
+
+        $this->validate($request,[
+            'name' => 'required|string|max:191',
+            'address' => 'required|string|max:191'
+        ]);
+
+        $payee->update($request->all());
+
+        return ['message' => 'Payee info updated!'];
     }
 
     /**
