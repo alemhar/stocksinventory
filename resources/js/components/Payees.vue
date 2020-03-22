@@ -104,14 +104,13 @@
         data() {
           return {
               editmode: false,
-              users : {},
+              payee : {},
               form: new Form({
 
                   id:'',
                   name : '',
                   address: '',
-                  tin: '',
-                  created_at: ''
+                  tin: ''
               })
           }
         },
