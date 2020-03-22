@@ -64341,7 +64341,9 @@ var render = function() {
                             _c("td", [_vm._v(_vm._s(payee.name))]),
                             _vm._v(" "),
                             _c("td", [
-                              _vm._v(_vm._s(payee.address.substring(0, 20)))
+                              _vm._v(
+                                _vm._s(payee.address.substring(0, 20) + " ...")
+                              )
                             ]),
                             _vm._v(" "),
                             _c("td", [_vm._v(_vm._s(payee.tin))]),
