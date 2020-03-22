@@ -175,7 +175,7 @@
           },
           createPayee(){
             
-
+            console.log('Create Payee');
             this.$Progress.start()
             this.form.post('api/payee')
             .then(()=>{

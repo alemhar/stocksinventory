@@ -3004,6 +3004,7 @@ __webpack_require__.r(__webpack_exports__);
     createPayee: function createPayee() {
       var _this4 = this;
 
+      console.log('Create Payee');
       this.$Progress.start();
       this.form.post('api/payee').then(function () {
         VueListen.$emit('RefreshUsersTable');
