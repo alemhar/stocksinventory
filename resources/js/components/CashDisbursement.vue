@@ -358,6 +358,12 @@
                this.loadPayees();
                //this.loadUsers();
             });
+
+            VueListen.$on('input',() => {
+              
+               
+               console.log('input');
+            });
             //console.log(this.payees);
 
             //setInterval(() => this.loadUsers(),3000);
