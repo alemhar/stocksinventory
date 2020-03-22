@@ -2402,13 +2402,19 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this2 = this;
 
-    VueListen.$on('Search', function () {
-      var query = _this2.$parent.search;
-      axios.get('api/findUser?q=' + query).then(function (data) {
-        _this2.users = data.data;
-      })["catch"](function () {}); //this.loadUsers();
-    }); //this.loadUsers();
-
+    /*
+    VueListen.$on('Search',() => {
+        let query = this.$parent.search;
+        axios.get('api/findUser?q='+query)
+        .then((data)=>{
+          this.users = data.data;
+        })
+        .catch(()=>{
+         });
+       //this.loadUsers();
+    });
+    */
+    //this.loadUsers();
     this.loadPayees();
     VueListen.$on('RefreshUsersTable', function () {
       _this2.loadPayees(); //this.loadUsers();

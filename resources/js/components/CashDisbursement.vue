@@ -28,7 +28,7 @@
                   <div class="form-group">
                     <select name='payee_id' v-model='form.payee_id' class="form-control col-12">
                       <option value=''>Please choose one...</option>
-                      <option v-for='payee in payees' v-bind:value='payee.id'>{{ payee.name }}</option>
+                      <option v-for="payee in payees" v-bind:value="payee.id">{{ payee.name }}</option>
                     </select>
                   </div>
 
@@ -324,7 +324,7 @@
         },
 
         created() {
-
+            /*
             VueListen.$on('Search',() => {
                 let query = this.$parent.search;
                 axios.get('api/findUser?q='+query)
@@ -336,6 +336,7 @@
                 });
                //this.loadUsers();
             });
+            */
             
             //this.loadUsers();
             this.loadPayees();
