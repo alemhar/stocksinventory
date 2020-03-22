@@ -24,6 +24,12 @@
                     <label for="inputPayeesName">Payee</label>
                     <input type="text" class="form-control col-12" id="inputPayeesName" placeholder="Payees Name">
                   </div>
+                  <dynamic-select 
+                    :options="payees_list"
+                    option-value="id"
+                    option-text="name"
+                    placeholder="type to search"
+                    v-model="selectedObject" />
                   <div class="form-group">
                     <input type="text" class="form-control col-12" id="inputPayeesAddress" placeholder="Address">
                   </div>
@@ -259,7 +265,8 @@
                   type: '',
                   bio: '',
                   photo: ''
-              })
+              }),
+              payees_list: {}
           }
         },
         methods: {
