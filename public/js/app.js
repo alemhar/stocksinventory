@@ -63219,13 +63219,6 @@ var render = function() {
                               "option-value": "id",
                               "option-text": "name",
                               placeholder: "type to search"
-                            },
-                            model: {
-                              value: _vm.form.payee_id,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "payee_id", $$v)
-                              },
-                              expression: "form.payee_id"
                             }
                           })
                         ],
