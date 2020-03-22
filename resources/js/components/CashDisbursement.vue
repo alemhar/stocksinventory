@@ -31,16 +31,17 @@
                       <option v-for="payee in payees.data" v-bind:value="payee.id">{{ payee.name }}</option>
                       
                     </select -->
-                    
+
                   </div>
 
                   <div class="form-group">
                     <dynamic-select 
                       :options="payees.data"
+                      :value="form.payee_id" 
                       option-value="id"
                       option-text="name"
                       placeholder="type to search"
-                      v-model='form.payee_id' />
+                      />
                   </div>
                   
 

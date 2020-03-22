@@ -2299,6 +2299,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -63214,16 +63215,10 @@ var render = function() {
                           _c("dynamic-select", {
                             attrs: {
                               options: _vm.payees.data,
+                              value: _vm.form.payee_id,
                               "option-value": "id",
                               "option-text": "name",
                               placeholder: "type to search"
-                            },
-                            model: {
-                              value: _vm.form.payee_id,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "payee_id", $$v)
-                              },
-                              expression: "form.payee_id"
                             }
                           })
                         ],
