@@ -52,17 +52,17 @@
                     <div class="col-6">
                       <input type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN"  v-model="current_payee.tin">
                     </div>
-                    <div class="col-6">
+                    <div v-model="form.tax_type" class="col-6">
                       <select class="form-control col-12">
-                        <option>TAX TYPE</option>
-                        <option>VAT REG</option>
-                        <option>NON VAT</option>
-                        <option>VAT EXEMPT</option>
-                        <option>ZERO RATED</option>
+                        <option value="TAX TYPE">TAX TYPE</option>
+                        <option value="VAT REG">VAT REG</option>
+                        <option value="NON VAT">NON VAT</option>
+                        <option value="VAT EXEMPT">VAT EXEMPT</option>
+                        <option value="ZERO RATED">ZERO RATED</option>
                       </select>
                     </div>  
                   </div>
-                  <div class="form-group">
+                  <div v-model="form.account_code" class="form-group">
                     <label>Account</label>
                     <select class="form-control col-12">
                       <option>SALARIES AND WAGES</option>
@@ -79,17 +79,17 @@
                 <div class="col-3">
                   <div class="form-group">
                     <label for="inputReferenceNo">Reference No.</label>
-                    <input type="text" class="form-control col-12" id="inputReferenceNo" placeholder="Reference No">
+                    <input type="text"  v-model="form.reference_no" class="form-control col-12" id="inputReferenceNo" placeholder="Reference No">
                   </div>
                   <div class="form-group">
-                    <input type="date" v-model="form.cd_date" class="form-control col-12" id="inputDate" placeholder="Date">
+                    <input type="date" v-model="form.transaction_date" class="form-control col-12" id="inputDate" placeholder="Date">
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control col-12" id="inputDCNo" placeholder="CD Number">
+                    <input type="text" v-model="form.transaction_no" class="form-control col-12" id="inputDCNo" placeholder="CD Number">
                   </div>
                   <div class="form-group">
                     <label for="inputAmount">Amount</label>
-                    <input type="text" class="form-control col-12" id="inputAmount" placeholder="Amount">
+                    <input type="text"  v-model="form.transaction_amt" class="form-control col-12" id="inputAmount" placeholder="Amount">
                   </div>
                 </div>
               </div>

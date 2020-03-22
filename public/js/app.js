@@ -63314,14 +63314,78 @@ var render = function() {
                           })
                         ]),
                         _vm._v(" "),
-                        _vm._m(0)
+                        _c(
+                          "div",
+                          {
+                            staticClass: "col-6",
+                            model: {
+                              value: _vm.form.tax_type,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "tax_type", $$v)
+                              },
+                              expression: "form.tax_type"
+                            }
+                          },
+                          [_vm._m(0)]
+                        )
                       ]),
                       _vm._v(" "),
-                      _vm._m(1)
+                      _c(
+                        "div",
+                        {
+                          staticClass: "form-group",
+                          model: {
+                            value: _vm.form.account_code,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "account_code", $$v)
+                            },
+                            expression: "form.account_code"
+                          }
+                        },
+                        [
+                          _c("label", [_vm._v("Account")]),
+                          _vm._v(" "),
+                          _vm._m(1)
+                        ]
+                      )
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-3" }, [
-                      _vm._m(2),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "inputReferenceNo" } }, [
+                          _vm._v("Reference No.")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.reference_no,
+                              expression: "form.reference_no"
+                            }
+                          ],
+                          staticClass: "form-control col-12",
+                          attrs: {
+                            type: "text",
+                            id: "inputReferenceNo",
+                            placeholder: "Reference No"
+                          },
+                          domProps: { value: _vm.form.reference_no },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form,
+                                "reference_no",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group" }, [
                         _c("input", {
@@ -63329,8 +63393,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.cd_date,
-                              expression: "form.cd_date"
+                              value: _vm.form.transaction_date,
+                              expression: "form.transaction_date"
                             }
                           ],
                           staticClass: "form-control col-12",
@@ -63339,21 +63403,89 @@ var render = function() {
                             id: "inputDate",
                             placeholder: "Date"
                           },
-                          domProps: { value: _vm.form.cd_date },
+                          domProps: { value: _vm.form.transaction_date },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.$set(_vm.form, "cd_date", $event.target.value)
+                              _vm.$set(
+                                _vm.form,
+                                "transaction_date",
+                                $event.target.value
+                              )
                             }
                           }
                         })
                       ]),
                       _vm._v(" "),
-                      _vm._m(3),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.transaction_no,
+                              expression: "form.transaction_no"
+                            }
+                          ],
+                          staticClass: "form-control col-12",
+                          attrs: {
+                            type: "text",
+                            id: "inputDCNo",
+                            placeholder: "CD Number"
+                          },
+                          domProps: { value: _vm.form.transaction_no },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form,
+                                "transaction_no",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
                       _vm._v(" "),
-                      _vm._m(4)
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "inputAmount" } }, [
+                          _vm._v("Amount")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.transaction_amt,
+                              expression: "form.transaction_amt"
+                            }
+                          ],
+                          staticClass: "form-control col-12",
+                          attrs: {
+                            type: "text",
+                            id: "inputAmount",
+                            placeholder: "Amount"
+                          },
+                          domProps: { value: _vm.form.transaction_amt },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form,
+                                "transaction_amt",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
                     ])
                   ])
                 ])
@@ -63382,14 +63514,14 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(5),
+                    _vm._m(2),
                     _vm._v(" "),
                     _c("div", { staticClass: "box-footer" })
                   ])
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(6)
+              _vm._m(3)
             ])
           ])
         ])
@@ -63405,81 +63537,32 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-6" }, [
-      _c("select", { staticClass: "form-control col-12" }, [
-        _c("option", [_vm._v("TAX TYPE")]),
-        _vm._v(" "),
-        _c("option", [_vm._v("VAT REG")]),
-        _vm._v(" "),
-        _c("option", [_vm._v("NON VAT")]),
-        _vm._v(" "),
-        _c("option", [_vm._v("VAT EXEMPT")]),
-        _vm._v(" "),
-        _c("option", [_vm._v("ZERO RATED")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", [_vm._v("Account")]),
+    return _c("select", { staticClass: "form-control col-12" }, [
+      _c("option", { attrs: { value: "TAX TYPE" } }, [_vm._v("TAX TYPE")]),
       _vm._v(" "),
-      _c("select", { staticClass: "form-control col-12" }, [
-        _c("option", [_vm._v("SALARIES AND WAGES")]),
-        _vm._v(" "),
-        _c("option", [_vm._v("TRAININGS AND SEMINARS")]),
-        _vm._v(" "),
-        _c("option", [_vm._v("TRAVEL AND TRANSPORTATION")]),
-        _vm._v(" "),
-        _c("option", [_vm._v("MEALS AMD SNACKS")]),
-        _vm._v(" "),
-        _c("option", [_vm._v("REPRESENTATION EXPENSES")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "inputReferenceNo" } }, [
-        _vm._v("Reference No.")
-      ]),
+      _c("option", { attrs: { value: "VAT REG" } }, [_vm._v("VAT REG")]),
       _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control col-12",
-        attrs: {
-          type: "text",
-          id: "inputReferenceNo",
-          placeholder: "Reference No"
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("input", {
-        staticClass: "form-control col-12",
-        attrs: { type: "text", id: "inputDCNo", placeholder: "CD Number" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "inputAmount" } }, [_vm._v("Amount")]),
+      _c("option", { attrs: { value: "NON VAT" } }, [_vm._v("NON VAT")]),
       _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control col-12",
-        attrs: { type: "text", id: "inputAmount", placeholder: "Amount" }
-      })
+      _c("option", { attrs: { value: "VAT EXEMPT" } }, [_vm._v("VAT EXEMPT")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "ZERO RATED" } }, [_vm._v("ZERO RATED")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("select", { staticClass: "form-control col-12" }, [
+      _c("option", [_vm._v("SALARIES AND WAGES")]),
+      _vm._v(" "),
+      _c("option", [_vm._v("TRAININGS AND SEMINARS")]),
+      _vm._v(" "),
+      _c("option", [_vm._v("TRAVEL AND TRANSPORTATION")]),
+      _vm._v(" "),
+      _c("option", [_vm._v("MEALS AMD SNACKS")]),
+      _vm._v(" "),
+      _c("option", [_vm._v("REPRESENTATION EXPENSES")])
     ])
   },
   function() {
