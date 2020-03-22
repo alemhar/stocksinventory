@@ -2307,7 +2307,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       editmode: false,
-      cr_created: false,
+      cd_created: false,
       cd: {},
       form: new Form({
         id: '',
@@ -63211,6 +63211,14 @@ var render = function() {
                       _c(
                         "button",
                         {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: !_vm.cd_created,
+                              expression: "!cd_created"
+                            }
+                          ],
                           staticClass: "btn btn-success",
                           attrs: { type: "button" },
                           on: { click: _vm.createCD }
@@ -63230,6 +63238,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "btn btn-success",
+                          attrs: { type: "button" },
                           on: { click: _vm.saveCD }
                         },
                         [
@@ -63250,6 +63259,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "btn btn-success",
+                          attrs: { type: "button" },
                           on: { click: _vm.cancelCD }
                         },
                         [
