@@ -48,9 +48,6 @@ Vue.use(VueProgressBar, {
 //import DynamicSelect from 'vue-dynamic-select'
 //Vue.use(DynamicSelect);
 
-import ModelSelect from 'vue-search-select';
-Vue.use(ModelSelect);
-
 
 let routes = [
   { path: '/dashboard', component: require('./components/Dashboard.vue').default },
