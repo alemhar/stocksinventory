@@ -63222,7 +63222,7 @@ var render = function() {
                           _c("dynamic-select", {
                             attrs: {
                               options: _vm.payees.data,
-                              "option-value": "id",
+                              "option-value": "name",
                               "option-text": "name",
                               placeholder: "type to search"
                             },
