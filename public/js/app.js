@@ -2353,11 +2353,11 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       editmode: false,
-      users: {},
+      cd: {},
       form: new Form({
         id: '',
         name: '',
-        email: '',
+        payee_id: '',
         password: '',
         type: '',
         bio: '',
@@ -63249,7 +63249,37 @@ var render = function() {
                       _c("div", { staticClass: "form-group" }, [
                         _c(
                           "select",
-                          { staticClass: "form-control col-12" },
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.payee_id,
+                                expression: "form.payee_id"
+                              }
+                            ],
+                            staticClass: "form-control col-12",
+                            attrs: { name: "payee_id" },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.form,
+                                  "payee_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
                           [
                             _c("option", { attrs: { value: "" } }, [
                               _vm._v("Please choose one...")
@@ -63259,7 +63289,7 @@ var render = function() {
                               return _c(
                                 "option",
                                 { domProps: { value: payee.id } },
-                                [_vm._v("@" + _vm._s(payee.name))]
+                                [_vm._v(_vm._s(payee.name))]
                               )
                             })
                           ],

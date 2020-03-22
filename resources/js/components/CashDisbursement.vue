@@ -26,9 +26,9 @@
                   </div>
 
                   <div class="form-group">
-                    <select class="form-control col-12">
+                    <select name='payee_id' v-model='form.payee_id' class="form-control col-12">
                       <option value=''>Please choose one...</option>
-                      <option v-for='payee in payees' v-bind:value='payee.id'>@{{ payee.name }}</option>
+                      <option v-for='payee in payees' v-bind:value='payee.id'>{{ payee.name }}</option>
                     </select>
                   </div>
 
@@ -257,12 +257,12 @@
         data() {
           return {
               editmode: false,
-              users : {},
+              cd : {},
               form: new Form({
 
                   id:'',
                   name : '',
-                  email: '',
+                  payee_id: '',
                   password: '',
                   type: '',
                   bio: '',
