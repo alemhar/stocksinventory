@@ -216,7 +216,7 @@
                   id:'',
                   name : '',
                   payee_id: '',
-                  cd_date: ''
+                  cd_date: new Date()
                   
               }),
               payees: {},

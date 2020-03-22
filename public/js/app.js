@@ -2311,7 +2311,7 @@ __webpack_require__.r(__webpack_exports__);
         id: '',
         name: '',
         payee_id: '',
-        cd_date: ''
+        cd_date: new Date()
       }),
       payees: {},
       current_payee: {}
