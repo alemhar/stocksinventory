@@ -2379,7 +2379,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     eventChild: function eventChild(Obj) {
       console.log(Obj.id);
-      this.payee_id = Obj.id;
+      form.payee_id = Obj.id;
     } // ,
     // createUser(){
     //   this.$Progress.start()
