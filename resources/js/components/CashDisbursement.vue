@@ -38,7 +38,7 @@
 
                   <div class="form-group">
                     <dynamic-select 
-                      :options="payees.data"
+                      :options="payees"
                       option-value="id"
                       option-text="name"
                       placeholder="type to search"
