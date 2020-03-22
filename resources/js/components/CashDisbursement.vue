@@ -216,7 +216,7 @@
                   id:'',
                   name : '',
                   payee_id: '',
-                  cd_date: new Date().toJSON().slice(0,10).replace(/-/g,'/')
+                  cd_date: getDate()
                   
               }),
               payees: {},
@@ -295,6 +295,14 @@
           eventChild(Obj){
             console.log(Obj.id);
             this.form.payee_id = Obj.id;
+          },
+          getDate() {
+            const toTwoDigits = num => num < 10 ? '0' + num : num;
+            let today = new Date();
+            let year = today.getFullYear();
+            let month = toTwoDigits(today.getMonth() + 1);
+            let day = toTwoDigits(today.getDate());
+            return `${year}-${month}-${day}`;
           }
           // ,
           // createUser(){

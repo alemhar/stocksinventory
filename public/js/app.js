@@ -2311,7 +2311,7 @@ __webpack_require__.r(__webpack_exports__);
         id: '',
         name: '',
         payee_id: '',
-        cd_date: new Date().toJSON().slice(0, 10).replace(/-/g, '/')
+        cd_date: getDate()
       }),
       payees: {},
       current_payee: {}
@@ -2380,6 +2380,17 @@ __webpack_require__.r(__webpack_exports__);
     eventChild: function eventChild(Obj) {
       console.log(Obj.id);
       this.form.payee_id = Obj.id;
+    },
+    getDate: function getDate() {
+      var toTwoDigits = function toTwoDigits(num) {
+        return num < 10 ? '0' + num : num;
+      };
+
+      var today = new Date();
+      var year = today.getFullYear();
+      var month = toTwoDigits(today.getMonth() + 1);
+      var day = toTwoDigits(today.getDate());
+      return "".concat(year, "-").concat(month, "-").concat(day);
     } // ,
     // createUser(){
     //   this.$Progress.start()
