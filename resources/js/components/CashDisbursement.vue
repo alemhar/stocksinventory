@@ -40,12 +40,13 @@
                       option-text="name"
                       placeholder="type to search"
                       v-on:input="eventChild"
+                      v-model="current_payee"
                       />
                   </div>
                   
 
                   <div class="form-group">
-                    <input type="text" class="form-control col-12" id="inputPayeesAddress" placeholder="Address">
+                    <input type="text" class="form-control col-12" id="inputPayeesAddress" placeholder="Address" v-model="current_payee.address">
                   </div>
                   <div class="form-group row">
                     <div class="col-6">
@@ -217,7 +218,9 @@
                   payee_id: ''
                   
               }),
-              payees: {}
+              payees: {},
+              current_payee: {}
+
           }
         },
         methods: {

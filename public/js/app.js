@@ -2299,6 +2299,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2311,7 +2312,8 @@ __webpack_require__.r(__webpack_exports__);
         name: '',
         payee_id: ''
       }),
-      payees: {}
+      payees: {},
+      current_payee: {}
     };
   },
   methods: {
@@ -63222,20 +63224,57 @@ var render = function() {
                               "option-text": "name",
                               placeholder: "type to search"
                             },
-                            on: { input: _vm.eventChild }
+                            on: { input: _vm.eventChild },
+                            model: {
+                              value: _vm.current_payee,
+                              callback: function($$v) {
+                                _vm.current_payee = $$v
+                              },
+                              expression: "current_payee"
+                            }
                           })
                         ],
                         1
                       ),
                       _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.current_payee.address,
+                              expression: "current_payee.address"
+                            }
+                          ],
+                          staticClass: "form-control col-12",
+                          attrs: {
+                            type: "text",
+                            id: "inputPayeesAddress",
+                            placeholder: "Address"
+                          },
+                          domProps: { value: _vm.current_payee.address },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.current_payee,
+                                "address",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
                       _vm._m(0),
                       _vm._v(" "),
-                      _vm._m(1),
-                      _vm._v(" "),
-                      _vm._m(2)
+                      _vm._m(1)
                     ]),
                     _vm._v(" "),
-                    _vm._m(3)
+                    _vm._m(2)
                   ])
                 ])
               ]),
@@ -63263,14 +63302,14 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(4),
+                    _vm._m(3),
                     _vm._v(" "),
                     _c("div", { staticClass: "box-footer" })
                   ])
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(5)
+              _vm._m(4)
             ])
           ])
         ])
@@ -63282,21 +63321,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("input", {
-        staticClass: "form-control col-12",
-        attrs: {
-          type: "text",
-          id: "inputPayeesAddress",
-          placeholder: "Address"
-        }
-      })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
