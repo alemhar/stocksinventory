@@ -2401,7 +2401,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     createCD: function createCD() {
       this.cr_created = true;
-    } // ,
+    },
+    saveCD: function saveCD() {},
+    cancelCD: function cancelCD() {} // ,
     // createUser(){
     //   this.$Progress.start()
     //   this.form.post('api/user')
