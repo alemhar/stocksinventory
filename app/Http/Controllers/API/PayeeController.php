@@ -25,6 +25,8 @@ class PayeeController extends Controller
      */
     public function store(Request $request)
     {
+        
+        return ['message' => 'I have received you request!'];
         $this->validate($request,[
             'name' => 'required|string|max:191',
             'address' => 'required|string|max:191'
