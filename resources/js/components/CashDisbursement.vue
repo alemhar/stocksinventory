@@ -39,7 +39,7 @@
                   <div class="form-group">
                     <dynamic-select 
                       :options="payees.data"
-                      option-value="name"
+                      option-value="id"
                       option-text="name"
                       placeholder="type to search"
                       v-model="form.payee_id" />
