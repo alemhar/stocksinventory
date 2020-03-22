@@ -31,7 +31,7 @@
                       <option v-for="payee in payees.data" v-bind:value="payee.id">{{ payee.name }}</option>
                       
                     </select -->
-
+                    
                   </div>
 
                   <div class="form-group">
