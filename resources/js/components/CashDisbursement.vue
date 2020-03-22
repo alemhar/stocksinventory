@@ -33,10 +33,10 @@
                       
                     </select>
 
-                    <model-select :options="payees.data"
+                    <model-list-select :options="payees.data"
                                 v-model="form.payee_id"
                                 placeholder="select item">
-                    </model-select>
+                    </model-list-select>
 
                   </div>
 

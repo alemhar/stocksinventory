@@ -62787,7 +62787,7 @@ var render = function() {
                             2
                           ),
                           _vm._v(" "),
-                          _c("model-select", {
+                          _c("model-list-select", {
                             attrs: {
                               options: _vm.payees.data,
                               placeholder: "select item"
