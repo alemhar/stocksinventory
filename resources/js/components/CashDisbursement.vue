@@ -33,6 +33,11 @@
                       
                     </select>
 
+                    <model-select :options="payees.data"
+                                v-model="form.payee_id"
+                                placeholder="select item">
+                    </model-select>
+
                   </div>
 
                   <div class="form-group">
@@ -194,6 +199,7 @@
     </div>
 </template>
 <script>
+    import { ModelSelect } from 'vue-search-select'
     export default {
         data() {
           return {
@@ -353,6 +359,9 @@
             //console.log(this.payees);
 
             //setInterval(() => this.loadUsers(),3000);
+        },
+        components: {
+          ModelSelect
         }
     }
 </script>
