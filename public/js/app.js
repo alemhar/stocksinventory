@@ -62814,15 +62814,15 @@ var render = function() {
                         [
                           _c("model-select", {
                             attrs: {
-                              options: _vm.payees.data,
+                              options: _vm.options,
                               placeholder: "select item"
                             },
                             model: {
-                              value: _vm.form.payee_id,
+                              value: _vm.item,
                               callback: function($$v) {
-                                _vm.$set(_vm.form, "payee_id", $$v)
+                                _vm.item = $$v
                               },
-                              expression: "form.payee_id"
+                              expression: "item"
                             }
                           })
                         ],

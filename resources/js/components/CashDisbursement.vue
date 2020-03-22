@@ -37,9 +37,9 @@
                   </div>
 
                   <div class="form-group">
-                    <model-select :options="payees.data"
-                        v-model="form.payee_id"
-                        placeholder="select item">
+                    <model-select :options="options"
+                                v-model="item"
+                                placeholder="select item">
                     </model-select>
                   </div>
                   
