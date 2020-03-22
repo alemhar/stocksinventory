@@ -37,10 +37,10 @@
                   <div class="form-group">
                     <dynamic-select 
                       :options="payees.data"
-                      :value="selectedOpt" 
                       option-value="id"
                       option-text="name"
                       placeholder="type to search"
+                      v-model='selected_payee'
                       />
                   </div>
                   
@@ -214,11 +214,11 @@
               form: new Form({
 
                   id:'',
-                  name : '',
-                  payee_id: ''
+                  name : ''
                   
               }),
-              payees: {}
+              payees: {},
+              selected_payee: {}
           }
         },
         methods: {

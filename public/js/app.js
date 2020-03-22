@@ -2309,10 +2309,10 @@ __webpack_require__.r(__webpack_exports__);
       cd: {},
       form: new Form({
         id: '',
-        name: '',
-        payee_id: ''
+        name: ''
       }),
-      payees: {}
+      payees: {},
+      selected_payee: {}
     };
   },
   methods: {
@@ -63215,10 +63215,16 @@ var render = function() {
                           _c("dynamic-select", {
                             attrs: {
                               options: _vm.payees.data,
-                              value: _vm.selectedOpt,
                               "option-value": "id",
                               "option-text": "name",
                               placeholder: "type to search"
+                            },
+                            model: {
+                              value: _vm.selected_payee,
+                              callback: function($$v) {
+                                _vm.selected_payee = $$v
+                              },
+                              expression: "selected_payee"
                             }
                           })
                         ],
