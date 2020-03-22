@@ -21,7 +21,7 @@
                   <th>Created</th>
                   <th>Modify</th>
                 </tr>
-                <tr v-for="user in payee.data" :key="payee.id">
+                <tr v-for="payee in payee.data" :key="payee.id">
                   <td>{{ payee.id }}</td>
                   <td>{{ payee.name }}</td>
                   <td>{{ payee.address }}</td>
