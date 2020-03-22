@@ -52,8 +52,8 @@
                     <div class="col-6">
                       <input type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN"  v-model="current_payee.tin">
                     </div>
-                    <div v-model="form.tax_type" class="col-6">
-                      <select class="form-control col-12">
+                    <div class="col-6">
+                      <select v-model="form.tax_type" class="form-control col-12">
                         <option v-bind:value="TAX TYPE">TAX TYPE</option>
                         <option v-bind:value="VAT REG">VAT REG</option>
                         <option v-bind:value="NON VAT">NON VAT</option>
@@ -62,9 +62,9 @@
                       </select>
                     </div>  
                   </div>
-                  <div v-model="form.account_code" class="form-group">
+                  <div class="form-group">
                     <label>Account</label>
-                    <select class="form-control col-12">
+                    <select v-model="form.account_code" class="form-control col-12">
                       <option>SALARIES AND WAGES</option>
                       <option>TRAININGS AND SEMINARS</option>
                       <option>TRAVEL AND TRANSPORTATION</option>
