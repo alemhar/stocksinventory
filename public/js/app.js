@@ -2348,7 +2348,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2363,7 +2362,7 @@ __webpack_require__.r(__webpack_exports__);
         bio: '',
         photo: ''
       }),
-      payees_list: {}
+      payees: ['Payee 1', 'Payee 2']
     };
   },
   methods: {
@@ -63235,28 +63234,15 @@ var render = function() {
                     _c("div", { staticClass: "col-9" }, [
                       _vm._m(0),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "form-group" },
-                        [
-                          _c("dynamic-select", {
-                            attrs: {
-                              options: _vm.payees_list,
-                              "option-value": "id",
-                              "option-text": "name",
-                              placeholder: "type to search"
-                            },
-                            model: {
-                              value: _vm.payees_list,
-                              callback: function($$v) {
-                                _vm.payees_list = $$v
-                              },
-                              expression: "payees_list"
-                            }
-                          })
-                        ],
-                        1
-                      ),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "select",
+                          _vm._l(_vm.payees, function(payee) {
+                            return _c("option", [_vm._v(_vm._s(payee))])
+                          }),
+                          0
+                        )
+                      ]),
                       _vm._v(" "),
                       _vm._m(1),
                       _vm._v(" "),

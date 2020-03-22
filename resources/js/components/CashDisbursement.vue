@@ -24,14 +24,13 @@
                     <label for="inputPayeesName">Payee</label>
                     <input type="text" class="form-control col-12" id="inputPayeesName" placeholder="Payees Name">
                   </div>
+
                   <div class="form-group">
-                  <dynamic-select 
-                    :options="payees_list"
-                    option-value="id"
-                    option-text="name"
-                    placeholder="type to search"
-                    v-model="payees_list" />
-                  </div>  
+                    <select>
+                      <option v-for="payee in payees">{{ payee}}</option>
+                    </select>
+                  </div>
+
                   <div class="form-group">
                     <input type="text" class="form-control col-12" id="inputPayeesAddress" placeholder="Address">
                   </div>
@@ -268,7 +267,7 @@
                   bio: '',
                   photo: ''
               }),
-              payees_list: {}
+              payees: ['Payee 1','Payee 2']
           }
         },
         methods: {
