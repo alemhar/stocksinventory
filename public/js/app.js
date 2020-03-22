@@ -2360,7 +2360,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.$gate.isAdminOrAuthor()) {
         axios.get("api/payee").then(function (_ref) {
           var data = _ref.data;
-          return _this.payees = data.data;
+          return _this.payees = data;
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
     } // ,
@@ -63231,7 +63231,7 @@ var render = function() {
                               _vm._v("Please choose one...")
                             ]),
                             _vm._v(" "),
-                            _vm._l(_vm.payees, function(payee) {
+                            _vm._l(_vm.payees.data, function(payee) {
                               return _c(
                                 "option",
                                 { domProps: { value: payee.id } },
