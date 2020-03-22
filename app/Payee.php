@@ -10,7 +10,7 @@ class Payee extends Model
         'name', 'address', 'tin', 'city', 'phone'
     ];
 
-    $companyId = (isset(Auth::user()->name) ? Auth::user()->company_id : '');
+    //$companyId = (isset(Auth::user()->name) ? Auth::user()->company_id : '');
 	
 	//protected $connection = 'mysql_'.$companyId;
 }
