@@ -2300,7 +2300,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2313,8 +2312,7 @@ __webpack_require__.r(__webpack_exports__);
         name: '',
         payee_id: ''
       }),
-      payees: {},
-      selected_payee: {}
+      payees: {}
     };
   },
   methods: {
@@ -63225,14 +63223,7 @@ var render = function() {
                               "option-text": "name",
                               placeholder: "type to search"
                             },
-                            on: { input: _vm.eventChild },
-                            model: {
-                              value: _vm.selected_payee,
-                              callback: function($$v) {
-                                _vm.selected_payee = $$v
-                              },
-                              expression: "selected_payee"
-                            }
+                            on: { input: _vm.eventChild }
                           })
                         ],
                         1

@@ -40,7 +40,6 @@
                       option-value="id"
                       option-text="name"
                       placeholder="type to search"
-                      v-model='selected_payee'
                       v-on:input="eventChild"
                       />
                   </div>
@@ -219,8 +218,7 @@
                   payee_id: ''
                   
               }),
-              payees: {},
-              selected_payee: {}
+              payees: {}
           }
         },
         methods: {
