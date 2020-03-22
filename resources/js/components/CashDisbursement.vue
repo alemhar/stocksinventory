@@ -216,12 +216,8 @@
 
                   id:'',
                   name : '',
-                  payee_id: '',
-                  password: '',
-                  type: '',
-                  bio: '',
-                  photo: '',
                   payee_id: ''
+                  
               }),
               payees: {}
           }

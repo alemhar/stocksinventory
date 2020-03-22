@@ -2095,8 +2095,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -2310,15 +2308,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       editmode: false,
       cd: {},
-      form: new Form(_defineProperty({
+      form: new Form({
         id: '',
         name: '',
-        payee_id: '',
-        password: '',
-        type: '',
-        bio: '',
-        photo: ''
-      }, "payee_id", '')),
+        payee_id: ''
+      }),
       payees: {}
     };
   },
@@ -2376,8 +2370,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       if (this.$gate.isAdminOrAuthor()) {
-        axios.get("api/payee").then(function (_ref2) {
-          var data = _ref2.data;
+        axios.get("api/payee").then(function (_ref) {
+          var data = _ref.data;
           return _this.payees = data;
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
