@@ -116,12 +116,12 @@
         },
         methods: {
           getResults(page = 1) {
-            axios.get('api/user?page=' + page)
+            axios.get('api/payee?page=' + page)
               .then(response => {
                 this.users = response.data;
               });
           },
-          editPayee(user){
+          editPayee(payee){
               this.editmode = true;
               this.form.reset();
               $('#PayeeDetails').modal('show');
@@ -168,7 +168,7 @@
           loadPayees(){
 
             if(this.$gate.isAdminOrAuthor()){
-                axios.get("api/user").then(({ data }) => (this.users = data));
+                axios.get("api/payee").then(({ data }) => (this.payee = data));
                 //axios.get("api/user").then(({ data }) => (this.users = data.data));
             } 
              
@@ -196,12 +196,12 @@
           updatePayee(){
             console.log('Edit Payee');
             this.$Progress.start();
-            this.form.put('api/user/'+this.form.id)
+            this.form.put('api/payee/'+this.form.id)
             .then(() => {
                 $('#PayeeDetails').modal('hide');
                 swal.fire(
                     'Updated!',
-                    'User information has been updated.',
+                    'Payee information has been updated.',
                     'success'
                   );
                   this.$Progress.finish();
@@ -222,7 +222,7 @@
 
             VueListen.$on('Search',() => {
                 let query = this.$parent.search;
-                axios.get('api/findUser?q='+query)
+                axios.get('api/findPayee?q='+query)
                 .then((data)=>{
                   this.users = data.data;
                 })

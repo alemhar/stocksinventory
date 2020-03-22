@@ -2954,11 +2954,11 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      axios.get('api/user?page=' + page).then(function (response) {
+      axios.get('api/payee?page=' + page).then(function (response) {
         _this.users = response.data;
       });
     },
-    editPayee: function editPayee(user) {
+    editPayee: function editPayee(payee) {
       this.editmode = true;
       this.form.reset();
       $('#PayeeDetails').modal('show');
@@ -2995,9 +2995,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       if (this.$gate.isAdminOrAuthor()) {
-        axios.get("api/user").then(function (_ref) {
+        axios.get("api/payee").then(function (_ref) {
           var data = _ref.data;
-          return _this3.users = data;
+          return _this3.payee = data;
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
     },
@@ -3021,9 +3021,9 @@ __webpack_require__.r(__webpack_exports__);
 
       console.log('Edit Payee');
       this.$Progress.start();
-      this.form.put('api/user/' + this.form.id).then(function () {
+      this.form.put('api/payee/' + this.form.id).then(function () {
         $('#PayeeDetails').modal('hide');
-        swal.fire('Updated!', 'User information has been updated.', 'success');
+        swal.fire('Updated!', 'Payee information has been updated.', 'success');
 
         _this5.$Progress.finish();
 
@@ -3038,7 +3038,7 @@ __webpack_require__.r(__webpack_exports__);
 
     VueListen.$on('Search', function () {
       var query = _this6.$parent.search;
-      axios.get('api/findUser?q=' + query).then(function (data) {
+      axios.get('api/findPayee?q=' + query).then(function (data) {
         _this6.users = data.data;
       })["catch"](function () {}); //this.loadUsers();
     });
