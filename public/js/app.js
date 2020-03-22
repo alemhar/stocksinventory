@@ -2091,356 +2091,9 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CashDisbursement.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//import { ModelSelect } from 'vue-search-select'
-//import { DynamicSelect } from 'vue-dynamic-select'
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      editmode: false,
-      cd: {},
-      form: new Form({
-        id: '',
-        name: '',
-        payee_id: ''
-      }),
-      payees: {},
-      current_payee: {}
-    };
-  },
-  methods: {
-    // getResults(page = 1) {
-    //   axios.get('api/user?page=' + page)
-    //     .then(response => {
-    //       this.users = response.data;
-    //     });
-    // },
-    // editUser(user){
-    //     this.editmode = true;
-    //     this.form.reset();
-    //     $('#UserDetails').modal('show');
-    //     this.form.fill(user);
-    // },
-    // newUser(){
-    //     this.editmode = false;
-    //     this.form.reset();
-    //     $('#UserDetails').modal('show');
-    // },
-    // deleteUser(id){
-    //     swal.fire({
-    //           title: 'Are you sure?',
-    //           text: "You won't be able to revert this!",
-    //           type: 'warning',
-    //           showCancelButton: true,
-    //           confirmButtonColor: '#3085d6',
-    //           cancelButtonColor: '#d33',
-    //           confirmButtonText: 'Yes, delete it!'
-    //         }).then((result) => {
-    //           if (result.value) {
-    //             this.form.delete('api/user/'+id)
-    //             .then(()=>{
-    //                 swal.fire(
-    //                   'Deleted!',
-    //                   'User has been deleted.',
-    //                   'success'
-    //                 );
-    //                 Fire.$emit('RefreshUsersTable');
-    //             })
-    //             .catch(()=>{
-    //               swal("Failed!","Failed to delete user!", "warning");
-    //             });
-    //           }
-    //         });
-    // },
-    // loadUsers(){
-    //   if(this.$gate.isAdminOrAuthor()){
-    //       axios.get("api/user").then(({ data }) => (this.users = data));
-    //       //axios.get("api/user").then(({ data }) => (this.users = data.data));
-    //   } 
-    // },
-    loadPayees: function loadPayees() {
-      var _this = this;
-
-      if (this.$gate.isAdminOrAuthor()) {
-        axios.get("api/payee").then(function (_ref) {
-          var data = _ref.data;
-          return _this.payees = data;
-        }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
-      }
-    },
-    eventChild: function eventChild(Obj) {
-      console.log(Obj.id);
-      this.form.payee_id = Obj.id;
-    } // ,
-    // createUser(){
-    //   this.$Progress.start()
-    //   this.form.post('api/user')
-    //   .then(()=>{
-    //       VueListen.$emit('RefreshUsersTable');
-    //       $('#UserDetails').modal('hide');
-    //       toast.fire({
-    //         type: 'success',
-    //         title: 'User created successfully'
-    //       })
-    //       this.$Progress.finish();
-    //   })
-    //   .catch(()=>{
-    //   });
-    // },
-    // updateUser(){
-    //   console.log('Edit User');
-    //   this.$Progress.start();
-    //   this.form.put('api/user/'+this.form.id)
-    //   .then(() => {
-    //       $('#UserDetails').modal('hide');
-    //       swal.fire(
-    //           'Updated!',
-    //           'User information has been updated.',
-    //           'success'
-    //         );
-    //         this.$Progress.finish();
-    //         VueListen.$emit('RefreshUsersTable');
-    //   })
-    //   .catch(() => {
-    //       this.$Progress.fail();
-    //   });
-    //}
-
-  },
-  created: function created() {
-    var _this2 = this;
-
-    /*
-    VueListen.$on('Search',() => {
-        let query = this.$parent.search;
-        axios.get('api/findUser?q='+query)
-        .then((data)=>{
-          this.users = data.data;
-        })
-        .catch(()=>{
-         });
-       //this.loadUsers();
-    });
-    */
-    //this.loadUsers();
-    this.loadPayees();
-    VueListen.$on('RefreshUsersTable', function () {
-      _this2.loadPayees(); //this.loadUsers();
-
-    }); //console.log(this.payees);
-    //setInterval(() => this.loadUsers(),3000);
-  },
-  components: {//DynamicSelect
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: D:\\stocksinventory\\resources\\js\\components\\CashDisbursement.vue: Unexpected token (221:10)\n\n  219 |               cd_date:\n  220 |               \n> 221 |           }),\n      |           ^\n  222 |           payees: {},\n  223 |           current_payee: {}\n  224 | \n    at Parser.raise (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:6400:17)\n    at Parser.unexpected (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:7728:16)\n    at Parser.parseExprAtom (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8940:20)\n    at Parser.parseExprSubscripts (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8507:23)\n    at Parser.parseMaybeUnary (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8487:21)\n    at Parser.parseExprOps (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8353:23)\n    at Parser.parseMaybeConditional (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8326:23)\n    at Parser.parseMaybeAssign (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8273:21)\n    at Parser.parseObjectProperty (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9380:101)\n    at Parser.parseObjPropValue (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9405:101)\n    at Parser.parseObjectMember (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9329:10)\n    at Parser.parseObj (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9253:25)\n    at Parser.parseExprAtom (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8883:28)\n    at Parser.parseExprSubscripts (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8507:23)\n    at Parser.parseMaybeUnary (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8487:21)\n    at Parser.parseExprOps (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8353:23)\n    at Parser.parseMaybeConditional (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8326:23)\n    at Parser.parseMaybeAssign (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8273:21)\n    at Parser.parseExprListItem (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9590:18)\n    at Parser.parseExprList (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9564:22)\n    at Parser.parseNewArguments (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9192:25)\n    at Parser.parseNew (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9186:10)\n    at Parser.parseExprAtom (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8900:21)\n    at Parser.parseExprSubscripts (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8507:23)\n    at Parser.parseMaybeUnary (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8487:21)\n    at Parser.parseExprOps (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8353:23)\n    at Parser.parseMaybeConditional (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8326:23)\n    at Parser.parseMaybeAssign (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8273:21)\n    at Parser.parseObjectProperty (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9380:101)\n    at Parser.parseObjPropValue (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9405:101)\n    at Parser.parseObjectMember (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9329:10)\n    at Parser.parseObj (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9253:25)\n    at Parser.parseExprAtom (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8883:28)\n    at Parser.parseExprSubscripts (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8507:23)\n    at Parser.parseMaybeUnary (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8487:21)\n    at Parser.parseExprOps (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8353:23)");
 
 /***/ }),
 
@@ -63308,7 +62961,41 @@ var render = function() {
                       _vm._m(1)
                     ]),
                     _vm._v(" "),
-                    _vm._m(2)
+                    _c("div", { staticClass: "col-3" }, [
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.dc_date,
+                              expression: "form.dc_date"
+                            }
+                          ],
+                          staticClass: "form-control col-12",
+                          attrs: {
+                            type: "date",
+                            id: "inputDate",
+                            placeholder: "Date"
+                          },
+                          domProps: { value: _vm.form.dc_date },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.form, "dc_date", $event.target.value)
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _vm._m(4)
+                    ])
                   ])
                 ])
               ]),
@@ -63336,14 +63023,14 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(3),
+                    _vm._m(5),
                     _vm._v(" "),
                     _c("div", { staticClass: "box-footer" })
                   ])
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(4)
+              _vm._m(6)
             ])
           ])
         ])
@@ -63397,44 +63084,43 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-3" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "inputReferenceNo" } }, [
-          _vm._v("Reference No.")
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control col-12",
-          attrs: {
-            type: "text",
-            id: "inputReferenceNo",
-            placeholder: "Reference No"
-          }
-        })
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "inputReferenceNo" } }, [
+        _vm._v("Reference No.")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("input", {
-          staticClass: "form-control col-12",
-          attrs: { type: "text", id: "inputDate", placeholder: "Date" }
-        })
-      ]),
+      _c("input", {
+        staticClass: "form-control col-12",
+        attrs: {
+          type: "text",
+          id: "inputReferenceNo",
+          placeholder: "Reference No"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("input", {
+        staticClass: "form-control col-12",
+        attrs: { type: "text", id: "inputDCNo", placeholder: "CD Number" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "inputAmount" } }, [_vm._v("Amount")]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("input", {
-          staticClass: "form-control col-12",
-          attrs: { type: "text", id: "inputDCNo", placeholder: "CD Number" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "inputAmount" } }, [_vm._v("Amount")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control col-12",
-          attrs: { type: "text", id: "inputAmount", placeholder: "Amount" }
-        })
-      ])
+      _c("input", {
+        staticClass: "form-control col-12",
+        attrs: { type: "text", id: "inputAmount", placeholder: "Amount" }
+      })
     ])
   },
   function() {

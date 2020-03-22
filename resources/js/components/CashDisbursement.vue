@@ -82,7 +82,7 @@
                     <input type="text" class="form-control col-12" id="inputReferenceNo" placeholder="Reference No">
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control col-12" id="inputDate" placeholder="Date">
+                    <input type="date" v-model="form.dc_date" class="form-control col-12" id="inputDate" placeholder="Date">
                   </div>
                   <div class="form-group">
                     <input type="text" class="form-control col-12" id="inputDCNo" placeholder="CD Number">
@@ -215,7 +215,8 @@
 
                   id:'',
                   name : '',
-                  payee_id: ''
+                  payee_id: '',
+                  cd_date:
                   
               }),
               payees: {},
