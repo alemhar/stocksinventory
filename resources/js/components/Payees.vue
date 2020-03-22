@@ -24,7 +24,7 @@
                 <tr v-for="payee in payee.data" :key="payee.id">
                   <td>{{ payee.id }}</td>
                   <td>{{ payee.name }}</td>
-                  <td>{{ payee.address }}</td>
+                  <td>{{ Str::limit(payee.address, 20, ' (...)') }}</td>
                   <td>{{ payee.tin }}</td>
                   <td>{{ payee.created_at | formatDate }}</td>
                   <td>
