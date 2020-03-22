@@ -2293,6 +2293,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -62773,6 +62781,27 @@ var render = function() {
                           2
                         )
                       ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "form-group" },
+                        [
+                          _c("model-select", {
+                            attrs: {
+                              options: _vm.payees.data,
+                              placeholder: "select item"
+                            },
+                            model: {
+                              value: _vm.form.payee_id,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "payee_id", $$v)
+                              },
+                              expression: "form.payee_id"
+                            }
+                          })
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _vm._m(1),
                       _vm._v(" "),

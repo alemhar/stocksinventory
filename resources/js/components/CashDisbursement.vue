@@ -37,6 +37,14 @@
                   </div>
 
                   <div class="form-group">
+                    <model-select :options="payees.data"
+                        v-model="form.payee_id"
+                        placeholder="select item">
+                    </model-select>
+                  </div>
+                  
+                    
+                  <div class="form-group">
                     <input type="text" class="form-control col-12" id="inputPayeesAddress" placeholder="Address">
                   </div>
                   <div class="form-group row">
