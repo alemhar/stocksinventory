@@ -42,7 +42,7 @@
                       option-value="id"
                       option-text="name"
                       placeholder="type to search"
-                       />
+                      />
                   </div>
                   
 
