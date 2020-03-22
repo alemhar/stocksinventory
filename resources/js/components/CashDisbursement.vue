@@ -37,7 +37,12 @@
                   </div>
 
                   <div class="form-group">
-                    
+                    <dynamic-select 
+                      :options="payees.data"
+                      option-value="id"
+                      option-text="name"
+                      placeholder="type to search"
+                      v-model="form.payee_id" />
                   </div>
                   
 
@@ -201,7 +206,7 @@
 </template>
 <script>
     //import { ModelSelect } from 'vue-search-select'
-    import { DynamicSelect } from 'vue-dynamic-select'
+    //import { DynamicSelect } from 'vue-dynamic-select'
     export default {
         data() {
           return {
@@ -374,7 +379,7 @@
             //setInterval(() => this.loadUsers(),3000);
         },
         components: {
-          DynamicSelect
+          //DynamicSelect
         }
     }
 </script>
