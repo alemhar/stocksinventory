@@ -2319,27 +2319,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         bio: '',
         photo: ''
       }, "payee_id", '')),
-      payees: {},
-      options: [{
-        value: '1',
-        text: 'aa' + ' - ' + '1'
-      }, {
-        value: '2',
-        text: 'ab' + ' - ' + '2'
-      }, {
-        value: '3',
-        text: 'bc' + ' - ' + '3'
-      }, {
-        value: '4',
-        text: 'cd' + ' - ' + '4'
-      }, {
-        value: '5',
-        text: 'de' + ' - ' + '5'
-      }],
-      item: {
-        value: '',
-        text: ''
-      }
+      payees: {}
     };
   },
   methods: {
@@ -2398,7 +2378,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.$gate.isAdminOrAuthor()) {
         axios.get("api/payee").then(function (_ref2) {
           var data = _ref2.data;
-          return _this.payees = data;
+          return _this.payees = data.data;
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
     } // ,
@@ -63290,9 +63270,9 @@ var render = function() {
                         [
                           _c("dynamic-select", {
                             attrs: {
-                              options: _vm.payees.data,
-                              "option-value": "",
-                              "option-text": "",
+                              options: _vm.payees,
+                              "option-value": "payees.id",
+                              "option-text": "payees.name",
                               placeholder: "type to search"
                             },
                             model: {
