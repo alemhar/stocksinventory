@@ -13,8 +13,8 @@
               <div class="box-header with-border">
                 <h3 class="box-title">Cash Disbursement</h3>
                 <div class="box-tools">
-                  <button type="submit" class="btn btn-primary">Save</button>
-                  <button class="btn btn-success" @click="">New <i class="fas fa-plus-circle fa-fw"></i></button>
+                  <button type="submit" class="btn btn-success">Create</button>
+                  <!-- button class="btn btn-success" @click="">New <i class="fas fa-plus-circle fa-fw"></i></button -->
                 </div>
               </div>
               <div class="box-body row">
