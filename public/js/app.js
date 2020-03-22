@@ -2402,8 +2402,12 @@ __webpack_require__.r(__webpack_exports__);
     createCD: function createCD() {
       this.cd_created = true;
     },
-    saveCD: function saveCD() {},
-    cancelCD: function cancelCD() {} // ,
+    saveCD: function saveCD() {
+      this.cd_created = false;
+    },
+    cancelCD: function cancelCD() {
+      this.cd_created = false;
+    } // ,
     // createUser(){
     //   this.$Progress.start()
     //   this.form.post('api/user')
@@ -63219,7 +63223,7 @@ var render = function() {
                               expression: "!cd_created"
                             }
                           ],
-                          staticClass: "btn btn-warning",
+                          staticClass: "btn btn-primary",
                           attrs: { type: "button" },
                           on: { click: _vm.createCD }
                         },
@@ -63237,7 +63241,7 @@ var render = function() {
                               expression: "cd_created"
                             }
                           ],
-                          staticClass: "btn btn-primary",
+                          staticClass: "btn btn-success",
                           attrs: { type: "button" },
                           on: { click: _vm.saveCD }
                         },
