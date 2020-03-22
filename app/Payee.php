@@ -10,7 +10,7 @@ class Payee extends Model
     //isset(Auth::user()->name) ? Auth::user()->company_id : '1';
 	public function getTable()
 	{
-	    return 'payees_'.isset(Auth::user()->name) ? Auth::user()->company_id : '1';
+	    return 'payees_'.Auth::user()->company_id;
 	}
 	//protected $table = 'payees_'.$companyId;
 
