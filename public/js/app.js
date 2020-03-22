@@ -63209,7 +63209,6 @@ var render = function() {
                         "button",
                         {
                           staticClass: "btn btn-success",
-                          attrs: { type: "submit" },
                           on: { click: _vm.createCD }
                         },
                         [_vm._v("Create")]
