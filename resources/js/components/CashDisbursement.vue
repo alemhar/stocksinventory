@@ -20,21 +20,20 @@
               <div class="box-body row">
                 <!--Left Col-->
                 <div class="col-9">
-                  <div class="form-group">
+                  <!-- div class="form-group">
                     <label for="inputPayeesName">Payee</label>
                     <input type="text" class="form-control col-12" id="inputPayeesName" placeholder="Payees Name">
-                  </div>
+                  </div -->
 
-                  <div class="form-group">
+                  <!-- div class="form-group" -->
                     <!--select name='payee_id' v-model='form.payee_id' class="form-control col-12">
                       <option value=''>Please select payee...</option>
                       <option v-for="payee in payees.data" v-bind:value="payee.id">{{ payee.name }}</option>
-                      
                     </select -->
-
-                  </div>
+                  <!-- /div -->
 
                   <div class="form-group">
+                    <label for="inputPayeesName">Payee</label>
                     <dynamic-select 
                       :options="payees.data"
                       option-value="id"

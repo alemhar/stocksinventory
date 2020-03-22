@@ -2299,7 +2299,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -63208,14 +63207,14 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "box-body row" }, [
                     _c("div", { staticClass: "col-9" }, [
-                      _vm._m(0),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }),
-                      _vm._v(" "),
                       _c(
                         "div",
                         { staticClass: "form-group" },
                         [
+                          _c("label", { attrs: { for: "inputPayeesName" } }, [
+                            _vm._v("Payee")
+                          ]),
+                          _vm._v(" "),
                           _c("dynamic-select", {
                             attrs: {
                               options: _vm.payees.data,
@@ -63229,14 +63228,14 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
+                      _vm._m(0),
+                      _vm._v(" "),
                       _vm._m(1),
                       _vm._v(" "),
-                      _vm._m(2),
-                      _vm._v(" "),
-                      _vm._m(3)
+                      _vm._m(2)
                     ]),
                     _vm._v(" "),
-                    _vm._m(4)
+                    _vm._m(3)
                   ])
                 ])
               ]),
@@ -63264,14 +63263,14 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(5),
+                    _vm._m(4),
                     _vm._v(" "),
                     _c("div", { staticClass: "box-footer" })
                   ])
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(6)
+              _vm._m(5)
             ])
           ])
         ])
@@ -63283,23 +63282,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "inputPayeesName" } }, [_vm._v("Payee")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control col-12",
-        attrs: {
-          type: "text",
-          id: "inputPayeesName",
-          placeholder: "Payees Name"
-        }
-      })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
