@@ -2348,6 +2348,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -63231,36 +63232,38 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "box-body row" }, [
-                    _c(
-                      "div",
-                      { staticClass: "col-9" },
-                      [
-                        _vm._m(0),
-                        _vm._v(" "),
-                        _c("dynamic-select", {
-                          attrs: {
-                            options: _vm.payees_list,
-                            "option-value": "id",
-                            "option-text": "name",
-                            placeholder: "type to search"
-                          },
-                          model: {
-                            value: _vm.payees_list,
-                            callback: function($$v) {
-                              _vm.payees_list = $$v
+                    _c("div", { staticClass: "col-9" }, [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "form-group" },
+                        [
+                          _c("dynamic-select", {
+                            attrs: {
+                              options: _vm.payees_list,
+                              "option-value": "id",
+                              "option-text": "name",
+                              placeholder: "type to search"
                             },
-                            expression: "payees_list"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _vm._m(2),
-                        _vm._v(" "),
-                        _vm._m(3)
-                      ],
-                      1
-                    ),
+                            model: {
+                              value: _vm.payees_list,
+                              callback: function($$v) {
+                                _vm.payees_list = $$v
+                              },
+                              expression: "payees_list"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _vm._m(3)
+                    ]),
                     _vm._v(" "),
                     _vm._m(4)
                   ])
