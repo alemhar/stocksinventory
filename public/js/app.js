@@ -2347,6 +2347,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -63244,11 +63245,11 @@ var render = function() {
                             placeholder: "type to search"
                           },
                           model: {
-                            value: _vm.selectedObject,
+                            value: _vm.payees_list,
                             callback: function($$v) {
-                              _vm.selectedObject = $$v
+                              _vm.payees_list = $$v
                             },
-                            expression: "selectedObject"
+                            expression: "payees_list"
                           }
                         }),
                         _vm._v(" "),

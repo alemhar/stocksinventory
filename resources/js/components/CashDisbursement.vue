@@ -29,7 +29,8 @@
                     option-value="id"
                     option-text="name"
                     placeholder="type to search"
-                    v-model="selectedObject" />
+                    v-model="payees_list" />
+                    
                   <div class="form-group">
                     <input type="text" class="form-control col-12" id="inputPayeesAddress" placeholder="Address">
                   </div>
