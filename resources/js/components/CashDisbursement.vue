@@ -108,7 +108,7 @@
                 </div>
 
                 <!-- /.box-header -->
-                <div class="box-body table-responsive no-padding">
+                <div v-show="cr_created" id="debits-list" class="box-body table-responsive no-padding">
                   <table class="table table-hover">
                     <tbody>
                       <tr>
@@ -210,6 +210,7 @@
         data() {
           return {
               editmode: false,
+              cr_created: false,
               cd : {},
               form: new Form({
 

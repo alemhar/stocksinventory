@@ -2306,6 +2306,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       editmode: false,
+      cr_created: false,
       cd: {},
       form: new Form({
         id: '',
@@ -63592,7 +63593,22 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(0),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.cr_created,
+                            expression: "cr_created"
+                          }
+                        ],
+                        staticClass: "box-body table-responsive no-padding",
+                        attrs: { id: "debits-list" }
+                      },
+                      [_vm._m(0)]
+                    ),
                     _vm._v(" "),
                     _c("div", { staticClass: "box-footer" })
                   ])
@@ -63615,72 +63631,70 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box-body table-responsive no-padding" }, [
-      _c("table", { staticClass: "table table-hover" }, [
-        _c("tbody", [
-          _c("tr", [
-            _c("th", [_vm._v("Account No.")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Name")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Item")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Description")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Branch")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Tax Type")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Amount")])
-          ]),
+    return _c("table", { staticClass: "table table-hover" }, [
+      _c("tbody", [
+        _c("tr", [
+          _c("th", [_vm._v("Account No.")]),
           _vm._v(" "),
-          _c("tr", [
-            _c("td", [_vm._v(" - ")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(" - ")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(" - ")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(" - ")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(" - ")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(" - ")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(" - ")])
-          ]),
+          _c("th", [_vm._v("Name")]),
           _vm._v(" "),
-          _c("tr", [
-            _c("td", [_vm._v(" - ")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(" - ")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(" - ")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(" - ")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(" - ")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(" - ")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(" - ")])
-          ]),
+          _c("th", [_vm._v("Item")]),
           _vm._v(" "),
-          _c("tr", [
-            _c("td", [_vm._v(" - ")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(" - ")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(" - ")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(" - ")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(" - ")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(" - ")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(" - ")])
-          ])
+          _c("th", [_vm._v("Description")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Branch")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Tax Type")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Amount")])
+        ]),
+        _vm._v(" "),
+        _c("tr", [
+          _c("td", [_vm._v(" - ")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(" - ")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(" - ")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(" - ")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(" - ")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(" - ")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(" - ")])
+        ]),
+        _vm._v(" "),
+        _c("tr", [
+          _c("td", [_vm._v(" - ")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(" - ")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(" - ")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(" - ")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(" - ")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(" - ")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(" - ")])
+        ]),
+        _vm._v(" "),
+        _c("tr", [
+          _c("td", [_vm._v(" - ")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(" - ")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(" - ")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(" - ")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(" - ")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(" - ")]),
+          _vm._v(" "),
+          _c("td", [_vm._v(" - ")])
         ])
       ])
     ])
