@@ -2359,8 +2359,8 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.$gate.isAdminOrAuthor()) {
         axios.get("api/payee").then(function (_ref) {
-          var response = _ref.response;
-          return _this.payees = response.data;
+          var data = _ref.data;
+          return _this.payees = data;
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
     } // ,
