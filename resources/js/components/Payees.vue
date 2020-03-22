@@ -166,7 +166,8 @@
                             'success'
                           );
 
-                          Fire.$emit('RefreshPayeesTable');
+                          //Fire.$emit('RefreshPayeesTable');
+                          VueListen.$emit('RefreshPayeesTable');
                       })
                       .catch(()=>{
                         swal("Failed!","Failed to delete payee!", "warning");

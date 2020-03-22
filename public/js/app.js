@@ -2997,8 +2997,9 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.value) {
           _this2.form["delete"]('api/payee/' + id).then(function () {
-            swal.fire('Deleted!', 'Payee has been deleted.', 'success');
-            Fire.$emit('RefreshPayeesTable');
+            swal.fire('Deleted!', 'Payee has been deleted.', 'success'); //Fire.$emit('RefreshPayeesTable');
+
+            VueListen.$emit('RefreshPayeesTable');
           })["catch"](function () {
             swal("Failed!", "Failed to delete payee!", "warning");
           });
