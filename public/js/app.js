@@ -2362,7 +2362,7 @@ __webpack_require__.r(__webpack_exports__);
         bio: '',
         photo: ''
       }),
-      payees: ['Payee 1', 'Payee 2']
+      payees: {}
     };
   },
   methods: {
@@ -2417,8 +2417,18 @@ __webpack_require__.r(__webpack_exports__);
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
     },
-    createUser: function createUser() {
+    loadPayees: function loadPayees() {
       var _this4 = this;
+
+      if (this.$gate.isAdminOrAuthor()) {
+        axios.get("api/payee").then(function (_ref2) {
+          var data = _ref2.data;
+          return _this4.payees = data;
+        }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
+      }
+    },
+    createUser: function createUser() {
+      var _this5 = this;
 
       this.$Progress.start();
       this.form.post('api/user').then(function () {
@@ -2429,11 +2439,11 @@ __webpack_require__.r(__webpack_exports__);
           title: 'User created successfully'
         });
 
-        _this4.$Progress.finish();
+        _this5.$Progress.finish();
       })["catch"](function () {});
     },
     updateUser: function updateUser() {
-      var _this5 = this;
+      var _this6 = this;
 
       console.log('Edit User');
       this.$Progress.start();
@@ -2441,26 +2451,26 @@ __webpack_require__.r(__webpack_exports__);
         $('#UserDetails').modal('hide');
         swal.fire('Updated!', 'User information has been updated.', 'success');
 
-        _this5.$Progress.finish();
+        _this6.$Progress.finish();
 
         VueListen.$emit('RefreshUsersTable');
       })["catch"](function () {
-        _this5.$Progress.fail();
+        _this6.$Progress.fail();
       });
     }
   },
   created: function created() {
-    var _this6 = this;
+    var _this7 = this;
 
     VueListen.$on('Search', function () {
-      var query = _this6.$parent.search;
+      var query = _this7.$parent.search;
       axios.get('api/findUser?q=' + query).then(function (data) {
-        _this6.users = data.data;
+        _this7.users = data.data;
       })["catch"](function () {}); //this.loadUsers();
     });
     this.loadUsers();
     VueListen.$on('RefreshUsersTable', function () {
-      _this6.loadUsers();
+      _this7.loadUsers();
     }); //setInterval(() => this.loadUsers(),3000);
   }
 });
@@ -63237,6 +63247,7 @@ var render = function() {
                       _c("div", { staticClass: "form-group" }, [
                         _c(
                           "select",
+                          { staticClass: "form-control col-12" },
                           _vm._l(_vm.payees, function(payee) {
                             return _c("option", [_vm._v(_vm._s(payee))])
                           }),

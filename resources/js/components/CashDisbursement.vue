@@ -26,7 +26,7 @@
                   </div>
 
                   <div class="form-group">
-                    <select>
+                    <select class="form-control col-12">
                       <option v-for="payee in payees">{{ payee}}</option>
                     </select>
                   </div>
@@ -267,7 +267,7 @@
                   bio: '',
                   photo: ''
               }),
-              payees: ['Payee 1','Payee 2']
+              payees: {}
           }
         },
         methods: {
@@ -325,6 +325,14 @@
 
             if(this.$gate.isAdminOrAuthor()){
                 axios.get("api/user").then(({ data }) => (this.users = data));
+                //axios.get("api/user").then(({ data }) => (this.users = data.data));
+            } 
+             
+          },
+          loadPayees(){
+
+            if(this.$gate.isAdminOrAuthor()){
+                axios.get("api/payee").then(({ data }) => (this.payees = data));
                 //axios.get("api/user").then(({ data }) => (this.users = data.data));
             } 
              
