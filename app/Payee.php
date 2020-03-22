@@ -8,7 +8,7 @@ class Payee extends Model
 {
 	
     
-	protected $table = 'payees_'.isset(Auth::user()->name) ? '1' : '1';
+	protected $table = 'payees_'.isset('') ? '1' : '1';
 
 
     protected $fillable = [
