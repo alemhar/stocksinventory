@@ -215,7 +215,9 @@
           return {
               editmode: false,
               cd_created: false,
-              nopayee: false,
+              no_payee: false,
+              no_reference_no: false,
+              no_account_code: false,
               cd : {},
               form: new Form({
 
@@ -336,9 +338,9 @@
             }
 
             if (this.no_account_code || this.no_reference_no || this.no_payee){
-              this.cd_created = false;
+              //this.cd_created = false;
             } else {
-              this.cd_created = true;
+              //this.cd_created = true;
             }
             
 
