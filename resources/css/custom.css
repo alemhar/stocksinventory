@@ -381,3 +381,7 @@
     font-size: 12px;
 }
 
+.empty-field-message {
+    font-size: 10pt;
+    color: red;
+}

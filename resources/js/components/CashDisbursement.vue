@@ -43,7 +43,7 @@
                       v-on:input="eventChild"
                       v-model="current_payee"
                       />
-                    <p v-show="nopayee">Please select payee!</p>  
+                    <p v-show="nopayee" class="empty-field-message">** Please select payee!</p>  
                   </div>
                   
 
@@ -406,3 +406,6 @@
         }
     }
 </script>
+<style type="text/css">
+
+</style>

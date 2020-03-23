@@ -63320,9 +63320,10 @@ var render = function() {
                                   value: _vm.nopayee,
                                   expression: "nopayee"
                                 }
-                              ]
+                              ],
+                              staticClass: "empty-field-message"
                             },
-                            [_vm._v("Please select payee!")]
+                            [_vm._v("** Please select payee!")]
                           )
                         ],
                         1
