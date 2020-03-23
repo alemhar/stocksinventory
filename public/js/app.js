@@ -2302,6 +2302,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2402,11 +2404,25 @@ __webpack_require__.r(__webpack_exports__);
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
     createCD: function createCD() {
-      this.cd_created = true;
-
       if (this.form.payee_id.length == 0) {
-        this.nopayee = true;
+        this.no_payee = true;
+      } else {
+        this.no_payee = false;
       }
+
+      if (this.form.account_code.length == 0) {
+        this.no_account_code = true;
+      } else {
+        this.no_account_code = false;
+      }
+
+      if (this.form.account_code.length == 0) {
+        this.no_account_code = true;
+      } else {
+        this.no_account_code = false;
+      }
+
+      this.cd_created = true;
     },
     saveCD: function saveCD() {
       this.cd_created = false;
@@ -63317,8 +63333,8 @@ var render = function() {
                                 {
                                   name: "show",
                                   rawName: "v-show",
-                                  value: _vm.nopayee,
-                                  expression: "nopayee"
+                                  value: _vm.no_payee,
+                                  expression: "no_payee"
                                 }
                               ],
                               staticClass: "empty-field-message"
@@ -63499,6 +63515,22 @@ var render = function() {
                             _vm._v(" "),
                             _c("option", [_vm._v("REPRESENTATION EXPENSES")])
                           ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "p",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.no_account_code,
+                                expression: "no_account_code"
+                              }
+                            ],
+                            staticClass: "empty-field-message"
+                          },
+                          [_vm._v("** Please select account!")]
                         )
                       ])
                     ]),
@@ -63537,7 +63569,23 @@ var render = function() {
                               )
                             }
                           }
-                        })
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "p",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.no_reference_no,
+                                expression: "no_reference_no"
+                              }
+                            ],
+                            staticClass: "empty-field-message"
+                          },
+                          [_vm._v("** Please enter reference number!")]
+                        )
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group" }, [

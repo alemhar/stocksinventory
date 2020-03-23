@@ -43,7 +43,7 @@
                       v-on:input="eventChild"
                       v-model="current_payee"
                       />
-                    <p v-show="nopayee" class="empty-field-message">** Please select payee!</p>  
+                    <p v-show="no_payee" class="empty-field-message">** Please select payee!</p>  
                   </div>
                   
 
@@ -73,7 +73,8 @@
                       <option>MEALS AMD SNACKS</option>
                       <option>REPRESENTATION EXPENSES</option>
                     </select>
-                  </div>
+                    <p v-show="no_account_code" class="empty-field-message">** Please select account!</p>
+                  </div> 
                   
 
                 </div>
@@ -82,6 +83,7 @@
                   <div class="form-group">
                     <label for="inputReferenceNo">Reference No.</label>
                     <input type="text"  v-model="form.reference_no" class="form-control col-12" id="inputReferenceNo" placeholder="Reference No">
+                    <p v-show="no_reference_no" class="empty-field-message">** Please enter reference number!</p>
                   </div>
                   <div class="form-group">
                     <input type="date" v-model="form.transaction_date" class="form-control col-12" id="inputDate" placeholder="Date">
@@ -315,10 +317,27 @@
             return `${year}-${month}-${day}`;
           },
           createCD(){
-            this.cd_created = true;
             if(this.form.payee_id.length == 0) {
-              this.nopayee = true;
+              this.no_payee = true;
+            } else {
+              this.no_payee = false;
             }
+
+            if(this.form.account_code.length == 0) {
+              this.no_account_code = true;
+            } else {
+              this.no_account_code = false;
+            }
+            
+            if(this.form.account_code.length == 0) {
+              this.no_account_code = true;
+            } else {
+              this.no_account_code = false;
+            }
+
+            this.cd_created = true;
+            
+
           },
           saveCD(){
             this.cd_created = false;
