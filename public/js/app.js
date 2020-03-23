@@ -2424,9 +2424,11 @@ __webpack_require__.r(__webpack_exports__);
         this.no_reference_no = false;
       }
 
-      if (this.no_account_code || this.no_reference_no || this.no_payee) {//this.cd_created = false;
-      } else {//this.cd_created = true;
-        }
+      if (this.no_account_code || this.no_reference_no || this.no_payee) {
+        this.cd_created = true;
+      } else {
+        this.cd_created = false;
+      }
     },
     saveCD: function saveCD() {
       this.cd_created = false;
