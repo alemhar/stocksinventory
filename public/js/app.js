@@ -2416,13 +2416,17 @@ __webpack_require__.r(__webpack_exports__);
         this.no_account_code = false;
       }
 
-      if (this.form.account_code.length == 0) {
-        this.no_account_code = true;
+      if (this.form.reference_no.length == 0) {
+        this.no_reference_no = true;
       } else {
-        this.no_account_code = false;
+        this.no_reference_no = false;
       }
 
-      this.cd_created = true;
+      if (this.no_account_code || this.no_reference_no || this.no_payee) {
+        this.cd_created = false;
+      } else {
+        this.cd_created = true;
+      }
     },
     saveCD: function saveCD() {
       this.cd_created = false;
