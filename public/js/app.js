@@ -2301,6 +2301,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2308,6 +2309,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       editmode: false,
       cd_created: false,
+      nopayee: false,
       cd: {},
       form: new Form({
         id: '',
@@ -2401,6 +2403,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     createCD: function createCD() {
       this.cd_created = true;
+
+      if (this.form.payee_id.length == 0) {
+        this.nopayee = true;
+      }
     },
     saveCD: function saveCD() {
       this.cd_created = false;
@@ -63223,11 +63229,14 @@ var render = function() {
                               expression: "!cd_created"
                             }
                           ],
-                          staticClass: "btn btn-primary",
+                          staticClass: "btn btn-success",
                           attrs: { type: "button" },
                           on: { click: _vm.createCD }
                         },
-                        [_vm._v("Create")]
+                        [
+                          _vm._v("Create "),
+                          _c("i", { staticClass: "fas fa-plus-circle fa-fw" })
+                        ]
                       ),
                       _vm._v(" "),
                       _c(
@@ -63299,7 +63308,22 @@ var render = function() {
                               },
                               expression: "current_payee"
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "p",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.nopayee,
+                                  expression: "nopayee"
+                                }
+                              ]
+                            },
+                            [_vm._v("Please select payee!")]
+                          )
                         ],
                         1
                       ),

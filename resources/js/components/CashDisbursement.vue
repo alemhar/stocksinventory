@@ -13,7 +13,7 @@
               <div class="box-header with-border">
                 <h3 class="box-title">Cash Disbursement</h3>
                 <div class="box-tools">
-                  <button type="button" v-show="!cd_created" class="btn btn-primary" @click="createCD">Create</button>
+                  <button type="button" v-show="!cd_created" class="btn btn-success" @click="createCD">Create <i class="fas fa-plus-circle fa-fw"></i></button>
                   <button type="button"  class="btn btn-success"  v-show="cd_created" @click="saveCD">Save <i class="fas fa-plus-circle fa-fw"></i></button>
                   <button  type="button" class="btn btn-danger"  v-show="cd_created" @click="cancelCD">Cancel <i class="fas fa-plus-circle fa-fw"></i></button>
                 </div>
@@ -43,6 +43,7 @@
                       v-on:input="eventChild"
                       v-model="current_payee"
                       />
+                    <p v-show="nopayee">Please select payee!</p>  
                   </div>
                   
 
@@ -212,6 +213,7 @@
           return {
               editmode: false,
               cd_created: false,
+              nopayee: false,
               cd : {},
               form: new Form({
 
@@ -314,6 +316,9 @@
           },
           createCD(){
             this.cd_created = true;
+            if(this.form.payee_id.length == 0) {
+              this.nopayee = true;
+            }
           },
           saveCD(){
             this.cd_created = false;
