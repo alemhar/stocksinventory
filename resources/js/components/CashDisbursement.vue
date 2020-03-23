@@ -338,9 +338,9 @@
             }
 
             if (this.no_account_code || this.no_reference_no || this.no_payee){
-              this.cd_created = true;
-            } else {
               this.cd_created = false;
+            } else {
+              this.cd_created = true;
             }
             
 
