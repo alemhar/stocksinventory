@@ -2527,7 +2527,8 @@ __webpack_require__.r(__webpack_exports__);
         this.cd_created = false;
       } else {
         this.cd_created = true;
-        document.getElementsByClassName("vue-dynamic-select").readonly = true;
+        payee_select = document.getElementsByClassName("vue-dynamic-select");
+        payee_select[0].readonly = true;
       }
     },
     saveCD: function saveCD() {
