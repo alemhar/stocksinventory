@@ -63548,64 +63548,6 @@ var render = function() {
                               }
                             }
                           })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-6" }, [
-                          _c(
-                            "select",
-                            {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.tax_type,
-                                  expression: "form.tax_type"
-                                }
-                              ],
-                              staticClass: "form-control col-12",
-                              on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.$set(
-                                    _vm.form,
-                                    "tax_type",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  )
-                                }
-                              }
-                            },
-                            [
-                              _c("option", { attrs: { value: "TAX TYPE" } }, [
-                                _vm._v("TAX TYPE")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "VAT REG" } }, [
-                                _vm._v("VAT REG")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "NON VAT" } }, [
-                                _vm._v("NON VAT")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "VAT EXEMPT" } }, [
-                                _vm._v("VAT EXEMPT")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "ZERO RATED" } }, [
-                                _vm._v("ZERO RATED")
-                              ])
-                            ]
-                          )
                         ])
                       ]),
                       _vm._v(" "),

@@ -57,7 +57,7 @@
                     <div class="col-6">
                       <input v-bind:readonly="cd_created" type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN"  v-model="current_payee.tin">
                     </div>
-                    <div class="col-6">
+                    <!-- div class="col-6">
                       <select v-model="form.tax_type" class="form-control col-12">
                         <option value="TAX TYPE">TAX TYPE</option>
                         <option value="VAT REG">VAT REG</option>
@@ -65,7 +65,7 @@
                         <option value="VAT EXEMPT">VAT EXEMPT</option>
                         <option value="ZERO RATED">ZERO RATED</option>
                       </select>
-                    </div>  
+                    </div-->  
                   </div>
                   <div class="form-group">
                     <label>Account</label>
