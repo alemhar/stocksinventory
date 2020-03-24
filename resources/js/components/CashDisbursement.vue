@@ -79,7 +79,7 @@
                     <p v-show="no_account_code" class="empty-field-message">** Please select account!</p>
                   </div>
                   <div class="form-group">
-                    <model-select :options="payees.data"
+                    <model-select :options="payees"
                         v-model="item"
                         placeholder="select item">
                     </model-select>
