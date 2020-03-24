@@ -48,11 +48,11 @@
                   
 
                   <div class="form-group">
-                    <input type="text" class="form-control col-12" id="inputPayeesAddress" placeholder="Address" v-model="current_payee.address">
+                    <input v-bind:readonly="cd_created" type="text" class="form-control col-12" id="inputPayeesAddress" placeholder="Address" v-model="current_payee.address">
                   </div>
                   <div class="form-group row">
                     <div class="col-6">
-                      <input type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN"  v-model="current_payee.tin">
+                      <input v-bind:readonly="cd_created" type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN"  v-model="current_payee.tin">
                     </div>
                     <div class="col-6">
                       <select v-model="form.tax_type" class="form-control col-12">
@@ -66,7 +66,7 @@
                   </div>
                   <div class="form-group">
                     <label>Account</label>
-                    <select v-model="form.account_code" class="form-control col-12">
+                    <select v-bind:readonly="cd_created" v-model="form.account_code" class="form-control col-12">
                       <option>SALARIES AND WAGES</option>
                       <option>TRAININGS AND SEMINARS</option>
                       <option>TRAVEL AND TRANSPORTATION</option>
@@ -82,18 +82,18 @@
                 <div class="col-3">
                   <div class="form-group">
                     <label for="inputReferenceNo">Reference No.</label>
-                    <input type="text"  v-model="form.reference_no" class="form-control col-12" id="inputReferenceNo" placeholder="Reference No">
+                    <input v-bind:readonly="cd_created" type="text"  v-model="form.reference_no" class="form-control col-12" id="inputReferenceNo" placeholder="Reference No">
                     <p v-show="no_reference_no" class="empty-field-message">** Please enter reference number!</p>
                   </div>
                   <div class="form-group">
-                    <input type="date" v-model="form.transaction_date" class="form-control col-12" id="inputDate" placeholder="Date">
+                    <input v-bind:readonly="cd_created" type="date" v-model="form.transaction_date" class="form-control col-12" id="inputDate" placeholder="Date">
                   </div>
                   <div class="form-group">
-                    <input type="text" v-model="form.transaction_no" class="form-control col-12" id="inputDCNo" placeholder="CD Number">
+                    <input v-bind:readonly="cd_created" type="text" v-model="form.transaction_no" class="form-control col-12" id="inputDCNo" placeholder="CD Number">
                   </div>
                   <div class="form-group">
                     <label for="inputAmount">Amount</label>
-                    <input type="text"  v-model="form.transaction_amt" class="form-control col-12" id="inputAmount" placeholder="Amount">
+                    <input v-bind:readonly="cd_created" type="text"  v-model="form.transaction_amt" class="form-control col-12" id="inputAmount" placeholder="Amount">
                   </div>
                 </div>
               </div>

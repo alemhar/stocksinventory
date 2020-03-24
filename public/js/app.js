@@ -63446,6 +63446,7 @@ var render = function() {
                           ],
                           staticClass: "form-control col-12",
                           attrs: {
+                            readonly: _vm.cd_created,
                             type: "text",
                             id: "inputPayeesAddress",
                             placeholder: "Address"
@@ -63479,6 +63480,7 @@ var render = function() {
                             ],
                             staticClass: "form-control",
                             attrs: {
+                              readonly: _vm.cd_created,
                               type: "text",
                               id: "inputPayeesTIN",
                               placeholder: "TIN"
@@ -63573,6 +63575,7 @@ var render = function() {
                               }
                             ],
                             staticClass: "form-control col-12",
+                            attrs: { readonly: _vm.cd_created },
                             on: {
                               change: function($event) {
                                 var $$selectedVal = Array.prototype.filter
@@ -63641,6 +63644,7 @@ var render = function() {
                           ],
                           staticClass: "form-control col-12",
                           attrs: {
+                            readonly: _vm.cd_created,
                             type: "text",
                             id: "inputReferenceNo",
                             placeholder: "Reference No"
@@ -63689,6 +63693,7 @@ var render = function() {
                           ],
                           staticClass: "form-control col-12",
                           attrs: {
+                            readonly: _vm.cd_created,
                             type: "date",
                             id: "inputDate",
                             placeholder: "Date"
@@ -63721,6 +63726,7 @@ var render = function() {
                           ],
                           staticClass: "form-control col-12",
                           attrs: {
+                            readonly: _vm.cd_created,
                             type: "text",
                             id: "inputDCNo",
                             placeholder: "CD Number"
@@ -63757,6 +63763,7 @@ var render = function() {
                           ],
                           staticClass: "form-control col-12",
                           attrs: {
+                            readonly: _vm.cd_created,
                             type: "text",
                             id: "inputAmount",
                             placeholder: "Amount"
