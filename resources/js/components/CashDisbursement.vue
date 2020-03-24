@@ -554,6 +554,7 @@
         },
         components: {
           //DynamicSelect
+          'ModelSelect'
         }
     }
 </script>
