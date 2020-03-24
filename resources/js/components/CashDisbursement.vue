@@ -443,7 +443,7 @@
               this.cd_created = false;
             } else {
               this.cd_created = true;
-              document.getElementsByClassName("search").readonly = true;
+              document.getElementsByClassName("vue-dynamic-select").readonly = true;
             }
             
           },
