@@ -63807,7 +63807,7 @@ var render = function() {
                             "button",
                             {
                               staticClass: "btn btn-success",
-                              on: { click: function($event) {} }
+                              on: { click: _vm.newEntry }
                             },
                             [
                               _vm._v("Add Items "),
