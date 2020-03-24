@@ -2530,8 +2530,6 @@ __webpack_require__.r(__webpack_exports__);
         this.cd_created = false;
       } else {
         this.cd_created = true;
-        payee_select = document.getElementsByClassName("vue-dynamic-select");
-        payee_select[0].enabled = false;
       }
     },
     saveCD: function saveCD() {
@@ -63416,7 +63414,7 @@ var render = function() {
                               options: _vm.payees.data,
                               "option-value": "id",
                               "option-text": "name",
-                              placeholder: "type to search"
+                              placeholder: "Type to search"
                             },
                             on: { input: _vm.eventChild },
                             model: {

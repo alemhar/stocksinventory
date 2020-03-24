@@ -39,7 +39,7 @@
                       :options="payees.data"
                       option-value="id"
                       option-text="name"
-                      placeholder="type to search"
+                      placeholder="Type to search"
                       v-on:input="eventChild"
                       v-model="current_payee"
                       v-show="!cd_created"
@@ -446,8 +446,6 @@
               this.cd_created = false;
             } else {
               this.cd_created = true;
-              payee_select = document.getElementsByClassName("vue-dynamic-select");
-              payee_select[0].enabled = false;
             }
             
           },
