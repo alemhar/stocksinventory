@@ -353,10 +353,7 @@
                 { value: '4', text: 'cd' + ' - ' + '4' },
                 { value: '5', text: 'de' + ' - ' + '5' }
               ],
-              item: {
-                value: '',
-                text: ''
-              }
+              item: {}
 
           }
         },

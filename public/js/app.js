@@ -2454,10 +2454,7 @@ __webpack_require__.r(__webpack_exports__);
         value: '5',
         text: 'de' + ' - ' + '5'
       }],
-      item: {
-        value: '',
-        text: ''
-      }
+      item: {}
     };
   },
   methods: {
