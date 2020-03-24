@@ -87691,8 +87691,8 @@ Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]);
 Vue.use(vue_dynamic_select__WEBPACK_IMPORTED_MODULE_5__["default"]);
 Vue.component('DynamicSelect', vue_dynamic_select__WEBPACK_IMPORTED_MODULE_5__["default"]);
 
-Vue.use(vue_search_select__WEBPACK_IMPORTED_MODULE_6___default.a);
-Vue.component('ModelSelect', vue_search_select__WEBPACK_IMPORTED_MODULE_6___default.a); //npm install vue-progressbar | http://hilongjw.github.io/vue-progressbar/index.html 
+Vue.use(vue_search_select__WEBPACK_IMPORTED_MODULE_6___default.a); //Vue.component('ModelSelect', ModelSelect);
+//npm install vue-progressbar | http://hilongjw.github.io/vue-progressbar/index.html 
 
 
 Vue.use(vue_progressbar__WEBPACK_IMPORTED_MODULE_7___default.a, {
