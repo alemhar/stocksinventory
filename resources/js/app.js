@@ -41,6 +41,10 @@ import DynamicSelect from 'vue-dynamic-select';
 Vue.use(DynamicSelect);
 Vue.component('DynamicSelect', DynamicSelect);
 
+import ModelSelect from 'vue-search-select'
+Vue.use(ModelSelect);
+Vue.component('ModelSelect', ModelSelect);
+
 //npm install vue-progressbar | http://hilongjw.github.io/vue-progressbar/index.html 
 import VueProgressBar from 'vue-progressbar'
 Vue.use(VueProgressBar, {
