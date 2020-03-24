@@ -75289,8 +75289,8 @@ var es6_number_constructor = __webpack_require__("c5f6");
     selectedOption: function selectedOption() {
       var _this4 = this;
 
-      
-      return this.options.find(function (options) {
+
+      return this.options.name(function (option) {
         return option.value === _this4.optionValue(_this4.value);
       });
       
