@@ -80,6 +80,8 @@
                   </div>
                   <div class="form-group">
                     <model-select :options="options"
+                        name="name"
+                        id="id"
                         v-model="item"
                         placeholder="select item">
                     </model-select>

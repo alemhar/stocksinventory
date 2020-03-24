@@ -2400,6 +2400,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 
@@ -63649,6 +63651,8 @@ var render = function() {
                           _c("model-select", {
                             attrs: {
                               options: _vm.options,
+                              name: "name",
+                              id: "id",
                               placeholder: "select item"
                             },
                             model: {
