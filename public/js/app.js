@@ -2390,6 +2390,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -63401,6 +63404,14 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("dynamic-select", {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: !_vm.cd_created,
+                                expression: "!cd_created"
+                              }
+                            ],
                             attrs: {
                               options: _vm.payees.data,
                               "option-value": "id",
@@ -63431,7 +63442,43 @@ var render = function() {
                               staticClass: "empty-field-message"
                             },
                             [_vm._v("** Please select payee!")]
-                          )
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.cd_created,
+                                expression: "cd_created"
+                              },
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.current_payee.name,
+                                expression: "current_payee.name"
+                              }
+                            ],
+                            staticClass: "form-control col-12",
+                            attrs: {
+                              readonly: _vm.cd_created,
+                              type: "text",
+                              id: "inputPayee"
+                            },
+                            domProps: { value: _vm.current_payee.name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.current_payee,
+                                  "name",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
                         ],
                         1
                       ),

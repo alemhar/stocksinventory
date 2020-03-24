@@ -42,8 +42,11 @@
                       placeholder="type to search"
                       v-on:input="eventChild"
                       v-model="current_payee"
+                      v-show="!cd_created"
                       />
                     <p v-show="no_payee" class="empty-field-message">** Please select payee!</p>  
+                  
+                    <input  v-show="cd_created" v-bind:readonly="cd_created" type="text" class="form-control col-12" id="inputPayee" v-model="current_payee.name">
                   </div>
                   
 
