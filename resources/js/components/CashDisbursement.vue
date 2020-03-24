@@ -444,7 +444,7 @@
             } else {
               this.cd_created = true;
               payee_select = document.getElementsByClassName("vue-dynamic-select");
-              payee_select[0].readonly = true;
+              payee_select[0].enabled = false;
             }
             
           },
