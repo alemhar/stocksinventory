@@ -304,7 +304,7 @@
 <script>
     //import { ModelSelect } from 'vue-search-select'
     //import { DynamicSelect } from 'vue-dynamic-select'
-    //import { ModelSelect } from 'vue-search-select'
+    import { ModelSelect } from 'vue-search-select'
     export default {
         data() {
           return {
