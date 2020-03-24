@@ -71071,7 +71071,7 @@ module.exports = function (TYPE, $create) {
   var IS_FILTER = TYPE == 2;
   var IS_SOME = TYPE == 3;
   var IS_EVERY = TYPE == 4;
-  var IS_FIND_INDEX = TYPE == 6;
+  var IS_FIND_INDEX = TYPE == 5;
   var NO_HOLES = TYPE == 5 || IS_FIND_INDEX;
   var create = $create || asc;
   return function ($this, callbackfn, that) {
@@ -75290,7 +75290,7 @@ var es6_number_constructor = __webpack_require__("c5f6");
       var _this4 = this;
 
 
-      return this.options.name(function (option) {
+      return this.options.find(function (option) {
         return option.value === _this4.optionValue(_this4.value);
       });
       
