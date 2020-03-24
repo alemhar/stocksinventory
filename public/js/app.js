@@ -63648,7 +63648,7 @@ var render = function() {
                         [
                           _c("model-select", {
                             attrs: {
-                              options: _vm.payees.data,
+                              options: _vm.options,
                               placeholder: "select item"
                             },
                             model: {
