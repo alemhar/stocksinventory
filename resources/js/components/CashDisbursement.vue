@@ -77,7 +77,9 @@
                       <option>REPRESENTATION EXPENSES</option>
                     </select -->
                     <input v-bind:readonly="cd_created" type="text" class="form-control" id="inputAccountName" placeholder="Account"  v-model="form.account_name">
-                    <button type="button" v-show="!cd_created" class="btn btn-success" @click="createCD"><i class="fas fa-search fa-fw"></i></button>
+                    <span class="input-group-btn">
+                        <button type="button" v-show="!cd_created" class="btn btn-success" @click="createCD"><i class="fas fa-search fa-fw"></i></button>
+                    </span>
 
                     <p v-show="no_account_code" class="empty-field-message">** Please select account!</p>
                   </div>

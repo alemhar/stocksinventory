@@ -2468,6 +2468,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 
@@ -63678,23 +63680,25 @@ var render = function() {
                           }
                         }),
                         _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            directives: [
-                              {
-                                name: "show",
-                                rawName: "v-show",
-                                value: !_vm.cd_created,
-                                expression: "!cd_created"
-                              }
-                            ],
-                            staticClass: "btn btn-success",
-                            attrs: { type: "button" },
-                            on: { click: _vm.createCD }
-                          },
-                          [_c("i", { staticClass: "fas fa-search fa-fw" })]
-                        ),
+                        _c("span", { staticClass: "input-group-btn" }, [
+                          _c(
+                            "button",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: !_vm.cd_created,
+                                  expression: "!cd_created"
+                                }
+                              ],
+                              staticClass: "btn btn-success",
+                              attrs: { type: "button" },
+                              on: { click: _vm.createCD }
+                            },
+                            [_c("i", { staticClass: "fas fa-search fa-fw" })]
+                          )
+                        ]),
                         _vm._v(" "),
                         _c(
                           "p",
