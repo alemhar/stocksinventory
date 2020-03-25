@@ -2402,6 +2402,72 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 
@@ -63581,50 +63647,53 @@ var render = function() {
                       _c("div", { staticClass: "form-group" }, [
                         _c("label", [_vm._v("Account")]),
                         _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.account_name,
+                              expression: "form.account_name"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            readonly: _vm.cd_created,
+                            type: "text",
+                            id: "inputAccountName",
+                            placeholder: "Account"
+                          },
+                          domProps: { value: _vm.form.account_name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form,
+                                "account_name",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
                         _c(
-                          "select",
+                          "button",
                           {
                             directives: [
                               {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.account_code,
-                                expression: "form.account_code"
+                                name: "show",
+                                rawName: "v-show",
+                                value: !_vm.cd_created,
+                                expression: "!cd_created"
                               }
                             ],
-                            staticClass: "form-control col-12",
-                            attrs: { readonly: _vm.cd_created },
-                            on: {
-                              change: function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.$set(
-                                  _vm.form,
-                                  "account_code",
-                                  $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                )
-                              }
-                            }
+                            staticClass: "btn btn-success",
+                            attrs: { type: "button" },
+                            on: { click: _vm.createCD }
                           },
-                          [
-                            _c("option", [_vm._v("SALARIES AND WAGES")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("TRAININGS AND SEMINARS")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("TRAVEL AND TRANSPORTATION")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("MEALS AMD SNACKS")]),
-                            _vm._v(" "),
-                            _c("option", [_vm._v("REPRESENTATION EXPENSES")])
-                          ]
+                          [_c("i", { staticClass: "fas fa-search fa-fw" })]
                         ),
                         _vm._v(" "),
                         _c(
@@ -63642,30 +63711,7 @@ var render = function() {
                           },
                           [_vm._v("** Please select account!")]
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "form-group" },
-                        [
-                          _c("basic-select", {
-                            attrs: {
-                              options: _vm.options,
-                              name: "name",
-                              id: "id",
-                              placeholder: "select item"
-                            },
-                            model: {
-                              value: _vm.item,
-                              callback: function($$v) {
-                                _vm.item = $$v
-                              },
-                              expression: "item"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-3" }, [
@@ -64387,7 +64433,9 @@ var render = function() {
           ]
         )
       ]
-    )
+    ),
+    _vm._v(" "),
+    _vm._m(5)
   ])
 }
 var staticRenderFns = [
@@ -64570,6 +64618,136 @@ var staticRenderFns = [
         }
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "account-list",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "account-list",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close"
+                    }
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("×")
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "box-body table-responsive no-padding",
+                    attrs: { id: "debits-list" }
+                  },
+                  [
+                    _c("table", { staticClass: "table table-hover" }, [
+                      _c("tbody", [
+                        _c("tr", [
+                          _c("th", [_vm._v("Account No.")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Name")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Item")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Description")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Branch")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Tax Type")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Amount")])
+                        ]),
+                        _vm._v(" "),
+                        _c("tr", [
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")])
+                        ]),
+                        _vm._v(" "),
+                        _c("tr", [
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")])
+                        ]),
+                        _vm._v(" "),
+                        _c("tr", [
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")])
+                        ])
+                      ])
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" })
+            ])
+          ]
+        )
+      ]
     )
   }
 ]

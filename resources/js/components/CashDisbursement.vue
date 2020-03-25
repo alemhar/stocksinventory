@@ -69,24 +69,18 @@
                   </div>
                   <div class="form-group">
                     <label>Account</label>
-                    <select v-bind:readonly="cd_created" v-model="form.account_code" class="form-control col-12">
+                    <!-- select v-bind:readonly="cd_created" v-model="form.account_code" class="form-control col-12">
                       <option>SALARIES AND WAGES</option>
                       <option>TRAININGS AND SEMINARS</option>
                       <option>TRAVEL AND TRANSPORTATION</option>
                       <option>MEALS AMD SNACKS</option>
                       <option>REPRESENTATION EXPENSES</option>
-                    </select>
+                    </select -->
+                    <input v-bind:readonly="cd_created" type="text" class="form-control" id="inputAccountName" placeholder="Account"  v-model="form.account_name">
+                    <button type="button" v-show="!cd_created" class="btn btn-success" @click="createCD"><i class="fas fa-search fa-fw"></i></button>
+
                     <p v-show="no_account_code" class="empty-field-message">** Please select account!</p>
                   </div>
-                  <div class="form-group">
-                    <basic-select :options="options"
-                        name="name"
-                        id="id"
-                        v-model="item"
-                        placeholder="select item">
-                    </basic-select>
-                  </div>
-
                 </div>
                 <!--Right Col-->
                 <div class="col-3">
@@ -215,7 +209,7 @@
         </div>  
     
 
-          <!-- Modal -->
+      <!-- Entry Modal -->
       <div class="modal fade" id="entry-details" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -297,9 +291,81 @@
           </div>
         </div>
       </div>
-    
+      <!-- Entry Modal -->
 
+      <!-- Accounts Modal -->
+      <div class="modal fade" id="account-list" tabindex="-1" role="dialog" aria-labelledby="account-list" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <!--
+              <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add New</h5>
+              <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update Entry</h5>
+              -->
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
 
+            <!-- form @submit.prevent="editmode ? updatePayee() : createPayee()" -->
+
+            <div class="modal-body">
+            
+                <div id="debits-list" class="box-body table-responsive no-padding">
+                  <table class="table table-hover">
+                    <tbody>
+                      <tr>
+                        <th>Account No.</th>
+                        <th>Name</th>
+                        <th>Item</th>
+                        <th>Description</th>
+                        <th>Branch</th>
+                        <th>Tax Type</th>
+                        <th>Amount</th>
+                      </tr>
+                      <tr>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                      </tr>
+                      <tr>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                      </tr>
+                      <tr>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                      </tr>
+                  </tbody>
+                </table>
+                </div>
+                <!-- /.box-body -->  
+              
+
+            </div>
+            <div class="modal-footer">
+              
+            </div>
+
+            <!-- /form -->
+          </div>
+        </div>
+      </div>
+      <!-- Accounts Modal -->
 
     </div>
 </template>
