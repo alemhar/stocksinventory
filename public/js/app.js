@@ -2630,7 +2630,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {
     //DynamicSelect
-    ModelSelect: vue_search_select__WEBPACK_IMPORTED_MODULE_0__["ModelSelect"]
+    BasicSelect: vue_search_select__WEBPACK_IMPORTED_MODULE_0__["BasicSelect"]
   }
 });
 
@@ -63648,7 +63648,7 @@ var render = function() {
                         "div",
                         { staticClass: "form-group" },
                         [
-                          _c("model-select", {
+                          _c("basic-select", {
                             attrs: {
                               options: _vm.payees.data,
                               name: "name",

@@ -79,12 +79,12 @@
                     <p v-show="no_account_code" class="empty-field-message">** Please select account!</p>
                   </div>
                   <div class="form-group">
-                    <model-select :options="payees.data"
+                    <basic-select :options="payees.data"
                         name="name"
                         id="id"
                         v-model="item"
                         placeholder="select item">
-                    </model-select>
+                    </basic-select>
                   </div>
 
                 </div>
@@ -306,7 +306,7 @@
 <script>
     //import { ModelSelect } from 'vue-search-select'
     //import { DynamicSelect } from 'vue-dynamic-select'
-    import { ModelSelect } from 'vue-search-select'
+    import { BasicSelect } from 'vue-search-select'
     export default {
         data() {
           return {
@@ -553,7 +553,7 @@
         },
         components: {
           //DynamicSelect
-          ModelSelect
+          BasicSelect
         }
     }
 </script>
