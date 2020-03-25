@@ -63650,7 +63650,7 @@ var render = function() {
                         [
                           _c("basic-select", {
                             attrs: {
-                              options: _vm.payees.data,
+                              options: _vm.options,
                               name: "name",
                               id: "id",
                               placeholder: "select item"
