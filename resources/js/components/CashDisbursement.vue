@@ -67,7 +67,7 @@
                       </select>
                     </div-->  
                   </div>
-                  <div class="input-group">
+                  <div class="form-group">
                     <label>Account</label>
                     <!-- select v-bind:readonly="cd_created" v-model="form.account_code" class="form-control col-12">
                       <option>SALARIES AND WAGES</option>
@@ -76,11 +76,13 @@
                       <option>MEALS AMD SNACKS</option>
                       <option>REPRESENTATION EXPENSES</option>
                     </select -->
-                    <input v-bind:readonly="cd_created" type="text" class="form-control" id="inputAccountName" placeholder="Account"  v-model="form.account_name">
-                    <span class="input-group-btn">
+                    <div class="input-group">
+                    <input v-bind:readonly="cd_created" type="text" class="form-control col-10" id="inputAccountName" placeholder="Account"  v-model="form.account_name">
+
+                    <span class="input-group-btn col-2">
                         <button type="button" v-show="!cd_created" class="btn btn-success" @click="createCD"><i class="fas fa-search fa-fw"></i></button>
                     </span>
-
+                    </div>
                     <p v-show="no_account_code" class="empty-field-message">** Please select account!</p>
                   </div>
                 </div>

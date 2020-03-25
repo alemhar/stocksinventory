@@ -2470,6 +2470,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 
@@ -63646,58 +63648,60 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "input-group" }, [
+                      _c("div", { staticClass: "form-group" }, [
                         _c("label", [_vm._v("Account")]),
                         _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.account_name,
-                              expression: "form.account_name"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            readonly: _vm.cd_created,
-                            type: "text",
-                            id: "inputAccountName",
-                            placeholder: "Account"
-                          },
-                          domProps: { value: _vm.form.account_name },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
+                        _c("div", { staticClass: "input-group" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.account_name,
+                                expression: "form.account_name"
                               }
-                              _vm.$set(
-                                _vm.form,
-                                "account_name",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "input-group-btn" }, [
-                          _c(
-                            "button",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: !_vm.cd_created,
-                                  expression: "!cd_created"
-                                }
-                              ],
-                              staticClass: "btn btn-success",
-                              attrs: { type: "button" },
-                              on: { click: _vm.createCD }
+                            ],
+                            staticClass: "form-control col-10",
+                            attrs: {
+                              readonly: _vm.cd_created,
+                              type: "text",
+                              id: "inputAccountName",
+                              placeholder: "Account"
                             },
-                            [_c("i", { staticClass: "fas fa-search fa-fw" })]
-                          )
+                            domProps: { value: _vm.form.account_name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.form,
+                                  "account_name",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "input-group-btn col-2" }, [
+                            _c(
+                              "button",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: !_vm.cd_created,
+                                    expression: "!cd_created"
+                                  }
+                                ],
+                                staticClass: "btn btn-success",
+                                attrs: { type: "button" },
+                                on: { click: _vm.createCD }
+                              },
+                              [_c("i", { staticClass: "fas fa-search fa-fw" })]
+                            )
+                          ])
                         ]),
                         _vm._v(" "),
                         _c(
