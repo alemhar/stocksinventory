@@ -67,7 +67,7 @@
                       </select>
                     </div-->  
                   </div>
-                  <div class="form-group">
+                  <div class="input-group">
                     <label>Account</label>
                     <!-- select v-bind:readonly="cd_created" v-model="form.account_code" class="form-control col-12">
                       <option>SALARIES AND WAGES</option>
