@@ -67899,17 +67899,7 @@ var render = function() {
           _c(
             "section",
             { staticClass: "sa-modal-body", attrs: { id: "modalDescription" } },
-            [
-              _vm._t("body", [
-                _c("BootstrapTable", {
-                  attrs: {
-                    columns: _vm.columns,
-                    data: _vm.data,
-                    options: _vm.options
-                  }
-                })
-              ])
-            ],
+            [_vm._t("body")],
             2
           ),
           _vm._v(" "),
