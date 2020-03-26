@@ -3240,33 +3240,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'modal',
-  methods: {
-    close: function close() {
-      this.$emit('close');
-    }
-  },
-  mounted: {},
-  data: {
-    columns: [{
-      title: 'Item ID',
-      field: 'id'
-    }, {
-      field: 'name',
-      title: 'Item Name'
-    }, {
-      field: 'price',
-      title: 'Item Price'
-    }],
-    data: [{
-      id: 1,
-      name: 'Item 1',
-      price: '$1'
-    }],
-    options: {
-      search: true,
-      showColumns: true
-    }
+  data: function data() {
+    return {
+      name: 'modal',
+      methods: {
+        close: function close() {
+          this.$emit('close');
+        }
+      },
+      mounted: {},
+      columns: [{
+        title: 'Item ID',
+        field: 'id'
+      }, {
+        field: 'name',
+        title: 'Item Name'
+      }, {
+        field: 'price',
+        title: 'Item Price'
+      }],
+      data: [{
+        id: 1,
+        name: 'Item 1',
+        price: '$1'
+      }],
+      options: {
+        search: true,
+        showColumns: true
+      }
+    };
   }
 });
 
