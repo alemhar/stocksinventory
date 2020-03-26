@@ -29,11 +29,9 @@
         >
           <slot name="body">
             <BootstrapTable
-              ref="table"
               :columns="columns"
               :data="data"
               :options="options"
-              
             />
           </slot>
         </section>
@@ -56,6 +54,7 @@
   </transition>
 </template>
 <script>
+  import BootstrapTable from 'bootstrap-table/dist/bootstrap-table-vue.esm.js'
   export default {
     data: function() {
       return {
@@ -93,12 +92,10 @@
         this.$emit('close');
       },
     },
-        mounted: {
-    },
-        components: {
-          BootstrapTable
-          
-        }
+    components: {
+      BootstrapTable
+      
+    }
 
 
 
