@@ -28,11 +28,7 @@
           id="modalDescription"
         >
           <slot name="body">
-            <BootstrapTable
-              :columns="columns"
-              :data="data"
-              :options="options"
-            />
+            <BootstrapTable :columns="columns" :data="data" :options="options"></BootstrapTable>
           </slot>
         </section>
         <footer class="sa-modal-footer">
