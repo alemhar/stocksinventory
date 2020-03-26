@@ -61,11 +61,7 @@
       return {
         name: 'modal',
 
-        methods: {
-          close() {
-            this.$emit('close');
-          },
-        },
+        
         mounted: {
 
         },
@@ -96,6 +92,11 @@
         }
                   
       };
+    },
+    methods: {
+      close() {
+        this.$emit('close');
+      },
     }
 
 

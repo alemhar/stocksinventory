@@ -3243,11 +3243,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       name: 'modal',
-      methods: {
-        close: function close() {
-          this.$emit('close');
-        }
-      },
       mounted: {},
       columns: [{
         title: 'Item ID',
@@ -3269,6 +3264,11 @@ __webpack_require__.r(__webpack_exports__);
         showColumns: true
       }
     };
+  },
+  methods: {
+    close: function close() {
+      this.$emit('close');
+    }
   }
 });
 
