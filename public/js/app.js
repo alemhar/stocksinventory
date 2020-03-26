@@ -3263,7 +3263,8 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit('close');
     }
   },
-  components: {//BootstrapTable
+  components: {
+    BootstrapTable: BootstrapTable
   }
 });
 
