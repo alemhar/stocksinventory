@@ -68,7 +68,7 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-              <pagination :data="" @pagination-change-page=""></pagination>
+              <pagination :data="accounts" @pagination-change-page="getResults"></pagination>
             </div> 
           </div>
           <!-- /.box -->
@@ -99,31 +99,7 @@
     data: function() {
       return {
         name: 'modal',
-                  
-        columns: [
-          {
-            title: 'Item ID',
-            field: 'id'
-          },
-          {
-            field: 'name',
-            title: 'Item Name'
-          }, {
-            field: 'price',
-            title: 'Item Price'
-          }
-        ],
-        data: [
-          {
-            id: 1,
-            name: 'Item 1',
-            price: '$1'
-          }
-        ],
-        options: {
-          search: true,
-          showColumns: true
-        }
+        accounts : {}
                   
       };
     },
