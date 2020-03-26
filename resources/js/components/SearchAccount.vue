@@ -28,7 +28,51 @@
           id="modalDescription"
         >
           <slot name="body">
-            <!-- BootstrapTable :columns="columns" :data="data" :options="options"></BootstrapTable -->
+            <div class="col-md-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Users List</h3>
+              <div class="box-tools">
+                <button class="btn btn-success" @click="newUser">Add New  <i class="fas fa-user-plus fa-fw"></i></button>
+              </div>
+            </div>
+
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tbody><tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Type</th>
+                  <th>Registered</th>
+                  <th>Modify</th>
+                </tr>
+                <!--tr v-for="user in users.data" :key="user.id">
+                  <td>{{ user.id }}</td>
+                  <td>{{ user.name }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.type | upText }}</td>
+                  <td>{{ user.created_at | formatDate }}</td>
+                  <td>
+                    <a href="#" @click="editUser(user)">Edit
+                      <i class="fa fa-edit"></i>
+                    </a>
+                    |
+                    <a href="#" @click="deleteUser(user.id)"><span class="red">Delete</span>
+                      <i class="fa fa-trash"></i>
+                    </a>
+                  </td>
+                </tr -->
+              </tbody></table>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+              <pagination :data="users" @pagination-change-page="getResults"></pagination>
+            </div> 
+          </div>
+          <!-- /.box -->
+        </div>
           </slot>
         </section>
         <footer class="sa-modal-footer">

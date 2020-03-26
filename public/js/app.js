@@ -3233,6 +3233,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -65603,7 +65647,69 @@ var render = function() {
           _c(
             "section",
             { staticClass: "sa-modal-body", attrs: { id: "modalDescription" } },
-            [_vm._t("body")],
+            [
+              _vm._t("body", [
+                _c("div", { staticClass: "col-md-12" }, [
+                  _c("div", { staticClass: "box" }, [
+                    _c("div", { staticClass: "box-header" }, [
+                      _c("h3", { staticClass: "box-title" }, [
+                        _vm._v("Users List")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "box-tools" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-success",
+                            on: { click: _vm.newUser }
+                          },
+                          [
+                            _vm._v("Add New  "),
+                            _c("i", { staticClass: "fas fa-user-plus fa-fw" })
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "box-body table-responsive no-padding" },
+                      [
+                        _c("table", { staticClass: "table table-hover" }, [
+                          _c("tbody", [
+                            _c("tr", [
+                              _c("th", [_vm._v("ID")]),
+                              _vm._v(" "),
+                              _c("th", [_vm._v("Name")]),
+                              _vm._v(" "),
+                              _c("th", [_vm._v("Email")]),
+                              _vm._v(" "),
+                              _c("th", [_vm._v("Type")]),
+                              _vm._v(" "),
+                              _c("th", [_vm._v("Registered")]),
+                              _vm._v(" "),
+                              _c("th", [_vm._v("Modify")])
+                            ])
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "box-footer" },
+                      [
+                        _c("pagination", {
+                          attrs: { data: _vm.users },
+                          on: { "pagination-change-page": _vm.getResults }
+                        })
+                      ],
+                      1
+                    )
+                  ])
+                ])
+              ])
+            ],
             2
           ),
           _vm._v(" "),
