@@ -189,7 +189,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
-
+<script src="{{ asset('js/jquery-3.3.1.js') }}" defer></script>
+<script src="{{ asset('js/datatables/jquery.dataTables.min.js') }}" defer></script>
+<script src="{{ asset('js/datatables/dataTables.bootstrap4.min.js') }}" defer></script>
 
 <!-- script type="/js/adminlte.js"></script -->
 
