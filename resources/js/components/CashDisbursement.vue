@@ -377,7 +377,7 @@
 
       <search-account
       v-show="isModalVisible"
-      @close="closeModal"
+      @close="closeSearchAccount"
       />
 
     </div>
@@ -390,6 +390,7 @@
     export default {
         data() {
           return {
+              isModalVisible: false,
               editmode: false,
               cd_created: false,
               no_payee: false,

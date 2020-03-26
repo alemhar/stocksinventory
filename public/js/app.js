@@ -2485,6 +2485,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      isModalVisible: false,
       editmode: false,
       cd_created: false,
       no_payee: false,
@@ -64592,7 +64593,7 @@ var render = function() {
             expression: "isModalVisible"
           }
         ],
-        on: { close: _vm.closeModal }
+        on: { close: _vm.closeSearchAccount }
       })
     ],
     1
