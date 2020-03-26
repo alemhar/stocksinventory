@@ -48,7 +48,7 @@
                   <th>Registered</th>
                   <th>Modify</th>
                 </tr>
-                <!--tr v-for="user in users.data" :key="user.id">
+                <tr v-for="user in users.data" :key="user.id">
                   <td>{{ user.id }}</td>
                   <td>{{ user.name }}</td>
                   <td>{{ user.email }}</td>
@@ -63,7 +63,7 @@
                       <i class="fa fa-trash"></i>
                     </a>
                   </td>
-                </tr -->
+                </tr>
               </tbody></table>
             </div>
             <!-- /.box-body -->
@@ -106,7 +106,13 @@
     methods: {
       close() {
         this.$emit('close');
-      }
+      },
+      getResults(page = 1) {
+            axios.get('api/user?page=' + page)
+              .then(response => {
+                this.users = response.data;
+              });
+          },
     },
     components: {
       //BootstrapTable

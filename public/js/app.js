@@ -3287,6 +3287,14 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     close: function close() {
       this.$emit('close');
+    },
+    getResults: function getResults() {
+      var _this = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get('api/user?page=' + page).then(function (response) {
+        _this.users = response.data;
+      });
     }
   },
   components: {//BootstrapTable
@@ -65655,21 +65663,86 @@ var render = function() {
                       { staticClass: "box-body table-responsive no-padding" },
                       [
                         _c("table", { staticClass: "table table-hover" }, [
-                          _c("tbody", [
-                            _c("tr", [
-                              _c("th", [_vm._v("ID")]),
+                          _c(
+                            "tbody",
+                            [
+                              _c("tr", [
+                                _c("th", [_vm._v("ID")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v("Name")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v("Email")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v("Type")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v("Registered")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v("Modify")])
+                              ]),
                               _vm._v(" "),
-                              _c("th", [_vm._v("Name")]),
-                              _vm._v(" "),
-                              _c("th", [_vm._v("Email")]),
-                              _vm._v(" "),
-                              _c("th", [_vm._v("Type")]),
-                              _vm._v(" "),
-                              _c("th", [_vm._v("Registered")]),
-                              _vm._v(" "),
-                              _c("th", [_vm._v("Modify")])
-                            ])
-                          ])
+                              _vm._l(_vm.users.data, function(user) {
+                                return _c("tr", { key: user.id }, [
+                                  _c("td", [_vm._v(_vm._s(user.id))]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(_vm._s(user.name))]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(_vm._s(user.email))]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(_vm._s(_vm._f("upText")(user.type)))
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm._f("formatDate")(user.created_at)
+                                      )
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _c(
+                                      "a",
+                                      {
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.editUser(user)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v("Edit\n                    "),
+                                        _c("i", { staticClass: "fa fa-edit" })
+                                      ]
+                                    ),
+                                    _vm._v(
+                                      "\n                  |\n                  "
+                                    ),
+                                    _c(
+                                      "a",
+                                      {
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.deleteUser(user.id)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("span", { staticClass: "red" }, [
+                                          _vm._v("Delete")
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("i", { staticClass: "fa fa-trash" })
+                                      ]
+                                    )
+                                  ])
+                                ])
+                              })
+                            ],
+                            2
+                          )
                         ])
                       ]
                     ),
