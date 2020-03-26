@@ -8741,7 +8741,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.modal-backdrop {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: rgba(0, 0, 0, 0.3);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.modal {\n  background: #FFFFFF;\n  box-shadow: 2px 2px 20px 1px;\n  overflow-x: auto;\n  display: flex;\n  flex-direction: column;\n}\n.modal-header,\n.modal-footer {\n  padding: 15px;\n  display: flex;\n}\n.modal-header {\n  border-bottom: 1px solid #eeeeee;\n  color: #4AAE9B;\n  justify-content: space-between;\n}\n.modal-footer {\n  border-top: 1px solid #eeeeee;\n  justify-content: flex-end;\n}\n.modal-body {\n  position: relative;\n  padding: 20px 10px;\n}\n.btn-close {\n  border: none;\n  font-size: 20px;\n  padding: 20px;\n  cursor: pointer;\n  font-weight: bold;\n  color: #4AAE9B;\n  background: transparent;\n}\n.btn-green {\n  color: white;\n  background: #4AAE9B;\n  border: 1px solid #4AAE9B;\n  border-radius: 2px;\n}\n.modal-fade-enter,\n.modal-fade-leave-active {\n  opacity: 0;\n}\n.modal-fade-enter-active,\n.modal-fade-leave-active {\n  transition: opacity .5s ease\n}\n", ""]);
+exports.push([module.i, "\n.sa-modal-backdrop {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: rgba(0, 0, 0, 0.3);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.sa-modal {\n  background: #FFFFFF;\n  box-shadow: 2px 2px 20px 1px;\n  overflow-x: auto;\n  display: flex;\n  flex-direction: column;\n}\n.sa-modal-header,\n.sa-modal-footer {\n  padding: 15px;\n  display: flex;\n}\n.sa-modal-header {\n  border-bottom: 1px solid #eeeeee;\n  color: #4AAE9B;\n  justify-content: space-between;\n}\n.sa-modal-footer {\n  border-top: 1px solid #eeeeee;\n  justify-content: flex-end;\n}\n.sa-modal-body {\n  position: relative;\n  padding: 20px 10px;\n}\n.sa-btn-close {\n  border: none;\n  font-size: 20px;\n  padding: 20px;\n  cursor: pointer;\n  font-weight: bold;\n  color: #4AAE9B;\n  background: transparent;\n}\n.sa-btn-green {\n  color: white;\n  background: #4AAE9B;\n  border: 1px solid #4AAE9B;\n  border-radius: 2px;\n}\n.sa-modal-fade-enter,\n.sa-modal-fade-leave-active {\n  opacity: 0;\n}\n.sa-modal-fade-enter-active,\n.sa-modal-fade-leave-active {\n  transition: opacity .5s ease\n}\n", ""]);
 
 // exports
 
@@ -65542,12 +65542,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("transition", { attrs: { name: "modal-fade" } }, [
-    _c("div", { staticClass: "modal-backdrop" }, [
+  return _c("transition", { attrs: { name: "sa-modal-fade" } }, [
+    _c("div", { staticClass: "sa-modal-backdrop" }, [
       _c(
         "div",
         {
-          staticClass: "modal",
+          staticClass: "sa-modal",
           attrs: {
             role: "dialog",
             "aria-labelledby": "modalTitle",
@@ -65557,14 +65557,14 @@ var render = function() {
         [
           _c(
             "header",
-            { staticClass: "modal-header", attrs: { id: "modalTitle" } },
+            { staticClass: "sa-modal-header", attrs: { id: "modalTitle" } },
             [
               _vm._t("header", [
                 _vm._v("\n          This is the default tile!\n\n          "),
                 _c(
                   "button",
                   {
-                    staticClass: "btn-close",
+                    staticClass: "sa-btn-close",
                     attrs: { type: "button", "aria-label": "Close modal" },
                     on: { click: _vm.close }
                   },
@@ -65577,7 +65577,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "section",
-            { staticClass: "modal-body", attrs: { id: "modalDescription" } },
+            { staticClass: "sa-modal-body", attrs: { id: "modalDescription" } },
             [
               _vm._t("body", [
                 _vm._v("\n          I'm the default body!\n        ")
@@ -65588,14 +65588,14 @@ var render = function() {
           _vm._v(" "),
           _c(
             "footer",
-            { staticClass: "modal-footer" },
+            { staticClass: "sa-modal-footer" },
             [
               _vm._t("footer", [
                 _vm._v("\n          I'm the default footer!\n\n          "),
                 _c(
                   "button",
                   {
-                    staticClass: "btn-green",
+                    staticClass: "sa-btn-green",
                     attrs: { type: "button", "aria-label": "Close modal" },
                     on: { click: _vm.close }
                   },

@@ -1,13 +1,13 @@
 <template>
-  <transition name="modal-fade">
-    <div class="modal-backdrop">
-      <div class="modal"
+  <transition name="sa-modal-fade">
+    <div class="sa-modal-backdrop">
+      <div class="sa-modal"
         role="dialog"
         aria-labelledby="modalTitle"
         aria-describedby="modalDescription"
       >
         <header
-          class="modal-header"
+          class="sa-modal-header"
           id="modalTitle"
         >
           <slot name="header">
@@ -15,7 +15,7 @@
 
             <button
               type="button"
-              class="btn-close"
+              class="sa-btn-close"
               @click="close"
               aria-label="Close modal"
             >
@@ -24,20 +24,20 @@
           </slot>
         </header>
         <section
-          class="modal-body"
+          class="sa-modal-body"
           id="modalDescription"
         >
           <slot name="body">
             I'm the default body!
           </slot>
         </section>
-        <footer class="modal-footer">
+        <footer class="sa-modal-footer">
           <slot name="footer">
             I'm the default footer!
 
             <button
               type="button"
-              class="btn-green"
+              class="sa-btn-green"
               @click="close"
               aria-label="Close modal"
             >
@@ -62,7 +62,7 @@
 
 
 <style>
-  .modal-backdrop {
+  .sa-modal-backdrop {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -74,7 +74,7 @@
     align-items: center;
   }
 
-  .modal {
+  .sa-modal {
     background: #FFFFFF;
     box-shadow: 2px 2px 20px 1px;
     overflow-x: auto;
@@ -82,29 +82,29 @@
     flex-direction: column;
   }
 
-  .modal-header,
-  .modal-footer {
+  .sa-modal-header,
+  .sa-modal-footer {
     padding: 15px;
     display: flex;
   }
 
-  .modal-header {
+  .sa-modal-header {
     border-bottom: 1px solid #eeeeee;
     color: #4AAE9B;
     justify-content: space-between;
   }
 
-  .modal-footer {
+  .sa-modal-footer {
     border-top: 1px solid #eeeeee;
     justify-content: flex-end;
   }
 
-  .modal-body {
+  .sa-modal-body {
     position: relative;
     padding: 20px 10px;
   }
 
-  .btn-close {
+  .sa-btn-close {
     border: none;
     font-size: 20px;
     padding: 20px;
@@ -114,19 +114,19 @@
     background: transparent;
   }
 
-  .btn-green {
+  .sa-btn-green {
     color: white;
     background: #4AAE9B;
     border: 1px solid #4AAE9B;
     border-radius: 2px;
   }
-  .modal-fade-enter,
-  .modal-fade-leave-active {
+  .sa-modal-fade-enter,
+  .sa-modal-fade-leave-active {
     opacity: 0;
   }
 
-  .modal-fade-enter-active,
-  .modal-fade-leave-active {
+  .sa-modal-fade-enter-active,
+  .sa-modal-fade-leave-active {
     transition: opacity .5s ease
   }
 </style>
