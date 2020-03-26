@@ -3178,9 +3178,141 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SearchAccount.vue?vue&type=script&lang=js& ***!
   \************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: D:\\stocksinventory\\resources\\js\\components\\SearchAccount.vue: Unexpected token (127:2)\n\n  125 |   created() {\n  126 |     this.loadAccounts();\n> 127 |   ,  \n      |   ^\n  128 |   components: {\n  129 |     //BootstrapTable\n  130 |   }\n    at Parser.raise (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:6400:17)\n    at Parser.unexpected (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:7728:16)\n    at Parser.parseExprAtom (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8940:20)\n    at Parser.parseExprSubscripts (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8507:23)\n    at Parser.parseMaybeUnary (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8487:21)\n    at Parser.parseExprOps (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8353:23)\n    at Parser.parseMaybeConditional (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8326:23)\n    at Parser.parseMaybeAssign (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8273:21)\n    at Parser.parseExpression (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8221:23)\n    at Parser.parseStatementContent (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10061:23)\n    at Parser.parseStatement (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9932:17)\n    at Parser.parseBlockOrModuleBlockBody (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10508:25)\n    at Parser.parseBlockBody (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10495:10)\n    at Parser.parseBlock (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10479:10)\n    at Parser.parseFunctionBody (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9523:24)\n    at Parser.parseFunctionBodyAndFinish (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9493:10)\n    at Parser.parseMethod (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9447:10)\n    at Parser.parseObjectMethod (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9363:19)\n    at Parser.parseObjPropValue (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9405:23)\n    at Parser.parseObjectMember (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9329:10)\n    at Parser.parseObj (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9253:25)\n    at Parser.parseExprAtom (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8883:28)\n    at Parser.parseExprSubscripts (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8507:23)\n    at Parser.parseMaybeUnary (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8487:21)\n    at Parser.parseExprOps (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8353:23)\n    at Parser.parseMaybeConditional (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8326:23)\n    at Parser.parseMaybeAssign (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8273:21)\n    at Parser.parseExportDefaultExpression (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:11113:24)\n    at Parser.parseExport (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:11008:31)\n    at Parser.parseStatementContent (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10036:27)\n    at Parser.parseStatement (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9932:17)\n    at Parser.parseBlockOrModuleBlockBody (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10508:25)\n    at Parser.parseBlockBody (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10495:10)\n    at Parser.parseTopLevel (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9861:10)\n    at Parser.parse (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:11373:17)\n    at parse (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:11409:38)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      name: 'modal',
+      accounts: {}
+    };
+  },
+  methods: {
+    close: function close() {
+      this.$emit('close');
+    },
+    getResults: function getResults() {
+      var _this = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get('api/user?page=' + page).then(function (response) {
+        _this.accounts = response.data;
+      });
+    },
+    loadAccounts: function loadAccounts() {
+      var _this2 = this;
+
+      //if(this.$gate.isAdminOrAuthor()){
+      axios.get("api/user").then(function (_ref) {
+        var data = _ref.data;
+        return _this2.accounts = data;
+      }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
+      //} 
+    }
+  },
+  created: function created() {
+    this.loadAccounts();
+  },
+  components: {//BootstrapTable
+  }
+});
 
 /***/ }),
 
