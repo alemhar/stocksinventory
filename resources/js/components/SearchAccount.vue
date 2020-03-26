@@ -33,7 +33,7 @@
             <div class="box-header">
               <h3 class="box-title">Users List</h3>
               <div class="box-tools">
-                <input type="text" class="form-control col-2" id="searchAccountCode" placeholder="Code"  v-model="">
+                <input type="text" class="form-control col-2" id="searchAccountCode" placeholder="Code">
               </div>
             </div>
 
