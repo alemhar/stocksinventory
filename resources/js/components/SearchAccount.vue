@@ -113,7 +113,18 @@
                 this.accounts = response.data;
               });
           },
+      loadAccounts(){
+
+            //if(this.$gate.isAdminOrAuthor()){
+                axios.get("api/user").then(({ data }) => (this.accounts = data));
+                //axios.get("api/user").then(({ data }) => (this.users = data.data));
+            //} 
+             
+          },     
     },
+    created() {
+      this.loadAccounts();
+    ,  
     components: {
       //BootstrapTable
     }
