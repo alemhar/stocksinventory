@@ -48,18 +48,18 @@
                   <th>Registered</th>
                   <th>Modify</th>
                 </tr>
-                <tr v-for="user in users.data" :key="user.id">
-                  <td>{{ user.id }}</td>
-                  <td>{{ user.name }}</td>
-                  <td>{{ user.email }}</td>
-                  <td>{{ user.type | upText }}</td>
-                  <td>{{ user.created_at | formatDate }}</td>
+                <tr v-for="accounts in accounts.data" :key="account.id">
+                  <td>{{ account.id }}</td>
+                  <td>{{ account.name }}</td>
+                  <td>{{ account.email }}</td>
+                  <td>{{ account.type | upText }}</td>
+                  <td>{{ account.created_at | formatDate }}</td>
                   <td>
-                    <a href="#" @click="editUser(user)">Edit
+                    <a href="#" @click="editUser(account)">Edit
                       <i class="fa fa-edit"></i>
                     </a>
                     |
-                    <a href="#" @click="deleteUser(user.id)"><span class="red">Delete</span>
+                    <a href="#" @click="deleteUser(account.id)"><span class="red">Delete</span>
                       <i class="fa fa-trash"></i>
                     </a>
                   </td>
@@ -110,7 +110,7 @@
       getResults(page = 1) {
             axios.get('api/user?page=' + page)
               .then(response => {
-                this.users = response.data;
+                this.accounts = response.data;
               });
           },
     },

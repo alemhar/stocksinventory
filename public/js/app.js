@@ -3293,7 +3293,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get('api/user?page=' + page).then(function (response) {
-        _this.users = response.data;
+        _this.accounts = response.data;
       });
     }
   },
@@ -65680,22 +65680,26 @@ var render = function() {
                                 _c("th", [_vm._v("Modify")])
                               ]),
                               _vm._v(" "),
-                              _vm._l(_vm.users.data, function(user) {
-                                return _c("tr", { key: user.id }, [
-                                  _c("td", [_vm._v(_vm._s(user.id))]),
+                              _vm._l(_vm.accounts.data, function(accounts) {
+                                return _c("tr", { key: _vm.account.id }, [
+                                  _c("td", [_vm._v(_vm._s(_vm.account.id))]),
                                   _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(user.name))]),
+                                  _c("td", [_vm._v(_vm._s(_vm.account.name))]),
                                   _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(user.email))]),
+                                  _c("td", [_vm._v(_vm._s(_vm.account.email))]),
                                   _vm._v(" "),
                                   _c("td", [
-                                    _vm._v(_vm._s(_vm._f("upText")(user.type)))
+                                    _vm._v(
+                                      _vm._s(_vm._f("upText")(_vm.account.type))
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("td", [
                                     _vm._v(
                                       _vm._s(
-                                        _vm._f("formatDate")(user.created_at)
+                                        _vm._f("formatDate")(
+                                          _vm.account.created_at
+                                        )
                                       )
                                     )
                                   ]),
@@ -65707,7 +65711,7 @@ var render = function() {
                                         attrs: { href: "#" },
                                         on: {
                                           click: function($event) {
-                                            return _vm.editUser(user)
+                                            return _vm.editUser(_vm.account)
                                           }
                                         }
                                       },
@@ -65725,7 +65729,9 @@ var render = function() {
                                         attrs: { href: "#" },
                                         on: {
                                           click: function($event) {
-                                            return _vm.deleteUser(user.id)
+                                            return _vm.deleteUser(
+                                              _vm.account.id
+                                            )
                                           }
                                         }
                                       },
