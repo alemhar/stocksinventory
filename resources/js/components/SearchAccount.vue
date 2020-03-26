@@ -28,7 +28,7 @@
           id="modalDescription"
         >
           <slot name="body">
-            <bootstrap-table
+            <BootstrapTable
               ref="table"
               :columns="columns"
               :data="data"
