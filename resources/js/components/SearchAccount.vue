@@ -127,7 +127,6 @@
   } );
 </script>
 <script src="{{ asset('js/jquery-3.3.1.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/datatables/jquery.dataTables.min.js') }}" type="text/javascript"></script>
 <style>
   .sa-modal-backdrop {
     position: fixed;
