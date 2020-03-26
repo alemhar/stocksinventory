@@ -77,10 +77,14 @@
                       <option>REPRESENTATION EXPENSES</option>
                     </select -->
                     <div class="input-group">
-                    <input v-bind:readonly="cd_created" type="text" class="form-control col-10" id="inputAccountName" placeholder="Account"  v-model="form.account_name">
+                    
+                    <input v-bind:readonly="cd_created" type="text" class="form-control col-10" id="inputAccountCode" placeholder="Code"  v-model="form.account_code">
+
+                    <input readonly="true" type="text" class="form-control col-10" id="inputAccountName" placeholder="Account Name" v-model="form.account_name">
 
                     <span class="input-group-btn col-2">
-                        <button type="button" v-show="!cd_created" class="btn btn-success" @click="createCD"><i class="fas fa-search fa-fw"></i></button>
+                        <button type="button" v-show="!cd_created" class="btn btn-success" @click="searchAccount"><i class="fas fa-search fa-fw"></i></button>
+
                     </span>
                     </div>
                     <p v-show="no_account_code" class="empty-field-message">** Please select account!</p>
@@ -371,12 +375,18 @@
       </div>
       <!-- Accounts Modal -->
 
+      <search-account
+      v-show="isModalVisible"
+      @close="closeModal"
+      />
+
     </div>
 </template>
 <script>
     //import { ModelSelect } from 'vue-search-select'
     //import { DynamicSelect } from 'vue-dynamic-select'
-    import { BasicSelect } from 'vue-search-select'
+    import { SearchAccount } from './SeachAccount.vue';
+    //import { BasicSelect } from 'vue-search-select'
     export default {
         data() {
           return {
@@ -396,7 +406,8 @@
                   transaction_date: this.getDate(),
                   transaction_amt: '',
                   tax_type: 'TAX TYPE',
-                  account_code: ''
+                  account_code: '',
+                  account_name:''
                   
                   
               }),
@@ -545,6 +556,12 @@
               this.editmode = false;
               this.form_entry.reset();
               $('#entry-details').modal('show');
+          },
+          searchAccount() {
+            this.isModalVisible = true;
+          },
+          closeSearchAccount() {
+            this.isModalVisible = false;
           }
           // ,
           // createUser(){
@@ -623,7 +640,7 @@
         },
         components: {
           //DynamicSelect
-          BasicSelect
+          SearchAccount
         }
     }
 </script>
