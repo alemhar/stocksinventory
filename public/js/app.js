@@ -3178,9 +3178,70 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SearchAccount.vue?vue&type=script&lang=js& ***!
   \************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: D:\\stocksinventory\\resources\\js\\components\\SearchAccount.vue: Unexpected token (125:6)\n\n  123 |   },\n  124 |   mounted: {\n> 125 |     $('#accounts-table').DataTable();\n      |       ^\n  126 |   }\n  127 | };\n  128 |     \n    at Parser.raise (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:6400:17)\n    at Parser.unexpected (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:7728:16)\n    at Parser.parseIdentifierName (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9624:18)\n    at Parser.parseIdentifier (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9598:23)\n    at Parser.parseBindingAtom (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8017:17)\n    at Parser.parseMaybeDefault (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8077:25)\n    at Parser.parseAssignableListItem (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8059:23)\n    at Parser.parseBindingList (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8051:24)\n    at Parser.parseFunctionParams (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10660:24)\n    at Parser.parseMethod (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9445:10)\n    at Parser.parseObjectMethod (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9363:19)\n    at Parser.parseObjPropValue (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9405:23)\n    at Parser.parseObjectMember (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9329:10)\n    at Parser.parseObj (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9253:25)\n    at Parser.parseExprAtom (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8883:28)\n    at Parser.parseExprSubscripts (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8507:23)\n    at Parser.parseMaybeUnary (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8487:21)\n    at Parser.parseExprOps (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8353:23)\n    at Parser.parseMaybeConditional (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8326:23)\n    at Parser.parseMaybeAssign (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8273:21)\n    at Parser.parseObjectProperty (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9380:101)\n    at Parser.parseObjPropValue (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9405:101)\n    at Parser.parseObjectMember (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9329:10)\n    at Parser.parseObj (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9253:25)\n    at Parser.parseExprAtom (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8883:28)\n    at Parser.parseExprSubscripts (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8507:23)\n    at Parser.parseMaybeUnary (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8487:21)\n    at Parser.parseExprOps (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8353:23)\n    at Parser.parseMaybeConditional (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8326:23)\n    at Parser.parseMaybeAssign (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8273:21)\n    at Parser.parseExportDefaultExpression (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:11113:24)\n    at Parser.parseExport (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:11008:31)\n    at Parser.parseStatementContent (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10036:27)\n    at Parser.parseStatement (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9932:17)\n    at Parser.parseBlockOrModuleBlockBody (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10508:25)\n    at Parser.parseBlockBody (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10495:10)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'modal',
+  methods: {
+    close: function close() {
+      this.$emit('close');
+    }
+  },
+  mounted: {}
+});
 
 /***/ }),
 
@@ -65520,119 +65581,13 @@ var render = function() {
             { staticClass: "sa-modal-body", attrs: { id: "modalDescription" } },
             [
               _vm._t("body", [
-                _c(
-                  "table",
-                  {
-                    staticClass: "table table-striped table-bordered",
-                    staticStyle: { width: "100%" },
-                    attrs: { id: "accounts-table" }
-                  },
-                  [
-                    _c("thead", [
-                      _c("tr", [
-                        _c("th", [_vm._v("Name")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Position")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Office")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Age")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Start date")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Salary")])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("tbody", [
-                      _c("tr", [
-                        _c("td", [_vm._v("Tiger Nixon")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("System Architect")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("Edinburgh")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("61")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("2011/04/25")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("$320,800")])
-                      ]),
-                      _vm._v(" "),
-                      _c("tr", [
-                        _c("td", [_vm._v("Garrett Winters")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("Accountant")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("Tokyo")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("63")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("2011/07/25")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("$170,750")])
-                      ]),
-                      _vm._v(" "),
-                      _c("tr", [
-                        _c("td", [_vm._v("Ashton Cox")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("Junior Technical Author")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("San Francisco")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("66")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("2009/01/12")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("$86,000")])
-                      ]),
-                      _vm._v(" "),
-                      _c("tr", [
-                        _c("td", [_vm._v("Cedric Kelly")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("Senior Javascript Developer")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("Edinburgh")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("22")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("2012/03/29")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("$433,060")])
-                      ]),
-                      _vm._v(" "),
-                      _c("tr", [
-                        _c("td", [_vm._v("Airi Satou")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("Accountant")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("Tokyo")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("33")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("2008/11/28")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("$162,700")])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("tfoot", [
-                      _c("tr", [
-                        _c("th", [_vm._v("Name")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Position")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Office")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Age")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Start date")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Salary")])
-                      ])
-                    ])
-                  ]
-                )
+                _c("bootstrap-table", {
+                  attrs: {
+                    columns: _vm.columns,
+                    data: _vm.data,
+                    options: _vm.options
+                  }
+                })
               ])
             ],
             2
