@@ -220,9 +220,9 @@
       
 
       <search-account
-      v-show="isModalVisible"
-      @close="closeSearchAccount"
-      />
+      v-model="isModalVisible">
+      
+      </<search-account>
 
       
 
