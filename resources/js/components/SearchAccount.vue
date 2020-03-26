@@ -33,7 +33,7 @@
             <div class="box-header">
               <h3 class="box-title">Users List</h3>
               <div class="box-tools">
-                <input type="text" class="form-control col-2" id="searchAccountCode" placeholder="Code">
+                <input type="text" class="form-control col-12" id="searchAccountCode" placeholder="Code">
               </div>
             </div>
 
@@ -68,7 +68,7 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-              <pagination :data="users" @pagination-change-page="getResults"></pagination>
+              <pagination :data="" @pagination-change-page=""></pagination>
             </div> 
           </div>
           <!-- /.box -->
