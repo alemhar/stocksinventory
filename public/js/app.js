@@ -3301,8 +3301,7 @@ __webpack_require__.r(__webpack_exports__);
       //} 
     }
   },
-  created: function created() {
-    this.loadAccounts();
+  created: function created() {//this.loadAccounts();
   },
   components: {//BootstrapTable
   }
