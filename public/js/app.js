@@ -3265,8 +3265,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit('close');
     }
   },
-  components: {
-    BootstrapTable: bootstrap_table_dist_bootstrap_table_vue_esm_js__WEBPACK_IMPORTED_MODULE_0__["default"]
+  components: {//BootstrapTable
   }
 });
 
