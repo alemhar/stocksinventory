@@ -3233,6 +3233,70 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'modal',
   methods: {
@@ -8741,7 +8805,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.sa-modal-backdrop {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: rgba(0, 0, 0, 0.3);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.sa-modal {\n  background: #FFFFFF;\n  box-shadow: 2px 2px 20px 1px;\n  overflow-x: auto;\n  display: flex;\n  flex-direction: column;\n}\n.sa-modal-header,\n.sa-modal-footer {\n  padding: 15px;\n  display: flex;\n}\n.sa-modal-header {\n  border-bottom: 1px solid #eeeeee;\n  color: #4AAE9B;\n  justify-content: space-between;\n}\n.sa-modal-footer {\n  border-top: 1px solid #eeeeee;\n  justify-content: flex-end;\n}\n.sa-modal-body {\n  position: relative;\n  padding: 20px 10px;\n}\n.sa-btn-close {\n  border: none;\n  font-size: 20px;\n  padding: 20px;\n  cursor: pointer;\n  font-weight: bold;\n  color: #4AAE9B;\n  background: transparent;\n}\n.sa-btn-green {\n  color: white;\n  background: #4AAE9B;\n  border: 1px solid #4AAE9B;\n  border-radius: 2px;\n}\n.sa-modal-fade-enter,\n.sa-modal-fade-leave-active {\n  opacity: 0;\n}\n.sa-modal-fade-enter-active,\n.sa-modal-fade-leave-active {\n  transition: opacity .5s ease\n}\n", ""]);
+exports.push([module.i, "\n.sa-modal-backdrop {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: rgba(0, 0, 0, 0.3);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.sa-modal {\n  background: #FFFFFF;\n  box-shadow: 2px 2px 20px 1px;\n  overflow-x: auto;\n  display: flex;\n  flex-direction: column;\n  width: 600px;\n}\n.sa-modal-header,\n.sa-modal-footer {\n  padding: 15px;\n  display: flex;\n}\n.sa-modal-header {\n  border-bottom: 1px solid #eeeeee;\n  color: #4AAE9B;\n  justify-content: space-between;\n}\n.sa-modal-footer {\n  border-top: 1px solid #eeeeee;\n  justify-content: flex-end;\n}\n.sa-modal-body {\n  position: relative;\n  padding: 20px 10px;\n}\n.sa-btn-close {\n  border: none;\n  font-size: 20px;\n  padding: 20px;\n  cursor: pointer;\n  font-weight: bold;\n  color: #4AAE9B;\n  background: transparent;\n}\n.sa-btn-green {\n  color: white;\n  background: #4AAE9B;\n  border: 1px solid #4AAE9B;\n  border-radius: 2px;\n}\n.sa-modal-fade-enter,\n.sa-modal-fade-leave-active {\n  opacity: 0;\n}\n.sa-modal-fade-enter-active,\n.sa-modal-fade-leave-active {\n  transition: opacity .5s ease\n}\n", ""]);
 
 // exports
 
@@ -65560,7 +65624,7 @@ var render = function() {
             { staticClass: "sa-modal-header", attrs: { id: "modalTitle" } },
             [
               _vm._t("header", [
-                _vm._v("\n          This is the default tile!\n\n          "),
+                _vm._v("\n          Search Account\n\n          "),
                 _c(
                   "button",
                   {
@@ -65580,7 +65644,119 @@ var render = function() {
             { staticClass: "sa-modal-body", attrs: { id: "modalDescription" } },
             [
               _vm._t("body", [
-                _vm._v("\n          I'm the default body!\n        ")
+                _c(
+                  "table",
+                  {
+                    staticClass: "table table-striped table-bordered",
+                    staticStyle: { width: "100%" },
+                    attrs: { id: "accounts-table" }
+                  },
+                  [
+                    _c("thead", [
+                      _c("tr", [
+                        _c("th", [_vm._v("Name")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Position")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Office")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Age")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Start date")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Salary")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tbody", [
+                      _c("tr", [
+                        _c("td", [_vm._v("Tiger Nixon")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("System Architect")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("Edinburgh")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("61")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("2011/04/25")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("$320,800")])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [_vm._v("Garrett Winters")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("Accountant")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("Tokyo")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("63")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("2011/07/25")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("$170,750")])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [_vm._v("Ashton Cox")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("Junior Technical Author")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("San Francisco")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("66")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("2009/01/12")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("$86,000")])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [_vm._v("Cedric Kelly")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("Senior Javascript Developer")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("Edinburgh")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("22")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("2012/03/29")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("$433,060")])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [_vm._v("Airi Satou")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("Accountant")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("Tokyo")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("33")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("2008/11/28")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("$162,700")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tfoot", [
+                      _c("tr", [
+                        _c("th", [_vm._v("Name")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Position")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Office")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Age")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Start date")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Salary")])
+                      ])
+                    ])
+                  ]
+                )
               ])
             ],
             2
