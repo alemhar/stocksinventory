@@ -385,8 +385,8 @@
 <script>
     //import { ModelSelect } from 'vue-search-select'
     //import { DynamicSelect } from 'vue-dynamic-select'
-    import { SearchAccount } from './SeachAccount';
     //import { BasicSelect } from 'vue-search-select'
+    
     export default {
         data() {
           return {
@@ -640,7 +640,7 @@
         },
         components: {
           //DynamicSelect
-          SearchAccount
+          
         }
     }
 </script>
