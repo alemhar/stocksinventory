@@ -3243,7 +3243,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       name: 'modal',
-      mounted: {},
       columns: [{
         title: 'Item ID',
         field: 'id'
@@ -3269,6 +3268,10 @@ __webpack_require__.r(__webpack_exports__);
     close: function close() {
       this.$emit('close');
     }
+  },
+  mounted: {},
+  components: {
+    BootstrapTable: BootstrapTable
   }
 });
 

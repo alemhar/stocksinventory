@@ -60,11 +60,6 @@
     data: function() {
       return {
         name: 'modal',
-
-        
-        mounted: {
-
-        },
                   
         columns: [
           {
@@ -97,7 +92,13 @@
       close() {
         this.$emit('close');
       },
-    }
+    },
+        mounted: {
+    },
+        components: {
+          BootstrapTable
+          
+        }
 
 
 
