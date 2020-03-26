@@ -219,8 +219,10 @@
 
       
 
-      <search-account v-model="isModalVisible">
-      </search-account>
+      <search-account
+      v-show="isModalVisible"
+      @close="closeSearchAccount"
+      />
 
       
 
