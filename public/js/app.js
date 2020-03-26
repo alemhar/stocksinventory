@@ -82404,8 +82404,8 @@ Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]);
 
 Vue.use(vue_dynamic_select__WEBPACK_IMPORTED_MODULE_5__["default"]);
 Vue.component('DynamicSelect', vue_dynamic_select__WEBPACK_IMPORTED_MODULE_5__["default"]);
-
-Vue.use(bootstrap_table__WEBPACK_IMPORTED_MODULE_6___default.a); //import ModelSelect from 'vue-search-select'
+ //Vue.use(BootstrapTable);
+//import ModelSelect from 'vue-search-select'
 //Vue.use(ModelSelect);
 //Vue.component('ModelSelect', ModelSelect);
 //npm install vue-progressbar | http://hilongjw.github.io/vue-progressbar/index.html 
