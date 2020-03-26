@@ -82364,8 +82364,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var vue_dynamic_select__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-dynamic-select */ "./node_modules/vue-dynamic-select/dist/vue-dynamic-select.esm.js");
-/* harmony import */ var vue_progressbar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-progressbar */ "./node_modules/vue-progressbar/dist/vue-progressbar.js");
-/* harmony import */ var vue_progressbar__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_progressbar__WEBPACK_IMPORTED_MODULE_6__);
+!(function webpackMissingModule() { var e = new Error("Cannot find module 'bootstrap-table.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var vue_progressbar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-progressbar */ "./node_modules/vue-progressbar/dist/vue-progressbar.js");
+/* harmony import */ var vue_progressbar__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vue_progressbar__WEBPACK_IMPORTED_MODULE_7__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -82397,13 +82398,16 @@ Vue.component('pagination', __webpack_require__(/*! laravel-vue-pagination */ ".
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]);
 
 Vue.use(vue_dynamic_select__WEBPACK_IMPORTED_MODULE_5__["default"]);
-Vue.component('DynamicSelect', vue_dynamic_select__WEBPACK_IMPORTED_MODULE_5__["default"]); //import ModelSelect from 'vue-search-select'
+Vue.component('DynamicSelect', vue_dynamic_select__WEBPACK_IMPORTED_MODULE_5__["default"]);
+
+Vue.use(!(function webpackMissingModule() { var e = new Error("Cannot find module 'bootstrap-table.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+Vue.component('BootstrapTable', !(function webpackMissingModule() { var e = new Error("Cannot find module 'bootstrap-table.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())); //import ModelSelect from 'vue-search-select'
 //Vue.use(ModelSelect);
 //Vue.component('ModelSelect', ModelSelect);
 //npm install vue-progressbar | http://hilongjw.github.io/vue-progressbar/index.html 
 
 
-Vue.use(vue_progressbar__WEBPACK_IMPORTED_MODULE_6___default.a, {
+Vue.use(vue_progressbar__WEBPACK_IMPORTED_MODULE_7___default.a, {
   color: 'rgb(143, 255, 199)',
   failedColor: 'red',
   height: '3px'
