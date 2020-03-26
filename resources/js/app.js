@@ -41,8 +41,9 @@ import DynamicSelect from 'vue-dynamic-select';
 Vue.use(DynamicSelect);
 Vue.component('DynamicSelect', DynamicSelect);
 
-import BootstrapTable from 'bootstrap-table';
-//Vue.use(BootstrapTable);
+import BootstrapTable from 'bootstrap-table/dist/bootstrap-table-vue.esm.js';
+
+Vue.component('BootstrapTable', BootstrapTable);
 
 
 //import ModelSelect from 'vue-search-select'
