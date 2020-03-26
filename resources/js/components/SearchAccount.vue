@@ -41,19 +41,13 @@
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <tbody><tr>
-                  <th>ID</th>
+                  <th>Code</th>
                   <th>Name</th>
-                  <th>Email</th>
-                  <th>Type</th>
-                  <th>Registered</th>
-                  <th>Modify</th>
+                  <th>Select</th>
                 </tr>
                 <tr v-for="account in accounts.data" :key="account.id">
-                  <td>{{ account.id }}</td>
-                  <td>{{ account.name }}</td>
-                  <td>{{ account.email }}</td>
-                  <td>{{ account.type | upText }}</td>
-                  <td>{{ account.created_at | formatDate }}</td>
+                  <td>{{ account.account_code }}</td>
+                  <td>{{ account.account_name }}</td>
                   <td>
                     <a href="#" @click="editUser(account)">Edit
                       <i class="fa fa-edit"></i>
@@ -108,14 +102,14 @@
         this.$emit('close');
       },
       getResults(page = 1) {
-            axios.get('api/user?page=' + page)
+            axios.get('api/account?page=' + page)
               .then(response => {
                 this.accounts = response.data;
               });
           },
       loadAccounts(){
             //if(this.$gate.isAdminOrAuthor()){
-                axios.get("api/user").then(({ data }) => (this.accounts = data));
+                axios.get("api/account").then(({ data }) => (this.accounts = data));
                 //axios.get("api/user").then(({ data }) => (this.users = data.data));
             //} 
           },     

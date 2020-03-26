@@ -3271,12 +3271,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3292,7 +3286,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      axios.get('api/user?page=' + page).then(function (response) {
+      axios.get('api/account?page=' + page).then(function (response) {
         _this.accounts = response.data;
       });
     },
@@ -3300,7 +3294,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       //if(this.$gate.isAdminOrAuthor()){
-      axios.get("api/user").then(function (_ref) {
+      axios.get("api/account").then(function (_ref) {
         var data = _ref.data;
         return _this2.accounts = data;
       }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
@@ -65680,39 +65674,21 @@ var render = function() {
                             "tbody",
                             [
                               _c("tr", [
-                                _c("th", [_vm._v("ID")]),
+                                _c("th", [_vm._v("Code")]),
                                 _vm._v(" "),
                                 _c("th", [_vm._v("Name")]),
                                 _vm._v(" "),
-                                _c("th", [_vm._v("Email")]),
-                                _vm._v(" "),
-                                _c("th", [_vm._v("Type")]),
-                                _vm._v(" "),
-                                _c("th", [_vm._v("Registered")]),
-                                _vm._v(" "),
-                                _c("th", [_vm._v("Modify")])
+                                _c("th", [_vm._v("Select")])
                               ]),
                               _vm._v(" "),
                               _vm._l(_vm.accounts.data, function(account) {
                                 return _c("tr", { key: account.id }, [
-                                  _c("td", [_vm._v(_vm._s(account.id))]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(account.name))]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(account.email))]),
-                                  _vm._v(" "),
                                   _c("td", [
-                                    _vm._v(
-                                      _vm._s(_vm._f("upText")(account.type))
-                                    )
+                                    _vm._v(_vm._s(account.account_code))
                                   ]),
                                   _vm._v(" "),
                                   _c("td", [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm._f("formatDate")(account.created_at)
-                                      )
-                                    )
+                                    _vm._v(_vm._s(account.account_name))
                                   ]),
                                   _vm._v(" "),
                                   _c("td", [
