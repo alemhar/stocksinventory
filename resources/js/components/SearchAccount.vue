@@ -45,7 +45,7 @@
                   <th>Name</th>
                   <th>Select</th>
                 </tr>
-                <tr v-for="account in chart_accounts.data" :key="account.id">
+                <tr v-for="account in accounts.data" :key="account.id">
                   <td>{{ account.account_code }}</td>
                   <td>{{ account.account_name }}</td>
                   <td>
@@ -62,7 +62,7 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-              <pagination :data="chart_accounts" @pagination-change-page="getResults"></pagination>
+              <pagination :data="accounts" @pagination-change-page="getResults"></pagination>
             </div> 
           </div>
           <!-- /.box -->
@@ -93,7 +93,7 @@
     data: function() {
       return {
         name: 'modal',
-        chart_accounts : {}
+        accounts : {}
                   
       };
     },
@@ -104,12 +104,12 @@
       getResults(page = 1) {
             axios.get('api/account?page=' + page)
               .then(response => {
-                this.chart_accounts = response.data;
+                this.accounts = response.data;
               });
           },
       loadAccounts(){
             //if(this.$gate.isAdminOrAuthor()){
-                axios.get("api/account").then(({ data }) => (this.chart_accounts = data));
+                axios.get("api/account").then(({ data }) => (this.accounts = data));
                 //axios.get("api/user").then(({ data }) => (this.users = data.data));
             //} 
           },     
