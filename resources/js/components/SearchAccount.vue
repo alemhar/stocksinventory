@@ -10,17 +10,8 @@
           class="sa-modal-header"
           id="modalTitle"
         >
-          <slot name="header">
-            Search Account
-
-            <button
-              type="button"
-              class="sa-btn-close"
-              @click="close"
-              aria-label="Close modal"
-            >
-              x
-            </button>
+          <slot name="header">Search Account
+            <button type="button" class="sa-btn-close" @click="close" aria-label="Close modal" > x </button>
           </slot>
         </header>
         <section
@@ -49,12 +40,8 @@
                   <td>{{ account.account_code }}</td>
                   <td>{{ account.account_name }}</td>
                   <td>
-                    <a href="#" @click="editUser(account)">Edit
+                    <a href="#" @click="selectAccount(account.id)">Select
                       <i class="fa fa-edit"></i>
-                    </a>
-                    |
-                    <a href="#" @click="deleteUser(account.id)"><span class="red">Delete</span>
-                      <i class="fa fa-trash"></i>
                     </a>
                   </td>
                 </tr>

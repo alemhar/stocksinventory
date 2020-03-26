@@ -3258,19 +3258,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -65626,7 +65613,7 @@ var render = function() {
             { staticClass: "sa-modal-header", attrs: { id: "modalTitle" } },
             [
               _vm._t("header", [
-                _vm._v("\n          Search Account\n\n          "),
+                _vm._v("Search Account\n          "),
                 _c(
                   "button",
                   {
@@ -65634,7 +65621,7 @@ var render = function() {
                     attrs: { type: "button", "aria-label": "Close modal" },
                     on: { click: _vm.close }
                   },
-                  [_vm._v("\n            x\n          ")]
+                  [_vm._v(" x ")]
                 )
               ])
             ],
@@ -65698,34 +65685,13 @@ var render = function() {
                                         attrs: { href: "#" },
                                         on: {
                                           click: function($event) {
-                                            return _vm.editUser(account)
+                                            return _vm.selectAccount(account.id)
                                           }
                                         }
                                       },
                                       [
-                                        _vm._v("Edit\n                    "),
+                                        _vm._v("Select\n                    "),
                                         _c("i", { staticClass: "fa fa-edit" })
-                                      ]
-                                    ),
-                                    _vm._v(
-                                      "\n                  |\n                  "
-                                    ),
-                                    _c(
-                                      "a",
-                                      {
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.deleteUser(account.id)
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c("span", { staticClass: "red" }, [
-                                          _vm._v("Delete")
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("i", { staticClass: "fa fa-trash" })
                                       ]
                                     )
                                   ])
