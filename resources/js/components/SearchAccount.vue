@@ -50,7 +50,7 @@
   </transition>
 </template>
 <script>
-  import BootstrapTable from 'bootstrap-table/dist/bootstrap-table-vue.esm.js'
+  
   export default {
     data: function() {
       return {
