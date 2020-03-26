@@ -90,11 +90,10 @@
     methods: {
       close() {
         this.$emit('close');
-      },
+      }
     },
     components: {
       BootstrapTable
-      
     }
 
 
