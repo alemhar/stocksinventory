@@ -33,7 +33,7 @@
               :columns="columns"
               :data="data"
               :options="options"
-              @on-post-body="onPostBody"
+              
             />
           </slot>
         </section>

@@ -65616,8 +65616,7 @@ var render = function() {
                     columns: _vm.columns,
                     data: _vm.data,
                     options: _vm.options
-                  },
-                  on: { "on-post-body": _vm.onPostBody }
+                  }
                 })
               ])
             ],
