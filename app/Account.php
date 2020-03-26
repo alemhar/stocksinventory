@@ -16,7 +16,7 @@ class Account extends Model
 		} else {
 			$company_id = '1';
 		}
-	    return 'accoounts_'.$company_id;
+	    return 'accounts_'.$company_id;
 	}
 	//protected $table = 'payees_'.$companyId;
 
