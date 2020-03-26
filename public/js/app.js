@@ -65680,26 +65680,24 @@ var render = function() {
                                 _c("th", [_vm._v("Modify")])
                               ]),
                               _vm._v(" "),
-                              _vm._l(_vm.accounts.data, function(accounts) {
-                                return _c("tr", { key: _vm.account.id }, [
-                                  _c("td", [_vm._v(_vm._s(_vm.account.id))]),
+                              _vm._l(_vm.accounts.data, function(account) {
+                                return _c("tr", { key: account.id }, [
+                                  _c("td", [_vm._v(_vm._s(account.id))]),
                                   _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(_vm.account.name))]),
+                                  _c("td", [_vm._v(_vm._s(account.name))]),
                                   _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(_vm.account.email))]),
+                                  _c("td", [_vm._v(_vm._s(account.email))]),
                                   _vm._v(" "),
                                   _c("td", [
                                     _vm._v(
-                                      _vm._s(_vm._f("upText")(_vm.account.type))
+                                      _vm._s(_vm._f("upText")(account.type))
                                     )
                                   ]),
                                   _vm._v(" "),
                                   _c("td", [
                                     _vm._v(
                                       _vm._s(
-                                        _vm._f("formatDate")(
-                                          _vm.account.created_at
-                                        )
+                                        _vm._f("formatDate")(account.created_at)
                                       )
                                     )
                                   ]),
@@ -65711,7 +65709,7 @@ var render = function() {
                                         attrs: { href: "#" },
                                         on: {
                                           click: function($event) {
-                                            return _vm.editUser(_vm.account)
+                                            return _vm.editUser(account)
                                           }
                                         }
                                       },
@@ -65729,9 +65727,7 @@ var render = function() {
                                         attrs: { href: "#" },
                                         on: {
                                           click: function($event) {
-                                            return _vm.deleteUser(
-                                              _vm.account.id
-                                            )
+                                            return _vm.deleteUser(account.id)
                                           }
                                         }
                                       },

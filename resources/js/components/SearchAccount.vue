@@ -48,7 +48,7 @@
                   <th>Registered</th>
                   <th>Modify</th>
                 </tr>
-                <tr v-for="accounts in accounts.data" :key="account.id">
+                <tr v-for="account in accounts.data" :key="account.id">
                   <td>{{ account.id }}</td>
                   <td>{{ account.name }}</td>
                   <td>{{ account.email }}</td>
