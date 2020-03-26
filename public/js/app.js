@@ -84674,6 +84674,7 @@ Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]);
 Vue.use(vue_dynamic_select__WEBPACK_IMPORTED_MODULE_5__["default"]);
 Vue.component('DynamicSelect', vue_dynamic_select__WEBPACK_IMPORTED_MODULE_5__["default"]);
 
+Vue.use(bootstrap_table_dist_bootstrap_table_vue_esm_js__WEBPACK_IMPORTED_MODULE_6__["default"]);
 Vue.component('BootstrapTable', bootstrap_table_dist_bootstrap_table_vue_esm_js__WEBPACK_IMPORTED_MODULE_6__["default"]); //import ModelSelect from 'vue-search-select'
 //Vue.use(ModelSelect);
 //Vue.component('ModelSelect', ModelSelect);
