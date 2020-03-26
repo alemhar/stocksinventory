@@ -33,7 +33,7 @@
             <div class="box-header">
               <h3 class="box-title">Users List</h3>
               <div class="box-tools">
-                <button class="btn btn-success" @click="newUser">Add New  <i class="fas fa-user-plus fa-fw"></i></button>
+                <input type="text" class="form-control col-2" id="searchAccountCode" placeholder="Code"  v-model="">
               </div>
             </div>
 
