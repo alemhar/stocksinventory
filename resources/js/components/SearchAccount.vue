@@ -28,7 +28,13 @@
           id="modalDescription"
         >
           <slot name="body">
-            <bootstrap-table :columns="columns" :data="data" :options="options"></bootstrap-table>
+            <BootstrapTable
+              ref="table"
+              :columns="columns"
+              :data="data"
+              :options="options"
+              @on-post-body="onPostBody"
+            />
           </slot>
         </section>
         <footer class="sa-modal-footer">
@@ -52,7 +58,7 @@
 <script>
   export default {
     name: 'modal',
-
+    
     methods: {
       close() {
         this.$emit('close');
@@ -60,7 +66,33 @@
     },
     mounted: {
 
-    }
+    },
+              data: {
+                columns: [
+                  {
+                    title: 'Item ID',
+                    field: 'id'
+                  },
+                  {
+                    field: 'name',
+                    title: 'Item Name'
+                  }, {
+                    field: 'price',
+                    title: 'Item Price'
+                  }
+                ],
+                data: [
+                  {
+                    id: 1,
+                    name: 'Item 1',
+                    price: '$1'
+                  }
+                ],
+                options: {
+                  search: true,
+                  showColumns: true
+                }
+              }
   };
       
   

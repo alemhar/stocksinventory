@@ -2381,28 +2381,7 @@ __webpack_require__.r(__webpack_exports__);
         value: '5',
         text: 'de' + ' - ' + '5'
       }],
-      item: {},
-      data: {
-        columns: [{
-          title: 'Item ID',
-          field: 'id'
-        }, {
-          field: 'name',
-          title: 'Item Name'
-        }, {
-          field: 'price',
-          title: 'Item Price'
-        }],
-        data: [{
-          id: 1,
-          name: 'Item 1',
-          price: '$1'
-        }],
-        options: {
-          search: true,
-          showColumns: true
-        }
-      }
+      item: {}
     };
   },
   methods: {
@@ -3254,6 +3233,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'modal',
   methods: {
@@ -3261,7 +3246,28 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit('close');
     }
   },
-  mounted: {}
+  mounted: {},
+  data: {
+    columns: [{
+      title: 'Item ID',
+      field: 'id'
+    }, {
+      field: 'name',
+      title: 'Item Name'
+    }, {
+      field: 'price',
+      title: 'Item Price'
+    }],
+    data: [{
+      id: 1,
+      name: 'Item 1',
+      price: '$1'
+    }],
+    options: {
+      search: true,
+      showColumns: true
+    }
+  }
 });
 
 /***/ }),
@@ -65602,12 +65608,14 @@ var render = function() {
             { staticClass: "sa-modal-body", attrs: { id: "modalDescription" } },
             [
               _vm._t("body", [
-                _c("bootstrap-table", {
+                _c("BootstrapTable", {
+                  ref: "table",
                   attrs: {
                     columns: _vm.columns,
                     data: _vm.data,
                     options: _vm.options
-                  }
+                  },
+                  on: { "on-post-body": _vm.onPostBody }
                 })
               ])
             ],
