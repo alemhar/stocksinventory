@@ -283,7 +283,33 @@
                 { value: '4', text: 'cd' + ' - ' + '4' },
                 { value: '5', text: 'de' + ' - ' + '5' }
               ],
-              item: {}
+              item: {},
+              data: {
+                columns: [
+                  {
+                    title: 'Item ID',
+                    field: 'id'
+                  },
+                  {
+                    field: 'name',
+                    title: 'Item Name'
+                  }, {
+                    field: 'price',
+                    title: 'Item Price'
+                  }
+                ],
+                data: [
+                  {
+                    id: 1,
+                    name: 'Item 1',
+                    price: '$1'
+                  }
+                ],
+                options: {
+                  search: true,
+                  showColumns: true
+                }
+              }
 
           }
         },
