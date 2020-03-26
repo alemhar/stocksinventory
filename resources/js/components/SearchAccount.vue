@@ -121,10 +121,12 @@
         this.$emit('close');
       },
     },
-  };
-  $(document).ready(function() {
+    mounted: {
       $('#accounts-table').DataTable();
-  } );
+    }
+  };
+      
+  
 </script>
 
 <style>
