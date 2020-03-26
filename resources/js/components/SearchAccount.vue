@@ -155,6 +155,7 @@
     display: flex;
     flex-direction: column;
     width: 600px;
+    height: 400px;
   }
 
   .sa-modal-header,
