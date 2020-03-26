@@ -26,9 +26,9 @@ Route::apiResources([
 ]);
 
 Route::apiResources([
-    'account' => 'API\AccountController'
+    'chartaccount' => 'API\AccountController'
 ]);
 
-//Route::get('account', 'API\UserController@account');
+Route::get('account', 'API\UserController@account');
 Route::get('findUser', 'API\UserController@search');
 Route::put('account', 'API\UserController@updateAccountInfo');

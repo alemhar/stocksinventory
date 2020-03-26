@@ -102,14 +102,14 @@
         this.$emit('close');
       },
       getResults(page = 1) {
-            axios.get('api/account?page=' + page)
+            axios.get('api/chartaccount?page=' + page)
               .then(response => {
                 this.accounts = response.data;
               });
           },
       loadAccounts(){
             //if(this.$gate.isAdminOrAuthor()){
-                axios.get("api/account").then(({ data }) => (this.accounts = data));
+                axios.get("api/chartaccount").then(({ data }) => (this.accounts = data));
                 //axios.get("api/user").then(({ data }) => (this.users = data.data));
             //} 
           },     
