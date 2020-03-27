@@ -3295,7 +3295,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var query = this.searchtxt;
       axios.get('api/searchAccount?q=' + query).then(function (data) {
-        _this3.accounts = data;
+        _this3.accounts = data.data;
       })["catch"](function () {//
       });
     }

@@ -108,7 +108,7 @@
             let query = this.searchtxt;
                 axios.get('api/searchAccount?q='+query)
                 .then((data)=>{
-                  this.accounts = data;
+                  this.accounts = data.data;
 
                 })
                 .catch(()=>{
