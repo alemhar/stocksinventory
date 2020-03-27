@@ -78,11 +78,11 @@
                     </select -->
                     <div class="input-group">
                     
-                    <input v-bind:readonly="cd_created" type="text" class="form-control col-10" id="inputAccountCode" placeholder="Code"  v-model="form.account_code">
+                    <input v-bind:readonly="cd_created" type="text" class="form-control col-2" id="inputAccountCode" placeholder="Code"  v-model="form.account_code">
 
-                    <input readonly="true" type="text" class="form-control col-10" id="inputAccountName" placeholder="Account Name" v-model="form.account_name">
+                    <input readonly="true" type="text" class="form-control col-9" id="inputAccountName" placeholder="Account Name" v-model="form.account_name">
 
-                    <span class="input-group-btn col-2">
+                    <span class="input-group-btn col-1">
                         <button type="button" v-show="!cd_created" class="btn btn-success" @click="searchAccount"><i class="fas fa-search fa-fw"></i></button>
 
                     </span>
@@ -215,6 +215,92 @@
         <div class="row mt-1" v-if="!$gate.isAdminOrAuthor()">
           <not-found></not-found>
         </div>  
+
+
+      <!-- Entry Modal -->
+      <div class="modal fade" id="entry-details" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add New</h5>
+              <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update Entry</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form @submit.prevent="editmode ? updatePayee() : createPayee()">
+            <div class="modal-body">
+              
+              <div class="form-group">
+                <input v-model="form_entry.account_code" type="text" name="account_code"
+                  placeholder="Account Code"
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('account_code') }" >
+                <has-error :form="form_entry" field="account_code"></has-error>
+              </div>
+              <div class="form-group">
+                <input v-model="form_entry.account_name" type="text" name="account_name"
+                  placeholder="Account Name"
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('account_name') }" >
+                <has-error :form="form_entry" field="account_name"></has-error>
+              </div>
+              <div class="form-group">
+                <input v-model="form_entry.entry_name" type="text" name="entry_name"
+                  placeholder="Name"
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('entry_name') }" >
+                <has-error :form="form_entry" field="entry_name"></has-error>
+              </div>
+              <div class="form-group">
+                <input v-model="form_entry.entry_description" type="text" name="entry_description"
+                  placeholder="Description"
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('entry_description') }" >
+                <has-error :form="form_entry" field="entry_description"></has-error>
+              </div>
+
+              <div class="form-group">
+                  <input v-model="form_entry.branch_code" name="branch_code" id="branch_code"
+                  placeholder="Branch Code"
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('branch_code') }">
+                  <has-error :form="form_entry" field="branch_code"></has-error>
+              </div>
+
+
+
+
+              <div class="form-group">
+                  <input v-model="form_entry.amount" name="amount" id="amount"
+                  placeholder="Amount"
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount') }">
+                  <has-error :form="form_entry" field="amount"></has-error>
+              </div>
+
+              <div class="form-group">
+                  <input v-model="form_entry.amount_ex_tax" name="amount_ex_tax" id="amount_ex_tax"
+                  placeholder="Amount Excluding Tax"
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount_ex_tax') }">
+                  <has-error :form="form_entry" field="amount_ex_tax"></has-error>
+              </div>
+
+
+              <div class="form-group">
+                  <input v-model="form_entry.vat" name="vat" id="vat"
+                  placeholder="Vat"
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('vat') }">
+                  <has-error :form="form_entry" field="vat"></has-error>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              <button v-show="editmode" type="submit" class="btn btn-success">Update</button>
+              <button v-show="!editmode" type="submit" class="btn btn-primary">Create</button>
+            </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Entry Modal -->
+
     
 
       
@@ -411,8 +497,8 @@
             this.isModalVisible = false;
             this.form.account_name = name;
             this.form.account_code = code;
-            
             console.log(code+' '+name);
+
           }
           // ,
           // createUser(){
