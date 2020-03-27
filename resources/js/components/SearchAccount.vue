@@ -59,15 +59,13 @@
         </section>
         <footer class="sa-modal-footer">
           <slot name="footer">
-            I'm the default footer!
-
             <button
               type="button"
-              class="sa-btn-green"
+              class="sa-btn-green float-right"
               @click="close"
               aria-label="Close modal"
             >
-              Close me!
+              Cancel
             </button>
           </slot>
         </footer>
@@ -164,7 +162,7 @@
 
   .sa-modal-body {
     position: relative;
-    padding: 20px 10px;
+    padding: 10px 10px;
   }
 
   .sa-btn-close {
