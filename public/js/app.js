@@ -3259,6 +3259,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -65611,8 +65612,8 @@ var render = function() {
         },
         [
           _c(
-            "header",
-            { staticClass: "sa-modal-header", attrs: { id: "modalTitle" } },
+            "section",
+            { staticClass: "sa-modal-body", attrs: { id: "modalDescription" } },
             [
               _c(
                 "button",
@@ -65622,14 +65623,8 @@ var render = function() {
                   on: { click: _vm.close }
                 },
                 [_vm._v(" x ")]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "section",
-            { staticClass: "sa-modal-body", attrs: { id: "modalDescription" } },
-            [
+              ),
+              _vm._v(" "),
               _vm._t("body", [
                 _c("div", { staticClass: "col-md-12" }, [
                   _c("div", { staticClass: "box" }, [

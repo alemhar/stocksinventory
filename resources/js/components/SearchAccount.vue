@@ -6,19 +6,20 @@
         aria-labelledby="modalTitle"
         aria-describedby="modalDescription"
       >
-        <header
+        <!--header
           class="sa-modal-header"
           id="modalTitle"
         >
-          <!--slot name="header">Search Account
+          <slot name="header">Search Account
             
-          </slot-->
-          <button type="button" class="sa-btn-close" @click="close" aria-label="Close modal" > x </button>
-        </header>
+          </slot>
+          
+        </header-->
         <section
           class="sa-modal-body"
           id="modalDescription"
         >
+        <button type="button" class="sa-btn-close" @click="close" aria-label="Close modal" > x </button>
           <slot name="body">
             <div class="col-md-12">
           <div class="box">
