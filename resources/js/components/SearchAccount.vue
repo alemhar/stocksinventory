@@ -41,7 +41,7 @@
                   <td>{{ account.account_code }}</td>
                   <td>{{ account.account_name }}</td>
                   <td>
-                    <a href="#" @click="close(account.id)">Select
+                    <a href="#" @click="close(account.account_code,account.account_name)">Select
                       <i class="fa fa-edit"></i>
                     </a>
                   </td>

@@ -2498,9 +2498,11 @@ __webpack_require__.r(__webpack_exports__);
     searchAccount: function searchAccount() {
       this.isModalVisible = true;
     },
-    closeSearchAccount: function closeSearchAccount(id) {
+    closeSearchAccount: function closeSearchAccount() {
+      var code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
       this.isModalVisible = false;
-      console.log(id);
+      console.log(code + ' ' + name);
     } // ,
     // createUser(){
     //   this.$Progress.start()
@@ -65722,7 +65724,10 @@ var render = function() {
                                         attrs: { href: "#" },
                                         on: {
                                           click: function($event) {
-                                            return _vm.close(account.id)
+                                            return _vm.close(
+                                              account.account_code,
+                                              account.account_name
+                                            )
                                           }
                                         }
                                       },

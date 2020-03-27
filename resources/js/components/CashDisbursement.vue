@@ -407,9 +407,9 @@
           searchAccount() {
             this.isModalVisible = true;
           },
-          closeSearchAccount(id) {
+          closeSearchAccount(code = null,name = null) {
             this.isModalVisible = false;
-            console.log(id);
+            console.log(code+' '+name);
           }
           // ,
           // createUser(){
