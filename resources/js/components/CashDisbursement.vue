@@ -305,6 +305,39 @@
       </div>
       <!-- Entry Modal -->
 
+
+      <!-- Search Account Modal -->
+      <div class="modal fade" id="entry-details" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <!--h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add New</h5>
+              <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update Entry</h5 -->
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form @submit.prevent="editmode ? updatePayee() : createPayee()">
+            <div class="modal-body">
+              
+              <div class="input-group">
+                <input type="text" name="search" class="float-right col-2">
+              </div>
+              
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              <button v-show="editmode" type="submit" class="btn btn-success">Update</button>
+              <button v-show="!editmode" type="submit" class="btn btn-primary">Create</button>
+            </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Search Account Modal -->
+
     
 
       
