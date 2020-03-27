@@ -63784,10 +63784,7 @@ var render = function() {
                                     ],
                                     staticClass: "btn btn-success",
                                     attrs: { type: "button" },
-                                    on: {
-                                      click: _vm.searchAccount,
-                                      childToParent: _vm.onSearchSelect
-                                    }
+                                    on: { click: _vm.searchAccount }
                                   },
                                   [
                                     _c("i", {
