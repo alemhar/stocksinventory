@@ -324,6 +324,29 @@
                 <input type="text" name="search" class="float-right col-2">
               </div>
               
+              <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tbody><tr>
+                  <th>ID</th>
+                  <th>Code</th>
+                  <th>Name</th>
+                  <th>Option</th>
+                </tr>
+                <tr v-for="chart_of_account in chart_of_accounts.data" :key="chart_of_account.id">
+                  <td>{{ chart_of_account.id }}</td>
+                  <td>{{ chart_of_account.account_code }}</td>
+                  <td>{{ chart_of_account.account_name }}</td>
+                  <td>
+                    <a href="#" @click="selectAccount(chart_of_account.id)">Select
+                      <i class="fa fa-edit"></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody></table>
+            </div>
+            <!-- /.box-body -->
+
 
             </div>
             <div class="modal-footer">
