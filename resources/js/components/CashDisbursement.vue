@@ -113,6 +113,25 @@
             </form>
           </div>
 
+
+
+
+      <!-- Debit List     
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      -->
+
+
           <div  v-show="cd_created" class="box box-warning mt-2">
             <div class="col-md-12">
               <div class="box">
@@ -122,6 +141,7 @@
                     <button class="btn btn-success" @click="newEntry">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
                 </div>
+
 
                 <!-- /.box-header -->
                 <div id="debits-list" class="box-body table-responsive no-padding">
@@ -217,7 +237,22 @@
         </div>  
 
 
-      <!-- Entry Modal -->
+      <!-- Entry Modal
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      -->
+
+
       <div class="modal fade" id="entry-details" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -306,7 +341,23 @@
       <!-- Entry Modal -->
 
 
-      <!-- Search Account Modal -->
+      
+
+      <!-- Search Account Modal 
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      -->
+
       <div class="modal fade" id="select-account" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -328,17 +379,15 @@
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <tbody><tr>
-                  <th>ID</th>
                   <th>Code</th>
                   <th>Name</th>
                   <th>Option</th>
                 </tr>
                 <tr v-for="chart_of_account in chart_of_accounts.data" :key="chart_of_account.id">
-                  <td>{{ chart_of_account.id }}</td>
                   <td>{{ chart_of_account.account_code }}</td>
                   <td>{{ chart_of_account.account_name }}</td>
                   <td>
-                    <a href="#" @click="selectAccount(chart_of_account.id)">Select
+                    <a href="#" @click="selectAccount(chart_of_account.account_code,chart_of_account.account_name)">Select
                       <i class="fa fa-edit"></i>
                     </a>
                   </td>
@@ -560,6 +609,15 @@
           },
           searchAccountModal(){
               $('#select-account').modal('show');
+          },
+          selectAccount(account_code  = null,account_name = null){
+              if (account_code != null && account_name != null){
+                  this.form.account_name = account_name;
+                  this.form.account_code = account_code;
+              }
+
+              $('#select-account').modal('hide');  
+
           }
           // ,
           // createUser(){

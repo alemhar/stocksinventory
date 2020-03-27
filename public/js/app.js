@@ -2471,6 +2471,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -2646,6 +2695,17 @@ __webpack_require__.r(__webpack_exports__);
     },
     searchAccountModal: function searchAccountModal() {
       $('#select-account').modal('show');
+    },
+    selectAccount: function selectAccount() {
+      var account_code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      var account_name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+      if (account_code != null && account_name != null) {
+        this.form.account_name = account_name;
+        this.form.account_code = account_code;
+      }
+
+      $('#select-account').modal('hide');
     } // ,
     // createUser(){
     //   this.$Progress.start()
@@ -64764,10 +64824,6 @@ var render = function() {
                                     { key: chart_of_account.id },
                                     [
                                       _c("td", [
-                                        _vm._v(_vm._s(chart_of_account.id))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
                                         _vm._v(
                                           _vm._s(chart_of_account.account_code)
                                         )
@@ -64787,7 +64843,8 @@ var render = function() {
                                             on: {
                                               click: function($event) {
                                                 return _vm.selectAccount(
-                                                  chart_of_account.id
+                                                  chart_of_account.account_code,
+                                                  chart_of_account.account_name
                                                 )
                                               }
                                             }
@@ -65097,8 +65154,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", [
-      _c("th", [_vm._v("ID")]),
-      _vm._v(" "),
       _c("th", [_vm._v("Code")]),
       _vm._v(" "),
       _c("th", [_vm._v("Name")]),
