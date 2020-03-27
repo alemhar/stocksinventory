@@ -3178,132 +3178,9 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SearchAccount.vue?vue&type=script&lang=js& ***!
   \************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var _this3 = undefined;
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  searchtxt: '',
-  data: function data() {
-    return {
-      name: 'modal',
-      accounts: {}
-    };
-  },
-  methods: {
-    close: function close() {
-      this.$emit('close');
-    },
-    getResults: function getResults() {
-      var _this = this;
-
-      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      axios.get('api/chartaccount?page=' + page).then(function (response) {
-        _this.accounts = response.data;
-      });
-    },
-    loadAccounts: function loadAccounts() {
-      var _this2 = this;
-
-      //if(this.$gate.isAdminOrAuthor()){
-      axios.get("api/chartaccount").then(function (_ref) {
-        var data = _ref.data;
-        return _this2.accounts = data;
-      }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
-      //} 
-    },
-    SearchIt: _.debounce(function () {
-      var query = _this3.searchtxt;
-      axios.get('api/searchAccount?q=' + query).then(function (data) {
-        _this3.accounts = data;
-      })["catch"](function () {//
-      });
-    }, 1000)
-  },
-  created: function created() {
-    this.loadAccounts();
-  },
-  components: {//BootstrapTable
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: D:\\stocksinventory\\resources\\js\\components\\SearchAccount.vue: Unexpected token (103:4)\n\n  101 |           //} \n  102 |         },\n> 103 |     ,\n      |     ^\n  104 |     test(){\n  105 |          console.log(this.searchtxt); \n  106 |         },     \n    at Parser.raise (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:6400:17)\n    at Parser.unexpected (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:7728:16)\n    at Parser.parseIdentifierName (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9624:18)\n    at Parser.parseIdentifier (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9598:23)\n    at Parser.parseMaybePrivateName (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8962:19)\n    at Parser.parsePropertyName (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9418:98)\n    at Parser.parseObjectMember (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9319:10)\n    at Parser.parseObj (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9253:25)\n    at Parser.parseExprAtom (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8883:28)\n    at Parser.parseExprSubscripts (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8507:23)\n    at Parser.parseMaybeUnary (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8487:21)\n    at Parser.parseExprOps (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8353:23)\n    at Parser.parseMaybeConditional (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8326:23)\n    at Parser.parseMaybeAssign (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8273:21)\n    at Parser.parseObjectProperty (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9380:101)\n    at Parser.parseObjPropValue (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9405:101)\n    at Parser.parseObjectMember (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9329:10)\n    at Parser.parseObj (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9253:25)\n    at Parser.parseExprAtom (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8883:28)\n    at Parser.parseExprSubscripts (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8507:23)\n    at Parser.parseMaybeUnary (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8487:21)\n    at Parser.parseExprOps (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8353:23)\n    at Parser.parseMaybeConditional (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8326:23)\n    at Parser.parseMaybeAssign (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8273:21)\n    at Parser.parseExportDefaultExpression (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:11113:24)\n    at Parser.parseExport (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:11008:31)\n    at Parser.parseStatementContent (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10036:27)\n    at Parser.parseStatement (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9932:17)\n    at Parser.parseBlockOrModuleBlockBody (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10508:25)\n    at Parser.parseBlockBody (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10495:10)\n    at Parser.parseTopLevel (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9861:10)\n    at Parser.parse (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:11373:17)\n    at parse (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:11409:38)\n    at parser (D:\\stocksinventory\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:168:34)\n    at normalizeFile (D:\\stocksinventory\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:102:11)\n    at runSync (D:\\stocksinventory\\node_modules\\@babel\\core\\lib\\transformation\\index.js:44:43)");
 
 /***/ }),
 
@@ -65651,6 +65528,14 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "box-tools" }, [
                         _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.searchtxt,
+                              expression: "searchtxt"
+                            }
+                          ],
                           staticClass: "form-control col-12",
                           attrs: {
                             type: "text",
@@ -65659,11 +65544,14 @@ var render = function() {
                           },
                           domProps: { value: _vm.searchtxt },
                           on: {
-                            input: function($event) {
-                              _vm.searchtxt = $event.target.value
-                            },
                             keyup: function($event) {
                               return _vm.SearchIt()
+                            },
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.searchtxt = $event.target.value
                             }
                           }
                         })
