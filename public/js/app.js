@@ -2498,8 +2498,9 @@ __webpack_require__.r(__webpack_exports__);
     searchAccount: function searchAccount() {
       this.isModalVisible = true;
     },
-    closeSearchAccount: function closeSearchAccount() {
+    closeSearchAccount: function closeSearchAccount(id) {
       this.isModalVisible = false;
+      console.log(id);
     } // ,
     // createUser(){
     //   this.$Progress.start()
@@ -3260,14 +3261,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      name: 'modal',
+      name: 'SearchAccount',
       searchtxt: '',
       accounts: {}
     };
   },
   methods: {
     close: function close() {
-      this.$emit('close');
+      var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      this.$emit('close', id);
     },
     getResults: function getResults() {
       var _this = this;
@@ -3303,6 +3305,9 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.loadAccounts();
     this.SearchIt = _.debounce(this.SearchIt, 1000);
+    /*
+      All we're doing is taking our function, wrapping it in the debounce function, and returning a new one that has the debouncing built in. Now when we call this.SearchIt() on our Vue component we will be calling the debounced version!
+    */
   },
   components: {//BootstrapTable
   }
@@ -63779,7 +63784,10 @@ var render = function() {
                                     ],
                                     staticClass: "btn btn-success",
                                     attrs: { type: "button" },
-                                    on: { click: _vm.searchAccount }
+                                    on: {
+                                      click: _vm.searchAccount,
+                                      childToParent: _vm.onSearchSelect
+                                    }
                                   },
                                   [
                                     _c("i", {
@@ -65717,7 +65725,7 @@ var render = function() {
                                         attrs: { href: "#" },
                                         on: {
                                           click: function($event) {
-                                            return _vm.selectAccount(account.id)
+                                            return _vm.close(account.id)
                                           }
                                         }
                                       },

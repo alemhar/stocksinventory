@@ -41,7 +41,7 @@
                   <td>{{ account.account_code }}</td>
                   <td>{{ account.account_name }}</td>
                   <td>
-                    <a href="#" @click="selectAccount(account.id)">Select
+                    <a href="#" @click="close(account.id)">Select
                       <i class="fa fa-edit"></i>
                     </a>
                   </td>
@@ -79,15 +79,15 @@
     
     data: function() {
       return {
-        name: 'modal',
+        name: 'SearchAccount',
         searchtxt: '',
         accounts : {}
                   
       };
     },
     methods: {
-      close() {
-        this.$emit('close');
+      close(id = null) {
+        this.$emit('close', id);
       },
       getResults(page = 1) {
             axios.get('api/chartaccount?page=' + page)
@@ -115,11 +115,15 @@
                   //
                 });
 
-        }       
+        },
+          
     },
     created() {
       this.loadAccounts();
       this.SearchIt = _.debounce(this.SearchIt, 1000);
+      /*
+        All we're doing is taking our function, wrapping it in the debounce function, and returning a new one that has the debouncing built in. Now when we call this.SearchIt() on our Vue component we will be calling the debounced version!
+      */
     },  
     components: {
       //BootstrapTable
