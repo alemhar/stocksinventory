@@ -10,7 +10,7 @@
           class="sa-modal-header"
           id="modalTitle"
         >
-          <slot name="header">Search Account>
+          <slot name="header">
             <button type="button" class="sa-btn-close" @click="close" aria-label="Close modal" > x </button>
           </slot>
           

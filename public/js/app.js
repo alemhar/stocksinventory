@@ -65615,7 +65615,6 @@ var render = function() {
             { staticClass: "sa-modal-header", attrs: { id: "modalTitle" } },
             [
               _vm._t("header", [
-                _vm._v("Search Account>\n          "),
                 _c(
                   "button",
                   {
