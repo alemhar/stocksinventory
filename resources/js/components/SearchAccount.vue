@@ -135,14 +135,14 @@
     overflow-x: auto;
     display: flex;
     flex-direction: column;
-    width: 600px;
+    width: 650px;
     height: 400px;
   }
 
   .sa-modal-header,
   .sa-modal-footer {
-    padding: 15px;
-    display: flex;
+    padding: 5px;
+    /*display: flex;*/
   }
 
   .sa-modal-header {
