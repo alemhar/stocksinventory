@@ -3260,9 +3260,9 @@ var _this3 = undefined;
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  searchtxt: '',
   data: function data() {
     return {
-      searchtxt: null,
       name: 'modal',
       accounts: {}
     };
