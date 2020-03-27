@@ -78,7 +78,7 @@
   export default {
     data: function() {
       return {
-        searchtxt: '',
+        searchtxt: null,
         name: 'modal',
         accounts : {}
                   
