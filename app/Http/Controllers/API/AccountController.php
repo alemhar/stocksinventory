@@ -92,13 +92,16 @@ class AccountController extends Controller
 
     public function search(){
         if ($search = \Request::get('q')) {
-            $users = Account::where(function($query) use ($search){
+            /*
+            $accounts = Account::where(function($query) use ($search){
                 $query->where('account_code','LIKE',"%$search%")
                         ->orWhere('account_name','LIKE',"%$search%");
             })->paginate(20);
+            */
+            $accounts = Account::latest()->paginate(2);
         }else{
-            $users = Account::latest()->paginate(10);
+            $accounts = Account::latest()->paginate(10);
         }
-        return $users;
+        return $accounts;
     }
 }
