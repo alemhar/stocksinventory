@@ -65671,18 +65671,6 @@ var render = function() {
                           domProps: { value: _vm.searchtxt },
                           on: {
                             keyup: function($event) {
-                              if (
-                                !$event.type.indexOf("key") &&
-                                _vm._k(
-                                  $event.keyCode,
-                                  "enter",
-                                  13,
-                                  $event.key,
-                                  "Enter"
-                                )
-                              ) {
-                                return null
-                              }
                               return _vm.SearchIt()
                             },
                             input: function($event) {

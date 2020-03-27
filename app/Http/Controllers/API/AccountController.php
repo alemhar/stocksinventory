@@ -95,7 +95,7 @@ class AccountController extends Controller
             $accounts = Account::where(function($query) use ($search){
                 $query->where('account_code','LIKE',"%$search%")
                         ->orWhere('account_name','LIKE',"%$search%");
-            })->paginate(20);
+            })->paginate(10);
 
         }else{
             $accounts = Account::latest()->paginate(10);
