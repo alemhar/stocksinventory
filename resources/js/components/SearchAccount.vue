@@ -10,9 +10,9 @@
           class="sa-modal-header"
           id="modalTitle"
         >
-          <slot name="header">Search Account
+          <!-- slot name="header">Search Account -->
             <button type="button" class="sa-btn-close" @click="close" aria-label="Close modal" > x </button>
-          </slot>
+          <!-- /slot -->
           
         </header>
         <section
@@ -152,7 +152,7 @@
   }
 
   .sa-modal-header {
-    border-bottom: 1px solid #eeeeee;
+    /*border-bottom: 1px solid #eeeeee;*/
     color: #4AAE9B;
     justify-content: space-between;
   }
