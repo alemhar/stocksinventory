@@ -100,7 +100,6 @@
                 //axios.get("api/user").then(({ data }) => (this.users = data.data));
             //} 
           },
-      ,
       test(){
            console.log(this.searchtxt); 
           },     
