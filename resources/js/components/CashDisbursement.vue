@@ -399,14 +399,7 @@
               }),
               payees: {},
               current_payee: {},
-              options: [
-                { value: '1', text: 'aa' + ' - ' + '1' },
-                { value: '2', text: 'ab' + ' - ' + '2' },
-                { value: '3', text: 'bc' + ' - ' + '3' },
-                { value: '4', text: 'cd' + ' - ' + '4' },
-                { value: '5', text: 'de' + ' - ' + '5' }
-              ],
-              item: {}
+              chart_of_accounts: {}
 
           }
         },
@@ -478,6 +471,11 @@
             } 
              
           },
+          loadChartAccounts(){
+                axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
+                
+             
+          }
           eventChild(Obj){
             console.log(Obj.id);
             this.form.payee_id = Obj.id;
