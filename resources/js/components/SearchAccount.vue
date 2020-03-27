@@ -103,7 +103,7 @@
       test(){
            console.log(this.searchtxt); 
           },     
-      SearchIt: _.debounce(() => {
+      SearchIt() {
             let query = this.searchtxt;
                 axios.get('api/searchAccount?q='+query)
                 .then((data)=>{
@@ -114,10 +114,11 @@
                   //
                 });
 
-        },1000)        
+        }       
     },
     created() {
       this.loadAccounts();
+      this.SearchIt = _.debounce(this.SearchIt, 1000);
     },  
     components: {
       //BootstrapTable

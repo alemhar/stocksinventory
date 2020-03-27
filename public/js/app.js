@@ -3182,8 +3182,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var _this3 = undefined;
-
 //
 //
 //
@@ -3292,16 +3290,19 @@ var _this3 = undefined;
     test: function test() {
       console.log(this.searchtxt);
     },
-    SearchIt: _.debounce(function () {
-      var query = _this3.searchtxt;
+    SearchIt: function SearchIt() {
+      var _this3 = this;
+
+      var query = this.searchtxt;
       axios.get('api/searchAccount?q=' + query).then(function (data) {
         _this3.accounts = data;
       })["catch"](function () {//
       });
-    }, 1000)
+    }
   },
   created: function created() {
     this.loadAccounts();
+    this.SearchIt = _.debounce(this.SearchIt, 1000);
   },
   components: {//BootstrapTable
   }
