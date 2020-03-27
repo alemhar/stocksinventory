@@ -11,7 +11,7 @@
           id="modalTitle"
         >
           <slot name="header">
-            <button type="button" class="sa-btn-close" @click="close" aria-label="Close modal" > x </button>
+            <button type="button" class="sa-btn-close float-right" @click="close" aria-label="Close modal" > x </button>
           </slot>
           
         </header>
@@ -170,7 +170,7 @@
   .sa-btn-close {
     border: none;
     font-size: 20px;
-    /*padding: 20px; */
+    padding: 0px 20px;
     cursor: pointer;
     font-weight: bold;
     color: #4AAE9B;

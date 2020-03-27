@@ -8796,7 +8796,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.sa-modal-backdrop {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: rgba(0, 0, 0, 0.3);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.sa-modal {\n  background: #FFFFFF;\n  box-shadow: 2px 2px 20px 1px;\n  overflow-x: auto;\n  display: flex;\n  flex-direction: column;\n  width: 650px;\n  height: 400px;\n}\n.sa-modal-footer {\n  padding: 5px;\n  /*display: flex;*/\n}\n.sa-modal-header {\n  /*padding: 5px; */\n  /*display: flex;*/\n}\n.sa-modal-header {\n  /*border-bottom: 1px solid #eeeeee;*/\n  color: #4AAE9B;\n  justify-content: space-between;\n}\n.sa-modal-footer {\n  border-top: 1px solid #eeeeee;\n  justify-content: flex-end;\n}\n.sa-modal-body {\n  position: relative;\n  padding: 20px 10px;\n}\n.sa-btn-close {\n  border: none;\n  font-size: 20px;\n  /*padding: 20px; */\n  cursor: pointer;\n  font-weight: bold;\n  color: #4AAE9B;\n  background: transparent;\n}\n.sa-btn-green {\n  color: white;\n  background: #4AAE9B;\n  border: 1px solid #4AAE9B;\n  border-radius: 2px;\n}\n.sa-modal-fade-enter,\n.sa-modal-fade-leave-active {\n  opacity: 0;\n}\n.sa-modal-fade-enter-active,\n.sa-modal-fade-leave-active {\n  transition: opacity .5s ease\n}\n", ""]);
+exports.push([module.i, "\n.sa-modal-backdrop {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: rgba(0, 0, 0, 0.3);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.sa-modal {\n  background: #FFFFFF;\n  box-shadow: 2px 2px 20px 1px;\n  overflow-x: auto;\n  display: flex;\n  flex-direction: column;\n  width: 650px;\n  height: 400px;\n}\n.sa-modal-footer {\n  padding: 5px;\n  /*display: flex;*/\n}\n.sa-modal-header {\n  /*padding: 5px; */\n  /*display: flex;*/\n}\n.sa-modal-header {\n  /*border-bottom: 1px solid #eeeeee;*/\n  color: #4AAE9B;\n  justify-content: space-between;\n}\n.sa-modal-footer {\n  border-top: 1px solid #eeeeee;\n  justify-content: flex-end;\n}\n.sa-modal-body {\n  position: relative;\n  padding: 20px 10px;\n}\n.sa-btn-close {\n  border: none;\n  font-size: 20px;\n  padding: 0px 20px;\n  cursor: pointer;\n  font-weight: bold;\n  color: #4AAE9B;\n  background: transparent;\n}\n.sa-btn-green {\n  color: white;\n  background: #4AAE9B;\n  border: 1px solid #4AAE9B;\n  border-radius: 2px;\n}\n.sa-modal-fade-enter,\n.sa-modal-fade-leave-active {\n  opacity: 0;\n}\n.sa-modal-fade-enter-active,\n.sa-modal-fade-leave-active {\n  transition: opacity .5s ease\n}\n", ""]);
 
 // exports
 
@@ -65618,7 +65618,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "sa-btn-close",
+                    staticClass: "sa-btn-close float-right",
                     attrs: { type: "button", "aria-label": "Close modal" },
                     on: { click: _vm.close }
                   },
