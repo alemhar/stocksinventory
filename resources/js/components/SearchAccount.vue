@@ -145,7 +145,8 @@
     padding: 5px;
     /*display: flex;*/
   }
-  .sa-modal-header
+
+  .sa-modal-header {
     /*padding: 5px; */
     /*display: flex;*/
   }
