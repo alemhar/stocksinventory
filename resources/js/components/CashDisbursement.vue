@@ -475,7 +475,7 @@
                 axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
                 
              
-          }
+          },
           eventChild(Obj){
             console.log(Obj.id);
             this.form.payee_id = Obj.id;
@@ -603,7 +603,6 @@
             this.loadPayees();
             this.loadChartAccounts();
             VueListen.$on('RefreshUsersTable',() => {
-              
                this.loadPayees();
                //this.loadUsers();
             });
