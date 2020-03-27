@@ -141,9 +141,12 @@
     height: 400px;
   }
 
-  .sa-modal-header,
   .sa-modal-footer {
     padding: 5px;
+    /*display: flex;*/
+  }
+  .sa-modal-header
+    /*padding: 5px; */
     /*display: flex;*/
   }
 
