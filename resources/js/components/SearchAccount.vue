@@ -25,7 +25,7 @@
             <div class="box-header">
               <h3 class="box-title">Chart of Accounts</h3>
               <div class="box-tools">
-                <input type="text" class="form-control col-12" id="searchAccountCode" placeholder="Code" v-model="searchtxt" @keyup.enter="test()" >
+                <input type="text" class="form-control col-12" id="searchAccountCode" placeholder="Code" v-model="searchtxt" @keyup.enter="SearchIt()" >
               </div>
             </div>
 
