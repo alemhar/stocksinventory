@@ -76,10 +76,11 @@
 <script>
   
   export default {
-    searchtxt: '',
+    
     data: function() {
       return {
         name: 'modal',
+        searchtxt: '',
         accounts : {}
                   
       };
