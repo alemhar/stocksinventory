@@ -105,9 +105,10 @@
                 axios.get('api/searchAccount?q='+query)
                 .then((data)=>{
                   this.accounts = data;
+
                 })
                 .catch(()=>{
-
+                  //
                 });
 
         },1000)        

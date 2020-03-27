@@ -3293,7 +3293,8 @@ var _this3 = undefined;
       var query = _this3.search;
       axios.get('api/searchAccount?q=' + query).then(function (data) {
         _this3.accounts = data;
-      })["catch"](function () {});
+      })["catch"](function () {//
+      });
     }, 1000)
   },
   created: function created() {
