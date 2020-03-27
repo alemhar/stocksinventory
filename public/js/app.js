@@ -3271,7 +3271,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     close: function close() {
       var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-      this.$emit('close', id);
+      var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      this.$emit('close', id, name);
     },
     getResults: function getResults() {
       var _this = this;

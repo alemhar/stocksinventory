@@ -86,8 +86,8 @@
       };
     },
     methods: {
-      close(id = null) {
-        this.$emit('close', id);
+      close(id = null,name = null) {
+        this.$emit('close', id, name);
       },
       getResults(page = 1) {
             axios.get('api/chartaccount?page=' + page)
