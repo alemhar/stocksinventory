@@ -3182,6 +3182,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+var _this3 = undefined;
+
 //
 //
 //
@@ -3286,7 +3288,13 @@ __webpack_require__.r(__webpack_exports__);
         return _this2.accounts = data;
       }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       //} 
-    }
+    },
+    SearchIt: _.debounce(function () {
+      var query = _this3.$parent.search;
+      axios.get('api/searchAccount?q=' + query).then(function (data) {
+        _this3.accounts = data;
+      })["catch"](function () {});
+    }, 1000)
   },
   created: function created() {
     this.loadAccounts();
@@ -65657,6 +65665,9 @@ var render = function() {
                           },
                           domProps: { value: _vm.search },
                           on: {
+                            keyup: function($event) {
+                              return _vm.SearchIt()
+                            },
                             input: function($event) {
                               if ($event.target.composing) {
                                 return

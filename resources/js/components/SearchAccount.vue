@@ -25,7 +25,7 @@
             <div class="box-header">
               <h3 class="box-title">Chart of Accounts</h3>
               <div class="box-tools">
-                <input type="text" class="form-control col-12" id="searchAccountCode" placeholder="Code" v-model="search">
+                <input type="text" class="form-control col-12" id="searchAccountCode" placeholder="Code" v-model="search" @keyup="SearchIt()" >
               </div>
             </div>
 
@@ -99,7 +99,18 @@
                 axios.get("api/chartaccount").then(({ data }) => (this.accounts = data));
                 //axios.get("api/user").then(({ data }) => (this.users = data.data));
             //} 
-          },     
+          }, 
+      SearchIt: _.debounce(() => {
+            let query = this.$parent.search;
+                axios.get('api/searchAccount?q='+query)
+                .then((data)=>{
+                  this.accounts = data;
+                })
+                .catch(()=>{
+
+                });
+
+        },1000)        
     },
     created() {
       this.loadAccounts();
