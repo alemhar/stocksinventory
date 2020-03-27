@@ -64132,7 +64132,7 @@ var render = function() {
                               "button",
                               {
                                 staticClass: "btn btn-success",
-                                on: { click: _vm.newEntry }
+                                on: { click: _vm.searchAccountModal }
                               },
                               [
                                 _vm._v("Add Items "),
@@ -64299,7 +64299,7 @@ var render = function() {
                               {
                                 staticClass: "btn btn-success",
                                 attrs: { type: "button" },
-                                on: { click: _vm.searchAccountModal }
+                                on: { click: _vm.searchAccountModal2 }
                               },
                               [_c("i", { staticClass: "fas fa-search fa-fw" })]
                             )
