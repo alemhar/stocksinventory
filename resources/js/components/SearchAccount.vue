@@ -25,7 +25,8 @@
             <div class="box-header">
               <h3 class="box-title">Chart of Accounts</h3>
               <div class="box-tools">
-                <input type="text" class="form-control col-12" id="searchAccountCode" placeholder="Code" v-model="searchtxt" @keyup="SearchIt()" >
+                <input type="text" class="form-control col-12" id="searchAccountCode" placeholder="Code" :value="searchtxt"
+      @input="searchtxt = $event.target.value" @keyup="SearchIt()" >
               </div>
             </div>
 

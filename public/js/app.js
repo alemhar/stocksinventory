@@ -3259,6 +3259,7 @@ var _this3 = undefined;
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   searchtxt: '',
   data: function data() {
@@ -65650,14 +65651,6 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "box-tools" }, [
                         _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.searchtxt,
-                              expression: "searchtxt"
-                            }
-                          ],
                           staticClass: "form-control col-12",
                           attrs: {
                             type: "text",
@@ -65666,14 +65659,11 @@ var render = function() {
                           },
                           domProps: { value: _vm.searchtxt },
                           on: {
+                            input: function($event) {
+                              _vm.searchtxt = $event.target.value
+                            },
                             keyup: function($event) {
                               return _vm.SearchIt()
-                            },
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.searchtxt = $event.target.value
                             }
                           }
                         })
