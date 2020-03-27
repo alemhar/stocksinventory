@@ -601,7 +601,7 @@
             
             //this.loadUsers();
             this.loadPayees();
-
+            this.loadChartAccounts();
             VueListen.$on('RefreshUsersTable',() => {
               
                this.loadPayees();
