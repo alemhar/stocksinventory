@@ -1,78 +1,77 @@
 <template>
   <transition name="sa-modal-fade">
-    <!-- Accounts Modal -->
-      <div class="modal fade" id="account-list" tabindex="-1" role="dialog" aria-labelledby="account-list" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <!--
-              <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add New</h5>
-              <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update Entry</h5>
-              -->
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+    <div class="sa-modal-backdrop">
+      <div class="sa-modal"
+        role="dialog"
+        aria-labelledby="modalTitle"
+        aria-describedby="modalDescription"
+      >
+        <header
+          class="sa-modal-header"
+          id="modalTitle"
+        >
+          <slot name="header">Search Account
+            <button type="button" class="sa-btn-close" @click="close" aria-label="Close modal" > x </button>
+          </slot>
+        </header>
+        <section
+          class="sa-modal-body"
+          id="modalDescription"
+        >
+          <slot name="body">
+            <div class="col-md-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Users List</h3>
+              <div class="box-tools">
+                <input type="text" class="form-control col-12" id="searchAccountCode" placeholder="Code">
+              </div>
             </div>
 
-            <!-- form @submit.prevent="editmode ? updatePayee() : createPayee()" -->
-
-            <div class="modal-body">
-            
-                <div id="debits-list" class="box-body table-responsive no-padding">
-                  <table class="table table-hover">
-                    <tbody>
-                      <tr>
-                        <th>Account No.</th>
-                        <th>Name</th>
-                        <th>Item</th>
-                        <th>Description</th>
-                        <th>Branch</th>
-                        <th>Tax Type</th>
-                        <th>Amount</th>
-                      </tr>
-                      <tr>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                      </tr>
-                      <tr>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                      </tr>
-                      <tr>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                      </tr>
-                  </tbody>
-                </table>
-                </div>
-                <!-- /.box-body -->  
-              
-
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tbody><tr>
+                  <th>Code</th>
+                  <th>Name</th>
+                  <th>Select</th>
+                </tr>
+                <tr v-for="account in accounts.data" :key="account.id">
+                  <td>{{ account.account_code }}</td>
+                  <td>{{ account.account_name }}</td>
+                  <td>
+                    <a href="#" @click="selectAccount(account.id)">Select
+                      <i class="fa fa-edit"></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody></table>
             </div>
-            <div class="modal-footer">
-              
-            </div>
-
-            <!-- /form -->
+            <!-- /.box-body -->
+            <div class="box-footer">
+              <pagination :data="accounts" @pagination-change-page="getResults"></pagination>
+            </div> 
           </div>
+          <!-- /.box -->
         </div>
+          </slot>
+        </section>
+        <footer class="sa-modal-footer">
+          <slot name="footer">
+            I'm the default footer!
+
+            <button
+              type="button"
+              class="sa-btn-green"
+              @click="close"
+              aria-label="Close modal"
+            >
+              Close me!
+            </button>
+          </slot>
+        </footer>
       </div>
-      <!-- Accounts Modal -->
+    </div>
   </transition>
 </template>
 <script>
