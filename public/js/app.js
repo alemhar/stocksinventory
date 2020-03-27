@@ -65634,6 +65634,10 @@ var render = function() {
                 _c("div", { staticClass: "col-md-12" }, [
                   _c("div", { staticClass: "box" }, [
                     _c("div", { staticClass: "box-header" }, [
+                      _c("h3", { staticClass: "box-title" }, [
+                        _vm._v("Search Account")
+                      ]),
+                      _vm._v(" "),
                       _c("div", { staticClass: "box-tools" }, [
                         _c("input", {
                           directives: [

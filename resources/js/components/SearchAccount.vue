@@ -23,7 +23,7 @@
             <div class="col-md-12">
           <div class="box">
             <div class="box-header">
-              <!--h3 class="box-title">Search Account</h3 -->
+              <h3 class="box-title">Search Account</h3>
               <div class="box-tools">
                 <input type="text" class="form-control col-12" id="searchAccountCode" placeholder="Code" v-model="search">
               </div>
