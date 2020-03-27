@@ -25,7 +25,7 @@
             <div class="box-header">
               <h3 class="box-title">Chart of Accounts</h3>
               <div class="box-tools">
-                <input type="text" class="form-control col-12" id="searchAccountCode" placeholder="Code" v-model="search" @keyup="SearchIt()" >
+                <input type="text" class="form-control col-12" id="searchAccountCode" placeholder="Code" v-model="searchtxt" @keyup="SearchIt()" >
               </div>
             </div>
 
@@ -78,7 +78,7 @@
   export default {
     data: function() {
       return {
-        search: '',
+        searchtxt: '',
         name: 'modal',
         accounts : {}
                   
@@ -101,7 +101,7 @@
             //} 
           }, 
       SearchIt: _.debounce(() => {
-            let query = this.data.search;
+            let query = this.searchtxt;
                 axios.get('api/searchAccount?q='+query)
                 .then((data)=>{
                   this.accounts = data;

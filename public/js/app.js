@@ -3262,7 +3262,7 @@ var _this3 = undefined;
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      search: '',
+      searchtxt: '',
       name: 'modal',
       accounts: {}
     };
@@ -3290,7 +3290,7 @@ var _this3 = undefined;
       //} 
     },
     SearchIt: _.debounce(function () {
-      var query = _this3.data.search;
+      var query = _this3.searchtxt;
       axios.get('api/searchAccount?q=' + query).then(function (data) {
         _this3.accounts = data;
       })["catch"](function () {//
@@ -65654,8 +65654,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.search,
-                              expression: "search"
+                              value: _vm.searchtxt,
+                              expression: "searchtxt"
                             }
                           ],
                           staticClass: "form-control col-12",
@@ -65664,7 +65664,7 @@ var render = function() {
                             id: "searchAccountCode",
                             placeholder: "Code"
                           },
-                          domProps: { value: _vm.search },
+                          domProps: { value: _vm.searchtxt },
                           on: {
                             keyup: function($event) {
                               return _vm.SearchIt()
@@ -65673,7 +65673,7 @@ var render = function() {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.search = $event.target.value
+                              _vm.searchtxt = $event.target.value
                             }
                           }
                         })
