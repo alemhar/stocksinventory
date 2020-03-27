@@ -237,7 +237,7 @@
                   class="form-control col-4" :class="{ 'is-invalid': form_entry.errors.has('account_code') }" >
                 <has-error :form="form_entry" field="account_code"></has-error>
                 <span class="input-group-btn col-1">
-                    <button type="button" class="btn btn-success" @click="searchAccountModal2"><i class="fas fa-search fa-fw"></i></button>
+                    <button type="button" class="btn btn-success" @click="newEntry"><i class="fas fa-search fa-fw"></i></button>
 
                 </span>
               </div>

@@ -64299,7 +64299,7 @@ var render = function() {
                               {
                                 staticClass: "btn btn-success",
                                 attrs: { type: "button" },
-                                on: { click: _vm.searchAccountModal2 }
+                                on: { click: _vm.newEntry }
                               },
                               [_c("i", { staticClass: "fas fa-search fa-fw" })]
                             )
