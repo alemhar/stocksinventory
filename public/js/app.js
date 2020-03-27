@@ -3258,6 +3258,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -65596,154 +65597,131 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("transition", { attrs: { name: "sa-modal-fade" } }, [
-    _c("div", { staticClass: "sa-modal-backdrop" }, [
-      _c(
-        "div",
-        {
-          staticClass: "sa-modal",
-          attrs: {
-            role: "dialog",
-            "aria-labelledby": "modalTitle",
-            "aria-describedby": "modalDescription"
-          }
-        },
-        [
-          _c(
-            "header",
-            { staticClass: "sa-modal-header", attrs: { id: "modalTitle" } },
-            [
-              _vm._t("header", [
-                _vm._v("Search Account\n          "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "account-list",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "account-list",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
                 _c(
                   "button",
                   {
-                    staticClass: "sa-btn-close",
-                    attrs: { type: "button", "aria-label": "Close modal" },
-                    on: { click: _vm.close }
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close"
+                    }
                   },
-                  [_vm._v(" x ")]
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("×")
+                    ])
+                  ]
                 )
-              ])
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "section",
-            { staticClass: "sa-modal-body", attrs: { id: "modalDescription" } },
-            [
-              _vm._t("body", [
-                _c("div", { staticClass: "col-md-12" }, [
-                  _c("div", { staticClass: "box" }, [
-                    _c("div", { staticClass: "box-header" }, [
-                      _c("h3", { staticClass: "box-title" }, [
-                        _vm._v("Users List")
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "box-tools" }, [
-                        _c("input", {
-                          staticClass: "form-control col-12",
-                          attrs: {
-                            type: "text",
-                            id: "searchAccountCode",
-                            placeholder: "Code"
-                          }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "box-body table-responsive no-padding" },
-                      [
-                        _c("table", { staticClass: "table table-hover" }, [
-                          _c(
-                            "tbody",
-                            [
-                              _c("tr", [
-                                _c("th", [_vm._v("Code")]),
-                                _vm._v(" "),
-                                _c("th", [_vm._v("Name")]),
-                                _vm._v(" "),
-                                _c("th", [_vm._v("Select")])
-                              ]),
-                              _vm._v(" "),
-                              _vm._l(_vm.accounts.data, function(account) {
-                                return _c("tr", { key: account.id }, [
-                                  _c("td", [
-                                    _vm._v(_vm._s(account.account_code))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(_vm._s(account.account_name))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _c(
-                                      "a",
-                                      {
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.selectAccount(account.id)
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _vm._v("Select\n                    "),
-                                        _c("i", { staticClass: "fa fa-edit" })
-                                      ]
-                                    )
-                                  ])
-                                ])
-                              })
-                            ],
-                            2
-                          )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "box-body table-responsive no-padding",
+                    attrs: { id: "debits-list" }
+                  },
+                  [
+                    _c("table", { staticClass: "table table-hover" }, [
+                      _c("tbody", [
+                        _c("tr", [
+                          _c("th", [_vm._v("Account No.")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Name")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Item")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Description")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Branch")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Tax Type")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Amount")])
+                        ]),
+                        _vm._v(" "),
+                        _c("tr", [
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")])
+                        ]),
+                        _vm._v(" "),
+                        _c("tr", [
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")])
+                        ]),
+                        _vm._v(" "),
+                        _c("tr", [
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(" - ")])
                         ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "box-footer" },
-                      [
-                        _c("pagination", {
-                          attrs: { data: _vm.accounts },
-                          on: { "pagination-change-page": _vm.getResults }
-                        })
-                      ],
-                      1
-                    )
-                  ])
-                ])
-              ])
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "footer",
-            { staticClass: "sa-modal-footer" },
-            [
-              _vm._t("footer", [
-                _vm._v("\n          I'm the default footer!\n\n          "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "sa-btn-green",
-                    attrs: { type: "button", "aria-label": "Close modal" },
-                    on: { click: _vm.close }
-                  },
-                  [_vm._v("\n            Close me!\n          ")]
+                      ])
+                    ])
+                  ]
                 )
-              ])
-            ],
-            2
-          )
-        ]
-      )
-    ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" })
+            ])
+          ]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = []
