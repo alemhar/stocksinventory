@@ -536,6 +536,9 @@
             this.form.account_code = code;
             console.log(code+' '+name);
 
+          },
+          searchAccountModal(){
+              $('#entry-details').modal('show');
           }
           // ,
           // createUser(){

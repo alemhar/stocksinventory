@@ -2628,6 +2628,9 @@ __webpack_require__.r(__webpack_exports__);
       this.form.account_name = name;
       this.form.account_code = code;
       console.log(code + ' ' + name);
+    },
+    searchAccountModal: function searchAccountModal() {
+      $('#entry-details').modal('show');
     } // ,
     // createUser(){
     //   this.$Progress.start()
