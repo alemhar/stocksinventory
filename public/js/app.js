@@ -65670,7 +65670,19 @@ var render = function() {
                           domProps: { value: _vm.searchtxt },
                           on: {
                             keyup: function($event) {
-                              return _vm.SearchIt()
+                              if (
+                                !$event.type.indexOf("key") &&
+                                _vm._k(
+                                  $event.keyCode,
+                                  "enter",
+                                  13,
+                                  $event.key,
+                                  "Enter"
+                                )
+                              ) {
+                                return null
+                              }
+                              return _vm.test()
                             },
                             input: function($event) {
                               if ($event.target.composing) {
