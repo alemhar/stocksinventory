@@ -6,25 +6,24 @@
         aria-labelledby="modalTitle"
         aria-describedby="modalDescription"
       >
-        <!--header
+        <header
           class="sa-modal-header"
           id="modalTitle"
         >
           <slot name="header">Search Account
-            
+            <button type="button" class="sa-btn-close" @click="close" aria-label="Close modal" > x </button>
           </slot>
           
-        </header-->
+        </header>
         <section
           class="sa-modal-body"
           id="modalDescription"
         >
-        <button type="button" class="sa-btn-close" @click="close" aria-label="Close modal" > x </button>
           <slot name="body">
             <div class="col-md-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Search Account</h3>
+              <!--h3 class="box-title">Search Account</h3 -->
               <div class="box-tools">
                 <input type="text" class="form-control col-12" id="searchAccountCode" placeholder="Code" v-model="search">
               </div>
@@ -171,7 +170,7 @@
   .sa-btn-close {
     border: none;
     font-size: 20px;
-    padding: 20px;
+    /*padding: 20px; */
     cursor: pointer;
     font-weight: bold;
     color: #4AAE9B;
