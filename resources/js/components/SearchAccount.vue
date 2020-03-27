@@ -10,9 +10,10 @@
           class="sa-modal-header"
           id="modalTitle"
         >
-          <slot name="header">Search Account
-            <button type="button" class="sa-btn-close" @click="close" aria-label="Close modal" > x </button>
-          </slot>
+          <!--slot name="header">Search Account
+            
+          </slot-->
+          <button type="button" class="sa-btn-close" @click="close" aria-label="Close modal" > x </button>
         </header>
         <section
           class="sa-modal-body"
@@ -22,9 +23,9 @@
             <div class="col-md-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Users List</h3>
+              <h3 class="box-title">Search Account</h3>
               <div class="box-tools">
-                <input type="text" class="form-control col-12" id="searchAccountCode" placeholder="Code">
+                <input type="text" class="form-control col-12" id="searchAccountCode" placeholder="Code" v-model="search">
               </div>
             </div>
 
@@ -79,6 +80,7 @@
   export default {
     data: function() {
       return {
+        search: '',
         name: 'modal',
         accounts : {}
                   

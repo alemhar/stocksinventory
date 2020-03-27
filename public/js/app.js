@@ -3258,9 +3258,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      search: '',
       name: 'modal',
       accounts: {}
     };
@@ -65612,20 +65614,16 @@ var render = function() {
             "header",
             { staticClass: "sa-modal-header", attrs: { id: "modalTitle" } },
             [
-              _vm._t("header", [
-                _vm._v("Search Account\n          "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "sa-btn-close",
-                    attrs: { type: "button", "aria-label": "Close modal" },
-                    on: { click: _vm.close }
-                  },
-                  [_vm._v(" x ")]
-                )
-              ])
-            ],
-            2
+              _c(
+                "button",
+                {
+                  staticClass: "sa-btn-close",
+                  attrs: { type: "button", "aria-label": "Close modal" },
+                  on: { click: _vm.close }
+                },
+                [_vm._v(" x ")]
+              )
+            ]
           ),
           _vm._v(" "),
           _c(
@@ -65637,16 +65635,33 @@ var render = function() {
                   _c("div", { staticClass: "box" }, [
                     _c("div", { staticClass: "box-header" }, [
                       _c("h3", { staticClass: "box-title" }, [
-                        _vm._v("Users List")
+                        _vm._v("Search Account")
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "box-tools" }, [
                         _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.search,
+                              expression: "search"
+                            }
+                          ],
                           staticClass: "form-control col-12",
                           attrs: {
                             type: "text",
                             id: "searchAccountCode",
                             placeholder: "Code"
+                          },
+                          domProps: { value: _vm.search },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.search = $event.target.value
+                            }
                           }
                         })
                       ])
