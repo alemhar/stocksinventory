@@ -119,7 +119,7 @@
                 <div class="box-header">
                   <h3 class="box-title">Debits</h3>
                   <div class="box-tools">
-                    <button class="btn btn-success" @click="searchAccountModal">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
+                    <button class="btn btn-success" @click="newEntry">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
                 </div>
 
@@ -237,7 +237,7 @@
                   class="form-control col-4" :class="{ 'is-invalid': form_entry.errors.has('account_code') }" >
                 <has-error :form="form_entry" field="account_code"></has-error>
                 <span class="input-group-btn col-1">
-                    <button type="button" class="btn btn-success" @click="newEntry"><i class="fas fa-search fa-fw"></i></button>
+                    <button type="button" class="btn btn-success" @click="searchAccountModal"><i class="fas fa-search fa-fw"></i></button>
 
                 </span>
               </div>
@@ -307,7 +307,7 @@
 
 
       <!-- Search Account Modal -->
-      <div class="modal fade" id="entry-details" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
+      <div class="modal fade" id="select-account" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -538,7 +538,7 @@
 
           },
           searchAccountModal(){
-              $('#entry-details').modal('show');
+              $('#select-account').modal('show');
           }
           // ,
           // createUser(){

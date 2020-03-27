@@ -2630,7 +2630,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log(code + ' ' + name);
     },
     searchAccountModal: function searchAccountModal() {
-      $('#entry-details').modal('show');
+      $('#select-account').modal('show');
     } // ,
     // createUser(){
     //   this.$Progress.start()
@@ -64132,7 +64132,7 @@ var render = function() {
                               "button",
                               {
                                 staticClass: "btn btn-success",
-                                on: { click: _vm.searchAccountModal }
+                                on: { click: _vm.newEntry }
                               },
                               [
                                 _vm._v("Add Items "),
@@ -64299,7 +64299,7 @@ var render = function() {
                               {
                                 staticClass: "btn btn-success",
                                 attrs: { type: "button" },
-                                on: { click: _vm.newEntry }
+                                on: { click: _vm.searchAccountModal }
                               },
                               [_c("i", { staticClass: "fas fa-search fa-fw" })]
                             )
@@ -64698,7 +64698,7 @@ var render = function() {
         {
           staticClass: "modal fade",
           attrs: {
-            id: "entry-details",
+            id: "select-account",
             tabindex: "-1",
             role: "dialog",
             "aria-labelledby": "addNewLabel",
