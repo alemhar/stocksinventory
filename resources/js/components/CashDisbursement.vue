@@ -409,6 +409,9 @@
           },
           closeSearchAccount(code = null,name = null) {
             this.isModalVisible = false;
+            this.form.account_name = name;
+            this.form.account_code = code;
+            
             console.log(code+' '+name);
           }
           // ,

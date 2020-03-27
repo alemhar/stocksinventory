@@ -2502,6 +2502,8 @@ __webpack_require__.r(__webpack_exports__);
       var code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
       var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
       this.isModalVisible = false;
+      this.form.account_name = name;
+      this.form.account_code = code;
       console.log(code + ' ' + name);
     } // ,
     // createUser(){
