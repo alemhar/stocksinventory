@@ -10,9 +10,9 @@
           class="sa-modal-header"
           id="modalTitle"
         >
-          <!-- slot name="header">Search Account -->
+          <slot name="header">Search Account>
             <button type="button" class="sa-btn-close" @click="close" aria-label="Close modal" > x </button>
-          <!-- /slot -->
+          </slot>
           
         </header>
         <section
@@ -23,7 +23,7 @@
             <div class="col-md-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Search Account</h3>
+              <h3 class="box-title">Chart of Accounts</h3>
               <div class="box-tools">
                 <input type="text" class="form-control col-12" id="searchAccountCode" placeholder="Code" v-model="search">
               </div>

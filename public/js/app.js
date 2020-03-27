@@ -65614,16 +65614,20 @@ var render = function() {
             "header",
             { staticClass: "sa-modal-header", attrs: { id: "modalTitle" } },
             [
-              _c(
-                "button",
-                {
-                  staticClass: "sa-btn-close",
-                  attrs: { type: "button", "aria-label": "Close modal" },
-                  on: { click: _vm.close }
-                },
-                [_vm._v(" x ")]
-              )
-            ]
+              _vm._t("header", [
+                _vm._v("Search Account>\n          "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "sa-btn-close",
+                    attrs: { type: "button", "aria-label": "Close modal" },
+                    on: { click: _vm.close }
+                  },
+                  [_vm._v(" x ")]
+                )
+              ])
+            ],
+            2
           ),
           _vm._v(" "),
           _c(
@@ -65635,7 +65639,7 @@ var render = function() {
                   _c("div", { staticClass: "box" }, [
                     _c("div", { staticClass: "box-header" }, [
                       _c("h3", { staticClass: "box-title" }, [
-                        _vm._v("Search Account")
+                        _vm._v("Chart of Accounts")
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "box-tools" }, [
