@@ -231,11 +231,15 @@
             <form @submit.prevent="editmode ? updatePayee() : createPayee()">
             <div class="modal-body">
               
-              <div class="form-group">
+              <div class="input-group">
                 <input v-model="form_entry.account_code" type="text" name="account_code"
                   placeholder="Account Code"
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('account_code') }" >
+                  class="form-control col-4" :class="{ 'is-invalid': form_entry.errors.has('account_code') }" >
                 <has-error :form="form_entry" field="account_code"></has-error>
+                <span class="input-group-btn col-1">
+                    <button type="button" v-show="!cd_created" class="btn btn-success" @click="searchAccount"><i class="fas fa-search fa-fw"></i></button>
+
+                </span>
               </div>
               <div class="form-group">
                 <input v-model="form_entry.account_name" type="text" name="account_name"

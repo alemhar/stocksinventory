@@ -2411,6 +2411,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -64209,7 +64213,7 @@ var render = function() {
                     _c("div", { staticClass: "modal-body" }, [
                       _c(
                         "div",
-                        { staticClass: "form-group" },
+                        { staticClass: "input-group" },
                         [
                           _c("input", {
                             directives: [
@@ -64220,7 +64224,7 @@ var render = function() {
                                 expression: "form_entry.account_code"
                               }
                             ],
-                            staticClass: "form-control",
+                            staticClass: "form-control col-4",
                             class: {
                               "is-invalid": _vm.form_entry.errors.has(
                                 "account_code"
@@ -64251,7 +64255,27 @@ var render = function() {
                               form: _vm.form_entry,
                               field: "account_code"
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "input-group-btn col-1" }, [
+                            _c(
+                              "button",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: !_vm.cd_created,
+                                    expression: "!cd_created"
+                                  }
+                                ],
+                                staticClass: "btn btn-success",
+                                attrs: { type: "button" },
+                                on: { click: _vm.searchAccount }
+                              },
+                              [_c("i", { staticClass: "fas fa-search fa-fw" })]
+                            )
+                          ])
                         ],
                         1
                       ),
