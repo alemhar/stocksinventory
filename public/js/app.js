@@ -3290,7 +3290,7 @@ var _this3 = undefined;
       //} 
     },
     SearchIt: _.debounce(function () {
-      var query = _this3.search;
+      var query = _this3.data.search;
       axios.get('api/searchAccount?q=' + query).then(function (data) {
         _this3.accounts = data;
       })["catch"](function () {//

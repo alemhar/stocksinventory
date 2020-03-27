@@ -101,7 +101,7 @@
             //} 
           }, 
       SearchIt: _.debounce(() => {
-            let query = this.search;
+            let query = this.data.search;
                 axios.get('api/searchAccount?q='+query)
                 .then((data)=>{
                   this.accounts = data;
