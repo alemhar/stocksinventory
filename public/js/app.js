@@ -64778,7 +64778,18 @@ var render = function() {
                             },
                             domProps: { value: _vm.form_entry.amount },
                             on: {
-                              change: _vm.computeTaxChange,
+                              keyup: function($event) {
+                                if (
+                                  !$event.type.indexOf("key") &&
+                                  _vm._k($event.keyCode, "up", 38, $event.key, [
+                                    "Up",
+                                    "ArrowUp"
+                                  ])
+                                ) {
+                                  return null
+                                }
+                                return _vm.computeTaxChange($event)
+                              },
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return

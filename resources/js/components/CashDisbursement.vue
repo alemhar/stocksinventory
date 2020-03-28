@@ -320,7 +320,7 @@
 
               <div class="form-group">
                   <input v-model="form_entry.amount" name="amount" id="amount"
-                  placeholder="Amount" @change="computeTaxChange"
+                  placeholder="Amount" v-on:keyup.up="computeTaxChange"
 
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount') }" >
                   <has-error :form="form_entry" field="amount"></has-error>
