@@ -678,7 +678,7 @@
           },
           computeTaxChange(){
               if(this.form_entry.amount){
-                this.form_entry.vat = this.form_entry.amount;// * 0.12;
+                this.form_entry.vat = this.form_entry.amount * 0.12;
                 this.form_entry.amount_ex_tax = this.form_entry.amount - this.form_entry.vat;
               }
           }
