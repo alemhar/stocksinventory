@@ -443,7 +443,7 @@
     export default {
         data() {
           return {
-              user_id: document.querySelector('meta[name="user-id"]').getAttribute('content');,
+              user_id: '',
               isModalVisible: false,
               editmode: false,
               cd_created: false,
@@ -648,13 +648,13 @@
                 });
 
           },
-          createSerialNumber(transaction,user_id){
+          createSerialNumber(transaction){
               // Get current date
               var d = new Date();
               // Get pirmative value of date
               var n = d.valueOf();
               // Return concatenated primative value with the user id. 
-
+              user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
               return transaction+n+user_id;
           }
 
