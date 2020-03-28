@@ -2764,6 +2764,12 @@ __webpack_require__.r(__webpack_exports__);
         this.form_entry.vat = this.form_entry.amount * 0.12;
         this.form_entry.amount_ex_tax = this.form_entry.amount - this.form_entry.vat;
       }
+    },
+    computeTaxChange: function computeTaxChange() {
+      if (this.form_entry.amount) {
+        this.form_entry.vat = this.form_entry.amount * 0.12;
+        this.form_entry.amount_ex_tax = this.form_entry.amount - this.form_entry.vat;
+      }
     } // ,
     // createUser(){
     //   this.$Progress.start()
@@ -2820,6 +2826,7 @@ __webpack_require__.r(__webpack_exports__);
     this.loadBranches();
     this.loadChartAccounts();
     this.SearchIt = _.debounce(this.SearchIt, 1000);
+    this.computeTaxChange = _.debounce(this.computeTaxChange, 1000);
     VueListen.$on('RefreshUsersTable', function () {
       _this5.loadPayees(); //this.loadUsers();
 
@@ -2845,6 +2852,7 @@ __webpack_require__.r(__webpack_exports__);
     });
     */
   },
+  computed: {},
   components: {//DynamicSelect
   }
 });

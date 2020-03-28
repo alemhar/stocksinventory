@@ -660,7 +660,6 @@
                 .catch(()=>{
                   //
                 });
-
           },
           createSerialNumber(){
               // Get current date
@@ -672,6 +671,12 @@
               return ""+n+this.user_id;
           },
           onTaxChange(){
+              if(this.form_entry.amount){
+                this.form_entry.vat = this.form_entry.amount * 0.12;
+                this.form_entry.amount_ex_tax = this.form_entry.amount - this.form_entry.vat;
+              }
+          },
+          computeTaxChange(){
               if(this.form_entry.amount){
                 this.form_entry.vat = this.form_entry.amount * 0.12;
                 this.form_entry.amount_ex_tax = this.form_entry.amount - this.form_entry.vat;
@@ -745,6 +750,8 @@
             this.loadChartAccounts();
             this.SearchIt = _.debounce(this.SearchIt, 1000);
 
+            this.computeTaxChange = _.debounce(this.computeTaxChange, 1000);
+
             VueListen.$on('RefreshUsersTable',() => {
                this.loadPayees();
                //this.loadUsers();
@@ -773,6 +780,9 @@
                 }, 0);
             });
             */
+        },
+        computed: {
+            
         },
         components: {
           //DynamicSelect
