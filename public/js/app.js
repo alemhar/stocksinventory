@@ -2536,6 +2536,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -64413,7 +64425,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group" },
                   [
-                    _c("label", [_vm._v("Code")]),
+                    _c("label", [_vm._v("Code : ")]),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64477,7 +64489,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group" },
                   [
-                    _c("label", [_vm._v("Account Name")]),
+                    _c("label", [_vm._v("Account : ")]),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64522,8 +64534,10 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "form-group" },
+                  { staticClass: "input-group" },
                   [
+                    _c("label", [_vm._v("Name : ")]),
+                    _vm._v(" "),
                     _c("input", {
                       directives: [
                         {
@@ -64566,8 +64580,10 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "form-group" },
+                  { staticClass: "input-group" },
                   [
+                    _c("label", [_vm._v("Description : ")]),
+                    _vm._v(" "),
                     _c("input", {
                       directives: [
                         {
@@ -64615,8 +64631,10 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "form-group" },
+                  { staticClass: "input-group" },
                   [
+                    _c("label", [_vm._v("Branch : ")]),
+                    _vm._v(" "),
                     _c(
                       "select",
                       {
@@ -64666,7 +64684,9 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("label", [_vm._v("Tax Type : ")]),
+                  _vm._v(" "),
                   _c(
                     "select",
                     {
@@ -64726,8 +64746,10 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "form-group" },
+                  { staticClass: "input-group" },
                   [
+                    _c("label", [_vm._v("Amount : ")]),
+                    _vm._v(" "),
                     _c("input", {
                       directives: [
                         {
@@ -64771,8 +64793,10 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "form-group" },
+                  { staticClass: "input-group" },
                   [
+                    _c("label", [_vm._v("Tax Excluded : ")]),
+                    _vm._v(" "),
                     _c("input", {
                       directives: [
                         {
@@ -64816,8 +64840,10 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "form-group" },
+                  { staticClass: "input-group" },
                   [
+                    _c("label", [_vm._v("Tax : ")]),
+                    _vm._v(" "),
                     _c("input", {
                       directives: [
                         {

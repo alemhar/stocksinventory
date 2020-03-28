@@ -270,7 +270,7 @@
             <div class="modal-body">
               
               <div class="input-group">
-                <label>Code</label>
+                <label>Code : </label>
                 <input v-model="form_entry.account_code" type="text" name="account_code" 
                   placeholder="Account Code"
                   class="form-control col-4" :class="{ 'is-invalid': form_entry.errors.has('account_code') }" >
@@ -281,26 +281,30 @@
               </div>
               <br>
               <div class="input-group">
-                <label>Account Name</label>
+                <label>Account : </label>
                 <input v-model="form_entry.account_name" type="text" name="account_name"
                   placeholder="Account Name"
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('account_name') }" readonly>
                 <has-error :form="form_entry" field="account_name"></has-error>
               </div>
-              <div class="form-group">
+              <div class="input-group">
+                <label>Name : </label>
                 <input v-model="form_entry.entry_name" type="text" name="entry_name"
                   placeholder="Name"
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('entry_name') }" >
                 <has-error :form="form_entry" field="entry_name"></has-error>
               </div>
-              <div class="form-group">
+              <div class="input-group">
+                <label>Description : </label>
                 <input v-model="form_entry.entry_description" type="text" name="entry_description"
                   placeholder="Description"
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('entry_description') }" >
                 <has-error :form="form_entry" field="entry_description"></has-error>
               </div>
 
-              <div class="form-group">
+              <div class="input-group">
+                <label>Branch : </label>
+              
                   <select v-model="form_entry.branch_name" class="form-control col-12">
                       <option v-for="branch in branches.data" v-bind:value="branch.id">{{ branch.name }}</option>
                   </select>
@@ -308,7 +312,9 @@
                   <has-error :form="form_entry" field="branch_name"></has-error>
               </div>
 
-              <div class="form-group">
+              <div class="input-group">
+                <label>Tax Type : </label>
+              
 
                 <select v-model="form_entry.tax_type" @change="onTaxChange" class="form-control col-12">
                   <option value="TAX TYPE"></option>
@@ -320,7 +326,9 @@
               </div>
 
 
-              <div class="form-group">
+              <div class="input-group">
+                <label>Amount : </label>
+              
                   <input v-model="form_entry.amount" name="amount" id="amount"
                   placeholder="Amount"
                   @change="computeTaxChange"
@@ -328,7 +336,9 @@
                   <has-error :form="form_entry" field="amount"></has-error>
               </div>
 
-              <div class="form-group">
+              <div class="input-group">
+                <label>Tax Excluded : </label>
+              
                   <input v-model="form_entry.amount_ex_tax" name="amount_ex_tax" id="amount_ex_tax"
                   placeholder="Amount Excluding Tax"
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount_ex_tax') }" readonly>
@@ -336,7 +346,9 @@
               </div>
 
 
-              <div class="form-group">
+              <div class="input-group">
+                <label>Tax : </label>
+              
                   <input v-model="form_entry.vat" name="vat" id="vat"
                   placeholder="Vat"
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('vat') }" readonly>
