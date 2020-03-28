@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Account;
+use App\Branch;
 use Illuminate\Support\Facades\Hash;
 
 class BranchController extends Controller
