@@ -266,7 +266,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form onsubmit="return false;">
+            <!-- form onsubmit="return false;" -->
             <div class="modal-body">
               
               <div class="input-group">
@@ -347,7 +347,7 @@
               <button type="submit" class="btn btn-success"  data-dismiss="modal">Save</button>
             </div>
 
-            </form>
+            <!-- /form -->
           </div>
         </div>
       </div>
