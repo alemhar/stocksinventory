@@ -321,7 +321,7 @@
               <div class="form-group">
                   <input v-model="form_entry.amount" name="amount" id="amount"
                   placeholder="Amount"
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount') }">
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount') }" v-on:keyup.up="computeTaxChange">
                   <has-error :form="form_entry" field="amount"></has-error>
               </div>
 
