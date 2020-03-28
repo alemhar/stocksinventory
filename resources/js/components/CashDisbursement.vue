@@ -593,7 +593,7 @@
               this.cd_created = true;
             }
 
-            this.form.transaction_no = createSerialNumber(transaction);
+            this.form.transaction_no = this.createSerialNumber(transaction);
             
           },
           saveCD(){
