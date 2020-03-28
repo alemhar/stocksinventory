@@ -308,7 +308,7 @@
 
               <div class="form-group">
 
-                <select v-model="form_entry.tax_type" class="form-control col-12">
+                <select v-model="form_entry.tax_type" @change="onTaxChange" class="form-control col-12">
                   <option value="TAX TYPE"></option>
                   <option value="VAT REG">VAT REG</option>
                   <option value="NON VAT">NON VAT</option>
@@ -670,6 +670,12 @@
               // Return concatenated primative value with the user id. 
               
               return ""+n+this.user_id;
+          },
+          onTaxChange(){
+              if(this.form_entry.amount){
+                this.form_entry.vat = this.form_entry.amount * 0.12;
+                this.form_entry.amount_ex_tax = this.form_entry.amount - this.form_entry.vat;
+              }
           }
 
           // ,

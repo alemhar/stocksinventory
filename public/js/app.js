@@ -2758,6 +2758,12 @@ __webpack_require__.r(__webpack_exports__);
       var n = d.valueOf(); // Return concatenated primative value with the user id. 
 
       return "" + n + this.user_id;
+    },
+    onTaxChange: function onTaxChange() {
+      if (this.form_entry.amount) {
+        this.form_entry.vat = this.form_entry.amount * 0.12;
+        this.form_entry.amount_ex_tax = this.form_entry.amount - this.form_entry.vat;
+      }
     } // ,
     // createUser(){
     //   this.$Progress.start()
@@ -64690,23 +64696,27 @@ var render = function() {
                             ],
                             staticClass: "form-control col-12",
                             on: {
-                              change: function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.$set(
-                                  _vm.form_entry,
-                                  "tax_type",
-                                  $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                )
-                              }
+                              change: [
+                                function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.form_entry,
+                                    "tax_type",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                },
+                                _vm.onTaxChange
+                              ]
                             }
                           },
                           [
