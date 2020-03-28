@@ -2550,6 +2550,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -64492,7 +64517,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group" },
                   [
-                    _c("label", [_vm._v("Account : ")]),
+                    _vm._m(6),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64539,7 +64564,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group" },
                   [
-                    _c("label", [_vm._v("Name : ")]),
+                    _vm._m(7),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64585,7 +64610,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group" },
                   [
-                    _c("label", [_vm._v("Description : ")]),
+                    _vm._m(8),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64636,7 +64661,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group" },
                   [
-                    _c("label", [_vm._v("Branch : ")]),
+                    _vm._m(9),
                     _vm._v(" "),
                     _c(
                       "select",
@@ -64688,7 +64713,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group" }, [
-                  _c("label", [_vm._v("Tax Type : ")]),
+                  _vm._m(10),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -64751,7 +64776,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group" },
                   [
-                    _c("label", [_vm._v("Amount : ")]),
+                    _vm._m(11),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64798,7 +64823,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group" },
                   [
-                    _c("label", [_vm._v("Tax Excluded : ")]),
+                    _vm._m(12),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64845,7 +64870,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group" },
                   [
-                    _c("label", [_vm._v("Tax : ")]),
+                    _vm._m(13),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64883,7 +64908,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(6)
+              _vm._m(14)
             ])
           ]
         )
@@ -64911,7 +64936,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(7),
+              _vm._m(15),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -64950,7 +64975,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(8),
+                            _vm._m(16),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -65239,7 +65264,127 @@ var staticRenderFns = [
           staticClass: "input-group-text",
           attrs: { id: "inputGroup-sizing-default" }
         },
-        [_vm._v("Code :")]
+        [_vm._v("Code")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        {
+          staticClass: "input-group-text",
+          attrs: { id: "inputGroup-sizing-default" }
+        },
+        [_vm._v("Account")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        {
+          staticClass: "input-group-text",
+          attrs: { id: "inputGroup-sizing-default" }
+        },
+        [_vm._v("Name")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        {
+          staticClass: "input-group-text",
+          attrs: { id: "inputGroup-sizing-default" }
+        },
+        [_vm._v("Description")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        {
+          staticClass: "input-group-text",
+          attrs: { id: "inputGroup-sizing-default" }
+        },
+        [_vm._v("Branch")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        {
+          staticClass: "input-group-text",
+          attrs: { id: "inputGroup-sizing-default" }
+        },
+        [_vm._v("Tax Type")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        {
+          staticClass: "input-group-text",
+          attrs: { id: "inputGroup-sizing-default" }
+        },
+        [_vm._v("Amount")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        {
+          staticClass: "input-group-text",
+          attrs: { id: "inputGroup-sizing-default" }
+        },
+        [_vm._v("Tax Excluded")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        {
+          staticClass: "input-group-text",
+          attrs: { id: "inputGroup-sizing-default" }
+        },
+        [_vm._v("Tax")]
       )
     ])
   },

@@ -271,7 +271,7 @@
               
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-default">Code :</span>
+                  <span class="input-group-text" id="inputGroup-sizing-default">Code</span>
                 </div>
                 <input v-model="form_entry.account_code" type="text" name="account_code" 
                   placeholder="Account Code"
@@ -283,21 +283,31 @@
               </div>
               <br>
               <div class="input-group">
-                <label>Account : </label>
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Account</span>
+                </div>
+                
                 <input v-model="form_entry.account_name" type="text" name="account_name"
                   placeholder="Account Name"
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('account_name') }" readonly>
                 <has-error :form="form_entry" field="account_name"></has-error>
               </div>
               <div class="input-group">
-                <label>Name : </label>
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+                </div>
+                
+                
                 <input v-model="form_entry.entry_name" type="text" name="entry_name"
                   placeholder="Name"
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('entry_name') }" >
                 <has-error :form="form_entry" field="entry_name"></has-error>
               </div>
               <div class="input-group">
-                <label>Description : </label>
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Description</span>
+                </div>
+
                 <input v-model="form_entry.entry_description" type="text" name="entry_description"
                   placeholder="Description"
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('entry_description') }" >
@@ -305,7 +315,10 @@
               </div>
 
               <div class="input-group">
-                <label>Branch : </label>
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Branch</span>
+                </div>
+
               
                   <select v-model="form_entry.branch_name" class="form-control col-12">
                       <option v-for="branch in branches.data" v-bind:value="branch.id">{{ branch.name }}</option>
@@ -315,7 +328,10 @@
               </div>
 
               <div class="input-group">
-                <label>Tax Type : </label>
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Tax Type</span>
+                </div>
+
               
 
                 <select v-model="form_entry.tax_type" @change="onTaxChange" class="form-control col-12">
@@ -329,7 +345,10 @@
 
 
               <div class="input-group">
-                <label>Amount : </label>
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Amount</span>
+                </div>
+
               
                   <input v-model="form_entry.amount" name="amount" id="amount"
                   placeholder="Amount"
@@ -339,7 +358,10 @@
               </div>
 
               <div class="input-group">
-                <label>Tax Excluded : </label>
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Tax Excluded</span>
+                </div>
+
               
                   <input v-model="form_entry.amount_ex_tax" name="amount_ex_tax" id="amount_ex_tax"
                   placeholder="Amount Excluding Tax"
@@ -349,7 +371,10 @@
 
 
               <div class="input-group">
-                <label>Tax : </label>
+                
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Tax</span>
+                </div>
               
                   <input v-model="form_entry.vat" name="vat" id="vat"
                   placeholder="Vat"
