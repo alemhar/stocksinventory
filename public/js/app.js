@@ -2589,8 +2589,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -64069,92 +64067,90 @@ var render = function() {
                       _c("div", { staticClass: "input-group mb-2" }, [
                         _vm._m(2),
                         _vm._v(" "),
-                        _c("div", { staticClass: "input-group" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.account_code,
-                                expression: "form.account_code"
-                              }
-                            ],
-                            staticClass: "form-control col-2",
-                            attrs: {
-                              readonly: _vm.cd_created,
-                              type: "text",
-                              id: "inputAccountCode",
-                              placeholder: "Code"
-                            },
-                            domProps: { value: _vm.form.account_code },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.form,
-                                  "account_code",
-                                  $event.target.value
-                                )
-                              }
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.account_code,
+                              expression: "form.account_code"
                             }
-                          }),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.account_name,
-                                expression: "form.account_name"
+                          ],
+                          staticClass: "form-control col-2",
+                          attrs: {
+                            readonly: _vm.cd_created,
+                            type: "text",
+                            id: "inputAccountCode",
+                            placeholder: "Code"
+                          },
+                          domProps: { value: _vm.form.account_code },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
                               }
-                            ],
-                            staticClass: "form-control col-9",
-                            attrs: {
-                              readonly: "true",
-                              type: "text",
-                              id: "inputAccountName",
-                              placeholder: "Account Name"
-                            },
-                            domProps: { value: _vm.form.account_name },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.form,
-                                  "account_name",
-                                  $event.target.value
-                                )
-                              }
+                              _vm.$set(
+                                _vm.form,
+                                "account_code",
+                                $event.target.value
+                              )
                             }
-                          }),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "input-group-btn col-1" }, [
-                            _c(
-                              "button",
-                              {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: !_vm.cd_created,
-                                    expression: "!cd_created"
-                                  }
-                                ],
-                                staticClass: "btn btn-success",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.searchAccountModal("header")
-                                  }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.account_name,
+                              expression: "form.account_name"
+                            }
+                          ],
+                          staticClass: "form-control col-9",
+                          attrs: {
+                            readonly: "true",
+                            type: "text",
+                            id: "inputAccountName",
+                            placeholder: "Account Name"
+                          },
+                          domProps: { value: _vm.form.account_name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form,
+                                "account_name",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "input-group-btn col-1" }, [
+                          _c(
+                            "button",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: !_vm.cd_created,
+                                  expression: "!cd_created"
                                 }
-                              },
-                              [_c("i", { staticClass: "fas fa-search fa-fw" })]
-                            )
-                          ])
+                              ],
+                              staticClass: "btn btn-success",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.searchAccountModal("header")
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-search fa-fw" })]
+                          )
                         ]),
                         _vm._v(" "),
                         _c(

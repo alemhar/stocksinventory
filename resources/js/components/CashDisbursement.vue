@@ -87,8 +87,6 @@
                       <option>MEALS AMD SNACKS</option>
                       <option>REPRESENTATION EXPENSES</option>
                     </select -->
-                    <div class="input-group">
-                    
                     <input v-bind:readonly="cd_created" type="text" class="form-control col-2" id="inputAccountCode" placeholder="Code"  v-model="form.account_code">
 
                     <input readonly="true" type="text" class="form-control col-9" id="inputAccountName" placeholder="Account Name" v-model="form.account_name">
@@ -97,7 +95,7 @@
                         <button type="button" v-show="!cd_created" class="btn btn-success" @click="searchAccountModal('header')"><i class="fas fa-search fa-fw"></i></button>
 
                     </span>
-                    </div>
+                    
                     <p v-show="no_account_code" class="empty-field-message">** Please select account!</p>
                   </div>
                 </div>
