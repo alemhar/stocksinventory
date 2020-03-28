@@ -729,7 +729,7 @@
                //this.loadUsers();
             });
 
-            
+            console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
             //console.log(this.payees);
 
             //setInterval(() => this.loadUsers(),3000);

@@ -2801,7 +2801,8 @@ __webpack_require__.r(__webpack_exports__);
     VueListen.$on('RefreshUsersTable', function () {
       _this4.loadPayees(); //this.loadUsers();
 
-    }); //console.log(this.payees);
+    });
+    console.log(document.querySelector('meta[name="user-id"]').getAttribute('content')); //console.log(this.payees);
     //setInterval(() => this.loadUsers(),3000);
   },
   components: {//DynamicSelect
