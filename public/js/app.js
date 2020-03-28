@@ -2532,6 +2532,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -2566,7 +2570,7 @@ __webpack_require__.r(__webpack_exports__);
         account_name: '',
         entry_name: '',
         entry_description: '',
-        branch_code: '',
+        branch_id: '',
         branch_name: '',
         tax_type: 'TAX TYPE',
         amount: '',
@@ -2577,6 +2581,7 @@ __webpack_require__.r(__webpack_exports__);
         transaction_type: ''
       }),
       payees: {},
+      branches: {},
       current_payee: {},
       chart_of_accounts: {}
     };
@@ -2625,22 +2630,32 @@ __webpack_require__.r(__webpack_exports__);
     //           }
     //         });
     // },
-    loadPayees: function loadPayees() {
+    loadBranches: function loadBranches() {
       var _this = this;
 
       if (this.$gate.isAdminOrAuthor()) {
-        axios.get("api/payee").then(function (_ref) {
+        axios.get("api/branch").then(function (_ref) {
           var data = _ref.data;
-          return _this.payees = data;
+          return _this.branches = data;
+        }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
+      }
+    },
+    loadPayees: function loadPayees() {
+      var _this2 = this;
+
+      if (this.$gate.isAdminOrAuthor()) {
+        axios.get("api/payee").then(function (_ref2) {
+          var data = _ref2.data;
+          return _this2.payees = data;
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
     },
     loadChartAccounts: function loadChartAccounts() {
-      var _this2 = this;
+      var _this3 = this;
 
-      axios.get("api/chartaccount").then(function (_ref2) {
-        var data = _ref2.data;
-        return _this2.chart_of_accounts = data;
+      axios.get("api/chartaccount").then(function (_ref3) {
+        var data = _ref3.data;
+        return _this3.chart_of_accounts = data;
       });
     },
     eventChild: function eventChild(Obj) {
@@ -2730,11 +2745,11 @@ __webpack_require__.r(__webpack_exports__);
       $('#select-account').modal('hide');
     },
     SearchIt: function SearchIt() {
-      var _this3 = this;
+      var _this4 = this;
 
       var query = this.searchText;
       axios.get('api/searchAccount?q=' + query).then(function (data) {
-        _this3.chart_of_accounts = data.data;
+        _this4.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
     },
@@ -2782,7 +2797,7 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   created: function created() {
-    var _this4 = this;
+    var _this5 = this;
 
     /*
     VueListen.$on('Search',() => {
@@ -2798,10 +2813,11 @@ __webpack_require__.r(__webpack_exports__);
     */
     //this.loadUsers();
     this.loadPayees();
+    this.loadBranches();
     this.loadChartAccounts();
     this.SearchIt = _.debounce(this.SearchIt, 1000);
     VueListen.$on('RefreshUsersTable', function () {
-      _this4.loadPayees(); //this.loadUsers();
+      _this5.loadPayees(); //this.loadUsers();
 
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
@@ -64592,13 +64608,56 @@ var render = function() {
                         "div",
                         { staticClass: "form-group" },
                         [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form_entry.branch_id,
+                                  expression: "form_entry.branch_id"
+                                }
+                              ],
+                              staticClass: "form-control col-12",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.form_entry,
+                                    "branch_id",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            _vm._l(_vm.branches.data, function(branch) {
+                              return _c(
+                                "option",
+                                { domProps: { value: branch.id } },
+                                [_vm._v(_vm._s(branch.name))]
+                              )
+                            }),
+                            0
+                          ),
+                          _vm._v(" "),
                           _c("input", {
                             directives: [
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.form_entry.branch_code,
-                                expression: "form_entry.branch_code"
+                                value: _vm.form_entry.branch_name,
+                                expression: "form_entry.branch_name"
                               }
                             ],
                             staticClass: "form-control",
@@ -64612,7 +64671,7 @@ var render = function() {
                               id: "branch_code",
                               placeholder: "Branch Code"
                             },
-                            domProps: { value: _vm.form_entry.branch_code },
+                            domProps: { value: _vm.form_entry.branch_name },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
@@ -64620,7 +64679,7 @@ var render = function() {
                                 }
                                 _vm.$set(
                                   _vm.form_entry,
-                                  "branch_code",
+                                  "branch_name",
                                   $event.target.value
                                 )
                               }

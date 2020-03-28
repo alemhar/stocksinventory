@@ -29,6 +29,10 @@ Route::apiResources([
     'chartaccount' => 'API\AccountController'
 ]);
 
+Route::apiResources([
+    'branch' => 'API\BranchController'
+]);
+
 Route::get('account', 'API\UserController@account');
 Route::get('findUser', 'API\UserController@search');
 Route::get('searchAccount', 'API\AccountController@search');

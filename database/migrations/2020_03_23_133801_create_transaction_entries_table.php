@@ -22,7 +22,8 @@ class CreateTransactionEntriesTable extends Migration
             $table->string('account_name');
             $table->string('entry_name');
             $table->string('entry_description');
-            $table->integer('branch_code')->unsigned();
+            $table->integer('branch_id')->unsigned();
+            $table->string('branch_name');
             $table->string('tax_type');
             $table->decimal('amount', 14, 2);
             $table->decimal('amount_ex_tax', 14, 2);

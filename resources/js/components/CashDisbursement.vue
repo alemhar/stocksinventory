@@ -299,13 +299,17 @@
               </div>
 
               <div class="form-group">
-                  <input v-model="form_entry.branch_code" name="branch_code" id="branch_code"
+                  <select v-model="form_entry.branch_id" class="form-control col-12">
+                      <option v-for="branch in branches.data" v-bind:value="branch.id">{{ branch.name }}</option>
+                  </select>
+                  <input v-model="form_entry.branch_name" name="branch_code" id="branch_code"
                   placeholder="Branch Code"
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('branch_code') }">
                   <has-error :form="form_entry" field="branch_code"></has-error>
               </div>
 
               <div class="col-6">
+
                 <select v-model="form_entry.tax_type" class="form-control col-12">
                   <option value="TAX TYPE">TAX TYPE</option>
                   <option value="VAT REG">VAT REG</option>
@@ -475,7 +479,7 @@
                   account_name: '',
                   entry_name: '',
                   entry_description: '',
-                  branch_code: '',
+                  branch_id: '',
                   branch_name: '',
                   
                   tax_type: 'TAX TYPE',
@@ -489,6 +493,7 @@
                   
               }),
               payees: {},
+              branches: {},
               current_payee: {},
               chart_of_accounts: {}
 
@@ -546,7 +551,14 @@
           //           }
           //         });
           // },
-          
+          loadBranches(){
+
+            if(this.$gate.isAdminOrAuthor()){
+                axios.get("api/branch").then(({data}) => (this.branches = data ));
+                //axios.get("api/user").then(({ data }) => (this.users = data.data));
+            } 
+             
+          },
           loadPayees(){
 
             if(this.$gate.isAdminOrAuthor()){
@@ -725,6 +737,7 @@
             
             //this.loadUsers();
             this.loadPayees();
+            this.loadBranches();
             this.loadChartAccounts();
             this.SearchIt = _.debounce(this.SearchIt, 1000);
 
