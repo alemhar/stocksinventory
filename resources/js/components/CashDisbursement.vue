@@ -428,10 +428,10 @@
 
       
 
-      <search-account
+      <!--search-account
       v-show="isModalVisible"
       @close="closeSearchAccount"
-      />
+      / -->
 
       
 
@@ -446,7 +446,7 @@
         data() {
           return {
               user_id: '',
-              isModalVisible: false,
+              //isModalVisible: false,
               editmode: false,
               cd_created: false,
               no_payee: false,
@@ -571,7 +571,7 @@
              
           },
           eventChild(Obj){
-            console.log(Obj.id);
+            //console.log(Obj.id);
             this.form.payee_id = Obj.id;
           },
           getDate() {
@@ -621,16 +621,16 @@
               this.form_entry.reset();
               $('#entry-details').modal('show');
           },
-          searchAccount() {
-            this.isModalVisible = true;
-          },
-          closeSearchAccount(code = null,name = null) {
-            this.isModalVisible = false;
-            this.form.account_name = name;
-            this.form.account_code = code;
-            console.log(code+' '+name);
+          //searchAccount() {
+          //  this.isModalVisible = true;
+          //},
+          //closeSearchAccount(code = null,name = null) {
+          //  this.isModalVisible = false;
+          //  this.form.account_name = name;
+          //  this.form.account_code = code;
+            //console.log(code+' '+name);
 
-          },
+          //},
           searchAccountModal(headerOrDetail = 'header'){
               this.headerOrDetail = headerOrDetail;
               this.searchText = this.form.account_code;
@@ -762,6 +762,7 @@
             this.loadBranches();
             this.loadChartAccounts();
             this.SearchIt = _.debounce(this.SearchIt, 1000);
+
             //this.computeTaxChange = _.debounce(this.computeTaxChange, 1000);
 
             VueListen.$on('RefreshUsersTable',() => {
@@ -769,7 +770,7 @@
                //this.loadUsers();
             });
             this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
-            console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
+            //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
             //console.log(this.payees);
 
             //setInterval(() => this.loadUsers(),3000);
