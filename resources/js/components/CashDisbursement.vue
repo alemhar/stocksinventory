@@ -36,8 +36,11 @@
                     </select -->
                   <!-- /div -->
 
-                  <div class="form-group">
-                    <label for="inputPayeesName">Payee</label>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-default">Payee</span>
+                    </div>
+                    
                     <dynamic-select 
                       :options="payees.data"
                       option-value="id"
@@ -53,7 +56,10 @@
                   </div>
                   
 
-                  <div class="form-group">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-default">Address</span>
+                    </div>
                     <input v-bind:readonly="cd_created" type="text" class="form-control col-12" id="inputPayeesAddress" placeholder="Address" v-model="current_payee.address">
                   </div>
                   <div class="form-group row">

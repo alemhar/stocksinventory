@@ -2574,6 +2574,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -63893,11 +63899,9 @@ var render = function() {
                     _c("div", { staticClass: "col-9" }, [
                       _c(
                         "div",
-                        { staticClass: "form-group" },
+                        { staticClass: "input-group mb-2" },
                         [
-                          _c("label", { attrs: { for: "inputPayeesName" } }, [
-                            _vm._v("Payee")
-                          ]),
+                          _vm._m(0),
                           _vm._v(" "),
                           _c("dynamic-select", {
                             directives: [
@@ -63979,7 +63983,9 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
+                      _c("div", { staticClass: "input-group mb-2" }, [
+                        _vm._m(1),
+                        _vm._v(" "),
                         _c("input", {
                           directives: [
                             {
@@ -64355,7 +64361,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _vm._m(0),
+                      _vm._m(2),
                       _vm._v(" "),
                       _c("div", { staticClass: "box-footer" })
                     ])
@@ -64376,7 +64382,7 @@ var render = function() {
                   ],
                   staticClass: "box box-warning mt-2"
                 },
-                [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3)]
+                [_vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5)]
               )
             ])
           ])
@@ -64443,7 +64449,7 @@ var render = function() {
                   [_vm._v("Update Entry")]
                 ),
                 _vm._v(" "),
-                _vm._m(4)
+                _vm._m(6)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -64451,7 +64457,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(5),
+                    _vm._m(7),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64513,7 +64519,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(6),
+                    _vm._m(8),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64560,7 +64566,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(7),
+                    _vm._m(9),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64606,7 +64612,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(8),
+                    _vm._m(10),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64657,7 +64663,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(9),
+                    _vm._m(11),
                     _vm._v(" "),
                     _c(
                       "select",
@@ -64712,7 +64718,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(10),
+                  _vm._m(12),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -64778,7 +64784,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(11),
+                    _vm._m(13),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64825,7 +64831,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(12),
+                    _vm._m(14),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64872,7 +64878,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(13),
+                    _vm._m(15),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64910,7 +64916,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(14)
+              _vm._m(16)
             ])
           ]
         )
@@ -64938,7 +64944,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(15),
+              _vm._m(17),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -64977,7 +64983,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(16),
+                            _vm._m(18),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -65074,6 +65080,36 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        {
+          staticClass: "input-group-text",
+          attrs: { id: "inputGroup-sizing-default" }
+        },
+        [_vm._v("Payee")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        {
+          staticClass: "input-group-text",
+          attrs: { id: "inputGroup-sizing-default" }
+        },
+        [_vm._v("Address")]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
