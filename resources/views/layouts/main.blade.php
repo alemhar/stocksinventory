@@ -92,8 +92,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </router-link>
               </li>
               <li class="nav-item">
+                <router-link to="/cash" class="nav-link">
                   <i class="nav-icon fas fa-plus-circle"></i>
                   <p>Cash Receipts</p>
+                </router-link>
               </li>
             </ul>
           </li>
