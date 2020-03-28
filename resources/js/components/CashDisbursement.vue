@@ -447,7 +447,7 @@
               no_payee: false,
               no_reference_no: false,
               no_account_code: false,
-              searchText: '';
+              searchText: '',
               headerOrDetail: 'header';
               cd : {},
               form: new Form({
