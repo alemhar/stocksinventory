@@ -635,6 +635,7 @@
               this.headerOrDetail = headerOrDetail;
               this.searchText = this.form.account_code;
               this.searchText = '';
+              this.loadChartAccounts();
               $('#select-account').modal('show');
           },
 

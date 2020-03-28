@@ -2723,6 +2723,7 @@ __webpack_require__.r(__webpack_exports__);
       this.headerOrDetail = headerOrDetail;
       this.searchText = this.form.account_code;
       this.searchText = '';
+      this.loadChartAccounts();
       $('#select-account').modal('show');
     },
     selectAccount: function selectAccount() {
