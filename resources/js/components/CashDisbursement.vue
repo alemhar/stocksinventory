@@ -634,6 +634,7 @@
           searchAccountModal(headerOrDetail = 'header'){
               this.headerOrDetail = headerOrDetail;
               this.searchText = this.form.account_code;
+              this.searchText = '';
               $('#select-account').modal('show');
           },
 

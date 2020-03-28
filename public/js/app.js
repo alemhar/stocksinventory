@@ -2722,6 +2722,7 @@ __webpack_require__.r(__webpack_exports__);
       var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'header';
       this.headerOrDetail = headerOrDetail;
       this.searchText = this.form.account_code;
+      this.searchText = '';
       $('#select-account').modal('show');
     },
     selectAccount: function selectAccount() {
