@@ -2534,6 +2534,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -2852,7 +2853,22 @@ __webpack_require__.r(__webpack_exports__);
     });
     */
   },
-  computed: {},
+  computed: {
+    computeVat: function computeVat() {
+      if (this.form_entry.amount) {
+        return this.form_entry.amount * 0.12;
+      } else {
+        return false;
+      }
+    },
+    computeVatEx: function computeVatEx() {
+      if (this.form_entry.amount) {
+        return this.form_entry.amount * 0.88;
+      } else {
+        return false;
+      }
+    }
+  },
   components: {//DynamicSelect
   }
 });
@@ -64772,18 +64788,7 @@ var render = function() {
                             },
                             domProps: { value: _vm.form_entry.amount },
                             on: {
-                              keyup: function($event) {
-                                if (
-                                  !$event.type.indexOf("key") &&
-                                  _vm._k($event.keyCode, "up", 38, $event.key, [
-                                    "Up",
-                                    "ArrowUp"
-                                  ])
-                                ) {
-                                  return null
-                                }
-                                return _vm.computeTaxChange($event)
-                              },
+                              change: _vm.computeTaxChange,
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
