@@ -66234,7 +66234,7 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-10" }, [
-        _c("h3", [_vm._v("Page not found!")]),
+        _c("h3", [_vm._v("Feature not yet available.")]),
         _vm._v(" "),
         _c(
           "svg",
