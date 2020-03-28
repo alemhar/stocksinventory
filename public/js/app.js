@@ -2548,6 +2548,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -64423,9 +64425,9 @@ var render = function() {
               _c("div", { staticClass: "modal-body" }, [
                 _c(
                   "div",
-                  { staticClass: "input-group" },
+                  { staticClass: "input-group mb-3" },
                   [
-                    _c("label", [_vm._v("Code : ")]),
+                    _vm._m(5),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64443,7 +64445,8 @@ var render = function() {
                       attrs: {
                         type: "text",
                         name: "account_code",
-                        placeholder: "Account Code"
+                        placeholder: "Account Code",
+                        "aria-describedby": "inputGroup-sizing-default"
                       },
                       domProps: { value: _vm.form_entry.account_code },
                       on: {
@@ -64880,7 +64883,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(5)
+              _vm._m(6)
             ])
           ]
         )
@@ -64908,7 +64911,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(6),
+              _vm._m(7),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -64947,7 +64950,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(7),
+                            _vm._m(8),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -65224,6 +65227,21 @@ var staticRenderFns = [
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        {
+          staticClass: "input-group-text",
+          attrs: { id: "inputGroup-sizing-default" }
+        },
+        [_vm._v("Code :")]
+      )
+    ])
   },
   function() {
     var _vm = this

@@ -269,11 +269,13 @@
             <!-- form onsubmit="return false;" -->
             <div class="modal-body">
               
-              <div class="input-group">
-                <label>Code : </label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Code :</span>
+                </div>
                 <input v-model="form_entry.account_code" type="text" name="account_code" 
                   placeholder="Account Code"
-                  class="form-control col-4" :class="{ 'is-invalid': form_entry.errors.has('account_code') }" >
+                  class="form-control col-4" :class="{ 'is-invalid': form_entry.errors.has('account_code') }" aria-describedby="inputGroup-sizing-default">
                 <has-error :form="form_entry" field="account_code"></has-error>
                 <span class="input-group-btn col-1">
                     <button type="button" class="btn btn-success" @click="searchAccountModal('detail')"><i class="fas fa-search fa-fw"></i></button>
