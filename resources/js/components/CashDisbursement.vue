@@ -309,7 +309,7 @@
               <div class="form-group">
 
                 <select v-model="form_entry.tax_type" class="form-control col-12">
-                  <option value="TAX TYPE">TAX TYPE</option>
+                  <option value="TAX TYPE"></option>
                   <option value="VAT REG">VAT REG</option>
                   <option value="NON VAT">NON VAT</option>
                   <option value="VAT EXEMPT">VAT EXEMPT</option>

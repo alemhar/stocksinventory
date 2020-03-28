@@ -64710,9 +64710,7 @@ var render = function() {
                             }
                           },
                           [
-                            _c("option", { attrs: { value: "TAX TYPE" } }, [
-                              _vm._v("TAX TYPE")
-                            ]),
+                            _c("option", { attrs: { value: "TAX TYPE" } }),
                             _vm._v(" "),
                             _c("option", { attrs: { value: "VAT REG" } }, [
                               _vm._v("VAT REG")
