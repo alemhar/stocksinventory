@@ -2824,8 +2824,16 @@ __webpack_require__.r(__webpack_exports__);
     console.log(document.querySelector('meta[name="user-id"]').getAttribute('content')); //console.log(this.payees);
     //setInterval(() => this.loadUsers(),3000);
 
-    $('.modal').on('hidden.bs.modal', function (e) {
-      $('body').addClass('modal-open');
+    $('.modal').on("hidden.bs.modal", function (e) {
+      if ($('.modal:visible').length) {
+        $('.modal-backdrop').first().css('z-index', parseInt($('.modal:visible').last().css('z-index')) - 10);
+        $('body').addClass('modal-open');
+      }
+    }).on("show.bs.modal", function (e) {
+      if ($('.modal:visible').length) {
+        $('.modal-backdrop.in').first().css('z-index', parseInt($('.modal:visible').last().css('z-index')) + 10);
+        $(this).css('z-index', parseInt($('.modal-backdrop.in').first().css('z-index')) + 10);
+      }
     });
   },
   components: {//DynamicSelect
