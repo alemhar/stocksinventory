@@ -441,7 +441,7 @@
     export default {
         data() {
           return {
-              user_id: {!! json_encode(Auth::user()->id); !!}
+              user_id: {!! json_encode(Auth::user()->id); !!},
               isModalVisible: false,
               editmode: false,
               cd_created: false,
