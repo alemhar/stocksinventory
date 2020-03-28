@@ -59,10 +59,12 @@
                     </div>
                     <input v-bind:readonly="cd_created" type="text" class="form-control col-12" id="inputPayeesAddress" placeholder="Address" v-model="current_payee.address">
                   </div>
-                  <div class="form-group row">
-                    <div class="col-6">
-                      <input v-bind:readonly="cd_created" type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN"  v-model="current_payee.tin">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-default">TIN</span>
                     </div>
+                      <input v-bind:readonly="cd_created" type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN"  v-model="current_payee.tin">
+                    
                     <!-- div class="col-6">
                       <select v-model="form.tax_type" class="form-control col-12">
                         <option value="TAX TYPE">TAX TYPE</option>
