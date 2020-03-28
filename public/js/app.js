@@ -2741,7 +2741,6 @@ __webpack_require__.r(__webpack_exports__);
 
       var n = d.valueOf(); // Return concatenated primative value with the user id. 
 
-      this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
       return transaction + n + this.user_id;
     } // ,
     // createUser(){
@@ -2802,6 +2801,7 @@ __webpack_require__.r(__webpack_exports__);
       _this4.loadPayees(); //this.loadUsers();
 
     });
+    this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
     console.log(document.querySelector('meta[name="user-id"]').getAttribute('content')); //console.log(this.payees);
     //setInterval(() => this.loadUsers(),3000);
   },
