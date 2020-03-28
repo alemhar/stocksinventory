@@ -443,7 +443,7 @@
     export default {
         data() {
           return {
-              user_id: '',
+              user_id: document.querySelector('meta[name="user-id"]').getAttribute('content');,
               isModalVisible: false,
               editmode: false,
               cd_created: false,
