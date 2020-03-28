@@ -299,16 +299,14 @@
               </div>
 
               <div class="form-group">
-                  <select v-model="form_entry.branch_id" class="form-control col-12">
+                  <select v-model="form_entry.branch_name" class="form-control col-12">
                       <option v-for="branch in branches.data" v-bind:value="branch.id">{{ branch.name }}</option>
                   </select>
-                  <input v-model="form_entry.branch_name" name="branch_code" id="branch_code"
-                  placeholder="Branch Code"
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('branch_code') }">
-                  <has-error :form="form_entry" field="branch_code"></has-error>
+                  
+                  <has-error :form="form_entry" field="branch_name"></has-error>
               </div>
 
-              <div class="col-6">
+              <div class="form-group">
 
                 <select v-model="form_entry.tax_type" class="form-control col-12">
                   <option value="TAX TYPE">TAX TYPE</option>
@@ -751,9 +749,24 @@
 
             //setInterval(() => this.loadUsers(),3000);
 
+
+            /* Scrollbar fix
+               If you have a modal on your page that exceeds the browser height, then you can't scroll in it when closing an second modal. To fix this add: */
             $(document).on('hidden.bs.modal', '.modal', function () {
                 $('.modal:visible').length && $(document.body).addClass('modal-open');
             });
+
+            /*Backdrop z-index fix
+              This solution uses a setTimeout because the .modal-backdrop isn't created when the event show.bs.modal is triggered.
+
+            $(document).on('show.bs.modal', '.modal', function () {
+                var zIndex = 1040 + (10 * $('.modal:visible').length);
+                $(this).css('z-index', zIndex);
+                setTimeout(function() {
+                    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+                }, 0);
+            });
+            */
         },
         components: {
           //DynamicSelect

@@ -2534,8 +2534,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -2824,9 +2822,22 @@ __webpack_require__.r(__webpack_exports__);
     console.log(document.querySelector('meta[name="user-id"]').getAttribute('content')); //console.log(this.payees);
     //setInterval(() => this.loadUsers(),3000);
 
+    /* Scrollbar fix
+       If you have a modal on your page that exceeds the browser height, then you can't scroll in it when closing an second modal. To fix this add: */
+
     $(document).on('hidden.bs.modal', '.modal', function () {
       $('.modal:visible').length && $(document.body).addClass('modal-open');
     });
+    /*Backdrop z-index fix
+      This solution uses a setTimeout because the .modal-backdrop isn't created when the event show.bs.modal is triggered.
+     $(document).on('show.bs.modal', '.modal', function () {
+        var zIndex = 1040 + (10 * $('.modal:visible').length);
+        $(this).css('z-index', zIndex);
+        setTimeout(function() {
+            $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+        }, 0);
+    });
+    */
   },
   components: {//DynamicSelect
   }
@@ -64619,8 +64630,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.form_entry.branch_id,
-                                  expression: "form_entry.branch_id"
+                                  value: _vm.form_entry.branch_name,
+                                  expression: "form_entry.branch_name"
                                 }
                               ],
                               staticClass: "form-control col-12",
@@ -64637,7 +64648,7 @@ var render = function() {
                                     })
                                   _vm.$set(
                                     _vm.form_entry,
-                                    "branch_id",
+                                    "branch_name",
                                     $event.target.multiple
                                       ? $$selectedVal
                                       : $$selectedVal[0]
@@ -64655,52 +64666,17 @@ var render = function() {
                             0
                           ),
                           _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form_entry.branch_name,
-                                expression: "form_entry.branch_name"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            class: {
-                              "is-invalid": _vm.form_entry.errors.has(
-                                "branch_code"
-                              )
-                            },
-                            attrs: {
-                              name: "branch_code",
-                              id: "branch_code",
-                              placeholder: "Branch Code"
-                            },
-                            domProps: { value: _vm.form_entry.branch_name },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.form_entry,
-                                  "branch_name",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
                           _c("has-error", {
                             attrs: {
                               form: _vm.form_entry,
-                              field: "branch_code"
+                              field: "branch_name"
                             }
                           })
                         ],
                         1
                       ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-6" }, [
+                      _c("div", { staticClass: "form-group" }, [
                         _c(
                           "select",
                           {
