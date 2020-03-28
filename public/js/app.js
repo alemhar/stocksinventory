@@ -2761,8 +2761,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     onTaxChange: function onTaxChange() {
       if (this.form_entry.amount) {
-        this.form_entry.vat = this.form_entry.amount * 0.12;
-        this.form_entry.amount_ex_tax = this.form_entry.amount - this.form_entry.vat;
+        if (this.form_entry.tax_type == 'VAT') {
+          this.form_entry.vat = this.form_entry.amount * 0.12;
+          this.form_entry.amount_ex_tax = this.form_entry.amount - this.form_entry.vat;
+        }
       }
     },
     computeTaxChange: function computeTaxChange(event) {
@@ -64729,7 +64731,7 @@ var render = function() {
                                       : $$selectedVal[0]
                                   )
                                 },
-                                _vm.computeTaxChange
+                                _vm.onTaxChange
                               ]
                             }
                           },
