@@ -269,7 +269,7 @@
             <!-- form onsubmit="return false;" -->
             <div class="modal-body">
               
-              <div class="input-group mb-3">
+              <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroup-sizing-default">Code</span>
                 </div>
@@ -282,7 +282,7 @@
                 </span>
               </div>
               <br>
-              <div class="input-group">
+              <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroup-sizing-default">Account</span>
                 </div>
@@ -292,7 +292,7 @@
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('account_name') }" readonly aria-describedby="inputGroup-sizing-default">
                 <has-error :form="form_entry" field="account_name"></has-error>
               </div>
-              <div class="input-group">
+              <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
                 </div>
@@ -303,7 +303,7 @@
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('entry_name') }" aria-describedby="inputGroup-sizing-default">
                 <has-error :form="form_entry" field="entry_name"></has-error>
               </div>
-              <div class="input-group">
+              <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroup-sizing-default">Description</span>
                 </div>
@@ -314,7 +314,7 @@
                 <has-error :form="form_entry" field="entry_description"></has-error>
               </div>
 
-              <div class="input-group">
+              <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroup-sizing-default">Branch</span>
                 </div>
@@ -327,7 +327,7 @@
                   <has-error :form="form_entry" field="branch_name"></has-error>
               </div>
 
-              <div class="input-group">
+              <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroup-sizing-default">Tax Type</span>
                 </div>
@@ -344,7 +344,7 @@
               </div>
 
 
-              <div class="input-group">
+              <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroup-sizing-default">Amount</span>
                 </div>
@@ -357,7 +357,7 @@
                   <has-error :form="form_entry" field="amount"></has-error>
               </div>
 
-              <div class="input-group">
+              <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroup-sizing-default">Tax Excluded</span>
                 </div>
@@ -370,7 +370,7 @@
               </div>
 
 
-              <div class="input-group">
+              <div class="input-group mb-2">
                 
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroup-sizing-default">Tax</span>

@@ -64450,7 +64450,7 @@ var render = function() {
               _c("div", { staticClass: "modal-body" }, [
                 _c(
                   "div",
-                  { staticClass: "input-group mb-3" },
+                  { staticClass: "input-group mb-2" },
                   [
                     _vm._m(5),
                     _vm._v(" "),
@@ -64515,7 +64515,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "input-group" },
+                  { staticClass: "input-group mb-2" },
                   [
                     _vm._m(6),
                     _vm._v(" "),
@@ -64563,7 +64563,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "input-group" },
+                  { staticClass: "input-group mb-2" },
                   [
                     _vm._m(7),
                     _vm._v(" "),
@@ -64610,7 +64610,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "input-group" },
+                  { staticClass: "input-group mb-2" },
                   [
                     _vm._m(8),
                     _vm._v(" "),
@@ -64662,7 +64662,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "input-group" },
+                  { staticClass: "input-group mb-2" },
                   [
                     _vm._m(9),
                     _vm._v(" "),
@@ -64718,7 +64718,7 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _c("div", { staticClass: "input-group" }, [
+                _c("div", { staticClass: "input-group mb-2" }, [
                   _vm._m(10),
                   _vm._v(" "),
                   _c(
@@ -64783,7 +64783,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "input-group" },
+                  { staticClass: "input-group mb-2" },
                   [
                     _vm._m(11),
                     _vm._v(" "),
@@ -64831,7 +64831,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "input-group" },
+                  { staticClass: "input-group mb-2" },
                   [
                     _vm._m(12),
                     _vm._v(" "),
@@ -64879,7 +64879,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "input-group" },
+                  { staticClass: "input-group mb-2" },
                   [
                     _vm._m(13),
                     _vm._v(" "),
