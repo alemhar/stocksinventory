@@ -64760,18 +64760,36 @@ var render = function() {
                         { staticClass: "form-group" },
                         [
                           _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form_entry.amount,
+                                expression: "form_entry.amount"
+                              }
+                            ],
                             staticClass: "form-control",
                             class: {
                               "is-invalid": _vm.form_entry.errors.has("amount")
                             },
                             attrs: {
-                              bind: _vm.form_entry.amount,
                               name: "amount",
                               id: "amount",
                               placeholder: "Amount"
                             },
                             domProps: { value: _vm.form_entry.amount },
-                            on: { change: _vm.computeTaxChange }
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.form_entry,
+                                  "amount",
+                                  $event.target.value
+                                )
+                              }
+                            }
                           }),
                           _vm._v(" "),
                           _c("has-error", {
