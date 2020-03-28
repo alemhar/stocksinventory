@@ -36,11 +36,8 @@
                     </select -->
                   <!-- /div -->
 
-                  <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="inputGroup-sizing-default">Payee</span>
-                    </div>
-                    
+                  <div class="form-group row">
+                    <label for="inputPayeesName">Payee</label>
                     <dynamic-select 
                       :options="payees.data"
                       option-value="id"
@@ -76,8 +73,11 @@
                       </select>
                     </div-->  
                   </div>
-                  <div class="form-group">
-                    <label>Account</label>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-default">Account</span>
+                    </div>
+                    
                     <!-- select v-bind:readonly="cd_created" v-model="form.account_code" class="form-control col-12">
                       <option>SALARIES AND WAGES</option>
                       <option>TRAININGS AND SEMINARS</option>
@@ -106,14 +106,23 @@
                     <input v-bind:readonly="cd_created" type="text"  v-model="form.reference_no" class="form-control col-12" id="inputReferenceNo" placeholder="Reference No">
                     <p v-show="no_reference_no" class="empty-field-message">** Please enter reference number!</p>
                   </div>
-                  <div class="form-group">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-default">Date</span>
+                    </div>
                     <input v-bind:readonly="cd_created" type="date" v-model="form.transaction_date" class="form-control col-12" id="inputDate" placeholder="Date">
                   </div>
-                  <div class="form-group">
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-default">CD Number</span>
+                    </div>
                     <input v-bind:readonly="cd_created" type="text" v-model="form.transaction_no" class="form-control col-12" id="inputDCNo" placeholder="CD Number">
                   </div>
-                  <div class="form-group">
-                    <label for="inputAmount">Amount</label>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-default">Amount</span>
+                    </div>
+                    
                     <input v-bind:readonly="cd_created" type="text"  v-model="form.transaction_amt" class="form-control col-12" id="inputAmount" placeholder="Amount">
                   </div>
                 </div>
