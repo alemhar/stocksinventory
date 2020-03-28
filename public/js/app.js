@@ -2741,8 +2741,8 @@ __webpack_require__.r(__webpack_exports__);
 
       var n = d.valueOf(); // Return concatenated primative value with the user id. 
 
-      user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
-      return transaction + n + user_id;
+      this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
+      return transaction + n + this.user_id;
     } // ,
     // createUser(){
     //   this.$Progress.start()
