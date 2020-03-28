@@ -386,7 +386,7 @@
               
               <div class="form-group">
                 <label>Search</label>
-                <input type="text" name="search" v-model="searchText" class="float-right col-6">
+                <input type="text" name="search" v-model="searchText" @change="SearchIt" class="float-right col-6">
               </div>
               
               <!-- /.box-header -->
@@ -761,14 +761,15 @@
             this.loadPayees();
             this.loadBranches();
             this.loadChartAccounts();
-            this.SearchIt = _.debounce(this.SearchIt, 1000);
 
-            //this.computeTaxChange = _.debounce(this.computeTaxChange, 1000);
+            //this.SearchIt = _.debounce(this.SearchIt, 1000);
+            
 
             VueListen.$on('RefreshUsersTable',() => {
                this.loadPayees();
                //this.loadUsers();
             });
+            
             this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
             //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
             //console.log(this.payees);

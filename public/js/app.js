@@ -2834,8 +2834,7 @@ __webpack_require__.r(__webpack_exports__);
     //this.loadUsers();
     this.loadPayees();
     this.loadBranches();
-    this.loadChartAccounts();
-    this.SearchIt = _.debounce(this.SearchIt, 1000); //this.computeTaxChange = _.debounce(this.computeTaxChange, 1000);
+    this.loadChartAccounts(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
 
     VueListen.$on('RefreshUsersTable', function () {
       _this5.loadPayees(); //this.loadUsers();
@@ -64926,6 +64925,7 @@ var render = function() {
                         attrs: { type: "text", name: "search" },
                         domProps: { value: _vm.searchText },
                         on: {
+                          change: _vm.SearchIt,
                           input: function($event) {
                             if ($event.target.composing) {
                               return
