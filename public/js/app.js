@@ -2655,7 +2655,7 @@ __webpack_require__.r(__webpack_exports__);
       var day = toTwoDigits(today.getDate());
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
-    createCD: function createCD(transaction, user_id) {
+    createCD: function createCD(transaction) {
       if (this.form.payee_id.length == 0) {
         this.no_payee = true;
       } else {
@@ -2680,7 +2680,7 @@ __webpack_require__.r(__webpack_exports__);
         this.cd_created = true;
       }
 
-      this.form.transaction_no = createSerialNumber(transaction, user_id);
+      this.form.transaction_no = createSerialNumber(transaction);
     },
     saveCD: function saveCD() {
       this.cd_created = false;

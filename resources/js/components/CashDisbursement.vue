@@ -568,7 +568,7 @@
             let day = toTwoDigits(today.getDate());
             return `${year}-${month}-${day}`;
           },
-          createCD(transaction,user_id){
+          createCD(transaction){
             if(this.form.payee_id.length == 0) {
               this.no_payee = true;
             } else {
@@ -593,7 +593,7 @@
               this.cd_created = true;
             }
 
-            this.form.transaction_no = createSerialNumber(transaction,user_id);
+            this.form.transaction_no = createSerialNumber(transaction);
             
           },
           saveCD(){
