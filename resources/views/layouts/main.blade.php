@@ -91,12 +91,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p>Cash Disbursements</p>
                 </router-link>
               </li>
-              <!-- li class="nav-item">
-                <router-link to="/cr" class="nav-link">
+              <li class="nav-item">
                   <i class="nav-icon fas fa-plus-circle"></i>
                   <p>Cash Receipts</p>
-                </router-link>
-              </li -->
+              </li>
             </ul>
           </li>
           
