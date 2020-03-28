@@ -2567,11 +2567,14 @@ __webpack_require__.r(__webpack_exports__);
         entry_name: '',
         entry_description: '',
         branch_code: '',
+        branch_name: '',
         tax_type: 'TAX TYPE',
         amount: '',
         amount_ex_tax: '',
         vat: '',
-        transaction_date: this.getDate()
+        transaction_date: this.getDate(),
+        transaction_no: '',
+        transaction_type: ''
       }),
       payees: {},
       current_payee: {},
@@ -2655,7 +2658,7 @@ __webpack_require__.r(__webpack_exports__);
       var day = toTwoDigits(today.getDate());
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
-    createCD: function createCD(transaction) {
+    createCD: function createCD() {
       if (this.form.payee_id.length == 0) {
         this.no_payee = true;
       } else {
@@ -2735,13 +2738,13 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {//
       });
     },
-    createSerialNumber: function createSerialNumber(transaction) {
+    createSerialNumber: function createSerialNumber() {
       // Get current date
       var d = new Date(); // Get pirmative value of date
 
       var n = d.valueOf(); // Return concatenated primative value with the user id. 
 
-      return transaction + n + this.user_id;
+      return "" + n + this.user_id;
     } // ,
     // createUser(){
     //   this.$Progress.start()
@@ -63760,7 +63763,7 @@ var render = function() {
                             attrs: { type: "button" },
                             on: {
                               click: function($event) {
-                                return _vm.createCD("CR")
+                                return _vm.createCD()
                               }
                             }
                           },

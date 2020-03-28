@@ -17,6 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('payee_id')->unsigned();
             $table->integer('account_code')->unsigned();
+            $table->bigInteger('transaction_no')->unsigned();
             $table->string('account_name');
             $table->string('reference_no');
             $table->string('transaction_no');

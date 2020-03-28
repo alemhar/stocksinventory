@@ -15,7 +15,7 @@
                 <h3 class="box-title">Cash Disbursement</h3>
                 
                 <div class="box-tools">
-                  <button type="button" v-show="!cd_created" class="btn btn-success" @click="createCD('CR')" >Create <i class="fas fa-plus-circle fa-fw"></i></button>
+                  <button type="button" v-show="!cd_created" class="btn btn-success" @click="createCD()" >Create <i class="fas fa-plus-circle fa-fw"></i></button>
                   <!-- button type="button"  class="btn btn-success"  v-show="cd_created" @click="saveCD">Save <i class="fas fa-plus-circle fa-fw"></i></button-->
                   <button  type="button" class="btn btn-danger"  v-show="cd_created" @click="cancelCD">Cancel <i class="fas fa-window-close fa-fw"></i></button>
 
@@ -476,11 +476,15 @@
                   entry_name: '',
                   entry_description: '',
                   branch_code: '',
+                  branch_name: '',
+                  
                   tax_type: 'TAX TYPE',
                   amount: '',
                   amount_ex_tax: '',
                   vat: '',
-                  transaction_date: this.getDate()
+                  transaction_date: this.getDate(),
+                  transaction_no:'',
+                  transaction_type:''
                   
                   
               }),
@@ -568,7 +572,7 @@
             let day = toTwoDigits(today.getDate());
             return `${year}-${month}-${day}`;
           },
-          createCD(transaction){
+          createCD(){
             if(this.form.payee_id.length == 0) {
               this.no_payee = true;
             } else {
@@ -648,14 +652,14 @@
                 });
 
           },
-          createSerialNumber(transaction){
+          createSerialNumber(){
               // Get current date
               var d = new Date();
               // Get pirmative value of date
               var n = d.valueOf();
               // Return concatenated primative value with the user id. 
               
-              return transaction+n+this.user_id;
+              return ""+n+this.user_id;
           }
 
           // ,
