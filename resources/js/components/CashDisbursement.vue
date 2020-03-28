@@ -13,9 +13,10 @@
               <div class="box-header with-border">
                 <h3 class="box-title">Cash Disbursement</h3>
                 <div class="box-tools">
-                  <button type="button" v-show="!cd_created" class="btn btn-success" @click="createCD">Create <i class="fas fa-plus-circle fa-fw"></i></button>
+                  <button type="button" v-show="!cd_created" class="btn btn-success" @click="createCD('CR',<?php echo (isset(Auth::user()->name) ? Auth::user()->id : '0') ?>)">Create <i class="fas fa-plus-circle fa-fw"></i></button>
                   <!-- button type="button"  class="btn btn-success"  v-show="cd_created" @click="saveCD">Save <i class="fas fa-plus-circle fa-fw"></i></button-->
-                  <button  type="button" class="btn btn-danger"  v-show="cd_created" @click="cancelCD">Cancel <i class="fas fa-plus-circle fa-fw"></i></button>
+                  <button  type="button" class="btn btn-danger"  v-show="cd_created" @click="cancelCD">Cancel <i class="fas fa-window-close fa-fw"></i></button>
+
                 </div>
               </div>
               <div class="box-body row">
@@ -83,7 +84,7 @@
                     <input readonly="true" type="text" class="form-control col-9" id="inputAccountName" placeholder="Account Name" v-model="form.account_name">
 
                     <span class="input-group-btn col-1">
-                        <button type="button" v-show="!cd_created" class="btn btn-success" @click="searchAccount"><i class="fas fa-search fa-fw"></i></button>
+                        <button type="button" v-show="!cd_created" class="btn btn-success" @click="searchAccountModal('header')"><i class="fas fa-search fa-fw"></i></button>
 
                     </span>
                     </div>
@@ -272,10 +273,10 @@
                   class="form-control col-4" :class="{ 'is-invalid': form_entry.errors.has('account_code') }" >
                 <has-error :form="form_entry" field="account_code"></has-error>
                 <span class="input-group-btn col-1">
-                    <button type="button" class="btn btn-success" @click="searchAccountModal"><i class="fas fa-search fa-fw"></i></button>
-
+                    <button type="button" class="btn btn-success" @click="searchAccountModal('detail')"><i class="fas fa-search fa-fw"></i></button>
                 </span>
               </div>
+              <br>
               <div class="form-group">
                 <input v-model="form_entry.account_name" type="text" name="account_name"
                   placeholder="Account Name"
@@ -302,7 +303,15 @@
                   <has-error :form="form_entry" field="branch_code"></has-error>
               </div>
 
-
+              <div class="col-6">
+                <select v-model="form_entry.tax_type" class="form-control col-12">
+                  <option value="TAX TYPE">TAX TYPE</option>
+                  <option value="VAT REG">VAT REG</option>
+                  <option value="NON VAT">NON VAT</option>
+                  <option value="VAT EXEMPT">VAT EXEMPT</option>
+                  <option value="ZERO RATED">ZERO RATED</option>
+                </select>
+              </div>
 
 
               <div class="form-group">
@@ -372,7 +381,8 @@
             <div class="modal-body">
               
               <div class="input-group">
-                <input type="text" name="search" class="float-right col-2">
+                <label>Search Code</label>
+                <input type="text" name="search" v-model="searchText" class="float-right col-2">
               </div>
               
               <!-- /.box-header -->
@@ -437,6 +447,8 @@
               no_payee: false,
               no_reference_no: false,
               no_account_code: false,
+              searchText: '';
+              headerOrDetail: 'header';
               cd : {},
               form: new Form({
 
@@ -527,14 +539,7 @@
           //           }
           //         });
           // },
-          // loadUsers(){
-
-          //   if(this.$gate.isAdminOrAuthor()){
-          //       axios.get("api/user").then(({ data }) => (this.users = data));
-          //       //axios.get("api/user").then(({ data }) => (this.users = data.data));
-          //   } 
-             
-          // },
+          
           loadPayees(){
 
             if(this.$gate.isAdminOrAuthor()){
@@ -560,7 +565,7 @@
             let day = toTwoDigits(today.getDate());
             return `${year}-${month}-${day}`;
           },
-          createCD(){
+          createCD(transaction,user_id){
             if(this.form.payee_id.length == 0) {
               this.no_payee = true;
             } else {
@@ -584,6 +589,8 @@
             } else {
               this.cd_created = true;
             }
+
+            this.form.transaction_no = createSerialNumber(transaction,user_id);
             
           },
           saveCD(){
@@ -607,18 +614,47 @@
             console.log(code+' '+name);
 
           },
-          searchAccountModal(){
+          searchAccountModal(headerOrDetail = 'header'){
+              this.headerOrDetail = headerOrDetail;
+              this.searchText = this.form.account_code;
               $('#select-account').modal('show');
           },
+
           selectAccount(account_code  = null,account_name = null){
               if (account_code != null && account_name != null){
-                  this.form.account_name = account_name;
-                  this.form.account_code = account_code;
+                  if(this.headerOrDetail == 'header'){
+                      this.form.account_name = account_name;
+                      this.form.account_code = account_code;
+                  } else {
+                      this.form_entry.account_name = account_name;
+                      this.form_entry.account_code = account_code;
+                  }
               }
 
               $('#select-account').modal('hide');  
 
+          },
+          SearchIt() {
+              let query = this.searchText;
+              axios.get('api/searchAccount?q='+query)
+                .then((data)=>{
+                  this.chart_of_accounts = data.data;
+                })
+                .catch(()=>{
+                  //
+                });
+
+          },
+          createSerialNumber(transaction,user_id){
+              // Get current date
+              var d = new Date();
+              // Get pirmative value of date
+              var n = d.valueOf();
+              // Return concatenated primative value with the user id. 
+
+              return transaction+n+user_id;
           }
+
           // ,
           // createUser(){
             
@@ -683,6 +719,8 @@
             //this.loadUsers();
             this.loadPayees();
             this.loadChartAccounts();
+            this.SearchIt = _.debounce(this.SearchIt, 1000);
+
             VueListen.$on('RefreshUsersTable',() => {
                this.loadPayees();
                //this.loadUsers();
