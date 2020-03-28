@@ -749,7 +749,7 @@
             this.loadBranches();
             this.loadChartAccounts();
             this.SearchIt = _.debounce(this.SearchIt, 1000);
-            this.computeTaxChange = _.debounce(this.computeTaxChange, 1000);
+            //this.computeTaxChange = _.debounce(this.computeTaxChange, 1000);
 
             VueListen.$on('RefreshUsersTable',() => {
                this.loadPayees();

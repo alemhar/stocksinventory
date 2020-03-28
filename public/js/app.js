@@ -2826,8 +2826,8 @@ __webpack_require__.r(__webpack_exports__);
     this.loadPayees();
     this.loadBranches();
     this.loadChartAccounts();
-    this.SearchIt = _.debounce(this.SearchIt, 1000);
-    this.computeTaxChange = _.debounce(this.computeTaxChange, 1000);
+    this.SearchIt = _.debounce(this.SearchIt, 1000); //this.computeTaxChange = _.debounce(this.computeTaxChange, 1000);
+
     VueListen.$on('RefreshUsersTable', function () {
       _this5.loadPayees(); //this.loadUsers();
 
