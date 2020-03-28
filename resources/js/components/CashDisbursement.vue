@@ -13,7 +13,7 @@
             <form role="form">
               <div class="box-header with-border">
                 <h3 class="box-title">Cash Disbursement</h3>
-                <p>{{ $user_id = isset(Auth::user()->name) ? Auth::user()->id : ''; }}</p>
+                <input type="hidden" :user_id="{{ Auth::user()->id }}" v-model="user_id">
                 <div class="box-tools">
                   <button type="button" v-show="!cd_created" class="btn btn-success" @click="createCD('CR')" >Create <i class="fas fa-plus-circle fa-fw"></i></button>
                   <!-- button type="button"  class="btn btn-success"  v-show="cd_created" @click="saveCD">Save <i class="fas fa-plus-circle fa-fw"></i></button-->
