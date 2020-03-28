@@ -448,7 +448,7 @@
               no_reference_no: false,
               no_account_code: false,
               searchText: '',
-              headerOrDetail: 'header';
+              headerOrDetail: 'header',
               cd : {},
               form: new Form({
 
