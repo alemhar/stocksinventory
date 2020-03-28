@@ -2534,6 +2534,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -2764,6 +2765,9 @@ __webpack_require__.r(__webpack_exports__);
         if (this.form_entry.tax_type == 'VAT') {
           this.form_entry.vat = this.form_entry.amount * 0.12;
           this.form_entry.amount_ex_tax = this.form_entry.amount - this.form_entry.vat;
+        } else {
+          this.form_entry.vat = 0;
+          this.form_entry.amount_ex_tax = this.form_entry.amount;
         }
       }
     },
@@ -64781,6 +64785,7 @@ var render = function() {
                             },
                             domProps: { value: _vm.form_entry.amount },
                             on: {
+                              change: _vm.computeTaxChange,
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
