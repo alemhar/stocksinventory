@@ -64536,7 +64536,8 @@ var render = function() {
                         type: "text",
                         name: "account_name",
                         placeholder: "Account Name",
-                        readonly: ""
+                        readonly: "",
+                        "aria-describedby": "inputGroup-sizing-default"
                       },
                       domProps: { value: _vm.form_entry.account_name },
                       on: {
@@ -64582,7 +64583,8 @@ var render = function() {
                       attrs: {
                         type: "text",
                         name: "entry_name",
-                        placeholder: "Name"
+                        placeholder: "Name",
+                        "aria-describedby": "inputGroup-sizing-default"
                       },
                       domProps: { value: _vm.form_entry.entry_name },
                       on: {
@@ -64630,7 +64632,8 @@ var render = function() {
                       attrs: {
                         type: "text",
                         name: "entry_description",
-                        placeholder: "Description"
+                        placeholder: "Description",
+                        "aria-describedby": "inputGroup-sizing-default"
                       },
                       domProps: { value: _vm.form_entry.entry_description },
                       on: {
@@ -64675,6 +64678,9 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control col-12",
+                        attrs: {
+                          "aria-describedby": "inputGroup-sizing-default"
+                        },
                         on: {
                           change: function($event) {
                             var $$selectedVal = Array.prototype.filter
@@ -64727,6 +64733,9 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control col-12",
+                      attrs: {
+                        "aria-describedby": "inputGroup-sizing-default"
+                      },
                       on: {
                         change: [
                           function($event) {
@@ -64794,7 +64803,8 @@ var render = function() {
                       attrs: {
                         name: "amount",
                         id: "amount",
-                        placeholder: "Amount"
+                        placeholder: "Amount",
+                        "aria-describedby": "inputGroup-sizing-default"
                       },
                       domProps: { value: _vm.form_entry.amount },
                       on: {
@@ -64842,7 +64852,8 @@ var render = function() {
                         name: "amount_ex_tax",
                         id: "amount_ex_tax",
                         placeholder: "Amount Excluding Tax",
-                        readonly: ""
+                        readonly: "",
+                        "aria-describedby": "inputGroup-sizing-default"
                       },
                       domProps: { value: _vm.form_entry.amount_ex_tax },
                       on: {
@@ -64887,7 +64898,8 @@ var render = function() {
                         name: "vat",
                         id: "vat",
                         placeholder: "Vat",
-                        readonly: ""
+                        readonly: "",
+                        "aria-describedby": "inputGroup-sizing-default"
                       },
                       domProps: { value: _vm.form_entry.vat },
                       on: {

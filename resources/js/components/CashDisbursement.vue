@@ -289,7 +289,7 @@
                 
                 <input v-model="form_entry.account_name" type="text" name="account_name"
                   placeholder="Account Name"
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('account_name') }" readonly>
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('account_name') }" readonly aria-describedby="inputGroup-sizing-default">
                 <has-error :form="form_entry" field="account_name"></has-error>
               </div>
               <div class="input-group">
@@ -300,7 +300,7 @@
                 
                 <input v-model="form_entry.entry_name" type="text" name="entry_name"
                   placeholder="Name"
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('entry_name') }" >
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('entry_name') }" aria-describedby="inputGroup-sizing-default">
                 <has-error :form="form_entry" field="entry_name"></has-error>
               </div>
               <div class="input-group">
@@ -310,7 +310,7 @@
 
                 <input v-model="form_entry.entry_description" type="text" name="entry_description"
                   placeholder="Description"
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('entry_description') }" >
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('entry_description') }" aria-describedby="inputGroup-sizing-default">
                 <has-error :form="form_entry" field="entry_description"></has-error>
               </div>
 
@@ -320,7 +320,7 @@
                 </div>
 
               
-                  <select v-model="form_entry.branch_name" class="form-control col-12">
+                  <select v-model="form_entry.branch_name" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
                       <option v-for="branch in branches.data" v-bind:value="branch.id">{{ branch.name }}</option>
                   </select>
                   
@@ -334,7 +334,7 @@
 
               
 
-                <select v-model="form_entry.tax_type" @change="onTaxChange" class="form-control col-12">
+                <select v-model="form_entry.tax_type" @change="onTaxChange" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
                   <option value="TAX TYPE"></option>
                   <option value="VAT">VAT</option>
                   <option value="NON VAT">NON VAT</option>
@@ -353,7 +353,7 @@
                   <input v-model="form_entry.amount" name="amount" id="amount"
                   placeholder="Amount"
                   @change="computeTaxChange"
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount') }" >
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount') }" aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_entry" field="amount"></has-error>
               </div>
 
@@ -365,7 +365,7 @@
               
                   <input v-model="form_entry.amount_ex_tax" name="amount_ex_tax" id="amount_ex_tax"
                   placeholder="Amount Excluding Tax"
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount_ex_tax') }" readonly>
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount_ex_tax') }" readonly aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_entry" field="amount_ex_tax"></has-error>
               </div>
 
@@ -378,7 +378,7 @@
               
                   <input v-model="form_entry.vat" name="vat" id="vat"
                   placeholder="Vat"
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('vat') }" readonly>
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('vat') }" readonly aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_entry" field="vat"></has-error>
               </div>
 
