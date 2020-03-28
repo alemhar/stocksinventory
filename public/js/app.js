@@ -2766,12 +2766,14 @@ __webpack_require__.r(__webpack_exports__);
         this.form_entry.amount_ex_tax = this.form_entry.amount - this.form_entry.vat;
       }
     },
-    computeTaxChange: function computeTaxChange() {
+    computeTaxChange: function computeTaxChange(event) {
       if (this.form_entry.amount) {
         if (this.form_entry.tax_type == 'VAT') {
+          this.form_entry.amount = event.target.value;
           this.form_entry.vat = this.form_entry.amount * 0.12;
           this.form_entry.amount_ex_tax = this.form_entry.amount - this.form_entry.vat;
         } else {
+          this.form_entry.amount = event.target.value;
           this.form_entry.vat = 0;
           this.form_entry.amount_ex_tax = this.form_entry.amount;
         }
@@ -64759,14 +64761,6 @@ var render = function() {
                         { staticClass: "form-group" },
                         [
                           _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form_entry.amount,
-                                expression: "form_entry.amount"
-                              }
-                            ],
                             staticClass: "form-control",
                             class: {
                               "is-invalid": _vm.form_entry.errors.has("amount")
@@ -64777,30 +64771,7 @@ var render = function() {
                               placeholder: "Amount"
                             },
                             domProps: { value: _vm.form_entry.amount },
-                            on: {
-                              keyup: function($event) {
-                                if (
-                                  !$event.type.indexOf("key") &&
-                                  _vm._k($event.keyCode, "up", 38, $event.key, [
-                                    "Up",
-                                    "ArrowUp"
-                                  ])
-                                ) {
-                                  return null
-                                }
-                                return _vm.computeTaxChange()
-                              },
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.form_entry,
-                                  "amount",
-                                  $event.target.value
-                                )
-                              }
-                            }
+                            on: { change: _vm.computeTaxChange }
                           }),
                           _vm._v(" "),
                           _c("has-error", {

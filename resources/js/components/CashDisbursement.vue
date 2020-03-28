@@ -319,8 +319,8 @@
 
 
               <div class="form-group">
-                  <input v-model="form_entry.amount" name="amount" id="amount"
-                  placeholder="Amount" v-on:keyup.up="computeTaxChange()"
+                  <input :value="form_entry.amount" name="amount" id="amount"
+                  placeholder="Amount" @change="computeTaxChange"
 
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount') }" >
                   <has-error :form="form_entry" field="amount"></has-error>
@@ -677,12 +677,14 @@
                 this.form_entry.amount_ex_tax = this.form_entry.amount - this.form_entry.vat;
               }
           },
-          computeTaxChange(){
+          computeTaxChange(event){
               if(this.form_entry.amount){
                 if(this.form_entry.tax_type == 'VAT'){
+                  this.form_entry.amount = event.target.value;
                   this.form_entry.vat = this.form_entry.amount * 0.12;
                   this.form_entry.amount_ex_tax = this.form_entry.amount - this.form_entry.vat;
                 } else {
+                  this.form_entry.amount = event.target.value;
                   this.form_entry.vat = 0;
                   this.form_entry.amount_ex_tax = this.form_entry.amount;
                 }
