@@ -2768,8 +2768,13 @@ __webpack_require__.r(__webpack_exports__);
     },
     computeTaxChange: function computeTaxChange() {
       if (this.form_entry.amount) {
-        this.form_entry.vat = this.form_entry.amount * 0.12;
-        this.form_entry.amount_ex_tax = this.form_entry.amount - this.form_entry.vat;
+        if (this.form_entry.tax_type == 'VAT') {
+          this.form_entry.vat = this.form_entry.amount * 0.12;
+          this.form_entry.amount_ex_tax = this.form_entry.amount - this.form_entry.vat;
+        } else {
+          this.form_entry.vat = 0;
+          this.form_entry.amount_ex_tax = this.form_entry.amount;
+        }
       }
     } // ,
     // createUser(){
@@ -2853,22 +2858,7 @@ __webpack_require__.r(__webpack_exports__);
     });
     */
   },
-  computed: {
-    computeVat: function computeVat() {
-      if (this.form_entry.amount) {
-        return this.form_entry.amount * 0.12;
-      } else {
-        return false;
-      }
-    },
-    computeVatEx: function computeVatEx() {
-      if (this.form_entry.amount) {
-        return this.form_entry.amount * 0.88;
-      } else {
-        return false;
-      }
-    }
-  },
+  computed: {},
   components: {//DynamicSelect
   }
 });
@@ -64738,15 +64728,15 @@ var render = function() {
                                       : $$selectedVal[0]
                                   )
                                 },
-                                _vm.onTaxChange
+                                _vm.computeTaxChange
                               ]
                             }
                           },
                           [
                             _c("option", { attrs: { value: "TAX TYPE" } }),
                             _vm._v(" "),
-                            _c("option", { attrs: { value: "VAT REG" } }, [
-                              _vm._v("VAT REG")
+                            _c("option", { attrs: { value: "VAT" } }, [
+                              _vm._v("VAT")
                             ]),
                             _vm._v(" "),
                             _c("option", { attrs: { value: "NON VAT" } }, [
