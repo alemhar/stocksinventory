@@ -2534,6 +2534,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -64411,6 +64413,8 @@ var render = function() {
                   "div",
                   { staticClass: "input-group" },
                   [
+                    _c("label", [_vm._v("Code")]),
+                    _vm._v(" "),
                     _c("input", {
                       directives: [
                         {
@@ -64471,8 +64475,10 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "form-group" },
+                  { staticClass: "input-group" },
                   [
+                    _c("label", [_vm._v("Account Name")]),
+                    _vm._v(" "),
                     _c("input", {
                       directives: [
                         {
@@ -64489,7 +64495,8 @@ var render = function() {
                       attrs: {
                         type: "text",
                         name: "account_name",
-                        placeholder: "Account Name"
+                        placeholder: "Account Name",
+                        readonly: ""
                       },
                       domProps: { value: _vm.form_entry.account_name },
                       on: {
@@ -64782,7 +64789,8 @@ var render = function() {
                       attrs: {
                         name: "amount_ex_tax",
                         id: "amount_ex_tax",
-                        placeholder: "Amount Excluding Tax"
+                        placeholder: "Amount Excluding Tax",
+                        readonly: ""
                       },
                       domProps: { value: _vm.form_entry.amount_ex_tax },
                       on: {
@@ -64821,7 +64829,12 @@ var render = function() {
                       ],
                       staticClass: "form-control",
                       class: { "is-invalid": _vm.form_entry.errors.has("vat") },
-                      attrs: { name: "vat", id: "vat", placeholder: "Vat" },
+                      attrs: {
+                        name: "vat",
+                        id: "vat",
+                        placeholder: "Vat",
+                        readonly: ""
+                      },
                       domProps: { value: _vm.form_entry.vat },
                       on: {
                         input: function($event) {

@@ -270,7 +270,8 @@
             <div class="modal-body">
               
               <div class="input-group">
-                <input v-model="form_entry.account_code" type="text" name="account_code"
+                <label>Code</label>
+                <input v-model="form_entry.account_code" type="text" name="account_code" 
                   placeholder="Account Code"
                   class="form-control col-4" :class="{ 'is-invalid': form_entry.errors.has('account_code') }" >
                 <has-error :form="form_entry" field="account_code"></has-error>
@@ -279,10 +280,11 @@
                 </span>
               </div>
               <br>
-              <div class="form-group">
+              <div class="input-group">
+                <label>Account Name</label>
                 <input v-model="form_entry.account_name" type="text" name="account_name"
                   placeholder="Account Name"
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('account_name') }" >
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('account_name') }" readonly>
                 <has-error :form="form_entry" field="account_name"></has-error>
               </div>
               <div class="form-group">
@@ -329,7 +331,7 @@
               <div class="form-group">
                   <input v-model="form_entry.amount_ex_tax" name="amount_ex_tax" id="amount_ex_tax"
                   placeholder="Amount Excluding Tax"
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount_ex_tax') }">
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount_ex_tax') }" readonly>
                   <has-error :form="form_entry" field="amount_ex_tax"></has-error>
               </div>
 
@@ -337,7 +339,7 @@
               <div class="form-group">
                   <input v-model="form_entry.vat" name="vat" id="vat"
                   placeholder="Vat"
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('vat') }">
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('vat') }" readonly>
                   <has-error :form="form_entry" field="vat"></has-error>
               </div>
 
