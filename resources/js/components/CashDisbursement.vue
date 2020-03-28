@@ -96,8 +96,11 @@
 
                     </span>
                     
-                    <p v-show="no_account_code" class="empty-field-message">** Please select account!</p>
+                    
                   </div>
+                  <div class="input-group mb-2">
+                    <p v-show="no_account_code" class="empty-field-message">** Please select account!</p>
+                  </div>  
                 </div>
                 <!--Right Col-->
                 <div class="col-3">
