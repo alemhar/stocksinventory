@@ -319,9 +319,8 @@
 
 
               <div class="form-group">
-                  <input :value="form_entry.amount" name="amount" id="amount"
+                  <input :value="form_entry.amount" :bind="form_entry.amount" name="amount" id="amount"
                   placeholder="Amount" @change="computeTaxChange"
-
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount') }" >
                   <has-error :form="form_entry" field="amount"></has-error>
               </div>
