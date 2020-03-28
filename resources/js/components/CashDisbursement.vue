@@ -343,9 +343,8 @@
 
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              <button v-show="editmode" type="submit" class="btn btn-success">Update</button>
-              <button v-show="!editmode" type="submit" class="btn btn-primary">Create</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-success"  data-dismiss="modal">Save</button>
             </div>
 
             </form>
@@ -385,9 +384,9 @@
             <form @submit.prevent="">
             <div class="modal-body">
               
-              <div class="input-group">
-                <label>Search Code</label>
-                <input type="text" name="search" v-model="searchText" class="float-right col-2">
+              <div class="form-group">
+                <label>Search</label>
+                <input type="text" name="search" v-model="searchText" class="float-right col-6">
               </div>
               
               <!-- /.box-header -->
