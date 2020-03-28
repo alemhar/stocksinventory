@@ -117,14 +117,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </router-link>
           </li>
-          <li class="nav-item">
+          <!-- li class="nav-item">
             <router-link to="/users" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Users
               </p>
             </router-link>
-          </li>
+          </li -->
 
           <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}"

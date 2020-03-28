@@ -63908,7 +63908,7 @@ var render = function() {
                     _c("div", { staticClass: "col-9" }, [
                       _c(
                         "div",
-                        { staticClass: "form-group row" },
+                        { staticClass: "form-group" },
                         [
                           _c("label", { attrs: { for: "inputPayeesName" } }, [
                             _vm._v("Payee")

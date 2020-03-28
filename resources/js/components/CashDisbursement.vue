@@ -36,7 +36,7 @@
                     </select -->
                   <!-- /div -->
 
-                  <div class="form-group row">
+                  <div class="form-group">
                     <label for="inputPayeesName">Payee</label>
                     <dynamic-select 
                       :options="payees.data"
