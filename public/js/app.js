@@ -64415,7 +64415,6 @@ var render = function() {
                     on: {
                       submit: function($event) {
                         $event.preventDefault()
-                        _vm.editmode ? _vm.updatePayee() : _vm.createPayee()
                       }
                     }
                   },
@@ -64969,7 +64968,6 @@ var render = function() {
                     on: {
                       submit: function($event) {
                         $event.preventDefault()
-                        _vm.editmode ? _vm.updatePayee() : _vm.createPayee()
                       }
                     }
                   },

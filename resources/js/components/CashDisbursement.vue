@@ -266,7 +266,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form @submit.prevent="editmode ? updatePayee() : createPayee()">
+            <form @submit.prevent="">
             <div class="modal-body">
               
               <div class="input-group">
@@ -381,7 +381,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form @submit.prevent="editmode ? updatePayee() : createPayee()">
+            <form @submit.prevent="">
             <div class="modal-body">
               
               <div class="input-group">
