@@ -274,21 +274,20 @@
                   <span class="input-group-text" id="inputGroup-sizing-default">Code</span>
                 </div>
                 <input v-model="form_entry.account_code" type="text" name="account_code" 
-                  placeholder="Account Code"
+                  
                   class="form-control col-4" :class="{ 'is-invalid': form_entry.errors.has('account_code') }" aria-describedby="inputGroup-sizing-default">
                 <has-error :form="form_entry" field="account_code"></has-error>
                 <span class="input-group-btn col-1">
                     <button type="button" class="btn btn-success" @click="searchAccountModal('detail')"><i class="fas fa-search fa-fw"></i></button>
                 </span>
               </div>
-              <br>
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroup-sizing-default">Account</span>
                 </div>
                 
                 <input v-model="form_entry.account_name" type="text" name="account_name"
-                  placeholder="Account Name"
+                  
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('account_name') }" readonly aria-describedby="inputGroup-sizing-default">
                 <has-error :form="form_entry" field="account_name"></has-error>
               </div>
@@ -299,7 +298,7 @@
                 
                 
                 <input v-model="form_entry.entry_name" type="text" name="entry_name"
-                  placeholder="Name"
+                  
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('entry_name') }" aria-describedby="inputGroup-sizing-default">
                 <has-error :form="form_entry" field="entry_name"></has-error>
               </div>
@@ -309,7 +308,7 @@
                 </div>
 
                 <input v-model="form_entry.entry_description" type="text" name="entry_description"
-                  placeholder="Description"
+                  
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('entry_description') }" aria-describedby="inputGroup-sizing-default">
                 <has-error :form="form_entry" field="entry_description"></has-error>
               </div>
@@ -351,7 +350,7 @@
 
               
                   <input v-model="form_entry.amount" name="amount" id="amount"
-                  placeholder="Amount"
+                  
                   @change="computeTaxChange"
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount') }" aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_entry" field="amount"></has-error>
@@ -364,7 +363,7 @@
 
               
                   <input v-model="form_entry.amount_ex_tax" name="amount_ex_tax" id="amount_ex_tax"
-                  placeholder="Amount Excluding Tax"
+                  
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount_ex_tax') }" readonly aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_entry" field="amount_ex_tax"></has-error>
               </div>
@@ -377,7 +376,7 @@
                 </div>
               
                   <input v-model="form_entry.vat" name="vat" id="vat"
-                  placeholder="Vat"
+                  
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('vat') }" readonly aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_entry" field="vat"></has-error>
               </div>

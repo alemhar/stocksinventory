@@ -2574,7 +2574,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -64470,7 +64469,6 @@ var render = function() {
                       attrs: {
                         type: "text",
                         name: "account_code",
-                        placeholder: "Account Code",
                         "aria-describedby": "inputGroup-sizing-default"
                       },
                       domProps: { value: _vm.form_entry.account_code },
@@ -64511,8 +64509,6 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
                 _c(
                   "div",
                   { staticClass: "input-group mb-2" },
@@ -64535,7 +64531,6 @@ var render = function() {
                       attrs: {
                         type: "text",
                         name: "account_name",
-                        placeholder: "Account Name",
                         readonly: "",
                         "aria-describedby": "inputGroup-sizing-default"
                       },
@@ -64583,7 +64578,6 @@ var render = function() {
                       attrs: {
                         type: "text",
                         name: "entry_name",
-                        placeholder: "Name",
                         "aria-describedby": "inputGroup-sizing-default"
                       },
                       domProps: { value: _vm.form_entry.entry_name },
@@ -64632,7 +64626,6 @@ var render = function() {
                       attrs: {
                         type: "text",
                         name: "entry_description",
-                        placeholder: "Description",
                         "aria-describedby": "inputGroup-sizing-default"
                       },
                       domProps: { value: _vm.form_entry.entry_description },
@@ -64803,7 +64796,6 @@ var render = function() {
                       attrs: {
                         name: "amount",
                         id: "amount",
-                        placeholder: "Amount",
                         "aria-describedby": "inputGroup-sizing-default"
                       },
                       domProps: { value: _vm.form_entry.amount },
@@ -64851,7 +64843,6 @@ var render = function() {
                       attrs: {
                         name: "amount_ex_tax",
                         id: "amount_ex_tax",
-                        placeholder: "Amount Excluding Tax",
                         readonly: "",
                         "aria-describedby": "inputGroup-sizing-default"
                       },
@@ -64897,7 +64888,6 @@ var render = function() {
                       attrs: {
                         name: "vat",
                         id: "vat",
-                        placeholder: "Vat",
                         readonly: "",
                         "aria-describedby": "inputGroup-sizing-default"
                       },
