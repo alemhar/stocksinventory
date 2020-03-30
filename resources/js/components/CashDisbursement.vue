@@ -229,7 +229,7 @@
                 <div class="box-header">
                   <h3 class="box-title">Items</h3>
                   <div class="box-tools">
-                    <button class="btn btn-success" @click="newEntry">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
+                    <button class="btn btn-success" @click="newItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
                 </div>
                 <!-- /.box-header -->
@@ -909,6 +909,11 @@
               this.editmode = false;
               this.form_entry.reset();
               $('#entry-details').modal('show');
+          },
+          newItem(){
+              this.editmode = false;
+              //this.form_entry.reset();
+              $('#entry-items').modal('show');
           },
           //searchAccount() {
           //  this.isModalVisible = true;

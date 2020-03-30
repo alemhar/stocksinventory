@@ -2998,6 +2998,11 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.reset();
       $('#entry-details').modal('show');
     },
+    newItem: function newItem() {
+      this.editmode = false; //this.form_entry.reset();
+
+      $('#entry-items').modal('show');
+    },
     //searchAccount() {
     //  this.isModalVisible = true;
     //},
@@ -64642,7 +64647,7 @@ var render = function() {
                             "button",
                             {
                               staticClass: "btn btn-success",
-                              on: { click: _vm.newEntry }
+                              on: { click: _vm.newItem }
                             },
                             [
                               _vm._v("Add Items "),
