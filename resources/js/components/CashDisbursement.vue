@@ -159,7 +159,7 @@
                 <div class="box-header">
                   <h3 class="box-title">Debits</h3>
                   <div class="box-tools">
-                    <button class="btn btn-success" @click="newItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
+                    <button class="btn btn-success" @click="newEntry">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
                 </div>
 
@@ -228,9 +228,9 @@
               <div class="box">
                 <div class="box-header">
                   <h3 class="box-title">Items</h3>
-                  <div class="box-tools">
+                  <!--div class="box-tools">
                     <button class="btn btn-success" @click="newItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
-                  </div>
+                  </div-->
                 </div>
                 <!-- /.box-header -->
                 <div id="item-list" class="box-body table-responsive no-padding">
@@ -395,7 +395,7 @@
               <div class="box-header">
                   <h3 class="box-title">Items</h3>
                   <div class="box-tools">
-                    <button class="btn btn-success" @click="newEntry">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
+                    <button class="btn btn-success" @click="newItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
                 </div>
 

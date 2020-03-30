@@ -64601,7 +64601,7 @@ var render = function() {
                             "button",
                             {
                               staticClass: "btn btn-success",
-                              on: { click: _vm.newItem }
+                              on: { click: _vm.newEntry }
                             },
                             [
                               _vm._v("Add Items "),
@@ -64634,37 +64634,7 @@ var render = function() {
                   ],
                   staticClass: "box box-warning mt-2"
                 },
-                [
-                  _c("div", { staticClass: "col-md-12" }, [
-                    _c("div", { staticClass: "box" }, [
-                      _c("div", { staticClass: "box-header" }, [
-                        _c("h3", { staticClass: "box-title" }, [
-                          _vm._v("Items")
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "box-tools" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-success",
-                              on: { click: _vm.newItem }
-                            },
-                            [
-                              _vm._v("Add Items "),
-                              _c("i", {
-                                staticClass: "fas fa-plus-circle fa-fw"
-                              })
-                            ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(7),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "box-footer" })
-                    ])
-                  ])
-                ]
+                [_vm._m(7)]
               ),
               _vm._v(" "),
               _c(
@@ -64934,7 +64904,7 @@ var render = function() {
                       "button",
                       {
                         staticClass: "btn btn-success",
-                        on: { click: _vm.newEntry }
+                        on: { click: _vm.newItem }
                       },
                       [
                         _vm._v("Add Items "),
@@ -65935,90 +65905,100 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "box-body table-responsive no-padding",
-        attrs: { id: "item-list" }
-      },
-      [
-        _c("table", { staticClass: "table table-hover" }, [
-          _c("tbody", [
-            _c("tr", [
-              _c("th", [_vm._v("Account No.")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Item")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Qty")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Price")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Tax Type")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Sub-Total")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Tax Excluded")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Vat")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")])
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "box" }, [
+        _c("div", { staticClass: "box-header" }, [
+          _c("h3", { staticClass: "box-title" }, [_vm._v("Items")])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "box-body table-responsive no-padding",
+            attrs: { id: "item-list" }
+          },
+          [
+            _c("table", { staticClass: "table table-hover" }, [
+              _c("tbody", [
+                _c("tr", [
+                  _c("th", [_vm._v("Account No.")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Item")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Qty")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Price")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Tax Type")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Sub-Total")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Tax Excluded")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Vat")])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [_vm._v(" - ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" - ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" - ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" - ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" - ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" - ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" - ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" - ")])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [_vm._v(" - ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" - ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" - ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" - ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" - ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" - ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" - ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" - ")])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [_vm._v(" - ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" - ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" - ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" - ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" - ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" - ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" - ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" - ")])
+                ])
+              ])
             ])
-          ])
-        ])
-      ]
-    )
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "box-footer" })
+      ])
+    ])
   },
   function() {
     var _vm = this
