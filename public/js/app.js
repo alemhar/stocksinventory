@@ -64718,7 +64718,7 @@ var render = function() {
                     staticClass: "modal-title",
                     attrs: { id: "addNewLabel" }
                   },
-                  [_vm._v("Add New")]
+                  [_vm._v("Add Entry")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -65116,7 +65116,7 @@ var render = function() {
                     staticClass: "modal-title",
                     attrs: { id: "addNewLabel" }
                   },
-                  [_vm._v("Add New")]
+                  [_vm._v("Add Item")]
                 ),
                 _vm._v(" "),
                 _c(
