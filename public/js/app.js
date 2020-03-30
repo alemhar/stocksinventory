@@ -64698,8 +64698,8 @@ var render = function() {
           {
             name: "show",
             rawName: "v-show",
-            value: _vm.createdCD,
-            expression: "createdCD"
+            value: _vm.cd_created,
+            expression: "cd_created"
           }
         ],
         staticClass: "modal fade",
