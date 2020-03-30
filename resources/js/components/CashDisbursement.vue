@@ -232,8 +232,6 @@
                     <button class="btn btn-success" @click="newEntry">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
                 </div>
-
-                TEST
                 <!-- /.box-header -->
                 <div id="item-list" class="box-body table-responsive no-padding">
                   <table class="table table-hover">
@@ -394,14 +392,60 @@
                   <has-error :form="form_entry" field="branch_name"></has-error>
               </div>
 
+              <div class="box-header">
+                  <h3 class="box-title">Items</h3>
+                  <div class="box-tools">
+                    <button class="btn btn-success" @click="newEntry">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
+                  </div>
+                </div>
 
+                <!-- /.box-header -->
+                <div id="item-list" class="box-body table-responsive no-padding">
+                  <table class="table table-hover">
+                    <tbody>
+                      <tr>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Sub-Total</th>
+                        <th>Tax Excluded</th>
+                        <th>Vat</th>
+                      </tr>
+                      <tr>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        
+                      </tr>
+                      <tr>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                      </tr>
+                      <tr>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                      </tr>
+                  </tbody>
+                </table>
+                </div>
+                <!-- /.box-body -->
 
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Amount</span>
                 </div>
 
-              
                   <input v-model="form_entry.amount" name="amount" id="amount"
                   
                   @change="computeTaxChange"
