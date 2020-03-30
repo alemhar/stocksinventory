@@ -12,7 +12,7 @@
             <!-- form start -->
             <form role="form">
               <div class="box-header with-border">
-                <h3 class="box-title">Cash Disbursement 123</h3>
+                <h3 class="box-title">Cash Disbursement</h3>
                 
                 <div class="box-tools">
                   <button type="button" v-show="!cd_created" class="btn btn-success" @click="createCD()" >Create <i class="fas fa-plus-circle fa-fw"></i></button>
@@ -197,52 +197,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                  <div id="item-list" class="box-body table-responsive no-padding">
-                  <table class="table table-hover">
-                    <tbody>
-                      <tr>
-                        <th>Account No.</th>
-                        <th>Item</th>
-                        <th>Qty</th>
-                        <th>Price</th>
-                        <th>Tax Type</th>
-                        <th>Sub-Total</th>
-                        <th>Tax Excluded</th>
-                        <th>Vat</th>
-                      </tr>
-                      <tr>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                      </tr>
-                      <tr>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                      </tr>
-                      <tr>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                      </tr>
-                  </tbody>
-                </table>
-                </div>
+                  
                 </div> 
               </div>
               <!-- /.box -->
@@ -280,7 +235,7 @@
 
                 TEST
                 <!-- /.box-header -->
-                <!-- div id="item-list" class="box-body table-responsive no-padding">
+                <div id="item-list" class="box-body table-responsive no-padding">
                   <table class="table table-hover">
                     <tbody>
                       <tr>
@@ -325,7 +280,7 @@
                       </tr>
                   </tbody>
                 </table>
-                </div -->
+                </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
                   

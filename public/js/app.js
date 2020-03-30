@@ -2592,6 +2592,80 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -64388,6 +64462,46 @@ var render = function() {
               _c(
                 "div",
                 {
+                  staticClass: "box box-warning mt-2",
+                  attrs: { id: "item-list-div" }
+                },
+                [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "box" }, [
+                      _c("div", { staticClass: "box-header" }, [
+                        _c("h3", { staticClass: "box-title" }, [
+                          _vm._v("Items")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "box-tools" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success",
+                              on: { click: _vm.newEntry }
+                            },
+                            [
+                              _vm._v("Add Items "),
+                              _c("i", {
+                                staticClass: "fas fa-plus-circle fa-fw"
+                              })
+                            ]
+                          )
+                        ])
+                      ]),
+                      _vm._v("\n\n            TEST\n            "),
+                      _vm._v(" "),
+                      _vm._m(7),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "box-footer" })
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
                   directives: [
                     {
                       name: "show",
@@ -64398,7 +64512,7 @@ var render = function() {
                   ],
                   staticClass: "box box-warning mt-2"
                 },
-                [_vm._m(7), _vm._v(" "), _vm._m(8), _vm._v(" "), _vm._m(9)]
+                [_vm._m(8), _vm._v(" "), _vm._m(9), _vm._v(" "), _vm._m(10)]
               )
             ])
           ])
@@ -64465,7 +64579,7 @@ var render = function() {
                   [_vm._v("Update Entry")]
                 ),
                 _vm._v(" "),
-                _vm._m(10)
+                _vm._m(11)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -64473,7 +64587,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(11),
+                    _vm._m(12),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64535,7 +64649,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(12),
+                    _vm._m(13),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64582,7 +64696,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(13),
+                    _vm._m(14),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64628,7 +64742,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(14),
+                    _vm._m(15),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64679,7 +64793,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(15),
+                    _vm._m(16),
                     _vm._v(" "),
                     _c(
                       "select",
@@ -64734,7 +64848,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(16),
+                  _vm._m(17),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -64800,7 +64914,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(17),
+                    _vm._m(18),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64847,7 +64961,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(18),
+                    _vm._m(19),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64894,7 +65008,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(19),
+                    _vm._m(20),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64932,7 +65046,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(20)
+              _vm._m(21)
             ])
           ]
         )
@@ -64960,7 +65074,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(21),
+              _vm._m(22),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -64999,7 +65113,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(22),
+                            _vm._m(23),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -65204,13 +65318,7 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("th", [_vm._v("Name")]),
               _vm._v(" "),
-              _c("th", [_vm._v("Item")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Description")]),
-              _vm._v(" "),
               _c("th", [_vm._v("Branch")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Tax Type")]),
               _vm._v(" "),
               _c("th", [_vm._v("Amount")])
             ]),
@@ -65222,6 +65330,73 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("td", [_vm._v(" - ")]),
               _vm._v(" "),
+              _c("td", [_vm._v(" - ")])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")])
+            ])
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "box-body table-responsive no-padding",
+        attrs: { id: "item-list" }
+      },
+      [
+        _c("table", { staticClass: "table table-hover" }, [
+          _c("tbody", [
+            _c("tr", [
+              _c("th", [_vm._v("Account No.")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Item")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Qty")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Price")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Tax Type")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Sub-Total")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Tax Excluded")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Vat")])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
               _c("td", [_vm._v(" - ")]),
               _vm._v(" "),
               _c("td", [_vm._v(" - ")]),
@@ -65244,10 +65419,14 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("td", [_vm._v(" - ")]),
               _vm._v(" "),
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
               _c("td", [_vm._v(" - ")])
             ]),
             _vm._v(" "),
             _c("tr", [
+              _c("td", [_vm._v(" - ")]),
+              _vm._v(" "),
               _c("td", [_vm._v(" - ")]),
               _vm._v(" "),
               _c("td", [_vm._v(" - ")]),
