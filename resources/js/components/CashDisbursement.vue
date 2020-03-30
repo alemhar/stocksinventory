@@ -197,7 +197,52 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                  
+                  <div id="item-list" class="box-body table-responsive no-padding">
+                  <table class="table table-hover">
+                    <tbody>
+                      <tr>
+                        <th>Account No.</th>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Tax Type</th>
+                        <th>Sub-Total</th>
+                        <th>Tax Excluded</th>
+                        <th>Vat</th>
+                      </tr>
+                      <tr>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                      </tr>
+                      <tr>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                      </tr>
+                      <tr>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                      </tr>
+                  </tbody>
+                </table>
+                </div>
                 </div> 
               </div>
               <!-- /.box -->
