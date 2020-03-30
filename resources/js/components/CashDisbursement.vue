@@ -171,10 +171,7 @@
                       <tr>
                         <th>Account No.</th>
                         <th>Name</th>
-                        <th>Item</th>
-                        <th>Description</th>
                         <th>Branch</th>
-                        <th>Tax Type</th>
                         <th>Amount</th>
                       </tr>
                       <tr>
@@ -182,6 +179,81 @@
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
+                      </tr>
+                      <tr>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                      </tr>
+                      <tr>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                      </tr>
+                  </tbody>
+                </table>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                  
+                </div> 
+              </div>
+              <!-- /.box -->
+            </div>
+
+          </div>  
+          <!-- /.box -->
+
+
+      <!-- Item List     
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      -->
+
+
+          <div  v-show="cd_created" class="box box-warning mt-2">
+            <div class="col-md-12">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Items</h3>
+                  <div class="box-tools">
+                    <button class="btn btn-success" @click="newEntry">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
+                  </div>
+                </div>
+
+
+                <!-- /.box-header -->
+                <div id="debits-list" class="box-body table-responsive no-padding">
+                  <table class="table table-hover">
+                    <tbody>
+                      <tr>
+                        <th>Account No.</th>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Tax Type</th>
+                        <th>Sub-Total</th>
+                        <th>Tax Excluded</th>
+                        <th>Vat</th>
+                      </tr>
+                      <tr>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
+                        <td> - </td>
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
@@ -194,8 +266,10 @@
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
+                        <td> - </td>
                       </tr>
                       <tr>
+                        <td> - </td>
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
@@ -217,6 +291,10 @@
 
           </div>  
           <!-- /.box -->
+
+
+
+
             <div v-show="cd_created" class="box box-warning mt-2">
               
               <div class="form-group col-12 float-right">

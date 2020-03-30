@@ -109,14 +109,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </router-link>
           </li>
           @endcan
-          <li class="nav-item">
+          <!--li class="nav-item">
             <router-link to="/account" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Accounts
               </p>
             </router-link>
-          </li>
+          </li-->
           <!-- li class="nav-item">
             <router-link to="/users" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
