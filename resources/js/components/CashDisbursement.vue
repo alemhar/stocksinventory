@@ -235,7 +235,7 @@
 
 
                 <!-- /.box-header -->
-                <div id="debits-list" class="box-body table-responsive no-padding">
+                <div id="item-list" class="box-body table-responsive no-padding">
                   <table class="table table-hover">
                     <tbody>
                       <tr>
