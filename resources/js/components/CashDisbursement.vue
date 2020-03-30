@@ -223,7 +223,7 @@
       -->
 
 
-          <div  v-show="cd_created" class="box box-warning mt-2">
+          <div id="item-list-div" v-show="cd_created" class="box box-warning mt-2">
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
