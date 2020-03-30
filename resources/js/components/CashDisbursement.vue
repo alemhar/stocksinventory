@@ -577,6 +577,33 @@
                   <has-error :form="form_entry" field="branch_name"></has-error>
               </div -->
 
+
+
+
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text inputGroup-sizing-default">Price</span>
+                </div>
+
+              
+                  <input v-model="form_entry.amount" name="amount" id="amount"
+                  
+                  @change="computeTaxChange"
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount') }" aria-describedby="inputGroup-sizing-default">
+                  <has-error :form="form_entry" field="amount"></has-error>
+              </div>
+
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text inputGroup-sizing-default">Quantity</span>
+                </div>
+
+                <input v-model="form_entry.entry_description" type="text" name="entry_description"
+                  
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('entry_description') }" aria-describedby="inputGroup-sizing-default">
+                <has-error :form="form_entry" field="entry_description"></has-error>
+              </div>
+
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Tax Type</span>
@@ -591,20 +618,6 @@
                   <option value="VAT EXEMPT">VAT EXEMPT</option>
                   <option value="ZERO RATED">ZERO RATED</option>
                 </select>
-              </div>
-
-
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Amount</span>
-                </div>
-
-              
-                  <input v-model="form_entry.amount" name="amount" id="amount"
-                  
-                  @change="computeTaxChange"
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount') }" aria-describedby="inputGroup-sizing-default">
-                  <has-error :form="form_entry" field="amount"></has-error>
               </div>
 
               <div class="input-group mb-2">
