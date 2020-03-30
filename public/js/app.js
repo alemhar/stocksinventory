@@ -64575,8 +64575,15 @@ var render = function() {
               _c(
                 "div",
                 {
-                  staticClass: "box box-warning mt-2",
-                  attrs: { id: "item-list-div" }
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.cd_created,
+                      expression: "cd_created"
+                    }
+                  ],
+                  staticClass: "box box-warning mt-2"
                 },
                 [
                   _c("div", { staticClass: "col-md-12" }, [
@@ -64639,6 +64646,14 @@ var render = function() {
     _c(
       "div",
       {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.createdCD,
+            expression: "createdCD"
+          }
+        ],
         staticClass: "modal fade",
         attrs: {
           id: "entry-details",
@@ -65009,6 +65024,14 @@ var render = function() {
     _c(
       "div",
       {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.createdCD,
+            expression: "createdCD"
+          }
+        ],
         staticClass: "modal fade",
         attrs: {
           id: "entry-items",
