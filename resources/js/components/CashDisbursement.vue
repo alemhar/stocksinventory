@@ -12,7 +12,7 @@
             <!-- form start -->
             <form role="form">
               <div class="box-header with-border">
-                <h3 class="box-title">Cash Disbursement</h3>
+                <h3 class="box-title">Cash Disbursement 123</h3>
                 
                 <div class="box-tools">
                   <button type="button" v-show="!cd_created" class="btn btn-success" @click="createCD()" >Create <i class="fas fa-plus-circle fa-fw"></i></button>
