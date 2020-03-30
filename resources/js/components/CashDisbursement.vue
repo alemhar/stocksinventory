@@ -235,7 +235,7 @@
 
 
                 <!-- /.box-header -->
-                <div id="item-list" class="box-body table-responsive no-padding">
+                <!-- div id="item-list" class="box-body table-responsive no-padding">
                   <table class="table table-hover">
                     <tbody>
                       <tr>
@@ -280,7 +280,7 @@
                       </tr>
                   </tbody>
                 </table>
-                </div>
+                </div -->
                 <!-- /.box-body -->
                 <div class="box-footer">
                   
@@ -291,9 +291,6 @@
 
           </div>  
           <!-- /.box -->
-
-
-
 
             <div v-show="cd_created" class="box box-warning mt-2">
               
@@ -334,7 +331,6 @@
         <div class="row mt-1" v-if="!$gate.isAdminOrAuthor()">
           <not-found></not-found>
         </div>  
-
 
       <!-- Entry Modal
       *
