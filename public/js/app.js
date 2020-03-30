@@ -65138,115 +65138,6 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form_entry.account_code,
-                          expression: "form_entry.account_code"
-                        }
-                      ],
-                      staticClass: "form-control col-4",
-                      class: {
-                        "is-invalid": _vm.form_entry.errors.has("account_code")
-                      },
-                      attrs: {
-                        type: "text",
-                        name: "account_code",
-                        "aria-describedby": "inputGroup-sizing-default"
-                      },
-                      domProps: { value: _vm.form_entry.account_code },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.form_entry,
-                            "account_code",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("has-error", {
-                      attrs: { form: _vm.form_entry, field: "account_code" }
-                    }),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "input-group-btn col-1" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-success",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              return _vm.searchAccountModal("detail")
-                            }
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-search fa-fw" })]
-                      )
-                    ])
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "input-group mb-2" },
-                  [
-                    _vm._m(22),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form_entry.account_name,
-                          expression: "form_entry.account_name"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: {
-                        "is-invalid": _vm.form_entry.errors.has("account_name")
-                      },
-                      attrs: {
-                        type: "text",
-                        name: "account_name",
-                        readonly: "",
-                        "aria-describedby": "inputGroup-sizing-default"
-                      },
-                      domProps: { value: _vm.form_entry.account_name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.form_entry,
-                            "account_name",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("has-error", {
-                      attrs: { form: _vm.form_entry, field: "account_name" }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "input-group mb-2" },
-                  [
-                    _vm._m(23),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
                           value: _vm.form_entry.entry_name,
                           expression: "form_entry.entry_name"
                         }
@@ -65286,7 +65177,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(24),
+                    _vm._m(22),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65333,66 +65224,8 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "input-group mb-2" },
-                  [
-                    _vm._m(25),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form_entry.branch_name,
-                            expression: "form_entry.branch_name"
-                          }
-                        ],
-                        staticClass: "form-control col-12",
-                        attrs: {
-                          "aria-describedby": "inputGroup-sizing-default"
-                        },
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.form_entry,
-                              "branch_name",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          }
-                        }
-                      },
-                      _vm._l(_vm.branches.data, function(branch) {
-                        return _c(
-                          "option",
-                          { domProps: { value: branch.id } },
-                          [_vm._v(_vm._s(branch.name))]
-                        )
-                      }),
-                      0
-                    ),
-                    _vm._v(" "),
-                    _c("has-error", {
-                      attrs: { form: _vm.form_entry, field: "branch_name" }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(26),
+                  _vm._m(23),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -65458,7 +65291,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(27),
+                    _vm._m(24),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65505,7 +65338,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(28),
+                    _vm._m(25),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65552,7 +65385,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(29),
+                    _vm._m(26),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65590,7 +65423,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(30)
+              _vm._m(27)
             ])
           ]
         )
@@ -65618,7 +65451,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(31),
+              _vm._m(28),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -65657,7 +65490,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(32),
+                            _vm._m(29),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -66291,28 +66124,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "input-group-prepend" }, [
-      _c("span", { staticClass: "input-group-text nputGroup-sizing-default" }, [
-        _vm._v("Code")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Account")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
@@ -66329,18 +66140,6 @@ var staticRenderFns = [
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Description")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Branch")]
       )
     ])
   },

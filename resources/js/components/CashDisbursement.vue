@@ -520,7 +520,7 @@
             <!-- form onsubmit="return false;" -->
             <div class="modal-body">
               
-              <div class="input-group mb-2">
+              <!--div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text nputGroup-sizing-default">Code</span>
                 </div>
@@ -541,7 +541,7 @@
                   
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('account_name') }" readonly aria-describedby="inputGroup-sizing-default">
                 <has-error :form="form_entry" field="account_name"></has-error>
-              </div>
+              </div -->
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Name</span>
@@ -564,7 +564,7 @@
                 <has-error :form="form_entry" field="entry_description"></has-error>
               </div>
 
-              <div class="input-group mb-2">
+              <!--div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Branch</span>
                 </div>
@@ -575,7 +575,7 @@
                   </select>
                   
                   <has-error :form="form_entry" field="branch_name"></has-error>
-              </div>
+              </div -->
 
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
