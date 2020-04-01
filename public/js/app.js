@@ -3139,6 +3139,7 @@ __webpack_require__.r(__webpack_exports__);
       var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
       var address = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var tin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+      console.log(id);
 
       if (id != null) {
         this.current_payee.id = id;

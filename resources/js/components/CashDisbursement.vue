@@ -1042,6 +1042,7 @@
 
           },
           selectPayee(id = null,name = null,address = null,tin = null){
+              console.log(id);
               if (id != null){
                       this.current_payee.id = id;
                       this.current_payee.name = name;
