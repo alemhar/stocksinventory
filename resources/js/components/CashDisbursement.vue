@@ -36,7 +36,7 @@
                     </select -->
                   <!-- /div -->
 
-                  <div class="input-group">
+                  <div class="input-group mb-2">
                     <!-- label for="inputPayeesName">Payee</label -->
                     <!--dynamic-select 
                       :options="payees.data"
@@ -115,7 +115,7 @@
                 </div>
                 <!--Right Col-->
                 <div class="col-4">
-                  <div class="input-group">
+                  <div class="input-group mb-2">
                     <!--label for="inputReferenceNo">Reference No.</label -->
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Ref. #</span>

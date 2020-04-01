@@ -64245,7 +64245,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "box-body row" }, [
                     _c("div", { staticClass: "col-8" }, [
-                      _c("div", { staticClass: "input-group" }, [
+                      _c("div", { staticClass: "input-group mb-2" }, [
                         _vm._m(0),
                         _vm._v(" "),
                         _c("input", {
@@ -64511,7 +64511,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-4" }, [
-                      _c("div", { staticClass: "input-group" }, [
+                      _c("div", { staticClass: "input-group mb-2" }, [
                         _vm._m(4),
                         _vm._v(" "),
                         _c("input", {
