@@ -1041,15 +1041,15 @@
               $('#select-account').modal('hide');  
 
           },
+
           selectPayee(id = null,name = null,address = null,tin = null){
               console.log(id);
-              if (id != null){
+              if (id){
                       this.current_payee.id = id;
                       this.current_payee.name = name;
                       this.current_payee.address = address;
                       this.current_payee.tin = tin;
               }
-
               $('#select-payee').modal('hide');  
 
           },

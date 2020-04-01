@@ -3141,7 +3141,7 @@ __webpack_require__.r(__webpack_exports__);
       var tin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
       console.log(id);
 
-      if (id != null) {
+      if (id) {
         this.current_payee.id = id;
         this.current_payee.name = name;
         this.current_payee.address = address;
