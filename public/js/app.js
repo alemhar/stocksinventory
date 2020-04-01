@@ -3165,7 +3165,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var query = this.searchPayee;
       axios.get('api/searchPayee?q=' + query).then(function (data) {
-        _this5.chart_of_accounts = data.data;
+        _this5.payees = data.data;
       })["catch"](function () {//
       });
     },
