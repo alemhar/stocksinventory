@@ -23,7 +23,7 @@
               </div>
               <div class="box-body row">
                 <!--Left Col-->
-                <div class="col-9">
+                <div class="col-8">
                   <!-- div class="form-group">
                     <label for="inputPayeesName">Payee</label>
                     <input type="text" class="form-control col-12" id="inputPayeesName" placeholder="Payees Name">
@@ -36,8 +36,8 @@
                     </select -->
                   <!-- /div -->
 
-                  <div class="form-group">
-                    <label for="inputPayeesName">Payee</label>
+                  <div class="input-group">
+                    <!-- label for="inputPayeesName">Payee</label -->
                     <!--dynamic-select 
                       :options="payees.data"
                       option-value="id"
@@ -47,6 +47,9 @@
                       v-model="current_payee"
                       v-show="!cd_created"
                       / -->
+                    <div class="input-group-prepend">
+                      <span class="input-group-text inputGroup-sizing-default">Payee</span>
+                    </div>  
                     <input v-bind:readonly="cd_created" type="text" class="form-control col-12" id="inputPayeesName" placeholder="Payees Name">
                       
                     <span class="input-group-btn col-1">
@@ -85,7 +88,7 @@
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
-                      <span class="input-group-text" id="inputGroup-sizing-default">Account</span>
+                      <span class="input-group-text inputGroup-sizing-default">Account</span>
                     </div>
                     
                     <!-- select v-bind:readonly="cd_created" v-model="form.account_code" class="form-control col-12">
@@ -111,27 +114,31 @@
                   </div>  
                 </div>
                 <!--Right Col-->
-                <div class="col-3">
-                  <div class="form-group">
-                    <label for="inputReferenceNo">Reference No.</label>
+                <div class="col-4">
+                  <div class="input-group">
+                    <!--label for="inputReferenceNo">Reference No.</label -->
+                    <div class="input-group-prepend">
+                      <span class="input-group-text inputGroup-sizing-default">Ref. #</span>
+                    </div>
+
                     <input v-bind:readonly="cd_created" type="text"  v-model="form.reference_no" class="form-control col-12" id="inputReferenceNo" placeholder="Reference No">
                     <p v-show="no_reference_no" class="empty-field-message">** Please enter reference number!</p>
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
-                      <span class="input-group-text" id="inputGroup-sizing-default">Date</span>
+                      <span class="input-group-text inputGroup-sizing-default">Date</span>
                     </div>
                     <input v-bind:readonly="cd_created" type="date" v-model="form.transaction_date" class="form-control col-12" id="inputDate" placeholder="Date">
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
-                      <span class="input-group-text" id="inputGroup-sizing-default">CD Number</span>
+                      <span class="input-group-text inputGroup-sizing-default">CD #</span>
                     </div>
                     <input v-bind:readonly="cd_created" type="text" v-model="form.transaction_no" class="form-control col-12" id="inputDCNo" placeholder="CD Number">
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
-                      <span class="input-group-text" id="inputGroup-sizing-default">Amount</span>
+                      <span class="input-group-text inputGroup-sizing-default">Amount</span>
                     </div>
                     
                     <input v-bind:readonly="cd_created" type="text"  v-model="form.transaction_amt" class="form-control col-12" id="inputAmount" placeholder="Amount">

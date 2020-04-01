@@ -2909,6 +2909,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -64237,11 +64244,9 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "box-body row" }, [
-                    _c("div", { staticClass: "col-9" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "inputPayeesName" } }, [
-                          _vm._v("Payee")
-                        ]),
+                    _c("div", { staticClass: "col-8" }, [
+                      _c("div", { staticClass: "input-group" }, [
+                        _vm._m(0),
                         _vm._v(" "),
                         _c("input", {
                           staticClass: "form-control col-12",
@@ -64327,7 +64332,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "input-group mb-2" }, [
-                        _vm._m(0),
+                        _vm._m(1),
                         _vm._v(" "),
                         _c("input", {
                           directives: [
@@ -64362,7 +64367,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "input-group mb-2" }, [
-                        _vm._m(1),
+                        _vm._m(2),
                         _vm._v(" "),
                         _c("input", {
                           directives: [
@@ -64397,7 +64402,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "input-group mb-2" }, [
-                        _vm._m(2),
+                        _vm._m(3),
                         _vm._v(" "),
                         _c("input", {
                           directives: [
@@ -64505,11 +64510,9 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-3" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "inputReferenceNo" } }, [
-                          _vm._v("Reference No.")
-                        ]),
+                    _c("div", { staticClass: "col-4" }, [
+                      _c("div", { staticClass: "input-group" }, [
+                        _vm._m(4),
                         _vm._v(" "),
                         _c("input", {
                           directives: [
@@ -64560,7 +64563,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "input-group mb-2" }, [
-                        _vm._m(3),
+                        _vm._m(5),
                         _vm._v(" "),
                         _c("input", {
                           directives: [
@@ -64595,7 +64598,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "input-group mb-2" }, [
-                        _vm._m(4),
+                        _vm._m(6),
                         _vm._v(" "),
                         _c("input", {
                           directives: [
@@ -64630,7 +64633,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "input-group mb-2" }, [
-                        _vm._m(5),
+                        _vm._m(7),
                         _vm._v(" "),
                         _c("input", {
                           directives: [
@@ -64706,7 +64709,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _vm._m(6),
+                      _vm._m(8),
                       _vm._v(" "),
                       _c("div", { staticClass: "box-footer" })
                     ])
@@ -64727,7 +64730,7 @@ var render = function() {
                   ],
                   staticClass: "box box-warning mt-2"
                 },
-                [_vm._m(7)]
+                [_vm._m(9)]
               ),
               _vm._v(" "),
               _c(
@@ -64743,7 +64746,7 @@ var render = function() {
                   ],
                   staticClass: "box box-warning mt-2"
                 },
-                [_vm._m(8), _vm._v(" "), _vm._m(9), _vm._v(" "), _vm._m(10)]
+                [_vm._m(10), _vm._v(" "), _vm._m(11), _vm._v(" "), _vm._m(12)]
               )
             ])
           ])
@@ -64818,7 +64821,7 @@ var render = function() {
                   [_vm._v("Update Entry")]
                 ),
                 _vm._v(" "),
-                _vm._m(11)
+                _vm._m(13)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -64826,7 +64829,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(12),
+                    _vm._m(14),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64888,7 +64891,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(13),
+                    _vm._m(15),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64935,7 +64938,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(14),
+                    _vm._m(16),
                     _vm._v(" "),
                     _c(
                       "select",
@@ -65007,13 +65010,13 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(15),
+                _vm._m(17),
                 _vm._v(" "),
                 _c(
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(16),
+                    _vm._m(18),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65060,7 +65063,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(17),
+                    _vm._m(19),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65107,7 +65110,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(18),
+                    _vm._m(20),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65145,7 +65148,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(19)
+              _vm._m(21)
             ])
           ]
         )
@@ -65216,7 +65219,7 @@ var render = function() {
                   [_vm._v("Update Entry")]
                 ),
                 _vm._v(" "),
-                _vm._m(20)
+                _vm._m(22)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -65224,7 +65227,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(21),
+                    _vm._m(23),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65261,104 +65264,6 @@ var render = function() {
                     _vm._v(" "),
                     _c("has-error", {
                       attrs: { form: _vm.form_entry, field: "entry_name" }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "input-group mb-2" },
-                  [
-                    _vm._m(22),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form_entry.entry_description,
-                          expression: "form_entry.entry_description"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: {
-                        "is-invalid": _vm.form_entry.errors.has(
-                          "entry_description"
-                        )
-                      },
-                      attrs: {
-                        type: "text",
-                        name: "entry_description",
-                        "aria-describedby": "inputGroup-sizing-default"
-                      },
-                      domProps: { value: _vm.form_entry.entry_description },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.form_entry,
-                            "entry_description",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("has-error", {
-                      attrs: {
-                        form: _vm.form_entry,
-                        field: "entry_description"
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "input-group mb-2" },
-                  [
-                    _vm._m(23),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form_entry.amount,
-                          expression: "form_entry.amount"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: {
-                        "is-invalid": _vm.form_entry.errors.has("amount")
-                      },
-                      attrs: {
-                        name: "amount",
-                        id: "amount",
-                        "aria-describedby": "inputGroup-sizing-default"
-                      },
-                      domProps: { value: _vm.form_entry.amount },
-                      on: {
-                        change: _vm.computeTaxChange,
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.form_entry,
-                            "amount",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("has-error", {
-                      attrs: { form: _vm.form_entry, field: "amount" }
                     })
                   ],
                   1
@@ -65415,8 +65320,106 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "input-group mb-2" },
+                  [
+                    _vm._m(25),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form_entry.amount,
+                          expression: "form_entry.amount"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.form_entry.errors.has("amount")
+                      },
+                      attrs: {
+                        name: "amount",
+                        id: "amount",
+                        "aria-describedby": "inputGroup-sizing-default"
+                      },
+                      domProps: { value: _vm.form_entry.amount },
+                      on: {
+                        change: _vm.computeTaxChange,
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form_entry,
+                            "amount",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("has-error", {
+                      attrs: { form: _vm.form_entry, field: "amount" }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "input-group mb-2" },
+                  [
+                    _vm._m(26),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form_entry.entry_description,
+                          expression: "form_entry.entry_description"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.form_entry.errors.has(
+                          "entry_description"
+                        )
+                      },
+                      attrs: {
+                        type: "text",
+                        name: "entry_description",
+                        "aria-describedby": "inputGroup-sizing-default"
+                      },
+                      domProps: { value: _vm.form_entry.entry_description },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form_entry,
+                            "entry_description",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("has-error", {
+                      attrs: {
+                        form: _vm.form_entry,
+                        field: "entry_description"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(25),
+                  _vm._m(27),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -65482,7 +65485,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(26),
+                    _vm._m(28),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65529,7 +65532,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(27),
+                    _vm._m(29),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65567,7 +65570,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(28)
+              _vm._m(30)
             ])
           ]
         )
@@ -65595,7 +65598,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(29),
+              _vm._m(31),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -65634,7 +65637,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(30),
+                            _vm._m(32),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -65750,7 +65753,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(31),
+              _vm._m(33),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -65789,7 +65792,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(32),
+                            _vm._m(34),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -65889,6 +65892,18 @@ var staticRenderFns = [
     return _c("div", { staticClass: "input-group-prepend" }, [
       _c(
         "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Payee")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
         {
           staticClass: "input-group-text",
           attrs: { id: "inputGroup-sizing-default" }
@@ -65919,10 +65934,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "input-group-prepend" }, [
       _c(
         "span",
-        {
-          staticClass: "input-group-text",
-          attrs: { id: "inputGroup-sizing-default" }
-        },
+        { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Account")]
       )
     ])
@@ -65934,10 +65946,19 @@ var staticRenderFns = [
     return _c("div", { staticClass: "input-group-prepend" }, [
       _c(
         "span",
-        {
-          staticClass: "input-group-text",
-          attrs: { id: "inputGroup-sizing-default" }
-        },
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Ref. #")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Date")]
       )
     ])
@@ -65949,11 +65970,8 @@ var staticRenderFns = [
     return _c("div", { staticClass: "input-group-prepend" }, [
       _c(
         "span",
-        {
-          staticClass: "input-group-text",
-          attrs: { id: "inputGroup-sizing-default" }
-        },
-        [_vm._v("CD Number")]
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("CD #")]
       )
     ])
   },
@@ -65964,10 +65982,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "input-group-prepend" }, [
       _c(
         "span",
-        {
-          staticClass: "input-group-text",
-          attrs: { id: "inputGroup-sizing-default" }
-        },
+        { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Amount")]
       )
     ])
