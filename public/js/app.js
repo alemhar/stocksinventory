@@ -3136,6 +3136,21 @@ __webpack_require__.r(__webpack_exports__);
 
       $('#select-account').modal('hide');
     },
+    selectPayee: function selectPayee() {
+      var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      var address = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+      var tin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+
+      if (id != null) {
+        this.current_payee.id = id;
+        this.current_payee.name = name;
+        this.current_payee.address = address;
+        this.current_payee.tin = tin;
+      }
+
+      $('#select-payee').modal('hide');
+    },
     SearchIt: function SearchIt() {
       var _this4 = this;
 

@@ -1043,6 +1043,17 @@
               $('#select-account').modal('hide');  
 
           },
+          selectPayee(id = null,name = null,address = null,tin = null){
+              if (id != null){
+                      this.current_payee.id = id;
+                      this.current_payee.name = name;
+                      this.current_payee.address = address;
+                      this.current_payee.tin = tin;
+              }
+
+              $('#select-payee').modal('hide');  
+
+          },
           SearchIt() {
               let query = this.searchText;
               axios.get('api/searchAccount?q='+query)
