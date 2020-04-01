@@ -50,7 +50,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Payee</span>
                     </div>  
-                    <input v-model="current_payee.name" v-bind:readonly="cd_created" type="text" class="form-control col-12" id="inputPayeeName" placeholder="Payees Name">
+                    <input v-model="current_payee_name" v-bind:readonly="cd_created" type="text" class="form-control col-12" id="inputPayeeName" placeholder="Payees Name">
                       
                     <span class="input-group-btn col-1">
                         <button type="button" v-show="!cd_created" class="btn btn-success" @click="searchPayeeModal"><i class="fas fa-search fa-fw"></i></button>
@@ -66,13 +66,13 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="inputGroup-sizing-default">Address</span>
                     </div>
-                    <input v-bind:readonly="cd_created" type="text" class="form-control col-12" id="inputPayeesAddress" placeholder="Address" v-model="current_payee.address">
+                    <input v-bind:readonly="cd_created" type="text" class="form-control col-12" id="inputPayeesAddress" placeholder="Address" v-model="current_payee_address">
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="inputGroup-sizing-default">TIN</span>
                     </div>
-                      <input v-bind:readonly="cd_created" type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN"  v-model="current_payee.tin">
+                      <input v-bind:readonly="cd_created" type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN"  v-model="current_payee_tin">
                     
                     <!-- div class="col-6">
                       <select v-model="form.tax_type" class="form-control col-12">
@@ -833,6 +833,11 @@
               searchText: '',
               searchPayee: '',
               headerOrDetail: 'header',
+              current_payee_id: '',
+              current_payee_name: '',
+              current_payee_address: '',
+              current_payee_tin: '',
+              
               cd : {},
               form: new Form({
 
@@ -871,7 +876,6 @@
               }),
               payees: {},
               branches: {},
-              current_payee: {},
               chart_of_accounts: {}
 
           }
@@ -1043,10 +1047,11 @@
           selectPayee(id = null,name = null,address = null,tin = null){
               if (id){
                     console.log(name);
-                      this.current_payee.id = id;
-                      this.current_payee.name = name;
-                      this.current_payee.address = address;
-                      this.current_payee.tin = tin;
+                      this.current_payee_id = id;
+                      this.form.payee_id = id;
+                      this.current_payee_name = name;
+                      this.current_payee_address = address;
+                      this.current_payee_tin = tin;
               }
               $('#select-payee').modal('hide');  
 

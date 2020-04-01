@@ -2928,6 +2928,10 @@ __webpack_require__.r(__webpack_exports__);
       searchText: '',
       searchPayee: '',
       headerOrDetail: 'header',
+      current_payee_id: '',
+      current_payee_name: '',
+      current_payee_address: '',
+      current_payee_tin: '',
       cd: {},
       form: new Form({
         id: '',
@@ -2959,7 +2963,6 @@ __webpack_require__.r(__webpack_exports__);
       }),
       payees: {},
       branches: {},
-      current_payee: {},
       chart_of_accounts: {}
     };
   },
@@ -3140,10 +3143,11 @@ __webpack_require__.r(__webpack_exports__);
 
       if (id) {
         console.log(name);
-        this.current_payee.id = id;
-        this.current_payee.name = name;
-        this.current_payee.address = address;
-        this.current_payee.tin = tin;
+        this.current_payee_id = id;
+        this.form.payee_id = id;
+        this.current_payee_name = name;
+        this.current_payee_address = address;
+        this.current_payee_tin = tin;
       }
 
       $('#select-payee').modal('hide');
@@ -63799,8 +63803,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.current_payee.name,
-                              expression: "current_payee.name"
+                              value: _vm.current_payee_name,
+                              expression: "current_payee_name"
                             }
                           ],
                           staticClass: "form-control col-12",
@@ -63810,17 +63814,13 @@ var render = function() {
                             id: "inputPayeeName",
                             placeholder: "Payees Name"
                           },
-                          domProps: { value: _vm.current_payee.name },
+                          domProps: { value: _vm.current_payee_name },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.$set(
-                                _vm.current_payee,
-                                "name",
-                                $event.target.value
-                              )
+                              _vm.current_payee_name = $event.target.value
                             }
                           }
                         }),
@@ -63870,8 +63870,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.current_payee.address,
-                              expression: "current_payee.address"
+                              value: _vm.current_payee_address,
+                              expression: "current_payee_address"
                             }
                           ],
                           staticClass: "form-control col-12",
@@ -63881,17 +63881,13 @@ var render = function() {
                             id: "inputPayeesAddress",
                             placeholder: "Address"
                           },
-                          domProps: { value: _vm.current_payee.address },
+                          domProps: { value: _vm.current_payee_address },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.$set(
-                                _vm.current_payee,
-                                "address",
-                                $event.target.value
-                              )
+                              _vm.current_payee_address = $event.target.value
                             }
                           }
                         })
@@ -63905,8 +63901,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.current_payee.tin,
-                              expression: "current_payee.tin"
+                              value: _vm.current_payee_tin,
+                              expression: "current_payee_tin"
                             }
                           ],
                           staticClass: "form-control",
@@ -63916,17 +63912,13 @@ var render = function() {
                             id: "inputPayeesTIN",
                             placeholder: "TIN"
                           },
-                          domProps: { value: _vm.current_payee.tin },
+                          domProps: { value: _vm.current_payee_tin },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.$set(
-                                _vm.current_payee,
-                                "tin",
-                                $event.target.value
-                              )
+                              _vm.current_payee_tin = $event.target.value
                             }
                           }
                         })
