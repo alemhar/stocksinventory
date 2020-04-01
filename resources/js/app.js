@@ -37,9 +37,11 @@ Vue.component('pagination', require('laravel-vue-pagination'));
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
+/*
 import DynamicSelect from 'vue-dynamic-select';
 Vue.use(DynamicSelect);
 Vue.component('DynamicSelect', DynamicSelect);
+*/
 
 
 
