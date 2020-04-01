@@ -2836,6 +2836,79 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -3033,6 +3106,12 @@ __webpack_require__.r(__webpack_exports__);
       this.loadChartAccounts();
       $('#select-account').modal('show');
     },
+    searchPayeeModal: function searchPayeeModal() {
+      //this.searchPayee = this.form.payee_id;
+      this.searchPayee = '';
+      this.loadPayees();
+      $('#select-payee').modal('show');
+    },
     selectAccount: function selectAccount() {
       var account_code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
       var account_name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
@@ -3126,8 +3205,6 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   created: function created() {
-    var _this5 = this;
-
     /*
     VueListen.$on('Search',() => {
         let query = this.$parent.search;
@@ -3145,10 +3222,13 @@ __webpack_require__.r(__webpack_exports__);
     this.loadBranches();
     this.loadChartAccounts(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
 
-    VueListen.$on('RefreshUsersTable', function () {
-      _this5.loadPayees(); //this.loadUsers();
-
+    /*
+    VueListen.$on('RefreshUsersTable',() => {
+       this.loadPayees();
+       //this.loadUsers();
     });
+    */
+
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
     //setInterval(() => this.loadUsers(),3000);
@@ -64158,93 +64238,93 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "box-body row" }, [
                     _c("div", { staticClass: "col-9" }, [
-                      _c(
-                        "div",
-                        { staticClass: "form-group" },
-                        [
-                          _c("label", { attrs: { for: "inputPayeesName" } }, [
-                            _vm._v("Payee")
-                          ]),
-                          _vm._v(" "),
-                          _c("dynamic-select", {
-                            directives: [
-                              {
-                                name: "show",
-                                rawName: "v-show",
-                                value: !_vm.cd_created,
-                                expression: "!cd_created"
-                              }
-                            ],
-                            attrs: {
-                              options: _vm.payees.data,
-                              "option-value": "id",
-                              "option-text": "name",
-                              placeholder: "Type to search"
-                            },
-                            on: { input: _vm.eventChild },
-                            model: {
-                              value: _vm.current_payee,
-                              callback: function($$v) {
-                                _vm.current_payee = $$v
-                              },
-                              expression: "current_payee"
-                            }
-                          }),
-                          _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "inputPayeesName" } }, [
+                          _vm._v("Payee")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control col-12",
+                          attrs: {
+                            readonly: _vm.cd_created,
+                            type: "text",
+                            id: "inputPayeesName",
+                            placeholder: "Payees Name"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "input-group-btn col-1" }, [
                           _c(
-                            "p",
+                            "button",
                             {
                               directives: [
                                 {
                                   name: "show",
                                   rawName: "v-show",
-                                  value: _vm.no_payee,
-                                  expression: "no_payee"
+                                  value: !_vm.cd_created,
+                                  expression: "!cd_created"
                                 }
                               ],
-                              staticClass: "empty-field-message"
+                              staticClass: "btn btn-success",
+                              attrs: { type: "button" },
+                              on: { click: _vm.searchPayeeModal }
                             },
-                            [_vm._v("** Please select payee!")]
-                          ),
-                          _vm._v(" "),
-                          _c("input", {
+                            [_c("i", { staticClass: "fas fa-search fa-fw" })]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "p",
+                          {
                             directives: [
                               {
                                 name: "show",
                                 rawName: "v-show",
-                                value: _vm.cd_created,
-                                expression: "cd_created"
-                              },
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.current_payee.name,
-                                expression: "current_payee.name"
+                                value: _vm.no_payee,
+                                expression: "no_payee"
                               }
                             ],
-                            staticClass: "form-control col-12",
-                            attrs: {
-                              readonly: _vm.cd_created,
-                              type: "text",
-                              id: "inputPayee"
+                            staticClass: "empty-field-message"
+                          },
+                          [_vm._v("** Please select payee!")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.cd_created,
+                              expression: "cd_created"
                             },
-                            domProps: { value: _vm.current_payee.name },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.current_payee,
-                                  "name",
-                                  $event.target.value
-                                )
-                              }
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.current_payee.name,
+                              expression: "current_payee.name"
                             }
-                          })
-                        ],
-                        1
-                      ),
+                          ],
+                          staticClass: "form-control col-12",
+                          attrs: {
+                            readonly: _vm.cd_created,
+                            type: "text",
+                            id: "inputPayee"
+                          },
+                          domProps: { value: _vm.current_payee.name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.current_payee,
+                                "name",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "input-group mb-2" }, [
                         _vm._m(0),
@@ -65647,6 +65727,157 @@ var render = function() {
           ]
         )
       ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "select-payee",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "addNewLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(31),
+              _vm._v(" "),
+              _c("form", { attrs: { onsubmit: "return false;" } }, [
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Search")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.searchPayee,
+                          expression: "searchPayee"
+                        }
+                      ],
+                      staticClass: "float-right col-6",
+                      attrs: { type: "text", name: "search" },
+                      domProps: { value: _vm.searchPayee },
+                      on: {
+                        change: _vm.SearchPayee,
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.searchPayee = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "box-body table-responsive no-padding" },
+                    [
+                      _c("table", { staticClass: "table table-hover" }, [
+                        _c(
+                          "tbody",
+                          [
+                            _vm._m(32),
+                            _vm._v(" "),
+                            _vm._l(_vm.payees.data, function(payee) {
+                              return _c("tr", { key: payee.id }, [
+                                _c("td", [_vm._v(_vm._s(payee.id))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(payee.name))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _c(
+                                    "a",
+                                    {
+                                      attrs: { href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.selectPayee(
+                                            payee.id,
+                                            payee.name,
+                                            payee.address,
+                                            payee.tin
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v("Select\n                  "),
+                                      _c("i", { staticClass: "fa fa-edit" })
+                                    ]
+                                  )
+                                ])
+                              ])
+                            })
+                          ],
+                          2
+                        )
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      attrs: { type: "button", "data-dismiss": "modal" }
+                    },
+                    [_vm._v("Close")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.editmode,
+                          expression: "editmode"
+                        }
+                      ],
+                      staticClass: "btn btn-success",
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v("Update")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: !_vm.editmode,
+                          expression: "!editmode"
+                        }
+                      ],
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v("Create")]
+                  )
+                ])
+              ])
+            ])
+          ]
+        )
+      ]
     )
   ])
 }
@@ -66289,6 +66520,37 @@ var staticRenderFns = [
         },
         [_vm._v("Save")]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Code")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Option")])
     ])
   },
   function() {

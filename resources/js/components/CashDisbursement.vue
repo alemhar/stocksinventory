@@ -38,7 +38,7 @@
 
                   <div class="form-group">
                     <label for="inputPayeesName">Payee</label>
-                    <dynamic-select 
+                    <!--dynamic-select 
                       :options="payees.data"
                       option-value="id"
                       option-text="name"
@@ -46,10 +46,18 @@
                       v-on:input="eventChild"
                       v-model="current_payee"
                       v-show="!cd_created"
-                      />
+                      / -->
+                    <input v-bind:readonly="cd_created" type="text" class="form-control col-12" id="inputPayeesName" placeholder="Payees Name">
+                      
+                    <span class="input-group-btn col-1">
+                        <button type="button" v-show="!cd_created" class="btn btn-success" @click="searchPayeeModal"><i class="fas fa-search fa-fw"></i></button>
+                    </span>  
+
                     <p v-show="no_payee" class="empty-field-message">** Please select payee!</p>  
                   
                     <input  v-show="cd_created" v-bind:readonly="cd_created" type="text" class="form-control col-12" id="inputPayee" v-model="current_payee.name">
+
+
                   </div>
                   
 
@@ -727,8 +735,73 @@
       <!-- Search Account Modal -->
 
     
+      <!-- Search Payee Modal 
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      -->
 
-      
+      <div class="modal fade" id="select-payee" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <!--h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add New</h5>
+              <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update Entry</h5 -->
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form onsubmit="return false;">
+            <div class="modal-body">
+              
+              <div class="form-group">
+                <label>Search</label>
+                <input type="text" name="search" v-model="searchPayee" @change="SearchPayee" class="float-right col-6">
+              </div>
+              
+              <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tbody><tr>
+                  <th>Code</th>
+                  <th>Name</th>
+                  <th>Option</th>
+                </tr>
+                <tr v-for="payee in payees.data" :key="payee.id">
+                  <td>{{ payee.id }}</td>
+                  <td>{{ payee.name }}</td> 
+                  <td>
+                    <a href="#" @click="selectPayee(payee.id,payee.name,payee.address,payee.tin)">Select
+                      <i class="fa fa-edit"></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody></table>
+            </div>
+            <!-- /.box-body -->
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              <button v-show="editmode" type="submit" class="btn btn-success">Update</button>
+              <button v-show="!editmode" type="submit" class="btn btn-primary">Create</button>
+            </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Search Payee Modal -->      
 
       <!--search-account
       v-show="isModalVisible"
@@ -860,17 +933,13 @@
              
           },
           loadPayees(){
-
             if(this.$gate.isAdminOrAuthor()){
                 axios.get("api/payee").then(({data}) => (this.payees = data ));
                 //axios.get("api/user").then(({ data }) => (this.users = data.data));
             } 
-             
           },
           loadChartAccounts(){
                 axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
-                
-             
           },
           eventChild(Obj){
             //console.log(Obj.id);
@@ -944,6 +1013,12 @@
               this.searchText = '';
               this.loadChartAccounts();
               $('#select-account').modal('show');
+          },
+          searchPayeeModal(){
+              //this.searchPayee = this.form.payee_id;
+              this.searchPayee = '';
+              this.loadPayees();
+              $('#select-payee').modal('show');
           },
 
           selectAccount(account_code  = null,account_name = null){
@@ -1070,14 +1145,14 @@
             this.loadPayees();
             this.loadBranches();
             this.loadChartAccounts();
-
             //this.SearchIt = _.debounce(this.SearchIt, 1000);
             
-
+            /*
             VueListen.$on('RefreshUsersTable',() => {
                this.loadPayees();
                //this.loadUsers();
             });
+            */
             
             this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
             //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
