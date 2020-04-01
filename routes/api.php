@@ -36,4 +36,5 @@ Route::apiResources([
 Route::get('account', 'API\UserController@account');
 Route::get('findUser', 'API\UserController@search');
 Route::get('searchAccount', 'API\AccountController@search');
+Route::get('searchPayee', 'API\PayeeController@search');
 Route::put('account', 'API\UserController@updateAccountInfo');

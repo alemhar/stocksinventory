@@ -2930,6 +2930,7 @@ __webpack_require__.r(__webpack_exports__);
       no_reference_no: false,
       no_account_code: false,
       searchText: '',
+      searchPayee: '',
       headerOrDetail: 'header',
       cd: {},
       form: new Form({
@@ -3141,6 +3142,15 @@ __webpack_require__.r(__webpack_exports__);
       var query = this.searchText;
       axios.get('api/searchAccount?q=' + query).then(function (data) {
         _this4.chart_of_accounts = data.data;
+      })["catch"](function () {//
+      });
+    },
+    SearchPayee: function SearchPayee() {
+      var _this5 = this;
+
+      var query = this.searchText;
+      axios.get('api/searchPayee?q=' + query).then(function (data) {
+        _this5.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
     },
@@ -64253,7 +64263,7 @@ var render = function() {
                           attrs: {
                             readonly: _vm.cd_created,
                             type: "text",
-                            id: "inputPayeesName",
+                            id: "inputPayeeName",
                             placeholder: "Payees Name"
                           }
                         }),

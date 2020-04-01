@@ -50,7 +50,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Payee</span>
                     </div>  
-                    <input v-bind:readonly="cd_created" type="text" class="form-control col-12" id="inputPayeesName" placeholder="Payees Name">
+                    <input v-bind:readonly="cd_created" type="text" class="form-control col-12" id="inputPayeeName" placeholder="Payees Name">
                       
                     <span class="input-group-btn col-1">
                         <button type="button" v-show="!cd_created" class="btn btn-success" @click="searchPayeeModal"><i class="fas fa-search fa-fw"></i></button>
@@ -835,6 +835,7 @@
               no_reference_no: false,
               no_account_code: false,
               searchText: '',
+              searchPayee: '',
               headerOrDetail: 'header',
               cd : {},
               form: new Form({
@@ -1045,6 +1046,16 @@
           SearchIt() {
               let query = this.searchText;
               axios.get('api/searchAccount?q='+query)
+                .then((data)=>{
+                  this.chart_of_accounts = data.data;
+                })
+                .catch(()=>{
+                  //
+                });
+          },
+          SearchPayee() {
+              let query = this.searchText;
+              axios.get('api/searchPayee?q='+query)
                 .then((data)=>{
                   this.chart_of_accounts = data.data;
                 })

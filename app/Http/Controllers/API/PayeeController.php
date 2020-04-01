@@ -112,4 +112,17 @@ class PayeeController extends Controller
         
         return ['message' => 'Payee Deleted'];
     }
+
+    public function search(){
+        if ($search = \Request::get('q')) {
+            $accounts = Payee::where(function($query) use ($search){
+                $query->where('id','LIKE',"%$search%")
+                        ->orWhere('name','LIKE',"%$search%");
+            })->paginate(10);
+
+        }else{
+            $accounts = Payee::latest()->paginate(10);
+        }
+        return $accounts;
+    }
 }
