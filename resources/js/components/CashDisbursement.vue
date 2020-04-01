@@ -1042,7 +1042,7 @@
 
           selectPayee(id = null,name = null,address = null,tin = null){
               if (id){
-                    console.log(id);
+                    console.log(name);
                       this.current_payee.id = id;
                       this.current_payee.name = name;
                       this.current_payee.address = address;
