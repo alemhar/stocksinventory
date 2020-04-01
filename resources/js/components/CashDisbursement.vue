@@ -1065,7 +1065,7 @@
                 });
           },
           SearchPayee() {
-              let query = this.searchText;
+              let query = this.searchPayee;
               axios.get('api/searchPayee?q='+query)
                 .then((data)=>{
                   this.chart_of_accounts = data.data;
