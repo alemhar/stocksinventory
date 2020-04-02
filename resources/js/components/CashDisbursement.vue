@@ -838,7 +838,7 @@
               current_payee_name: '',
               current_payee_address: '',
               current_payee_tin: '',
-              active_debit_row= 0,
+              active_debit_row: 0,
               cd : {},
               form: new Form({
 
