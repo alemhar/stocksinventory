@@ -842,15 +842,21 @@
               form: new Form({
 
                   id:'',
-                  name : '',
                   payee_id: '',
                   reference_no: '',
                   transaction_no: '',
+                  transaction_type: 'CD', // default for Cash Disbursement
                   transaction_date: this.getDate(),
                   transaction_amt: '',
-                  tax_type: 'TAX TYPE',
                   account_code: '',
-                  account_name:''
+                  account_name:'',
+                  amount: 0,
+                  credit_amount: 0,
+                  debit_amount: 0,
+                  amount_ex_tax: 0,
+                  vat: 0,
+                  canceled: 0,
+                  user_id: document.querySelector('meta[name="user-id"]').getAttribute('content');
                   
                   
               }),
@@ -986,7 +992,9 @@
               this.cd_created = true;
             }
 
+
             this.form.transaction_no = this.createSerialNumber();
+            this.form.transaction_type = 'CD';
             this.form.post('api/cd');
             
           },

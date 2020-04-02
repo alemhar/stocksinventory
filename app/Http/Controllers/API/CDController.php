@@ -37,6 +37,7 @@ class CDController extends Controller
     public function show($id)
     {
         
+        
     }
 
     /**
