@@ -33,6 +33,10 @@ Route::apiResources([
     'branch' => 'API\BranchController'
 ]);
 
+Route::apiResources([
+    'cd' => 'API\CDController'
+]);
+
 Route::get('account', 'API\UserController@account');
 Route::get('findUser', 'API\UserController@search');
 Route::get('searchAccount', 'API\AccountController@search');
