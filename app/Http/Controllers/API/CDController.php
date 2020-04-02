@@ -25,7 +25,7 @@ class CDController extends Controller
      */
     public function store(Request $request)
     {
-        return ['message'=>'I have your data.'];
+        return $request->all();
     }
 
     /**

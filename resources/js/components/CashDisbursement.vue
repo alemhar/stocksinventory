@@ -15,7 +15,7 @@
                 <h3 class="box-title">Cash Disbursement</h3>
                 
                 <div class="box-tools">
-                  <button type="button" v-show="!cd_created" class="btn btn-success" @click="createCD()" >Create <i class="fas fa-plus-circle fa-fw"></i></button>
+                  <button type="submit" v-show="!cd_created" class="btn btn-success" @click="createCD()" >Create <i class="fas fa-plus-circle fa-fw"></i></button>
                   <!-- button type="button"  class="btn btn-success"  v-show="cd_created" @click="saveCD">Save <i class="fas fa-plus-circle fa-fw"></i></button-->
                   <button  type="button" class="btn btn-danger"  v-show="cd_created" @click="cancelCD">Cancel <i class="fas fa-window-close fa-fw"></i></button>
 
