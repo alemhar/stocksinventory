@@ -83,6 +83,10 @@ class CDController extends Controller
 
 
     public function cancelTransaction($transaction_no){
-        return ['message' => 'transaction canceled'];
+
+        Transaction::where('transaction_no', $transaction_no)
+          ->update(['canceled' => 1]);
+
+        //return ['message' => 'transaction canceled'];
     }
 }
