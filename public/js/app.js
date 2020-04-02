@@ -64297,7 +64297,7 @@ var render = function() {
                                 "tr",
                                 {
                                   class: {
-                                    tablewarning: _vm.active_debit_row == 1
+                                    "table-warning": _vm.active_debit_row == 1
                                   },
                                   on: {
                                     click: function($event) {
@@ -64328,7 +64328,7 @@ var render = function() {
                                 "tr",
                                 {
                                   class: {
-                                    tablewarning: _vm.active_debit_row == 2
+                                    "table-warning": _vm.active_debit_row == 2
                                   },
                                   on: {
                                     click: function($event) {
@@ -64359,7 +64359,7 @@ var render = function() {
                                 "tr",
                                 {
                                   class: {
-                                    tablewarning: _vm.active_debit_row == 3
+                                    "table-warning": _vm.active_debit_row == 3
                                   },
                                   on: {
                                     click: function($event) {
