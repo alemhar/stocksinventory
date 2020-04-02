@@ -995,7 +995,13 @@
 
             this.form.transaction_no = this.createSerialNumber();
             this.form.transaction_type = 'CD';
-            this.form.post('api/cd');
+            this.form.post('api/cd')
+                .then((data)=>{
+                  console.log(data.data.id);
+                })
+                .catch(()=>{
+                  //
+                });
             
           },
           saveCD(){

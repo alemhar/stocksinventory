@@ -3088,7 +3088,10 @@ __webpack_require__.r(__webpack_exports__);
 
       this.form.transaction_no = this.createSerialNumber();
       this.form.transaction_type = 'CD';
-      this.form.post('api/cd');
+      this.form.post('api/cd').then(function (data) {
+        console.log(data.data.id);
+      })["catch"](function () {//
+      });
     },
     saveCD: function saveCD() {
       this.cd_created = false;
