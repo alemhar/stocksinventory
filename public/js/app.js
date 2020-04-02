@@ -3079,6 +3079,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.form.transaction_no = this.createSerialNumber();
+      this.form.post('api/user');
     },
     saveCD: function saveCD() {
       this.cd_created = false;
@@ -3114,8 +3115,8 @@ __webpack_require__.r(__webpack_exports__);
       $('#select-account').modal('show');
     },
     searchPayeeModal: function searchPayeeModal() {
-      //this.searchPayee = this.form.payee_id;
-      this.searchPayee = '';
+      this.searchPayee = this.form.payee_id; //this.searchPayee = '';
+
       this.loadPayees();
       $('#select-payee').modal('show');
     },

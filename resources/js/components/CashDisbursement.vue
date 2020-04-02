@@ -987,6 +987,7 @@
             }
 
             this.form.transaction_no = this.createSerialNumber();
+            this.form.post('api/user');
             
           },
           saveCD(){
@@ -1023,8 +1024,8 @@
               $('#select-account').modal('show');
           },
           searchPayeeModal(){
-              //this.searchPayee = this.form.payee_id;
-              this.searchPayee = '';
+              this.searchPayee = this.form.payee_id;
+              //this.searchPayee = '';
               this.loadPayees();
               $('#select-payee').modal('show');
           },
