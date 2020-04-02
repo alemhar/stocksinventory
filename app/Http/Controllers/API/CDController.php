@@ -25,7 +25,7 @@ class CDController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return ['message'=>'I have your data.'];
     }
 
     /**
@@ -36,7 +36,7 @@ class CDController extends Controller
      */
     public function show($id)
     {
-        return ['message'=>'I have your data.'];
+        
     }
 
     /**

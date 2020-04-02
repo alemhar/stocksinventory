@@ -3079,7 +3079,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.form.transaction_no = this.createSerialNumber();
-      this.form.post('api/user');
+      this.form.post('api/cd');
     },
     saveCD: function saveCD() {
       this.cd_created = false;

@@ -987,7 +987,7 @@
             }
 
             this.form.transaction_no = this.createSerialNumber();
-            this.form.post('api/user');
+            this.form.post('api/cd');
             
           },
           saveCD(){
