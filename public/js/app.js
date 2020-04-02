@@ -3215,6 +3215,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     selectDebitRow: function selectDebitRow(active_debit_row) {
       this.active_debit_row = active_debit_row;
+      console.log(active_debit_row);
     } // ,
     // createUser(){
     //   this.$Progress.start()
