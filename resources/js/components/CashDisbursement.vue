@@ -260,7 +260,7 @@
                         <th>Tax Excluded</th>
                         <th>Vat</th>
                       </tr>
-                      <tr @click="selectDebitRow(1)" :class="{ table-warning : active_debit_row == 1 }" >
+                      <tr @click="selectDebitRow(1)" :class="{ tablewarning : active_debit_row == 1 }" >
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
@@ -270,7 +270,7 @@
                         <td> - </td>
                         <td> - </td>
                       </tr>
-                      <tr @click="selectDebitRow(2)" :class="{ table-warning : active_debit_row == 2 }">
+                      <tr @click="selectDebitRow(2)" :class="{ tablewarning : active_debit_row == 2 }">
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
@@ -280,7 +280,7 @@
                         <td> - </td>
                         <td> - </td>
                       </tr>
-                      <tr  @click="selectDebitRow(3)" :class="{ table-warning : active_debit_row == 3 }" >
+                      <tr  @click="selectDebitRow(3)" :class="{ tablewarning : active_debit_row == 3 }" >
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
