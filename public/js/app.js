@@ -2942,7 +2942,6 @@ __webpack_require__.r(__webpack_exports__);
         transaction_type: 'CD',
         // default for Cash Disbursement
         transaction_date: this.getDate(),
-        transaction_amt: '',
         account_code: '',
         account_name: '',
         amount: 0,
@@ -64181,8 +64180,8 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.form.transaction_amt,
-                                expression: "form.transaction_amt"
+                                value: _vm.form.amount,
+                                expression: "form.amount"
                               }
                             ],
                             staticClass: "form-control col-12",
@@ -64192,7 +64191,7 @@ var render = function() {
                               id: "inputAmount",
                               placeholder: "Amount"
                             },
-                            domProps: { value: _vm.form.transaction_amt },
+                            domProps: { value: _vm.form.amount },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
@@ -64200,7 +64199,7 @@ var render = function() {
                                 }
                                 _vm.$set(
                                   _vm.form,
-                                  "transaction_amt",
+                                  "amount",
                                   $event.target.value
                                 )
                               }

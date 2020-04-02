@@ -140,7 +140,7 @@
                       <span class="input-group-text inputGroup-sizing-default">Amount</span>
                     </div>
                     
-                    <input v-bind:readonly="cd_created" type="text"  v-model="form.transaction_amt" class="form-control col-12" id="inputAmount" placeholder="Amount">
+                    <input v-bind:readonly="cd_created" type="text"  v-model="form.amount" class="form-control col-12" id="inputAmount" placeholder="Amount">
                   </div>
                 </div>
               </div>
@@ -848,7 +848,6 @@
                   transaction_no: '',
                   transaction_type: 'CD', // default for Cash Disbursement
                   transaction_date: this.getDate(),
-                  transaction_amt: '',
                   account_code: '',
                   account_name:'',
                   amount: 0,
