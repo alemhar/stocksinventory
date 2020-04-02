@@ -1003,6 +1003,7 @@
           },
           cancelCD(){
             this.cd_created = false;
+            this.form.post('api/cd/cancel/'+this.form.transaction_no);
           },
           newEntry(){
               this.editmode = false;

@@ -3094,6 +3094,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     cancelCD: function cancelCD() {
       this.cd_created = false;
+      this.form.post('api/cd/cancel/' + this.form.transaction_no);
     },
     newEntry: function newEntry() {
       this.editmode = false;

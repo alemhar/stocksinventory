@@ -22,7 +22,6 @@ class CreateTransactionsTable extends Migration
             $table->string('reference_no');
             $table->string('transaction_no');
             $table->string('transaction_type');
-            $table->string('tax_type');
             $table->date('transaction_date');
             $table->decimal('amount', 14, 2);
             $table->decimal('credit_amount', 14, 2);

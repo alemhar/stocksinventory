@@ -80,4 +80,9 @@ class CDController extends Controller
     {
         //
     }
+
+
+    public function cancelTransaction($transaction_no){
+        return ['message' => 'transaction canceled'];
+    }
 }
