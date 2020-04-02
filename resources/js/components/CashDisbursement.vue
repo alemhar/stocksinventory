@@ -260,7 +260,7 @@
                         <th>Tax Excluded</th>
                         <th>Vat</th>
                       </tr>
-                      <tr>
+                      <tr @click="activate(1)" :class="{ active : active_debit_row == 1 }" >
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
@@ -270,7 +270,7 @@
                         <td> - </td>
                         <td> - </td>
                       </tr>
-                      <tr>
+                      <tr @click="activate(2)" :class="{ active : active_debit_row == 2 }">
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
@@ -280,7 +280,7 @@
                         <td> - </td>
                         <td> - </td>
                       </tr>
-                      <tr>
+                      <tr  @click="activate(3)" :class="{ active : active_debit_row == 3 }" >
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
@@ -838,7 +838,7 @@
               current_payee_name: '',
               current_payee_address: '',
               current_payee_tin: '',
-              
+              active_debit_row= 0,
               cd : {},
               form: new Form({
 
@@ -1119,6 +1119,9 @@
                   this.form_entry.amount_ex_tax = this.form_entry.amount;
                 }
               }
+          },
+          selectDebitRow(active_debit_row){
+              this.active_debit_row = active_debit_row;
           }
 
           // ,

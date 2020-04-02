@@ -2091,1212 +2091,9 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CashDisbursement.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//import { ModelSelect } from 'vue-search-select'
-//import { DynamicSelect } from 'vue-dynamic-select'
-//import { BasicSelect } from 'vue-search-select'
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      user_id: '',
-      //isModalVisible: false,
-      editmode: false,
-      cd_created: false,
-      no_payee: false,
-      no_reference_no: false,
-      no_account_code: false,
-      searchText: '',
-      searchPayee: '',
-      headerOrDetail: 'header',
-      current_payee_id: '',
-      current_payee_name: '',
-      current_payee_address: '',
-      current_payee_tin: '',
-      cd: {},
-      form: new Form({
-        id: '',
-        payee_id: '',
-        reference_no: '',
-        transaction_no: '',
-        transaction_type: 'CD',
-        // default for Cash Disbursement
-        transaction_date: this.getDate(),
-        account_code: '',
-        account_name: '',
-        amount: 0,
-        credit_amount: 0,
-        debit_amount: 0,
-        amount_ex_tax: 0,
-        vat: 0,
-        canceled: 0,
-        user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
-      }),
-      form_entry: new Form({
-        id: '',
-        account_code: '',
-        account_name: '',
-        entry_name: '',
-        entry_description: '',
-        branch_id: '',
-        branch_name: '',
-        tax_type: 'TAX TYPE',
-        amount: '',
-        amount_ex_tax: '',
-        vat: '',
-        transaction_date: this.getDate(),
-        transaction_no: '',
-        transaction_type: ''
-      }),
-      payees: {},
-      branches: {},
-      chart_of_accounts: {}
-    };
-  },
-  methods: {
-    // getResults(page = 1) {
-    //   axios.get('api/user?page=' + page)
-    //     .then(response => {
-    //       this.users = response.data;
-    //     });
-    // },
-    // editUser(user){
-    //     this.editmode = true;
-    //     this.form.reset();
-    //     $('#UserDetails').modal('show');
-    //     this.form.fill(user);
-    // },
-    // newUser(){
-    //     this.editmode = false;
-    //     this.form.reset();
-    //     $('#UserDetails').modal('show');
-    // },
-    // deleteUser(id){
-    //     swal.fire({
-    //           title: 'Are you sure?',
-    //           text: "You won't be able to revert this!",
-    //           type: 'warning',
-    //           showCancelButton: true,
-    //           confirmButtonColor: '#3085d6',
-    //           cancelButtonColor: '#d33',
-    //           confirmButtonText: 'Yes, delete it!'
-    //         }).then((result) => {
-    //           if (result.value) {
-    //             this.form.delete('api/user/'+id)
-    //             .then(()=>{
-    //                 swal.fire(
-    //                   'Deleted!',
-    //                   'User has been deleted.',
-    //                   'success'
-    //                 );
-    //                 Fire.$emit('RefreshUsersTable');
-    //             })
-    //             .catch(()=>{
-    //               swal("Failed!","Failed to delete user!", "warning");
-    //             });
-    //           }
-    //         });
-    // },
-    loadBranches: function loadBranches() {
-      var _this = this;
-
-      if (this.$gate.isAdminOrAuthor()) {
-        axios.get("api/branch").then(function (_ref) {
-          var data = _ref.data;
-          return _this.branches = data;
-        }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
-      }
-    },
-    loadPayees: function loadPayees() {
-      var _this2 = this;
-
-      if (this.$gate.isAdminOrAuthor()) {
-        axios.get("api/payee").then(function (_ref2) {
-          var data = _ref2.data;
-          return _this2.payees = data;
-        }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
-      }
-    },
-    loadChartAccounts: function loadChartAccounts() {
-      var _this3 = this;
-
-      axios.get("api/chartaccount").then(function (_ref3) {
-        var data = _ref3.data;
-        return _this3.chart_of_accounts = data;
-      });
-    },
-    eventChild: function eventChild(Obj) {
-      //console.log(Obj.id);
-      this.form.payee_id = Obj.id;
-    },
-    getDate: function getDate() {
-      var toTwoDigits = function toTwoDigits(num) {
-        return num < 10 ? '0' + num : num;
-      };
-
-      var today = new Date();
-      var year = today.getFullYear();
-      var month = toTwoDigits(today.getMonth() + 1);
-      var day = toTwoDigits(today.getDate());
-      return "".concat(year, "-").concat(month, "-").concat(day);
-    },
-    createCD: function createCD() {
-      if (this.form.payee_id.length == 0) {
-        this.no_payee = true;
-      } else {
-        this.no_payee = false;
-      }
-
-      if (this.form.account_code.length == 0) {
-        this.no_account_code = true;
-      } else {
-        this.no_account_code = false;
-      }
-
-      if (this.form.reference_no.length == 0) {
-        this.no_reference_no = true;
-      } else {
-        this.no_reference_no = false;
-      }
-
-      if (this.no_account_code || this.no_reference_no || this.no_payee) {
-        this.cd_created = false;
-      } else {
-        this.cd_created = true;
-      }
-
-      this.form.transaction_no = this.createSerialNumber();
-      this.form.transaction_type = 'CD';
-      this.form.post('api/cd');
-    },
-    saveCD: function saveCD() {
-      this.cd_created = false;
-    },
-    cancelCD: function cancelCD() {
-      this.cd_created = false;
-      this.form["delete"]('api/cd/cancel/' + this.form.transaction_no);
-    },
-    newEntry: function newEntry() {
-      this.editmode = false;
-      this.form_entry.reset();
-      $('#entry-details').modal('show');
-    },
-    newItem: function newItem() {
-      this.editmode = false; //this.form_entry.reset();
-
-      $('#entry-items').modal('show');
-    },
-    //searchAccount() {
-    //  this.isModalVisible = true;
-    //},
-    //closeSearchAccount(code = null,name = null) {
-    //  this.isModalVisible = false;
-    //  this.form.account_name = name;
-    //  this.form.account_code = code;
-    //console.log(code+' '+name);
-    //},
-    searchAccountModal: function searchAccountModal() {
-      var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'header';
-      this.headerOrDetail = headerOrDetail;
-      this.searchText = this.form.account_code; //this.searchText = '';
-
-      this.loadChartAccounts();
-      $('#select-account').modal('show');
-    },
-    searchPayeeModal: function searchPayeeModal() {
-      this.searchPayee = this.form.payee_id; //this.searchPayee = '';
-
-      this.loadPayees();
-      $('#select-payee').modal('show');
-    },
-    selectAccount: function selectAccount() {
-      var account_code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-      var account_name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-
-      if (account_code != null && account_name != null) {
-        if (this.headerOrDetail == 'header') {
-          this.form.account_name = account_name;
-          this.form.account_code = account_code;
-        } else {
-          this.form_entry.account_name = account_name;
-          this.form_entry.account_code = account_code;
-        }
-      }
-
-      $('#select-account').modal('hide');
-    },
-    selectPayee: function selectPayee() {
-      var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-      var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-      var address = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-      var tin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
-
-      if (id) {
-        console.log(name);
-        this.current_payee_id = id;
-        this.form.payee_id = id;
-        this.current_payee_name = name;
-        this.current_payee_address = address;
-        this.current_payee_tin = tin;
-      }
-
-      $('#select-payee').modal('hide');
-    },
-    SearchIt: function SearchIt() {
-      var _this4 = this;
-
-      var query = this.searchText;
-      axios.get('api/searchAccount?q=' + query).then(function (data) {
-        _this4.chart_of_accounts = data.data;
-      })["catch"](function () {//
-      });
-    },
-    SearchPayee: function SearchPayee() {
-      var _this5 = this;
-
-      var query = this.searchPayee;
-      axios.get('api/searchPayee?q=' + query).then(function (data) {
-        _this5.payees = data.data;
-      })["catch"](function () {//
-      });
-    },
-    createSerialNumber: function createSerialNumber() {
-      // Get current date
-      var d = new Date(); // Get pirmative value of date
-
-      var n = d.valueOf(); // Return concatenated primative value with the user id. 
-
-      return "" + n + this.user_id;
-    },
-    onTaxChange: function onTaxChange() {
-      if (this.form_entry.amount) {
-        if (this.form_entry.tax_type == 'VAT') {
-          this.form_entry.vat = this.form_entry.amount * 0.12;
-          this.form_entry.amount_ex_tax = this.form_entry.amount - this.form_entry.vat;
-        } else {
-          this.form_entry.vat = 0;
-          this.form_entry.amount_ex_tax = this.form_entry.amount;
-        }
-      }
-    },
-    computeTaxChange: function computeTaxChange(event) {
-      if (this.form_entry.amount) {
-        if (this.form_entry.tax_type == 'VAT') {
-          this.form_entry.amount = event.target.value;
-          this.form_entry.vat = this.form_entry.amount * 0.12;
-          this.form_entry.amount_ex_tax = this.form_entry.amount - this.form_entry.vat;
-        } else {
-          this.form_entry.amount = event.target.value;
-          this.form_entry.vat = 0;
-          this.form_entry.amount_ex_tax = this.form_entry.amount;
-        }
-      }
-    } // ,
-    // createUser(){
-    //   this.$Progress.start()
-    //   this.form.post('api/user')
-    //   .then(()=>{
-    //       VueListen.$emit('RefreshUsersTable');
-    //       $('#UserDetails').modal('hide');
-    //       toast.fire({
-    //         type: 'success',
-    //         title: 'User created successfully'
-    //       })
-    //       this.$Progress.finish();
-    //   })
-    //   .catch(()=>{
-    //   });
-    // },
-    // updateUser(){
-    //   console.log('Edit User');
-    //   this.$Progress.start();
-    //   this.form.put('api/user/'+this.form.id)
-    //   .then(() => {
-    //       $('#UserDetails').modal('hide');
-    //       swal.fire(
-    //           'Updated!',
-    //           'User information has been updated.',
-    //           'success'
-    //         );
-    //         this.$Progress.finish();
-    //         VueListen.$emit('RefreshUsersTable');
-    //   })
-    //   .catch(() => {
-    //       this.$Progress.fail();
-    //   });
-    //}
-
-  },
-  created: function created() {
-    /*
-    VueListen.$on('Search',() => {
-        let query = this.$parent.search;
-        axios.get('api/findUser?q='+query)
-        .then((data)=>{
-          this.users = data.data;
-        })
-        .catch(()=>{
-         });
-       //this.loadUsers();
-    });
-    */
-    //this.loadUsers();
-    this.loadPayees();
-    this.loadBranches();
-    this.loadChartAccounts(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
-
-    /*
-    VueListen.$on('RefreshUsersTable',() => {
-       this.loadPayees();
-       //this.loadUsers();
-    });
-    */
-
-    this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
-    //console.log(this.payees);
-    //setInterval(() => this.loadUsers(),3000);
-
-    /* Scrollbar fix
-       If you have a modal on your page that exceeds the browser height, then you can't scroll in it when closing an second modal. To fix this add: */
-
-    $(document).on('hidden.bs.modal', '.modal', function () {
-      $('.modal:visible').length && $(document.body).addClass('modal-open');
-    });
-    /*Backdrop z-index fix
-      This solution uses a setTimeout because the .modal-backdrop isn't created when the event show.bs.modal is triggered.
-     $(document).on('show.bs.modal', '.modal', function () {
-        var zIndex = 1040 + (10 * $('.modal:visible').length);
-        $(this).css('z-index', zIndex);
-        setTimeout(function() {
-            $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-        }, 0);
-    });
-    */
-  },
-  computed: {},
-  components: {//DynamicSelect
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: D:\\stocksinventory\\resources\\js\\components\\CashDisbursement.vue: Unexpected token (841:26)\n\n  839 |           current_payee_address: '',\n  840 |           current_payee_tin: '',\n> 841 |           active_debit_row= 0,\n      |                           ^\n  842 |           cd : {},\n  843 |           form: new Form({\n  844 | \n    at Parser.raise (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:6400:17)\n    at Parser.unexpected (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:7728:16)\n    at Parser.parseMaybeAssign (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8315:12)\n    at Parser.parseExpression (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8221:23)\n    at Parser.parseReturnStatement (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10301:28)\n    at Parser.parseStatementContent (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9980:21)\n    at Parser.parseStatement (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9932:17)\n    at Parser.parseBlockOrModuleBlockBody (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10508:25)\n    at Parser.parseBlockBody (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10495:10)\n    at Parser.parseBlock (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10479:10)\n    at Parser.parseFunctionBody (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9523:24)\n    at Parser.parseFunctionBodyAndFinish (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9493:10)\n    at Parser.parseMethod (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9447:10)\n    at Parser.parseObjectMethod (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9363:19)\n    at Parser.parseObjPropValue (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9405:23)\n    at Parser.parseObjectMember (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9329:10)\n    at Parser.parseObj (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9253:25)\n    at Parser.parseExprAtom (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8883:28)\n    at Parser.parseExprSubscripts (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8507:23)\n    at Parser.parseMaybeUnary (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8487:21)\n    at Parser.parseExprOps (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8353:23)\n    at Parser.parseMaybeConditional (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8326:23)\n    at Parser.parseMaybeAssign (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8273:21)\n    at Parser.parseExportDefaultExpression (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:11113:24)\n    at Parser.parseExport (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:11008:31)\n    at Parser.parseStatementContent (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10036:27)\n    at Parser.parseStatement (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9932:17)\n    at Parser.parseBlockOrModuleBlockBody (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10508:25)\n    at Parser.parseBlockBody (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10495:10)\n    at Parser.parseTopLevel (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9861:10)\n    at Parser.parse (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:11373:17)\n    at parse (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:11409:38)\n    at parser (D:\\stocksinventory\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:168:34)\n    at normalizeFile (D:\\stocksinventory\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:102:11)\n    at runSync (D:\\stocksinventory\\node_modules\\@babel\\core\\lib\\transformation\\index.js:44:43)\n    at runAsync (D:\\stocksinventory\\node_modules\\@babel\\core\\lib\\transformation\\index.js:35:14)");
 
 /***/ }),
 
@@ -64272,7 +63069,117 @@ var render = function() {
                   ],
                   staticClass: "box box-warning mt-2"
                 },
-                [_vm._m(9)]
+                [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "box" }, [
+                      _vm._m(9),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "box-body table-responsive no-padding",
+                          attrs: { id: "item-list" }
+                        },
+                        [
+                          _c("table", { staticClass: "table table-hover" }, [
+                            _c("tbody", [
+                              _vm._m(10),
+                              _vm._v(" "),
+                              _c(
+                                "tr",
+                                {
+                                  class: { active: _vm.active_debit_row == 1 },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.activate(1)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "tr",
+                                {
+                                  class: { active: _vm.active_debit_row == 2 },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.activate(2)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "tr",
+                                {
+                                  class: { active: _vm.active_debit_row == 3 },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.activate(3)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")])
+                                ]
+                              )
+                            ])
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "box-footer" })
+                    ])
+                  ])
+                ]
               ),
               _vm._v(" "),
               _c(
@@ -64288,7 +63195,7 @@ var render = function() {
                   ],
                   staticClass: "box box-warning mt-2"
                 },
-                [_vm._m(10), _vm._v(" "), _vm._m(11), _vm._v(" "), _vm._m(12)]
+                [_vm._m(11), _vm._v(" "), _vm._m(12), _vm._v(" "), _vm._m(13)]
               )
             ])
           ])
@@ -64363,7 +63270,7 @@ var render = function() {
                   [_vm._v("Update Entry")]
                 ),
                 _vm._v(" "),
-                _vm._m(13)
+                _vm._m(14)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -64371,7 +63278,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(14),
+                    _vm._m(15),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64433,7 +63340,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(15),
+                    _vm._m(16),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64480,7 +63387,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(16),
+                    _vm._m(17),
                     _vm._v(" "),
                     _c(
                       "select",
@@ -64552,13 +63459,13 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(17),
+                _vm._m(18),
                 _vm._v(" "),
                 _c(
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(18),
+                    _vm._m(19),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64605,7 +63512,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(19),
+                    _vm._m(20),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64652,7 +63559,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(20),
+                    _vm._m(21),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64690,7 +63597,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(21)
+              _vm._m(22)
             ])
           ]
         )
@@ -64761,7 +63668,7 @@ var render = function() {
                   [_vm._v("Update Entry")]
                 ),
                 _vm._v(" "),
-                _vm._m(22)
+                _vm._m(23)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -64769,7 +63676,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(23),
+                    _vm._m(24),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64815,7 +63722,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(24),
+                    _vm._m(25),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64866,7 +63773,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(25),
+                    _vm._m(26),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64913,7 +63820,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(26),
+                    _vm._m(27),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64961,7 +63868,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(27),
+                  _vm._m(28),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -65027,7 +63934,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(28),
+                    _vm._m(29),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65074,7 +63981,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(29),
+                    _vm._m(30),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65112,7 +64019,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(30)
+              _vm._m(31)
             ])
           ]
         )
@@ -65140,7 +64047,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(31),
+              _vm._m(32),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -65179,7 +64086,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(32),
+                            _vm._m(33),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -65295,7 +64202,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(33),
+              _vm._m(34),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -65334,7 +64241,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(34),
+                            _vm._m(35),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -65374,7 +64281,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(35)
+                _vm._m(36)
               ])
             ])
           ]
@@ -65547,99 +64454,30 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12" }, [
-      _c("div", { staticClass: "box" }, [
-        _c("div", { staticClass: "box-header" }, [
-          _c("h3", { staticClass: "box-title" }, [_vm._v("Items")])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "box-body table-responsive no-padding",
-            attrs: { id: "item-list" }
-          },
-          [
-            _c("table", { staticClass: "table table-hover" }, [
-              _c("tbody", [
-                _c("tr", [
-                  _c("th", [_vm._v("Account No.")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Item")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Qty")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Price")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Tax Type")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Sub-Total")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Tax Excluded")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Vat")])
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("td", [_vm._v(" - ")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(" - ")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(" - ")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(" - ")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(" - ")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(" - ")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(" - ")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(" - ")])
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("td", [_vm._v(" - ")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(" - ")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(" - ")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(" - ")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(" - ")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(" - ")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(" - ")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(" - ")])
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("td", [_vm._v(" - ")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(" - ")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(" - ")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(" - ")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(" - ")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(" - ")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(" - ")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(" - ")])
-                ])
-              ])
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "box-footer" })
-      ])
+    return _c("div", { staticClass: "box-header" }, [
+      _c("h3", { staticClass: "box-title" }, [_vm._v("Items")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Account No.")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Item")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Qty")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Price")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Tax Type")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Sub-Total")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Tax Excluded")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Vat")])
     ])
   },
   function() {
