@@ -64299,7 +64299,7 @@ var render = function() {
                                   class: { active: _vm.active_debit_row == 1 },
                                   on: {
                                     click: function($event) {
-                                      return _vm.activate(1)
+                                      return _vm.selectDebitRow(1)
                                     }
                                   }
                                 },
@@ -64328,7 +64328,7 @@ var render = function() {
                                   class: { active: _vm.active_debit_row == 2 },
                                   on: {
                                     click: function($event) {
-                                      return _vm.activate(2)
+                                      return _vm.selectDebitRow(2)
                                     }
                                   }
                                 },
@@ -64357,7 +64357,7 @@ var render = function() {
                                   class: { active: _vm.active_debit_row == 3 },
                                   on: {
                                     click: function($event) {
-                                      return _vm.activate(3)
+                                      return _vm.selectDebitRow(3)
                                     }
                                   }
                                 },
