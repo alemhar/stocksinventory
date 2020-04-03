@@ -30,7 +30,7 @@ class CDEntryController extends Controller
             'transaction_id' => $request['transaction_id'],
             'transaction_no' => $request['transaction_no'],
             'transaction_type' => $request['transaction_type'],
-            'account_code' => '',
+            'account_code' => 0,
             'account_name' => '',
             'entry_name' => '',
             'entry_description' => '',
@@ -39,8 +39,8 @@ class CDEntryController extends Controller
             'amount' => 0,
             'amount_ex_tax' => 0,
             'vat' => 0,
-            'credit_amount' => '',
-            'debit_amount' => '',
+            'credit_amount' => 0,
+            'debit_amount' => 0,
             'transaction_date' =>  $request['transaction_date']
             
 
