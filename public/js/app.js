@@ -3106,7 +3106,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.transaction_id = this.form.id;
       this.form_entry.transaction_no = this.form.transaction_no;
       this.form_entry.transaction_type = 'CD';
-      this.form.put('api/cd/newdebit').then(function (data) {
+      this.form.put('api/cd/entry').then(function (data) {
         console.log(data.data.id);
       })["catch"](function () {//
       });
