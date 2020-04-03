@@ -27,9 +27,9 @@ class CDEntryController extends Controller
     public function store(Request $request)
     {
         return TransactionEntry::create([
-            'payee_id' => $request['transaction_id'],
-            'account_code' => $request['transaction_no'],
-            'account_name' => $request['transaction_type'],
+            'transaction_id' => $request['transaction_id'],
+            'transaction_no' => $request['transaction_no'],
+            'transaction_type' => $request['transaction_type'],
 
         ]);
     
