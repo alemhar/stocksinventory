@@ -7,9 +7,13 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Account' => $baseDir . '/app/Account.php',
+    'App\\Branch' => $baseDir . '/app/Branch.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\API\\AccountController' => $baseDir . '/app/Http/Controllers/API/AccountController.php',
+    'App\\Http\\Controllers\\API\\BranchController' => $baseDir . '/app/Http/Controllers/API/BranchController.php',
+    'App\\Http\\Controllers\\API\\CDController' => $baseDir . '/app/Http/Controllers/API/CDController.php',
+    'App\\Http\\Controllers\\API\\CDEntryController' => $baseDir . '/app/Http/Controllers/API/CDEntryController.php',
     'App\\Http\\Controllers\\API\\PayeeController' => $baseDir . '/app/Http/Controllers/API/PayeeController.php',
     'App\\Http\\Controllers\\API\\UserController' => $baseDir . '/app/Http/Controllers/API/UserController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -34,6 +38,8 @@ return array(
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\Traits\\BindsDynamically' => $baseDir . '/app/Traits/BindsDynamically.php',
+    'App\\Transaction' => $baseDir . '/app/Transaction.php',
+    'App\\TransactionEntry' => $baseDir . '/app/TransactionEntry.php',
     'App\\User' => $baseDir . '/app/User.php',
     'BeyondCode\\DumpServer\\DumpServerCommand' => $vendorDir . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
     'BeyondCode\\DumpServer\\DumpServerServiceProvider' => $vendorDir . '/beyondcode/laravel-dump-server/src/DumpServerServiceProvider.php',

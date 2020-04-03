@@ -471,9 +471,13 @@ class ComposerStaticInit0788a648f36db29b59d46db4e96f62fb
 
     public static $classMap = array (
         'App\\Account' => __DIR__ . '/../..' . '/app/Account.php',
+        'App\\Branch' => __DIR__ . '/../..' . '/app/Branch.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\API\\AccountController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/AccountController.php',
+        'App\\Http\\Controllers\\API\\BranchController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/BranchController.php',
+        'App\\Http\\Controllers\\API\\CDController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/CDController.php',
+        'App\\Http\\Controllers\\API\\CDEntryController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/CDEntryController.php',
         'App\\Http\\Controllers\\API\\PayeeController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/PayeeController.php',
         'App\\Http\\Controllers\\API\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/UserController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -498,6 +502,8 @@ class ComposerStaticInit0788a648f36db29b59d46db4e96f62fb
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Traits\\BindsDynamically' => __DIR__ . '/../..' . '/app/Traits/BindsDynamically.php',
+        'App\\Transaction' => __DIR__ . '/../..' . '/app/Transaction.php',
+        'App\\TransactionEntry' => __DIR__ . '/../..' . '/app/TransactionEntry.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'BeyondCode\\DumpServer\\DumpServerCommand' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
         'BeyondCode\\DumpServer\\DumpServerServiceProvider' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerServiceProvider.php',
