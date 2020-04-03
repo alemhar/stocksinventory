@@ -874,7 +874,10 @@
                   branch_name: '',
                   amount: '',
                   amount_ex_tax: '',
+                  
                   vat: '',
+                  credit_amount: '',
+                  debit_amount: '',
                   transaction_date: this.getDate(),
                   
                   

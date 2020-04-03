@@ -2967,6 +2967,8 @@ __webpack_require__.r(__webpack_exports__);
         amount: '',
         amount_ex_tax: '',
         vat: '',
+        credit_amount: '',
+        debit_amount: '',
         transaction_date: this.getDate()
       }),
       payees: {},
