@@ -27,7 +27,6 @@ class TransactionEntry extends Model
 						'entry_description',
 						'branch_id',
 						'branch_name',
-						'tax_type',
 						'amount',
 						'amount_ex_tax',
 						'vat',

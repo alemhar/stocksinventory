@@ -35,7 +35,6 @@ class CDEntryController extends Controller
             'entry_name' => '',
             'entry_description' => '',
             'branch_name' => '',
-            'tax_type' => '',
             'amount' => 0,
             'amount_ex_tax' => 0,
             'vat' => 0,
