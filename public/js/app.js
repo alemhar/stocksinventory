@@ -2912,7 +2912,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -64649,8 +64648,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.form_entry.branch_name,
-                            expression: "form_entry.branch_name"
+                            value: _vm.form_entry.branch_id,
+                            expression: "form_entry.branch_id"
                           }
                         ],
                         staticClass: "form-control col-12",
@@ -64669,7 +64668,7 @@ var render = function() {
                               })
                             _vm.$set(
                               _vm.form_entry,
-                              "branch_name",
+                              "branch_id",
                               $event.target.multiple
                                 ? $$selectedVal
                                 : $$selectedVal[0]
@@ -64688,7 +64687,7 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c("has-error", {
-                      attrs: { form: _vm.form_entry, field: "branch_name" }
+                      attrs: { form: _vm.form_entry, field: "branch_id" }
                     })
                   ],
                   1
@@ -64736,11 +64735,11 @@ var render = function() {
                       attrs: {
                         name: "amount",
                         id: "amount",
+                        readonly: "",
                         "aria-describedby": "inputGroup-sizing-default"
                       },
                       domProps: { value: _vm.form_entry.amount },
                       on: {
-                        change: _vm.computeTaxChange,
                         input: function($event) {
                           if ($event.target.composing) {
                             return

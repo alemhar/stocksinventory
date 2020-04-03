@@ -400,10 +400,10 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Branch</span>
                 </div>
-                  <select v-model="form_entry.branch_name" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
+                  <select v-model="form_entry.branch_id" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
                       <option v-for="branch in branches.data" v-bind:value="branch.id">{{ branch.name }}</option>
                   </select>
-                  <has-error :form="form_entry" field="branch_name"></has-error>
+                  <has-error :form="form_entry" field="branch_id"></has-error>
               </div>
 
               <div class="box-header">
@@ -461,8 +461,7 @@
                 </div>
 
                   <input v-model="form_entry.amount" name="amount" id="amount"
-                  
-                  @change="computeTaxChange"
+                  readonly
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount') }" aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_entry" field="amount"></has-error>
               </div>
