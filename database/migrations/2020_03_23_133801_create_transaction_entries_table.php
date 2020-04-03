@@ -20,8 +20,8 @@ class CreateTransactionEntriesTable extends Migration
             $table->string('transaction_type');
             $table->integer('account_code')->unsigned();
             $table->string('account_name');
-            $table->string('entry_name');
-            $table->string('entry_description');
+            //$table->string('entry_name');
+            //$table->string('entry_description');
             $table->integer('branch_id')->unsigned();
             $table->string('branch_name');
             $table->decimal('amount', 14, 2);
