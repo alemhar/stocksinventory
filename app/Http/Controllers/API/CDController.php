@@ -47,7 +47,22 @@ class CDController extends Controller
         ]);
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function newDebitEntry(Request $request)
+    {
+        return TransactionEntry::create([
+            'payee_id' => $request['transaction_id'],
+            'account_code' => $request['transaction_no'],
+            'account_name' => $request['transaction_type'],
+
+        ]);
     
+    }
 
 
     /**
