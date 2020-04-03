@@ -3106,25 +3106,6 @@ __webpack_require__.r(__webpack_exports__);
       this.cd_created = false;
       this.form["delete"]('api/cd/cancel/' + this.form.transaction_no);
     },
-    newEntry: function newEntry() {
-      var _this5 = this;
-
-      this.editmode = false;
-      this.form_entry.reset();
-      this.form_entry.transaction_id = this.form.id;
-      this.form_entry.transaction_no = this.form.transaction_no;
-      this.form_entry.transaction_type = 'CD';
-      this.form_entry.post('api/cd/entry').then(function (data) {
-        _this5.form_entry.id = data.data.id; //console.log(data.data.id);
-      })["catch"](function () {//
-      });
-      $('#entry-details').modal('show');
-    },
-    newItem: function newItem() {
-      this.editmode = false; //this.form_entry.reset();
-
-      $('#entry-items').modal('show');
-    },
     //searchAccount() {
     //  this.isModalVisible = true;
     //},
@@ -3182,20 +3163,20 @@ __webpack_require__.r(__webpack_exports__);
       $('#select-payee').modal('hide');
     },
     SearchIt: function SearchIt() {
-      var _this6 = this;
+      var _this5 = this;
 
       var query = this.searchText;
       axios.get('api/searchAccount?q=' + query).then(function (data) {
-        _this6.chart_of_accounts = data.data;
+        _this5.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
     },
     SearchPayee: function SearchPayee() {
-      var _this7 = this;
+      var _this6 = this;
 
       var query = this.searchPayee;
       axios.get('api/searchPayee?q=' + query).then(function (data) {
-        _this7.payees = data.data;
+        _this6.payees = data.data;
       })["catch"](function () {//
       });
     },
@@ -3234,6 +3215,25 @@ __webpack_require__.r(__webpack_exports__);
     selectDebitRow: function selectDebitRow(active_debit_row) {
       this.active_debit_row = active_debit_row;
       console.log(active_debit_row);
+    },
+    newEntry: function newEntry() {
+      var _this7 = this;
+
+      this.editmode = false;
+      this.form_entry.reset();
+      this.form_entry.transaction_id = this.form.id;
+      this.form_entry.transaction_no = this.form.transaction_no;
+      this.form_entry.transaction_type = 'CD';
+      this.form_entry.post('api/cd/entry').then(function (data) {
+        _this7.form_entry.id = data.data.id; //console.log(data.data.id);
+      })["catch"](function () {//
+      });
+      $('#entry-details').modal('show');
+    },
+    newItem: function newItem() {
+      this.editmode = false; //this.form_entry.reset();
+
+      $('#entry-items').modal('show');
     },
     saveDebitEntry: function saveDebitEntry() {
       var _this8 = this;
@@ -64858,7 +64858,26 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(22)
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    attrs: { type: "button", "data-dismiss": "modal" }
+                  },
+                  [_vm._v("Cancel")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: { type: "button", "data-dismiss": "modal" },
+                    on: { click: _vm.saveDebitEntry }
+                  },
+                  [_vm._v("Save")]
+                )
+              ])
             ])
           ]
         )
@@ -64929,7 +64948,7 @@ var render = function() {
                   [_vm._v("Update Entry")]
                 ),
                 _vm._v(" "),
-                _vm._m(23)
+                _vm._m(22)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -64937,7 +64956,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(24),
+                    _vm._m(23),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64983,7 +65002,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(25),
+                    _vm._m(24),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65034,7 +65053,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(26),
+                    _vm._m(25),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65081,7 +65100,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(27),
+                    _vm._m(26),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65129,7 +65148,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(28),
+                  _vm._m(27),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -65195,7 +65214,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(29),
+                    _vm._m(28),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65242,7 +65261,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(30),
+                    _vm._m(29),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65280,7 +65299,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(31)
+              _vm._m(30)
             ])
           ]
         )
@@ -65308,7 +65327,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(32),
+              _vm._m(31),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -65347,7 +65366,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(33),
+                            _vm._m(32),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -65463,7 +65482,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(34),
+              _vm._m(33),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -65502,7 +65521,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(35),
+                            _vm._m(34),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -65542,7 +65561,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(36)
+                _vm._m(35)
               ])
             ])
           ]
@@ -65983,30 +66002,6 @@ var staticRenderFns = [
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Tax")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-danger",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Cancel")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-success",
-          attrs: { type: "submit", "data-dismiss": "modal" }
-        },
-        [_vm._v("Save")]
       )
     ])
   },

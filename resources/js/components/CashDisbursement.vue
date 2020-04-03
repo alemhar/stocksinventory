@@ -495,7 +495,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-success"  data-dismiss="modal">Save</button>
+              <button type="button" class="btn btn-success"  data-dismiss="modal" @click="saveDebitEntry">Save</button>
             </div>
 
             <!-- /form -->
@@ -1015,31 +1015,6 @@
             this.cd_created = false;
             this.form.delete('api/cd/cancel/'+this.form.transaction_no);
           },
-          newEntry(){
-              this.editmode = false;
-              this.form_entry.reset();
-              this.form_entry.transaction_id = this.form.id;
-              this.form_entry.transaction_no = this.form.transaction_no;
-              this.form_entry.transaction_type = 'CD';
-              this.form_entry.post('api/cd/entry')
-                .then((data)=>{
-                  this.form_entry.id = data.data.id;
-                  //console.log(data.data.id);
-
-                })
-                .catch(()=>{
-                  //
-                });
-
-              $('#entry-details').modal('show');
-
-
-          },
-          newItem(){
-              this.editmode = false;
-              //this.form_entry.reset();
-              $('#entry-items').modal('show');
-          },
           //searchAccount() {
           //  this.isModalVisible = true;
           //},
@@ -1148,6 +1123,31 @@
           selectDebitRow(active_debit_row){
               this.active_debit_row = active_debit_row;
               console.log(active_debit_row);
+          },
+          newEntry(){
+              this.editmode = false;
+              this.form_entry.reset();
+              this.form_entry.transaction_id = this.form.id;
+              this.form_entry.transaction_no = this.form.transaction_no;
+              this.form_entry.transaction_type = 'CD';
+              this.form_entry.post('api/cd/entry')
+                .then((data)=>{
+                  this.form_entry.id = data.data.id;
+                  //console.log(data.data.id);
+
+                })
+                .catch(()=>{
+                  //
+                });
+
+              $('#entry-details').modal('show');
+
+
+          },
+          newItem(){
+              this.editmode = false;
+              //this.form_entry.reset();
+              $('#entry-items').modal('show');
           },
           saveDebitEntry(){
             //console.log('Edit Payee');
