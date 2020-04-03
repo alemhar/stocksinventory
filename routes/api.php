@@ -44,3 +44,5 @@ Route::get('searchPayee', 'API\PayeeController@search');
 Route::put('account', 'API\UserController@updateAccountInfo');
 
 Route::delete('cd/cancel/{transaction_no}', 'API\CDController@cancelTransaction');
+Route::post('cd/newdebit/}', 'API\CDController@newDebitEntry');
+

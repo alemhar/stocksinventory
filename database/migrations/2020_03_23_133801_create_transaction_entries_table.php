@@ -24,11 +24,13 @@ class CreateTransactionEntriesTable extends Migration
             $table->string('entry_description');
             $table->integer('branch_id')->unsigned();
             $table->string('branch_name');
-            $table->string('tax_type');
             $table->decimal('amount', 14, 2);
             $table->decimal('amount_ex_tax', 14, 2);
             $table->decimal('vat', 14, 2);
+            $table->decimal('credit_amount', 14, 2);
+            $table->decimal('debit_amount', 14, 2);
             $table->date('transaction_date');
+            $table->boolean('canceled')->default(0);
             $table->timestamps();
         });
     }

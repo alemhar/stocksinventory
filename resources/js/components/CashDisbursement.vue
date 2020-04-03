@@ -863,20 +863,19 @@
               form_entry: new Form({
 
                   id:'',
+                  transaction_id:'',
+                  transaction_no:'',
+                  transaction_type:'',
                   account_code : '',
                   account_name: '',
                   entry_name: '',
                   entry_description: '',
                   branch_id: '',
                   branch_name: '',
-                  
-                  tax_type: 'TAX TYPE',
                   amount: '',
                   amount_ex_tax: '',
                   vat: '',
                   transaction_date: this.getDate(),
-                  transaction_no:'',
-                  transaction_type:''
                   
                   
               }),
@@ -1014,7 +1013,22 @@
           newEntry(){
               this.editmode = false;
               this.form_entry.reset();
+              this.form_entry.transaction_id = this.form.id;
+              this.form_entry.transaction_no = this.form.transaction_no;
+              this.form_entry.transaction_type = 'CD';
+
+
+              this.form.post('api/cd/newdebit')
+                .then((data)=>{
+                  console.log(data.data.id);
+                })
+                .catch(()=>{
+                  //
+                });
+
               $('#entry-details').modal('show');
+
+
           },
           newItem(){
               this.editmode = false;
