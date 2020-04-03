@@ -31,7 +31,7 @@ class CDEntryController extends Controller
             'transaction_no' => $request['transaction_no'],
             'transaction_type' => $request['transaction_type'],
             'account_code' => 0,
-            'account_name' => '',
+            'account_name' => 'Test',
             'entry_name' => '',
             'entry_description' => '',
             'branch_id' => 0,
