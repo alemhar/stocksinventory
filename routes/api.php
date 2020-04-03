@@ -37,11 +37,11 @@ Route::apiResources([
     'cd' => 'API\CDController'
 ]);
 
-/*
+
 Route::apiResources([
     'cd/entry' => 'API\CDEntryController'
 ]);
-*/
+
 
 
 Route::get('account', 'API\UserController@account');

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Transaction;
-use App\TransactionEntry;
 
 class CDController extends Controller
 {
@@ -47,22 +46,7 @@ class CDController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function newDebitEntry(Request $request)
-    {
-        return TransactionEntry::create([
-            'payee_id' => $request['transaction_id'],
-            'account_code' => $request['transaction_no'],
-            'account_name' => $request['transaction_type'],
 
-        ]);
-    
-    }
 
 
     /**
