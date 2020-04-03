@@ -3240,7 +3240,7 @@ __webpack_require__.r(__webpack_exports__);
 
       //console.log('Edit Payee');
       this.$Progress.start();
-      this.form_entry.put('api/entry/' + this.form_entry.id).then(function () {
+      this.form_entry.put('api/cd/entry/' + this.form_entry.id).then(function () {
         $('#entry-details').modal('hide');
         /*
         swal.fire(

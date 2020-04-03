@@ -1153,7 +1153,7 @@
             //console.log('Edit Payee');
             
             this.$Progress.start();
-            this.form_entry.put('api/entry/'+this.form_entry.id)
+            this.form_entry.put('api/cd/entry/'+this.form_entry.id)
             .then(() => {
                 $('#entry-details').modal('hide');
                 /*
