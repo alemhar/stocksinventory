@@ -1018,7 +1018,7 @@
               this.form_entry.transaction_type = 'CD';
 
 
-              this.form.post('api/cd/newdebit')
+              this.form.put('api/cd/newdebit')
                 .then((data)=>{
                   console.log(data.data.id);
                 })
