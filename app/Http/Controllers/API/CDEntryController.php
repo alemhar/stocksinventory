@@ -4,10 +4,9 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Transaction;
 use App\TransactionEntry;
 
-class CDController extends Controller
+class CDEntryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,28 +26,14 @@ class CDController extends Controller
      */
     public function store(Request $request)
     {
-        return Transaction::create([
-            'payee_id' => $request['payee_id'],
-            'account_code' => $request['account_code'],
-            'account_name' => $request['account_name'],
-            'reference_no' => $request['reference_no'],
-            'transaction_no' => $request['transaction_no'],
-            'transaction_type' => $request['transaction_type'], 
-            'transaction_date' => $request['transaction_date'],
-            'amount' => $request['amount'],
-            'credit_amount' => $request['credit_amount'],
-            'debit_amount' => $request['debit_amount'],
-            'amount_ex_tax' => $request['amount_ex_tax'],
-            'vat' => $request['vat'],
-            'canceled' => $request['canceled'],
-            'user_id' => $request['user_id']
+        return TransactionEntry::create([
+            'payee_id' => $request['transaction_id'],
+            'account_code' => $request['transaction_no'],
+            'account_name' => $request['transaction_type'],
 
-            
         ]);
-    }
-
     
-
+    }
 
     /**
      * Display the specified resource.
@@ -58,8 +43,7 @@ class CDController extends Controller
      */
     public function show($id)
     {
-
-        
+        //
     }
 
     /**
@@ -83,14 +67,5 @@ class CDController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-
-    public function cancelTransaction($transaction_no){
-
-        Transaction::where('transaction_no', $transaction_no)
-          ->update(['canceled' => 1]);
-
-        return ['message' => 'Transaction # '.$transaction_no.' canceled'];
     }
 }

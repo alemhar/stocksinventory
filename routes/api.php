@@ -37,6 +37,12 @@ Route::apiResources([
     'cd' => 'API\CDController'
 ]);
 
+
+Route::apiResources([
+    'cd/entry' => 'API\CDEntryController'
+]);
+
+
 Route::get('account', 'API\UserController@account');
 Route::get('findUser', 'API\UserController@search');
 Route::get('searchAccount', 'API\AccountController@search');
@@ -44,5 +50,4 @@ Route::get('searchPayee', 'API\PayeeController@search');
 Route::put('account', 'API\UserController@updateAccountInfo');
 
 Route::delete('cd/cancel/{transaction_no}', 'API\CDController@cancelTransaction');
-Route::put('cd/newdebit/}', 'API\CDController@newDebitEntry');
 
