@@ -2912,6 +2912,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -2933,6 +2934,7 @@ __webpack_require__.r(__webpack_exports__);
       current_payee_address: '',
       current_payee_tin: '',
       active_debit_row: 0,
+      selected_branch: {},
       cd: {},
       form: new Form({
         id: '',
@@ -3254,6 +3256,10 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {
         _this8.$Progress.fail();
       });
+    },
+    branchChange: function branchChange() {
+      this.form_entry.branch_id = selected_branch.id;
+      this.form_entry.branch_name = selected_branch.name;
     } // ,
     // createUser(){
     //   this.$Progress.start()
@@ -64648,8 +64654,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.form_entry.branch_id,
-                            expression: "form_entry.branch_id"
+                            value: _vm.selected_branch,
+                            expression: "selected_branch"
                           }
                         ],
                         staticClass: "form-control col-12",
@@ -64657,29 +64663,32 @@ var render = function() {
                           "aria-describedby": "inputGroup-sizing-default"
                         },
                         on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.form_entry,
-                              "branch_id",
-                              $event.target.multiple
+                          change: [
+                            function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.selected_branch = $event.target.multiple
                                 ? $$selectedVal
                                 : $$selectedVal[0]
-                            )
-                          }
+                            },
+                            _vm.branchChange
+                          ]
                         }
                       },
                       _vm._l(_vm.branches.data, function(branch) {
                         return _c(
                           "option",
-                          { domProps: { value: branch.id } },
+                          {
+                            domProps: {
+                              value: { id: branch.id, name: branch.name }
+                            }
+                          },
                           [_vm._v(_vm._s(branch.name))]
                         )
                       }),

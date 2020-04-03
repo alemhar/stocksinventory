@@ -234,6 +234,7 @@
       *
       *
       *
+      MAIN FORM ITEMS TABLE
       -->
 
 
@@ -400,8 +401,8 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Branch</span>
                 </div>
-                  <select v-model="form_entry.branch_id" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
-                      <option v-for="branch in branches.data" v-bind:value="branch.id">{{ branch.name }}</option>
+                  <select v-model="selected_branch" class="form-control col-12" aria-describedby="inputGroup-sizing-default" @change="branchChange">
+                      <option v-for="branch in branches.data" v-bind:value="{ id: branch.id, name: branch.name }">{{ branch.name }}</option>
                   </select>
                   <has-error :form="form_entry" field="branch_id"></has-error>
               </div>
@@ -838,6 +839,7 @@
               current_payee_address: '',
               current_payee_tin: '',
               active_debit_row: 0,
+              selected_branch: {},
               cd : {},
               form: new Form({
 
@@ -1149,6 +1151,7 @@
           },
           saveDebitEntry(){
             //console.log('Edit Payee');
+            
             this.$Progress.start();
             this.form.put('api/entry/'+this.form_entry.id)
             .then(() => {
@@ -1166,9 +1169,10 @@
             .catch(() => {
                 this.$Progress.fail();
             });
-
-            
-
+          },
+          branchChange(){
+            this.form_entry.branch_id = selected_branch.id ;
+            this.form_entry.branch_name = selected_branch.name;
           }
 
           // ,
