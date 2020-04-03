@@ -1171,8 +1171,8 @@
             });
           },
           branchChange(){
-            this.form_entry.branch_id = selected_branch.id ;
-            this.form_entry.branch_name = selected_branch.name;
+            this.form_entry.branch_id = this.selected_branch.id ;
+            this.form_entry.branch_name = this.selected_branch.name;
           }
 
           // ,
