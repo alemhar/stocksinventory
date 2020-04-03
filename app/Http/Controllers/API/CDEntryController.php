@@ -29,7 +29,21 @@ class CDEntryController extends Controller
         return TransactionEntry::create([
             'transaction_id' => $request['transaction_id'],
             'transaction_no' => $request['transaction_no'],
-            'transaction_type' => $request['transaction_type']
+            'transaction_type' => $request['transaction_type'],
+            'account_code' => '',
+            'account_name' => '',
+            'entry_name' => '',
+            'entry_description' => '',
+            'branch_name' => '',
+            'tax_type' => '',
+            'amount' => 0,
+            'amount_ex_tax' => 0,
+            'vat' => 0,
+            'credit_amount' => '',
+            'debit_amount' => '',
+            'transaction_date' =>  $request['transaction_date']
+            
+
 
         ]);
     
