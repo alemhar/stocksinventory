@@ -1152,6 +1152,14 @@
           saveDebitEntry(){
             //console.log('Edit Payee');
             
+            // ** Temporary data to bypass Column cannot be null ERROR's
+            this.form_entry.amount = 0;
+            this.form_entry.amount_ex_tax = 0;
+            this.form_entry.vat = 0;
+            this.form_entry.credit_amount = 0;
+            this.form_entry.debit_amount = 0;
+            // ** Temporary data to bypass Column cannot be null ERROR's
+
             this.$Progress.start();
             this.form_entry.put('api/cd/entry/'+this.form_entry.id)
             .then(() => {
