@@ -31,7 +31,7 @@ class CDEntryController extends Controller
             'transaction_no' => $request['transaction_no'],
             'transaction_type' => $request['transaction_type'],
             'account_code' => 0,
-            'account_name' => 'Test',
+            'account_name' => '',
             'entry_name' => '',
             'entry_description' => '',
             'branch_id' => 0,
@@ -69,7 +69,20 @@ class CDEntryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $transactionEntry = TransactionEntry::findOrFail($id);
+
+        // $this->validate($request,[
+        //     'name' => 'required|string|max:191',
+        //     'address' => 'required|string|max:191',
+        //     'city' => 'required|string|max:191',
+        //     'phone' => 'required|string|max:191'
+
+        // ]);
+
+
+        $transactionEntry->update($request->all());
+
+        return ['message' => 'Entry updated!'];
     }
 
     /**

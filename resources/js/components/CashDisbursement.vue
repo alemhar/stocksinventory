@@ -1020,11 +1020,11 @@
               this.form_entry.transaction_id = this.form.id;
               this.form_entry.transaction_no = this.form.transaction_no;
               this.form_entry.transaction_type = 'CD';
-
-
               this.form_entry.post('api/cd/entry')
                 .then((data)=>{
-                  console.log(data.data.id);
+                  this.form_entry.id = data.data.id;
+                  //console.log(data.data.id);
+
                 })
                 .catch(()=>{
                   //
@@ -1147,6 +1147,29 @@
           selectDebitRow(active_debit_row){
               this.active_debit_row = active_debit_row;
               console.log(active_debit_row);
+          },
+          saveDebitEntry(){
+            //console.log('Edit Payee');
+            this.$Progress.start();
+            this.form.put('api/entry/'+this.form_entry.id)
+            .then(() => {
+                $('#entry-details').modal('hide');
+                /*
+                swal.fire(
+                    'Updated!',
+                    'Payee information has been updated.',
+                    'success'
+                  );
+                */
+                  this.$Progress.finish();
+                  VueListen.$emit('RefreshEntryTable');
+            })
+            .catch(() => {
+                this.$Progress.fail();
+            });
+
+            
+
           }
 
           // ,

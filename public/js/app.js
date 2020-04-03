@@ -3106,13 +3106,15 @@ __webpack_require__.r(__webpack_exports__);
       this.form["delete"]('api/cd/cancel/' + this.form.transaction_no);
     },
     newEntry: function newEntry() {
+      var _this5 = this;
+
       this.editmode = false;
       this.form_entry.reset();
       this.form_entry.transaction_id = this.form.id;
       this.form_entry.transaction_no = this.form.transaction_no;
       this.form_entry.transaction_type = 'CD';
       this.form_entry.post('api/cd/entry').then(function (data) {
-        console.log(data.data.id);
+        _this5.form_entry.id = data.data.id; //console.log(data.data.id);
       })["catch"](function () {//
       });
       $('#entry-details').modal('show');
@@ -3179,20 +3181,20 @@ __webpack_require__.r(__webpack_exports__);
       $('#select-payee').modal('hide');
     },
     SearchIt: function SearchIt() {
-      var _this5 = this;
+      var _this6 = this;
 
       var query = this.searchText;
       axios.get('api/searchAccount?q=' + query).then(function (data) {
-        _this5.chart_of_accounts = data.data;
+        _this6.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
     },
     SearchPayee: function SearchPayee() {
-      var _this6 = this;
+      var _this7 = this;
 
       var query = this.searchPayee;
       axios.get('api/searchPayee?q=' + query).then(function (data) {
-        _this6.payees = data.data;
+        _this7.payees = data.data;
       })["catch"](function () {//
       });
     },
@@ -3231,6 +3233,28 @@ __webpack_require__.r(__webpack_exports__);
     selectDebitRow: function selectDebitRow(active_debit_row) {
       this.active_debit_row = active_debit_row;
       console.log(active_debit_row);
+    },
+    saveDebitEntry: function saveDebitEntry() {
+      var _this8 = this;
+
+      //console.log('Edit Payee');
+      this.$Progress.start();
+      this.form.put('api/entry/' + this.form_entry.id).then(function () {
+        $('#entry-details').modal('hide');
+        /*
+        swal.fire(
+            'Updated!',
+            'Payee information has been updated.',
+            'success'
+          );
+        */
+
+        _this8.$Progress.finish();
+
+        VueListen.$emit('RefreshEntryTable');
+      })["catch"](function () {
+        _this8.$Progress.fail();
+      });
     } // ,
     // createUser(){
     //   this.$Progress.start()
