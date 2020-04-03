@@ -3064,6 +3064,8 @@ __webpack_require__.r(__webpack_exports__);
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
     createCD: function createCD() {
+      var _this4 = this;
+
       if (this.form.payee_id.length == 0) {
         this.no_payee = true;
       } else {
@@ -3091,7 +3093,8 @@ __webpack_require__.r(__webpack_exports__);
       this.form.transaction_no = this.createSerialNumber();
       this.form.transaction_type = 'CD';
       this.form.post('api/cd').then(function (data) {
-        console.log(data.data.id);
+        //console.log(data.data.id);
+        _this4.form.id = data.data.id;
       })["catch"](function () {//
       });
     },
@@ -3176,20 +3179,20 @@ __webpack_require__.r(__webpack_exports__);
       $('#select-payee').modal('hide');
     },
     SearchIt: function SearchIt() {
-      var _this4 = this;
+      var _this5 = this;
 
       var query = this.searchText;
       axios.get('api/searchAccount?q=' + query).then(function (data) {
-        _this4.chart_of_accounts = data.data;
+        _this5.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
     },
     SearchPayee: function SearchPayee() {
-      var _this5 = this;
+      var _this6 = this;
 
       var query = this.searchPayee;
       axios.get('api/searchPayee?q=' + query).then(function (data) {
-        _this5.payees = data.data;
+        _this6.payees = data.data;
       })["catch"](function () {//
       });
     },

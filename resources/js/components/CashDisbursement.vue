@@ -999,7 +999,8 @@
             this.form.transaction_type = 'CD';
             this.form.post('api/cd')
                 .then((data)=>{
-                  console.log(data.data.id);
+                  //console.log(data.data.id);
+                  this.form.id = data.data.id;
                 })
                 .catch(()=>{
                   //
