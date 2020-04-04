@@ -3006,10 +3006,23 @@ __webpack_require__.r(__webpack_exports__);
     loadChartAccounts: function loadChartAccounts() {
       var _this3 = this;
 
-      axios.get("api/chartaccount").then(function (_ref3) {
-        var data = _ref3.data;
-        return _this3.chart_of_accounts = data;
-      });
+      var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+      if (headerOrDetail == null) {
+        axios.get("api/chartaccount").then(function (_ref3) {
+          var data = _ref3.data;
+          return _this3.chart_of_accounts = data;
+        });
+      } else {
+        axios.get("api/chartaccount").then(function (_ref4) {
+          var data = _ref4.data;
+          return _this3.chart_of_accounts = data;
+        });
+        axios.get('api/chartaccount?headerordetail=' + headerOrDetail + '&transaction=CR').then(function (data) {
+          _this3.chart_of_accounts = data.data;
+        })["catch"](function () {//
+        });
+      }
     },
     eventChild: function eventChild(Obj) {
       //console.log(Obj.id);
@@ -3102,7 +3115,7 @@ __webpack_require__.r(__webpack_exports__);
       this.headerOrDetail = headerOrDetail;
       this.searchText = this.form.account_code; //this.searchText = '';
 
-      this.loadChartAccounts();
+      this.loadChartAccounts(headerOrDetail);
       $('#select-account').modal('show');
     },
     searchPayeeModal: function searchPayeeModal() {

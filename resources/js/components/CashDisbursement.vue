@@ -920,8 +920,21 @@
                 //axios.get("api/user").then(({ data }) => (this.users = data.data));
             } 
           },
-          loadChartAccounts(){
+          loadChartAccounts(headerOrDetail = null){
+              if(headerOrDetail == null){
                 axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
+              } else {
+                axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
+
+                axios.get('api/chartaccount?headerordetail='+headerOrDetail+'&transaction=CR')
+                .then((data)=>{
+                  this.chart_of_accounts = data.data;
+                })
+                .catch(()=>{
+                  //
+                });
+
+              }
           },
           eventChild(Obj){
             //console.log(Obj.id);
@@ -1018,7 +1031,7 @@
               this.headerOrDetail = headerOrDetail;
               this.searchText = this.form.account_code;
               //this.searchText = '';
-              this.loadChartAccounts();
+              this.loadChartAccounts(headerOrDetail);
               $('#select-account').modal('show');
           },
           searchPayeeModal(){

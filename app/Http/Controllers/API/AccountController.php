@@ -27,7 +27,33 @@ class AccountController extends Controller
     public function index()
     {
         if (\Gate::allows('isAdmin') || \Gate::allows('isAuthor')) {
-            return Account::latest()->paginate(5);
+            
+            if ($headerordetail = \Request::get('headerordetail')) {
+                $transaction = \Request::get('transaction');
+
+                /*
+                $accounts = Account::where(function($query) use ($headerordetail){
+                    $query->where('account_code','LIKE',"%$search%")
+                            ->orWhere('account_name','LIKE',"%$search%");
+                })->paginate(10);
+                */
+                if($transaction == 'CR'){
+                    if($headerordetail == 'header'){
+                        $accounts = Account::where('rank', '=', 1)
+                        ->paginate(10);
+                    } else {
+                        $accounts = Account::where('rank', '>', 1)
+                        ->where('rank', '<', 99)
+                        ->paginate(10);
+                    }
+                }
+
+            }else{
+                $accounts = Account::latest()->paginate(10);
+            }
+            return $accounts;
+
+            
         }    
     }
 
