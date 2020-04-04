@@ -3174,17 +3174,6 @@ __webpack_require__.r(__webpack_exports__);
 
       return "" + n + this.user_id;
     },
-    onTaxChange: function onTaxChange() {
-      if (this.form_entry.amount) {
-        if (this.form_entry.tax_type == 'VAT') {
-          this.form_entry.vat = this.form_entry.amount * 0.12;
-          this.form_entry.amount_ex_tax = this.form_entry.amount - this.form_entry.vat;
-        } else {
-          this.form_entry.vat = 0;
-          this.form_entry.amount_ex_tax = this.form_entry.amount;
-        }
-      }
-    },
     computeTaxChange: function computeTaxChange(event) {
       if (this.form_item.price && this.form_item.quantity) {
         this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
@@ -3291,7 +3280,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.$Progress.start();
-      this.form_entry.put('api/cd/item/' + this.form_item.id).then(function () {
+      this.form_item.put('api/cd/item/' + this.form_item.id).then(function () {
         $('#entry-items').modal('hide');
         /*
         swal.fire(

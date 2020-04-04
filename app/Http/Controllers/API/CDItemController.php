@@ -63,12 +63,11 @@ class CDItemController extends Controller
     public function update(Request $request, $id)
     {
         
-        return $request;
-        //$transactionItem = TransactionItem::findOrFail($id);
+        $transactionItem = TransactionItem::findOrFail($id);
 
-        //$transactionItem->update($request->all());
+        $transactionItem->update($request->all());
 
-        //return ['message' => 'Item updated!'];
+        return ['message' => 'Item updated!'];
     }
 
     /**

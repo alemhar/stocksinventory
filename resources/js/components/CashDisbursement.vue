@@ -1084,23 +1084,10 @@
               
               return ""+n+this.user_id;
           },
-          onTaxChange(){
-            if(this.form_entry.amount){
-                if(this.form_entry.tax_type == 'VAT'){
-              
-                this.form_entry.vat = this.form_entry.amount * 0.12;
-                this.form_entry.amount_ex_tax = this.form_entry.amount - this.form_entry.vat;
-              } else {
-                  this.form_entry.vat = 0;
-                  this.form_entry.amount_ex_tax = this.form_entry.amount;
-                }
-            }
-          },
           computeTaxChange(event){
               if(this.form_item.price && this.form_item.quantity){
                 this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
                 if(this.form_item.tax_type == 'VAT'){
-
                   //this.form_item.amount = event.target.value;
                   this.form_item.vat = this.form_item.sub_total * 0.12;
                   this.form_item.tax_excluded = this.form_item.sub_total - this.form_item.vat;
@@ -1214,7 +1201,7 @@
 
 
             this.$Progress.start();
-            this.form_entry.put('api/cd/item/'+this.form_item.id)
+            this.form_item.put('api/cd/item/'+this.form_item.id)
             .then(() => {
                 $('#entry-items').modal('hide');
                 /*
@@ -1231,7 +1218,7 @@
                 this.$Progress.fail();
             });
           },
-          
+
           branchChange(){
             this.form_entry.branch_id = this.selected_branch.id ;
             this.form_entry.branch_name = this.selected_branch.name;
