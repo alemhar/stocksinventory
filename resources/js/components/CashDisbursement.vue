@@ -1058,7 +1058,7 @@
                 });
           },
           loadEntryItems() {
-              let entry_id = this.form_entry.transaction_entry_id;
+              let entry_id = this.form_entry.id;
               axios.get('api/cd/items/list?entry_id='+entry_id)
                 .then((data)=>{
                   this.items = data.data;

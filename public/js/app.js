@@ -3151,7 +3151,7 @@ __webpack_require__.r(__webpack_exports__);
     loadEntryItems: function loadEntryItems() {
       var _this7 = this;
 
-      var entry_id = this.form_entry.transaction_entry_id;
+      var entry_id = this.form_entry.id;
       axios.get('api/cd/items/list?entry_id=' + entry_id).then(function (data) {
         _this7.items = data.data;
       })["catch"](function () {//
