@@ -83,16 +83,15 @@ class CDItemController extends Controller
 
     public function list(){
         return ['message' => 'Listing'];
-        
-        if ($entry_id = \Request::get('entry_id')) {
+
+        //if ($entry_id = \Request::get('entry_id')) {
         //    $transactionItems = TransactionItem::where(function($query) use ($entry_id){
         //        $query->where('transaction_entry_id',$entry_id);
         //    })->paginate(10);
 
-        }else{
-            $transactionItems = TransactionItem::latest()->paginate(10);
-        }
-        $transactionItems = TransactionItem::latest()->paginate(10);
-        return $transactionItems;
+        //}else{
+        //    $transactionItems = TransactionItem::latest()->paginate(10);
+        //}
+        //return $transactionItems;
     }
 }
