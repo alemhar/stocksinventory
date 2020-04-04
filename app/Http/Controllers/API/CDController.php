@@ -72,7 +72,20 @@ class CDController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $transaction = Transaction::findOrFail($id);
+
+        // $this->validate($request,[
+        //     'name' => 'required|string|max:191',
+        //     'address' => 'required|string|max:191',
+        //     'city' => 'required|string|max:191',
+        //     'phone' => 'required|string|max:191'
+
+        // ]);
+
+
+        $transaction->update($request->all());
+
+        return ['message' => 'CD updated!'];
     }
 
     /**

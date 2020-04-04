@@ -3062,16 +3062,27 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     saveCD: function saveCD() {
+      var _this5 = this;
+
       if (this.form.amount == 0) {
         return false;
       }
 
-      this.cd_created = false;
-      this.form.post('api/cd/confirm/' + this.form.transaction_no); //this.form.reset();
+      this.$Progress.start();
+      this.form_entry.put('api/cd/' + this.form.id).then(function () {
+        swal.fire('Saved!', 'Transaction Completed.', 'success');
+        _this5.cd_created = false;
+
+        _this5.form.post('api/cd/confirm/' + _this5.form.transaction_no);
+
+        _this5.$Progress.finish();
+      })["catch"](function () {
+        _this5.$Progress.fail();
+      }); //this.form.reset();
       //this.form_entry.reset();
       //this.form_item.reset();
 
-      this.$router.go();
+      this.$router.go(); // 
     },
     cancelCD: function cancelCD() {
       this.cd_created = false;
@@ -3134,38 +3145,38 @@ __webpack_require__.r(__webpack_exports__);
       $('#select-payee').modal('hide');
     },
     SearchIt: function SearchIt() {
-      var _this5 = this;
+      var _this6 = this;
 
       var query = this.searchText;
       axios.get('api/searchAccount?q=' + query).then(function (data) {
-        _this5.chart_of_accounts = data.data;
+        _this6.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
     },
     SearchPayee: function SearchPayee() {
-      var _this6 = this;
+      var _this7 = this;
 
       var query = this.searchPayee;
       axios.get('api/searchPayee?q=' + query).then(function (data) {
-        _this6.payees = data.data;
+        _this7.payees = data.data;
       })["catch"](function () {//
       });
     },
     loadEntryItems: function loadEntryItems() {
-      var _this7 = this;
+      var _this8 = this;
 
       var entry_id = this.form_entry.id;
       axios.get('api/cd/items/list?entry_id=' + entry_id).then(function (data) {
-        _this7.items = data.data;
+        _this8.items = data.data;
       })["catch"](function () {//
       });
     },
     loadEntries: function loadEntries() {
-      var _this8 = this;
+      var _this9 = this;
 
       var transaction_no = this.form.transaction_no;
       axios.get('api/cd/entries/list?transaction_no=' + transaction_no).then(function (data) {
-        _this8.entries = data.data;
+        _this9.entries = data.data;
       })["catch"](function () {//
       });
     },
@@ -3198,7 +3209,7 @@ __webpack_require__.r(__webpack_exports__);
       VueListen.$emit('RefreshItemTable'); //console.log(active_debit_row);
     },
     newEntry: function newEntry() {
-      var _this9 = this;
+      var _this10 = this;
 
       this.editmode = false;
       this.form_entry.reset();
@@ -3206,7 +3217,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.transaction_no = this.form.transaction_no;
       this.form_entry.transaction_type = 'CD';
       this.form_entry.post('api/cd/entry').then(function (data) {
-        _this9.form_entry.id = data.data.id; //console.log(data.data.id);
+        _this10.form_entry.id = data.data.id; //console.log(data.data.id);
 
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {//
@@ -3214,7 +3225,7 @@ __webpack_require__.r(__webpack_exports__);
       $('#entry-details').modal('show');
     },
     newItem: function newItem() {
-      var _this10 = this;
+      var _this11 = this;
 
       if (this.form_entry.account_code == 0) {
         this.no_entry_account_code = true;
@@ -3242,14 +3253,14 @@ __webpack_require__.r(__webpack_exports__);
       this.form_item.transaction_type = 'CD';
       this.form_item.account_code = this.form_entry.account_code;
       this.form_item.post('api/cd/item').then(function (data) {
-        _this10.form_item.id = data.data.id; //console.log(data.data.id);
+        _this11.form_item.id = data.data.id; //console.log(data.data.id);
       })["catch"](function () {//
       });
       this.loadEntryItems();
       $('#entry-items').modal('show');
     },
     saveDebitEntry: function saveDebitEntry() {
-      var _this11 = this;
+      var _this12 = this;
 
       //console.log('Edit Payee');
       // ** Temporary data to bypass Column cannot be null ERROR's
@@ -3270,19 +3281,19 @@ __webpack_require__.r(__webpack_exports__);
           );
         */
 
-        _this11.form.amount += _this11.form_entry.amount;
-        _this11.form.amount_ex_tax += _this11.form_entry.amount_ex_tax;
-        _this11.form.vat += _this11.form_entry.vat;
+        _this12.form.amount += _this12.form_entry.amount;
+        _this12.form.amount_ex_tax += _this12.form_entry.amount_ex_tax;
+        _this12.form.vat += _this12.form_entry.vat;
 
-        _this11.$Progress.finish();
+        _this12.$Progress.finish();
 
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this11.$Progress.fail();
+        _this12.$Progress.fail();
       });
     },
     saveItem: function saveItem() {
-      var _this12 = this;
+      var _this13 = this;
 
       if (this.form_item.item.length == 0) {
         this.no_item = true;
@@ -3317,15 +3328,15 @@ __webpack_require__.r(__webpack_exports__);
           );
         */
 
-        _this12.form_entry.amount += _this12.form_item.sub_total;
-        _this12.form_entry.amount_ex_tax += _this12.form_item.tax_excluded;
-        _this12.form_entry.vat += _this12.form_item.vat;
+        _this13.form_entry.amount += _this13.form_item.sub_total;
+        _this13.form_entry.amount_ex_tax += _this13.form_item.tax_excluded;
+        _this13.form_entry.vat += _this13.form_item.vat;
 
-        _this12.$Progress.finish();
+        _this13.$Progress.finish();
 
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
-        _this12.$Progress.fail();
+        _this13.$Progress.fail();
       });
     },
     branchChange: function branchChange() {
@@ -3368,7 +3379,7 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   created: function created() {
-    var _this13 = this;
+    var _this14 = this;
 
     /*
     VueListen.$on('Search',() => {
@@ -3390,10 +3401,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntries(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
 
     VueListen.$on('RefreshItemTable', function () {
-      _this13.loadEntryItems();
+      _this14.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this13.loadEntries();
+      _this14.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);

@@ -977,13 +977,27 @@
             if(this.form.amount == 0) {
               return false;
             }
+            this.$Progress.start();
+            this.form_entry.put('api/cd/'+this.form.id)
+            .then(() => {
+                swal.fire(
+                    'Saved!',
+                    'Transaction Completed.',
+                    'success'
+                  );
+                  this.cd_created = false;
+                  this.form.post('api/cd/confirm/'+this.form.transaction_no);
+                  this.$Progress.finish();
+                                    
+            })
+            .catch(() => {
+                this.$Progress.fail();
+            });
 
-            this.cd_created = false;
-            this.form.post('api/cd/confirm/'+this.form.transaction_no);
             //this.form.reset();
             //this.form_entry.reset();
             //this.form_item.reset();
-            this.$router.go();
+            this.$router.go(); // 
 
           },
           cancelCD(){
