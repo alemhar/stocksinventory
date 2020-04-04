@@ -64613,8 +64613,11 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.amount_ex_tax,
-                              expression: "form.amount_ex_tax"
+                              value: Number(
+                                _vm.form.amount_ex_tax
+                              ).toLocaleString(),
+                              expression:
+                                "Number(form.amount_ex_tax).toLocaleString()"
                             }
                           ],
                           staticClass: "form-control",
@@ -64624,15 +64627,19 @@ var render = function() {
                             id: "inputAmountExclusiveTax",
                             placeholder: "Amount Exclusive of Tax"
                           },
-                          domProps: { value: _vm.form.amount_ex_tax },
+                          domProps: {
+                            value: Number(
+                              _vm.form.amount_ex_tax
+                            ).toLocaleString()
+                          },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
                               _vm.$set(
-                                _vm.form,
-                                "amount_ex_tax",
+                                Number(_vm.form.amount_ex_tax),
+                                "toLocaleString()",
                                 $event.target.value
                               )
                             }
@@ -64660,8 +64667,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.vat,
-                              expression: "form.vat"
+                              value: Number(_vm.form.vat).toLocaleString(),
+                              expression: "Number(form.vat).toLocaleString()"
                             }
                           ],
                           staticClass: "form-control",
@@ -64671,13 +64678,19 @@ var render = function() {
                             id: "inputVAT",
                             placeholder: "VAT"
                           },
-                          domProps: { value: _vm.form.vat },
+                          domProps: {
+                            value: Number(_vm.form.vat).toLocaleString()
+                          },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.$set(_vm.form, "vat", $event.target.value)
+                              _vm.$set(
+                                Number(_vm.form.vat),
+                                "toLocaleString()",
+                                $event.target.value
+                              )
                             }
                           }
                         })
@@ -64703,11 +64716,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: Number(
-                                _vm.form.amount.toFixed(2)
-                              ).toLocaleString(),
-                              expression:
-                                "Number(form.amount.toFixed(2)).toLocaleString()"
+                              value: Number(_vm.form.amount).toLocaleString(),
+                              expression: "Number(form.amount).toLocaleString()"
                             }
                           ],
                           staticClass: "form-control",
@@ -64718,9 +64728,7 @@ var render = function() {
                             placeholder: "Total Amount"
                           },
                           domProps: {
-                            value: Number(
-                              _vm.form.amount.toFixed(2)
-                            ).toLocaleString()
+                            value: Number(_vm.form.amount).toLocaleString()
                           },
                           on: {
                             input: function($event) {
@@ -64728,7 +64736,7 @@ var render = function() {
                                 return
                               }
                               _vm.$set(
-                                Number(_vm.form.amount.toFixed(2)),
+                                Number(_vm.form.amount),
                                 "toLocaleString()",
                                 $event.target.value
                               )
@@ -65105,8 +65113,11 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.form_entry.amount,
-                            expression: "form_entry.amount"
+                            value: Number(
+                              _vm.form_entry.amount
+                            ).toLocaleString(),
+                            expression:
+                              "Number(form_entry.amount).toLocaleString()"
                           }
                         ],
                         staticClass: "form-control",
@@ -65119,15 +65130,17 @@ var render = function() {
                           readonly: "",
                           "aria-describedby": "inputGroup-sizing-default"
                         },
-                        domProps: { value: _vm.form_entry.amount },
+                        domProps: {
+                          value: Number(_vm.form_entry.amount).toLocaleString()
+                        },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
                             _vm.$set(
-                              _vm.form_entry,
-                              "amount",
+                              Number(_vm.form_entry.amount),
+                              "toLocaleString()",
                               $event.target.value
                             )
                           }
@@ -65152,8 +65165,11 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.form_entry.amount_ex_tax,
-                            expression: "form_entry.amount_ex_tax"
+                            value: Number(
+                              _vm.form_entry.amount_ex_tax
+                            ).toLocaleString(),
+                            expression:
+                              "Number(form_entry.amount_ex_tax).toLocaleString()"
                           }
                         ],
                         staticClass: "form-control",
@@ -65168,15 +65184,19 @@ var render = function() {
                           readonly: "",
                           "aria-describedby": "inputGroup-sizing-default"
                         },
-                        domProps: { value: _vm.form_entry.amount_ex_tax },
+                        domProps: {
+                          value: Number(
+                            _vm.form_entry.amount_ex_tax
+                          ).toLocaleString()
+                        },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
                             _vm.$set(
-                              _vm.form_entry,
-                              "amount_ex_tax",
+                              Number(_vm.form_entry.amount_ex_tax),
+                              "toLocaleString()",
                               $event.target.value
                             )
                           }
@@ -65201,8 +65221,9 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.form_entry.vat,
-                            expression: "form_entry.vat"
+                            value: Number(_vm.form_entry.vat).toLocaleString(),
+                            expression:
+                              "Number(form_entry.vat).toLocaleString()"
                           }
                         ],
                         staticClass: "form-control",
@@ -65215,13 +65236,19 @@ var render = function() {
                           readonly: "",
                           "aria-describedby": "inputGroup-sizing-default"
                         },
-                        domProps: { value: _vm.form_entry.vat },
+                        domProps: {
+                          value: Number(_vm.form_entry.vat).toLocaleString()
+                        },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(_vm.form_entry, "vat", $event.target.value)
+                            _vm.$set(
+                              Number(_vm.form_entry.vat),
+                              "toLocaleString()",
+                              $event.target.value
+                            )
                           }
                         }
                       }),

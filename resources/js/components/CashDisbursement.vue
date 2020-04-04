@@ -283,7 +283,7 @@
                 <div class="row mt-2">
                 <label for="inputAmountExclusiveTax" class="col-sm-9 col-form-label" style="text-align: right;">Amount Exclusive of Tax</label>
                 <div class="col-sm-3">
-                  <input readonly v-model="form.amount_ex_tax" type="text" class="form-control" id="inputAmountExclusiveTax" placeholder="Amount Exclusive of Tax">
+                  <input readonly v-model="Number(form.amount_ex_tax).toLocaleString()" type="text" class="form-control" id="inputAmountExclusiveTax" placeholder="Amount Exclusive of Tax">
                 </div>
                 </div>
               </div>
@@ -292,7 +292,7 @@
                 
                 <label for="inputVAT" class="col-sm-9 col-form-label" style="text-align: right;">VAT</label>
                 <div class="col-sm-3">
-                  <input readonly v-model="form.vat" type="text" class="form-control" id="inputVAT" placeholder="VAT">
+                  <input readonly v-model="Number(form.vat).toLocaleString()" type="text" class="form-control" id="inputVAT" placeholder="VAT">
                 </div>
               </div>
               </div>
@@ -301,7 +301,7 @@
                 
                 <label for="inputTotalAmount" class="col-sm-9 col-form-label" style="text-align: right;">Total Amount</label>
                 <div class="col-sm-3">
-                  <input readonly v-model="Number(form.amount.toFixed(2)).toLocaleString()" type="text" class="form-control" id="inputTotalAmount" placeholder="Total Amount">
+                  <input readonly v-model="Number(form.amount).toLocaleString()" type="text" class="form-control" id="inputTotalAmount" placeholder="Total Amount">
                 </div>
               </div>
               </div>
@@ -428,7 +428,7 @@
                   <span class="input-group-text inputGroup-sizing-default">Amount</span>
                 </div>
 
-                  <input v-model="form_entry.amount" name="amount" id="amount"
+                  <input v-model="Number(form_entry.amount).toLocaleString()" name="amount" id="amount"
                   readonly
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount') }" aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_entry" field="amount"></has-error>
@@ -440,7 +440,7 @@
                 </div>
 
               
-                  <input v-model="form_entry.amount_ex_tax" name="amount_ex_tax" id="amount_ex_tax"
+                  <input v-model="Number(form_entry.amount_ex_tax).toLocaleString()" name="amount_ex_tax" id="amount_ex_tax"
                   
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount_ex_tax') }" readonly aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_entry" field="amount_ex_tax"></has-error>
@@ -453,7 +453,7 @@
                   <span class="input-group-text inputGroup-sizing-default">Tax</span>
                 </div>
               
-                  <input v-model="form_entry.vat" name="vat" id="vat"
+                  <input v-model="Number(form_entry.vat).toLocaleString()" name="vat" id="vat"
                   
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('vat') }" readonly aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_entry" field="vat"></has-error>
