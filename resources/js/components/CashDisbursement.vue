@@ -761,7 +761,7 @@
     //import { ModelSelect } from 'vue-search-select'
     //import { DynamicSelect } from 'vue-dynamic-select'
     //import { BasicSelect } from 'vue-search-select'
-    
+  
     export default {
         data() {
           return {
@@ -974,11 +974,16 @@
             
           },
           saveCD(){
+            if(this.form.amount == 0) {
+              return false;
+            }
+
             this.cd_created = false;
             this.form.post('api/cd/confirm/'+this.form.transaction_no);
-            this.form.reset();
-            this.form_entry.reset();
-            this.form_item.reset();
+            //this.form.reset();
+            //this.form_entry.reset();
+            //this.form_item.reset();
+            vm.$forceUpdate();
 
           },
           cancelCD(){
