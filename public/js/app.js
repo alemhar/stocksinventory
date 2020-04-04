@@ -3259,8 +3259,29 @@ __webpack_require__.r(__webpack_exports__);
       this.loadEntryItems();
       $('#entry-items').modal('show');
     },
-    saveDebitEntry: function saveDebitEntry() {
+    cancelDebitEntry: function cancelDebitEntry() {
       var _this12 = this;
+
+      this.$Progress.start();
+      this.form_item["delete"]('api/cd/entry/' + this.form_entry.id).then(function () {
+        $('#entry-details').modal('hide');
+        /*
+        swal.fire(
+            'Updated!',
+            'Payee information has been updated.',
+            'success'
+          );
+        */
+
+        _this12.$Progress.finish();
+
+        VueListen.$emit('RefreshEntryTable');
+      })["catch"](function () {
+        _this12.$Progress.fail();
+      });
+    },
+    saveDebitEntry: function saveDebitEntry() {
+      var _this13 = this;
 
       //console.log('Edit Payee');
       // ** Temporary data to bypass Column cannot be null ERROR's
@@ -3281,19 +3302,19 @@ __webpack_require__.r(__webpack_exports__);
           );
         */
 
-        _this12.form.amount += _this12.form_entry.amount;
-        _this12.form.amount_ex_tax += _this12.form_entry.amount_ex_tax;
-        _this12.form.vat += _this12.form_entry.vat;
+        _this13.form.amount += _this13.form_entry.amount;
+        _this13.form.amount_ex_tax += _this13.form_entry.amount_ex_tax;
+        _this13.form.vat += _this13.form_entry.vat;
 
-        _this12.$Progress.finish();
+        _this13.$Progress.finish();
 
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this12.$Progress.fail();
+        _this13.$Progress.fail();
       });
     },
     cancelItem: function cancelItem() {
-      var _this13 = this;
+      var _this14 = this;
 
       this.$Progress.start();
       this.form_item["delete"]('api/cd/item/' + this.form_item.id).then(function () {
@@ -3306,15 +3327,15 @@ __webpack_require__.r(__webpack_exports__);
           );
         */
 
-        _this13.$Progress.finish();
+        _this14.$Progress.finish();
 
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
-        _this13.$Progress.fail();
+        _this14.$Progress.fail();
       });
     },
     saveItem: function saveItem() {
-      var _this14 = this;
+      var _this15 = this;
 
       if (this.form_item.item.length == 0) {
         this.no_item = true;
@@ -3349,15 +3370,15 @@ __webpack_require__.r(__webpack_exports__);
           );
         */
 
-        _this14.form_entry.amount += _this14.form_item.sub_total;
-        _this14.form_entry.amount_ex_tax += _this14.form_item.tax_excluded;
-        _this14.form_entry.vat += _this14.form_item.vat;
+        _this15.form_entry.amount += _this15.form_item.sub_total;
+        _this15.form_entry.amount_ex_tax += _this15.form_item.tax_excluded;
+        _this15.form_entry.vat += _this15.form_item.vat;
 
-        _this14.$Progress.finish();
+        _this15.$Progress.finish();
 
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
-        _this14.$Progress.fail();
+        _this15.$Progress.fail();
       });
     },
     branchChange: function branchChange() {
@@ -3400,7 +3421,7 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   created: function created() {
-    var _this15 = this;
+    var _this16 = this;
 
     /*
     VueListen.$on('Search',() => {
@@ -3422,10 +3443,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntries(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
 
     VueListen.$on('RefreshItemTable', function () {
-      _this15.loadEntryItems();
+      _this16.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this15.loadEntries();
+      _this16.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
@@ -65687,7 +65708,7 @@ var render = function() {
                   "button",
                   {
                     staticClass: "btn btn-danger",
-                    attrs: { type: "button", "data-dismiss": "modal" },
+                    attrs: { type: "button" },
                     on: { click: _vm.cancelItem }
                   },
                   [_vm._v("Cancel")]

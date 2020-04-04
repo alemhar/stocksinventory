@@ -602,7 +602,7 @@
 
             </div>
             <div class="modal-footer">
-              <button type="button" @click="cancelItem" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+              <button type="button" @click="cancelItem" class="btn btn-danger">Cancel</button>
               <button type="button" @click="saveItem" class="btn btn-success">Save</button>
             </div>
 
@@ -1184,6 +1184,25 @@
                 });
               this.loadEntryItems();
               $('#entry-items').modal('show');
+          },
+          cancelDebitEntry(){
+            this.$Progress.start();
+            this.form_item.delete('api/cd/entry/'+this.form_entry.id)
+            .then(() => {
+                $('#entry-details').modal('hide');
+                /*
+                swal.fire(
+                    'Updated!',
+                    'Payee information has been updated.',
+                    'success'
+                  );
+                */
+                  this.$Progress.finish();
+                  VueListen.$emit('RefreshEntryTable');
+            })
+            .catch(() => {
+                this.$Progress.fail();
+            });
           },
           saveDebitEntry(){
             //console.log('Edit Payee');

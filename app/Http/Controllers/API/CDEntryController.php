@@ -93,7 +93,13 @@ class CDEntryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $transactionEntry = TransactionEntry::findOrFail($id);
+
+        // Send Request
+        $transactionEntry->delete();
+        
+        return ['message' => 'Entry Deleted'];
     }
 
     public function list(){
