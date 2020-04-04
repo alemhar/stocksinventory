@@ -1111,7 +1111,7 @@
                   //this.form_item.amount = event.target.value;
                   this.form_item.vat = ((this.form_item.sub_total * 0.12) + 0.001).toFixed(2);
 
-                  this.form_item.tax_excluded = (this.form_item.sub_total - this.form_item.vat).toFixed(2);
+                  this.form_item.tax_excluded = (this.form_item.sub_total - this.form_item.vat).toFixed(2) * 1;
                 } else {
                   //this.form_entry.amount = event.target.value;
                   this.form_item.vat = 0;
@@ -1166,7 +1166,7 @@
 
               this.editmode = false;
               this.form_item.reset();
-              
+
               this.no_item = false;
               this.no_price = false;
               this.no_quantity = false;
@@ -1296,7 +1296,7 @@
                   );
                 */
                   this.form_entry.amount += this.form_item.sub_total;
-                  this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax * 1) + this.form_item.tax_excluded;
+                  this.form_entry.amount_ex_tax += this.form_item.tax_excluded;
                   this.form_entry.vat += this.form_item.vat;
                   
                   this.$Progress.finish();
