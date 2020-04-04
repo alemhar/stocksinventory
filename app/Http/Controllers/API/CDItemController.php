@@ -82,15 +82,17 @@ class CDItemController extends Controller
     }
 
     public function list(){
+        return ['message' => 'Listing'];
+        
         if ($entry_id = \Request::get('entry_id')) {
-        //    $accounts = TransactionItem::where(function($query) use ($entry_id){
+        //    $transactionItems = TransactionItem::where(function($query) use ($entry_id){
         //        $query->where('transaction_entry_id',$entry_id);
         //    })->paginate(10);
 
         }else{
-            $accounts = TransactionItem::latest()->paginate(10);
+            $transactionItems = TransactionItem::latest()->paginate(10);
         }
-        $accounts = TransactionItem::latest()->paginate(10);
-        return $accounts;
+        $transactionItems = TransactionItem::latest()->paginate(10);
+        return $transactionItems;
     }
 }
