@@ -562,10 +562,10 @@
                 </div>
                 
                 
-                <input v-model="form_entry.entry_name" type="text" name="entry_name"
+                <input v-model="form_item.item" type="text" name="entry_name"
                   
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('entry_name') }" aria-describedby="inputGroup-sizing-default">
-                <has-error :form="form_entry" field="entry_name"></has-error>
+                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('item') }" aria-describedby="inputGroup-sizing-default">
+                <has-error :form="form_item" field="entry_name"></has-error>
               </div>
               <!--div class="input-group mb-2">
                 <div class="input-group-prepend">
@@ -600,11 +600,11 @@
                 </div>
 
               
-                  <input v-model="form_entry.amount" name="amount" id="amount"
+                  <input v-model="form_item.price" name="amount" id="amount"
                   
                   @change="computeTaxChange"
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount') }" aria-describedby="inputGroup-sizing-default">
-                  <has-error :form="form_entry" field="amount"></has-error>
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('price') }" aria-describedby="inputGroup-sizing-default">
+                  <has-error :form="form_item" field="amount"></has-error>
               </div>
 
               <div class="input-group mb-2">
@@ -612,10 +612,10 @@
                   <span class="input-group-text inputGroup-sizing-default">Quantity</span>
                 </div>
 
-                <input v-model="form_entry.entry_description" type="text" name="entry_description"
+                <input v-model="form_item.quantity" type="text" name="entry_description"
                   
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('entry_description') }" aria-describedby="inputGroup-sizing-default">
-                <has-error :form="form_entry" field="entry_description"></has-error>
+                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('quantity') }" aria-describedby="inputGroup-sizing-default">
+                <has-error :form="form_item" field="entry_description"></has-error>
               </div>
 
               <div class="input-group mb-2">
@@ -625,8 +625,8 @@
 
               
 
-                <select v-model="form_entry.tax_type" @change="onTaxChange" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
-                  <option value="TAX TYPE"></option>
+                <select v-model="form_item.tax_type" @change="onTaxChange" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
+                  <option value="NOT SELECTED"></option>
                   <option value="VAT">VAT</option>
                   <option value="NON VAT">NON VAT</option>
                   <option value="VAT EXEMPT">VAT EXEMPT</option>
@@ -640,10 +640,10 @@
                 </div>
 
               
-                  <input v-model="form_entry.amount_ex_tax" name="amount_ex_tax" id="amount_ex_tax"
+                  <input v-model="form_item.tax_excluded" name="amount_ex_tax" id="amount_ex_tax"
                   
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount_ex_tax') }" readonly aria-describedby="inputGroup-sizing-default">
-                  <has-error :form="form_entry" field="amount_ex_tax"></has-error>
+                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('tax_excluded') }" readonly aria-describedby="inputGroup-sizing-default">
+                  <has-error :form="form_item" field="amount_ex_tax"></has-error>
               </div>
 
 
@@ -653,10 +653,10 @@
                   <span class="input-group-text inputGroup-sizing-default">Tax</span>
                 </div>
               
-                  <input v-model="form_entry.vat" name="vat" id="vat"
+                  <input v-model="form_item.vat" name="vat" id="vat"
                   
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('vat') }" readonly aria-describedby="inputGroup-sizing-default">
-                  <has-error :form="form_entry" field="vat"></has-error>
+                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('vat') }" readonly aria-describedby="inputGroup-sizing-default">
+                  <has-error :form="form_item" field="vat"></has-error>
               </div>
 
             </div>

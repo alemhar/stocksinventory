@@ -65023,36 +65023,30 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form_entry.entry_name,
-                          expression: "form_entry.entry_name"
+                          value: _vm.form_item.item,
+                          expression: "form_item.item"
                         }
                       ],
                       staticClass: "form-control",
-                      class: {
-                        "is-invalid": _vm.form_entry.errors.has("entry_name")
-                      },
+                      class: { "is-invalid": _vm.form_item.errors.has("item") },
                       attrs: {
                         type: "text",
                         name: "entry_name",
                         "aria-describedby": "inputGroup-sizing-default"
                       },
-                      domProps: { value: _vm.form_entry.entry_name },
+                      domProps: { value: _vm.form_item.item },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(
-                            _vm.form_entry,
-                            "entry_name",
-                            $event.target.value
-                          )
+                          _vm.$set(_vm.form_item, "item", $event.target.value)
                         }
                       }
                     }),
                     _vm._v(" "),
                     _c("has-error", {
-                      attrs: { form: _vm.form_entry, field: "entry_name" }
+                      attrs: { form: _vm.form_item, field: "entry_name" }
                     })
                   ],
                   1
@@ -65069,37 +65063,33 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form_entry.amount,
-                          expression: "form_entry.amount"
+                          value: _vm.form_item.price,
+                          expression: "form_item.price"
                         }
                       ],
                       staticClass: "form-control",
                       class: {
-                        "is-invalid": _vm.form_entry.errors.has("amount")
+                        "is-invalid": _vm.form_entry.errors.has("price")
                       },
                       attrs: {
                         name: "amount",
                         id: "amount",
                         "aria-describedby": "inputGroup-sizing-default"
                       },
-                      domProps: { value: _vm.form_entry.amount },
+                      domProps: { value: _vm.form_item.price },
                       on: {
                         change: _vm.computeTaxChange,
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(
-                            _vm.form_entry,
-                            "amount",
-                            $event.target.value
-                          )
+                          _vm.$set(_vm.form_item, "price", $event.target.value)
                         }
                       }
                     }),
                     _vm._v(" "),
                     _c("has-error", {
-                      attrs: { form: _vm.form_entry, field: "amount" }
+                      attrs: { form: _vm.form_item, field: "amount" }
                     })
                   ],
                   1
@@ -65116,30 +65106,28 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form_entry.entry_description,
-                          expression: "form_entry.entry_description"
+                          value: _vm.form_item.quantity,
+                          expression: "form_item.quantity"
                         }
                       ],
                       staticClass: "form-control",
                       class: {
-                        "is-invalid": _vm.form_entry.errors.has(
-                          "entry_description"
-                        )
+                        "is-invalid": _vm.form_item.errors.has("quantity")
                       },
                       attrs: {
                         type: "text",
                         name: "entry_description",
                         "aria-describedby": "inputGroup-sizing-default"
                       },
-                      domProps: { value: _vm.form_entry.entry_description },
+                      domProps: { value: _vm.form_item.quantity },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
                           _vm.$set(
-                            _vm.form_entry,
-                            "entry_description",
+                            _vm.form_item,
+                            "quantity",
                             $event.target.value
                           )
                         }
@@ -65147,10 +65135,7 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("has-error", {
-                      attrs: {
-                        form: _vm.form_entry,
-                        field: "entry_description"
-                      }
+                      attrs: { form: _vm.form_item, field: "entry_description" }
                     })
                   ],
                   1
@@ -65166,8 +65151,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form_entry.tax_type,
-                          expression: "form_entry.tax_type"
+                          value: _vm.form_item.tax_type,
+                          expression: "form_item.tax_type"
                         }
                       ],
                       staticClass: "form-control col-12",
@@ -65186,7 +65171,7 @@ var render = function() {
                                 return val
                               })
                             _vm.$set(
-                              _vm.form_entry,
+                              _vm.form_item,
                               "tax_type",
                               $event.target.multiple
                                 ? $$selectedVal
@@ -65198,7 +65183,7 @@ var render = function() {
                       }
                     },
                     [
-                      _c("option", { attrs: { value: "TAX TYPE" } }),
+                      _c("option", { attrs: { value: "NOT SELECTED" } }),
                       _vm._v(" "),
                       _c("option", { attrs: { value: "VAT" } }, [
                         _vm._v("VAT")
@@ -65230,13 +65215,13 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form_entry.amount_ex_tax,
-                          expression: "form_entry.amount_ex_tax"
+                          value: _vm.form_item.tax_excluded,
+                          expression: "form_item.tax_excluded"
                         }
                       ],
                       staticClass: "form-control",
                       class: {
-                        "is-invalid": _vm.form_entry.errors.has("amount_ex_tax")
+                        "is-invalid": _vm.form_item.errors.has("tax_excluded")
                       },
                       attrs: {
                         name: "amount_ex_tax",
@@ -65244,15 +65229,15 @@ var render = function() {
                         readonly: "",
                         "aria-describedby": "inputGroup-sizing-default"
                       },
-                      domProps: { value: _vm.form_entry.amount_ex_tax },
+                      domProps: { value: _vm.form_item.tax_excluded },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
                           _vm.$set(
-                            _vm.form_entry,
-                            "amount_ex_tax",
+                            _vm.form_item,
+                            "tax_excluded",
                             $event.target.value
                           )
                         }
@@ -65260,7 +65245,7 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("has-error", {
-                      attrs: { form: _vm.form_entry, field: "amount_ex_tax" }
+                      attrs: { form: _vm.form_item, field: "amount_ex_tax" }
                     })
                   ],
                   1
@@ -65277,31 +65262,31 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form_entry.vat,
-                          expression: "form_entry.vat"
+                          value: _vm.form_item.vat,
+                          expression: "form_item.vat"
                         }
                       ],
                       staticClass: "form-control",
-                      class: { "is-invalid": _vm.form_entry.errors.has("vat") },
+                      class: { "is-invalid": _vm.form_item.errors.has("vat") },
                       attrs: {
                         name: "vat",
                         id: "vat",
                         readonly: "",
                         "aria-describedby": "inputGroup-sizing-default"
                       },
-                      domProps: { value: _vm.form_entry.vat },
+                      domProps: { value: _vm.form_item.vat },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(_vm.form_entry, "vat", $event.target.value)
+                          _vm.$set(_vm.form_item, "vat", $event.target.value)
                         }
                       }
                     }),
                     _vm._v(" "),
                     _c("has-error", {
-                      attrs: { form: _vm.form_entry, field: "vat" }
+                      attrs: { form: _vm.form_item, field: "vat" }
                     })
                   ],
                   1
