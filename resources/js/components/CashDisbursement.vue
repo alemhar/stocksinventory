@@ -562,10 +562,10 @@
                 </div>
                 
                 
-                <input v-model="form_item.item" type="text" name="entry_name"
+                <input v-model="form_item.item" type="text" name="item_name"
                   
                   class="form-control" :class="{ 'is-invalid': form_item.errors.has('item') }" aria-describedby="inputGroup-sizing-default">
-                <has-error :form="form_item" field="entry_name"></has-error>
+                <has-error :form="form_item" field="item_name"></has-error>
               </div>
               <!--div class="input-group mb-2">
                 <div class="input-group-prepend">
@@ -600,11 +600,10 @@
                 </div>
 
               
-                  <input v-model="form_item.price" name="amount" id="amount"
-                  
+                  <input v-model="form_item.price" name="price" id="price"
                   @change="computeTaxChange"
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('price') }" aria-describedby="inputGroup-sizing-default">
-                  <has-error :form="form_item" field="amount"></has-error>
+                  <has-error :form="form_item" field="price"></has-error>
               </div>
 
               <div class="input-group mb-2">
@@ -613,8 +612,19 @@
                 </div>
 
                 <input v-model="form_item.quantity" type="text" name="entry_description"
-                  
+                  @change="computeTaxChange"
                   class="form-control" :class="{ 'is-invalid': form_item.errors.has('quantity') }" aria-describedby="inputGroup-sizing-default">
+                <has-error :form="form_item" field="entry_description"></has-error>
+              </div>
+
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text inputGroup-sizing-default">Total</span>
+                </div>
+
+                <input v-model="form_item.sub_total" type="text" name="entry_description"
+                  @change="computeTaxChange"
+                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('sub_total') }" aria-describedby="inputGroup-sizing-default">
                 <has-error :form="form_item" field="entry_description"></has-error>
               </div>
 
@@ -626,7 +636,6 @@
               
 
                 <select v-model="form_item.tax_type" @change="onTaxChange" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
-                  <option value="NOT SELECTED"></option>
                   <option value="VAT">VAT</option>
                   <option value="NON VAT">NON VAT</option>
                   <option value="VAT EXEMPT">VAT EXEMPT</option>
@@ -1125,15 +1134,17 @@
             }
           },
           computeTaxChange(event){
-              if(this.form_entry.amount){
-                if(this.form_entry.tax_type == 'VAT'){
-                  this.form_entry.amount = event.target.value;
-                  this.form_entry.vat = this.form_entry.amount * 0.12;
-                  this.form_entry.amount_ex_tax = this.form_entry.amount - this.form_entry.vat;
+              if(this.form_item.price && this.form_item.quantity){
+                this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
+                if(this.form_item.tax_type == 'VAT'){
+
+                  //this.form_item.amount = event.target.value;
+                  this.form_item.vat = this.form_item.sub_total * 0.12;
+                  this.form_item.tax_excluded = this.form_item.sub_total - this.form_item.vat;
                 } else {
-                  this.form_entry.amount = event.target.value;
-                  this.form_entry.vat = 0;
-                  this.form_entry.amount_ex_tax = this.form_entry.amount;
+                  //this.form_entry.amount = event.target.value;
+                  this.form_item.vat = 0;
+                  this.form_item.tax_excluded = this.form_item.sub_total;
                 }
               }
           },
