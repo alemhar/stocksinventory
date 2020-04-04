@@ -631,7 +631,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-              <button type="button" @click="saveItem" class="btn btn-success"  data-dismiss="modal">Save</button>
+              <button type="button" @click="saveItem" class="btn btn-success">Save</button>
             </div>
 
             <!-- /form -->
@@ -1210,18 +1210,10 @@
 
 
 
-            // ** Temporary data to bypass Column cannot be null ERROR's
-            this.form_item.amount = 0;
-            this.form_entry.amount_ex_tax = 0;
-            this.form_entry.vat = 0;
-            this.form_entry.credit_amount = 0;
-            this.form_entry.debit_amount = 0;
-            // ** Temporary data to bypass Column cannot be null ERROR's
-
             this.$Progress.start();
-            this.form_entry.put('api/cd/entry/'+this.form_entry.id)
+            this.form_entry.put('api/cd/item/'+this.form_item.id)
             .then(() => {
-                $('#entry-details').modal('hide');
+                $('#entry-items').modal('hide');
                 /*
                 swal.fire(
                     'Updated!',
@@ -1230,12 +1222,13 @@
                   );
                 */
                   this.$Progress.finish();
-                  VueListen.$emit('RefreshEntryTable');
+                  VueListen.$emit('RefreshItemTable');
             })
             .catch(() => {
                 this.$Progress.fail();
             });
           },
+          
           branchChange(){
             this.form_entry.branch_id = this.selected_branch.id ;
             this.form_entry.branch_name = this.selected_branch.name;

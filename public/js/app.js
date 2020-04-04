@@ -3285,18 +3285,11 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.no_item || this.no_price || this.no_quantity) {
         return false;
-      } // ** Temporary data to bypass Column cannot be null ERROR's
-
-
-      this.form_item.amount = 0;
-      this.form_entry.amount_ex_tax = 0;
-      this.form_entry.vat = 0;
-      this.form_entry.credit_amount = 0;
-      this.form_entry.debit_amount = 0; // ** Temporary data to bypass Column cannot be null ERROR's
+      }
 
       this.$Progress.start();
-      this.form_entry.put('api/cd/entry/' + this.form_entry.id).then(function () {
-        $('#entry-details').modal('hide');
+      this.form_entry.put('api/cd/item/' + this.form_item.id).then(function () {
+        $('#entry-items').modal('hide');
         /*
         swal.fire(
             'Updated!',
@@ -3307,7 +3300,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this10.$Progress.finish();
 
-        VueListen.$emit('RefreshEntryTable');
+        VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
         _this10.$Progress.fail();
       });
@@ -65400,7 +65393,7 @@ var render = function() {
                   "button",
                   {
                     staticClass: "btn btn-success",
-                    attrs: { type: "button", "data-dismiss": "modal" },
+                    attrs: { type: "button" },
                     on: { click: _vm.saveItem }
                   },
                   [_vm._v("Save")]
