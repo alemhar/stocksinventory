@@ -567,7 +567,7 @@
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('entry_name') }" aria-describedby="inputGroup-sizing-default">
                 <has-error :form="form_entry" field="entry_name"></has-error>
               </div>
-              <div class="input-group mb-2">
+              <!--div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Description</span>
                 </div>
@@ -576,7 +576,7 @@
                   
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('entry_description') }" aria-describedby="inputGroup-sizing-default">
                 <has-error :form="form_entry" field="entry_description"></has-error>
-              </div>
+              </div -->
 
               <!--div class="input-group mb-2">
                 <div class="input-group-prepend">
@@ -1186,6 +1186,35 @@
             
             // ** Temporary data to bypass Column cannot be null ERROR's
             this.form_entry.amount = 0;
+            this.form_entry.amount_ex_tax = 0;
+            this.form_entry.vat = 0;
+            this.form_entry.credit_amount = 0;
+            this.form_entry.debit_amount = 0;
+            // ** Temporary data to bypass Column cannot be null ERROR's
+
+            this.$Progress.start();
+            this.form_entry.put('api/cd/entry/'+this.form_entry.id)
+            .then(() => {
+                $('#entry-details').modal('hide');
+                /*
+                swal.fire(
+                    'Updated!',
+                    'Payee information has been updated.',
+                    'success'
+                  );
+                */
+                  this.$Progress.finish();
+                  VueListen.$emit('RefreshEntryTable');
+            })
+            .catch(() => {
+                this.$Progress.fail();
+            });
+          },
+          saveItem(){
+            //console.log('Edit Payee');
+            
+            // ** Temporary data to bypass Column cannot be null ERROR's
+            this.form_item.amount = 0;
             this.form_entry.amount_ex_tax = 0;
             this.form_entry.vat = 0;
             this.form_entry.credit_amount = 0;
