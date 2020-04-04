@@ -3199,9 +3199,10 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.transaction_type = 'CD';
       this.form_entry.post('api/cd/entry').then(function (data) {
         _this9.form_entry.id = data.data.id; //console.log(data.data.id);
+
+        VueListen.$emit('RefreshItemTable');
       })["catch"](function () {//
       });
-      this.loadEntries();
       $('#entry-details').modal('show');
     },
     newItem: function newItem() {
@@ -63896,6 +63897,27 @@ var render = function() {
                           },
                           [
                             _vm._v("Create "),
+                            _c("i", { staticClass: "fas fa-plus-circle fa-fw" })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.cd_created,
+                                expression: "cd_created"
+                              }
+                            ],
+                            staticClass: "btn btn-success",
+                            attrs: { type: "button" },
+                            on: { click: _vm.saveCD }
+                          },
+                          [
+                            _vm._v("Save "),
                             _c("i", { staticClass: "fas fa-plus-circle fa-fw" })
                           ]
                         ),
