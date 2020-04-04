@@ -1166,6 +1166,7 @@
 
               this.editmode = false;
               this.form_item.reset();
+              
               this.no_item = false;
               this.no_price = false;
               this.no_quantity = false;
@@ -1238,7 +1239,7 @@
             });
           },
           cancelItem(){
-            this.$Progress.start();
+            //this.$Progress.start();
             this.form_item.delete('api/cd/item/'+this.form_item.id)
             .then(() => {
                 $('#entry-items').modal('hide');
@@ -1249,7 +1250,8 @@
                     'success'
                   );
                 */
-                  this.$Progress.finish();
+                  //this.$Progress.finish();
+
                   VueListen.$emit('RefreshItemTable');
             })
             .catch(() => {
@@ -1294,7 +1296,7 @@
                   );
                 */
                   this.form_entry.amount += this.form_item.sub_total;
-                  this.form_entry.amount_ex_tax += this.form_item.tax_excluded;
+                  this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax * 1) + this.form_item.tax_excluded;
                   this.form_entry.vat += this.form_item.vat;
                   
                   this.$Progress.finish();

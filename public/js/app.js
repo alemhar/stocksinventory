@@ -3316,7 +3316,7 @@ __webpack_require__.r(__webpack_exports__);
     cancelItem: function cancelItem() {
       var _this14 = this;
 
-      this.$Progress.start();
+      //this.$Progress.start();
       this.form_item["delete"]('api/cd/item/' + this.form_item.id).then(function () {
         $('#entry-items').modal('hide');
         /*
@@ -3326,8 +3326,7 @@ __webpack_require__.r(__webpack_exports__);
             'success'
           );
         */
-
-        _this14.$Progress.finish();
+        //this.$Progress.finish();
 
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
@@ -3371,7 +3370,7 @@ __webpack_require__.r(__webpack_exports__);
         */
 
         _this15.form_entry.amount += _this15.form_item.sub_total;
-        _this15.form_entry.amount_ex_tax += _this15.form_item.tax_excluded;
+        _this15.form_entry.amount_ex_tax = _this15.form_entry.amount_ex_tax * 1 + _this15.form_item.tax_excluded;
         _this15.form_entry.vat += _this15.form_item.vat;
 
         _this15.$Progress.finish();
