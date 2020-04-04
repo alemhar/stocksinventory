@@ -1220,9 +1220,9 @@
                     'success'
                   );
                 */
-                  this.form_entry.amount += form_item.sub_total;
-                  this.form_entry.amount_ex_tax += form_item.tax_excluded;
-                  this.form_entry.vat += form_item.vat;
+                  this.form_entry.amount += this.form_item.sub_total;
+                  this.form_entry.amount_ex_tax += this.form_item.tax_excluded;
+                  this.form_entry.vat += this.form_item.vat;
                   
                   this.$Progress.finish();
                   VueListen.$emit('RefreshItemTable');

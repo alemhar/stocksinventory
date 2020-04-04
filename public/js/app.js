@@ -3297,9 +3297,9 @@ __webpack_require__.r(__webpack_exports__);
           );
         */
 
-        _this12.form_entry.amount += form_item.sub_total;
-        _this12.form_entry.amount_ex_tax += form_item.tax_excluded;
-        _this12.form_entry.vat += form_item.vat;
+        _this12.form_entry.amount += _this12.form_item.sub_total;
+        _this12.form_entry.amount_ex_tax += _this12.form_item.tax_excluded;
+        _this12.form_entry.vat += _this12.form_item.vat;
 
         _this12.$Progress.finish();
 
