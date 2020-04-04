@@ -1282,6 +1282,7 @@
             this.loadBranches();
             this.loadChartAccounts();
             this.loadEntryItems();
+            this.loadEntries();
             //this.SearchIt = _.debounce(this.SearchIt, 1000);
             
             /*

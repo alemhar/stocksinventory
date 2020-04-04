@@ -3343,7 +3343,8 @@ __webpack_require__.r(__webpack_exports__);
     this.loadPayees();
     this.loadBranches();
     this.loadChartAccounts();
-    this.loadEntryItems(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
+    this.loadEntryItems();
+    this.loadEntries(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
 
     /*
     VueListen.$on('RefreshUsersTable',() => {
