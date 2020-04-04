@@ -3271,13 +3271,13 @@ __webpack_require__.r(__webpack_exports__);
         this.no_item = false;
       }
 
-      if (this.form_item.price.length == 0) {
+      if (this.form_item.price == 0) {
         this.no_price = true;
       } else {
         this.no_price = false;
       }
 
-      if (this.form_item.quantity.length == 0) {
+      if (this.form_item.quantity == 0) {
         this.no_quantity = true;
       } else {
         this.no_quantity = false;
