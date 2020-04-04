@@ -187,12 +187,16 @@
                         <th>Name</th>
                         <th>Branch</th>
                         <th>Amount</th>
+                        <th>Tax Excluded</th>
+                        <th>Tax</th>
                       </tr>
                       <tr v-for="entry in entries.data" :key="entry.id" @click="selectDebitRow(entry.id)" :class="{ 'table-warning' : active_debit_row == entry.id }" >
                         <td>{{ entry.account_code }}</td>
                         <td>{{ entry.account_name }}</td>
                         <td>{{ entry.branch_name }}</td>
                         <td>{{ entry.amount }}</td>
+                        <td>{{ entry.amount_ex_tax }}</td>
+                        <td>{{ entry.vat }}</td>
                       </tr>
                       
                   </tbody>
@@ -1176,6 +1180,10 @@
                     'success'
                   );
                 */
+                  this.form.amount += this.form_entry.amount;
+                  this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
+                  this.form.vat += this.form_entry.vat;
+                  
                   this.$Progress.finish();
                   VueListen.$emit('RefreshEntryTable');
             })

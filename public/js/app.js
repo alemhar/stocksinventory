@@ -2851,6 +2851,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -3253,6 +3257,10 @@ __webpack_require__.r(__webpack_exports__);
             'success'
           );
         */
+
+        _this11.form.amount += _this11.form_entry.amount;
+        _this11.form.amount_ex_tax += _this11.form_entry.amount_ex_tax;
+        _this11.form.vat += _this11.form_entry.vat;
 
         _this11.$Progress.finish();
 
@@ -64395,7 +64403,13 @@ var render = function() {
                                         _vm._v(_vm._s(entry.branch_name))
                                       ]),
                                       _vm._v(" "),
-                                      _c("td", [_vm._v(_vm._s(entry.amount))])
+                                      _c("td", [_vm._v(_vm._s(entry.amount))]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(entry.amount_ex_tax))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v(_vm._s(entry.vat))])
                                     ]
                                   )
                                 })
@@ -65870,7 +65884,11 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Branch")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Amount")])
+      _c("th", [_vm._v("Amount")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Tax Excluded")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Tax")])
     ])
   },
   function() {
