@@ -635,7 +635,7 @@
 
               
 
-                <select v-model="form_item.tax_type" @change="onTaxChange" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
+                <select v-model="form_item.tax_type" @change="computeTaxChange" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
                   <option value="VAT">VAT</option>
                   <option value="NON VAT">NON VAT</option>
                   <option value="VAT EXEMPT">VAT EXEMPT</option>
