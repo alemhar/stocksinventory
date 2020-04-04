@@ -188,19 +188,19 @@
                         <th>Branch</th>
                         <th>Amount</th>
                       </tr>
-                      <tr>
+                      <tr @click="selectDebitRow(1)" :class="{ 'table-warning' : active_debit_row == 1 }" >
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
                       </tr>
-                      <tr>
+                      <tr @click="selectDebitRow(3)" :class="{ 'table-warning' : active_debit_row == 3 }" >
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
                       </tr>
-                      <tr>
+                      <tr @click="selectDebitRow(2)" :class="{ 'table-warning' : active_debit_row == 2 }" >
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
@@ -261,36 +261,17 @@
                         <th>Tax Excluded</th>
                         <th>Vat</th>
                       </tr>
-                      <tr @click="selectDebitRow(1)" :class="{ 'table-warning' : active_debit_row == 1 }" >
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
+                      <tr v-for="item in items.data" :key="item.id">
+                        <td>{{ item.account_code }}</td>
+                        <td>{{ item.item }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.price }}</td>
+                        <td>{{ item.tax_type }}</td>
+                        <td>{{ item.sub_total }}</td>
+                        <td>{{ item.tax_excluded }}</td>
+                        <td>{{ item.vat }}</td>
                       </tr>
-                      <tr @click="selectDebitRow(2)" :class="{ 'table-warning' : active_debit_row == 2 }">
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                      </tr>
-                      <tr  @click="selectDebitRow(3)" :class="{ 'table-warning' : active_debit_row == 3 }" >
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                      </tr>
+                      
                   </tbody>
                 </table>
                 </div>
@@ -425,6 +406,7 @@
                         <th>Sub-Total</th>
                         <th>Tax Excluded</th>
                         <th>Vat</th>
+                        <th>Option</th>
                       </tr>
                       <tr>
                         <td> - </td>
@@ -433,24 +415,23 @@
                         <td> - </td>
                         <td> - </td>
                         <td> - </td>
-                        
-                      </tr>
-                      <tr>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
                         <td> - </td>
                       </tr>
-                      <tr>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                      </tr>
+                      <tr v-for="item in items.data" :key="items.id">
+                        <td>{{ item.item }}</td>
+                        <td>{{ item.quantity }}</td> 
+                        <td>{{ item.price }}</td> 
+                        <td>{{ item.sub_total }}</td> 
+                        <td>{{ item.tax_excluded }}</td> 
+                        <td>{{ item.vat }}</td> 
+                        <td>
+                          <a href="#" @click="selectPayee(payee.id,payee.name,payee.address,payee.tin)">Delete
+                            <i class="fa fa-edit"></i>
+                          </a>
+                        </td>
+                      </tr>  
+
+
                   </tbody>
                 </table>
                 </div>
@@ -874,6 +855,7 @@
               }),
               payees: {},
               branches: {},
+              items: {},
               chart_of_accounts: {}
 
           }
@@ -1070,6 +1052,16 @@
               axios.get('api/searchPayee?q='+query)
                 .then((data)=>{
                   this.payees = data.data;
+                })
+                .catch(()=>{
+                  //
+                });
+          },
+          loadEntryItems() {
+              let entry_id = this.form_entry.transaction_entry_id;
+              axios.get('api/cd/item/list?entry_id='+entry_id)
+                .then((data)=>{
+                  this.items = data.data;
                 })
                 .catch(()=>{
                   //
@@ -1289,6 +1281,7 @@
             this.loadPayees();
             this.loadBranches();
             this.loadChartAccounts();
+            this.loadEntryItems();
             //this.SearchIt = _.debounce(this.SearchIt, 1000);
             
             /*

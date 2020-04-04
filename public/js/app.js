@@ -2863,25 +2863,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -2960,6 +2941,7 @@ __webpack_require__.r(__webpack_exports__);
       }),
       payees: {},
       branches: {},
+      items: {},
       chart_of_accounts: {}
     };
   },
@@ -3166,6 +3148,15 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {//
       });
     },
+    loadEntryItems: function loadEntryItems() {
+      var _this7 = this;
+
+      var entry_id = this.form_entry.transaction_entry_id;
+      axios.get('api/cd/item/list?entry_id=' + entry_id).then(function (data) {
+        _this7.items = data.data;
+      })["catch"](function () {//
+      });
+    },
     createSerialNumber: function createSerialNumber() {
       // Get current date
       var d = new Date(); // Get pirmative value of date
@@ -3194,7 +3185,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log(active_debit_row);
     },
     newEntry: function newEntry() {
-      var _this7 = this;
+      var _this8 = this;
 
       this.editmode = false;
       this.form_entry.reset();
@@ -3202,13 +3193,13 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.transaction_no = this.form.transaction_no;
       this.form_entry.transaction_type = 'CD';
       this.form_entry.post('api/cd/entry').then(function (data) {
-        _this7.form_entry.id = data.data.id; //console.log(data.data.id);
+        _this8.form_entry.id = data.data.id; //console.log(data.data.id);
       })["catch"](function () {//
       });
       $('#entry-details').modal('show');
     },
     newItem: function newItem() {
-      var _this8 = this;
+      var _this9 = this;
 
       this.editmode = false;
       this.form_item.reset();
@@ -3220,13 +3211,13 @@ __webpack_require__.r(__webpack_exports__);
       this.form_item.transaction_type = 'CD';
       this.form_item.account_code = this.form_entry.account_code;
       this.form_item.post('api/cd/item').then(function (data) {
-        _this8.form_item.id = data.data.id; //console.log(data.data.id);
+        _this9.form_item.id = data.data.id; //console.log(data.data.id);
       })["catch"](function () {//
       });
       $('#entry-items').modal('show');
     },
     saveDebitEntry: function saveDebitEntry() {
-      var _this9 = this;
+      var _this10 = this;
 
       //console.log('Edit Payee');
       // ** Temporary data to bypass Column cannot be null ERROR's
@@ -3247,15 +3238,15 @@ __webpack_require__.r(__webpack_exports__);
           );
         */
 
-        _this9.$Progress.finish();
+        _this10.$Progress.finish();
 
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this9.$Progress.fail();
+        _this10.$Progress.fail();
       });
     },
     saveItem: function saveItem() {
-      var _this10 = this;
+      var _this11 = this;
 
       if (this.form_item.item.length == 0) {
         this.no_item = true;
@@ -3290,11 +3281,11 @@ __webpack_require__.r(__webpack_exports__);
           );
         */
 
-        _this10.$Progress.finish();
+        _this11.$Progress.finish();
 
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
-        _this10.$Progress.fail();
+        _this11.$Progress.fail();
       });
     },
     branchChange: function branchChange() {
@@ -3352,7 +3343,8 @@ __webpack_require__.r(__webpack_exports__);
     //this.loadUsers();
     this.loadPayees();
     this.loadBranches();
-    this.loadChartAccounts(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
+    this.loadChartAccounts();
+    this.loadEntryItems(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
 
     /*
     VueListen.$on('RefreshUsersTable',() => {
@@ -64340,7 +64332,89 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _vm._m(8),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "box-body table-responsive no-padding",
+                          attrs: { id: "debits-list" }
+                        },
+                        [
+                          _c("table", { staticClass: "table table-hover" }, [
+                            _c("tbody", [
+                              _vm._m(8),
+                              _vm._v(" "),
+                              _c(
+                                "tr",
+                                {
+                                  class: {
+                                    "table-warning": _vm.active_debit_row == 1
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.selectDebitRow(1)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "tr",
+                                {
+                                  class: {
+                                    "table-warning": _vm.active_debit_row == 3
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.selectDebitRow(3)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "tr",
+                                {
+                                  class: {
+                                    "table-warning": _vm.active_debit_row == 2
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.selectDebitRow(2)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(" - ")])
+                                ]
+                              )
+                            ])
+                          ])
+                        ]
+                      ),
                       _vm._v(" "),
                       _c("div", { staticClass: "box-footer" })
                     ])
@@ -64374,102 +64448,37 @@ var render = function() {
                         },
                         [
                           _c("table", { staticClass: "table table-hover" }, [
-                            _c("tbody", [
-                              _vm._m(10),
-                              _vm._v(" "),
-                              _c(
-                                "tr",
-                                {
-                                  class: {
-                                    "table-warning": _vm.active_debit_row == 1
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.selectDebitRow(1)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("td", [_vm._v(" - ")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(" - ")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(" - ")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(" - ")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(" - ")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(" - ")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(" - ")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(" - ")])
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "tr",
-                                {
-                                  class: {
-                                    "table-warning": _vm.active_debit_row == 2
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.selectDebitRow(2)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("td", [_vm._v(" - ")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(" - ")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(" - ")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(" - ")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(" - ")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(" - ")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(" - ")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(" - ")])
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "tr",
-                                {
-                                  class: {
-                                    "table-warning": _vm.active_debit_row == 3
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.selectDebitRow(3)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("td", [_vm._v(" - ")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(" - ")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(" - ")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(" - ")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(" - ")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(" - ")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(" - ")]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(" - ")])
-                                ]
-                              )
-                            ])
+                            _c(
+                              "tbody",
+                              [
+                                _vm._m(10),
+                                _vm._v(" "),
+                                _vm._l(_vm.items.data, function(item) {
+                                  return _c("tr", { key: item.id }, [
+                                    _c("td", [
+                                      _vm._v(_vm._s(item.account_code))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(item.item))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(item.quantity))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(item.price))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(item.tax_type))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(item.sub_total))]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(item.tax_excluded))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(item.vat))])
+                                  ])
+                                })
+                              ],
+                              2
+                            )
                           ])
                         ]
                       ),
@@ -64760,13 +64769,71 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(18),
+                _c(
+                  "div",
+                  {
+                    staticClass: "box-body table-responsive no-padding",
+                    attrs: { id: "item-list" }
+                  },
+                  [
+                    _c("table", { staticClass: "table table-hover" }, [
+                      _c(
+                        "tbody",
+                        [
+                          _vm._m(18),
+                          _vm._v(" "),
+                          _vm._m(19),
+                          _vm._v(" "),
+                          _vm._l(_vm.items.data, function(item) {
+                            return _c("tr", { key: _vm.items.id }, [
+                              _c("td", [_vm._v(_vm._s(item.item))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(item.quantity))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(item.price))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(item.sub_total))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(item.tax_excluded))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(item.vat))]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.selectPayee(
+                                          _vm.payee.id,
+                                          _vm.payee.name,
+                                          _vm.payee.address,
+                                          _vm.payee.tin
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v("Delete\n                        "),
+                                    _c("i", { staticClass: "fa fa-edit" })
+                                  ]
+                                )
+                              ])
+                            ])
+                          })
+                        ],
+                        2
+                      )
+                    ])
+                  ]
+                ),
                 _vm._v(" "),
                 _c(
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(19),
+                    _vm._m(20),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64813,7 +64880,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(20),
+                    _vm._m(21),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64860,7 +64927,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(21),
+                    _vm._m(22),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64988,7 +65055,7 @@ var render = function() {
                   [_vm._v("Update Entry")]
                 ),
                 _vm._v(" "),
-                _vm._m(22)
+                _vm._m(23)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -64996,7 +65063,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(23),
+                    _vm._m(24),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65053,7 +65120,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(24),
+                    _vm._m(25),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65113,7 +65180,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(25),
+                    _vm._m(26),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65177,7 +65244,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(26),
+                    _vm._m(27),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65222,7 +65289,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(27),
+                  _vm._m(28),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -65286,7 +65353,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(28),
+                    _vm._m(29),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65333,7 +65400,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(29),
+                    _vm._m(30),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65418,7 +65485,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(30),
+              _vm._m(31),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -65457,7 +65524,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(31),
+                            _vm._m(32),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -65573,7 +65640,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(32),
+              _vm._m(33),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -65612,7 +65679,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(33),
+                            _vm._m(34),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -65652,7 +65719,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(34)
+                _vm._m(35)
               ])
             ])
           ]
@@ -65768,58 +65835,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "box-body table-responsive no-padding",
-        attrs: { id: "debits-list" }
-      },
-      [
-        _c("table", { staticClass: "table table-hover" }, [
-          _c("tbody", [
-            _c("tr", [
-              _c("th", [_vm._v("Account No.")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Name")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Branch")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Amount")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")])
-            ])
-          ])
-        ])
-      ]
-    )
+    return _c("tr", [
+      _c("th", [_vm._v("Account No.")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Branch")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Amount")])
+    ])
   },
   function() {
     var _vm = this
@@ -65991,74 +66015,41 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "box-body table-responsive no-padding",
-        attrs: { id: "item-list" }
-      },
-      [
-        _c("table", { staticClass: "table table-hover" }, [
-          _c("tbody", [
-            _c("tr", [
-              _c("th", [_vm._v("Item")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Qty")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Price")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Sub-Total")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Tax Excluded")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Vat")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")])
-            ])
-          ])
-        ])
-      ]
-    )
+    return _c("tr", [
+      _c("th", [_vm._v("Item")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Qty")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Price")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Sub-Total")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Tax Excluded")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Vat")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Option")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", [_vm._v(" - ")]),
+      _vm._v(" "),
+      _c("td", [_vm._v(" - ")]),
+      _vm._v(" "),
+      _c("td", [_vm._v(" - ")]),
+      _vm._v(" "),
+      _c("td", [_vm._v(" - ")]),
+      _vm._v(" "),
+      _c("td", [_vm._v(" - ")]),
+      _vm._v(" "),
+      _c("td", [_vm._v(" - ")]),
+      _vm._v(" "),
+      _c("td", [_vm._v(" - ")])
+    ])
   },
   function() {
     var _vm = this
