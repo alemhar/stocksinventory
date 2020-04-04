@@ -1158,11 +1158,11 @@
             //console.log('Edit Payee');
             
             // ** Temporary data to bypass Column cannot be null ERROR's
-            this.form_entry.amount = 0;
-            this.form_entry.amount_ex_tax = 0;
-            this.form_entry.vat = 0;
-            this.form_entry.credit_amount = 0;
-            this.form_entry.debit_amount = 0;
+            //this.form_entry.amount = 0;
+            //this.form_entry.amount_ex_tax = 0;
+            //this.form_entry.vat = 0;
+            this.form_entry.credit_amount = this.form_entry.amount
+            //this.form_entry.debit_amount = 0;
             // ** Temporary data to bypass Column cannot be null ERROR's
 
             this.$Progress.start();
@@ -1310,7 +1310,11 @@
                 this.loadEntryItems();
             });
             
+            VueListen.$on('RefreshEntryTable',() => {
+                this.loadEntries();
+            });
             
+
             this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
             //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
             //console.log(this.payees);
