@@ -88,7 +88,7 @@ class CDItemController extends Controller
             })->paginate(10);
 
         }else{
-            $transactionItems = TransactionItem::latest()->paginate(10);
+            $transactionItems = null;
         }
         return $transactionItems;
     }

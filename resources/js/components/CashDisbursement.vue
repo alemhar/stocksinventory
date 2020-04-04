@@ -226,8 +226,7 @@
       MAIN FORM ITEMS TABLE
       -->
 
-          <!-- v-show="cd_created"  -->
-          <div class="box box-warning mt-2">
+          <div v-show="cd_created" class="box box-warning mt-2">
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
