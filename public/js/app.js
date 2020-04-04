@@ -3297,6 +3297,10 @@ __webpack_require__.r(__webpack_exports__);
           );
         */
 
+        _this12.form_entry.amount += form_item.sub_total;
+        _this12.form_entry.amount_ex_tax += form_item.tax_excluded;
+        _this12.form_entry.vat += form_item.vat;
+
         _this12.$Progress.finish();
 
         VueListen.$emit('RefreshItemTable');
@@ -64524,469 +64528,483 @@ var render = function() {
             attrs: { role: "document" }
           },
           [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header" }, [
-                _c(
-                  "h5",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: !_vm.editmode,
-                        expression: "!editmode"
-                      }
-                    ],
-                    staticClass: "modal-title",
-                    attrs: { id: "addNewLabel" }
-                  },
-                  [_vm._v("Add Entry")]
-                ),
-                _vm._v(" "),
-                _vm._m(14)
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _c(
-                  "div",
-                  { staticClass: "input-group mb-2" },
-                  [
-                    _vm._m(15),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form_entry.account_code,
-                          expression: "form_entry.account_code"
-                        }
-                      ],
-                      staticClass: "form-control col-4",
-                      class: {
-                        "is-invalid": _vm.form_entry.errors.has("account_code")
-                      },
-                      attrs: {
-                        type: "text",
-                        name: "account_code",
-                        readonly: "",
-                        "aria-describedby": "inputGroup-sizing-default"
-                      },
-                      domProps: { value: _vm.form_entry.account_code },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.form_entry,
-                            "account_code",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("has-error", {
-                      attrs: { form: _vm.form_entry, field: "account_code" }
-                    }),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "input-group-btn col-1" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-success",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              return _vm.searchAccountModal("detail")
-                            }
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-search fa-fw" })]
-                      )
-                    ])
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group mb-2" }, [
+            _c(
+              "div",
+              { staticClass: "modal-content", staticStyle: { width: "800px" } },
+              [
+                _c("div", { staticClass: "modal-header" }, [
                   _c(
-                    "p",
+                    "h5",
                     {
                       directives: [
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: _vm.no_entry_account_code,
-                          expression: "no_entry_account_code"
+                          value: !_vm.editmode,
+                          expression: "!editmode"
                         }
                       ],
-                      staticClass: "empty-field-message"
+                      staticClass: "modal-title",
+                      attrs: { id: "addNewLabel" }
                     },
-                    [_vm._v("** Please select account!")]
-                  )
+                    [_vm._v("Add Entry")]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(14)
                 ]),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "input-group mb-2" },
-                  [
-                    _vm._m(16),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form_entry.account_name,
-                          expression: "form_entry.account_name"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: {
-                        "is-invalid": _vm.form_entry.errors.has("account_name")
-                      },
-                      attrs: {
-                        type: "text",
-                        name: "account_name",
-                        readonly: "",
-                        "aria-describedby": "inputGroup-sizing-default"
-                      },
-                      domProps: { value: _vm.form_entry.account_name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.form_entry,
-                            "account_name",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("has-error", {
-                      attrs: { form: _vm.form_entry, field: "account_name" }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "input-group mb-2" },
-                  [
-                    _vm._m(17),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
+                _c("div", { staticClass: "modal-body" }, [
+                  _c(
+                    "div",
+                    { staticClass: "input-group mb-2" },
+                    [
+                      _vm._m(15),
+                      _vm._v(" "),
+                      _c("input", {
                         directives: [
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.selected_branch,
-                            expression: "selected_branch"
+                            value: _vm.form_entry.account_code,
+                            expression: "form_entry.account_code"
                           }
                         ],
-                        staticClass: "form-control col-12",
+                        staticClass: "form-control col-4",
+                        class: {
+                          "is-invalid": _vm.form_entry.errors.has(
+                            "account_code"
+                          )
+                        },
                         attrs: {
+                          type: "text",
+                          name: "account_code",
+                          readonly: "",
                           "aria-describedby": "inputGroup-sizing-default"
                         },
+                        domProps: { value: _vm.form_entry.account_code },
                         on: {
-                          change: [
-                            function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.selected_branch = $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            },
-                            _vm.branchChange
-                          ]
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form_entry,
+                              "account_code",
+                              $event.target.value
+                            )
+                          }
                         }
-                      },
-                      _vm._l(_vm.branches.data, function(branch) {
-                        return _c(
-                          "option",
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form_entry, field: "account_code" }
+                      }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "input-group-btn col-1" }, [
+                        _c(
+                          "button",
                           {
-                            domProps: {
-                              value: { id: branch.id, name: branch.name }
+                            staticClass: "btn btn-success",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                return _vm.searchAccountModal("detail")
+                              }
                             }
                           },
-                          [_vm._v(_vm._s(branch.name))]
+                          [_c("i", { staticClass: "fas fa-search fa-fw" })]
                         )
-                      }),
-                      0
-                    ),
-                    _vm._v(" "),
-                    _c("has-error", {
-                      attrs: { form: _vm.form_entry, field: "branch_id" }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group mb-2" }, [
+                      ])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group mb-2" }, [
+                    _c(
+                      "p",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.no_entry_account_code,
+                            expression: "no_entry_account_code"
+                          }
+                        ],
+                        staticClass: "empty-field-message"
+                      },
+                      [_vm._v("** Please select account!")]
+                    )
+                  ]),
+                  _vm._v(" "),
                   _c(
-                    "p",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.no_entry_branch_id,
-                          expression: "no_entry_branch_id"
+                    "div",
+                    { staticClass: "input-group mb-2" },
+                    [
+                      _vm._m(16),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form_entry.account_name,
+                            expression: "form_entry.account_name"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: {
+                          "is-invalid": _vm.form_entry.errors.has(
+                            "account_name"
+                          )
+                        },
+                        attrs: {
+                          type: "text",
+                          name: "account_name",
+                          readonly: "",
+                          "aria-describedby": "inputGroup-sizing-default"
+                        },
+                        domProps: { value: _vm.form_entry.account_name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form_entry,
+                              "account_name",
+                              $event.target.value
+                            )
+                          }
                         }
-                      ],
-                      staticClass: "empty-field-message"
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form_entry, field: "account_name" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "input-group mb-2" },
+                    [
+                      _vm._m(17),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.selected_branch,
+                              expression: "selected_branch"
+                            }
+                          ],
+                          staticClass: "form-control col-12",
+                          attrs: {
+                            "aria-describedby": "inputGroup-sizing-default"
+                          },
+                          on: {
+                            change: [
+                              function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.selected_branch = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              },
+                              _vm.branchChange
+                            ]
+                          }
+                        },
+                        _vm._l(_vm.branches.data, function(branch) {
+                          return _c(
+                            "option",
+                            {
+                              domProps: {
+                                value: { id: branch.id, name: branch.name }
+                              }
+                            },
+                            [_vm._v(_vm._s(branch.name))]
+                          )
+                        }),
+                        0
+                      ),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form_entry, field: "branch_id" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group mb-2" }, [
+                    _c(
+                      "p",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.no_entry_branch_id,
+                            expression: "no_entry_branch_id"
+                          }
+                        ],
+                        staticClass: "empty-field-message"
+                      },
+                      [_vm._v("** Please Branch!")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "box-header" }, [
+                    _c("h3", { staticClass: "box-title" }, [_vm._v("Items")]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "box-tools" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success",
+                          on: { click: _vm.newItem }
+                        },
+                        [
+                          _vm._v("Add Items "),
+                          _c("i", { staticClass: "fas fa-plus-circle fa-fw" })
+                        ]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "box-body table-responsive no-padding",
+                      attrs: { id: "item-list" }
                     },
-                    [_vm._v("** Please Branch!")]
+                    [
+                      _c("table", { staticClass: "table table-hover" }, [
+                        _c(
+                          "tbody",
+                          [
+                            _vm._m(18),
+                            _vm._v(" "),
+                            _vm._l(_vm.items.data, function(item) {
+                              return _c("tr", { key: _vm.items.id }, [
+                                _c("td", [_vm._v(_vm._s(item.item))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(item.quantity))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(item.price))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(item.sub_total))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(item.tax_excluded))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(item.vat))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _c(
+                                    "a",
+                                    {
+                                      attrs: { href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.selectPayee(
+                                            _vm.payee.id,
+                                            _vm.payee.name,
+                                            _vm.payee.address,
+                                            _vm.payee.tin
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "Delete\n                        "
+                                      ),
+                                      _c("i", { staticClass: "fa fa-edit" })
+                                    ]
+                                  )
+                                ])
+                              ])
+                            })
+                          ],
+                          2
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "input-group mb-2" },
+                    [
+                      _vm._m(19),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form_entry.amount,
+                            expression: "form_entry.amount"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: {
+                          "is-invalid": _vm.form_entry.errors.has("amount")
+                        },
+                        attrs: {
+                          name: "amount",
+                          id: "amount",
+                          readonly: "",
+                          "aria-describedby": "inputGroup-sizing-default"
+                        },
+                        domProps: { value: _vm.form_entry.amount },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form_entry,
+                              "amount",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form_entry, field: "amount" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "input-group mb-2" },
+                    [
+                      _vm._m(20),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form_entry.amount_ex_tax,
+                            expression: "form_entry.amount_ex_tax"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: {
+                          "is-invalid": _vm.form_entry.errors.has(
+                            "amount_ex_tax"
+                          )
+                        },
+                        attrs: {
+                          name: "amount_ex_tax",
+                          id: "amount_ex_tax",
+                          readonly: "",
+                          "aria-describedby": "inputGroup-sizing-default"
+                        },
+                        domProps: { value: _vm.form_entry.amount_ex_tax },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form_entry,
+                              "amount_ex_tax",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form_entry, field: "amount_ex_tax" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "input-group mb-2" },
+                    [
+                      _vm._m(21),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form_entry.vat,
+                            expression: "form_entry.vat"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: {
+                          "is-invalid": _vm.form_entry.errors.has("vat")
+                        },
+                        attrs: {
+                          name: "vat",
+                          id: "vat",
+                          readonly: "",
+                          "aria-describedby": "inputGroup-sizing-default"
+                        },
+                        domProps: { value: _vm.form_entry.vat },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form_entry, "vat", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form_entry, field: "vat" }
+                      })
+                    ],
+                    1
                   )
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "box-header" }, [
-                  _c("h3", { staticClass: "box-title" }, [_vm._v("Items")]),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      attrs: { type: "button", "data-dismiss": "modal" }
+                    },
+                    [_vm._v("Cancel")]
+                  ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "box-tools" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-success",
-                        on: { click: _vm.newItem }
-                      },
-                      [
-                        _vm._v("Add Items "),
-                        _c("i", { staticClass: "fas fa-plus-circle fa-fw" })
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "box-body table-responsive no-padding",
-                    attrs: { id: "item-list" }
-                  },
-                  [
-                    _c("table", { staticClass: "table table-hover" }, [
-                      _c(
-                        "tbody",
-                        [
-                          _vm._m(18),
-                          _vm._v(" "),
-                          _vm._l(_vm.items.data, function(item) {
-                            return _c("tr", { key: _vm.items.id }, [
-                              _c("td", [_vm._v(_vm._s(item.item))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(item.quantity))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(item.price))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(item.sub_total))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(item.tax_excluded))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(item.vat))]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _c(
-                                  "a",
-                                  {
-                                    attrs: { href: "#" },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.selectPayee(
-                                          _vm.payee.id,
-                                          _vm.payee.name,
-                                          _vm.payee.address,
-                                          _vm.payee.tin
-                                        )
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _vm._v("Delete\n                        "),
-                                    _c("i", { staticClass: "fa fa-edit" })
-                                  ]
-                                )
-                              ])
-                            ])
-                          })
-                        ],
-                        2
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "input-group mb-2" },
-                  [
-                    _vm._m(19),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form_entry.amount,
-                          expression: "form_entry.amount"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: {
-                        "is-invalid": _vm.form_entry.errors.has("amount")
-                      },
-                      attrs: {
-                        name: "amount",
-                        id: "amount",
-                        readonly: "",
-                        "aria-describedby": "inputGroup-sizing-default"
-                      },
-                      domProps: { value: _vm.form_entry.amount },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.form_entry,
-                            "amount",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("has-error", {
-                      attrs: { form: _vm.form_entry, field: "amount" }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "input-group mb-2" },
-                  [
-                    _vm._m(20),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form_entry.amount_ex_tax,
-                          expression: "form_entry.amount_ex_tax"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: {
-                        "is-invalid": _vm.form_entry.errors.has("amount_ex_tax")
-                      },
-                      attrs: {
-                        name: "amount_ex_tax",
-                        id: "amount_ex_tax",
-                        readonly: "",
-                        "aria-describedby": "inputGroup-sizing-default"
-                      },
-                      domProps: { value: _vm.form_entry.amount_ex_tax },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.form_entry,
-                            "amount_ex_tax",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("has-error", {
-                      attrs: { form: _vm.form_entry, field: "amount_ex_tax" }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "input-group mb-2" },
-                  [
-                    _vm._m(21),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form_entry.vat,
-                          expression: "form_entry.vat"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: { "is-invalid": _vm.form_entry.errors.has("vat") },
-                      attrs: {
-                        name: "vat",
-                        id: "vat",
-                        readonly: "",
-                        "aria-describedby": "inputGroup-sizing-default"
-                      },
-                      domProps: { value: _vm.form_entry.vat },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form_entry, "vat", $event.target.value)
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("has-error", {
-                      attrs: { form: _vm.form_entry, field: "vat" }
-                    })
-                  ],
-                  1
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-footer" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-danger",
-                    attrs: { type: "button", "data-dismiss": "modal" }
-                  },
-                  [_vm._v("Cancel")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-success",
-                    attrs: { type: "button", "data-dismiss": "modal" },
-                    on: { click: _vm.saveDebitEntry }
-                  },
-                  [_vm._v("Save")]
-                )
-              ])
-            ])
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-success",
+                      attrs: { type: "button", "data-dismiss": "modal" },
+                      on: { click: _vm.saveDebitEntry }
+                    },
+                    [_vm._v("Save")]
+                  )
+                ])
+              ]
+            )
           ]
         )
       ]

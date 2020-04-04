@@ -332,7 +332,7 @@
 
       <div class="modal fade" v-show="cd_created" id="entry-details" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
+          <div class="modal-content" style="width: 800px;">
             <div class="modal-header">
               <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add Entry</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -1207,7 +1207,7 @@
               return false;
             } 
 
-
+            
 
             this.$Progress.start();
             this.form_item.put('api/cd/item/'+this.form_item.id)
@@ -1220,6 +1220,10 @@
                     'success'
                   );
                 */
+                  this.form_entry.amount += form_item.sub_total;
+                  this.form_entry.amount_ex_tax += form_item.tax_excluded;
+                  this.form_entry.vat += form_item.vat;
+                  
                   this.$Progress.finish();
                   VueListen.$emit('RefreshItemTable');
             })
