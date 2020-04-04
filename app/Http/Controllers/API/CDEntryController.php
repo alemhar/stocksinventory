@@ -99,7 +99,7 @@ class CDEntryController extends Controller
     public function list(){
 
         if ($transaction_no = \Request::get('transaction_no')) {
-            $transactionEntries = TransactionEntry::where(function($query) use ($entry_id){
+            $transactionEntries = TransactionEntry::where(function($query) use ($transaction_no){
                 $query->where('transaction_no',$transaction_no);
             })->paginate(10);
 
