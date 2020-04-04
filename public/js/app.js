@@ -65128,7 +65128,8 @@ var render = function() {
                       attrs: {
                         type: "text",
                         name: "entry_description",
-                        "aria-describedby": "inputGroup-sizing-default"
+                        "aria-describedby": "inputGroup-sizing-default",
+                        onfocus: "this.select()"
                       },
                       domProps: { value: _vm.form_item.quantity },
                       on: {

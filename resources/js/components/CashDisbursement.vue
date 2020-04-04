@@ -613,7 +613,7 @@
 
                 <input v-model="form_item.quantity" type="text" name="entry_description"
                   @change="computeTaxChange"
-                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('quantity') }" aria-describedby="inputGroup-sizing-default">
+                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('quantity') }" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
                 <has-error :form="form_item" field="entry_description"></has-error>
               </div>
 
