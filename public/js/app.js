@@ -2991,7 +2991,7 @@ __webpack_require__.r(__webpack_exports__);
         quantity: 0,
         price: 0,
         sub_total: '',
-        tax_type: '',
+        tax_type: 'VAT',
         tax_excluded: 0,
         vat: 0
       }),
