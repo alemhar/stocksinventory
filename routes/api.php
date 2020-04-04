@@ -54,5 +54,5 @@ Route::get('searchPayee', 'API\PayeeController@search');
 Route::put('account', 'API\UserController@updateAccountInfo');
 
 Route::delete('cd/cancel/{transaction_no}', 'API\CDController@cancelTransaction');
-Route::get('cd/item/listing', 'API\CDItemController@listing');
+Route::get('cd/items/list', 'API\CDItemController@list');
 

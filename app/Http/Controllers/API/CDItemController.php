@@ -83,7 +83,6 @@ class CDItemController extends Controller
 
     public function listing(){
         return ['message' => 'Listing'];
-
         //if ($entry_id = \Request::get('entry_id')) {
         //    $transactionItems = TransactionItem::where(function($query) use ($entry_id){
         //        $query->where('transaction_entry_id',$entry_id);
