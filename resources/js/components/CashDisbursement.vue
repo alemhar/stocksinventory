@@ -13,11 +13,10 @@
             <form role="form" @submit.prevent="createCD()">
               <div class="box-header with-border">
                 <h3 class="box-title">Cash Disbursement</h3>
-                
                 <div class="box-tools">
                   <button type="submit" v-show="!cd_created" class="btn btn-success">Create <i class="fas fa-plus-circle fa-fw"></i></button>
                   <!-- @click="createCD()"  -->
-                  <button type="button"  class="btn btn-success"  v-show="cd_created" @click="saveCD">Save <i class="fas fa-plus-circle fa-fw"></i></button>
+                  <button type="button"  class="btn btn-success"  v-show="cd_created" @click="saveCD">Save <i class="fas fa-save fa-fw"></i></button>
                   <button  type="button" class="btn btn-danger"  v-show="cd_created" @click="cancelCD">Cancel <i class="fas fa-window-close fa-fw"></i></button>
 
                 </div>
@@ -133,14 +132,14 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">CD #</span>
                     </div>
-                    <input v-bind:readonly="cd_created" type="text" v-model="form.transaction_no" class="form-control col-12" id="inputDCNo" placeholder="CD Number">
+                    <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="CD Number">
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Amount</span>
                     </div>
                     
-                    <input v-bind:readonly="cd_created" type="text"  v-model="form.amount" class="form-control col-12" id="inputAmount" placeholder="Amount">
+                    <input type="text"  v-model="form.amount" readonly class="form-control col-12" id="inputAmount" placeholder="Amount">
                   </div>
                 </div>
               </div>

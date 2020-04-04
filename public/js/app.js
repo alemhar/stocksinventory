@@ -2854,7 +2854,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -63918,7 +63917,7 @@ var render = function() {
                           },
                           [
                             _vm._v("Save "),
-                            _c("i", { staticClass: "fas fa-plus-circle fa-fw" })
+                            _c("i", { staticClass: "fas fa-save fa-fw" })
                           ]
                         ),
                         _vm._v(" "),
@@ -64288,8 +64287,8 @@ var render = function() {
                             ],
                             staticClass: "form-control col-12",
                             attrs: {
-                              readonly: _vm.cd_created,
                               type: "text",
+                              readonly: "",
                               id: "inputDCNo",
                               placeholder: "CD Number"
                             },
@@ -64323,8 +64322,8 @@ var render = function() {
                             ],
                             staticClass: "form-control col-12",
                             attrs: {
-                              readonly: _vm.cd_created,
                               type: "text",
+                              readonly: "",
                               id: "inputAmount",
                               placeholder: "Amount"
                             },
