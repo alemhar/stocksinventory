@@ -1295,7 +1295,7 @@
                     'success'
                   );
                 */
-                  this.form_entry.amount = (this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
+                  this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
                   this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
                   this.form_entry.vat += this.form_item.vat;
                   

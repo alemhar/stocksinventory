@@ -3369,7 +3369,7 @@ __webpack_require__.r(__webpack_exports__);
           );
         */
 
-        _this15.form_entry.amount = (_this15.form_entry.amount + _this15.form_item.sub_total).toFixed(2) * 1;
+        _this15.form_entry.amount = parseFloat(_this15.form_entry.amount + _this15.form_item.sub_total).toFixed(2) * 1;
         _this15.form_entry.amount_ex_tax = (_this15.form_entry.amount_ex_tax + _this15.form_item.tax_excluded).toFixed(2) * 1;
         _this15.form_entry.vat += _this15.form_item.vat;
 
