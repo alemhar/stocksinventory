@@ -3071,7 +3071,7 @@ __webpack_require__.r(__webpack_exports__);
       //this.form_entry.reset();
       //this.form_item.reset();
 
-      vm.$forceUpdate();
+      this.$router.go();
     },
     cancelCD: function cancelCD() {
       this.cd_created = false;
