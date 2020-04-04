@@ -602,7 +602,7 @@
 
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+              <button type="button" @click="cancelItem" class="btn btn-danger" data-dismiss="modal">Cancel</button>
               <button type="button" @click="saveItem" class="btn btn-success">Save</button>
             </div>
 
@@ -1213,6 +1213,25 @@
 
                   this.$Progress.finish();
                   VueListen.$emit('RefreshEntryTable');
+            })
+            .catch(() => {
+                this.$Progress.fail();
+            });
+          },
+          cancelItem(){
+            this.$Progress.start();
+            this.form_item.delete('api/cd/item/'+this.form_item.id)
+            .then(() => {
+                $('#entry-items').modal('hide');
+                /*
+                swal.fire(
+                    'Updated!',
+                    'Payee information has been updated.',
+                    'success'
+                  );
+                */
+                  this.$Progress.finish();
+                  VueListen.$emit('RefreshItemTable');
             })
             .catch(() => {
                 this.$Progress.fail();

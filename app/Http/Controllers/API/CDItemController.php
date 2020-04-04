@@ -78,7 +78,14 @@ class CDItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //$this->authorize('isAdmin');
+
+        $transactionItem = TransactionItem::findOrFail($id);
+
+        // Send Request
+        $transactionItem->delete();
+        
+        return ['message' => 'Item Deleted'];
     }
 
     public function list(){

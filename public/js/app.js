@@ -3292,8 +3292,29 @@ __webpack_require__.r(__webpack_exports__);
         _this12.$Progress.fail();
       });
     },
-    saveItem: function saveItem() {
+    cancelItem: function cancelItem() {
       var _this13 = this;
+
+      this.$Progress.start();
+      this.form_item["delete"]('api/cd/item/' + this.form_item.id).then(function () {
+        $('#entry-items').modal('hide');
+        /*
+        swal.fire(
+            'Updated!',
+            'Payee information has been updated.',
+            'success'
+          );
+        */
+
+        _this13.$Progress.finish();
+
+        VueListen.$emit('RefreshItemTable');
+      })["catch"](function () {
+        _this13.$Progress.fail();
+      });
+    },
+    saveItem: function saveItem() {
+      var _this14 = this;
 
       if (this.form_item.item.length == 0) {
         this.no_item = true;
@@ -3328,15 +3349,15 @@ __webpack_require__.r(__webpack_exports__);
           );
         */
 
-        _this13.form_entry.amount += _this13.form_item.sub_total;
-        _this13.form_entry.amount_ex_tax += _this13.form_item.tax_excluded;
-        _this13.form_entry.vat += _this13.form_item.vat;
+        _this14.form_entry.amount += _this14.form_item.sub_total;
+        _this14.form_entry.amount_ex_tax += _this14.form_item.tax_excluded;
+        _this14.form_entry.vat += _this14.form_item.vat;
 
-        _this13.$Progress.finish();
+        _this14.$Progress.finish();
 
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
-        _this13.$Progress.fail();
+        _this14.$Progress.fail();
       });
     },
     branchChange: function branchChange() {
@@ -3379,7 +3400,7 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   created: function created() {
-    var _this14 = this;
+    var _this15 = this;
 
     /*
     VueListen.$on('Search',() => {
@@ -3401,10 +3422,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntries(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
 
     VueListen.$on('RefreshItemTable', function () {
-      _this14.loadEntryItems();
+      _this15.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this14.loadEntries();
+      _this15.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
@@ -65666,7 +65687,8 @@ var render = function() {
                   "button",
                   {
                     staticClass: "btn btn-danger",
-                    attrs: { type: "button", "data-dismiss": "modal" }
+                    attrs: { type: "button", "data-dismiss": "modal" },
+                    on: { click: _vm.cancelItem }
                   },
                   [_vm._v("Cancel")]
                 ),
