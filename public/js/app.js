@@ -64667,7 +64667,9 @@ var render = function() {
           tabindex: "-1",
           role: "dialog",
           "aria-labelledby": "addNewLabel",
-          "aria-hidden": "true"
+          "aria-hidden": "true",
+          "data-backdrop": "static",
+          "data-keyboard": "false"
         }
       },
       [
@@ -65177,7 +65179,9 @@ var render = function() {
           tabindex: "-1",
           role: "dialog",
           "aria-labelledby": "addNewLabel",
-          "aria-hidden": "true"
+          "aria-hidden": "true",
+          "data-backdrop": "static",
+          "data-keyboard": "false"
         }
       },
       [
@@ -65648,7 +65652,9 @@ var render = function() {
           tabindex: "-1",
           role: "dialog",
           "aria-labelledby": "addNewLabel",
-          "aria-hidden": "true"
+          "aria-hidden": "true",
+          "data-backdrop": "static",
+          "data-keyboard": "false"
         }
       },
       [
@@ -65803,7 +65809,9 @@ var render = function() {
           tabindex: "-1",
           role: "dialog",
           "aria-labelledby": "addNewLabel",
-          "aria-hidden": "true"
+          "aria-hidden": "true",
+          "data-backdrop": "static",
+          "data-keyboard": "false"
         }
       },
       [
