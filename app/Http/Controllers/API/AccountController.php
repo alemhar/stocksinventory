@@ -43,7 +43,7 @@ class AccountController extends Controller
                         ->paginate(10);
                     } else {
                         $accounts = Account::where('filter', '>', 1)
-                        ->where('rank', '<', 99)
+                        ->where('filter', '<', 99)
                         ->paginate(10);
                     }
                 }

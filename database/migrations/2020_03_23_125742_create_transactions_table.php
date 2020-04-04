@@ -30,6 +30,7 @@ class CreateTransactionsTable extends Migration
             $table->decimal('vat', 14, 2);
             $table->boolean('canceled')->default(0);
             $table->integer('user_id')->unsigned();
+            $table->tinyInteger('filter');
             $table->string('status', 20)->default('UNCONFIRMED');
             
             $table->timestamps();
