@@ -64377,8 +64377,9 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.form.amount,
-                                expression: "form.amount"
+                                value: Number(_vm.form.amount).toLocaleString(),
+                                expression:
+                                  "Number(form.amount).toLocaleString()"
                               }
                             ],
                             staticClass: "form-control col-12",
@@ -64388,15 +64389,17 @@ var render = function() {
                               id: "inputAmount",
                               placeholder: "Amount"
                             },
-                            domProps: { value: _vm.form.amount },
+                            domProps: {
+                              value: Number(_vm.form.amount).toLocaleString()
+                            },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
                                 _vm.$set(
-                                  _vm.form,
-                                  "amount",
+                                  Number(_vm.form.amount),
+                                  "toLocaleString()",
                                   $event.target.value
                                 )
                               }

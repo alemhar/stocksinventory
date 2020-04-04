@@ -139,7 +139,7 @@
                       <span class="input-group-text inputGroup-sizing-default">Amount</span>
                     </div>
                     
-                    <input type="text"  v-model="form.amount" readonly class="form-control col-12" id="inputAmount" placeholder="Amount">
+                    <input type="text"  v-model="Number(form.amount).toLocaleString()" readonly class="form-control col-12" id="inputAmount" placeholder="Amount">
                   </div>
                 </div>
               </div>
@@ -1109,7 +1109,7 @@
                 this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
                 if(this.form_item.tax_type == 'VAT'){
                   //this.form_item.amount = event.target.value;
-                  
+
                   this.form_item.vat = ((this.form_item.sub_total * 0.12) + 0.001).toFixed(2)  * 1;
                   this.form_item.tax_excluded = (this.form_item.sub_total - this.form_item.vat).toFixed(2) * 1;
                 } else {
