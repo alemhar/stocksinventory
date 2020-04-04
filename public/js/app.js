@@ -2091,9 +2091,1292 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CashDisbursement.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: D:\\stocksinventory\\resources\\js\\components\\CashDisbursement.vue: Unexpected token (1060:6)\n\n  1058 |             });\n  1059 |       },\n> 1060 |       ,\n       |       ^\n  1061 |       loadEntries() {\n  1062 |           let transaction_no = this.form.transaction_no;\n  1063 |           axios.get('api/cd/entries/list?transaction_no='+transaction_no)\n    at Parser.raise (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:6400:17)\n    at Parser.unexpected (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:7728:16)\n    at Parser.parseIdentifierName (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9624:18)\n    at Parser.parseIdentifier (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9598:23)\n    at Parser.parseMaybePrivateName (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8962:19)\n    at Parser.parsePropertyName (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9418:98)\n    at Parser.parseObjectMember (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9319:10)\n    at Parser.parseObj (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9253:25)\n    at Parser.parseExprAtom (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8883:28)\n    at Parser.parseExprSubscripts (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8507:23)\n    at Parser.parseMaybeUnary (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8487:21)\n    at Parser.parseExprOps (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8353:23)\n    at Parser.parseMaybeConditional (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8326:23)\n    at Parser.parseMaybeAssign (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8273:21)\n    at Parser.parseObjectProperty (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9380:101)\n    at Parser.parseObjPropValue (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9405:101)\n    at Parser.parseObjectMember (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9329:10)\n    at Parser.parseObj (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9253:25)\n    at Parser.parseExprAtom (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8883:28)\n    at Parser.parseExprSubscripts (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8507:23)\n    at Parser.parseMaybeUnary (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8487:21)\n    at Parser.parseExprOps (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8353:23)\n    at Parser.parseMaybeConditional (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8326:23)\n    at Parser.parseMaybeAssign (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:8273:21)\n    at Parser.parseExportDefaultExpression (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:11113:24)\n    at Parser.parseExport (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:11008:31)\n    at Parser.parseStatementContent (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10036:27)\n    at Parser.parseStatement (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9932:17)\n    at Parser.parseBlockOrModuleBlockBody (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10508:25)\n    at Parser.parseBlockBody (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:10495:10)\n    at Parser.parseTopLevel (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:9861:10)\n    at Parser.parse (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:11373:17)\n    at parse (D:\\stocksinventory\\node_modules\\@babel\\parser\\lib\\index.js:11409:38)\n    at parser (D:\\stocksinventory\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:168:34)\n    at normalizeFile (D:\\stocksinventory\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:102:11)\n    at runSync (D:\\stocksinventory\\node_modules\\@babel\\core\\lib\\transformation\\index.js:44:43)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//import { ModelSelect } from 'vue-search-select'
+//import { DynamicSelect } from 'vue-dynamic-select'
+//import { BasicSelect } from 'vue-search-select'
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      user_id: '',
+      //isModalVisible: false,
+      editmode: false,
+      cd_created: false,
+      no_payee: false,
+      no_reference_no: false,
+      no_account_code: false,
+      no_item: false,
+      no_price: false,
+      no_quantity: false,
+      searchText: '',
+      searchPayee: '',
+      headerOrDetail: 'header',
+      current_payee_id: '',
+      current_payee_name: '',
+      current_payee_address: '',
+      current_payee_tin: '',
+      active_debit_row: 0,
+      selected_branch: {},
+      cd: {},
+      form: new Form({
+        id: '',
+        payee_id: '',
+        reference_no: '',
+        transaction_no: '',
+        transaction_type: 'CD',
+        // default for Cash Disbursement
+        transaction_date: this.getDate(),
+        account_code: '',
+        account_name: '',
+        amount: 0,
+        credit_amount: 0,
+        debit_amount: 0,
+        amount_ex_tax: 0,
+        vat: 0,
+        canceled: 0,
+        user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
+      }),
+      form_entry: new Form({
+        id: '',
+        transaction_id: '',
+        transaction_no: '',
+        transaction_type: '',
+        account_code: '',
+        account_name: '',
+        //entry_name: '',
+        //entry_description: '',
+        branch_id: '',
+        branch_name: '',
+        amount: '',
+        amount_ex_tax: '',
+        vat: '',
+        credit_amount: '',
+        debit_amount: '',
+        transaction_date: this.getDate()
+      }),
+      form_item: new Form({
+        id: '',
+        transaction_entry_id: '',
+        transaction_no: '',
+        transaction_type: '',
+        account_code: '',
+        item: '',
+        quantity: 0,
+        price: 0,
+        sub_total: '',
+        tax_type: 'VAT',
+        tax_excluded: 0,
+        vat: 0
+      }),
+      payees: {},
+      branches: {},
+      items: {},
+      entries: {},
+      chart_of_accounts: {}
+    };
+  },
+  methods: {
+    // getResults(page = 1) {
+    //   axios.get('api/user?page=' + page)
+    //     .then(response => {
+    //       this.users = response.data;
+    //     });
+    // },
+    // editUser(user){
+    //     this.editmode = true;
+    //     this.form.reset();
+    //     $('#UserDetails').modal('show');
+    //     this.form.fill(user);
+    // },
+    // newUser(){
+    //     this.editmode = false;
+    //     this.form.reset();
+    //     $('#UserDetails').modal('show');
+    // },
+    // deleteUser(id){
+    //     swal.fire({
+    //           title: 'Are you sure?',
+    //           text: "You won't be able to revert this!",
+    //           type: 'warning',
+    //           showCancelButton: true,
+    //           confirmButtonColor: '#3085d6',
+    //           cancelButtonColor: '#d33',
+    //           confirmButtonText: 'Yes, delete it!'
+    //         }).then((result) => {
+    //           if (result.value) {
+    //             this.form.delete('api/user/'+id)
+    //             .then(()=>{
+    //                 swal.fire(
+    //                   'Deleted!',
+    //                   'User has been deleted.',
+    //                   'success'
+    //                 );
+    //                 Fire.$emit('RefreshUsersTable');
+    //             })
+    //             .catch(()=>{
+    //               swal("Failed!","Failed to delete user!", "warning");
+    //             });
+    //           }
+    //         });
+    // },
+    loadBranches: function loadBranches() {
+      var _this = this;
+
+      if (this.$gate.isAdminOrAuthor()) {
+        axios.get("api/branch").then(function (_ref) {
+          var data = _ref.data;
+          return _this.branches = data;
+        }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
+      }
+    },
+    loadPayees: function loadPayees() {
+      var _this2 = this;
+
+      if (this.$gate.isAdminOrAuthor()) {
+        axios.get("api/payee").then(function (_ref2) {
+          var data = _ref2.data;
+          return _this2.payees = data;
+        }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
+      }
+    },
+    loadChartAccounts: function loadChartAccounts() {
+      var _this3 = this;
+
+      axios.get("api/chartaccount").then(function (_ref3) {
+        var data = _ref3.data;
+        return _this3.chart_of_accounts = data;
+      });
+    },
+    eventChild: function eventChild(Obj) {
+      //console.log(Obj.id);
+      this.form.payee_id = Obj.id;
+    },
+    getDate: function getDate() {
+      var toTwoDigits = function toTwoDigits(num) {
+        return num < 10 ? '0' + num : num;
+      };
+
+      var today = new Date();
+      var year = today.getFullYear();
+      var month = toTwoDigits(today.getMonth() + 1);
+      var day = toTwoDigits(today.getDate());
+      return "".concat(year, "-").concat(month, "-").concat(day);
+    },
+    createCD: function createCD() {
+      var _this4 = this;
+
+      if (this.form.payee_id.length == 0) {
+        this.no_payee = true;
+      } else {
+        this.no_payee = false;
+      }
+
+      if (this.form.account_code.length == 0) {
+        this.no_account_code = true;
+      } else {
+        this.no_account_code = false;
+      }
+
+      if (this.form.reference_no.length == 0) {
+        this.no_reference_no = true;
+      } else {
+        this.no_reference_no = false;
+      }
+
+      if (this.no_account_code || this.no_reference_no || this.no_payee) {
+        this.cd_created = false;
+      } else {
+        this.cd_created = true;
+      }
+
+      this.form.transaction_no = this.createSerialNumber();
+      this.form.transaction_type = 'CD';
+      this.form.post('api/cd').then(function (data) {
+        //console.log(data.data.id);
+        _this4.form.id = data.data.id;
+      })["catch"](function () {//
+      });
+    },
+    saveCD: function saveCD() {
+      this.cd_created = false;
+    },
+    cancelCD: function cancelCD() {
+      this.cd_created = false;
+      this.form["delete"]('api/cd/cancel/' + this.form.transaction_no);
+    },
+    //searchAccount() {
+    //  this.isModalVisible = true;
+    //},
+    //closeSearchAccount(code = null,name = null) {
+    //  this.isModalVisible = false;
+    //  this.form.account_name = name;
+    //  this.form.account_code = code;
+    //console.log(code+' '+name);
+    //},
+    searchAccountModal: function searchAccountModal() {
+      var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'header';
+      this.headerOrDetail = headerOrDetail;
+      this.searchText = this.form.account_code; //this.searchText = '';
+
+      this.loadChartAccounts();
+      $('#select-account').modal('show');
+    },
+    searchPayeeModal: function searchPayeeModal() {
+      this.searchPayee = this.form.payee_id; //this.searchPayee = '';
+
+      this.loadPayees();
+      $('#select-payee').modal('show');
+    },
+    selectAccount: function selectAccount() {
+      var account_code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      var account_name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+      if (account_code != null && account_name != null) {
+        if (this.headerOrDetail == 'header') {
+          this.form.account_name = account_name;
+          this.form.account_code = account_code;
+        } else {
+          this.form_entry.account_name = account_name;
+          this.form_entry.account_code = account_code;
+        }
+      }
+
+      $('#select-account').modal('hide');
+    },
+    selectPayee: function selectPayee() {
+      var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      var address = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+      var tin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+
+      if (id) {
+        console.log(name);
+        this.current_payee_id = id;
+        this.form.payee_id = id;
+        this.current_payee_name = name;
+        this.current_payee_address = address;
+        this.current_payee_tin = tin;
+      }
+
+      $('#select-payee').modal('hide');
+    },
+    SearchIt: function SearchIt() {
+      var _this5 = this;
+
+      var query = this.searchText;
+      axios.get('api/searchAccount?q=' + query).then(function (data) {
+        _this5.chart_of_accounts = data.data;
+      })["catch"](function () {//
+      });
+    },
+    SearchPayee: function SearchPayee() {
+      var _this6 = this;
+
+      var query = this.searchPayee;
+      axios.get('api/searchPayee?q=' + query).then(function (data) {
+        _this6.payees = data.data;
+      })["catch"](function () {//
+      });
+    },
+    loadEntryItems: function loadEntryItems() {
+      var _this7 = this;
+
+      var entry_id = this.form_entry.transaction_entry_id;
+      axios.get('api/cd/items/list?entry_id=' + entry_id).then(function (data) {
+        _this7.items = data.data;
+      })["catch"](function () {//
+      });
+    },
+    loadEntries: function loadEntries() {
+      var _this8 = this;
+
+      var transaction_no = this.form.transaction_no;
+      axios.get('api/cd/entries/list?transaction_no=' + transaction_no).then(function (data) {
+        _this8.entries = data.data;
+      })["catch"](function () {//
+      });
+    },
+    createSerialNumber: function createSerialNumber() {
+      // Get current date
+      var d = new Date(); // Get pirmative value of date
+
+      var n = d.valueOf(); // Return concatenated primative value with the user id. 
+
+      return "" + n + this.user_id;
+    },
+    computeTaxChange: function computeTaxChange(event) {
+      if (this.form_item.price && this.form_item.quantity) {
+        this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
+
+        if (this.form_item.tax_type == 'VAT') {
+          //this.form_item.amount = event.target.value;
+          this.form_item.vat = this.form_item.sub_total * 0.12;
+          this.form_item.tax_excluded = this.form_item.sub_total - this.form_item.vat;
+        } else {
+          //this.form_entry.amount = event.target.value;
+          this.form_item.vat = 0;
+          this.form_item.tax_excluded = this.form_item.sub_total;
+        }
+      }
+    },
+    selectDebitRow: function selectDebitRow(active_debit_row) {
+      this.active_debit_row = active_debit_row;
+      console.log(active_debit_row);
+    },
+    newEntry: function newEntry() {
+      var _this9 = this;
+
+      this.editmode = false;
+      this.form_entry.reset();
+      this.form_entry.transaction_id = this.form.id;
+      this.form_entry.transaction_no = this.form.transaction_no;
+      this.form_entry.transaction_type = 'CD';
+      this.form_entry.post('api/cd/entry').then(function (data) {
+        _this9.form_entry.id = data.data.id; //console.log(data.data.id);
+      })["catch"](function () {//
+      });
+      $('#entry-details').modal('show');
+    },
+    newItem: function newItem() {
+      var _this10 = this;
+
+      this.editmode = false;
+      this.form_item.reset();
+      this.no_item = false;
+      this.no_price = false;
+      this.no_quantity = false;
+      this.form_item.transaction_entry_id = this.form_entry.id;
+      this.form_item.transaction_no = this.form.transaction_no;
+      this.form_item.transaction_type = 'CD';
+      this.form_item.account_code = this.form_entry.account_code;
+      this.form_item.post('api/cd/item').then(function (data) {
+        _this10.form_item.id = data.data.id; //console.log(data.data.id);
+      })["catch"](function () {//
+      });
+      $('#entry-items').modal('show');
+    },
+    saveDebitEntry: function saveDebitEntry() {
+      var _this11 = this;
+
+      //console.log('Edit Payee');
+      // ** Temporary data to bypass Column cannot be null ERROR's
+      this.form_entry.amount = 0;
+      this.form_entry.amount_ex_tax = 0;
+      this.form_entry.vat = 0;
+      this.form_entry.credit_amount = 0;
+      this.form_entry.debit_amount = 0; // ** Temporary data to bypass Column cannot be null ERROR's
+
+      this.$Progress.start();
+      this.form_entry.put('api/cd/entry/' + this.form_entry.id).then(function () {
+        $('#entry-details').modal('hide');
+        /*
+        swal.fire(
+            'Updated!',
+            'Payee information has been updated.',
+            'success'
+          );
+        */
+
+        _this11.$Progress.finish();
+
+        VueListen.$emit('RefreshEntryTable');
+      })["catch"](function () {
+        _this11.$Progress.fail();
+      });
+    },
+    saveItem: function saveItem() {
+      var _this12 = this;
+
+      if (this.form_item.item.length == 0) {
+        this.no_item = true;
+      } else {
+        this.no_item = false;
+      }
+
+      if (this.form_item.price == 0) {
+        this.no_price = true;
+      } else {
+        this.no_price = false;
+      }
+
+      if (this.form_item.quantity == 0) {
+        this.no_quantity = true;
+      } else {
+        this.no_quantity = false;
+      }
+
+      if (this.no_item || this.no_price || this.no_quantity) {
+        return false;
+      }
+
+      this.$Progress.start();
+      this.form_item.put('api/cd/item/' + this.form_item.id).then(function () {
+        $('#entry-items').modal('hide');
+        /*
+        swal.fire(
+            'Updated!',
+            'Payee information has been updated.',
+            'success'
+          );
+        */
+
+        _this12.$Progress.finish();
+
+        VueListen.$emit('RefreshItemTable');
+      })["catch"](function () {
+        _this12.$Progress.fail();
+      });
+    },
+    branchChange: function branchChange() {
+      this.form_entry.branch_id = this.selected_branch.id;
+      this.form_entry.branch_name = this.selected_branch.name;
+    } // ,
+    // createUser(){
+    //   this.$Progress.start()
+    //   this.form.post('api/user')
+    //   .then(()=>{
+    //       VueListen.$emit('RefreshUsersTable');
+    //       $('#UserDetails').modal('hide');
+    //       toast.fire({
+    //         type: 'success',
+    //         title: 'User created successfully'
+    //       })
+    //       this.$Progress.finish();
+    //   })
+    //   .catch(()=>{
+    //   });
+    // },
+    // updateUser(){
+    //   console.log('Edit User');
+    //   this.$Progress.start();
+    //   this.form.put('api/user/'+this.form.id)
+    //   .then(() => {
+    //       $('#UserDetails').modal('hide');
+    //       swal.fire(
+    //           'Updated!',
+    //           'User information has been updated.',
+    //           'success'
+    //         );
+    //         this.$Progress.finish();
+    //         VueListen.$emit('RefreshUsersTable');
+    //   })
+    //   .catch(() => {
+    //       this.$Progress.fail();
+    //   });
+    //}
+
+  },
+  created: function created() {
+    /*
+    VueListen.$on('Search',() => {
+        let query = this.$parent.search;
+        axios.get('api/findUser?q='+query)
+        .then((data)=>{
+          this.users = data.data;
+        })
+        .catch(()=>{
+         });
+       //this.loadUsers();
+    });
+    */
+    //this.loadUsers();
+    this.loadPayees();
+    this.loadBranches();
+    this.loadChartAccounts();
+    this.loadEntryItems(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
+
+    /*
+    VueListen.$on('RefreshUsersTable',() => {
+       this.loadPayees();
+       //this.loadUsers();
+    });
+    */
+
+    this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
+    //console.log(this.payees);
+    //setInterval(() => this.loadUsers(),3000);
+
+    /* Scrollbar fix
+       If you have a modal on your page that exceeds the browser height, then you can't scroll in it when closing an second modal. To fix this add: */
+
+    $(document).on('hidden.bs.modal', '.modal', function () {
+      $('.modal:visible').length && $(document.body).addClass('modal-open');
+    });
+    /*Backdrop z-index fix
+      This solution uses a setTimeout because the .modal-backdrop isn't created when the event show.bs.modal is triggered.
+     $(document).on('show.bs.modal', '.modal', function () {
+        var zIndex = 1040 + (10 * $('.modal:visible').length);
+        $(this).css('z-index', zIndex);
+        setTimeout(function() {
+            $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+        }, 0);
+    });
+    */
+  },
+  computed: {},
+  components: {//DynamicSelect
+  }
+});
 
 /***/ }),
 

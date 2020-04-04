@@ -1057,7 +1057,6 @@
                   //
                 });
           },
-          ,
           loadEntries() {
               let transaction_no = this.form.transaction_no;
               axios.get('api/cd/entries/list?transaction_no='+transaction_no)
