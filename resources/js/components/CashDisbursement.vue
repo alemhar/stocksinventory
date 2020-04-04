@@ -1109,13 +1109,13 @@
                 this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
                 if(this.form_item.tax_type == 'VAT'){
                   //this.form_item.amount = event.target.value;
-                  this.form_item.vat = ((this.form_item.sub_total * 0.12) + 0.001).toFixed(2);
-
+                  
+                  this.form_item.vat = ((this.form_item.sub_total * 0.12) + 0.001).toFixed(2)  * 1;
                   this.form_item.tax_excluded = (this.form_item.sub_total - this.form_item.vat).toFixed(2) * 1;
                 } else {
                   //this.form_entry.amount = event.target.value;
                   this.form_item.vat = 0;
-                  this.form_item.tax_excluded = this.form_item.sub_total;
+                  this.form_item.tax_excluded = this.form_item.sub_total  * 1;
                 }
               }
           },
@@ -1295,7 +1295,7 @@
                     'success'
                   );
                 */
-                  this.form_entry.amount += this.form_item.sub_total;
+                  this.form_entry.amount = (this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
                   this.form_entry.amount_ex_tax += this.form_item.tax_excluded;
                   this.form_entry.vat += this.form_item.vat;
                   
