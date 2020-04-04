@@ -39,10 +39,10 @@ class AccountController extends Controller
                 */
                 if($transaction == 'CR'){
                     if($headerordetail == 'header'){
-                        $accounts = Account::where('rank', '=', 1)
+                        $accounts = Account::where('filter', '=', 1)
                         ->paginate(10);
                     } else {
-                        $accounts = Account::where('rank', '>', 1)
+                        $accounts = Account::where('filter', '>', 1)
                         ->where('rank', '<', 99)
                         ->paginate(10);
                     }
