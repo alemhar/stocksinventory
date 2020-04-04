@@ -62,20 +62,13 @@ class CDItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $transactionItem = TransactionItem::findOrFail($id);
+        
+        return $request;
+        //$transactionItem = TransactionItem::findOrFail($id);
 
-        // $this->validate($request,[
-        //     'name' => 'required|string|max:191',
-        //     'address' => 'required|string|max:191',
-        //     'city' => 'required|string|max:191',
-        //     'phone' => 'required|string|max:191'
+        //$transactionItem->update($request->all());
 
-        // ]);
-
-
-        $transactionItem->update($request->all());
-
-        return ['message' => 'Item updated!'];
+        //return ['message' => 'Item updated!'];
     }
 
     /**
