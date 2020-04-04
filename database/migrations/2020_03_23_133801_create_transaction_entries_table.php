@@ -31,6 +31,7 @@ class CreateTransactionEntriesTable extends Migration
             $table->decimal('debit_amount', 14, 2);
             $table->date('transaction_date');
             $table->boolean('canceled')->default(0);
+            $table->string('status', 20)->default('UNCONFIRMED');
             $table->timestamps();
         });
     }

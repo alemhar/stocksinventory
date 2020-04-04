@@ -19,12 +19,14 @@ class CreateTransactionEntryItemsTable extends Migration
             //$table->bigInteger('transaction_no')->unsigned();
             $table->string('transaction_type');
             $table->integer('account_code')->unsigned();
+            $table->string('item');
             $table->integer('quantity')->unsigned();
             $table->decimal('price', 14, 2);
             $table->decimal('sub_total', 14, 2);
             $table->string('tax_type');
             $table->decimal('tax_excluded', 14, 2);
             $table->decimal('vat', 14, 2);
+            $table->string('status', 20)->default('UNCONFIRMED');
             $table->timestamps();
         });
     }

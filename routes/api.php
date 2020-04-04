@@ -42,6 +42,9 @@ Route::apiResources([
     'cd/entry' => 'API\CDEntryController'
 ]);
 
+Route::apiResources([
+    'cd/item' => 'API\CDItemController'
+]);
 
 
 Route::get('account', 'API\UserController@account');

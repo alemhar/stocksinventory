@@ -2972,6 +2972,19 @@ __webpack_require__.r(__webpack_exports__);
         debit_amount: '',
         transaction_date: this.getDate()
       }),
+      form_item: new Form({
+        id: '',
+        transaction_entry_id: '',
+        transaction_type: '',
+        account_code: '',
+        item: '',
+        quantity: 0,
+        price: 0,
+        sub_total: '',
+        tax_type: '',
+        tax_excluded: 0,
+        vat: 0
+      }),
       payees: {},
       branches: {},
       chart_of_accounts: {}
@@ -3231,12 +3244,21 @@ __webpack_require__.r(__webpack_exports__);
       $('#entry-details').modal('show');
     },
     newItem: function newItem() {
-      this.editmode = false; //this.form_entry.reset();
+      var _this8 = this;
 
+      this.editmode = false;
+      this.form_item.reset();
+      this.form_item.transaction_entry_id = this.form_entry.id;
+      this.form_item.transaction_type = 'CD';
+      this.form_item.account_code = this.form_entry.account_code;
+      this.form_item.post('api/cd/item').then(function (data) {
+        _this8.form_item.id = data.data.id; //console.log(data.data.id);
+      })["catch"](function () {//
+      });
       $('#entry-items').modal('show');
     },
     saveDebitEntry: function saveDebitEntry() {
-      var _this8 = this;
+      var _this9 = this;
 
       //console.log('Edit Payee');
       // ** Temporary data to bypass Column cannot be null ERROR's
@@ -3257,11 +3279,11 @@ __webpack_require__.r(__webpack_exports__);
           );
         */
 
-        _this8.$Progress.finish();
+        _this9.$Progress.finish();
 
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this8.$Progress.fail();
+        _this9.$Progress.fail();
       });
     },
     branchChange: function branchChange() {

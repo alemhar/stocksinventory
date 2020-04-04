@@ -883,6 +883,22 @@
                   
                   
               }),
+              form_item: new Form({
+
+                  id:'',
+                  transaction_entry_id:'',
+                  transaction_type:'',
+                  account_code : '',
+                  item: '',
+                  quantity: 0,
+                  price: 0,
+                  sub_total: '',
+                  tax_type: '',
+                  tax_excluded: 0,
+                  vat: 0
+                  
+                  
+              }),
               payees: {},
               branches: {},
               chart_of_accounts: {}
@@ -1130,6 +1146,7 @@
               this.form_entry.transaction_id = this.form.id;
               this.form_entry.transaction_no = this.form.transaction_no;
               this.form_entry.transaction_type = 'CD';
+
               this.form_entry.post('api/cd/entry')
                 .then((data)=>{
                   this.form_entry.id = data.data.id;
@@ -1146,7 +1163,20 @@
           },
           newItem(){
               this.editmode = false;
-              //this.form_entry.reset();
+              this.form_item.reset();
+              this.form_item.transaction_entry_id = this.form_entry.id;
+              this.form_item.transaction_type = 'CD';
+              this.form_item.account_code = this.form_entry.account_code;
+
+              this.form_item.post('api/cd/item')
+                .then((data)=>{
+                  this.form_item.id = data.data.id;
+                  //console.log(data.data.id);
+                })
+                .catch(()=>{
+                  //
+                });
+
               $('#entry-items').modal('show');
           },
           saveDebitEntry(){
