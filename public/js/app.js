@@ -2975,6 +2975,7 @@ __webpack_require__.r(__webpack_exports__);
       form_item: new Form({
         id: '',
         transaction_entry_id: '',
+        transaction_no: '',
         transaction_type: '',
         account_code: '',
         item: '',
@@ -3249,6 +3250,7 @@ __webpack_require__.r(__webpack_exports__);
       this.editmode = false;
       this.form_item.reset();
       this.form_item.transaction_entry_id = this.form_entry.id;
+      this.form_item.transaction_no = this.form_entry.transaction_no;
       this.form_item.transaction_type = 'CD';
       this.form_item.account_code = this.form_entry.account_code;
       this.form_item.post('api/cd/item').then(function (data) {

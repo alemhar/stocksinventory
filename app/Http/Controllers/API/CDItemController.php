@@ -29,7 +29,9 @@ class CDItemController extends Controller
         return TransactionItem::create([
             'transaction_entry_id' => $request['transaction_entry_id'],
             'transaction_type' => $request['transaction_type'],
+            'transaction_no' => $request['transaction_no'],
             'account_code' => $request['account_code'],
+
             'item' => '',
             'quantity' => 0,
             'price' => 0,
