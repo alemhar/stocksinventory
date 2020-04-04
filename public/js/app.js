@@ -2908,11 +2908,11 @@ __webpack_require__.r(__webpack_exports__);
         //entry_description: '',
         branch_id: '',
         branch_name: '',
-        amount: '',
-        amount_ex_tax: '',
-        vat: '',
-        credit_amount: '',
-        debit_amount: '',
+        amount: 0,
+        amount_ex_tax: 0,
+        vat: 0,
+        credit_amount: 0,
+        debit_amount: 0,
         transaction_date: this.getDate()
       }),
       form_item: new Form({
