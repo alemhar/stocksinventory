@@ -188,24 +188,13 @@
                         <th>Branch</th>
                         <th>Amount</th>
                       </tr>
-                      <tr @click="selectDebitRow(1)" :class="{ 'table-warning' : active_debit_row == 1 }" >
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
+                      <tr v-for="entry in entries.data" :key="entry.id" @click="selectDebitRow(entry.id)" :class="{ 'table-warning' : active_debit_row == entry.id }" >
+                        <td>{{ entry.account_code }}</td>
+                        <td>{{ entry.account_name }}</td>
+                        <td>{{ entry.branch_name }}</td>
+                        <td>{{ entry.amount }}</td>
                       </tr>
-                      <tr @click="selectDebitRow(3)" :class="{ 'table-warning' : active_debit_row == 3 }" >
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                      </tr>
-                      <tr @click="selectDebitRow(2)" :class="{ 'table-warning' : active_debit_row == 2 }" >
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                      </tr>
+                      
                   </tbody>
                 </table>
                 </div>
@@ -856,6 +845,7 @@
               payees: {},
               branches: {},
               items: {},
+              entries: {},
               chart_of_accounts: {}
 
           }
@@ -1058,11 +1048,21 @@
                 });
           },
           loadEntryItems() {
-              //let entry_id = this.form_entry.transaction_entry_id;
-              //axios.get('api/cd/item/list?entry_id='+entry_id)
-              axios.get('api/cd/items/list')
+              let entry_id = this.form_entry.transaction_entry_id;
+              axios.get('api/cd/items/list?entry_id='+entry_id)
                 .then((data)=>{
                   this.items = data.data;
+                })
+                .catch(()=>{
+                  //
+                });
+          },
+          ,
+          loadEntries() {
+              let transaction_no = this.form.transaction_no;
+              axios.get('api/cd/entries/list?transaction_no='+transaction_no)
+                .then((data)=>{
+                  this.entries = data.data;
                 })
                 .catch(()=>{
                   //

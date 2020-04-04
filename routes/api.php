@@ -55,4 +55,5 @@ Route::put('account', 'API\UserController@updateAccountInfo');
 
 Route::delete('cd/cancel/{transaction_no}', 'API\CDController@cancelTransaction');
 Route::get('cd/items/list', 'API\CDItemController@list');
+Route::get('cd/entries/list', 'API\CDEntryController@list');
 
