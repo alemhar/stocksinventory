@@ -3184,9 +3184,9 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
     },
-    selectDebitRow: function selectDebitRow(active_debit_row) {
-      this.active_debit_row = active_debit_row;
-      console.log(active_debit_row);
+    selectDebitRow: function selectDebitRow(active_debit_row_id) {
+      this.active_debit_row = active_debit_row_id;
+      this.form_entry.id = active_debit_row_id; //console.log(active_debit_row);
     },
     newEntry: function newEntry() {
       var _this9 = this;

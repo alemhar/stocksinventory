@@ -1095,9 +1095,11 @@
                 }
               }
           },
-          selectDebitRow(active_debit_row){
-              this.active_debit_row = active_debit_row;
-              console.log(active_debit_row);
+          selectDebitRow(active_debit_row_id){
+              this.active_debit_row = active_debit_row_id;
+              this.form_entry.id = active_debit_row_id;
+              //console.log(active_debit_row);
+
           },
           newEntry(){
               this.editmode = false;
