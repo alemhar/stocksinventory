@@ -64703,8 +64703,11 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.amount,
-                              expression: "form.amount"
+                              value: Number(
+                                _vm.form.amount.toFixed(2)
+                              ).toLocaleString(),
+                              expression:
+                                "Number(form.amount.toFixed(2)).toLocaleString()"
                             }
                           ],
                           staticClass: "form-control",
@@ -64714,13 +64717,21 @@ var render = function() {
                             id: "inputTotalAmount",
                             placeholder: "Total Amount"
                           },
-                          domProps: { value: _vm.form.amount },
+                          domProps: {
+                            value: Number(
+                              _vm.form.amount.toFixed(2)
+                            ).toLocaleString()
+                          },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.$set(_vm.form, "amount", $event.target.value)
+                              _vm.$set(
+                                Number(_vm.form.amount.toFixed(2)),
+                                "toLocaleString()",
+                                $event.target.value
+                              )
                             }
                           }
                         })
