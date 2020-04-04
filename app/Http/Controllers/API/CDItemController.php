@@ -81,7 +81,7 @@ class CDItemController extends Controller
         //
     }
 
-    public function list(){
+    public function listing(){
         return ['message' => 'Listing'];
 
         //if ($entry_id = \Request::get('entry_id')) {

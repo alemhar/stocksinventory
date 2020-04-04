@@ -3153,7 +3153,7 @@ __webpack_require__.r(__webpack_exports__);
 
       //let entry_id = this.form_entry.transaction_entry_id;
       //axios.get('api/cd/item/list?entry_id='+entry_id)
-      axios.get('api/cd/item/list').then(function (data) {
+      axios.get('api/cd/item/listing').then(function (data) {
         _this7.items = data.data;
       })["catch"](function () {//
       });

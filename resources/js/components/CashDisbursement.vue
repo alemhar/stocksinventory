@@ -1060,7 +1060,7 @@
           loadEntryItems() {
               //let entry_id = this.form_entry.transaction_entry_id;
               //axios.get('api/cd/item/list?entry_id='+entry_id)
-              axios.get('api/cd/item/list')
+              axios.get('api/cd/item/listing')
                 .then((data)=>{
                   this.items = data.data;
                 })
