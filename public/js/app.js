@@ -65226,7 +65226,8 @@ var render = function() {
                     "button",
                     {
                       staticClass: "btn btn-danger",
-                      attrs: { type: "button", "data-dismiss": "modal" }
+                      attrs: { type: "button" },
+                      on: { click: _vm.cancelDebitEntry }
                     },
                     [_vm._v("Cancel")]
                   ),
@@ -65235,7 +65236,7 @@ var render = function() {
                     "button",
                     {
                       staticClass: "btn btn-success",
-                      attrs: { type: "button", "data-dismiss": "modal" },
+                      attrs: { type: "button" },
                       on: { click: _vm.saveDebitEntry }
                     },
                     [_vm._v("Save")]
