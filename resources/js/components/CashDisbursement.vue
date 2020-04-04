@@ -16,8 +16,8 @@
                 <div class="box-tools">
                   <button type="submit" v-show="!cd_created" class="btn btn-success">Create <i class="fas fa-plus-circle fa-fw"></i></button>
                   <!-- @click="createCD()"  -->
-                  <button type="button"  class="btn btn-success"  v-show="cd_created" @click="saveCD">Save <i class="fas fa-save fa-fw"></i></button>
                   <button  type="button" class="btn btn-danger"  v-show="cd_created" @click="cancelCD">Cancel <i class="fas fa-window-close fa-fw"></i></button>
+                  <button type="button"  class="btn btn-success"  v-show="cd_created" @click="saveCD">Save <i class="fas fa-save fa-fw"></i></button>
 
                 </div>
               </div>
@@ -975,6 +975,10 @@
           },
           saveCD(){
             this.cd_created = false;
+            this.form.post('api/cd/confirm/'+this.form.transaction_no);
+            this.form.reset();
+            this.form_entry.reset();
+            this.form_item.reset();
 
           },
           cancelCD(){

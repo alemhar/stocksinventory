@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Transaction;
+use App\TransactionEntry;
+use App\TransactionItem;
 
 class CDController extends Controller
 {
@@ -92,4 +94,15 @@ class CDController extends Controller
 
         return ['message' => 'Transaction # '.$transaction_no.' canceled'];
     }
+
+    public function confirmTransaction($transaction_no){
+
+        Transaction::where('transaction_no', $transaction_no)
+          ->update(['status' => 'CONFIRMED']);
+        TransactionEntry::where('transaction_no', $transaction_no)
+          ->update(['status' => 'CONFIRMED']);
+        TransactionItem::where('transaction_no', $transaction_no)
+          ->update(['status' => 'CONFIRMED']);    
+
+    }    
 }

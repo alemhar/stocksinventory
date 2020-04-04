@@ -3063,6 +3063,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     saveCD: function saveCD() {
       this.cd_created = false;
+      this.form.post('api/cd/confirm/' + this.form.transaction_no);
+      this.form.reset();
+      this.form_entry.reset();
+      this.form_item.reset();
     },
     cancelCD: function cancelCD() {
       this.cd_created = false;
@@ -63911,13 +63915,15 @@ var render = function() {
                                 expression: "cd_created"
                               }
                             ],
-                            staticClass: "btn btn-success",
+                            staticClass: "btn btn-danger",
                             attrs: { type: "button" },
-                            on: { click: _vm.saveCD }
+                            on: { click: _vm.cancelCD }
                           },
                           [
-                            _vm._v("Save "),
-                            _c("i", { staticClass: "fas fa-save fa-fw" })
+                            _vm._v("Cancel "),
+                            _c("i", {
+                              staticClass: "fas fa-window-close fa-fw"
+                            })
                           ]
                         ),
                         _vm._v(" "),
@@ -63932,15 +63938,13 @@ var render = function() {
                                 expression: "cd_created"
                               }
                             ],
-                            staticClass: "btn btn-danger",
+                            staticClass: "btn btn-success",
                             attrs: { type: "button" },
-                            on: { click: _vm.cancelCD }
+                            on: { click: _vm.saveCD }
                           },
                           [
-                            _vm._v("Cancel "),
-                            _c("i", {
-                              staticClass: "fas fa-window-close fa-fw"
-                            })
+                            _vm._v("Save "),
+                            _c("i", { staticClass: "fas fa-save fa-fw" })
                           ]
                         )
                       ])
