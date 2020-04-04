@@ -1139,6 +1139,9 @@
           newItem(){
               this.editmode = false;
               this.form_item.reset();
+              this.no_item = false;
+              this.no_price = false;
+              this.no_quantity = false;
               this.form_item.transaction_entry_id = this.form_entry.id;
               this.form_item.transaction_no = this.form.transaction_no;
               this.form_item.transaction_type = 'CD';
