@@ -237,8 +237,8 @@
       MAIN FORM ITEMS TABLE
       -->
 
-
-          <div v-show="cd_created"  class="box box-warning mt-2">
+          <!-- v-show="cd_created"  -->
+          <div class="box box-warning mt-2">
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
@@ -1058,8 +1058,9 @@
                 });
           },
           loadEntryItems() {
-              let entry_id = this.form_entry.transaction_entry_id;
-              axios.get('api/cd/item/list?entry_id='+entry_id)
+              //let entry_id = this.form_entry.transaction_entry_id;
+              //axios.get('api/cd/item/list?entry_id='+entry_id)
+              axios.get('api/cd/item/list')
                 .then((data)=>{
                   this.items = data.data;
                 })

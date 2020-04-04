@@ -3151,8 +3151,9 @@ __webpack_require__.r(__webpack_exports__);
     loadEntryItems: function loadEntryItems() {
       var _this7 = this;
 
-      var entry_id = this.form_entry.transaction_entry_id;
-      axios.get('api/cd/item/list?entry_id=' + entry_id).then(function (data) {
+      //let entry_id = this.form_entry.transaction_entry_id;
+      //axios.get('api/cd/item/list?entry_id='+entry_id)
+      axios.get('api/cd/item/list').then(function (data) {
         _this7.items = data.data;
       })["catch"](function () {//
       });
@@ -64422,72 +64423,54 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.cd_created,
-                      expression: "cd_created"
-                    }
-                  ],
-                  staticClass: "box box-warning mt-2"
-                },
-                [
-                  _c("div", { staticClass: "col-md-12" }, [
-                    _c("div", { staticClass: "box" }, [
-                      _vm._m(9),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "box-body table-responsive no-padding",
-                          attrs: { id: "item-list" }
-                        },
-                        [
-                          _c("table", { staticClass: "table table-hover" }, [
-                            _c(
-                              "tbody",
-                              [
-                                _vm._m(10),
-                                _vm._v(" "),
-                                _vm._l(_vm.items.data, function(item) {
-                                  return _c("tr", { key: item.id }, [
-                                    _c("td", [
-                                      _vm._v(_vm._s(item.account_code))
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(item.item))]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(item.quantity))]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(item.price))]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(item.tax_type))]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(item.sub_total))]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(item.tax_excluded))
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(item.vat))])
-                                  ])
-                                })
-                              ],
-                              2
-                            )
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "box-footer" })
-                    ])
+              _c("div", { staticClass: "box box-warning mt-2" }, [
+                _c("div", { staticClass: "col-md-12" }, [
+                  _c("div", { staticClass: "box" }, [
+                    _vm._m(9),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "box-body table-responsive no-padding",
+                        attrs: { id: "item-list" }
+                      },
+                      [
+                        _c("table", { staticClass: "table table-hover" }, [
+                          _c(
+                            "tbody",
+                            [
+                              _vm._m(10),
+                              _vm._v(" "),
+                              _vm._l(_vm.items.data, function(item) {
+                                return _c("tr", { key: item.id }, [
+                                  _c("td", [_vm._v(_vm._s(item.account_code))]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(_vm._s(item.item))]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(_vm._s(item.quantity))]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(_vm._s(item.price))]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(_vm._s(item.tax_type))]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(_vm._s(item.sub_total))]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(_vm._s(item.tax_excluded))]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(_vm._s(item.vat))])
+                                ])
+                              })
+                            ],
+                            2
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "box-footer" })
                   ])
-                ]
-              ),
+                ])
+              ]),
               _vm._v(" "),
               _c(
                 "div",
