@@ -631,7 +631,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-success"  data-dismiss="modal">Save</button>
+              <button type="button" @click="saveItem" class="btn btn-success"  data-dismiss="modal">Save</button>
             </div>
 
             <!-- /form -->

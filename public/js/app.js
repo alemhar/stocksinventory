@@ -65386,7 +65386,26 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(30)
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    attrs: { type: "button", "data-dismiss": "modal" }
+                  },
+                  [_vm._v("Cancel")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: { type: "button", "data-dismiss": "modal" },
+                    on: { click: _vm.saveItem }
+                  },
+                  [_vm._v("Save")]
+                )
+              ])
             ])
           ]
         )
@@ -65414,7 +65433,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(31),
+              _vm._m(30),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -65453,7 +65472,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(32),
+                            _vm._m(31),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -65569,7 +65588,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(33),
+              _vm._m(32),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -65608,7 +65627,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(34),
+                            _vm._m(33),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -65648,7 +65667,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(35)
+                _vm._m(34)
               ])
             ])
           ]
@@ -66190,30 +66209,6 @@ var staticRenderFns = [
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Tax")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-danger",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Cancel")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-success",
-          attrs: { type: "submit", "data-dismiss": "modal" }
-        },
-        [_vm._v("Save")]
       )
     ])
   },
