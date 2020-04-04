@@ -40,11 +40,11 @@ class AccountController extends Controller
                 if($transaction == 'CR'){
                     if($headerordetail == 'header'){
                         $accounts = Account::where('filter', '=', 1)
-                        ->paginate(10);
+                        ->paginate(8);
                     } else {
                         $accounts = Account::where('filter', '>', 1)
                         ->where('filter', '<', 99)
-                        ->paginate(10);
+                        ->paginate(8);
                     }
                 }
 
