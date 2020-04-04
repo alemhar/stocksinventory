@@ -839,7 +839,7 @@
                   item: '',
                   quantity: 0,
                   price: 0,
-                  sub_total: '',
+                  sub_total: 0,
                   tax_type: 'VAT',
                   tax_excluded: 0,
                   vat: 0
