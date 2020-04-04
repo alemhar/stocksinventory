@@ -103,7 +103,7 @@ class CDEntryController extends Controller
             })->paginate(10);
 
         }else{
-            $transactionEntries = TransactionItem::latest()->paginate(10);
+            $transactionEntries = TransactionEntry::latest()->paginate(10);
         }
         return $transactionEntries;
     }
