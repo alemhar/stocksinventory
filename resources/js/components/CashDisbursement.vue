@@ -534,28 +534,7 @@
             <!-- form onsubmit="return false;" -->
             <div class="modal-body">
               
-              <!--div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text nputGroup-sizing-default">Code</span>
-                </div>
-                <input v-model="form_entry.account_code" type="text" name="account_code" 
-                  
-                  class="form-control col-4" :class="{ 'is-invalid': form_entry.errors.has('account_code') }" aria-describedby="inputGroup-sizing-default">
-                <has-error :form="form_entry" field="account_code"></has-error>
-                <span class="input-group-btn col-1">
-                    <button type="button" class="btn btn-success" @click="searchAccountModal('detail')"><i class="fas fa-search fa-fw"></i></button>
-                </span>
-              </div>
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Account</span>
-                </div>
-                
-                <input v-model="form_entry.account_name" type="text" name="account_name"
-                  
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('account_name') }" readonly aria-describedby="inputGroup-sizing-default">
-                <has-error :form="form_entry" field="account_name"></has-error>
-              </div -->
+              
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Name</span>
@@ -564,32 +543,11 @@
                 
                 <input v-model="form_item.item" type="text" name="item_name"
                   
-                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('item') }" aria-describedby="inputGroup-sizing-default">
+                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('item') }" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
+                <p v-show="no_item" class="empty-field-message">** Please enter item.</p>   
                 <has-error :form="form_item" field="item_name"></has-error>
               </div>
-              <!--div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Description</span>
-                </div>
-
-                <input v-model="form_entry.entry_description" type="text" name="entry_description"
-                  
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('entry_description') }" aria-describedby="inputGroup-sizing-default">
-                <has-error :form="form_entry" field="entry_description"></has-error>
-              </div -->
-
-              <!--div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Branch</span>
-                </div>
-
               
-                  <select v-model="form_entry.branch_name" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
-                      <option v-for="branch in branches.data" v-bind:value="branch.id">{{ branch.name }}</option>
-                  </select>
-                  
-                  <has-error :form="form_entry" field="branch_name"></has-error>
-              </div -->
 
 
 
@@ -602,7 +560,8 @@
               
                   <input v-model="form_item.price" name="price" id="price"
                   @change="computeTaxChange"
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('price') }" aria-describedby="inputGroup-sizing-default">
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('price') }" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
+                  <p v-show="no_price" class="empty-field-message">** Please enter price.</p> 
                   <has-error :form="form_item" field="price"></has-error>
               </div>
 
@@ -614,6 +573,7 @@
                 <input v-model="form_item.quantity" type="text" name="entry_description"
                   @change="computeTaxChange"
                   class="form-control" :class="{ 'is-invalid': form_item.errors.has('quantity') }" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
+                  <p v-show="no_quantity" class="empty-field-message">** Please enter quantity.</p> 
                 <has-error :form="form_item" field="entry_description"></has-error>
               </div>
 
@@ -624,7 +584,7 @@
 
                 <input v-model="form_item.sub_total" type="text" name="entry_description"
                   @change="computeTaxChange"
-                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('sub_total') }" aria-describedby="inputGroup-sizing-default">
+                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('sub_total') }" aria-describedby="inputGroup-sizing-default" readonly>
                 <has-error :form="form_item" field="entry_description"></has-error>
               </div>
 
@@ -840,6 +800,9 @@
               no_payee: false,
               no_reference_no: false,
               no_account_code: false,
+              no_item: false,
+              no_price: false,
+              no_quantity: false,
               searchText: '',
               searchPayee: '',
               headerOrDetail: 'header',
@@ -1222,8 +1185,31 @@
             });
           },
           saveItem(){
-            //console.log('Edit Payee');
             
+            if(this.form_item.item.length == 0) {
+              this.no_item = true;
+            } else {
+              this.no_item = false;
+            }
+
+            if(this.form_item.price.length == 0) {
+              this.no_price = true;
+            } else {
+              this.no_price = false;
+            }
+            
+            if(this.form_item.quantity.length == 0) {
+              this.no_quantity = true;
+            } else {
+              this.no_quantity = false;
+            }
+            
+            if (this.no_item || this.no_price || this.no_quantity){
+              return false;
+            } 
+
+
+
             // ** Temporary data to bypass Column cannot be null ERROR's
             this.form_item.amount = 0;
             this.form_entry.amount_ex_tax = 0;

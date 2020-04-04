@@ -2882,46 +2882,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -2935,6 +2895,9 @@ __webpack_require__.r(__webpack_exports__);
       no_payee: false,
       no_reference_no: false,
       no_account_code: false,
+      no_item: false,
+      no_price: false,
+      no_quantity: false,
       searchText: '',
       searchPayee: '',
       headerOrDetail: 'header',
@@ -3302,8 +3265,29 @@ __webpack_require__.r(__webpack_exports__);
     saveItem: function saveItem() {
       var _this10 = this;
 
-      //console.log('Edit Payee');
-      // ** Temporary data to bypass Column cannot be null ERROR's
+      if (this.form_item.item.length == 0) {
+        this.no_item = true;
+      } else {
+        this.no_item = false;
+      }
+
+      if (this.form_item.price.length == 0) {
+        this.no_price = true;
+      } else {
+        this.no_price = false;
+      }
+
+      if (this.form_item.quantity.length == 0) {
+        this.no_quantity = true;
+      } else {
+        this.no_quantity = false;
+      }
+
+      if (this.no_item || this.no_price || this.no_quantity) {
+        return false;
+      } // ** Temporary data to bypass Column cannot be null ERROR's
+
+
       this.form_item.amount = 0;
       this.form_entry.amount_ex_tax = 0;
       this.form_entry.vat = 0;
@@ -65043,7 +65027,8 @@ var render = function() {
                       attrs: {
                         type: "text",
                         name: "item_name",
-                        "aria-describedby": "inputGroup-sizing-default"
+                        "aria-describedby": "inputGroup-sizing-default",
+                        onfocus: "this.select()"
                       },
                       domProps: { value: _vm.form_item.item },
                       on: {
@@ -65055,6 +65040,22 @@ var render = function() {
                         }
                       }
                     }),
+                    _vm._v(" "),
+                    _c(
+                      "p",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.no_item,
+                            expression: "no_item"
+                          }
+                        ],
+                        staticClass: "empty-field-message"
+                      },
+                      [_vm._v("** Please enter item.")]
+                    ),
                     _vm._v(" "),
                     _c("has-error", {
                       attrs: { form: _vm.form_item, field: "item_name" }
@@ -65085,7 +65086,8 @@ var render = function() {
                       attrs: {
                         name: "price",
                         id: "price",
-                        "aria-describedby": "inputGroup-sizing-default"
+                        "aria-describedby": "inputGroup-sizing-default",
+                        onfocus: "this.select()"
                       },
                       domProps: { value: _vm.form_item.price },
                       on: {
@@ -65098,6 +65100,22 @@ var render = function() {
                         }
                       }
                     }),
+                    _vm._v(" "),
+                    _c(
+                      "p",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.no_price,
+                            expression: "no_price"
+                          }
+                        ],
+                        staticClass: "empty-field-message"
+                      },
+                      [_vm._v("** Please enter price.")]
+                    ),
                     _vm._v(" "),
                     _c("has-error", {
                       attrs: { form: _vm.form_item, field: "price" }
@@ -65147,6 +65165,22 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
+                    _c(
+                      "p",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.no_quantity,
+                            expression: "no_quantity"
+                          }
+                        ],
+                        staticClass: "empty-field-message"
+                      },
+                      [_vm._v("** Please enter quantity.")]
+                    ),
+                    _vm._v(" "),
                     _c("has-error", {
                       attrs: { form: _vm.form_item, field: "entry_description" }
                     })
@@ -65176,7 +65210,8 @@ var render = function() {
                       attrs: {
                         type: "text",
                         name: "entry_description",
-                        "aria-describedby": "inputGroup-sizing-default"
+                        "aria-describedby": "inputGroup-sizing-default",
+                        readonly: ""
                       },
                       domProps: { value: _vm.form_item.sub_total },
                       on: {
