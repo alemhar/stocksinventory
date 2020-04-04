@@ -3186,7 +3186,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     selectDebitRow: function selectDebitRow(active_debit_row_id) {
       this.active_debit_row = active_debit_row_id;
-      this.form_entry.id = active_debit_row_id; //console.log(active_debit_row);
+      this.form_entry.id = active_debit_row_id;
+      VueListen.$emit('RefreshItemTable'); //console.log(active_debit_row);
     },
     newEntry: function newEntry() {
       var _this9 = this;
@@ -3200,6 +3201,7 @@ __webpack_require__.r(__webpack_exports__);
         _this9.form_entry.id = data.data.id; //console.log(data.data.id);
       })["catch"](function () {//
       });
+      this.loadEntries();
       $('#entry-details').modal('show');
     },
     newItem: function newItem() {
@@ -3234,6 +3236,7 @@ __webpack_require__.r(__webpack_exports__);
         _this10.form_item.id = data.data.id; //console.log(data.data.id);
       })["catch"](function () {//
       });
+      this.loadEntryItems();
       $('#entry-items').modal('show');
     },
     saveDebitEntry: function saveDebitEntry() {

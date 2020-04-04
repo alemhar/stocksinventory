@@ -1098,6 +1098,7 @@
           selectDebitRow(active_debit_row_id){
               this.active_debit_row = active_debit_row_id;
               this.form_entry.id = active_debit_row_id;
+              VueListen.$emit('RefreshItemTable');
               //console.log(active_debit_row);
 
           },
@@ -1117,7 +1118,7 @@
                 .catch(()=>{
                   //
                 });
-
+              this.loadEntries();
               $('#entry-details').modal('show');
 
 
@@ -1157,7 +1158,7 @@
                 .catch(()=>{
                   //
                 });
-
+              this.loadEntryItems();
               $('#entry-items').modal('show');
           },
           saveDebitEntry(){
