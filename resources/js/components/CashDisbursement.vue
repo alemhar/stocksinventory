@@ -335,7 +335,6 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add Entry</h5>
-              <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update Entry</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -348,12 +347,15 @@
                   <span class="input-group-text inputGroup-sizing-default">Code</span>
                 </div>
                 <input v-model="form_entry.account_code" type="text" name="account_code" 
-                  
+                  readonly
                   class="form-control col-4" :class="{ 'is-invalid': form_entry.errors.has('account_code') }" aria-describedby="inputGroup-sizing-default">
                 <has-error :form="form_entry" field="account_code"></has-error>
                 <span class="input-group-btn col-1">
                     <button type="button" class="btn btn-success" @click="searchAccountModal('detail')"><i class="fas fa-search fa-fw"></i></button>
                 </span>
+              </div>
+              <div class="input-group mb-2">
+                <p v-show="no_entry_account_code" class="empty-field-message">** Please select account!</p>
               </div>
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
@@ -375,7 +377,9 @@
                   </select>
                   <has-error :form="form_entry" field="branch_id"></has-error>
               </div>
-
+              <div class="input-group mb-2">
+                <p v-show="no_entry_branch_id" class="empty-field-message">** Please Branch!</p>
+              </div>
               <div class="box-header">
                   <h3 class="box-title">Items</h3>
                   <div class="box-tools">
@@ -772,6 +776,8 @@
               no_item: false,
               no_price: false,
               no_quantity: false,
+              no_entry_account_code: false,
+              no_entry_branch_id: false,
               searchText: '',
               searchPayee: '',
               headerOrDetail: 'header',
@@ -1115,6 +1121,22 @@
 
           },
           newItem(){
+
+              if(this.form_entry.account_code == 0) {
+                this.no_entry_account_code = true;
+              } else {
+                this.no_entry_account_code = false;
+              }
+              if(this.form_entry.branch_id == 0) {
+                this.no_entry_branch_id = true;
+              } else {
+                this.no_entry_branch_id = false;
+              }
+
+              if (this.no_entry_account_code || this.no_entry_branch_id){
+                return false;
+              }
+              
               this.editmode = false;
               this.form_item.reset();
               this.no_item = false;

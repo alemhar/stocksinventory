@@ -2851,6 +2851,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -2867,6 +2871,8 @@ __webpack_require__.r(__webpack_exports__);
       no_item: false,
       no_price: false,
       no_quantity: false,
+      no_entry_account_code: false,
+      no_entry_branch_id: false,
       searchText: '',
       searchPayee: '',
       headerOrDetail: 'header',
@@ -3198,6 +3204,22 @@ __webpack_require__.r(__webpack_exports__);
     },
     newItem: function newItem() {
       var _this10 = this;
+
+      if (this.form_entry.account_code == 0) {
+        this.no_entry_account_code = true;
+      } else {
+        this.no_entry_account_code = false;
+      }
+
+      if (this.form_entry.branch_id == 0) {
+        this.no_entry_branch_id = true;
+      } else {
+        this.no_entry_branch_id = false;
+      }
+
+      if (this.no_entry_account_code || this.no_entry_branch_id) {
+        return false;
+      }
 
       this.editmode = false;
       this.form_item.reset();
@@ -64527,23 +64549,6 @@ var render = function() {
                   [_vm._v("Add Entry")]
                 ),
                 _vm._v(" "),
-                _c(
-                  "h5",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.editmode,
-                        expression: "editmode"
-                      }
-                    ],
-                    staticClass: "modal-title",
-                    attrs: { id: "addNewLabel" }
-                  },
-                  [_vm._v("Update Entry")]
-                ),
-                _vm._v(" "),
                 _vm._m(14)
               ]),
               _vm._v(" "),
@@ -64570,6 +64575,7 @@ var render = function() {
                       attrs: {
                         type: "text",
                         name: "account_code",
+                        readonly: "",
                         "aria-describedby": "inputGroup-sizing-default"
                       },
                       domProps: { value: _vm.form_entry.account_code },
@@ -64609,6 +64615,24 @@ var render = function() {
                   ],
                   1
                 ),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group mb-2" }, [
+                  _c(
+                    "p",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.no_entry_account_code,
+                          expression: "no_entry_account_code"
+                        }
+                      ],
+                      staticClass: "empty-field-message"
+                    },
+                    [_vm._v("** Please select account!")]
+                  )
+                ]),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -64717,6 +64741,24 @@ var render = function() {
                   ],
                   1
                 ),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group mb-2" }, [
+                  _c(
+                    "p",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.no_entry_branch_id,
+                          expression: "no_entry_branch_id"
+                        }
+                      ],
+                      staticClass: "empty-field-message"
+                    },
+                    [_vm._v("** Please Branch!")]
+                  )
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "box-header" }, [
                   _c("h3", { staticClass: "box-title" }, [_vm._v("Items")]),
