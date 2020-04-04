@@ -2851,15 +2851,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -64794,8 +64785,6 @@ var render = function() {
                         [
                           _vm._m(18),
                           _vm._v(" "),
-                          _vm._m(19),
-                          _vm._v(" "),
                           _vm._l(_vm.items.data, function(item) {
                             return _c("tr", { key: _vm.items.id }, [
                               _c("td", [_vm._v(_vm._s(item.item))]),
@@ -64845,7 +64834,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(20),
+                    _vm._m(19),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64892,7 +64881,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(21),
+                    _vm._m(20),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64939,7 +64928,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(22),
+                    _vm._m(21),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65067,7 +65056,7 @@ var render = function() {
                   [_vm._v("Update Entry")]
                 ),
                 _vm._v(" "),
-                _vm._m(23)
+                _vm._m(22)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -65075,7 +65064,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(24),
+                    _vm._m(23),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65134,7 +65123,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(25),
+                    _vm._m(24),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65196,7 +65185,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(26),
+                    _vm._m(25),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65262,7 +65251,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(27),
+                    _vm._m(26),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65307,7 +65296,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(28),
+                  _vm._m(27),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -65371,7 +65360,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(29),
+                    _vm._m(28),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65418,7 +65407,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(30),
+                    _vm._m(29),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65503,7 +65492,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(31),
+              _vm._m(30),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -65542,7 +65531,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(32),
+                            _vm._m(31),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -65658,7 +65647,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(33),
+              _vm._m(32),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -65697,7 +65686,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(34),
+                            _vm._m(33),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -65737,7 +65726,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(35)
+                _vm._m(34)
               ])
             ])
           ]
@@ -66047,26 +66036,6 @@ var staticRenderFns = [
       _c("th", [_vm._v("Vat")]),
       _vm._v(" "),
       _c("th", [_vm._v("Option")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", [_vm._v(" - ")]),
-      _vm._v(" "),
-      _c("td", [_vm._v(" - ")]),
-      _vm._v(" "),
-      _c("td", [_vm._v(" - ")]),
-      _vm._v(" "),
-      _c("td", [_vm._v(" - ")]),
-      _vm._v(" "),
-      _c("td", [_vm._v(" - ")]),
-      _vm._v(" "),
-      _c("td", [_vm._v(" - ")]),
-      _vm._v(" "),
-      _c("td", [_vm._v(" - ")])
     ])
   },
   function() {

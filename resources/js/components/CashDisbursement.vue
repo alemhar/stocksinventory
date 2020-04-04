@@ -400,15 +400,6 @@
                         <th>Vat</th>
                         <th>Option</th>
                       </tr>
-                      <tr>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                        <td> - </td>
-                      </tr>
                       <tr v-for="item in items.data" :key="items.id">
                         <td>{{ item.item }}</td>
                         <td>{{ item.quantity }}</td> 
