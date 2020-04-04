@@ -2855,6 +2855,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -3348,6 +3353,8 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   created: function created() {
+    var _this13 = this;
+
     /*
     VueListen.$on('Search',() => {
         let query = this.$parent.search;
@@ -3367,13 +3374,9 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntryItems();
     this.loadEntries(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
 
-    /*
-    VueListen.$on('RefreshUsersTable',() => {
-       this.loadPayees();
-       //this.loadUsers();
+    VueListen.$on('RefreshItemTable', function () {
+      _this13.loadEntryItems();
     });
-    */
-
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
     //setInterval(() => this.loadUsers(),3000);
@@ -65102,28 +65105,30 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _c(
-                      "p",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.no_item,
-                            expression: "no_item"
-                          }
-                        ],
-                        staticClass: "empty-field-message"
-                      },
-                      [_vm._v("** Please enter item.")]
-                    ),
-                    _vm._v(" "),
                     _c("has-error", {
                       attrs: { form: _vm.form_item, field: "item_name" }
                     })
                   ],
                   1
                 ),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group mb-2" }, [
+                  _c(
+                    "p",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.no_item,
+                          expression: "no_item"
+                        }
+                      ],
+                      staticClass: "empty-field-message"
+                    },
+                    [_vm._v("** Please enter item.")]
+                  )
+                ]),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -65162,28 +65167,30 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _c(
-                      "p",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.no_price,
-                            expression: "no_price"
-                          }
-                        ],
-                        staticClass: "empty-field-message"
-                      },
-                      [_vm._v("** Please enter price.")]
-                    ),
-                    _vm._v(" "),
                     _c("has-error", {
                       attrs: { form: _vm.form_item, field: "price" }
                     })
                   ],
                   1
                 ),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group mb-2" }, [
+                  _c(
+                    "p",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.no_price,
+                          expression: "no_price"
+                        }
+                      ],
+                      staticClass: "empty-field-message"
+                    },
+                    [_vm._v("** Please enter price.")]
+                  )
+                ]),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -65226,28 +65233,30 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _c(
-                      "p",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.no_quantity,
-                            expression: "no_quantity"
-                          }
-                        ],
-                        staticClass: "empty-field-message"
-                      },
-                      [_vm._v("** Please enter quantity.")]
-                    ),
-                    _vm._v(" "),
                     _c("has-error", {
                       attrs: { form: _vm.form_item, field: "entry_description" }
                     })
                   ],
                   1
                 ),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group mb-2" }, [
+                  _c(
+                    "p",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.no_quantity,
+                          expression: "no_quantity"
+                        }
+                      ],
+                      staticClass: "empty-field-message"
+                    },
+                    [_vm._v("** Please enter quantity.")]
+                  )
+                ]),
                 _vm._v(" "),
                 _c(
                   "div",

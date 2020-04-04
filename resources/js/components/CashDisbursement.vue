@@ -517,10 +517,12 @@
                 <input v-model="form_item.item" type="text" name="item_name"
                   
                   class="form-control" :class="{ 'is-invalid': form_item.errors.has('item') }" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
-                <p v-show="no_item" class="empty-field-message">** Please enter item.</p>   
+                   
                 <has-error :form="form_item" field="item_name"></has-error>
               </div>
-              
+              <div class="input-group mb-2">
+                <p v-show="no_item" class="empty-field-message">** Please enter item.</p>
+              </div>  
 
 
 
@@ -534,10 +536,11 @@
                   <input v-model="form_item.price" name="price" id="price"
                   @change="computeTaxChange"
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('price') }" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
-                  <p v-show="no_price" class="empty-field-message">** Please enter price.</p> 
                   <has-error :form="form_item" field="price"></has-error>
               </div>
-
+              <div class="input-group mb-2">
+                <p v-show="no_price" class="empty-field-message">** Please enter price.</p> 
+              </div>  
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Quantity</span>
@@ -546,10 +549,12 @@
                 <input v-model="form_item.quantity" type="text" name="entry_description"
                   @change="computeTaxChange"
                   class="form-control" :class="{ 'is-invalid': form_item.errors.has('quantity') }" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
-                  <p v-show="no_quantity" class="empty-field-message">** Please enter quantity.</p> 
+                  
                 <has-error :form="form_item" field="entry_description"></has-error>
               </div>
-
+              <div class="input-group mb-2">
+                <p v-show="no_quantity" class="empty-field-message">** Please enter quantity.</p> 
+              </div>  
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Total</span>
@@ -1136,7 +1141,7 @@
               if (this.no_entry_account_code || this.no_entry_branch_id){
                 return false;
               }
-              
+
               this.editmode = false;
               this.form_item.reset();
               this.no_item = false;
@@ -1306,12 +1311,10 @@
             this.loadEntries();
             //this.SearchIt = _.debounce(this.SearchIt, 1000);
             
-            /*
-            VueListen.$on('RefreshUsersTable',() => {
-               this.loadPayees();
-               //this.loadUsers();
+            VueListen.$on('RefreshItemTable',() => {
+                this.loadEntryItems();
             });
-            */
+            
             
             this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
             //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
