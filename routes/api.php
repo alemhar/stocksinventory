@@ -57,7 +57,4 @@ Route::delete('cd/cancel/{transaction_no}', 'API\CDController@cancelTransaction'
 Route::post('cd/confirm/{transaction_no}', 'API\CDController@confirmTransaction');
 Route::get('cd/items/list', 'API\CDItemController@list');
 Route::get('cd/entries/list', 'API\CDEntryController@list');
-Route::delete('cd/delete/entry/{id}', 'API\CDEntryController@deleteDebit');
-
-
-
+Route::delete('cd/debit/delete/{id}', 'API\CDEntryController@deleteDebit');
