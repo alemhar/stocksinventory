@@ -64391,7 +64391,7 @@ var render = function() {
                             _vm._v(" "),
                             _c("currency-input", {
                               attrs: {
-                                isReadonly: true,
+                                isReadonly: false,
                                 id: "inputAmount",
                                 placeholder: "Amount"
                               },
