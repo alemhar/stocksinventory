@@ -860,6 +860,8 @@
               items: {},
               entries: {},
               chart_of_accounts: {}
+              chart_of_accounts_header: {}
+              chart_of_accounts_detail: {}
 
           }
         },
@@ -930,10 +932,16 @@
             } 
           },
           loadChartAccounts(headerOrDetail = null){
+              if(headerOrDetail == 'header'){
+                  this.chart_of_accounts = this.chart_of_accounts_header; 
+              } else {
+                  this.chart_of_accounts = this.chart_of_accounts_detail;
+              }
+              /*
               if(headerOrDetail == null){
                 axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
               } else {
-                axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
+                //axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
 
                 axios.get('api/chartaccount?headerordetail='+headerOrDetail+'&transaction=CR')
                 .then((data)=>{
@@ -944,6 +952,24 @@
                 });
 
               }
+              */
+          },
+          initChartAccounts(){
+
+              axios.get('api/chartaccount?headerordetail='+header+'&transaction=CR')
+                .then((data)=>{
+                  this.chart_of_accounts_header = data.data;
+                })
+                .catch(()=>{
+                  //
+                });
+              axios.get('api/chartaccount?headerordetail='+detail+'&transaction=CR')
+                .then((data)=>{
+                  this.chart_of_accounts_detail = data.data;
+                })
+                .catch(()=>{
+                  //
+                });  
           },
           eventChild(Obj){
             //console.log(Obj.id);
@@ -1043,10 +1069,10 @@
               this.loadChartAccounts(headerOrDetail);
               $('#select-account').modal('show');
           },
-          searchPayeeModal(){
               this.searchPayee = this.form.payee_id;
               //this.searchPayee = '';
               this.loadPayees();
+          searchPayeeModal(){
               $('#select-payee').modal('show');
           },
 
@@ -1445,7 +1471,8 @@
             //this.loadUsers();
             this.loadPayees();
             this.loadBranches();
-            this.loadChartAccounts();
+            this.initChartAccounts();
+
             this.loadEntryItems();
             this.loadEntries();
             //this.SearchIt = _.debounce(this.SearchIt, 1000);
