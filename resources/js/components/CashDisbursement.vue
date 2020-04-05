@@ -7,7 +7,7 @@
             <!-- general form elements -->
           <div class="box box-warning">
 
-            <blog-post></blog-post>
+            
             <!-- /.box-header -->
             <!-- form start -->
             <form role="form" @submit.prevent="createCD()">
