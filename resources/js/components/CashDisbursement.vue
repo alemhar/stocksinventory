@@ -381,7 +381,7 @@
                   <has-error :form="form_entry" field="branch_id"></has-error>
               </div>
               <div class="input-group mb-2">
-                <p v-show="no_entry_branch_id" class="empty-field-message">** Please Branch!</p>
+                <p v-show="no_entry_branch_id" class="empty-field-message">** Please indicate branch.</p>
               </div>
               <div class="box-header">
                   <h3 class="box-title">Items</h3>

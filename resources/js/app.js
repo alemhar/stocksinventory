@@ -34,6 +34,10 @@ Vue.component(AlertError.name, AlertError)
 
 Vue.component('pagination', require('laravel-vue-pagination'));
 
+Vue.component('blog-post', {
+    props: ['title'],
+    template: '<h3>{{ title }}</h3>'
+  });
 
 
 
