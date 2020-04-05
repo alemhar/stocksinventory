@@ -139,9 +139,10 @@
                       <span class="input-group-text inputGroup-sizing-default">Amount</span>
                     </div>
                     
-                    <input type="text"  v-model="Number(form.amount).toLocaleString()" readonly class="form-control col-12" id="inputAmount" placeholder="Amount">
+                    <!--input type="text"  v-model="Number(form.amount).toLocaleString()" readonly class="form-control col-12" id="inputAmount" placeholder="Amount" -->
+                    <currency-input v-model="form.amount"  readonly id="inputAmount" placeholder="Amount"></currency-input>
                   </div>
-                  <currency-input v-model="form.amount"  readonly id="inputAmount"></currency-input>
+
                 </div>
               </div>
               <!-- /.box-body -->
