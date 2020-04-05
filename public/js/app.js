@@ -64426,6 +64426,12 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("currency-input", {
+                            staticClass: "form-control col-12",
+                            attrs: {
+                              readonly: "",
+                              id: "inputAmount",
+                              placeholder: "Amount"
+                            },
                             model: {
                               value: _vm.form.amount,
                               callback: function($$v) {
