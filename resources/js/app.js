@@ -35,10 +35,10 @@ Vue.component(AlertError.name, AlertError)
 Vue.component('pagination', require('laravel-vue-pagination'));
 
 Vue.component('currency-input', {
-    props: ["value","isReadonly","class1","class2","class3"],
+    props: ["value","isReadonly","fc","col"],
     template: `
         <div>
-            <input type="text" v-bind:readonly="isReadonly" v-bind:class="class1 class2 class3" v-model="displayValue" @blur="isInputActive = false" @focus="isInputActive = true"/>
+            <input type="text" v-bind:readonly="isReadonly" v-bind:class="[{'form-control': fc}, col ? 'col'+col: '']" v-model="displayValue" @blur="isInputActive = false" @focus="isInputActive = true"/>
         </div>`,
     data: function() {
         return {
