@@ -83410,13 +83410,6 @@ window.Form = vform__WEBPACK_IMPORTED_MODULE_1__["Form"];
 Vue.component(vform__WEBPACK_IMPORTED_MODULE_1__["HasError"].name, vform__WEBPACK_IMPORTED_MODULE_1__["HasError"]);
 Vue.component(vform__WEBPACK_IMPORTED_MODULE_1__["AlertError"].name, vform__WEBPACK_IMPORTED_MODULE_1__["AlertError"]);
 Vue.component('pagination', __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js"));
-/*
-Vue.component('blog-post', {
-    props: ['title'],
-    template: '<h3>{{ title }}</h3>'
-  });
-*/
-
 
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]);
 /*
