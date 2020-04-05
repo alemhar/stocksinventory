@@ -71,14 +71,7 @@ Vue.component('currency-input', {
     }
 });
 
-new Vue({
-    el: '#app',
-    data: function() {
-        return {
-            price: 1234
-        }
-    }
-});
+
 
 
 import VueRouter from 'vue-router';

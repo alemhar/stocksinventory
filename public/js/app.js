@@ -84825,14 +84825,6 @@ Vue.component('currency-input', {
     }
   }
 });
-new Vue({
-  el: '#app',
-  data: function data() {
-    return {
-      price: 1234
-    };
-  }
-});
 
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]);
 /*
