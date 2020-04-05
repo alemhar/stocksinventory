@@ -3409,8 +3409,8 @@ __webpack_require__.r(__webpack_exports__);
           );
         */
         _this16.form_entry.amount = parseFloat(_this16.form_entry.amount - item_sub_total).toFixed(2) * 1;
-        _this16.form_entry.amount_ex_tax = (_this16.form_entry.amount_ex_tax + item_tax_excluded.toFixed(2)) * 1;
-        _this16.form_entry.vat -= item_vat * 1;
+        _this16.form_entry.amount_ex_tax = (_this16.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
+        _this16.form_entry.vat = (_this16.form_entry.vat - item_vat).toFixed(2) * 1;
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
         _this16.$Progress.fail();

@@ -1337,8 +1337,8 @@
                     );
                   */
                     this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
-                    this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + item_tax_excluded.toFixed(2)) * 1;
-                    this.form_entry.vat -= (item_vat * 1);
+                    this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
+                    this.form_entry.vat = (this.form_entry.vat - item_vat).toFixed(2) * 1;
                     
                     VueListen.$emit('RefreshItemTable');
               })
