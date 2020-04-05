@@ -2854,6 +2854,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -64259,166 +64260,183 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-4" }, [
-                        _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(4),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.reference_no,
-                                expression: "form.reference_no"
-                              }
-                            ],
-                            staticClass: "form-control col-12",
-                            attrs: {
-                              readonly: _vm.cd_created,
-                              type: "text",
-                              id: "inputReferenceNo",
-                              placeholder: "Reference No"
-                            },
-                            domProps: { value: _vm.form.reference_no },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.form,
-                                  "reference_no",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "p",
-                            {
+                      _c(
+                        "div",
+                        { staticClass: "col-4" },
+                        [
+                          _c("div", { staticClass: "input-group mb-2" }, [
+                            _vm._m(4),
+                            _vm._v(" "),
+                            _c("input", {
                               directives: [
                                 {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.no_reference_no,
-                                  expression: "no_reference_no"
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.reference_no,
+                                  expression: "form.reference_no"
                                 }
                               ],
-                              staticClass: "empty-field-message"
-                            },
-                            [_vm._v("** Please enter reference number!")]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(5),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.transaction_date,
-                                expression: "form.transaction_date"
-                              }
-                            ],
-                            staticClass: "form-control col-12",
-                            attrs: {
-                              readonly: _vm.cd_created,
-                              type: "date",
-                              id: "inputDate",
-                              placeholder: "Date"
-                            },
-                            domProps: { value: _vm.form.transaction_date },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                              staticClass: "form-control col-12",
+                              attrs: {
+                                readonly: _vm.cd_created,
+                                type: "text",
+                                id: "inputReferenceNo",
+                                placeholder: "Reference No"
+                              },
+                              domProps: { value: _vm.form.reference_no },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "reference_no",
+                                    $event.target.value
+                                  )
                                 }
-                                _vm.$set(
-                                  _vm.form,
-                                  "transaction_date",
-                                  $event.target.value
-                                )
                               }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "p",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: _vm.no_reference_no,
+                                    expression: "no_reference_no"
+                                  }
+                                ],
+                                staticClass: "empty-field-message"
+                              },
+                              [_vm._v("** Please enter reference number!")]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group mb-2" }, [
+                            _vm._m(5),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.transaction_date,
+                                  expression: "form.transaction_date"
+                                }
+                              ],
+                              staticClass: "form-control col-12",
+                              attrs: {
+                                readonly: _vm.cd_created,
+                                type: "date",
+                                id: "inputDate",
+                                placeholder: "Date"
+                              },
+                              domProps: { value: _vm.form.transaction_date },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "transaction_date",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group mb-2" }, [
+                            _vm._m(6),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.transaction_no,
+                                  expression: "form.transaction_no"
+                                }
+                              ],
+                              staticClass: "form-control col-12",
+                              attrs: {
+                                type: "text",
+                                readonly: "",
+                                id: "inputDCNo",
+                                placeholder: "CD Number"
+                              },
+                              domProps: { value: _vm.form.transaction_no },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "transaction_no",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group mb-2" }, [
+                            _vm._m(7),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: Number(
+                                    _vm.form.amount
+                                  ).toLocaleString(),
+                                  expression:
+                                    "Number(form.amount).toLocaleString()"
+                                }
+                              ],
+                              staticClass: "form-control col-12",
+                              attrs: {
+                                type: "text",
+                                readonly: "",
+                                id: "inputAmount",
+                                placeholder: "Amount"
+                              },
+                              domProps: {
+                                value: Number(_vm.form.amount).toLocaleString()
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    Number(_vm.form.amount),
+                                    "toLocaleString()",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("my-currency-input", {
+                            model: {
+                              value: _vm.price,
+                              callback: function($$v) {
+                                _vm.price = $$v
+                              },
+                              expression: "price"
                             }
                           })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(6),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.transaction_no,
-                                expression: "form.transaction_no"
-                              }
-                            ],
-                            staticClass: "form-control col-12",
-                            attrs: {
-                              type: "text",
-                              readonly: "",
-                              id: "inputDCNo",
-                              placeholder: "CD Number"
-                            },
-                            domProps: { value: _vm.form.transaction_no },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.form,
-                                  "transaction_no",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(7),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: Number(_vm.form.amount).toLocaleString(),
-                                expression:
-                                  "Number(form.amount).toLocaleString()"
-                              }
-                            ],
-                            staticClass: "form-control col-12",
-                            attrs: {
-                              type: "text",
-                              readonly: "",
-                              id: "inputAmount",
-                              placeholder: "Amount"
-                            },
-                            domProps: {
-                              value: Number(_vm.form.amount).toLocaleString()
-                            },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  Number(_vm.form.amount),
-                                  "toLocaleString()",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        ])
-                      ])
+                        ],
+                        1
+                      )
                     ])
                   ]
                 )

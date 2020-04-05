@@ -7,7 +7,7 @@
             <!-- general form elements -->
           <div class="box box-warning">
 
-            
+
             <!-- /.box-header -->
             <!-- form start -->
             <form role="form" @submit.prevent="createCD()">
@@ -141,6 +141,7 @@
                     
                     <input type="text"  v-model="Number(form.amount).toLocaleString()" readonly class="form-control col-12" id="inputAmount" placeholder="Amount">
                   </div>
+                  <my-currency-input v-model="price"></my-currency-input>
                 </div>
               </div>
               <!-- /.box-body -->
