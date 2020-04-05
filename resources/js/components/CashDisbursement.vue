@@ -963,6 +963,7 @@
                 .catch(()=>{
                   //
                 });
+                
               axios.get('api/chartaccount?headerordetail='+detail+'&transaction=CR')
                 .then((data)=>{
                   this.chart_of_accounts_detail = data.data;
@@ -1069,10 +1070,10 @@
               this.loadChartAccounts(headerOrDetail);
               $('#select-account').modal('show');
           },
+          searchPayeeModal(){
               this.searchPayee = this.form.payee_id;
               //this.searchPayee = '';
               this.loadPayees();
-          searchPayeeModal(){
               $('#select-payee').modal('show');
           },
 
