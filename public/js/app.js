@@ -3284,7 +3284,7 @@ __webpack_require__.r(__webpack_exports__);
     cancelDebitEntry: function cancelDebitEntry() {
       var _this12 = this;
 
-      this.$Progress.start();
+      //this.$Progress.start();
       this.form_item["delete"]('api/cd/entry/' + this.form_entry.id).then(function () {
         $('#entry-details').modal('hide');
         /*
@@ -3294,8 +3294,7 @@ __webpack_require__.r(__webpack_exports__);
             'success'
           );
         */
-
-        _this12.$Progress.finish();
+        //this.$Progress.finish();
 
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
@@ -3338,7 +3337,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteEntry: function deleteEntry(entry_id, entry_amount, entry_amount_ex_tax, entry_vat) {
       var _this14 = this;
 
-      this.form_entry["delete"]('cd/debit/delete/' + entry_id).then(function () {
+      this.form_item["delete"]('api/cd/entry/' + entry_id).then(function () {
         //$('#entry-items').modal('hide');
 
         /*

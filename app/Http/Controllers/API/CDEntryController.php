@@ -94,24 +94,21 @@ class CDEntryController extends Controller
      */
     public function destroy($id)
     {
-        
+        $transactionItems = TransactionItem::where('transaction_entry_id', $id)->delete();
         $transactionEntry = TransactionEntry::findOrFail($id);
-
-        // Send Request
         $transactionEntry->delete();
         
         return ['message' => 'Entry Deleted'];
     }
 
-    public function deleteDebit($id)
-    {
+    // public function deleteDebit($id)
+    // {
 
         
-        $transactionItems = TransactionItem::where('transaction_entry_id', $id)->delete();
-        $transactionEntry = TransactionEntry::findOrFail($id);
-        $transactionEntry->delete();
-        return ['message' => 'Debit Deleted'];
-    }
+    //     $transactionEntry = TransactionEntry::findOrFail($id);
+    //     $transactionEntry->delete();
+    //     return ['message' => 'Debit Deleted'];
+    // }
 
     public function list(){
 

@@ -33,7 +33,6 @@ Route::apiResources([
     'branch' => 'API\BranchController'
 ]);
 
-Route::delete('cd/debit/delete/{id}', 'API\CDEntryController@deleteDebit');
 
 Route::apiResources([
     'cd' => 'API\CDController'

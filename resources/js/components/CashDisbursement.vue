@@ -1213,7 +1213,7 @@
               $('#entry-items').modal('show');
           },
           cancelDebitEntry(){
-            this.$Progress.start();
+            //this.$Progress.start();
             this.form_item.delete('api/cd/entry/'+this.form_entry.id)
             .then(() => {
                 $('#entry-details').modal('hide');
@@ -1224,7 +1224,7 @@
                     'success'
                   );
                 */
-                  this.$Progress.finish();
+                  //this.$Progress.finish();
                   VueListen.$emit('RefreshEntryTable');
             })
             .catch(() => {
@@ -1265,7 +1265,7 @@
             });
           },
           deleteEntry(entry_id,entry_amount,entry_amount_ex_tax,entry_vat){
-            this.form_entry.delete('cd/debit/delete/'+entry_id)
+            this.form_item.delete('api/cd/entry/'+entry_id)
               .then(() => {
                   //$('#entry-items').modal('hide');
                   /*
