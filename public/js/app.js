@@ -64391,6 +64391,7 @@ var render = function() {
                             _vm._v(" "),
                             _c("currency-input", {
                               attrs: {
+                                readonly: _vm.readonly,
                                 id: "inputAmount",
                                 placeholder: "Amount"
                               },
@@ -84780,7 +84781,7 @@ Vue.component(vform__WEBPACK_IMPORTED_MODULE_1__["AlertError"].name, vform__WEBP
 Vue.component('pagination', __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js"));
 Vue.component('currency-input', {
   props: ["value", "readonly"],
-  template: "\n        <div>\n            <input type=\"text\" readonly class=\"form-control\" v-model=\"displayValue\" @blur=\"isInputActive = false\" @focus=\"isInputActive = true\"/>\n        </div>",
+  template: "\n        <div>\n            <input type=\"text\" {{readonly}} class=\"form-control\" v-model=\"displayValue\" @blur=\"isInputActive = false\" @focus=\"isInputActive = true\"/>\n        </div>",
   data: function data() {
     return {
       isInputActive: false
