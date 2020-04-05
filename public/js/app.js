@@ -3041,11 +3041,11 @@ __webpack_require__.r(__webpack_exports__);
     initChartAccounts: function initChartAccounts() {
       var _this3 = this;
 
-      axios.get('api/chartaccount?headerordetail=' + header + '&transaction=CR').then(function (data) {
+      axios.get('api/chartaccount?headerordetail=header&transaction=CR').then(function (data) {
         _this3.chart_of_accounts_header = data.data;
       })["catch"](function () {//
       });
-      axios.get('api/chartaccount?headerordetail=' + detail + '&transaction=CR').then(function (data) {
+      axios.get('api/chartaccount?headerordetail=detail&transaction=CR').then(function (data) {
         _this3.chart_of_accounts_detail = data.data;
       })["catch"](function () {//
       });
