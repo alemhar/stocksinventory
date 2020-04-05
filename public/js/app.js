@@ -3338,7 +3338,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteEntry: function deleteEntry(entry_id, entry_amount, entry_amount_ex_tax, entry_vat) {
       var _this14 = this;
 
-      this.form_entry["delete"]('cd/delete/entry/' + entry_id).then(function () {
+      this.form_entry["delete"]('cd/debit/delete/' + entry_id).then(function () {
         //$('#entry-items').modal('hide');
 
         /*
