@@ -38,7 +38,7 @@ Vue.component('currency-input', {
     props: ["value"],
     template: `
         <div>
-            <input type="text" v-model="displayValue" @blur="isInputActive = false" @focus="isInputActive = true"/>
+            <input type="text" class="form-control" v-model="displayValue" @blur="isInputActive = false" @focus="isInputActive = true"/>
         </div>`,
     data: function() {
         return {
