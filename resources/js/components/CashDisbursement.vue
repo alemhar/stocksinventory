@@ -405,7 +405,7 @@
                         <th>Vat</th>
                         <th>Option</th>
                       </tr>
-                      <tr v-for="item in items.data" :key="items.id">
+                      <tr v-for="item in items.data" :key="item.id">
                         <td>{{ item.item }}</td>
                         <td>{{ item.quantity }}</td> 
                         <td>{{ item.price }}</td> 
@@ -413,8 +413,8 @@
                         <td>{{ item.tax_excluded }}</td> 
                         <td>{{ item.vat }}</td> 
                         <td>
-                          <a href="#" @click="selectPayee(payee.id,payee.name,payee.address,payee.tin)">Delete
-                            <i class="fa fa-edit"></i>
+                          <a href="#" @click="deleteItem(items.id,item.sub_total,item.tax_excluded,item.vat)">Delete
+                            <i class="fa fa-trash"></i>
                           </a>
                         </td>
                       </tr>  
@@ -1316,7 +1316,7 @@
                 */
                   this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
                   this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
-                  this.form_entry.vat += this.form_item.vat;
+                  this.form_entry.vat += (this.form_item.vat * 1);
                   
                   this.$Progress.finish();
                   VueListen.$emit('RefreshItemTable');
@@ -1325,7 +1325,27 @@
                 this.$Progress.fail();
             });
           },
-
+          deleteItem(items_id,item_sub_total,item_tax_excluded,item_vat){
+              this.form_item.delete('api/cd/item/'+items_id)
+              .then(() => {
+                  //$('#entry-items').modal('hide');
+                  /*
+                  swal.fire(
+                      'Updated!',
+                      'Payee information has been updated.',
+                      'success'
+                    );
+                  */
+                    this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
+                    this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + item_tax_excluded.toFixed(2) * 1;
+                    this.form_entry.vat -= (item_vat * 1);
+                    
+                    VueListen.$emit('RefreshItemTable');
+              })
+              .catch(() => {
+                  this.$Progress.fail();
+              });
+          },
           branchChange(){
             this.form_entry.branch_id = this.selected_branch.id ;
             this.form_entry.branch_name = this.selected_branch.name;
