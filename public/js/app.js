@@ -64425,7 +64425,15 @@ var render = function() {
                             })
                           ]),
                           _vm._v(" "),
-                          _c("currency-input")
+                          _c("currency-input", {
+                            model: {
+                              value: _vm.form.amount,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "amount", $$v)
+                              },
+                              expression: "form.amount"
+                            }
+                          })
                         ],
                         1
                       )
