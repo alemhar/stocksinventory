@@ -64425,15 +64425,7 @@ var render = function() {
                             })
                           ]),
                           _vm._v(" "),
-                          _c("my-currency-input", {
-                            model: {
-                              value: _vm.price,
-                              callback: function($$v) {
-                                _vm.price = $$v
-                              },
-                              expression: "price"
-                            }
-                          })
+                          _c("my-currency-input")
                         ],
                         1
                       )
