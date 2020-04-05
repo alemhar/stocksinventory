@@ -3207,8 +3207,8 @@ __webpack_require__.r(__webpack_exports__);
 
         if (this.form_item.tax_type == 'VAT') {
           //this.form_item.amount = event.target.value;
-          this.form_item.vat = (this.form_item.sub_total * 0.12 + 0.001).toFixed(2) * 1;
-          this.form_item.tax_excluded = (this.form_item.sub_total - this.form_item.vat).toFixed(2) * 1;
+          this.form_item.tax_excluded = (this.form_item.sub_total / 1.12).toFixed(2) * 1;
+          this.form_item.vat = (this.form_item.tax_excluded * 0.12).toFixed(2) * 1;
         } else {
           //this.form_entry.amount = event.target.value;
           this.form_item.vat = 0;
