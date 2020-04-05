@@ -12,7 +12,6 @@
             <!-- form start -->
             <form role="form" @submit.prevent="createCD()">
               <div class="box-header with-border">
-                <blog-post></blog-post>
                 <h3 class="box-title">Cash Disbursement</h3>
                 <div class="box-tools">
                   <button type="submit" v-show="!cd_created" class="btn btn-success">Create <i class="fas fa-plus-circle fa-fw"></i></button>
@@ -1435,8 +1434,10 @@
 
         },
         components: {
-
+          
+          
         }
+    }
 </script>
 <style type="text/css">
 
