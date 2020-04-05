@@ -413,7 +413,7 @@
                         <td>{{ item.tax_excluded }}</td> 
                         <td>{{ item.vat }}</td> 
                         <td>
-                          <a href="#" @click="deleteItem(items.id,item.sub_total,item.tax_excluded,item.vat)">Delete
+                          <a href="#" @click="deleteItem(item.id,item.sub_total,item.tax_excluded,item.vat)">Delete
                             <i class="fa fa-trash"></i>
                           </a>
                         </td>
@@ -1325,8 +1325,8 @@
                 this.$Progress.fail();
             });
           },
-          deleteItem(items_id,item_sub_total,item_tax_excluded,item_vat){
-              this.form_item.delete('api/cd/item/'+items_id)
+          deleteItem(item_id,item_sub_total,item_tax_excluded,item_vat){
+              this.form_item.delete('api/cd/item/'+item_id)
               .then(() => {
                   //$('#entry-items').modal('hide');
                   /*

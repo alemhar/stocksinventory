@@ -3395,10 +3395,10 @@ __webpack_require__.r(__webpack_exports__);
         _this15.$Progress.fail();
       });
     },
-    deleteItem: function deleteItem(items_id, item_sub_total, item_tax_excluded, item_vat) {
+    deleteItem: function deleteItem(item_id, item_sub_total, item_tax_excluded, item_vat) {
       var _this16 = this;
 
-      this.form_item["delete"]('api/cd/item/' + items_id).then(function () {
+      this.form_item["delete"]('api/cd/item/' + item_id).then(function () {
         //$('#entry-items').modal('hide');
 
         /*
@@ -65100,7 +65100,7 @@ var render = function() {
                                       on: {
                                         click: function($event) {
                                           return _vm.deleteItem(
-                                            _vm.items.id,
+                                            item.id,
                                             item.sub_total,
                                             item.tax_excluded,
                                             item.vat
