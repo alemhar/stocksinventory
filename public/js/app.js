@@ -64425,7 +64425,7 @@ var render = function() {
                             })
                           ]),
                           _vm._v(" "),
-                          _c("my-currency-input")
+                          _c("currency-input")
                         ],
                         1
                       )

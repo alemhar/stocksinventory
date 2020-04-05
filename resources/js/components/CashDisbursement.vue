@@ -141,7 +141,7 @@
                     
                     <input type="text"  v-model="Number(form.amount).toLocaleString()" readonly class="form-control col-12" id="inputAmount" placeholder="Amount">
                   </div>
-                  <my-currency-input></my-currency-input>
+                  <currency-input></currency-input>
                 </div>
               </div>
               <!-- /.box-body -->
