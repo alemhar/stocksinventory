@@ -1435,10 +1435,14 @@
 
         },
         components: {
+          /*
+          'blog-post', {
+          props: ['title'],
+          template: '<h3>{{ title }}</h3>'
           
-          
+          }
+          */
         }
-    }
 </script>
 <style type="text/css">
 
