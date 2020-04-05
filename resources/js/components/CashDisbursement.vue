@@ -1265,7 +1265,7 @@
             });
           },
           deleteEntry(entry_id,entry_amount,entry_amount_ex_tax,entry_vat){
-            this.form_item.delete('cd/debit/delete/'+entry_id)
+            this.form_entry.delete('cd/delete/entry/'+entry_id)
               .then(() => {
                   //$('#entry-items').modal('hide');
                   /*
