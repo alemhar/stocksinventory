@@ -33,6 +33,8 @@ Route::apiResources([
     'branch' => 'API\BranchController'
 ]);
 
+Route::delete('cd/debit/delete/{id}', 'API\CDEntryController@deleteDebit');
+
 Route::apiResources([
     'cd' => 'API\CDController'
 ]);
@@ -41,6 +43,7 @@ Route::apiResources([
 Route::apiResources([
     'cd/entry' => 'API\CDEntryController'
 ]);
+
 
 Route::apiResources([
     'cd/item' => 'API\CDItemController'
@@ -57,4 +60,4 @@ Route::delete('cd/cancel/{transaction_no}', 'API\CDController@cancelTransaction'
 Route::post('cd/confirm/{transaction_no}', 'API\CDController@confirmTransaction');
 Route::get('cd/items/list', 'API\CDItemController@list');
 Route::get('cd/entries/list', 'API\CDEntryController@list');
-Route::get('cd/debit/delete/{id}', 'API\CDEntryController@deleteDebit');
+
