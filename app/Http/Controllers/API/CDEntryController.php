@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\TransactionEntry;
+use App\TransactionItem;
 
 class CDEntryController extends Controller
 {
@@ -100,6 +101,16 @@ class CDEntryController extends Controller
         $transactionEntry->delete();
         
         return ['message' => 'Entry Deleted'];
+    }
+
+    public function deleteDebit($id)
+    {
+
+        
+        $transactionItems = TransactionItem::where('transaction_entry_id', $id)->delete();
+        $transactionEntry = TransactionEntry::findOrFail($id);
+        $transactionEntry->delete();
+        return ['message' => 'Debit Deleted'];
     }
 
     public function list(){

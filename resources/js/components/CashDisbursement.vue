@@ -190,6 +190,8 @@
                         <th>Amount</th>
                         <th>Tax Excluded</th>
                         <th>Tax</th>
+                        <th>Option</th>
+                        
                       </tr>
                       <tr v-for="entry in entries.data" :key="entry.id" @click="selectDebitRow(entry.id)" :class="{ 'table-warning' : active_debit_row == entry.id }" >
                         <td>{{ entry.account_code }}</td>
@@ -198,6 +200,11 @@
                         <td>{{ entry.amount }}</td>
                         <td>{{ entry.amount_ex_tax }}</td>
                         <td>{{ entry.vat }}</td>
+                        <td>
+                          <a href="#" @click="deleteEntry(entry.id,entry.amount,entry.amount_ex_tax,entry.vat)">
+                            <i class="fa fa-trash"></i>
+                          </a>
+                        </td>
                       </tr>
                       
                   </tbody>
@@ -413,7 +420,7 @@
                         <td>{{ item.tax_excluded }}</td> 
                         <td>{{ item.vat }}</td> 
                         <td>
-                          <a href="#" @click="deleteItem(item.id,item.sub_total,item.tax_excluded,item.vat)">Delete
+                          <a href="#" @click="deleteItem(item.id,item.sub_total,item.tax_excluded,item.vat)">
                             <i class="fa fa-trash"></i>
                           </a>
                         </td>
@@ -1256,6 +1263,29 @@
             .catch(() => {
                 this.$Progress.fail();
             });
+          },
+          deleteEntry(entry_id,entry_amount,entry_amount_ex_tax,entry_vat){
+            this.form_item.delete('cd/debit/delete/'+entry_id)
+              .then(() => {
+                  //$('#entry-items').modal('hide');
+                  /*
+                  swal.fire(
+                      'Updated!',
+                      'Payee information has been updated.',
+                      'success'
+                    );
+                  */
+                    this.form.amount = parseFloat(this.form.amount - entry_amount).toFixed(2) * 1;
+                    this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
+                    this.form.vat = (this.form.vat - entry_vat).toFixed(2) * 1;
+                    
+                    VueListen.$emit('RefreshItemTable');
+                    VueListen.$emit('RefreshEntryTable');
+
+              })
+              .catch(() => {
+                  this.$Progress.fail();
+              });
           },
           cancelItem(){
             //this.$Progress.start();
