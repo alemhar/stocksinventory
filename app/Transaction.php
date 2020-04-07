@@ -9,8 +9,9 @@ class Transaction extends Model
 {	
 	public function getTable()
 	{
-		if(isset(Auth::user()->company_id)){
-			$company_id = Auth::user()->company_id;
+		
+		if(isset($user->company_id)){
+			$company_id = $user->company_id;
 		} else {
 			$company_id = '99';
 		}
