@@ -2997,7 +2997,7 @@ __webpack_require__.r(__webpack_exports__);
     loadBranches: function loadBranches() {
       var _this = this;
 
-      if (this.$gate.isAdminOrAuthor()) {
+      if (this.$gate.isAdminOrUser()) {
         axios.get("api/branch").then(function (_ref) {
           var data = _ref.data;
           return _this.branches = data;
@@ -3007,7 +3007,7 @@ __webpack_require__.r(__webpack_exports__);
     loadPayees: function loadPayees() {
       var _this2 = this;
 
-      if (this.$gate.isAdminOrAuthor()) {
+      if (this.$gate.isAdminOrUser()) {
         axios.get("api/payee").then(function (_ref2) {
           var data = _ref2.data;
           return _this2.payees = data;
@@ -84810,6 +84810,13 @@ function () {
     key: "isAuthorOrUser",
     value: function isAuthorOrUser() {
       if (this.user.type === 'user' || this.user.type === 'author') {
+        return true;
+      }
+    }
+  }, {
+    key: "isAdminOrUser",
+    value: function isAdminOrUser() {
+      if (this.user.type === 'admin' || this.user.type === 'user') {
         return true;
       }
     }

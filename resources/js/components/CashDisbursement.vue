@@ -919,14 +919,14 @@
           // },
           loadBranches(){
 
-            if(this.$gate.isAdminOrAuthor()){
+            if(this.$gate.isAdminOrUser()){
                 axios.get("api/branch").then(({data}) => (this.branches = data ));
                 //axios.get("api/user").then(({ data }) => (this.users = data.data));
             } 
              
           },
           loadPayees(){
-            if(this.$gate.isAdminOrAuthor()){
+            if(this.$gate.isAdminOrUser()){
                 axios.get("api/payee").then(({data}) => (this.payees = data ));
                 //axios.get("api/user").then(({ data }) => (this.users = data.data));
             } 
