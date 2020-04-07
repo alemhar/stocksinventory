@@ -55,7 +55,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div -->
         <div class="info" style="/*margin: auto;*/">
           <a href="#" class="d-block">Hi {{ isset(Auth::user()->name) ? ucwords(Auth::user()->name) : '' }}!</a>
-          <p>{{ isset(Auth::user()->name) ? Auth::user()->company_id : '' }}</p>
+          <!-- p>{{ isset(Auth::user()->name) ? Auth::user()->company_id : '' }}</p -->
         </div>
       </div>
 
@@ -74,7 +74,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </router-link>
           </li>
           
-          @can('isAdmin')
+          <!-- @can('isAdmin') -->
           <!--  menu-open-->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -91,12 +91,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p>Cash Disbursements</p>
                 </router-link>
               </li>
-              <li class="nav-item">
+              <!-- li class="nav-item">
                 <router-link to="/cash" class="nav-link">
                   <i class="nav-icon fas fa-plus-circle"></i>
                   <p>Cash Receipts</p>
                 </router-link>
-              </li>
+              </li -->
             </ul>
           </li>
           
@@ -108,7 +108,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </router-link>
           </li>
-          @endcan
+          <!-- @endcan -->
           <!--li class="nav-item">
             <router-link to="/account" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
