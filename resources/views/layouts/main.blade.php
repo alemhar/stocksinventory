@@ -41,7 +41,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- i class="fas fa-cubes" style="font-size: 1.5rem;"></i -->     
       <!-- img-circle  -->     
     <a href="index3.html" class="brand-link" style="/*text-align: center;*/">
-      <img src="img/si_logo2_200x200.png" alt="Stocks Inventory Logo" class="brand-image elevation-3 img-circle"
+      <img src="img/aia_logo_200x200.png" alt="AIA Books Logo" class="brand-image elevation-3 img-circle"
            style="background-color: white;padding: 2px;/*opacity: .8*/"> 
       <span class="brand-text font-weight-light"  style="font-size: 1.2rem;/*text-align: left !important;*/">AIA Books</span>
     </a>
