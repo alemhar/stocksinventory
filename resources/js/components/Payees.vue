@@ -130,9 +130,10 @@
         },
         methods: {
           getResults(page = 1) {
+            //axios.get("api/payee").then(({ data }) => (this.payee = data));
             axios.get('api/payee?page=' + page)
               .then(response => {
-                this.users = response.data;
+                this.payee = response.data;
               });
           },
           editPayee(payee){

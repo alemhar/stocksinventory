@@ -4064,8 +4064,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      //axios.get("api/payee").then(({ data }) => (this.payee = data));
       axios.get('api/payee?page=' + page).then(function (response) {
-        _this.users = response.data;
+        _this.payee = response.data;
       });
     },
     editPayee: function editPayee(payee) {
