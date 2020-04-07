@@ -14,7 +14,7 @@ class Branch extends Model
 		if(isset(Auth::user()->company_id)){
 			$company_id = Auth::user()->company_id;
 		} else {
-			$company_id = '1';
+			$company_id = '99';
 		}
 	    return 'branch_'.$company_id;
 	}

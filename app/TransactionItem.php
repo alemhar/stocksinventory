@@ -11,7 +11,7 @@ class TransactionItem extends Model
 		if(isset(Auth::user()->company_id)){
 			$company_id = Auth::user()->company_id;
 		} else {
-			$company_id = '1';
+			$company_id = '99';
 		}
 	    return 'transaction_entry_items_'.$company_id;
 	}
