@@ -1,7 +1,7 @@
 <template>
 
     <div class="container">
-        <div class="row mt-1" v-if="$gate.isAdminOrAuthor()">
+        <div class="row mt-1" v-if="$gate.isAdminOrUser()">
         <div class="col-md-12">
           <div class="box mt-4">
             <!-- general form elements -->
@@ -322,7 +322,7 @@
         </div>
         </div>
 
-        <div class="row mt-1" v-if="!$gate.isAdminOrAuthor()">
+        <div class="row mt-1" v-if="!$gate.isAdminOrUser()">
           <not-found></not-found>
         </div>  
 
