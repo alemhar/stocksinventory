@@ -28,7 +28,7 @@ class PayeeController extends Controller
     {
         
         if (\Gate::allows('isAdmin') || \Gate::allows('isUser')) {
-            return Payee::latest()->paginate(5);
+            return Payee::latest()->paginate(10);
         }  
     }
 
