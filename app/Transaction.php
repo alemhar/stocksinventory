@@ -4,20 +4,19 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
-use Auth;
 
 class Transaction extends Model
 {	
-
-	$user = Auth::user();
 	public function getTable()
 	{
 
-		if(isset($user->company_id)){
-			$company_id = $user->company_id;
+		if(isset(Auth::user()->company_id)){
+			//$company_id = Auth::user()->company_id;
 		} else {
-			$company_id = '99';
+			//$company_id = '99';
 		}
+
+		$company_id = Auth::user()->company_id;
 	    return 'transactions_'.$company_id;
 	}
 
