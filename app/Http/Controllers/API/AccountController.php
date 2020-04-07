@@ -26,7 +26,7 @@ class AccountController extends Controller
      */
     public function index()
     {
-        if (\Gate::allows('isAdmin') || \Gate::allows('isAuthor')) {
+        if (\Gate::allows('isAdmin') || \Gate::allows('isUser')) {
             
             if ($headerordetail = \Request::get('headerordetail')) {
                 $transaction = \Request::get('transaction');

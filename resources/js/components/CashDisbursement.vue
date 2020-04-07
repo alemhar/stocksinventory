@@ -680,8 +680,8 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              <button v-show="editmode" type="submit" class="btn btn-success">Update</button>
-              <button v-show="!editmode" type="submit" class="btn btn-primary">Create</button>
+              <!--button v-show="editmode" type="submit" class="btn btn-success">Update</button -->
+              <!--button v-show="!editmode" type="submit" class="btn btn-primary">Create</button -->
             </div>
 
             </form>
