@@ -55,7 +55,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div -->
         <div class="info" style="/*margin: auto;*/">
           <a href="#" class="d-block">Hi {{ isset(Auth::user()->name) ? ucwords(Auth::user()->name) : '' }}!</a>
-          <!-- p>{{ isset(Auth::user()->name) ? Auth::user()->company_id : '' }}</p -->
+          <p>{{ isset(Auth::user()->name) ? Auth::user()->company_id : '' }}</p>
         </div>
       </div>
 
