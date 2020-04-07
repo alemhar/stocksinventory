@@ -4332,6 +4332,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -4341,7 +4343,7 @@ __webpack_require__.r(__webpack_exports__);
       user_id: '',
       //isModalVisible: false,
       editmode: false,
-      cd_created: false,
+      transaction_created: false,
       no_payee: false,
       no_reference_no: false,
       no_account_code: false,
@@ -4556,9 +4558,9 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (this.no_account_code || this.no_reference_no || this.no_payee) {
-        this.cd_created = false;
+        this.transaction_created = false;
       } else {
-        this.cd_created = true;
+        this.transaction_created = true;
       }
 
       this.form.transaction_no = this.createSerialNumber();
@@ -4579,7 +4581,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$Progress.start();
       this.form_entry.put('api/cd/' + this.form.id).then(function () {
         swal.fire('Saved!', 'Transaction Completed.', 'success');
-        _this5.cd_created = false;
+        _this5.transaction_created = false;
 
         _this5.form.post('api/cd/confirm/' + _this5.form.transaction_no);
 
@@ -4593,7 +4595,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.go(); // 
     },
     cancelCD: function cancelCD() {
-      this.cd_created = false;
+      this.transaction_created = false;
       this.form["delete"]('api/cd/cancel/' + this.form.transaction_no);
     },
     //searchAccount() {
@@ -67815,8 +67817,8 @@ var render = function() {
                               {
                                 name: "show",
                                 rawName: "v-show",
-                                value: !_vm.cd_created,
-                                expression: "!cd_created"
+                                value: !_vm.transaction_created,
+                                expression: "!transaction_created"
                               }
                             ],
                             staticClass: "btn btn-success",
@@ -67835,8 +67837,8 @@ var render = function() {
                               {
                                 name: "show",
                                 rawName: "v-show",
-                                value: _vm.cd_created,
-                                expression: "cd_created"
+                                value: _vm.transaction_created,
+                                expression: "transaction_created"
                               }
                             ],
                             staticClass: "btn btn-danger",
@@ -67858,8 +67860,8 @@ var render = function() {
                               {
                                 name: "show",
                                 rawName: "v-show",
-                                value: _vm.cd_created,
-                                expression: "cd_created"
+                                value: _vm.transaction_created,
+                                expression: "transaction_created"
                               }
                             ],
                             staticClass: "btn btn-success",
@@ -67890,7 +67892,7 @@ var render = function() {
                             ],
                             staticClass: "form-control col-12",
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "text",
                               id: "inputPayeeName",
                               placeholder: "Payees Name"
@@ -67914,8 +67916,8 @@ var render = function() {
                                   {
                                     name: "show",
                                     rawName: "v-show",
-                                    value: !_vm.cd_created,
-                                    expression: "!cd_created"
+                                    value: !_vm.transaction_created,
+                                    expression: "!transaction_created"
                                   }
                                 ],
                                 staticClass: "btn btn-success",
@@ -67957,7 +67959,7 @@ var render = function() {
                             ],
                             staticClass: "form-control col-12",
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "text",
                               id: "inputPayeesAddress",
                               placeholder: "Address"
@@ -67988,7 +67990,7 @@ var render = function() {
                             ],
                             staticClass: "form-control",
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "text",
                               id: "inputPayeesTIN",
                               placeholder: "TIN"
@@ -68019,7 +68021,7 @@ var render = function() {
                             ],
                             staticClass: "form-control col-2",
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "text",
                               id: "inputAccountCode",
                               placeholder: "Code"
@@ -68078,8 +68080,8 @@ var render = function() {
                                   {
                                     name: "show",
                                     rawName: "v-show",
-                                    value: !_vm.cd_created,
-                                    expression: "!cd_created"
+                                    value: !_vm.transaction_created,
+                                    expression: "!transaction_created"
                                   }
                                 ],
                                 staticClass: "btn btn-success",
@@ -68129,7 +68131,7 @@ var render = function() {
                             ],
                             staticClass: "form-control col-12",
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "text",
                               id: "inputReferenceNo",
                               placeholder: "Reference No"
@@ -68180,7 +68182,7 @@ var render = function() {
                             ],
                             staticClass: "form-control col-12",
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "date",
                               id: "inputDate",
                               placeholder: "Date"
@@ -68274,8 +68276,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.cd_created,
-                      expression: "cd_created"
+                      value: _vm.transaction_created,
+                      expression: "transaction_created"
                     }
                   ],
                   staticClass: "box box-warning mt-2"
@@ -68400,8 +68402,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.cd_created,
-                      expression: "cd_created"
+                      value: _vm.transaction_created,
+                      expression: "transaction_created"
                     }
                   ],
                   staticClass: "box box-warning mt-2"
@@ -68467,8 +68469,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.cd_created,
-                      expression: "cd_created"
+                      value: _vm.transaction_created,
+                      expression: "transaction_created"
                     }
                   ],
                   staticClass: "box box-warning mt-2"
@@ -68486,45 +68488,29 @@ var render = function() {
                         [_vm._v("Amount Exclusive of Tax")]
                       ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-3" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: Number(
-                                _vm.form.amount_ex_tax
-                              ).toLocaleString(),
-                              expression:
-                                "Number(form.amount_ex_tax).toLocaleString()"
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-3" },
+                        [
+                          _c("currency-input", {
+                            attrs: {
+                              isReadonly: true,
+                              fc: true,
+                              col: 12,
+                              id: "inputAmountExclusiveTax",
+                              placeholder: "Amount Exclusive of Tax"
+                            },
+                            model: {
+                              value: _vm.form.amount_ex_tax,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "amount_ex_tax", $$v)
+                              },
+                              expression: "form.amount_ex_tax"
                             }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            readonly: "",
-                            type: "text",
-                            id: "inputAmountExclusiveTax",
-                            placeholder: "Amount Exclusive of Tax"
-                          },
-                          domProps: {
-                            value: Number(
-                              _vm.form.amount_ex_tax
-                            ).toLocaleString()
-                          },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                Number(_vm.form.amount_ex_tax),
-                                "toLocaleString()",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ])
+                          })
+                        ],
+                        1
+                      )
                     ])
                   ]),
                   _vm._v(" "),
@@ -68540,40 +68526,29 @@ var render = function() {
                         [_vm._v("VAT")]
                       ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-3" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: Number(_vm.form.vat).toLocaleString(),
-                              expression: "Number(form.vat).toLocaleString()"
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-3" },
+                        [
+                          _c("currency-input", {
+                            attrs: {
+                              isReadonly: true,
+                              fc: true,
+                              col: 12,
+                              id: "inputVAT",
+                              placeholder: "VAT"
+                            },
+                            model: {
+                              value: _vm.form.vat,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "vat", $$v)
+                              },
+                              expression: "form.vat"
                             }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            readonly: "",
-                            type: "text",
-                            id: "inputVAT",
-                            placeholder: "VAT"
-                          },
-                          domProps: {
-                            value: Number(_vm.form.vat).toLocaleString()
-                          },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                Number(_vm.form.vat),
-                                "toLocaleString()",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ])
+                          })
+                        ],
+                        1
+                      )
                     ])
                   ]),
                   _vm._v(" "),
@@ -68589,40 +68564,29 @@ var render = function() {
                         [_vm._v("Total Amount")]
                       ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-3" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: Number(_vm.form.amount).toLocaleString(),
-                              expression: "Number(form.amount).toLocaleString()"
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-3" },
+                        [
+                          _c("currency-input", {
+                            attrs: {
+                              isReadonly: true,
+                              fc: true,
+                              col: 12,
+                              id: "inputTotalAmount",
+                              placeholder: "Total Amount"
+                            },
+                            model: {
+                              value: _vm.form.amount,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "amount", $$v)
+                              },
+                              expression: "form.amount"
                             }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            readonly: "",
-                            type: "text",
-                            id: "inputTotalAmount",
-                            placeholder: "Total Amount"
-                          },
-                          domProps: {
-                            value: Number(_vm.form.amount).toLocaleString()
-                          },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                Number(_vm.form.amount),
-                                "toLocaleString()",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ])
+                          })
+                        ],
+                        1
+                      )
                     ])
                   ])
                 ]
@@ -68643,8 +68607,8 @@ var render = function() {
           {
             name: "show",
             rawName: "v-show",
-            value: _vm.cd_created,
-            expression: "cd_created"
+            value: _vm.transaction_created,
+            expression: "transaction_created"
           }
         ],
         staticClass: "modal fade",
@@ -69170,8 +69134,8 @@ var render = function() {
           {
             name: "show",
             rawName: "v-show",
-            value: _vm.cd_created,
-            expression: "cd_created"
+            value: _vm.transaction_created,
+            expression: "transaction_created"
           }
         ],
         staticClass: "modal fade",

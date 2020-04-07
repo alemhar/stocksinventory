@@ -14,10 +14,10 @@
               <div class="box-header with-border">
                 <h3 class="box-title">Cash Receipts</h3>
                 <div class="box-tools">
-                  <button type="submit" v-show="!cd_created" class="btn btn-success">Create <i class="fas fa-plus-circle fa-fw"></i></button>
+                  <button type="submit" v-show="!transaction_created" class="btn btn-success">Create <i class="fas fa-plus-circle fa-fw"></i></button>
                   <!-- @click="createCD()"  -->
-                  <button  type="button" class="btn btn-danger"  v-show="cd_created" @click="cancelCD">Cancel <i class="fas fa-window-close fa-fw"></i></button>
-                  <button type="button"  class="btn btn-success"  v-show="cd_created" @click="saveCD">Save <i class="fas fa-save fa-fw"></i></button>
+                  <button  type="button" class="btn btn-danger"  v-show="transaction_created" @click="cancelCD">Cancel <i class="fas fa-window-close fa-fw"></i></button>
+                  <button type="button"  class="btn btn-success"  v-show="transaction_created" @click="saveCD">Save <i class="fas fa-save fa-fw"></i></button>
 
                 </div>
               </div>
@@ -45,15 +45,15 @@
                       placeholder="Type to search"
                       v-on:input="eventChild"
                       v-model="current_payee"
-                      v-show="!cd_created"
+                      v-show="!transaction_created"
                       / -->
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Payee</span>
                     </div>  
-                    <input v-model="current_payee_name" v-bind:readonly="cd_created" type="text" class="form-control col-12" id="inputPayeeName" placeholder="Payees Name">
+                    <input v-model="current_payee_name" v-bind:readonly="transaction_created" type="text" class="form-control col-12" id="inputPayeeName" placeholder="Payees Name">
                       
                     <span class="input-group-btn col-1">
-                        <button type="button" v-show="!cd_created" class="btn btn-success" @click="searchPayeeModal"><i class="fas fa-search fa-fw"></i></button>
+                        <button type="button" v-show="!transaction_created" class="btn btn-success" @click="searchPayeeModal"><i class="fas fa-search fa-fw"></i></button>
                     </span>  
 
                     <p v-show="no_payee" class="empty-field-message">** Please select payee!</p>  
@@ -66,13 +66,13 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="inputGroup-sizing-default">Address</span>
                     </div>
-                    <input v-bind:readonly="cd_created" type="text" class="form-control col-12" id="inputPayeesAddress" placeholder="Address" v-model="current_payee_address">
+                    <input v-bind:readonly="transaction_created" type="text" class="form-control col-12" id="inputPayeesAddress" placeholder="Address" v-model="current_payee_address">
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="inputGroup-sizing-default">TIN</span>
                     </div>
-                      <input v-bind:readonly="cd_created" type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN"  v-model="current_payee_tin">
+                      <input v-bind:readonly="transaction_created" type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN"  v-model="current_payee_tin">
                     
                     <!-- div class="col-6">
                       <select v-model="form.tax_type" class="form-control col-12">
@@ -89,19 +89,13 @@
                       <span class="input-group-text inputGroup-sizing-default">Account</span>
                     </div>
                     
-                    <!-- select v-bind:readonly="cd_created" v-model="form.account_code" class="form-control col-12">
-                      <option>SALARIES AND WAGES</option>
-                      <option>TRAININGS AND SEMINARS</option>
-                      <option>TRAVEL AND TRANSPORTATION</option>
-                      <option>MEALS AMD SNACKS</option>
-                      <option>REPRESENTATION EXPENSES</option>
-                    </select -->
-                    <input v-bind:readonly="cd_created" type="text" class="form-control col-2" id="inputAccountCode" placeholder="Code"  v-model="form.account_code">
+                    
+                    <input v-bind:readonly="transaction_created" type="text" class="form-control col-2" id="inputAccountCode" placeholder="Code"  v-model="form.account_code">
 
                     <input readonly="true" type="text" class="form-control col-9" id="inputAccountName" placeholder="Account Name" v-model="form.account_name">
 
                     <span class="input-group-btn col-1">
-                        <button type="button" v-show="!cd_created" class="btn btn-success" @click="searchAccountModal('header')"><i class="fas fa-search fa-fw"></i></button>
+                        <button type="button" v-show="!transaction_created" class="btn btn-success" @click="searchAccountModal('header')"><i class="fas fa-search fa-fw"></i></button>
 
                     </span>
                     
@@ -119,14 +113,14 @@
                       <span class="input-group-text inputGroup-sizing-default">Ref. #</span>
                     </div>
 
-                    <input v-bind:readonly="cd_created" type="text"  v-model="form.reference_no" class="form-control col-12" id="inputReferenceNo" placeholder="Reference No">
+                    <input v-bind:readonly="transaction_created" type="text"  v-model="form.reference_no" class="form-control col-12" id="inputReferenceNo" placeholder="Reference No">
                     <p v-show="no_reference_no" class="empty-field-message">** Please enter reference number!</p>
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Date</span>
                     </div>
-                    <input v-bind:readonly="cd_created" type="date" v-model="form.transaction_date" class="form-control col-12" id="inputDate" placeholder="Date">
+                    <input v-bind:readonly="transaction_created" type="date" v-model="form.transaction_date" class="form-control col-12" id="inputDate" placeholder="Date">
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
@@ -139,7 +133,7 @@
                       <span class="input-group-text inputGroup-sizing-default">Amount</span>
                     </div>
                     
-                    <!--input type="text"  v-model="Number(form.amount).toLocaleString()" readonly class="form-control col-12" id="inputAmount" placeholder="Amount" -->
+                    
                     <currency-input v-model="form.amount" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputAmount" placeholder="Amount"></currency-input>
                   </div>
 
@@ -168,7 +162,7 @@
       -->
 
 
-          <div  v-show="cd_created" class="box box-warning mt-2">
+          <div  v-show="transaction_created" class="box box-warning mt-2">
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
@@ -238,7 +232,7 @@
       MAIN FORM ITEMS TABLE
       -->
 
-          <div v-show="cd_created" class="box box-warning mt-2">
+          <div v-show="transaction_created" class="box box-warning mt-2">
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
@@ -286,13 +280,16 @@
           </div>  
           <!-- /.box -->
 
-            <div v-show="cd_created" class="box box-warning mt-2">
+            <div v-show="transaction_created" class="box box-warning mt-2">
               
               <div class="form-group col-12 float-right">
                 <div class="row mt-2">
                 <label for="inputAmountExclusiveTax" class="col-sm-9 col-form-label" style="text-align: right;">Amount Exclusive of Tax</label>
                 <div class="col-sm-3">
-                  <input readonly v-model="Number(form.amount_ex_tax).toLocaleString()" type="text" class="form-control" id="inputAmountExclusiveTax" placeholder="Amount Exclusive of Tax">
+
+                  <currency-input v-model="form.amount_ex_tax" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputAmountExclusiveTax" placeholder="Amount Exclusive of Tax"></currency-input>
+
+                  
                 </div>
                 </div>
               </div>
@@ -301,7 +298,10 @@
                 
                 <label for="inputVAT" class="col-sm-9 col-form-label" style="text-align: right;">VAT</label>
                 <div class="col-sm-3">
-                  <input readonly v-model="Number(form.vat).toLocaleString()" type="text" class="form-control" id="inputVAT" placeholder="VAT">
+
+                  <currency-input v-model="form.vat" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputVAT" placeholder="VAT"></currency-input>
+
+                 
                 </div>
               </div>
               </div>
@@ -310,7 +310,9 @@
                 
                 <label for="inputTotalAmount" class="col-sm-9 col-form-label" style="text-align: right;">Total Amount</label>
                 <div class="col-sm-3">
-                  <input readonly v-model="Number(form.amount).toLocaleString()" type="text" class="form-control" id="inputTotalAmount" placeholder="Total Amount">
+                  <currency-input v-model="form.amount" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputTotalAmount" placeholder="Total Amount"></currency-input>
+
+                  
                 </div>
               </div>
               </div>
@@ -342,7 +344,7 @@
       -->
 
 
-      <div class="modal fade" v-show="cd_created" id="entry-details" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+      <div class="modal fade" v-show="transaction_created" id="entry-details" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content" style="width: 800px;">
             <div class="modal-header">
@@ -497,7 +499,7 @@
       -->
 
 
-      <div class="modal fade"  v-show="cd_created"  id="entry-items" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+      <div class="modal fade"  v-show="transaction_created"  id="entry-items" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -777,7 +779,7 @@
               user_id: '',
               //isModalVisible: false,
               editmode: false,
-              cd_created: false,
+              transaction_created: false,
               no_payee: false,
               no_reference_no: false,
               no_account_code: false,
@@ -1004,9 +1006,9 @@
             }
 
             if (this.no_account_code || this.no_reference_no || this.no_payee){
-              this.cd_created = false;
+              this.transaction_created = false;
             } else {
-              this.cd_created = true;
+              this.transaction_created = true;
             }
 
 
@@ -1034,7 +1036,7 @@
                     'Transaction Completed.',
                     'success'
                   );
-                  this.cd_created = false;
+                  this.transaction_created = false;
                   this.form.post('api/cd/confirm/'+this.form.transaction_no);
                   this.$Progress.finish();
                                     
@@ -1050,7 +1052,7 @@
 
           },
           cancelCD(){
-            this.cd_created = false;
+            this.transaction_created = false;
             this.form.delete('api/cd/cancel/'+this.form.transaction_no);
           },
           //searchAccount() {
