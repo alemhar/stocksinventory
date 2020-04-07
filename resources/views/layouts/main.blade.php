@@ -74,7 +74,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </router-link>
           </li>
           
-          <!-- @can('isAdmin') -->
+          @can('isAdminOrUser')
           <!--  menu-open-->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -110,7 +110,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </router-link>
           </li>
-          <!-- @endcan -->
+          @endcan
           @can('isAdmin')
           <li class="nav-item">
             <router-link to="/account" class="nav-link">
