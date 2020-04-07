@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="row mt-5" v-if="$gate.isAdminOrAuthor()">
+        <div class="row mt-5" v-if="$gate.isAdminOrUser()">
         <div class="col-md-12">
           <div class="box">
             <div class="box-header">
@@ -48,7 +48,7 @@
         </div>
         </div>
 
-        <div class="row mt-5" v-if="!$gate.isAdminOrAuthor()">
+        <div class="row mt-5" v-if="!$gate.isAdminOrUser()">
           <not-found></not-found>
         </div>  
       <!-- Modal -->
@@ -182,7 +182,7 @@
           },
           loadPayees(){
 
-            if(this.$gate.isAdminOrAuthor()){
+            if(this.$gate.isAdminOrUser()){
                 axios.get("api/payee").then(({ data }) => (this.payee = data));
                 //axios.get("api/user").then(({ data }) => (this.users = data.data));
             } 

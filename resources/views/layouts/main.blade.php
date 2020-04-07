@@ -74,7 +74,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </router-link>
           </li>
           
-          @can('isAdminOrUser')
+          
           <!--  menu-open-->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -85,12 +85,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <ul class="nav nav-treeview">
+              @can('isAdminOrUser')
               <li class="nav-item">
                 <router-link to="/cd" class="nav-link">
                   <i class="nav-icon fas fa-minus-circle"></i>
                   <p>Cash Disbursements</p>
                 </router-link>
               </li>
+              @endcan
               @can('isAdmin')
               <li class="nav-item">
                 <router-link to="/cash" class="nav-link">
@@ -101,7 +103,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               @endcan
             </ul>
           </li>
-          
+          @can('isAdminOrUser')
           <li class="nav-item">
             <router-link to="/payees" class="nav-link">
               <i class="nav-icon fas fa-users"></i>

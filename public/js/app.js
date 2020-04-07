@@ -4105,7 +4105,7 @@ __webpack_require__.r(__webpack_exports__);
     loadPayees: function loadPayees() {
       var _this3 = this;
 
-      if (this.$gate.isAdminOrAuthor()) {
+      if (this.$gate.isAdminOrUser()) {
         axios.get("api/payee").then(function (_ref) {
           var data = _ref.data;
           return _this3.payee = data;
@@ -67466,7 +67466,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _vm.$gate.isAdminOrAuthor()
+    _vm.$gate.isAdminOrUser()
       ? _c("div", { staticClass: "row mt-5" }, [
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "box" }, [
@@ -67579,7 +67579,7 @@ var render = function() {
         ])
       : _vm._e(),
     _vm._v(" "),
-    !_vm.$gate.isAdminOrAuthor()
+    !_vm.$gate.isAdminOrUser()
       ? _c("div", { staticClass: "row mt-5" }, [_c("not-found")], 1)
       : _vm._e(),
     _vm._v(" "),
