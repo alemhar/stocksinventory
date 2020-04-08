@@ -68902,7 +68902,7 @@ var render = function() {
                             "button",
                             {
                               staticClass: "btn btn-success",
-                              on: { click: _vm.newEntry }
+                              on: { click: function($event) {} }
                             },
                             [
                               _vm._v("Add Items "),
@@ -69469,7 +69469,7 @@ var render = function() {
                                   ? $$selectedVal
                                   : $$selectedVal[0]
                               },
-                              _vm.branchChange
+                              function($event) {}
                             ]
                           }
                         },
@@ -69520,7 +69520,7 @@ var render = function() {
                         "button",
                         {
                           staticClass: "btn btn-success",
-                          on: { click: _vm.newItem }
+                          on: { click: function($event) {} }
                         },
                         [
                           _vm._v("Add Items "),
@@ -69750,7 +69750,7 @@ var render = function() {
                     {
                       staticClass: "btn btn-danger",
                       attrs: { type: "button" },
-                      on: { click: _vm.cancelDebitEntry }
+                      on: { click: function($event) {} }
                     },
                     [_vm._v("Cancel")]
                   ),
@@ -69760,7 +69760,7 @@ var render = function() {
                     {
                       staticClass: "btn btn-success",
                       attrs: { type: "button" },
-                      on: { click: _vm.saveDebitEntry }
+                      on: { click: function($event) {} }
                     },
                     [_vm._v("Save")]
                   )
@@ -69928,7 +69928,7 @@ var render = function() {
                       },
                       domProps: { value: _vm.form_item.price },
                       on: {
-                        change: _vm.computeTaxChange,
+                        change: function($event) {},
                         input: function($event) {
                           if ($event.target.composing) {
                             return
@@ -69990,7 +69990,7 @@ var render = function() {
                       },
                       domProps: { value: _vm.form_item.quantity },
                       on: {
-                        change: _vm.computeTaxChange,
+                        change: function($event) {},
                         input: function($event) {
                           if ($event.target.composing) {
                             return
@@ -70056,7 +70056,7 @@ var render = function() {
                       },
                       domProps: { value: _vm.form_item.sub_total },
                       on: {
-                        change: _vm.computeTaxChange,
+                        change: function($event) {},
                         input: function($event) {
                           if ($event.target.composing) {
                             return
@@ -70114,7 +70114,7 @@ var render = function() {
                                 : $$selectedVal[0]
                             )
                           },
-                          _vm.computeTaxChange
+                          function($event) {}
                         ]
                       }
                     },
@@ -70233,7 +70233,7 @@ var render = function() {
                   {
                     staticClass: "btn btn-danger",
                     attrs: { type: "button" },
-                    on: { click: _vm.cancelItem }
+                    on: { click: function($event) {} }
                   },
                   [_vm._v("Cancel")]
                 ),
@@ -70243,7 +70243,7 @@ var render = function() {
                   {
                     staticClass: "btn btn-success",
                     attrs: { type: "button" },
-                    on: { click: _vm.saveItem }
+                    on: { click: function($event) {} }
                   },
                   [_vm._v("Save")]
                 )

@@ -110,7 +110,7 @@
                 <div class="box-header">
                   <h3 class="box-title">Debits</h3>
                   <div class="box-tools">
-                    <button class="btn btn-success" @click="newEntry">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
+                    <button class="btn btn-success" @click="">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
                 </div>
 
@@ -320,7 +320,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Branch</span>
                 </div>
-                  <select v-model="selected_branch" class="form-control col-12" aria-describedby="inputGroup-sizing-default" @change="branchChange">
+                  <select v-model="selected_branch" class="form-control col-12" aria-describedby="inputGroup-sizing-default" @change="">
                       <option v-for="branch in branches.data" v-bind:value="{ id: branch.id, name: branch.name }">{{ branch.name }}</option>
                   </select>
                   <has-error :form="form_entry" field="branch_id"></has-error>
@@ -331,7 +331,7 @@
               <div class="box-header">
                   <h3 class="box-title">Items</h3>
                   <div class="box-tools">
-                    <button class="btn btn-success" @click="newItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
+                    <button class="btn btn-success" @click="">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
                 </div>
 
@@ -406,8 +406,8 @@
 
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" @click="cancelDebitEntry">Cancel</button>
-              <button type="button" class="btn btn-success" @click="saveDebitEntry">Save</button>
+              <button type="button" class="btn btn-danger" @click="">Cancel</button>
+              <button type="button" class="btn btn-success" @click="">Save</button>
             </div>
 
             <!-- /form -->
@@ -473,7 +473,7 @@
 
               
                   <input v-model="form_item.price" name="price" id="price"
-                  @change="computeTaxChange"
+                  @change=""
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('price') }" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
                   <has-error :form="form_item" field="price"></has-error>
               </div>
@@ -486,7 +486,7 @@
                 </div>
 
                 <input v-model="form_item.quantity" type="text" name="entry_description"
-                  @change="computeTaxChange"
+                  @change=""
                   class="form-control" :class="{ 'is-invalid': form_item.errors.has('quantity') }" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
                   
                 <has-error :form="form_item" field="entry_description"></has-error>
@@ -500,7 +500,7 @@
                 </div>
 
                 <input v-model="form_item.sub_total" type="text" name="entry_description"
-                  @change="computeTaxChange"
+                  @change=""
                   class="form-control" :class="{ 'is-invalid': form_item.errors.has('sub_total') }" aria-describedby="inputGroup-sizing-default" readonly>
                 <has-error :form="form_item" field="entry_description"></has-error>
               </div>
@@ -512,7 +512,7 @@
 
               
 
-                <select v-model="form_item.tax_type" @change="computeTaxChange" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
+                <select v-model="form_item.tax_type" @change="" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
                   <option value="VAT">VAT</option>
                   <option value="NON VAT">NON VAT</option>
                   <option value="VAT EXEMPT">VAT EXEMPT</option>
@@ -547,8 +547,8 @@
 
             </div>
             <div class="modal-footer">
-              <button type="button" @click="cancelItem" class="btn btn-danger">Cancel</button>
-              <button type="button" @click="saveItem" class="btn btn-success">Save</button>
+              <button type="button" @click="" class="btn btn-danger">Cancel</button>
+              <button type="button" @click="" class="btn btn-success">Save</button>
             </div>
 
             <!-- /form -->
