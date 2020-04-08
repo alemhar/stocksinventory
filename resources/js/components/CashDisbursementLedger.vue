@@ -63,7 +63,8 @@
                             <td>{{ cd.vat }}</td>
                             <td>
                               <a href="#" @click="viewCD(cd.id)">
-                                <i class="fa fa-trash"></i>
+                                <i class="fa fa-eye"></i>
+                                
                               </a>
                             </td>
                           </tr>
