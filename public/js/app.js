@@ -69195,6 +69195,63 @@ var render = function() {
       ? _c("div", { staticClass: "row mt-1" }, [
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "box mt-4" }, [
+              _c("div", { staticClass: "box-header" }, [
+                _c("h3", { staticClass: "box-title" }, [_vm._v("Debits")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "box-tools" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Search")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.searchText,
+                          expression: "searchText"
+                        }
+                      ],
+                      staticClass: "float-right col-6",
+                      attrs: { type: "text", name: "search" },
+                      domProps: { value: _vm.searchText },
+                      on: {
+                        change: _vm.SearchIt,
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.searchText = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "input-group-btn col-1" }, [
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: true,
+                            expression: "true"
+                          }
+                        ],
+                        staticClass: "btn btn-success",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.searchAccountModal("header")
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "fas fa-search fa-fw" })]
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
               _c(
                 "div",
                 {
@@ -69211,65 +69268,6 @@ var render = function() {
                 [
                   _c("div", { staticClass: "col-md-12" }, [
                     _c("div", { staticClass: "box" }, [
-                      _c("div", { staticClass: "box-header" }, [
-                        _c("h3", { staticClass: "box-title" }, [
-                          _vm._v("Debits")
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "box-tools" }, [
-                          _c("div", { staticClass: "form-group" }, [
-                            _c("label", [_vm._v("Search")]),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.searchText,
-                                  expression: "searchText"
-                                }
-                              ],
-                              staticClass: "float-right col-6",
-                              attrs: { type: "text", name: "search" },
-                              domProps: { value: _vm.searchText },
-                              on: {
-                                change: _vm.SearchIt,
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.searchText = $event.target.value
-                                }
-                              }
-                            })
-                          ]),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "input-group-btn col-1" }, [
-                            _c(
-                              "button",
-                              {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: true,
-                                    expression: "true"
-                                  }
-                                ],
-                                staticClass: "btn btn-success",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.searchAccountModal("header")
-                                  }
-                                }
-                              },
-                              [_c("i", { staticClass: "fas fa-search fa-fw" })]
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
                       _c(
                         "div",
                         {

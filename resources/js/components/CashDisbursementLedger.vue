@@ -4,7 +4,19 @@
         <div class="row mt-1" v-if="$gate.isAdminOrUser()">
         <div class="col-md-12">
           <div class="box mt-4">
-            
+          <div class="box-header">
+            <h3 class="box-title">Debits</h3>
+            <div class="box-tools">
+              <div class="form-group">
+                <label>Search</label>
+                <input type="text" name="search" v-model="searchText" @change="SearchIt" class="float-right col-6">
+              </div>
+              <span class="input-group-btn col-1">
+                    <button type="button" v-show="true" class="btn btn-success" @click="searchAccountModal('header')"><i class="fas fa-search fa-fw"></i></button>
+
+                </span>
+            </div>
+          </div>  
           <!-- CD List     
           *
           *
@@ -24,19 +36,7 @@
               <div  v-show="true" class="box box-warning mt-2">
                 <div class="col-md-12">
                   <div class="box">
-                    <div class="box-header">
-                      <h3 class="box-title">Debits</h3>
-                      <div class="box-tools">
-                        <div class="form-group">
-                          <label>Search</label>
-                          <input type="text" name="search" v-model="searchText" @change="SearchIt" class="float-right col-6">
-                        </div>
-                        <span class="input-group-btn col-1">
-                              <button type="button" v-show="true" class="btn btn-success" @click="searchAccountModal('header')"><i class="fas fa-search fa-fw"></i></button>
-
-                          </span>
-                      </div>
-                    </div>
+                    
 
 
                     <!-- /.box-header -->
