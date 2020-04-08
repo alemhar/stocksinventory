@@ -4304,7 +4304,7 @@ __webpack_require__.r(__webpack_exports__);
         transaction_no: '',
         transaction_type: 'CD',
         // default for Cash Disbursement
-        transaction_date: this.getDate(),
+        transaction_date: '',
         account_code: '',
         account_name: '',
         amount: 0,
