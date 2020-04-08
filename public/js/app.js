@@ -4423,7 +4423,7 @@ __webpack_require__.r(__webpack_exports__);
        //this.loadUsers();
     });
     */
-    //this.loadUsers();
+    this.loadCDs();
     this.loadPayees();
     this.loadBranches();
     this.initChartAccounts();
