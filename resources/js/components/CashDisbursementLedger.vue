@@ -880,9 +880,9 @@
             */
             
             this.loadCDs();
-            this.loadPayees();
-            this.loadBranches();
-            this.initChartAccounts();
+            //this.loadPayees();
+            //this.loadBranches();
+            //this.initChartAccounts();
 
             this.loadEntryItems();
             this.loadEntries();

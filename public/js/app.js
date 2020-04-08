@@ -4432,10 +4432,10 @@ __webpack_require__.r(__webpack_exports__);
        //this.loadUsers();
     });
     */
-    this.loadCDs();
-    this.loadPayees();
-    this.loadBranches();
-    this.initChartAccounts();
+    this.loadCDs(); //this.loadPayees();
+    //this.loadBranches();
+    //this.initChartAccounts();
+
     this.loadEntryItems();
     this.loadEntries(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
 
