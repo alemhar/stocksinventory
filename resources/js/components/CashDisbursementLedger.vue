@@ -41,7 +41,7 @@
 
 
                     <!-- /.box-header -->
-                    <div id="debits-list" class="box-body table-responsive no-padding">
+                    <div id="cd-list" class="box-body table-responsive no-padding">
                       <table class="table table-hover">
                         <tbody>
                           <tr>
@@ -64,7 +64,7 @@
                             <td>
                               <a href="#" @click="viewCD(cd.id)">
                                 <i class="fa fa-eye"></i>
-                                
+
                               </a>
                             </td>
                           </tr>
@@ -72,10 +72,10 @@
                       </tbody>
                     </table>
                     </div>
-                    <!-- /.box-body -->
                     <div class="box-footer">
-                      
+                      <pagination :data="cds" @pagination-change-page="getCDs"></pagination>
                     </div> 
+
                   </div>
                   <!-- /.box -->
                 </div>
@@ -803,7 +803,12 @@
           }
         },
         methods: {
-
+          getResults(page = 1) {
+            axios.get('api/cd?page=' + page)
+              .then(response => {
+                this.cds = response.data;
+              });
+          },
  
           SearchIt() {
               let query = this.searchText;

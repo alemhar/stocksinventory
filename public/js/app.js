@@ -4359,48 +4359,56 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    SearchIt: function SearchIt() {
+    getResults: function getResults() {
       var _this = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get('api/cd?page=' + page).then(function (response) {
+        _this.cds = response.data;
+      });
+    },
+    SearchIt: function SearchIt() {
+      var _this2 = this;
 
       var query = this.searchText;
       axios.get('api/searchAccount?q=' + query).then(function (data) {
-        _this.chart_of_accounts = data.data;
+        _this2.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
     },
     SearchPayee: function SearchPayee() {
-      var _this2 = this;
+      var _this3 = this;
 
       var query = this.searchPayee;
       axios.get('api/searchPayee?q=' + query).then(function (data) {
-        _this2.payees = data.data;
+        _this3.payees = data.data;
       })["catch"](function () {//
       });
     },
     loadEntryItems: function loadEntryItems() {
-      var _this3 = this;
+      var _this4 = this;
 
       var entry_id = this.form_entry.id;
       axios.get('api/cd/items/list?entry_id=' + entry_id).then(function (data) {
-        _this3.items = data.data;
+        _this4.items = data.data;
       })["catch"](function () {//
       });
     },
     loadEntries: function loadEntries() {
-      var _this4 = this;
+      var _this5 = this;
 
       var transaction_no = this.form.transaction_no;
       axios.get('api/cd/entries/list?transaction_no=' + transaction_no).then(function (data) {
-        _this4.entries = data.data;
+        _this5.entries = data.data;
       })["catch"](function () {//
       });
     },
     loadCDs: function loadCDs() {
-      var _this5 = this;
+      var _this6 = this;
 
       axios.get("api/cd").then(function (_ref) {
         var data = _ref.data;
-        return _this5.cds = data;
+        return _this6.cds = data;
       });
     },
     selectDebitRow: function selectDebitRow(active_debit_row_id) {
@@ -4410,7 +4418,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this6 = this;
+    var _this7 = this;
 
     /*
     VueListen.$on('Search',() => {
@@ -4432,10 +4440,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntries(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
 
     VueListen.$on('RefreshItemTable', function () {
-      _this6.loadEntryItems();
+      _this7.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this6.loadEntries();
+      _this7.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
@@ -68779,7 +68787,7 @@ var render = function() {
                         "div",
                         {
                           staticClass: "box-body table-responsive no-padding",
-                          attrs: { id: "debits-list" }
+                          attrs: { id: "cd-list" }
                         },
                         [
                           _c("table", { staticClass: "table table-hover" }, [
@@ -68852,7 +68860,17 @@ var render = function() {
                         ]
                       ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "box-footer" })
+                      _c(
+                        "div",
+                        { staticClass: "box-footer" },
+                        [
+                          _c("pagination", {
+                            attrs: { data: _vm.cds },
+                            on: { "pagination-change-page": _vm.getCDs }
+                          })
+                        ],
+                        1
+                      )
                     ])
                   ])
                 ]
