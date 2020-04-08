@@ -5,7 +5,7 @@
         <div class="col-md-12">
           <div class="box mt-4">
           <div class="box-header">
-            <h3 class="box-title">Debits</h3>
+            <h3 class="box-title">Cash Disbursement</h3>
             <div class="box-tools">
               <div class="form-group">
                 <label>Search</label>
@@ -172,7 +172,7 @@
       MAIN FORM ITEMS TABLE
       -->
 
-          <div v-show="cd_created" class="box box-warning mt-2">
+          <div v-show="true" class="box box-warning mt-2">
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">

@@ -69196,7 +69196,9 @@ var render = function() {
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "box mt-4" }, [
               _c("div", { staticClass: "box-header" }, [
-                _c("h3", { staticClass: "box-title" }, [_vm._v("Debits")]),
+                _c("h3", { staticClass: "box-title" }, [
+                  _vm._v("Cash Disbursement")
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "box-tools" }, [
                   _c("div", { staticClass: "form-group" }, [
@@ -69484,8 +69486,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.cd_created,
-                      expression: "cd_created"
+                      value: true,
+                      expression: "true"
                     }
                   ],
                   staticClass: "box box-warning mt-2"
