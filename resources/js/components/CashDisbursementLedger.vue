@@ -803,7 +803,7 @@
           }
         },
         methods: {
-          getResults(page = 1) {
+          getCDs(page = 1) {
             axios.get('api/cd?page=' + page)
               .then(response => {
                 this.cds = response.data;
