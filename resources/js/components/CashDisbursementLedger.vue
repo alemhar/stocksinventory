@@ -7,7 +7,7 @@
           <div class="box-header">
             <h3 class="box-title">Cash Disbursement</h3>
             <div class="box-tools">
-              <div class="form-group">
+              <div class="input-group">
                 <label>Search</label>
                 <input type="text" name="search" v-model="searchText" @change="SearchIt" class="float-right col-6">
               </div>

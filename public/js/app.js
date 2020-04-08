@@ -69201,7 +69201,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "box-tools" }, [
-                  _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "input-group" }, [
                     _c("label", [_vm._v("Search")]),
                     _vm._v(" "),
                     _c("input", {
