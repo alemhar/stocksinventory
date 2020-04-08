@@ -10,11 +10,12 @@
               <div class="input-group">
                 <label>Search</label>
                 <input type="text" name="search" v-model="searchText" @change="SearchIt" class="float-right col-6">
-              </div>
-              <span class="input-group-btn col-1">
+                <span class="input-group-btn col-1">
                     <button type="button" v-show="true" class="btn btn-success" @click="searchAccountModal('header')"><i class="fas fa-search fa-fw"></i></button>
 
                 </span>
+              </div>
+              
             </div>
           </div>  
           <!-- CD List     
