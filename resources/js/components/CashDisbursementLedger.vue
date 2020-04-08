@@ -769,7 +769,7 @@
                   vat: 0,
                   credit_amount: 0,
                   debit_amount: 0,
-                  transaction_date: this.getDate(),
+                  transaction_date: '',
                   
                   
               }),

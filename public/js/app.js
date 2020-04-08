@@ -4331,7 +4331,7 @@ __webpack_require__.r(__webpack_exports__);
         vat: 0,
         credit_amount: 0,
         debit_amount: 0,
-        transaction_date: this.getDate()
+        transaction_date: ''
       }),
       form_item: new Form({
         id: '',
