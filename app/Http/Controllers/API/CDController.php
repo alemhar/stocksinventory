@@ -17,7 +17,7 @@ class CDController extends Controller
      */
     public function index()
     {
-        //
+        return Transaction::latest()->paginate(10);
     }
 
     /**
