@@ -75,7 +75,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           
           
-          <!--  menu-open-->
+          <!--  menu-transaction-->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cogs"></i>
@@ -88,7 +88,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               @can('isAdminOrUser')
               <li class="nav-item">
                 <router-link to="/cd" class="nav-link">
-                  <i class="nav-icon fas fa-minus-circle"></i>
+                  <i class="nav-icon fas fa-folder-minus"></i>
                   <p>Cash Disbursements</p>
                 </router-link>
               </li>
@@ -96,13 +96,43 @@ scratch. This page gets rid of all links and provides the needed markup only.
               @can('isAdmin')
               <li class="nav-item">
                 <router-link to="/cr" class="nav-link">
-                  <i class="nav-icon fas fa-plus-circle"></i>
+                  <i class="nav-icon fas fa-folder-plus"></i>
                   <p>Cash Receipts</p>
                 </router-link>
               </li>
               @endcan
             </ul>
           </li>
+          <!--  menu-transaction-->
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-cogs"></i>
+              <p>
+                Views
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              @can('isAdmin')
+              <li class="nav-item">
+                <router-link to="/cd-ledger" class="nav-link">
+                  <i class="nav-icon fas fa-folder-minus"></i>
+                  <p>Cash Disbursements</p>
+                </router-link>
+              </li>
+              @endcan
+              @can('isAdmin')
+              <li class="nav-item">
+                <router-link to="/cr-ledger" class="nav-link">
+                  <i class="nav-icon fas fa-folder-plus"></i>
+                  <p>Cash Receipts</p>
+                </router-link>
+              </li>
+              @endcan
+            </ul>
+          </li>
+
+
           @can('isAdminOrUser')
           <li class="nav-item">
             <router-link to="/payees" class="nav-link">
