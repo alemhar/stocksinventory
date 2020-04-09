@@ -17,8 +17,8 @@ Route::get('/', function () {
 
 Route::get('/test', function () {
 
-    $transaction = App\Transaction::find(82);
-    dd($transaction->payee_id);
+    $transaction = App\Transaction::with('payee')->find(82);
+    dd($transaction->name);
 });
 
 Auth::routes();
