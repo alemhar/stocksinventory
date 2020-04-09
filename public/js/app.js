@@ -4295,7 +4295,8 @@ __webpack_require__.r(__webpack_exports__);
       current_payee_name: '',
       current_payee_address: '',
       current_payee_tin: '',
-      active_debit_row: 0,
+      active_debit_row_id: 0,
+      active_cd_row_id: 0,
       selected_branch: {},
       cd: {},
       form: new Form({
@@ -4412,9 +4413,14 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     selectDebitRow: function selectDebitRow(active_debit_row_id) {
-      this.active_debit_row = active_debit_row_id;
-      this.form_entry.id = active_debit_row_id;
+      this.active_debit_row_id = active_debit_row_id; //this.form_entry.id = active_debit_row_id;
+
       VueListen.$emit('RefreshItemTable'); //console.log(active_debit_row);
+    },
+    selectCDRow: function selectCDRow(active_cd_row_id) {
+      this.active_cd_row_id = active_cd_row_id; //this.form_entry.id = active_debit_row_id;
+
+      VueListen.$emit('RefreshDebitTable'); //console.log(active_debit_row);
     }
   },
   created: function created() {
@@ -68803,11 +68809,11 @@ var render = function() {
                                       key: cd.id,
                                       class: {
                                         "table-warning":
-                                          _vm.active_cd_row == cd.id
+                                          _vm.active_cd_row_id == cd.id
                                       },
                                       on: {
                                         click: function($event) {
-                                          return _vm.selectDebitRow(cd.id)
+                                          return _vm.selectCDRow(cd.id)
                                         }
                                       }
                                     },
@@ -68934,7 +68940,7 @@ var render = function() {
                                       key: entry.id,
                                       class: {
                                         "table-warning":
-                                          _vm.active_debit_row == entry.id
+                                          _vm.active_debit_row_id == entry.id
                                       },
                                       on: {
                                         click: function($event) {

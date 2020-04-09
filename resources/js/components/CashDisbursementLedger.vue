@@ -54,7 +54,7 @@
                             <th>Option</th>
                             
                           </tr>
-                          <tr v-for="cd in cds.data" :key="cd.id" @click="selectDebitRow(cd.id)" :class="{ 'table-warning' : active_cd_row == cd.id }" >
+                          <tr v-for="cd in cds.data" :key="cd.id" @click="selectCDRow(cd.id)" :class="{ 'table-warning' : active_cd_row_id == cd.id }" >
                             <td>{{ cd.account_code }}</td>
                             <td>{{ cd.account_name }}</td>
                             <td>{{ cd.branch_name }}</td>
@@ -129,7 +129,7 @@
                         <th>Option</th>
                         
                       </tr>
-                      <tr v-for="entry in entries.data" :key="entry.id" @click="selectDebitRow(entry.id)" :class="{ 'table-warning' : active_debit_row == entry.id }" >
+                      <tr v-for="entry in entries.data" :key="entry.id" @click="selectDebitRow(entry.id)" :class="{ 'table-warning' : active_debit_row_id == entry.id }" >
                         <td>{{ entry.account_code }}</td>
                         <td>{{ entry.account_name }}</td>
                         <td>{{ entry.branch_name }}</td>
@@ -729,7 +729,8 @@
               current_payee_name: '',
               current_payee_address: '',
               current_payee_tin: '',
-              active_debit_row: 0,
+              active_debit_row_id: 0,
+              active_cd_row_id: 0,
               selected_branch: {},
               cd : {},
               form: new Form({
@@ -855,9 +856,16 @@
           },
           
           selectDebitRow(active_debit_row_id){
-              this.active_debit_row = active_debit_row_id;
-              this.form_entry.id = active_debit_row_id;
+              this.active_debit_row_id = active_debit_row_id;
+              //this.form_entry.id = active_debit_row_id;
               VueListen.$emit('RefreshItemTable');
+              //console.log(active_debit_row);
+
+          },
+          selectCDRow(active_cd_row_id){
+              this.active_cd_row_id = active_cd_row_id;
+              //this.form_entry.id = active_debit_row_id;
+              VueListen.$emit('RefreshDebitTable');
               //console.log(active_debit_row);
 
           },
