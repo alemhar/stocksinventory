@@ -832,7 +832,7 @@
                 });
           },
           loadEntryItems() {
-              let entry_id = this.form_entry.id;
+              let entry_id = this.active_debit_row_id;
               axios.get('api/cd/items/list?entry_id='+entry_id)
                 .then((data)=>{
                   this.items = data.data;

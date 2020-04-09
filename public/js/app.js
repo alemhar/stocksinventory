@@ -4389,7 +4389,7 @@ __webpack_require__.r(__webpack_exports__);
     loadEntryItems: function loadEntryItems() {
       var _this4 = this;
 
-      var entry_id = this.form_entry.id;
+      var entry_id = this.active_debit_row_id;
       axios.get('api/cd/items/list?entry_id=' + entry_id).then(function (data) {
         _this4.items = data.data;
       })["catch"](function () {//
