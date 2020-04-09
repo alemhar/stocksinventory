@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::get('/test', function () {
 
-    $transaction = App\Transaction::with('payee')->find(1);
+    $transaction = App\Transaction::find(1);
     dd($transaction);
 });
 
