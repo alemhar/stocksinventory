@@ -4296,7 +4296,7 @@ __webpack_require__.r(__webpack_exports__);
       current_payee_address: '',
       current_payee_tin: '',
       active_debit_row_id: 0,
-      active_cd_row_id: 0,
+      transaction_no: 0,
       selected_branch: {},
       cd: {},
       form: new Form({
