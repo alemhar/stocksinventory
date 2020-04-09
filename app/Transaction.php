@@ -21,7 +21,8 @@ class Transaction extends Model
     public function payee()
 	{
 	    return $this->belongsTo('App\Payee', 'payee_id');
-	}    
+	} 
+	   
     protected $fillable = [
 						'payee_id',
 						'account_code',
