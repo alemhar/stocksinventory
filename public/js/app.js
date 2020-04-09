@@ -68972,31 +68972,7 @@ var render = function() {
                                         _vm._v(_vm._s(entry.amount_ex_tax))
                                       ]),
                                       _vm._v(" "),
-                                      _c("td", [_vm._v(_vm._s(entry.vat))]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _c(
-                                          "a",
-                                          {
-                                            attrs: { href: "#" },
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.deleteEntry(
-                                                  entry.id,
-                                                  entry.amount,
-                                                  entry.amount_ex_tax,
-                                                  entry.vat
-                                                )
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fa fa-trash"
-                                            })
-                                          ]
-                                        )
-                                      ])
+                                      _c("td", [_vm._v(_vm._s(entry.vat))])
                                     ]
                                   )
                                 })
@@ -70526,9 +70502,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Tax Excluded")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Tax")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Option")])
+      _c("th", [_vm._v("Tax")])
     ])
   },
   function() {

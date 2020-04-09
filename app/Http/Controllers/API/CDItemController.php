@@ -91,7 +91,7 @@ class CDItemController extends Controller
     public function list(){
         if ($entry_id = \Request::get('entry_id')) {
             $transactionItems = TransactionItem::where(function($query) use ($entry_id){
-                $query->where('transaction_entry_id',$entry_id);
+                $query->where('transaction_entry_id',$entry_id)->where('status','CONFIRMED');
             })->paginate(10);
 
         }else{

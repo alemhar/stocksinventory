@@ -126,7 +126,7 @@
                         <th>Amount</th>
                         <th>Tax Excluded</th>
                         <th>Tax</th>
-                        <th>Option</th>
+                        <!-- th>Option</th -->
                         
                       </tr>
                       <tr v-for="entry in entries.data" :key="entry.id" @click="selectDebitRow(entry.id)" :class="{ 'table-warning' : active_debit_row_id == entry.id }" >
@@ -136,11 +136,11 @@
                         <td>{{ entry.amount }}</td>
                         <td>{{ entry.amount_ex_tax }}</td>
                         <td>{{ entry.vat }}</td>
-                        <td>
+                        <!-- td>
                           <a href="#" @click="deleteEntry(entry.id,entry.amount,entry.amount_ex_tax,entry.vat)">
                             <i class="fa fa-trash"></i>
                           </a>
-                        </td>
+                        </td -->
                       </tr>
                       
                   </tbody>
