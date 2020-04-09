@@ -114,7 +114,7 @@ class CDEntryController extends Controller
 
         if ($transaction_no = \Request::get('transaction_no')) {
             $transactionEntries = TransactionEntry::where(function($query) use ($transaction_no){
-                $query->where('transaction_no',$transaction_no);
+                $query->where('transaction_no',$transaction_no)->where('status','CONFIRMED');
             })->paginate(10);
 
         }else{
