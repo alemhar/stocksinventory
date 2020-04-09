@@ -68903,27 +68903,7 @@ var render = function() {
                 [
                   _c("div", { staticClass: "col-md-12" }, [
                     _c("div", { staticClass: "box" }, [
-                      _c("div", { staticClass: "box-header" }, [
-                        _c("h3", { staticClass: "box-title" }, [
-                          _vm._v("Debits")
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "box-tools" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-success",
-                              on: { click: function($event) {} }
-                            },
-                            [
-                              _vm._v("Add Items "),
-                              _c("i", {
-                                staticClass: "fas fa-plus-circle fa-fw"
-                              })
-                            ]
-                          )
-                        ])
-                      ]),
+                      _vm._m(1),
                       _vm._v(" "),
                       _c(
                         "div",
@@ -68936,7 +68916,7 @@ var render = function() {
                             _c(
                               "tbody",
                               [
-                                _vm._m(1),
+                                _vm._m(2),
                                 _vm._v(" "),
                                 _vm._l(_vm.entries.data, function(entry) {
                                   return _c(
@@ -69005,7 +68985,7 @@ var render = function() {
                 [
                   _c("div", { staticClass: "col-md-12" }, [
                     _c("div", { staticClass: "box" }, [
-                      _vm._m(2),
+                      _vm._m(3),
                       _vm._v(" "),
                       _c(
                         "div",
@@ -69018,7 +68998,7 @@ var render = function() {
                             _c(
                               "tbody",
                               [
-                                _vm._m(3),
+                                _vm._m(4),
                                 _vm._v(" "),
                                 _vm._l(_vm.items.data, function(item) {
                                   return _c("tr", { key: item.id }, [
@@ -69284,7 +69264,7 @@ var render = function() {
                     [_vm._v("Add Entry")]
                   ),
                   _vm._v(" "),
-                  _vm._m(4)
+                  _vm._m(5)
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-body" }, [
@@ -69292,7 +69272,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(5),
+                      _vm._m(6),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -69375,7 +69355,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(6),
+                      _vm._m(7),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -69424,7 +69404,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(7),
+                      _vm._m(8),
                       _vm._v(" "),
                       _c(
                         "select",
@@ -69528,7 +69508,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(8),
+                            _vm._m(9),
                             _vm._v(" "),
                             _vm._l(_vm.items.data, function(item) {
                               return _c("tr", { key: item.id }, [
@@ -69576,7 +69556,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(9),
+                      _vm._m(10),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -69628,7 +69608,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(10),
+                      _vm._m(11),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -69684,7 +69664,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(11),
+                      _vm._m(12),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -69825,7 +69805,7 @@ var render = function() {
                   [_vm._v("Update Entry")]
                 ),
                 _vm._v(" "),
-                _vm._m(12)
+                _vm._m(13)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -69833,7 +69813,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(13),
+                    _vm._m(14),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -69892,7 +69872,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(14),
+                    _vm._m(15),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -69954,7 +69934,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(15),
+                    _vm._m(16),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -70020,7 +70000,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(16),
+                    _vm._m(17),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -70065,7 +70045,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(17),
+                  _vm._m(18),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -70129,7 +70109,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(18),
+                    _vm._m(19),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -70176,7 +70156,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(19),
+                    _vm._m(20),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -70264,7 +70244,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(20),
+              _vm._m(21),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -70303,7 +70283,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(21),
+                            _vm._m(22),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -70347,7 +70327,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(22)
+                _vm._m(23)
               ])
             ])
           ]
@@ -70378,7 +70358,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(23),
+              _vm._m(24),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -70417,7 +70397,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(24),
+                            _vm._m(25),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -70457,7 +70437,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(25)
+                _vm._m(26)
               ])
             ])
           ]
@@ -70485,6 +70465,14 @@ var staticRenderFns = [
       _c("th", [_vm._v("Amount")]),
       _vm._v(" "),
       _c("th", [_vm._v("Option")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-header" }, [
+      _c("h3", { staticClass: "box-title" }, [_vm._v("Debits")])
     ])
   },
   function() {

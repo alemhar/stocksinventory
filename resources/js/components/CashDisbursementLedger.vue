@@ -109,9 +109,9 @@
               <div class="box">
                 <div class="box-header">
                   <h3 class="box-title">Debits</h3>
-                  <div class="box-tools">
+                  <!--div class="box-tools">
                     <button class="btn btn-success" @click="">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
-                  </div>
+                  </div -->
                 </div>
 
 
