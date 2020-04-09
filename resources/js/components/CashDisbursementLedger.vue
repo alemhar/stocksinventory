@@ -54,7 +54,7 @@
                             <th>Option</th>
                             
                           </tr>
-                          <tr v-for="cd in cds.data" :key="cd.id" @click="selectCDRow(cd.id)" :class="{ 'table-warning' : active_cd_row_id == cd.id }" >
+                          <tr v-for="cd in cds.data" :key="cd.id" @click="selectCDRow(cd.transaction_no)" :class="{ 'table-warning' : transaction_no == cd.transaction_no }" >
                             <td>{{ cd.transaction_no }}</td>
                             <td>{{ cd.payee ? cd.payee.name : ''}}</td>
                             <td>{{ cd.branch_name }}</td>
@@ -842,7 +842,7 @@
                 });
           },
           loadEntries() {
-              let transaction_no = this.active_cd_row_id;
+              let transaction_no = this.transaction_no;
               axios.get('api/cd/entries/list?transaction_no='+transaction_no)
                 .then((data)=>{
                   this.entries = data.data;
@@ -862,8 +862,8 @@
               //console.log(active_debit_row);
 
           },
-          selectCDRow(active_cd_row_id){
-              this.active_cd_row_id = active_cd_row_id;
+          selectCDRow(transaction_no){
+              this.transaction_no = transaction_no;
               //this.form_entry.id = active_debit_row_id;
               VueListen.$emit('RefreshEntryTable');
               //console.log(active_debit_row);
