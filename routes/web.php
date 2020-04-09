@@ -15,7 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', function () {
+
+    $transaction = App\Transaction::with('payee')->find(1);
+    dd($transaction);
+});
+
 Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 

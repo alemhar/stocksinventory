@@ -68819,12 +68819,10 @@ var render = function() {
                                     },
                                     [
                                       _c("td", [
-                                        _vm._v(_vm._s(cd.account_code))
+                                        _vm._v(_vm._s(cd.transaction_no))
                                       ]),
                                       _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(cd.account_name))
-                                      ]),
+                                      _c("td", [_vm._v(_vm._s(cd.name))]),
                                       _vm._v(" "),
                                       _c("td", [
                                         _vm._v(_vm._s(cd.branch_name))

@@ -25,5 +25,5 @@ class Payee extends Model
         'name', 'address', 'tin', 'city', 'phone'
     ];
 
-    
+
 }
