@@ -18,12 +18,12 @@ class Transaction extends Model
 		
 	    return 'transactions_'.$company_id;
 	}
-
+	/*
     public function payee()
 	{
 	    return $this->belongsTo('App\Payee', 'payee_id');
 	}    
-
+	*/
     protected $fillable = [
 						'payee_id',
 						'account_code',
