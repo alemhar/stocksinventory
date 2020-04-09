@@ -4398,7 +4398,7 @@ __webpack_require__.r(__webpack_exports__);
     loadEntries: function loadEntries() {
       var _this5 = this;
 
-      var transaction_no = this.form.transaction_no;
+      var transaction_no = this.active_cd_row_id;
       axios.get('api/cd/entries/list?transaction_no=' + transaction_no).then(function (data) {
         _this5.entries = data.data;
       })["catch"](function () {//
@@ -4420,7 +4420,7 @@ __webpack_require__.r(__webpack_exports__);
     selectCDRow: function selectCDRow(active_cd_row_id) {
       this.active_cd_row_id = active_cd_row_id; //this.form_entry.id = active_debit_row_id;
 
-      VueListen.$emit('RefreshDebitTable'); //console.log(active_debit_row);
+      VueListen.$emit('RefreshEntryTable'); //console.log(active_debit_row);
     }
   },
   created: function created() {
