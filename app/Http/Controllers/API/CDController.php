@@ -17,7 +17,7 @@ class CDController extends Controller
      */
     public function index()
     {
-        return Transaction::with('payee')->latest()->where('status','CONFIRMED')->paginate(10);
+        return Transaction::with('payee')->latest()->where('status','CONFIRMED')->paginate(3);
     }
 
     /**
