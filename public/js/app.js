@@ -68822,7 +68822,7 @@ var render = function() {
                                         _vm._v(_vm._s(cd.transaction_no))
                                       ]),
                                       _vm._v(" "),
-                                      _c("td", [_vm._v(_vm._s(cd.name))]),
+                                      _c("td", [_vm._v(_vm._s(cd.payee.name))]),
                                       _vm._v(" "),
                                       _c("td", [
                                         _vm._v(_vm._s(cd.branch_name))
