@@ -9,7 +9,7 @@
             <div class="box-tools">
               <div class="input-group">
                 <label>Search</label>
-                <input type="text" name="search" v-model="searchCD" @change="SearchCD" class="float-right col-8">
+                <input type="text" name="search" v-model="searchCDNo" @change="SearchCD" class="float-right col-8">
                 <span class="input-group-btn col-1">
                     <button type="button" v-show="true" class="btn btn-success" @click="SearchCD"><i class="fas fa-search fa-fw"></i></button>
                 </span>
@@ -587,7 +587,7 @@
               no_quantity: false,
               no_entry_account_code: false,
               no_entry_branch_id: false,
-              searchCD: '',
+              searchCDNo: '',
               searchPayee: '',
               headerOrDetail: 'header',
               current_payee_id: '',
@@ -677,8 +677,8 @@
           },
  
           SearchCD() {
-              let query = this.searchCD;
-              axios.get('api/searchCD?q='+query)
+              let transaction_no = this.searchCDNo;
+              axios.get('api/searchCD?transaction_no='+transaction_no)
                 .then((data)=>{
                   this.cds = data.data;
                 })

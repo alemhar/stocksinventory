@@ -4153,7 +4153,7 @@ __webpack_require__.r(__webpack_exports__);
       no_quantity: false,
       no_entry_account_code: false,
       no_entry_branch_id: false,
-      searchCD: '',
+      searchCDNo: '',
       searchPayee: '',
       headerOrDetail: 'header',
       current_payee_id: '',
@@ -4236,8 +4236,8 @@ __webpack_require__.r(__webpack_exports__);
     SearchCD: function SearchCD() {
       var _this2 = this;
 
-      var query = this.searchCD;
-      axios.get('api/searchCD?q=' + query).then(function (data) {
+      var transaction_no = this.searchCDNo;
+      axios.get('api/searchCD?transaction_no=' + transaction_no).then(function (data) {
         _this2.cds = data.data;
       })["catch"](function () {//
       });
@@ -68584,20 +68584,20 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.searchCD,
-                          expression: "searchCD"
+                          value: _vm.searchCDNo,
+                          expression: "searchCDNo"
                         }
                       ],
                       staticClass: "float-right col-8",
                       attrs: { type: "text", name: "search" },
-                      domProps: { value: _vm.searchCD },
+                      domProps: { value: _vm.searchCDNo },
                       on: {
                         change: _vm.SearchCD,
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.searchCD = $event.target.value
+                          _vm.searchCDNo = $event.target.value
                         }
                       }
                     }),
