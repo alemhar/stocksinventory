@@ -4135,7 +4135,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -68617,11 +68616,7 @@ var render = function() {
                           ],
                           staticClass: "btn btn-success",
                           attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              return _vm.searchAccountModal("header")
-                            }
-                          }
+                          on: { click: _vm.SearchCD }
                         },
                         [_c("i", { staticClass: "fas fa-search fa-fw" })]
                       )

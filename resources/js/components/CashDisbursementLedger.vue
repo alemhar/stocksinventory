@@ -11,8 +11,7 @@
                 <label>Search</label>
                 <input type="text" name="search" v-model="searchCD" @change="SearchCD" class="float-right col-8">
                 <span class="input-group-btn col-1">
-                    <button type="button" v-show="true" class="btn btn-success" @click="searchAccountModal('header')"><i class="fas fa-search fa-fw"></i></button>
-
+                    <button type="button" v-show="true" class="btn btn-success" @click="SearchCD"><i class="fas fa-search fa-fw"></i></button>
                 </span>
               </div>
               
