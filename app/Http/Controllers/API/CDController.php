@@ -121,14 +121,14 @@ class CDController extends Controller
 
     public function search(){
         if ($transaction_no = \Request::get('transaction_no')) {
-            $accounts = Account::where(function($query) use ($transaction_no){
+            $transaction = Transaction::where(function($query) use ($transaction_no){
                 $query->where('transaction_no','LIKE',"%$transaction_no%");
             })->paginate(10);
 
         }else{
-            $accounts = Account::latest()->paginate(10);
+            $transaction = Transaction::latest()->paginate(10);
         }
-        return $accounts;
+        return $transaction;
     }
 
 

@@ -90742,7 +90742,7 @@ var routes = [{
   path: '/cd',
   component: __webpack_require__(/*! ./components/CashDisbursement.vue */ "./resources/js/components/CashDisbursement.vue")["default"]
 }, {
-  path: '/cd-ledger',
+  path: '/cd-view',
   component: __webpack_require__(/*! ./components/CashDisbursementLedger.vue */ "./resources/js/components/CashDisbursementLedger.vue")["default"]
 }, {
   path: '/cr',
