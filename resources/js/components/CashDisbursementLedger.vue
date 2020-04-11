@@ -9,7 +9,7 @@
             <div class="box-tools">
               <div class="input-group">
                 <label>Search</label>
-                <input type="text" name="search" v-model="searchText" @change="SearchIt" class="float-right col-8">
+                <input type="text" name="search" v-model="searchCD" @change="SearchCD" class="float-right col-8">
                 <span class="input-group-btn col-1">
                     <button type="button" v-show="true" class="btn btn-success" @click="searchAccountModal('header')"><i class="fas fa-search fa-fw"></i></button>
 
@@ -558,141 +558,7 @@
       <!-- Item Modal -->
 
 
-      <!-- Search Account Modal 
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      -->
-
-      <div class="modal fade" id="select-account" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <!--h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add New</h5>
-              <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update Entry</h5 -->
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <form onsubmit="return false;">
-            <div class="modal-body">
-              
-              <div class="form-group">
-                <label>Search</label>
-                <input type="text" name="search" v-model="searchText" @change="SearchIt" class="float-right col-6">
-              </div>
-              
-              <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
-                <tbody><tr>
-                  <th>Code</th>
-                  <th>Name</th>
-                  <th>Option</th>
-                </tr>
-                <tr v-for="chart_of_account in chart_of_accounts.data" :key="chart_of_account.id">
-                  <td>{{ chart_of_account.account_code }}</td>
-                  <td>{{ chart_of_account.account_name }}</td>
-                  <td>
-                    <a href="#" @click="selectAccount(chart_of_account.account_code,chart_of_account.account_name)">Select
-                      <i class="fa fa-edit"></i>
-                    </a>
-                  </td>
-                </tr>
-              </tbody></table>
-            </div>
-            <!-- /.box-body -->
-
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              <!--button v-show="editmode" type="submit" class="btn btn-success">Update</button -->
-              <!--button v-show="!editmode" type="submit" class="btn btn-primary">Create</button -->
-            </div>
-
-            </form>
-          </div>
-        </div>
-      </div>
-      <!-- Search Account Modal -->
-
-    
-      <!-- Search Payee Modal 
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      -->
-
-      <div class="modal fade" id="select-payee" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <!--h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add New</h5>
-              <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update Entry</h5 -->
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <form onsubmit="return false;">
-            <div class="modal-body">
-              
-              <div class="form-group">
-                <label>Search</label>
-                <input type="text" name="search" v-model="searchPayee" @change="SearchPayee" class="float-right col-6">
-              </div>
-              
-              <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
-                <tbody><tr>
-                  <th>Code</th>
-                  <th>Name</th>
-                  <th>Option</th>
-                </tr>
-                <tr v-for="payee in payees.data" :key="payee.id">
-                  <td>{{ payee.id }}</td>
-                  <td>{{ payee.name }}</td> 
-                  <td>
-                    <a href="#" @click="selectPayee(payee.id,payee.name,payee.address,payee.tin)">Select
-                      <i class="fa fa-edit"></i>
-                    </a>
-                  </td>
-                </tr>
-              </tbody></table>
-            </div>
-            <!-- /.box-body -->
-
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-
-            </form>
-          </div>
-        </div>
-      </div>
-      <!-- Search Payee Modal -->      
-
+      
       <!--search-account
       v-show="isModalVisible"
       @close="closeSearchAccount"
@@ -722,7 +588,7 @@
               no_quantity: false,
               no_entry_account_code: false,
               no_entry_branch_id: false,
-              searchText: '',
+              searchCD: '',
               searchPayee: '',
               headerOrDetail: 'header',
               current_payee_id: '',
@@ -811,21 +677,11 @@
               });
           },
  
-          SearchIt() {
-              let query = this.searchText;
-              axios.get('api/searchAccount?q='+query)
+          SearchCD() {
+              let query = this.searchCD;
+              axios.get('api/searchCD?q='+query)
                 .then((data)=>{
-                  this.chart_of_accounts = data.data;
-                })
-                .catch(()=>{
-                  //
-                });
-          },
-          SearchPayee() {
-              let query = this.searchPayee;
-              axios.get('api/searchPayee?q='+query)
-                .then((data)=>{
-                  this.payees = data.data;
+                  this.cds = data.data;
                 })
                 .catch(()=>{
                   //

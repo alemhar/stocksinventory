@@ -4136,140 +4136,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -4288,7 +4154,7 @@ __webpack_require__.r(__webpack_exports__);
       no_quantity: false,
       no_entry_account_code: false,
       no_entry_branch_id: false,
-      searchText: '',
+      searchCD: '',
       searchPayee: '',
       headerOrDetail: 'header',
       current_payee_id: '',
@@ -4368,48 +4234,39 @@ __webpack_require__.r(__webpack_exports__);
         _this.cds = response.data;
       });
     },
-    SearchIt: function SearchIt() {
+    SearchCD: function SearchCD() {
       var _this2 = this;
 
-      var query = this.searchText;
-      axios.get('api/searchAccount?q=' + query).then(function (data) {
-        _this2.chart_of_accounts = data.data;
-      })["catch"](function () {//
-      });
-    },
-    SearchPayee: function SearchPayee() {
-      var _this3 = this;
-
-      var query = this.searchPayee;
-      axios.get('api/searchPayee?q=' + query).then(function (data) {
-        _this3.payees = data.data;
+      var query = this.searchCD;
+      axios.get('api/searchCD?q=' + query).then(function (data) {
+        _this2.cds = data.data;
       })["catch"](function () {//
       });
     },
     loadEntryItems: function loadEntryItems() {
-      var _this4 = this;
+      var _this3 = this;
 
       var entry_id = this.active_debit_row_id;
       axios.get('api/cd/items/list?entry_id=' + entry_id).then(function (data) {
-        _this4.items = data.data;
+        _this3.items = data.data;
       })["catch"](function () {//
       });
     },
     loadEntries: function loadEntries() {
-      var _this5 = this;
+      var _this4 = this;
 
       var transaction_no = this.transaction_no;
       axios.get('api/cd/entries/list?transaction_no=' + transaction_no).then(function (data) {
-        _this5.entries = data.data;
+        _this4.entries = data.data;
       })["catch"](function () {//
       });
     },
     loadCDs: function loadCDs() {
-      var _this6 = this;
+      var _this5 = this;
 
       axios.get("api/cd").then(function (_ref) {
         var data = _ref.data;
-        return _this6.cds = data;
+        return _this5.cds = data;
       });
     },
     selectDebitRow: function selectDebitRow(active_debit_row_id) {
@@ -4424,7 +4281,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this7 = this;
+    var _this6 = this;
 
     /*
     VueListen.$on('Search',() => {
@@ -4446,10 +4303,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntries(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
 
     VueListen.$on('RefreshItemTable', function () {
-      _this7.loadEntryItems();
+      _this6.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this7.loadEntries();
+      _this6.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
@@ -68728,20 +68585,20 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.searchText,
-                          expression: "searchText"
+                          value: _vm.searchCD,
+                          expression: "searchCD"
                         }
                       ],
                       staticClass: "float-right col-8",
                       attrs: { type: "text", name: "search" },
-                      domProps: { value: _vm.searchText },
+                      domProps: { value: _vm.searchCD },
                       on: {
-                        change: _vm.SearchIt,
+                        change: _vm.SearchCD,
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.searchText = $event.target.value
+                          _vm.searchCD = $event.target.value
                         }
                       }
                     }),
@@ -70219,230 +70076,6 @@ var render = function() {
           ]
         )
       ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "select-account",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "addNewLabel",
-          "aria-hidden": "true",
-          "data-backdrop": "static",
-          "data-keyboard": "false"
-        }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "modal-dialog modal-dialog-centered",
-            attrs: { role: "document" }
-          },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _vm._m(21),
-              _vm._v(" "),
-              _c("form", { attrs: { onsubmit: "return false;" } }, [
-                _c("div", { staticClass: "modal-body" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", [_vm._v("Search")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.searchText,
-                          expression: "searchText"
-                        }
-                      ],
-                      staticClass: "float-right col-6",
-                      attrs: { type: "text", name: "search" },
-                      domProps: { value: _vm.searchText },
-                      on: {
-                        change: _vm.SearchIt,
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.searchText = $event.target.value
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "box-body table-responsive no-padding" },
-                    [
-                      _c("table", { staticClass: "table table-hover" }, [
-                        _c(
-                          "tbody",
-                          [
-                            _vm._m(22),
-                            _vm._v(" "),
-                            _vm._l(_vm.chart_of_accounts.data, function(
-                              chart_of_account
-                            ) {
-                              return _c("tr", { key: chart_of_account.id }, [
-                                _c("td", [
-                                  _vm._v(_vm._s(chart_of_account.account_code))
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _vm._v(_vm._s(chart_of_account.account_name))
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _c(
-                                    "a",
-                                    {
-                                      attrs: { href: "#" },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.selectAccount(
-                                            chart_of_account.account_code,
-                                            chart_of_account.account_name
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _vm._v("Select\n                  "),
-                                      _c("i", { staticClass: "fa fa-edit" })
-                                    ]
-                                  )
-                                ])
-                              ])
-                            })
-                          ],
-                          2
-                        )
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _vm._m(23)
-              ])
-            ])
-          ]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "select-payee",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "addNewLabel",
-          "aria-hidden": "true",
-          "data-backdrop": "static",
-          "data-keyboard": "false"
-        }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "modal-dialog modal-dialog-centered",
-            attrs: { role: "document" }
-          },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _vm._m(24),
-              _vm._v(" "),
-              _c("form", { attrs: { onsubmit: "return false;" } }, [
-                _c("div", { staticClass: "modal-body" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", [_vm._v("Search")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.searchPayee,
-                          expression: "searchPayee"
-                        }
-                      ],
-                      staticClass: "float-right col-6",
-                      attrs: { type: "text", name: "search" },
-                      domProps: { value: _vm.searchPayee },
-                      on: {
-                        change: _vm.SearchPayee,
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.searchPayee = $event.target.value
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "box-body table-responsive no-padding" },
-                    [
-                      _c("table", { staticClass: "table table-hover" }, [
-                        _c(
-                          "tbody",
-                          [
-                            _vm._m(25),
-                            _vm._v(" "),
-                            _vm._l(_vm.payees.data, function(payee) {
-                              return _c("tr", { key: payee.id }, [
-                                _c("td", [_vm._v(_vm._s(payee.id))]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(payee.name))]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _c(
-                                    "a",
-                                    {
-                                      attrs: { href: "#" },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.selectPayee(
-                                            payee.id,
-                                            payee.name,
-                                            payee.address,
-                                            payee.tin
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _vm._v("Select\n                  "),
-                                      _c("i", { staticClass: "fa fa-edit" })
-                                    ]
-                                  )
-                                ])
-                              ])
-                            })
-                          ],
-                          2
-                        )
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _vm._m(26)
-              ])
-            ])
-          ]
-        )
-      ]
     )
   ])
 }
@@ -70730,98 +70363,6 @@ var staticRenderFns = [
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Tax")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", [_vm._v("Code")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Name")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Option")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-danger",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Close")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", [_vm._v("Code")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Name")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Option")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-danger",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Close")]
       )
     ])
   }
