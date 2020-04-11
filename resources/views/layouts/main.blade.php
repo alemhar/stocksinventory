@@ -115,7 +115,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav nav-treeview">
               @can('isAdmin')
               <li class="nav-item">
-                <router-link to="/cd-ledger" class="nav-link">
+                <router-link to="/cd-view" class="nav-link">
                   <i class="nav-icon fas fa-folder-minus"></i>
                   <p>Cash Disbursements</p>
                 </router-link>
@@ -123,7 +123,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               @endcan
               @can('isAdmin')
               <li class="nav-item">
-                <router-link to="/cd-view" class="nav-link">
+                <router-link to="/cr-view" class="nav-link">
                   <i class="nav-icon fas fa-folder-plus"></i>
                   <p>Cash Receipts</p>
                 </router-link>
