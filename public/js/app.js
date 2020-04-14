@@ -68684,7 +68684,7 @@ var render = function() {
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [
-                                        _vm._v(_vm._s(cd.branch_name))
+                                        _vm._v(_vm._s(cd.account_name))
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [_vm._v(_vm._s(cd.amount))]),
