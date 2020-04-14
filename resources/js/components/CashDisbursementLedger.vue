@@ -56,7 +56,7 @@
                           <tr v-for="cd in cds.data" :key="cd.id" @click="selectCDRow(cd.transaction_no)" :class="{ 'table-warning' : transaction_no == cd.transaction_no }" >
                             <td>{{ cd.transaction_no }}</td>
                             <td>{{ cd.payee ? cd.payee.name : ''}}</td>
-                            <td>{{ cd.branch_name }}</td>
+                            <td>{{ cd.account_name }}</td>
                             <td>{{ cd.amount }}</td>
                             <td>{{ cd.amount_ex_tax }}</td>
                             <td>{{ cd.vat }}</td>
