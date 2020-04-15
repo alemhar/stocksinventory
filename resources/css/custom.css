@@ -387,3 +387,7 @@
     font-size: 10pt;
     color: red;
 }
+
+th {
+    text-transform: uppercase;
+   } 
