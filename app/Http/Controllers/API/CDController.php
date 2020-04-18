@@ -18,6 +18,17 @@ class CDController extends Controller
     public function index()
     {
         return Transaction::with('payee')->latest()->where('status','CONFIRMED')->paginate(3);
+
+        if ($transaction_type = \Request::get('transaction_type')) {
+            $transaction = Transaction::where(function($query) use ($transaction_type){
+                $query->where('transaction_type',$transaction_type)->where('status','CONFIRMED');
+            })->paginate(10);
+
+        }else{
+            $transaction = Transaction::latest()->paginate(10);
+        }
+        return $transaction;
+
     }
 
     /**

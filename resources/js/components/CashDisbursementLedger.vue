@@ -703,7 +703,7 @@
                   this.entries = data.data;
                 })
                 .catch(()=>{
-                  //
+                  
                 });
           },
           loadCDs() {

@@ -10,14 +10,14 @@
 
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" @submit.prevent="createCD()">
+            <form role="form" @submit.prevent="createTransaction()">
               <div class="box-header with-border">
                 <h3 class="box-title">Cash Receipts</h3>
                 <div class="box-tools">
                   <button type="submit" v-show="!transaction_created" class="btn btn-success">Create <i class="fas fa-plus-circle fa-fw"></i></button>
                   <!-- @click="createCD()"  -->
-                  <button  type="button" class="btn btn-danger"  v-show="transaction_created" @click="cancelCD">Cancel <i class="fas fa-window-close fa-fw"></i></button>
-                  <button type="button"  class="btn btn-success"  v-show="transaction_created" @click="saveCD">Save <i class="fas fa-save fa-fw"></i></button>
+                  <button  type="button" class="btn btn-danger"  v-show="transaction_created" @click="cancelTransaction">Cancel <i class="fas fa-window-close fa-fw"></i></button>
+                  <button type="button"  class="btn btn-success"  v-show="transaction_created" @click="saveTransaction">Save <i class="fas fa-save fa-fw"></i></button>
 
                 </div>
               </div>
@@ -986,7 +986,7 @@
             let day = toTwoDigits(today.getDate());
             return `${year}-${month}-${day}`;
           },
-          createCD(){
+          createTransaction(){
             if(this.form.payee_id.length == 0) {
               this.no_payee = true;
             } else {
@@ -1013,7 +1013,7 @@
 
 
             this.form.transaction_no = this.createSerialNumber();
-            this.form.transaction_type = 'CD';
+            this.form.transaction_type = 'CR';
             this.form.post('api/cd')
                 .then((data)=>{
                   //console.log(data.data.id);
@@ -1024,7 +1024,7 @@
                 });
             
           },
-          saveCD(){
+          saveTransaction(){
             if(this.form.amount == 0) {
               return false;
             }
@@ -1051,7 +1051,7 @@
             this.$router.go(); // 
 
           },
-          cancelCD(){
+          cancelTransaction(){
             this.transaction_created = false;
             this.form.delete('api/cd/cancel/'+this.form.transaction_no);
           },
@@ -1457,21 +1457,7 @@
         },
 
         created() {
-            /*
-            VueListen.$on('Search',() => {
-                let query = this.$parent.search;
-                axios.get('api/findUser?q='+query)
-                .then((data)=>{
-                  this.users = data.data;
-                })
-                .catch(()=>{
-
-                });
-               //this.loadUsers();
-            });
-            */
             
-            //this.loadUsers();
             this.loadPayees();
             this.loadBranches();
             this.initChartAccounts();
@@ -1502,17 +1488,7 @@
                 $('.modal:visible').length && $(document.body).addClass('modal-open');
             });
 
-            /*Backdrop z-index fix
-              This solution uses a setTimeout because the .modal-backdrop isn't created when the event show.bs.modal is triggered.
-
-            $(document).on('show.bs.modal', '.modal', function () {
-                var zIndex = 1040 + (10 * $('.modal:visible').length);
-                $(this).css('z-index', zIndex);
-                setTimeout(function() {
-                    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-                }, 0);
-            });
-            */
+            
         },
         computed: {
             

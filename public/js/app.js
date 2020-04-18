@@ -4257,8 +4257,7 @@ __webpack_require__.r(__webpack_exports__);
       var transaction_no = this.transaction_no;
       axios.get('api/cd/entries/list?transaction_no=' + transaction_no).then(function (data) {
         _this4.entries = data.data;
-      })["catch"](function () {//
-      });
+      })["catch"](function () {});
     },
     loadCDs: function loadCDs() {
       var _this5 = this;
@@ -5315,7 +5314,7 @@ __webpack_require__.r(__webpack_exports__);
       var day = toTwoDigits(today.getDate());
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
-    createCD: function createCD() {
+    createTransaction: function createTransaction() {
       var _this4 = this;
 
       if (this.form.payee_id.length == 0) {
@@ -5343,14 +5342,14 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.form.transaction_no = this.createSerialNumber();
-      this.form.transaction_type = 'CD';
+      this.form.transaction_type = 'CR';
       this.form.post('api/cd').then(function (data) {
         //console.log(data.data.id);
         _this4.form.id = data.data.id;
       })["catch"](function () {//
       });
     },
-    saveCD: function saveCD() {
+    saveTransaction: function saveTransaction() {
       var _this5 = this;
 
       if (this.form.amount == 0) {
@@ -5373,7 +5372,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$router.go(); // 
     },
-    cancelCD: function cancelCD() {
+    cancelTransaction: function cancelTransaction() {
       this.transaction_created = false;
       this.form["delete"]('api/cd/cancel/' + this.form.transaction_no);
     },
@@ -5753,19 +5752,6 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this18 = this;
 
-    /*
-    VueListen.$on('Search',() => {
-        let query = this.$parent.search;
-        axios.get('api/findUser?q='+query)
-        .then((data)=>{
-          this.users = data.data;
-        })
-        .catch(()=>{
-         });
-       //this.loadUsers();
-    });
-    */
-    //this.loadUsers();
     this.loadPayees();
     this.loadBranches();
     this.initChartAccounts();
@@ -5788,16 +5774,6 @@ __webpack_require__.r(__webpack_exports__);
     $(document).on('hidden.bs.modal', '.modal', function () {
       $('.modal:visible').length && $(document.body).addClass('modal-open');
     });
-    /*Backdrop z-index fix
-      This solution uses a setTimeout because the .modal-backdrop isn't created when the event show.bs.modal is triggered.
-     $(document).on('show.bs.modal', '.modal', function () {
-        var zIndex = 1040 + (10 * $('.modal:visible').length);
-        $(this).css('z-index', zIndex);
-        setTimeout(function() {
-            $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-        }, 0);
-    });
-    */
   },
   computed: {},
   components: {}
@@ -70396,7 +70372,7 @@ var render = function() {
                     on: {
                       submit: function($event) {
                         $event.preventDefault()
-                        return _vm.createCD()
+                        return _vm.createTransaction()
                       }
                     }
                   },
@@ -70440,7 +70416,7 @@ var render = function() {
                             ],
                             staticClass: "btn btn-danger",
                             attrs: { type: "button" },
-                            on: { click: _vm.cancelCD }
+                            on: { click: _vm.cancelTransaction }
                           },
                           [
                             _vm._v("Cancel "),
@@ -70463,7 +70439,7 @@ var render = function() {
                             ],
                             staticClass: "btn btn-success",
                             attrs: { type: "button" },
-                            on: { click: _vm.saveCD }
+                            on: { click: _vm.saveTransaction }
                           },
                           [
                             _vm._v("Save "),
