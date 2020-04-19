@@ -956,7 +956,7 @@
           },
           initChartAccounts(){
 
-              axios.get('api/chartaccount?headerordetail=header&transaction=CR')
+              axios.get('api/chartaccount?headerordetail=header&transaction=CD')
                 .then((data)=>{
                   this.chart_of_accounts_header = data.data;
                 })
@@ -964,7 +964,7 @@
                   //
                 });
                 
-              axios.get('api/chartaccount?headerordetail=detail&transaction=CR')
+              axios.get('api/chartaccount?headerordetail=detail&transaction=CD')
                 .then((data)=>{
                   this.chart_of_accounts_detail = data.data;
                 })

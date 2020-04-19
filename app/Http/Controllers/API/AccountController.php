@@ -31,13 +31,7 @@ class AccountController extends Controller
             if ($headerordetail = \Request::get('headerordetail')) {
                 $transaction = \Request::get('transaction');
 
-                /*
-                $accounts = Account::where(function($query) use ($headerordetail){
-                    $query->where('account_code','LIKE',"%$search%")
-                            ->orWhere('account_name','LIKE',"%$search%");
-                })->paginate(10);
-                */
-                if($transaction == 'CR'){
+                if($transaction == 'CD'){
                     if($headerordetail == 'header'){
                         $accounts = Account::where('filter', '=', 1)
                         ->paginate(8);
@@ -47,6 +41,20 @@ class AccountController extends Controller
                         ->paginate(8);
                     }
                 }
+                elseif($transaction == 'CR'){
+                    if($headerordetail == 'header'){
+                        $accounts = Account::where('filter', '<=', 2)
+                        ->paginate(8);
+                    } else {
+                        $accounts = Account::where('filter', '>', 2)
+                        ->where('filter', '<', 99)
+                        ->paginate(8);
+                    }
+                } else {
+                    $accounts = Account::latest()->paginate(10);
+                }
+
+
 
             }else{
                 $accounts = Account::latest()->paginate(10);

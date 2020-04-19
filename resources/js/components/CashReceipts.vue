@@ -852,22 +852,7 @@
               } else {
                   this.chart_of_accounts = this.chart_of_accounts_detail;
               }
-              /*
-              if(headerOrDetail == null){
-                axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
-              } else {
-                //axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
 
-                axios.get('api/chartaccount?headerordetail='+headerOrDetail+'&transaction=CR')
-                .then((data)=>{
-                  this.chart_of_accounts = data.data;
-                })
-                .catch(()=>{
-                  //
-                });
-
-              }
-              */
           },
           initChartAccounts(){
 
@@ -1313,48 +1298,7 @@
             this.form_entry.branch_name = this.selected_branch.name;
           }
 
-          // ,
-          // createUser(){
-            
-
-          //   this.$Progress.start()
-          //   this.form.post('api/user')
-          //   .then(()=>{
-          //       VueListen.$emit('RefreshUsersTable');
-          //       $('#UserDetails').modal('hide');
-
-          //       toast.fire({
-          //         type: 'success',
-          //         title: 'User created successfully'
-          //       })
-          //       this.$Progress.finish();
-          //   })
-          //   .catch(()=>{
-
-          //   });
-            
-          // },
-          // updateUser(){
-          //   console.log('Edit User');
-          //   this.$Progress.start();
-          //   this.form.put('api/user/'+this.form.id)
-          //   .then(() => {
-          //       $('#UserDetails').modal('hide');
-          //       swal.fire(
-          //           'Updated!',
-          //           'User information has been updated.',
-          //           'success'
-          //         );
-          //         this.$Progress.finish();
-          //         VueListen.$emit('RefreshUsersTable');
-          //   })
-          //   .catch(() => {
-          //       this.$Progress.fail();
-          //   });
-
-            
-
-          //}
+          
 
 
         },

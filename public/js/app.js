@@ -3041,11 +3041,11 @@ __webpack_require__.r(__webpack_exports__);
     initChartAccounts: function initChartAccounts() {
       var _this3 = this;
 
-      axios.get('api/chartaccount?headerordetail=header&transaction=CR').then(function (data) {
+      axios.get('api/chartaccount?headerordetail=header&transaction=CD').then(function (data) {
         _this3.chart_of_accounts_header = data.data;
       })["catch"](function () {//
       });
-      axios.get('api/chartaccount?headerordetail=detail&transaction=CR').then(function (data) {
+      axios.get('api/chartaccount?headerordetail=detail&transaction=CD').then(function (data) {
         _this3.chart_of_accounts_detail = data.data;
       })["catch"](function () {//
       });
@@ -5192,21 +5192,6 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.chart_of_accounts = this.chart_of_accounts_detail;
       }
-      /*
-      if(headerOrDetail == null){
-        axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
-      } else {
-        //axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
-         axios.get('api/chartaccount?headerordetail='+headerOrDetail+'&transaction=CR')
-        .then((data)=>{
-          this.chart_of_accounts = data.data;
-        })
-        .catch(()=>{
-          //
-        });
-       }
-      */
-
     },
     initChartAccounts: function initChartAccounts() {
       var _this3 = this;
@@ -5625,41 +5610,7 @@ __webpack_require__.r(__webpack_exports__);
     branchChange: function branchChange() {
       this.form_entry.branch_id = this.selected_branch.id;
       this.form_entry.branch_name = this.selected_branch.name;
-    } // ,
-    // createUser(){
-    //   this.$Progress.start()
-    //   this.form.post('api/user')
-    //   .then(()=>{
-    //       VueListen.$emit('RefreshUsersTable');
-    //       $('#UserDetails').modal('hide');
-    //       toast.fire({
-    //         type: 'success',
-    //         title: 'User created successfully'
-    //       })
-    //       this.$Progress.finish();
-    //   })
-    //   .catch(()=>{
-    //   });
-    // },
-    // updateUser(){
-    //   console.log('Edit User');
-    //   this.$Progress.start();
-    //   this.form.put('api/user/'+this.form.id)
-    //   .then(() => {
-    //       $('#UserDetails').modal('hide');
-    //       swal.fire(
-    //           'Updated!',
-    //           'User information has been updated.',
-    //           'success'
-    //         );
-    //         this.$Progress.finish();
-    //         VueListen.$emit('RefreshUsersTable');
-    //   })
-    //   .catch(() => {
-    //       this.$Progress.fail();
-    //   });
-    //}
-
+    }
   },
   created: function created() {
     var _this18 = this;
