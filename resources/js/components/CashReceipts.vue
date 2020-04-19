@@ -757,21 +757,12 @@
           </div>
         </div>
       </div>
-      <!-- Search Payee Modal -->      
-
-      <!--search-account
-      v-show="isModalVisible"
-      @close="closeSearchAccount"
-      / -->
-
       
 
     </div>
 </template>
 <script>
-    //import { ModelSelect } from 'vue-search-select'
-    //import { DynamicSelect } from 'vue-dynamic-select'
-    //import { BasicSelect } from 'vue-search-select'
+
   
     export default {
         data() {
@@ -868,57 +859,6 @@
           }
         },
         methods: {
-
-          // getResults(page = 1) {
-          //   axios.get('api/user?page=' + page)
-          //     .then(response => {
-          //       this.users = response.data;
-          //     });
-          // },
-          // editUser(user){
-          //     this.editmode = true;
-          //     this.form.reset();
-          //     $('#UserDetails').modal('show');
-          //     this.form.fill(user);
-          // },
-          // newUser(){
-          //     this.editmode = false;
-          //     this.form.reset();
-          //     $('#UserDetails').modal('show');
-          // },
-          // deleteUser(id){
-          //     swal.fire({
-          //           title: 'Are you sure?',
-          //           text: "You won't be able to revert this!",
-          //           type: 'warning',
-          //           showCancelButton: true,
-          //           confirmButtonColor: '#3085d6',
-          //           cancelButtonColor: '#d33',
-          //           confirmButtonText: 'Yes, delete it!'
-          //         }).then((result) => {
-          //           if (result.value) {
-                      
-          //             this.form.delete('api/user/'+id)
-          //             .then(()=>{
-          //                 swal.fire(
-          //                   'Deleted!',
-          //                   'User has been deleted.',
-          //                   'success'
-          //                 );
-
-          //                 Fire.$emit('RefreshUsersTable');
-          //             })
-          //             .catch(()=>{
-          //               swal("Failed!","Failed to delete user!", "warning");
-
-          //             });
-                      
-
-
-
-          //           }
-          //         });
-          // },
           loadBranches(){
 
             if(this.$gate.isAdminOrUser()){
@@ -1055,16 +995,6 @@
             this.transaction_created = false;
             this.form.delete('api/cd/cancel/'+this.form.transaction_no);
           },
-          //searchAccount() {
-          //  this.isModalVisible = true;
-          //},
-          //closeSearchAccount(code = null,name = null) {
-          //  this.isModalVisible = false;
-          //  this.form.account_name = name;
-          //  this.form.account_code = code;
-            //console.log(code+' '+name);
-
-          //},
           searchAccountModal(headerOrDetail = 'header'){
               this.headerOrDetail = headerOrDetail;
               this.searchText = this.form.account_code;

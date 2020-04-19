@@ -707,7 +707,8 @@
                 });
           },
           loadCDs() {
-              axios.get("api/cd").then(({ data }) => (this.cds = data));
+              // Check if paginated is also filtered by transaction_type 
+              axios.get("api/cd?transaction_type=CR").then(({ data }) => (this.cds = data));
           },
           
           selectDebitRow(active_debit_row_id){
