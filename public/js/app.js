@@ -4263,7 +4263,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this5 = this;
 
       // Check if paginated is also filtered by transaction_type 
-      axios.get("api/cd?transaction_type=CR").then(function (_ref) {
+      axios.get("api/cd?transaction_type=CD").then(function (_ref) {
         var data = _ref.data;
         return _this5.cds = data;
       });

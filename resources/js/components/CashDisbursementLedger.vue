@@ -708,7 +708,7 @@
           },
           loadCDs() {
               // Check if paginated is also filtered by transaction_type 
-              axios.get("api/cd?transaction_type=CR").then(({ data }) => (this.cds = data));
+              axios.get("api/cd?transaction_type=CD").then(({ data }) => (this.cds = data));
           },
           
           selectDebitRow(active_debit_row_id){
