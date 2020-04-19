@@ -12,7 +12,7 @@
             <!-- form start -->
             <form role="form" @submit.prevent="createTransaction()">
               <div class="box-header with-border">
-                <h3 class="box-title">Cash Receipts</h3>
+                <h3 class="box-title box-title-transaction" >Cash Receipts</h3>
                 <div class="box-tools">
                   <button type="submit" v-show="!transaction_created" class="btn btn-success">Create <i class="fas fa-plus-circle fa-fw"></i></button>
                   <!-- @click="createCD()"  -->
@@ -24,29 +24,10 @@
               <div class="box-body row">
                 <!--Left Col-->
                 <div class="col-8">
-                  <!-- div class="form-group">
-                    <label for="inputPayeesName">Payee</label>
-                    <input type="text" class="form-control col-12" id="inputPayeesName" placeholder="Payees Name">
-                  </div -->
-
-                  <!-- div class="form-group" -->
-                    <!--select name='payee_id' v-model='form.payee_id' class="form-control col-12">
-                      <option value=''>Please select payee...</option>
-                      <option v-for="payee in payees.data" v-bind:value="payee.id">{{ payee.name }}</option>
-                    </select -->
-                  <!-- /div -->
+                  
 
                   <div class="input-group mb-2">
-                    <!-- label for="inputPayeesName">Payee</label -->
-                    <!--dynamic-select 
-                      :options="payees.data"
-                      option-value="id"
-                      option-text="name"
-                      placeholder="Type to search"
-                      v-on:input="eventChild"
-                      v-model="current_payee"
-                      v-show="!transaction_created"
-                      / -->
+                    
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Payee</span>
                     </div>  
@@ -74,15 +55,7 @@
                     </div>
                       <input v-bind:readonly="transaction_created" type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN"  v-model="current_payee_tin">
                     
-                    <!-- div class="col-6">
-                      <select v-model="form.tax_type" class="form-control col-12">
-                        <option value="TAX TYPE">TAX TYPE</option>
-                        <option value="VAT REG">VAT REG</option>
-                        <option value="NON VAT">NON VAT</option>
-                        <option value="VAT EXEMPT">VAT EXEMPT</option>
-                        <option value="ZERO RATED">ZERO RATED</option>
-                      </select>
-                    </div-->  
+                   
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
@@ -124,9 +97,9 @@
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
-                      <span class="input-group-text inputGroup-sizing-default">CD #</span>
+                      <span class="input-group-text inputGroup-sizing-default">CR #</span>
                     </div>
-                    <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="CD Number">
+                    <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="CR Number">
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
@@ -166,7 +139,7 @@
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Debits</h3>
+                  <h3 class="box-title box-title-transaction">Debits</h3>
                   <div class="box-tools">
                     <button class="btn btn-success" @click="newEntry">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
@@ -236,7 +209,7 @@
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Items</h3>
+                  <h3 class="box-title box-title-transaction">Items</h3>
                   <!--div class="box-tools">
                     <button class="btn btn-success" @click="newItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div-->
@@ -395,7 +368,7 @@
                 <p v-show="no_entry_branch_id" class="empty-field-message">** Please indicate branch.</p>
               </div>
               <div class="box-header">
-                  <h3 class="box-title">Items</h3>
+                  <h3 class="box-title box-title-transaction">Items</h3>
                   <div class="box-tools">
                     <button class="btn btn-success" @click="newItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
@@ -795,7 +768,7 @@
                   payee_id: '',
                   reference_no: '',
                   transaction_no: '',
-                  transaction_type: 'CD', // default for Cash Disbursement
+                  transaction_type: 'CR', // default for Cash Disbursement
                   transaction_date: this.getDate(),
                   account_code: '',
                   account_name:'',
@@ -1116,7 +1089,7 @@
               this.form_entry.reset();
               this.form_entry.transaction_id = this.form.id;
               this.form_entry.transaction_no = this.form.transaction_no;
-              this.form_entry.transaction_type = 'CD';
+              this.form_entry.transaction_type = 'CR';
 
               this.form_entry.post('api/cd/entry')
                 .then((data)=>{
@@ -1157,7 +1130,7 @@
               this.no_quantity = false;
               this.form_item.transaction_entry_id = this.form_entry.id;
               this.form_item.transaction_no = this.form.transaction_no;
-              this.form_item.transaction_type = 'CD';
+              this.form_item.transaction_type = 'CR';
               this.form_item.account_code = this.form_entry.account_code;
 
               this.form_item.post('api/cd/item')

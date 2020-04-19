@@ -390,4 +390,10 @@
 
 th {
     text-transform: uppercase;
-   } 
+} 
+
+.box-title-transaction {
+    font-weight: bold;
+    color: red;
+    font-size: x-large;
+}   

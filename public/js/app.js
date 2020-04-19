@@ -5079,33 +5079,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5136,7 +5109,7 @@ __webpack_require__.r(__webpack_exports__);
         payee_id: '',
         reference_no: '',
         transaction_no: '',
-        transaction_type: 'CD',
+        transaction_type: 'CR',
         // default for Cash Disbursement
         transaction_date: this.getDate(),
         account_code: '',
@@ -5442,7 +5415,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.reset();
       this.form_entry.transaction_id = this.form.id;
       this.form_entry.transaction_no = this.form.transaction_no;
-      this.form_entry.transaction_type = 'CD';
+      this.form_entry.transaction_type = 'CR';
       this.form_entry.post('api/cd/entry').then(function (data) {
         _this10.form_entry.id = data.data.id; //console.log(data.data.id);
 
@@ -5477,7 +5450,7 @@ __webpack_require__.r(__webpack_exports__);
       this.no_quantity = false;
       this.form_item.transaction_entry_id = this.form_entry.id;
       this.form_item.transaction_no = this.form.transaction_no;
-      this.form_item.transaction_type = 'CD';
+      this.form_item.transaction_type = 'CR';
       this.form_item.account_code = this.form_entry.account_code;
       this.form_item.post('api/cd/item').then(function (data) {
         _this11.form_item.id = data.data.id; //console.log(data.data.id);
@@ -65936,9 +65909,11 @@ var render = function() {
                   },
                   [
                     _c("div", { staticClass: "box-header with-border" }, [
-                      _c("h3", { staticClass: "box-title" }, [
-                        _vm._v("Cash Disbursement")
-                      ]),
+                      _c(
+                        "h3",
+                        { staticClass: "box-title box-title-transaction" },
+                        [_vm._v("Cash Disbursement")]
+                      ),
                       _vm._v(" "),
                       _c("div", { staticClass: "box-tools" }, [
                         _c(
@@ -66417,9 +66392,11 @@ var render = function() {
                   _c("div", { staticClass: "col-md-12" }, [
                     _c("div", { staticClass: "box" }, [
                       _c("div", { staticClass: "box-header" }, [
-                        _c("h3", { staticClass: "box-title" }, [
-                          _vm._v("Debits")
-                        ]),
+                        _c(
+                          "h3",
+                          { staticClass: "box-title box-title-transaction" },
+                          [_vm._v("Debits")]
+                        ),
                         _vm._v(" "),
                         _c("div", { staticClass: "box-tools" }, [
                           _c(
@@ -67037,7 +67014,11 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "box-header" }, [
-                    _c("h3", { staticClass: "box-title" }, [_vm._v("Items")]),
+                    _c(
+                      "h3",
+                      { staticClass: "box-title box-title-transaction" },
+                      [_vm._v("Items")]
+                    ),
                     _vm._v(" "),
                     _c("div", { staticClass: "box-tools" }, [
                       _c(
@@ -68131,7 +68112,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "box-header" }, [
-      _c("h3", { staticClass: "box-title" }, [_vm._v("Items")])
+      _c("h3", { staticClass: "box-title box-title-transaction" }, [
+        _vm._v("Items")
+      ])
     ])
   },
   function() {
@@ -70317,9 +70300,11 @@ var render = function() {
                   },
                   [
                     _c("div", { staticClass: "box-header with-border" }, [
-                      _c("h3", { staticClass: "box-title" }, [
-                        _vm._v("Cash Receipts")
-                      ]),
+                      _c(
+                        "h3",
+                        { staticClass: "box-title box-title-transaction" },
+                        [_vm._v("Cash Receipts")]
+                      ),
                       _vm._v(" "),
                       _c("div", { staticClass: "box-tools" }, [
                         _c(
@@ -70732,7 +70717,7 @@ var render = function() {
                               type: "text",
                               readonly: "",
                               id: "inputDCNo",
-                              placeholder: "CD Number"
+                              placeholder: "CR Number"
                             },
                             domProps: { value: _vm.form.transaction_no },
                             on: {
@@ -70798,9 +70783,11 @@ var render = function() {
                   _c("div", { staticClass: "col-md-12" }, [
                     _c("div", { staticClass: "box" }, [
                       _c("div", { staticClass: "box-header" }, [
-                        _c("h3", { staticClass: "box-title" }, [
-                          _vm._v("Debits")
-                        ]),
+                        _c(
+                          "h3",
+                          { staticClass: "box-title box-title-transaction" },
+                          [_vm._v("Debits")]
+                        ),
                         _vm._v(" "),
                         _c("div", { staticClass: "box-tools" }, [
                           _c(
@@ -71380,7 +71367,11 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "box-header" }, [
-                    _c("h3", { staticClass: "box-title" }, [_vm._v("Items")]),
+                    _c(
+                      "h3",
+                      { staticClass: "box-title box-title-transaction" },
+                      [_vm._v("Items")]
+                    ),
                     _vm._v(" "),
                     _c("div", { staticClass: "box-tools" }, [
                       _c(
@@ -72433,7 +72424,7 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("CD #")]
+        [_vm._v("CR #")]
       )
     ])
   },
@@ -72474,7 +72465,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "box-header" }, [
-      _c("h3", { staticClass: "box-title" }, [_vm._v("Items")])
+      _c("h3", { staticClass: "box-title box-title-transaction" }, [
+        _vm._v("Items")
+      ])
     ])
   },
   function() {

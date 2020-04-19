@@ -12,7 +12,7 @@
             <!-- form start -->
             <form role="form" @submit.prevent="createCD()">
               <div class="box-header with-border">
-                <h3 class="box-title">Cash Disbursement</h3>
+                <h3 class="box-title box-title-transaction">Cash Disbursement</h3>
                 <div class="box-tools">
                   <button type="submit" v-show="!cd_created" class="btn btn-success">Create <i class="fas fa-plus-circle fa-fw"></i></button>
                   <!-- @click="createCD()"  -->
@@ -172,7 +172,7 @@
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Debits</h3>
+                  <h3 class="box-title box-title-transaction">Debits</h3>
                   <div class="box-tools">
                     <button class="btn btn-success" @click="newEntry">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
@@ -242,7 +242,7 @@
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Items</h3>
+                  <h3 class="box-title box-title-transaction">Items</h3>
                   <!--div class="box-tools">
                     <button class="btn btn-success" @click="newItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div-->
@@ -393,7 +393,7 @@
                 <p v-show="no_entry_branch_id" class="empty-field-message">** Please indicate branch.</p>
               </div>
               <div class="box-header">
-                  <h3 class="box-title">Items</h3>
+                  <h3 class="box-title box-title-transaction">Items</h3>
                   <div class="box-tools">
                     <button class="btn btn-success" @click="newItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
