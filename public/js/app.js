@@ -2005,6 +2005,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -65644,53 +65646,55 @@ var render = function() {
                         [_vm._v("Readability")]
                       ),
                       _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.font_size,
-                              expression: "form.font_size"
+                      _c("div", { staticClass: "col-sm-12" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.font_size,
+                                expression: "form.font_size"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { id: "input-font-size" },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.form,
+                                  "font_size",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
                             }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { id: "input-font-size" },
-                          on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.$set(
-                                _vm.form,
-                                "font_size",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              )
-                            }
-                          }
-                        },
-                        [
-                          _c("option", { attrs: { value: "SMALL" } }, [
-                            _vm._v("SMALL")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "MEDIUM" } }, [
-                            _vm._v("MEDIUM")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "LARGE" } }, [
-                            _vm._v("LARGE")
-                          ])
-                        ]
-                      )
+                          },
+                          [
+                            _c("option", { attrs: { value: "SMALL" } }, [
+                              _vm._v("SMALL")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "MEDIUM" } }, [
+                              _vm._v("MEDIUM")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "LARGE" } }, [
+                              _vm._v("LARGE")
+                            ])
+                          ]
+                        )
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
