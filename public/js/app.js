@@ -2021,7 +2021,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    console.log('Component Account.vue mounted.');
   },
   methods: {
     getProfilePhoto: function getProfilePhoto() {
