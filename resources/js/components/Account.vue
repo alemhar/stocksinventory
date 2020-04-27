@@ -105,14 +105,14 @@
                                     </div>
 
                                 </div>
-                                <!--div class="form-group">
+                                <div class="form-group">
                                     <label for="photo" class="col-sm-2 control-label" class="form-control" id="input-font-size">Readability</label>
                                     <select v-model="form.font_size">
                                         <option value="SMALL">SMALL</option>
                                         <option value="MEDIUM">MEDIUM</option>
                                         <option value="LARGE">LARGE</option>
                                     </select>
-                                </div -->    
+                                </div>    
                                 <div class="form-group">
                                     <label for="password" class="col-sm-12 control-label">Passport (leave empty if not changing)</label>
 
