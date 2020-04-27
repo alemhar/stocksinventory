@@ -150,14 +150,6 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
-    }
-</script>
-
-<script>
-    export default {
         data(){
             return {
                  form: new Form({
@@ -226,7 +218,6 @@
                 .then(({ data }) => (this.form.fill(data)));
             });
             
-
         }
     }
 </script>
