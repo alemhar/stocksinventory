@@ -51,13 +51,13 @@ class AccountController extends Controller
                         ->paginate(8);
                     }
                 } else {
-                    $accounts = Account::latest()->paginate(10);
+                    $accounts = Account::latest()->where('filter', '<', 99)->paginate(10);
                 }
 
 
 
             }else{
-                $accounts = Account::latest()->paginate(10);
+                $accounts = Account::latest()->where('filter', '<', 99)->paginate(10);
             }
             return $accounts;
 
