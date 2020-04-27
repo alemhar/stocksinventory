@@ -65634,7 +65634,64 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(3),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-sm-2 control-label",
+                          attrs: { for: "input-font-size" }
+                        },
+                        [_vm._v("Readability")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.font_size,
+                              expression: "form.font_size"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { id: "input-font-size" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.form,
+                                "font_size",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "SMALL" } }, [
+                            _vm._v("SMALL")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "MEDIUM" } }, [
+                            _vm._v("MEDIUM")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "LARGE" } }, [
+                            _vm._v("LARGE")
+                          ])
+                        ]
+                      )
+                    ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
                       _c(
@@ -65770,33 +65827,6 @@ var staticRenderFns = [
       _c("h3", { staticClass: "text-center" }, [
         _vm._v("Display User Activity")
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c(
-        "label",
-        {
-          staticClass: "col-sm-2 control-label",
-          attrs: { for: "input-font-size" }
-        },
-        [_vm._v("Readability")]
-      ),
-      _vm._v(" "),
-      _c(
-        "select",
-        { staticClass: "form-control", attrs: { id: "input-font-size" } },
-        [
-          _c("option", { attrs: { value: "SMALL" } }, [_vm._v("SMALL")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "MEDIUM" } }, [_vm._v("MEDIUM")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "LARGE" } }, [_vm._v("LARGE")])
-        ]
-      )
     ])
   }
 ]
