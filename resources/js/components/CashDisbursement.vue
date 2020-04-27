@@ -48,9 +48,9 @@
                       v-show="!cd_created"
                       / -->
                     <div class="input-group-prepend">
-                      <span class="input-group-text inputGroup-sizing-default">Payee</span>
+                      <span class="input-group-text inputGroup-sizing-default"  v-bind:style="[readabilityObject]">Payee</span>
                     </div>  
-                    <input v-model="current_payee_name" v-bind:readonly="cd_created" type="text" class="form-control col-12" id="inputPayeeName" placeholder="Payees Name">
+                    <input v-model="current_payee_name" v-bind:readonly="cd_created" type="text" class="form-control col-12" id="inputPayeeName" placeholder="Payees Name" v-bind:style="[readabilityObject]">
                       
                     <span class="input-group-btn col-1">
                         <button type="button" v-show="!cd_created" class="btn btn-success" @click="searchPayeeModal"><i class="fas fa-search fa-fw"></i></button>
@@ -1527,5 +1527,5 @@
     }
 </script>
 <style type="text/css">
-
+  
 </style>
