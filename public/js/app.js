@@ -65658,7 +65658,7 @@ var render = function() {
                                 expression: "form.font_size"
                               }
                             ],
-                            staticClass: "form-control",
+                            staticClass: "form-control col-3",
                             attrs: { id: "input-font-size" },
                             on: {
                               change: function($event) {
@@ -90666,7 +90666,10 @@ var app = new Vue({
   el: '#app',
   router: router,
   data: {
-    search: ''
+    search: '',
+    readabilityObject: {
+      fontSize: user.font_size
+    }
   },
   methods: {
     SearchIt: _.debounce(function () {

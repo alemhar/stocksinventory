@@ -67,7 +67,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <li class="nav-item">
             <router-link to="/dashboard" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
+              <p v-bind:style="[readabilityObject]">
                 Dashboard
                 <!--span class="right badge badge-danger">New</span-->
               </p>
@@ -79,7 +79,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cogs"></i>
-              <p>
+              <p v-bind:style="[readabilityObject]">
                 Transactions
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -89,7 +89,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <router-link to="/cd" class="nav-link">
                   <i class="nav-icon fas fa-folder-minus"></i>
-                  <p>Cash Disbursements</p>
+                  <p v-bind:style="[readabilityObject]">Cash Disbursements</p>
                 </router-link>
               </li>
               @endcan
@@ -97,7 +97,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <router-link to="/cr" class="nav-link">
                   <i class="nav-icon fas fa-folder-plus"></i>
-                  <p>Cash Receipts</p>
+                  <p v-bind:style="[readabilityObject]">Cash Receipts</p>
                 </router-link>
               </li>
               @endcan
@@ -107,7 +107,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cogs"></i>
-              <p>
+              <p v-bind:style="[readabilityObject]">
                 Views
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -117,7 +117,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <router-link to="/cd-view" class="nav-link">
                   <i class="nav-icon fas fa-folder-minus"></i>
-                  <p>Cash Disbursements</p>
+                  <p v-bind:style="[readabilityObject]">Cash Disbursements</p>
                 </router-link>
               </li>
               @endcan
@@ -125,7 +125,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <router-link to="/cr-view" class="nav-link">
                   <i class="nav-icon fas fa-folder-plus"></i>
-                  <p>Cash Receipts</p>
+                  <p v-bind:style="[readabilityObject]">Cash Receipts</p>
                 </router-link>
               </li>
               @endcan
@@ -137,7 +137,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <li class="nav-item">
             <router-link to="/payees" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
-              <p>
+              <p v-bind:style="[readabilityObject]">
                 Payees
               </p>
             </router-link>
@@ -147,7 +147,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <li class="nav-item">
             <router-link to="/account" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
-              <p>
+              <p v-bind:style="[readabilityObject]">
                 User Settings 
               </p>
             </router-link>
@@ -155,7 +155,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <li class="nav-item">
             <router-link to="/users" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
-              <p>
+              <p v-bind:style="[readabilityObject]">
                 Users
               </p>
             </router-link>
@@ -166,7 +166,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
                 <i class="nav-icon fas fa-power-off"></i>                             
-                <p>
+                <p v-bind:style="[readabilityObject]">
                   {{ __('Logout') }}
                 </p>
             </a>

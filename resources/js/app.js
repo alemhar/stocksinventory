@@ -177,7 +177,11 @@ const app = new Vue({
     el: '#app',
     router,
     data: {
-      search: ''
+      search: '',
+      readabilityObject: {
+        fontSize: user.font_size
+      }
+      
     },
     methods:{
       SearchIt: _.debounce(() => {
