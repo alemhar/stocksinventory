@@ -180,7 +180,7 @@
                     this.form.password = undefined;
                 }
                 
-                this.form.put('api/user/update')
+                this.form.put('api/account')
                 .then(()=>{
                     VueListen.$emit('RefreshUsersInfo');
                     this.$Progress.finish();

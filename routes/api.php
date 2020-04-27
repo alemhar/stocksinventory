@@ -55,7 +55,7 @@ Route::get('searchAccount', 'API\AccountController@search');
 Route::get('searchPayee', 'API\PayeeController@search');
 
 Route::get('searchCD', 'API\CDController@search');
-Route::put('user/update', 'API\UserController@updateAccountInfo');
+Route::put('account', 'API\UserController@updateAccountInfo');
 
 Route::delete('cd/cancel/{transaction_no}', 'API\CDController@cancelTransaction');
 Route::post('cd/confirm/{transaction_no}', 'API\CDController@confirmTransaction');
