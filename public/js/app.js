@@ -2037,7 +2037,7 @@ __webpack_require__.r(__webpack_exports__);
         this.form.password = undefined;
       }
 
-      this.form.put('api/account').then(function () {
+      this.form.put('api/user/update').then(function () {
         VueListen.$emit('RefreshUsersInfo');
 
         _this.$Progress.finish();
