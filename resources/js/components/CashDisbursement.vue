@@ -861,7 +861,10 @@
               entries: {},
               chart_of_accounts: {},
               chart_of_accounts_header: {},
-              chart_of_accounts_detail: {}
+              chart_of_accounts_detail: {},
+              readabilityObject: {
+                fontSize: user.font_size
+              }
 
           }
         },
