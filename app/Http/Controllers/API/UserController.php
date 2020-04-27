@@ -97,7 +97,7 @@ class UserController extends Controller
 
         //return ['message' => "Success"];
 
-        return $request->all();
+        return $user;
     }
 
     public function account()
