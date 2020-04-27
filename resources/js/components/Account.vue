@@ -167,7 +167,8 @@
                     password: '',
                     type: '',
                     bio: '',
-                    photo: ''
+                    photo: '',
+                    font_size: ''
                 })
             }
         },
