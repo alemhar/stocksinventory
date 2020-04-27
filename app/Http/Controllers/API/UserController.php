@@ -95,9 +95,9 @@ class UserController extends Controller
         $user->update($request->all());
         
 
-        return ['message' => "Success"];
+        //return ['message' => "Success"];
 
-        //return $name;
+        return $request->all();
     }
 
     public function account()
