@@ -106,7 +106,7 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="photo" class="col-sm-2 control-label">Readability</label>
+                                    <label for="photo" class="col-sm-2 control-label" class="form-control" id="input-font-size">Readability</label>
                                     <select v-model="form.font_size">
                                         <option value="SMALL">SMALL</option>
                                         <option value="MEDIUM">MEDIUM</option>
