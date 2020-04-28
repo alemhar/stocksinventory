@@ -4926,7 +4926,7 @@ __webpack_require__.r(__webpack_exports__);
       user_id: '',
       //isModalVisible: false,
       editmode: false,
-      cd_created: false,
+      cr_created: false,
       no_payee: false,
       no_reference_no: false,
       no_account_code: false,
@@ -4935,7 +4935,7 @@ __webpack_require__.r(__webpack_exports__);
       no_quantity: false,
       no_entry_account_code: false,
       no_entry_branch_id: false,
-      searchCDNo: '',
+      searchCRNo: '',
       searchPayee: '',
       headerOrDetail: 'header',
       current_payee_id: '',
@@ -4945,13 +4945,13 @@ __webpack_require__.r(__webpack_exports__);
       active_debit_row_id: 0,
       transaction_no: 0,
       selected_branch: {},
-      cd: {},
+      cr: {},
       form: new Form({
         id: '',
         payee_id: '',
         reference_no: '',
         transaction_no: '',
-        transaction_type: 'CD',
+        transaction_type: 'CR',
         // default for Cash Disbursement
         transaction_date: '',
         account_code: '',
@@ -5000,27 +5000,27 @@ __webpack_require__.r(__webpack_exports__);
       branches: {},
       items: {},
       entries: {},
-      cds: {},
+      crs: {},
       chart_of_accounts: {},
       chart_of_accounts_header: {},
       chart_of_accounts_detail: {}
     };
   },
   methods: {
-    getCDs: function getCDs() {
+    getCRs: function getCRs() {
       var _this = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get('api/cd?page=' + page).then(function (response) {
-        _this.cds = response.data;
+        _this.crs = response.data;
       });
     },
-    SearchCD: function SearchCD() {
+    searchCR: function searchCR() {
       var _this2 = this;
 
-      var transaction_no = this.searchCDNo;
-      axios.get('api/searchCD?transaction_no=' + transaction_no).then(function (data) {
-        _this2.cds = data.data;
+      var transaction_no = this.searchCRNo;
+      axios.get('api/searchCR?transaction_no=' + transaction_no).then(function (data) {
+        _this2.crs = data.data;
       })["catch"](function () {//
       });
     },
@@ -5041,13 +5041,13 @@ __webpack_require__.r(__webpack_exports__);
         _this4.entries = data.data;
       })["catch"](function () {});
     },
-    loadCDs: function loadCDs() {
+    loadCRs: function loadCRs() {
       var _this5 = this;
 
       // Check if paginated is also filtered by transaction_type 
-      axios.get("api/cd?transaction_type=CD").then(function (_ref) {
+      axios.get("api/cd?transaction_type=CR").then(function (_ref) {
         var data = _ref.data;
-        return _this5.cds = data;
+        return _this5.crs = data;
       });
     },
     selectDebitRow: function selectDebitRow(active_debit_row_id) {
@@ -5055,7 +5055,7 @@ __webpack_require__.r(__webpack_exports__);
 
       VueListen.$emit('RefreshItemTable'); //console.log(active_debit_row);
     },
-    selectCDRow: function selectCDRow(transaction_no) {
+    selectCRRow: function selectCRRow(transaction_no) {
       this.transaction_no = transaction_no; //this.form_entry.id = active_debit_row_id;
 
       VueListen.$emit('RefreshEntryTable'); //console.log(active_debit_row);
@@ -5076,7 +5076,7 @@ __webpack_require__.r(__webpack_exports__);
        //this.loadUsers();
     });
     */
-    this.loadCDs(); //this.loadPayees();
+    this.loadCRs(); //this.loadPayees();
     //this.loadBranches();
     //this.initChartAccounts();
 
@@ -71044,20 +71044,20 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.searchCDNo,
-                          expression: "searchCDNo"
+                          value: _vm.searchCRNo,
+                          expression: "searchCRNo"
                         }
                       ],
                       staticClass: "float-right col-8",
                       attrs: { type: "text", name: "search" },
-                      domProps: { value: _vm.searchCDNo },
+                      domProps: { value: _vm.searchCRNo },
                       on: {
-                        change: _vm.SearchCD,
+                        change: _vm.searchCR,
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.searchCDNo = $event.target.value
+                          _vm.searchCRNo = $event.target.value
                         }
                       }
                     }),
@@ -71076,7 +71076,7 @@ var render = function() {
                           ],
                           staticClass: "btn btn-success",
                           attrs: { type: "button" },
-                          on: { click: _vm.SearchCD }
+                          on: { click: _vm.searchCR }
                         },
                         [_c("i", { staticClass: "fas fa-search fa-fw" })]
                       )
@@ -71105,7 +71105,7 @@ var render = function() {
                         "div",
                         {
                           staticClass: "box-body table-responsive no-padding",
-                          attrs: { id: "cd-list" }
+                          attrs: { id: "cr-list" }
                         },
                         [
                           _c("table", { staticClass: "table table-hover" }, [
@@ -71114,46 +71114,46 @@ var render = function() {
                               [
                                 _vm._m(0),
                                 _vm._v(" "),
-                                _vm._l(_vm.cds.data, function(cd) {
+                                _vm._l(_vm.crs.data, function(cr) {
                                   return _c(
                                     "tr",
                                     {
-                                      key: cd.id,
+                                      key: cr.id,
                                       class: {
                                         "table-warning":
                                           _vm.transaction_no ==
-                                          cd.transaction_no
+                                          cr.transaction_no
                                       },
                                       on: {
                                         click: function($event) {
-                                          return _vm.selectCDRow(
-                                            cd.transaction_no
+                                          return _vm.selectCRRow(
+                                            cr.transaction_no
                                           )
                                         }
                                       }
                                     },
                                     [
                                       _c("td", [
-                                        _vm._v(_vm._s(cd.transaction_no))
+                                        _vm._v(_vm._s(cr.transaction_no))
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [
                                         _vm._v(
-                                          _vm._s(cd.payee ? cd.payee.name : "")
+                                          _vm._s(cr.payee ? cr.payee.name : "")
                                         )
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [
-                                        _vm._v(_vm._s(cd.account_name))
+                                        _vm._v(_vm._s(cr.account_name))
                                       ]),
                                       _vm._v(" "),
-                                      _c("td", [_vm._v(_vm._s(cd.amount))]),
+                                      _c("td", [_vm._v(_vm._s(cr.amount))]),
                                       _vm._v(" "),
                                       _c("td", [
-                                        _vm._v(_vm._s(cd.amount_ex_tax))
+                                        _vm._v(_vm._s(cr.amount_ex_tax))
                                       ]),
                                       _vm._v(" "),
-                                      _c("td", [_vm._v(_vm._s(cd.vat))]),
+                                      _c("td", [_vm._v(_vm._s(cr.vat))]),
                                       _vm._v(" "),
                                       _c("td", [
                                         _c(
@@ -71162,7 +71162,7 @@ var render = function() {
                                             attrs: { href: "#" },
                                             on: {
                                               click: function($event) {
-                                                return _vm.viewCD(cd.id)
+                                                return _vm.viewCR(cr.id)
                                               }
                                             }
                                           },
@@ -71188,8 +71188,8 @@ var render = function() {
                         { staticClass: "box-footer" },
                         [
                           _c("pagination", {
-                            attrs: { data: _vm.cds },
-                            on: { "pagination-change-page": _vm.getCDs }
+                            attrs: { data: _vm.crs },
+                            on: { "pagination-change-page": _vm.getCRs }
                           })
                         ],
                         1
@@ -71355,8 +71355,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.cd_created,
-                      expression: "cd_created"
+                      value: _vm.cr_created,
+                      expression: "cr_created"
                     }
                   ],
                   staticClass: "box box-warning mt-2"
@@ -71531,8 +71531,8 @@ var render = function() {
           {
             name: "show",
             rawName: "v-show",
-            value: _vm.cd_created,
-            expression: "cd_created"
+            value: _vm.cr_created,
+            expression: "cr_created"
           }
         ],
         staticClass: "modal fade",
@@ -72058,8 +72058,8 @@ var render = function() {
           {
             name: "show",
             rawName: "v-show",
-            value: _vm.cd_created,
-            expression: "cd_created"
+            value: _vm.cr_created,
+            expression: "cr_created"
           }
         ],
         staticClass: "modal fade",
@@ -72540,7 +72540,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", [
-      _c("th", [_vm._v("CD No.")]),
+      _c("th", [_vm._v("CR No.")]),
       _vm._v(" "),
       _c("th", [_vm._v("Payee")]),
       _vm._v(" "),

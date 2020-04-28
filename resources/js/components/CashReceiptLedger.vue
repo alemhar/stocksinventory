@@ -9,9 +9,9 @@
             <div class="box-tools">
               <div class="input-group">
                 <label>Search</label>
-                <input type="text" name="search" v-model="searchCDNo" @change="SearchCD" class="float-right col-8">
+                <input type="text" name="search" v-model="searchCRNo" @change="searchCR" class="float-right col-8">
                 <span class="input-group-btn col-1">
-                    <button type="button" v-show="true" class="btn btn-success" @click="SearchCD"><i class="fas fa-search fa-fw"></i></button>
+                    <button type="button" v-show="true" class="btn btn-success" @click="searchCR"><i class="fas fa-search fa-fw"></i></button>
                 </span>
               </div>
               
@@ -40,11 +40,11 @@
 
 
                     <!-- /.box-header -->
-                    <div id="cd-list" class="box-body table-responsive no-padding">
+                    <div id="cr-list" class="box-body table-responsive no-padding">
                       <table class="table table-hover">
                         <tbody>
                           <tr>
-                            <th>CD No.</th>
+                            <th>CR No.</th>
                             <th>Payee</th>
                             <th>Account</th>
                             <th>Ref. #</th>
@@ -53,15 +53,15 @@
                             <th>Option</th>
                             
                           </tr>
-                          <tr v-for="cd in cds.data" :key="cd.id" @click="selectCDRow(cd.transaction_no)" :class="{ 'table-warning' : transaction_no == cd.transaction_no }" >
-                            <td>{{ cd.transaction_no }}</td>
-                            <td>{{ cd.payee ? cd.payee.name : ''}}</td>
-                            <td>{{ cd.account_name }}</td>
-                            <td>{{ cd.amount }}</td>
-                            <td>{{ cd.amount_ex_tax }}</td>
-                            <td>{{ cd.vat }}</td>
+                          <tr v-for="cr in crs.data" :key="cr.id" @click="selectCRRow(cr.transaction_no)" :class="{ 'table-warning' : transaction_no == cr.transaction_no }" >
+                            <td>{{ cr.transaction_no }}</td>
+                            <td>{{ cr.payee ? cr.payee.name : ''}}</td>
+                            <td>{{ cr.account_name }}</td>
+                            <td>{{ cr.amount }}</td>
+                            <td>{{ cr.amount_ex_tax }}</td>
+                            <td>{{ cr.vat }}</td>
                             <td>
-                              <a href="#" @click="viewCD(cd.id)">
+                              <a href="#" @click="viewCR(cr.id)">
                                 <i class="fa fa-eye"></i>
 
                               </a>
@@ -72,7 +72,7 @@
                     </table>
                     </div>
                     <div class="box-footer">
-                      <pagination :data="cds" @pagination-change-page="getCDs"></pagination>
+                      <pagination :data="crs" @pagination-change-page="getCRs"></pagination>
                     </div> 
 
                   </div>
@@ -221,7 +221,7 @@
           </div>  
           <!-- /.box -->
 
-            <div v-show="cd_created" class="box box-warning mt-2">
+            <div v-show="cr_created" class="box box-warning mt-2">
               
               <div class="form-group col-12 float-right">
                 <div class="row mt-2">
@@ -277,7 +277,7 @@
       -->
 
 
-      <div class="modal fade" v-show="cd_created" id="entry-details" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+      <div class="modal fade" v-show="cr_created" id="entry-details" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content" style="width: 800px;">
             <div class="modal-header">
@@ -432,7 +432,7 @@
       -->
 
 
-      <div class="modal fade"  v-show="cd_created"  id="entry-items" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+      <div class="modal fade"  v-show="cr_created"  id="entry-items" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -578,7 +578,7 @@
               user_id: '',
               //isModalVisible: false,
               editmode: false,
-              cd_created: false,
+              cr_created: false,
               no_payee: false,
               no_reference_no: false,
               no_account_code: false,
@@ -587,7 +587,7 @@
               no_quantity: false,
               no_entry_account_code: false,
               no_entry_branch_id: false,
-              searchCDNo: '',
+              searchCRNo: '',
               searchPayee: '',
               headerOrDetail: 'header',
               current_payee_id: '',
@@ -597,14 +597,14 @@
               active_debit_row_id: 0,
               transaction_no: 0,
               selected_branch: {},
-              cd : {},
+              cr : {},
               form: new Form({
 
                   id:'',
                   payee_id: '',
                   reference_no: '',
                   transaction_no: '',
-                  transaction_type: 'CD', // default for Cash Disbursement
+                  transaction_type: 'CR', // default for Cash Disbursement
                   transaction_date: '',
                   account_code: '',
                   account_name:'',
@@ -661,7 +661,7 @@
               branches: {},
               items: {},
               entries: {},
-              cds:{},
+              crs:{},
               chart_of_accounts: {},
               chart_of_accounts_header: {},
               chart_of_accounts_detail: {}
@@ -669,18 +669,18 @@
           }
         },
         methods: {
-          getCDs(page = 1) {
+          getCRs(page = 1) {
             axios.get('api/cd?page=' + page)
               .then(response => {
-                this.cds = response.data;
+                this.crs = response.data;
               });
           },
  
-          SearchCD() {
-              let transaction_no = this.searchCDNo;
-              axios.get('api/searchCD?transaction_no='+transaction_no)
+          searchCR() {
+              let transaction_no = this.searchCRNo;
+              axios.get('api/searchCR?transaction_no='+transaction_no)
                 .then((data)=>{
-                  this.cds = data.data;
+                  this.crs = data.data;
                 })
                 .catch(()=>{
                   //
@@ -706,9 +706,9 @@
                   
                 });
           },
-          loadCDs() {
+          loadCRs() {
               // Check if paginated is also filtered by transaction_type 
-              axios.get("api/cd?transaction_type=CD").then(({ data }) => (this.cds = data));
+              axios.get("api/cd?transaction_type=CR").then(({ data }) => (this.crs = data));
           },
           
           selectDebitRow(active_debit_row_id){
@@ -718,7 +718,7 @@
               //console.log(active_debit_row);
 
           },
-          selectCDRow(transaction_no){
+          selectCRRow(transaction_no){
               this.transaction_no = transaction_no;
               //this.form_entry.id = active_debit_row_id;
               VueListen.$emit('RefreshEntryTable');
@@ -743,7 +743,7 @@
             });
             */
             
-            this.loadCDs();
+            this.loadCRs();
             //this.loadPayees();
             //this.loadBranches();
             //this.initChartAccounts();
