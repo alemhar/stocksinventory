@@ -133,7 +133,7 @@ class CDController extends Controller
     public function search(){
         if ($transaction_no = \Request::get('transaction_no')) {
             $transaction_type = \Request::get('transaction_type');
-            $transaction = Transaction::where(function($query) use ($transaction_no){
+            $transaction = Transaction::where(function($query) use ($transaction_no,$transaction_type){
                 $query->where('transaction_no','LIKE',"%$transaction_no%")->where('transaction_type','=',$transaction_type);
             })->paginate(10);
 
