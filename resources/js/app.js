@@ -106,8 +106,9 @@ let routes = [
   { path: '/users', component: require('./components/Users.vue').default },
   { path: '/cd', component: require('./components/CashDisbursement.vue').default },
   { path: '/cd-view', component: require('./components/CashDisbursementLedger.vue').default },
-  
   { path: '/cr', component: require('./components/CashReceipts.vue').default },
+  
+  { path: '/cr-view', component: require('./components/CashReceiptLedger.vue').default },
   { path: '/payees', component: require('./components/Payees.vue').default },
   { path: '*', component: require('./components/NotFound.vue').default }
   
