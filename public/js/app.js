@@ -5019,7 +5019,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var transaction_no = this.searchCRNo;
-      axios.get('api/searchCR?transaction_no=' + transaction_no).then(function (data) {
+      axios.get('api/searchCD?transaction_no=' + transaction_no).then(function (data) {
         _this2.crs = data.data;
       })["catch"](function () {//
       });
