@@ -678,7 +678,7 @@
  
           SearchCD() {
               let transaction_no = this.searchCDNo;
-              axios.get('api/searchCD?transaction_no='+transaction_no)
+              axios.get('api/searchCD?transaction_no='+transaction_no+'&transaction_type=CD')
                 .then((data)=>{
                   this.cds = data.data;
                 })

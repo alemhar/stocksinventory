@@ -678,7 +678,7 @@
  
           searchCR() {
               let transaction_no = this.searchCRNo;
-              axios.get('api/searchCD?transaction_no='+transaction_no)
+              axios.get('api/searchCD?transaction_no='+transaction_no+'&transaction_type=CR')
                 .then((data)=>{
                   this.crs = data.data;
                 })
