@@ -175,7 +175,7 @@ class AccountController extends Controller
 
 
         }else{
-            $accounts = Account::latest()->paginate(10);
+            $accounts = null;
         }
         return $accounts;
     }
