@@ -995,7 +995,7 @@
           SearchIt() {
               let query = this.searchText;
               let headerOrDetail = this.headerOrDetail;
-              axios.get('api/searchAccount?q='+query+'&transaction_type=SALES&headerOrDetail='+headerOrDetail)
+              axios.get('api/searchAccount?q='+query+'&transaction_type=SALES&headerordetail='+headerOrDetail)
                 .then((data)=>{
                   this.chart_of_accounts = data.data;
                 })

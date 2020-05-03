@@ -3195,7 +3195,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var query = this.searchText;
       var headerOrDetail = this.headerOrDetail;
-      axios.get('api/searchAccount?q=' + query + '&transaction_type=CD&headerOrDetail=' + headerOrDetail).then(function (data) {
+      axios.get('api/searchAccount?q=' + query + '&transaction_type=CD&headerordetail=' + headerOrDetail).then(function (data) {
         _this6.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
@@ -6117,7 +6117,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var query = this.searchText;
       var headerOrDetail = this.headerOrDetail;
-      axios.get('api/searchAccount?q=' + query + '&transaction_type=CD&headerOrDetail=' + headerOrDetail).then(function (data) {
+      axios.get('api/searchAccount?q=' + query + '&transaction_type=CD&headerordetail=' + headerOrDetail).then(function (data) {
         _this6.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
@@ -7791,7 +7791,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var query = this.searchText;
       var headerOrDetail = this.headerOrDetail;
-      axios.get('api/searchAccount?q=' + query + '&transaction_type=SALES&headerOrDetail=' + headerOrDetail).then(function (data) {
+      axios.get('api/searchAccount?q=' + query + '&transaction_type=SALES&headerordetail=' + headerOrDetail).then(function (data) {
         _this6.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
