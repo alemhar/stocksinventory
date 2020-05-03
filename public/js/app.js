@@ -3046,11 +3046,11 @@ __webpack_require__.r(__webpack_exports__);
     initChartAccounts: function initChartAccounts() {
       var _this3 = this;
 
-      axios.get('api/chartaccount?headerordetail=header&transaction=CD').then(function (data) {
+      axios.get('api/chartaccount?headerordetail=header&transaction_type=CD').then(function (data) {
         _this3.chart_of_accounts_header = data.data;
       })["catch"](function () {//
       });
-      axios.get('api/chartaccount?headerordetail=detail&transaction=CD').then(function (data) {
+      axios.get('api/chartaccount?headerordetail=detail&transaction_type=CD').then(function (data) {
         _this3.chart_of_accounts_detail = data.data;
       })["catch"](function () {//
       });
@@ -3194,7 +3194,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this6 = this;
 
       var query = this.searchText;
-      axios.get('api/searchAccount?q=' + query).then(function (data) {
+      var headerOrDetail = this.headerOrDetail;
+      axios.get('api/searchAccount?q=' + query + '&transaction_type=CD&headerOrDetail=' + headerOrDetail).then(function (data) {
         _this6.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
@@ -5978,11 +5979,11 @@ __webpack_require__.r(__webpack_exports__);
     initChartAccounts: function initChartAccounts() {
       var _this3 = this;
 
-      axios.get('api/chartaccount?headerordetail=header&transaction=CR').then(function (data) {
+      axios.get('api/chartaccount?headerordetail=header&transaction_type=CR').then(function (data) {
         _this3.chart_of_accounts_header = data.data;
       })["catch"](function () {//
       });
-      axios.get('api/chartaccount?headerordetail=detail&transaction=CR').then(function (data) {
+      axios.get('api/chartaccount?headerordetail=detail&transaction_type=CR').then(function (data) {
         _this3.chart_of_accounts_detail = data.data;
       })["catch"](function () {//
       });
@@ -6115,7 +6116,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this6 = this;
 
       var query = this.searchText;
-      axios.get('api/searchAccount?q=' + query).then(function (data) {
+      var headerOrDetail = this.headerOrDetail;
+      axios.get('api/searchAccount?q=' + query + '&transaction_type=CD&headerOrDetail=' + headerOrDetail).then(function (data) {
         _this6.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
@@ -7651,11 +7653,11 @@ __webpack_require__.r(__webpack_exports__);
     initChartAccounts: function initChartAccounts() {
       var _this3 = this;
 
-      axios.get('api/chartaccount?headerordetail=header&transaction=CR').then(function (data) {
+      axios.get('api/chartaccount?headerordetail=header&transaction_type=SALES').then(function (data) {
         _this3.chart_of_accounts_header = data.data;
       })["catch"](function () {//
       });
-      axios.get('api/chartaccount?headerordetail=detail&transaction=CR').then(function (data) {
+      axios.get('api/chartaccount?headerordetail=detail&transaction_type=SALES').then(function (data) {
         _this3.chart_of_accounts_detail = data.data;
       })["catch"](function () {//
       });
