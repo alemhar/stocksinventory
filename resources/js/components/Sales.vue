@@ -856,7 +856,7 @@
           },
           initChartAccounts(){
 
-              axios.get('api/chartaccount?headerordetail=header&transaction=CR')
+              axios.get('api/chartaccount?headerordetail=header&transaction_type=SALES')
                 .then((data)=>{
                   this.chart_of_accounts_header = data.data;
                 })
@@ -864,7 +864,7 @@
                   //
                 });
                 
-              axios.get('api/chartaccount?headerordetail=detail&transaction=CR')
+              axios.get('api/chartaccount?headerordetail=detail&transaction_type=SALES')
                 .then((data)=>{
                   this.chart_of_accounts_detail = data.data;
                 })

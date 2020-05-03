@@ -104,7 +104,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               @can('isAdmin')
               <li class="nav-item">
                 <router-link to="/sales" class="nav-link">
-                  <i class="nav-icon fas fa-folder-plus"></i>
+                  <i class="nav-icon fas fa-sign-out-alt"></i>
                   <p v-bind:style="[readabilityObject]">Sales</p>
                 </router-link>
               </li>

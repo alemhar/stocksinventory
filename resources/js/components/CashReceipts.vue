@@ -856,7 +856,7 @@
           },
           initChartAccounts(){
 
-              axios.get('api/chartaccount?headerordetail=header&transaction=CR')
+              axios.get('api/chartaccount?headerordetail=header&transaction_type=CR')
                 .then((data)=>{
                   this.chart_of_accounts_header = data.data;
                 })
@@ -864,7 +864,7 @@
                   //
                 });
                 
-              axios.get('api/chartaccount?headerordetail=detail&transaction=CR')
+              axios.get('api/chartaccount?headerordetail=detail&transaction_type=CR')
                 .then((data)=>{
                   this.chart_of_accounts_detail = data.data;
                 })
@@ -996,7 +996,8 @@
           },
           SearchIt() {
               let query = this.searchText;
-              axios.get('api/searchAccount?q='+query)
+              let headerOrDetail = this.headerOrDetail;
+              axios.get('api/searchAccount?q='+query+'&transaction_type=CD&headerOrDetail='+headerOrDetail)
                 .then((data)=>{
                   this.chart_of_accounts = data.data;
                 })

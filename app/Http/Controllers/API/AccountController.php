@@ -29,7 +29,7 @@ class AccountController extends Controller
         if (\Gate::allows('isAdmin') || \Gate::allows('isUser')) {
             
             if ($headerordetail = \Request::get('headerordetail')) {
-                $transaction_type = \Request::get('transaction');
+                $transaction_type = \Request::get('transaction_type');
 
                 if($transaction_type == 'CD'){
                     if($headerordetail == 'header'){
