@@ -138,11 +138,11 @@ class AccountController extends Controller
     public function search(){
         if ($search = \Request::get('q')) {
             $transaction_type = \Request::get('transaction_type');
-            $headerOrDetail = \Request::get('headerOrDetail');
+            $headerordetail = \Request::get('headerordetail');
             $accounts = Account::where(function($query) use ($search){
                 $query->where('account_code','LIKE',"%$search%")
                         ->orWhere('account_name','LIKE',"%$search%");
-            })->where(function($query) use ($transaction_type,$headerOrDetail){
+            })->where(function($query) use ($transaction_type,$headerordetail){
             
                 if($transaction_type == 'CD'){
                     if($headerordetail == 'header'){
