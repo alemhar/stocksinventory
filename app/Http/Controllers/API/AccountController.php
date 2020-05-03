@@ -29,9 +29,9 @@ class AccountController extends Controller
         if (\Gate::allows('isAdmin') || \Gate::allows('isUser')) {
             
             if ($headerordetail = \Request::get('headerordetail')) {
-                $transaction = \Request::get('transaction');
+                $transaction_type = \Request::get('transaction');
 
-                if($transaction == 'CD'){
+                if($transaction_type == 'CD'){
                     if($headerordetail == 'header'){
                         $accounts = Account::where('filter', '=', 1)
                         ->paginate(8);
@@ -41,12 +41,22 @@ class AccountController extends Controller
                         ->paginate(8);
                     }
                 }
-                elseif($transaction == 'CR'){
+                elseif($transaction_type == 'CR'){
                     if($headerordetail == 'header'){
                         $accounts = Account::where('filter', '<=', 2)
                         ->paginate(8);
                     } else {
                         $accounts = Account::where('filter', '>', 2)
+                        ->where('filter', '<', 99)
+                        ->paginate(8);
+                    }
+                }
+                elseif($transaction_type == 'SALES'){
+                    if($headerordetail == 'header'){
+                        $accounts = Account::where('filter', '=', 4)
+                        ->paginate(8);
+                    } else {
+                        $accounts = Account::where('filter', '<>', 4)
                         ->where('filter', '<', 99)
                         ->paginate(8);
                     }
@@ -124,12 +134,45 @@ class AccountController extends Controller
         
     }
 
+    //'api/searchAccount?q='+query+'&transaction_type=SALES&headerOrDetail='+headerOrDetail
     public function search(){
         if ($search = \Request::get('q')) {
+            $transaction_type = \Request::get('transaction_type');
+            $headerOrDetail = \Request::get('headerOrDetail');
             $accounts = Account::where(function($query) use ($search){
                 $query->where('account_code','LIKE',"%$search%")
                         ->orWhere('account_name','LIKE',"%$search%");
+            })->where(function($query) use ($transaction_type,$headerOrDetail){
+            
+                if($transaction_type == 'CD'){
+                    if($headerordetail == 'header'){
+                        $query->where('filter', '=', 1);
+                    } else {
+                        $query->where('filter', '>', 1)
+                        ->where('filter', '<', 99);
+                    }
+                }
+                elseif($transaction_type == 'CR'){
+                    if($headerordetail == 'header'){
+                        $query->where('filter', '<=', 2);
+                    } else {
+                        $query->where('filter', '>', 2)
+                        ->where('filter', '<', 99);
+                    }
+                }elseif($transaction_type == 'SALES'){
+                    if($headerordetail == 'header'){
+                        $query->where('filter', '=', 4);
+                    } else {
+                        $query->where('filter', '<>', 4)
+                        ->where('filter', '<', 99);
+                    }
+                } else {
+                    $query->where('filter', '<', 99);
+                }
             })->paginate(10);
+
+
+
 
         }else{
             $accounts = Account::latest()->paginate(10);

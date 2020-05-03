@@ -101,6 +101,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </router-link>
               </li>
               @endcan
+              @can('isAdmin')
+              <li class="nav-item">
+                <router-link to="/sales" class="nav-link">
+                  <i class="nav-icon fas fa-folder-plus"></i>
+                  <p v-bind:style="[readabilityObject]">Sales</p>
+                </router-link>
+              </li>
+              @endcan
             </ul>
           </li>
           <!--  menu-transaction-->

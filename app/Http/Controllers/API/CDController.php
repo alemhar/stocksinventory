@@ -96,7 +96,7 @@ class CDController extends Controller
 
         $transaction->update($request->all());
 
-        return ['message' => 'CD updated!'];
+        return ['message' => 'Transaction updated!'];
     }
 
     /**
@@ -131,6 +131,7 @@ class CDController extends Controller
     }
 
     public function search(){
+        // Add transaction type to filter (Header/Detail, CR/CD/SALES)
         if ($transaction_no = \Request::get('transaction_no')) {
             $transaction_type = \Request::get('transaction_type');
             $transaction = Transaction::where(function($query) use ($transaction_no,$transaction_type){
