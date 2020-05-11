@@ -1265,7 +1265,9 @@
             } 
 
             this.form_item_arr.push(this.form_item);
+
             $('#entry-items').modal('hide');
+            return true;
             //this.$Progress.start();
             /*
             this.form_item.put('api/cd/item/'+this.form_item.id)
