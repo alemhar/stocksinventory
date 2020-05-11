@@ -7906,7 +7906,6 @@ __webpack_require__.r(__webpack_exports__);
       this.form_item.entry_id = this.form_entry.entry_id;
       this.form_item.transaction_type = 'PURCHASE';
       this.form_item.account_code = this.form_entry.account_code;
-      this.form_item_arr.push(this.form_item);
       /*
       this.form_item.post('api/cd/item')
         .then((data)=>{
@@ -8017,8 +8016,6 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     saveItem: function saveItem() {
-      var _this13 = this;
-
       if (this.form_item.item.length == 0) {
         this.no_item = true;
       } else {
@@ -8041,30 +8038,34 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
 
-      this.$Progress.start();
-      this.form_item.put('api/cd/item/' + this.form_item.id).then(function () {
-        $('#entry-items').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
+      this.form_item_arr.push(this.form_item);
+      $('#entry-items').modal('hide'); //this.$Progress.start();
 
-        _this13.form_entry.amount = parseFloat(_this13.form_entry.amount + _this13.form_item.sub_total).toFixed(2) * 1;
-        _this13.form_entry.amount_ex_tax = (_this13.form_entry.amount_ex_tax + _this13.form_item.tax_excluded).toFixed(2) * 1;
-        _this13.form_entry.vat += _this13.form_item.vat * 1;
-
-        _this13.$Progress.finish();
-
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {
-        _this13.$Progress.fail();
+      /*
+      this.form_item.put('api/cd/item/'+this.form_item.id)
+      .then(() => {
+          $('#entry-items').modal('hide');
+      
+          swal.fire(
+              'Updated!',
+              'Payee information has been updated.',
+              'success'
+            );
+          
+            this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
+            this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
+            this.form_entry.vat += (this.form_item.vat * 1);
+            
+            this.$Progress.finish();
+            VueListen.$emit('RefreshItemTable');
+      })
+      .catch(() => {
+          this.$Progress.fail();
       });
+      */
     },
     deleteItem: function deleteItem(item_id, item_sub_total, item_tax_excluded, item_vat) {
-      var _this14 = this;
+      var _this13 = this;
 
       this.form_item["delete"]('api/cd/item/' + item_id).then(function () {
         //$('#entry-items').modal('hide');
@@ -8076,12 +8077,12 @@ __webpack_require__.r(__webpack_exports__);
             'success'
           );
         */
-        _this14.form_entry.amount = parseFloat(_this14.form_entry.amount - item_sub_total).toFixed(2) * 1;
-        _this14.form_entry.amount_ex_tax = (_this14.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
-        _this14.form_entry.vat = (_this14.form_entry.vat - item_vat).toFixed(2) * 1;
+        _this13.form_entry.amount = parseFloat(_this13.form_entry.amount - item_sub_total).toFixed(2) * 1;
+        _this13.form_entry.amount_ex_tax = (_this13.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
+        _this13.form_entry.vat = (_this13.form_entry.vat - item_vat).toFixed(2) * 1;
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
-        _this14.$Progress.fail();
+        _this13.$Progress.fail();
       });
     },
     branchChange: function branchChange() {
@@ -8090,7 +8091,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this15 = this;
+    var _this14 = this;
 
     this.loadPayees();
     this.loadBranches();
@@ -8099,10 +8100,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntries(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
 
     VueListen.$on('RefreshItemTable', function () {
-      _this15.loadEntryItems();
+      _this14.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this15.loadEntries();
+      _this14.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
