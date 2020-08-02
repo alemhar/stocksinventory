@@ -1411,7 +1411,11 @@
             
         },
         computed: {
-            
+          wtaxExist: function(){
+            return this.wtax.filter((wtax)=>{
+              return wtax.atc_code.match(this.form_item.tax_type);
+            });
+          }  
           
 
         },

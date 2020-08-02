@@ -9506,7 +9506,15 @@ __webpack_require__.r(__webpack_exports__);
       $('.modal:visible').length && $(document.body).addClass('modal-open');
     });
   },
-  computed: {},
+  computed: {
+    wtaxExist: function wtaxExist() {
+      var _this20 = this;
+
+      return this.wtax.filter(function (wtax) {
+        return wtax.atc_code.match(_this20.form_item.tax_type);
+      });
+    }
+  },
   components: {}
 });
 
