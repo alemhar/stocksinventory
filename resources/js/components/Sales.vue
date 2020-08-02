@@ -1380,6 +1380,7 @@
 
             this.loadEntryItems();
             this.loadEntries();
+            this.loadWTax();
             //this.SearchIt = _.debounce(this.SearchIt, 1000);
             
             VueListen.$on('RefreshItemTable',() => {

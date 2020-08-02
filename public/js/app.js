@@ -9484,7 +9484,8 @@ __webpack_require__.r(__webpack_exports__);
     this.loadBranches();
     this.initChartAccounts();
     this.loadEntryItems();
-    this.loadEntries(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
+    this.loadEntries();
+    this.loadWTax(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
 
     VueListen.$on('RefreshItemTable', function () {
       _this19.loadEntryItems();
