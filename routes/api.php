@@ -48,6 +48,10 @@ Route::apiResources([
     'cd/item' => 'API\CDItemController'
 ]);
 
+Route::apiResources([
+    'taxrate' => 'API\TaxRateController'
+]);
+
 
 Route::get('account', 'API\UserController@account');
 Route::get('findUser', 'API\UserController@search');

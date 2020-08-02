@@ -14,7 +14,7 @@ class TaxRateController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
