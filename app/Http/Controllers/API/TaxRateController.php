@@ -15,7 +15,7 @@ class TaxRateController extends Controller
      */
     public function index()
     {
-        return Taxrate::latest()->paginate(10);
+        return Taxrate::all();
     }
 
     /**
