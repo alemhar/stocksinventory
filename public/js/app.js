@@ -9017,7 +9017,7 @@ __webpack_require__.r(__webpack_exports__);
       chart_of_accounts: {},
       chart_of_accounts_header: {},
       chart_of_accounts_detail: {},
-      wtax: null
+      wtax: []
     };
   },
   methods: {
@@ -9472,9 +9472,10 @@ __webpack_require__.r(__webpack_exports__);
     loadWTax: function loadWTax() {
       var _this18 = this;
 
-      axios.get("api/taxrate").then(function (_ref3) {
-        var data = _ref3.data;
-        return _this18.wtax = json_decode(data.data);
+      //axios.get("api/taxrate").then(({data}) => (this.wtax = json_decode(data.data) ));
+      axios.get('api/taxrate').then(function (data) {
+        _this18.wtax = json_decode(data.data);
+      })["catch"](function () {//
       });
     }
   },
