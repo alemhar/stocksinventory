@@ -9473,8 +9473,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this18 = this;
 
       axios.get("api/taxrate").then(function (_ref3) {
-        var res = _ref3.res;
-        return _this18.wtax = res;
+        var data = _ref3.data;
+        return _this18.wtax = data;
       });
     }
   },
