@@ -12,7 +12,7 @@
             <!-- form start -->
             <form role="form" @submit.prevent="createTransaction()">
               <div class="box-header with-border">
-                <h3 class="box-title box-title-transaction" >Cash Receipts</h3>
+                <h3 class="box-title box-title-transaction" >Sales</h3>
                 <div class="box-tools">
                   <button type="submit" v-show="!transaction_created" class="btn btn-success">Create <i class="fas fa-plus-circle fa-fw"></i></button>
                   <!-- @click="createCD()"  -->
@@ -99,7 +99,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">CR #</span>
                     </div>
-                    <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="CR Number">
+                    <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="SALES Number">
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
@@ -768,7 +768,7 @@
                   payee_id: '',
                   reference_no: '',
                   transaction_no: '',
-                  transaction_type: 'CR', // default for Cash Disbursement
+                  transaction_type: 'SALES', // default for SALES
                   transaction_date: this.getDate(),
                   account_code: '',
                   account_name:'',
@@ -828,6 +828,7 @@
               chart_of_accounts: {},
               chart_of_accounts_header: {},
               chart_of_accounts_detail: {}
+
           }
         },
         methods: {
@@ -854,16 +855,14 @@
 
           },
           initChartAccounts(){
-
-              axios.get('api/chartaccount?headerordetail=header&transaction_type=CR')
+              axios.get('api/chartaccount?headerordetail=header&transaction_type=SALES')
                 .then((data)=>{
                   this.chart_of_accounts_header = data.data;
                 })
                 .catch(()=>{
                   //
                 });
-                
-              axios.get('api/chartaccount?headerordetail=detail&transaction_type=CR')
+              axios.get('api/chartaccount?headerordetail=detail&transaction_type=SALES')
                 .then((data)=>{
                   this.chart_of_accounts_detail = data.data;
                 })
@@ -910,7 +909,7 @@
 
 
             this.form.transaction_no = this.createSerialNumber();
-            this.form.transaction_type = 'CR';
+            this.form.transaction_type = 'SALES';
             this.form.post('api/cd')
                 .then((data)=>{
                   //console.log(data.data.id);
@@ -996,7 +995,7 @@
           SearchIt() {
               let query = this.searchText;
               let headerOrDetail = this.headerOrDetail;
-              axios.get('api/searchAccount?q='+query+'&transaction_type=CD&headerordetail='+headerOrDetail)
+              axios.get('api/searchAccount?q='+query+'&transaction_type=SALES&headerordetail='+headerOrDetail)
                 .then((data)=>{
                   this.chart_of_accounts = data.data;
                 })
@@ -1074,7 +1073,7 @@
               this.form_entry.reset();
               this.form_entry.transaction_id = this.form.id;
               this.form_entry.transaction_no = this.form.transaction_no;
-              this.form_entry.transaction_type = 'CR';
+              this.form_entry.transaction_type = 'SALES';
 
               this.form_entry.post('api/cd/entry')
                 .then((data)=>{
@@ -1115,7 +1114,7 @@
               this.no_quantity = false;
               this.form_item.transaction_entry_id = this.form_entry.id;
               this.form_item.transaction_no = this.form.transaction_no;
-              this.form_item.transaction_type = 'CR';
+              this.form_item.transaction_type = 'SALES';
               this.form_item.account_code = this.form_entry.account_code;
 
               this.form_item.post('api/cd/item')

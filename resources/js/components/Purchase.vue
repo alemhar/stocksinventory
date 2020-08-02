@@ -1142,6 +1142,7 @@
                   //
                 });
               */  
+              
               this.loadEntryItems();
               $('#entry-items').modal('show');
           },

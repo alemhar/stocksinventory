@@ -732,6 +732,72 @@
       </div>
       
 
+      <!-- Search WTAX Modal 
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      -->
+
+      <div class="modal fade" id="select-payee" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <!--h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add New</h5>
+              <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update Entry</h5 -->
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form onsubmit="return false;">
+            <div class="modal-body">
+              
+              <div class="form-group">
+                <label>Search</label>
+                <input type="text" name="search" v-model="searchPayee" @change="SearchPayee" class="float-right col-6">
+              </div>
+              
+              <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tbody><tr>
+                  <th>Code</th>
+                  <th>Name</th>
+                  <th>Option</th>
+                </tr>
+                <tr v-for="payee in payees.data" :key="payee.id">
+                  <td>{{ payee.id }}</td>
+                  <td>{{ payee.name }}</td> 
+                  <td>
+                    <a href="#" @click="selectPayee(payee.id,payee.name,payee.address,payee.tin)">Select
+                      <i class="fa fa-edit"></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody></table>
+            </div>
+            <!-- /.box-body -->
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+
+
     </div>
 </template>
 <script>

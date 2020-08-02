@@ -8868,6 +8868,72 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -83456,6 +83522,116 @@ var render = function() {
           ]
         )
       ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "select-payee",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "addNewLabel",
+          "aria-hidden": "true",
+          "data-backdrop": "static",
+          "data-keyboard": "false"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(33),
+              _vm._v(" "),
+              _c("form", { attrs: { onsubmit: "return false;" } }, [
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Search")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.searchPayee,
+                          expression: "searchPayee"
+                        }
+                      ],
+                      staticClass: "float-right col-6",
+                      attrs: { type: "text", name: "search" },
+                      domProps: { value: _vm.searchPayee },
+                      on: {
+                        change: _vm.SearchPayee,
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.searchPayee = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "box-body table-responsive no-padding" },
+                    [
+                      _c("table", { staticClass: "table table-hover" }, [
+                        _c(
+                          "tbody",
+                          [
+                            _vm._m(34),
+                            _vm._v(" "),
+                            _vm._l(_vm.payees.data, function(payee) {
+                              return _c("tr", { key: payee.id }, [
+                                _c("td", [_vm._v(_vm._s(payee.id))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(payee.name))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _c(
+                                    "a",
+                                    {
+                                      attrs: { href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.selectPayee(
+                                            payee.id,
+                                            payee.name,
+                                            payee.address,
+                                            payee.tin
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v("Select\n                  "),
+                                      _c("i", { staticClass: "fa fa-edit" })
+                                    ]
+                                  )
+                                ])
+                              ])
+                            })
+                          ],
+                          2
+                        )
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(35)
+              ])
+            ])
+          ]
+        )
+      ]
     )
   ])
 }
@@ -83821,6 +83997,52 @@ var staticRenderFns = [
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Tax")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Code")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Option")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
       )
     ])
   },
