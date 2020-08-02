@@ -9481,7 +9481,7 @@ __webpack_require__.r(__webpack_exports__);
 
       //axios.get("api/taxrate").then(({data}) => (this.wtax = json_decode(data.data) ));
       axios.get('api/taxrate').then(function (response) {
-        _this19.wtax = response.data;
+        _this19.wtax = response.data.data;
 
         var found = _this19.wtax.find(function (tax) {
           return tax.atc_code = 'WC101';
