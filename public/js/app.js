@@ -9470,16 +9470,14 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.branch_name = this.selected_branch.name;
     },
     loadWTax: function loadWTax() {
-      var _this18 = this;
-
       axios.get("api/taxrate").then(function (_ref3) {
         var res = _ref3.res;
-        return _this18.wtax = res;
+        return console.log(res);
       });
     }
   },
   created: function created() {
-    var _this19 = this;
+    var _this18 = this;
 
     this.loadPayees();
     this.loadBranches();
@@ -9489,10 +9487,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadWTax(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
 
     VueListen.$on('RefreshItemTable', function () {
-      _this19.loadEntryItems();
+      _this18.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this19.loadEntries();
+      _this18.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
