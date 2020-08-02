@@ -1363,7 +1363,7 @@
             this.form_entry.branch_name = this.selected_branch.name;
           },
           loadWTax(){
-            axios.get("api/branch").then(({data}) => (this.wtax = data ));
+            axios.get("api/taxrate").then(({data}) => (this.wtax = data ));
             console.log(this.wtax);
           }
 

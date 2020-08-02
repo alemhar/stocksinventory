@@ -9470,7 +9470,7 @@ __webpack_require__.r(__webpack_exports__);
     loadWTax: function loadWTax() {
       var _this18 = this;
 
-      axios.get("api/branch").then(function (_ref3) {
+      axios.get("api/taxrate").then(function (_ref3) {
         var data = _ref3.data;
         return _this18.wtax = data;
       });
