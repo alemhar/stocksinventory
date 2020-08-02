@@ -1114,11 +1114,12 @@
 
               if(this.form_item.price && this.form_item.quantity){
                 this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
-                if(this.form_item.tax_type == 'VAT'){
+
+                let found = this.wtax.find(tax => tax.atc_code = this.tax_type);
+                console.log(found);
+                /*
+                if(found){
                   //this.form_item.amount = event.target.value;
-
-                  
-
                   this.form_item.tax_excluded = (this.form_item.sub_total/1.12).toFixed(2) * 1;
 
                   this.form_item.vat = (this.form_item.tax_excluded * 0.12).toFixed(2)  * 1;
@@ -1128,6 +1129,7 @@
                   this.form_item.vat = 0;
                   this.form_item.tax_excluded = this.form_item.sub_total  * 1;
                 }
+                */
               }
           },
           selectDebitRow(active_debit_row_id){
@@ -1370,13 +1372,14 @@
 
             axios.get('api/taxrate')
                 .then((response)=>{
-                  //this.wtax = json_decode(data.data);
-                  console.log(response);
+                  this.wtax = response.data;
+                  let found = this.wtax.find(tax => tax.atc_code = 'WC101');
+                  console.log(found);
+
                 })
                 .catch(()=>{
                   //
                 });
-
           }
 
           
