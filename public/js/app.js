@@ -9483,12 +9483,12 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('api/taxrate').then(function (response) {
         _this19.wtax = response.data.data;
 
-        var found = _this19.wtax.find(function (tax) {
+        var wTaxExist = _this19.wtax.find(function (tax) {
           return tax.atc_code == "WC020";
         });
 
-        if (found) {
-          console.log(tax.tax_rate);
+        if (wTaxExist) {
+          console.log(wTaxExist.tax_rate);
         } else {
           console.log('Not Found');
         }

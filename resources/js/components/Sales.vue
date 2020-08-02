@@ -1374,10 +1374,10 @@
                 .then((response)=>{
                   this.wtax = response.data.data;
 
-                  let found = this.wtax.find(tax => tax.atc_code == "WC020");
+                  let wTaxExist = this.wtax.find(tax => tax.atc_code == "WC020");
                   
-                  if(found){
-                    console.log(tax.tax_rate);
+                  if(wTaxExist){
+                    console.log(wTaxExist.tax_rate);
                   } else {
                     console.log('Not Found');
                   }
