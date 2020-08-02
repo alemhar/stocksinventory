@@ -1375,8 +1375,9 @@
                   this.wtax = response.data.data;
 
                   let found = this.wtax.find(tax => tax.atc_code = 'WX101');
+                  
                   if(found){
-                    console.log('Found');
+                    console.log(found);
                   } else {
                     console.log('Not Found');
                   }
