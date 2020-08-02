@@ -1367,7 +1367,7 @@
           },
           loadWTax(){
            
-            axios.get("api/taxrate").then(({res}) => (this.wtax = res ));
+            axios.get("api/taxrate").then(({data}) => (this.wtax = data ));
           }
 
           
