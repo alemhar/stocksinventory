@@ -8933,7 +8933,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -9015,7 +9014,8 @@ __webpack_require__.r(__webpack_exports__);
       entries: {},
       chart_of_accounts: {},
       chart_of_accounts_header: {},
-      chart_of_accounts_detail: {}
+      chart_of_accounts_detail: {},
+      wtax: {}
     };
   },
   methods: {
@@ -84116,11 +84116,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", [
-      _c("th", [_vm._v("Code")]),
+      _c("th", [_vm._v("Tax Rate")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Name")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Option")])
+      _c("th", [_vm._v("ATC")])
     ])
   },
   function() {

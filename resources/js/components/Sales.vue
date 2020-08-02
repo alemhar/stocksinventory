@@ -769,9 +769,8 @@
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <tbody><tr>
-                  <th>Code</th>
-                  <th>Name</th>
-                  <th>Option</th>
+                  <th>Tax Rate</th>
+                  <th>ATC</th>
                 </tr>
                 <tr v-for="payee in payees.data" :key="payee.id">
                   <td>{{ payee.id }}</td>
@@ -893,7 +892,8 @@
               entries: {},
               chart_of_accounts: {},
               chart_of_accounts_header: {},
-              chart_of_accounts_detail: {}
+              chart_of_accounts_detail: {},
+              wtax:{},
 
           }
         },
