@@ -895,7 +895,7 @@
               chart_of_accounts: {},
               chart_of_accounts_header: {},
               chart_of_accounts_detail: {},
-              wtax:{},
+              wtax: null,
 
           }
         },
@@ -1366,7 +1366,7 @@
             this.form_entry.branch_name = this.selected_branch.name;
           },
           loadWTax(){
-            axios.get("api/taxrate").then(({data}) => (this.wtax = data ));
+            axios.get("api/taxrate").then(({data}) => (this.wtax = json_decode(data.data) ));
           }
 
           

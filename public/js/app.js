@@ -9017,7 +9017,7 @@ __webpack_require__.r(__webpack_exports__);
       chart_of_accounts: {},
       chart_of_accounts_header: {},
       chart_of_accounts_detail: {},
-      wtax: {}
+      wtax: null
     };
   },
   methods: {
@@ -9474,7 +9474,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("api/taxrate").then(function (_ref3) {
         var data = _ref3.data;
-        return _this18.wtax = data;
+        return _this18.wtax = json_decode(data.data);
       });
     }
   },
