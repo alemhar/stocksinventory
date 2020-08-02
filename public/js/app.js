@@ -9475,6 +9475,7 @@ __webpack_require__.r(__webpack_exports__);
       //axios.get("api/taxrate").then(({data}) => (this.wtax = json_decode(data.data) ));
       axios.get('api/taxrate').then(function (data) {
         _this18.wtax = json_decode(data.data);
+        console.log(data.data);
       })["catch"](function () {//
       });
     }

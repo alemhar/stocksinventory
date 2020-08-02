@@ -1371,6 +1371,7 @@
             axios.get('api/taxrate')
                 .then((data)=>{
                   this.wtax = json_decode(data.data);
+                  console.log(data.data);
                 })
                 .catch(()=>{
                   //
