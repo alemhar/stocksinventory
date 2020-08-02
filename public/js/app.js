@@ -8933,6 +8933,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -83136,62 +83138,32 @@ var render = function() {
                 _c("div", { staticClass: "input-group mb-2" }, [
                   _vm._m(24),
                   _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form_item.tax_type,
-                          expression: "form_item.tax_type"
-                        }
-                      ],
-                      staticClass: "form-control col-12",
-                      attrs: {
-                        "aria-describedby": "inputGroup-sizing-default"
-                      },
-                      on: {
-                        change: [
-                          function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.form_item,
-                              "tax_type",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          },
-                          _vm.computeTaxChange
-                        ]
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form_item.tax_type,
+                        expression: "form_item.tax_type"
                       }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      name: "tax_type",
+                      id: "tax_type",
+                      "aria-describedby": "inputGroup-sizing-default",
+                      "keyup.enter": "computeTaxChange"
                     },
-                    [
-                      _c("option", { attrs: { value: "VAT" } }, [
-                        _vm._v("VAT")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "NON VAT" } }, [
-                        _vm._v("NON VAT")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "VAT EXEMPT" } }, [
-                        _vm._v("VAT EXEMPT")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "ZERO RATED" } }, [
-                        _vm._v("ZERO RATED")
-                      ])
-                    ]
-                  )
+                    domProps: { value: _vm.form_item.tax_type },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form_item, "tax_type", $event.target.value)
+                      }
+                    }
+                  })
                 ]),
                 _vm._v(" "),
                 _c(

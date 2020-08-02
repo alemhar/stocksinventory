@@ -549,14 +549,16 @@
                   <span class="input-group-text inputGroup-sizing-default">Tax Type</span>
                 </div>
 
-              
+                <input v-model="form_item.tax_type" name="tax_type" id="tax_type"
+                  class="form-control"  aria-describedby="inputGroup-sizing-default" keyup.enter="computeTaxChange">
+                  <!-- has-error :form="form_item" field="amount_ex_tax"></has-error -->
 
-                <select v-model="form_item.tax_type" @change="computeTaxChange" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
+                <!-- select v-model="form_item.tax_type" @change="computeTaxChange" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
                   <option value="VAT">VAT</option>
                   <option value="NON VAT">NON VAT</option>
                   <option value="VAT EXEMPT">VAT EXEMPT</option>
                   <option value="ZERO RATED">ZERO RATED</option>
-                </select>
+                </select -->
               </div>
 
               <div class="input-group mb-2">
@@ -1109,6 +1111,7 @@
               return ""+n+this.user_id;
           },
           computeTaxChange(event){
+            
               if(this.form_item.price && this.form_item.quantity){
                 this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
                 if(this.form_item.tax_type == 'VAT'){
