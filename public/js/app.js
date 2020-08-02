@@ -9484,7 +9484,7 @@ __webpack_require__.r(__webpack_exports__);
         _this19.wtax = response.data.data;
 
         var found = _this19.wtax.find(function (tax) {
-          return tax.atc_code = 'WC101';
+          return tax.atc_code = 'WX101';
         });
 
         if (found) {
