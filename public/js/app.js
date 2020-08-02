@@ -9017,7 +9017,7 @@ __webpack_require__.r(__webpack_exports__);
       chart_of_accounts: {},
       chart_of_accounts_header: {},
       chart_of_accounts_detail: {},
-      wtax: []
+      wtax: {}
     };
   },
   methods: {
