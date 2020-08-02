@@ -9017,7 +9017,7 @@ __webpack_require__.r(__webpack_exports__);
       chart_of_accounts: {},
       chart_of_accounts_header: {},
       chart_of_accounts_detail: {},
-      wtax: {}
+      wtax: []
     };
   },
   methods: {
@@ -9474,9 +9474,8 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("api/taxrate").then(function (_ref3) {
         var res = _ref3.res;
-        return _this18.wtax = res;
+        return _this18.wtax = json_decode(res.data);
       });
-      console.log(this.wtax);
     }
   },
   created: function created() {
@@ -9506,15 +9505,7 @@ __webpack_require__.r(__webpack_exports__);
       $('.modal:visible').length && $(document.body).addClass('modal-open');
     });
   },
-  computed: {
-    wtaxExist: function wtaxExist() {
-      var _this20 = this;
-
-      return this.wtax.data.filter(function (wtax) {
-        return wtax.atc_code.match(_this20.form_item.tax_type);
-      });
-    }
-  },
+  computed: {},
   components: {}
 });
 

@@ -895,7 +895,7 @@
               chart_of_accounts: {},
               chart_of_accounts_header: {},
               chart_of_accounts_detail: {},
-              wtax:{},
+              wtax:[],
 
           }
         },
@@ -1366,8 +1366,8 @@
             this.form_entry.branch_name = this.selected_branch.name;
           },
           loadWTax(){
-            axios.get("api/taxrate").then(({res}) => (this.wtax = res ));
-            console.log(this.wtax);
+            axios.get("api/taxrate").then(({res}) => (this.wtax = json_decode(res.data) ));
+            
           }
 
           
@@ -1411,11 +1411,7 @@
             
         },
         computed: {
-          wtaxExist: function(){
-            return this.wtax.data.filter((wtax)=>{
-              return wtax.atc_code.match(this.form_item.tax_type);
-            });
-          }  
+          
           
 
         },
