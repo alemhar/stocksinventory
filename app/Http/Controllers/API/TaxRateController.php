@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Taxrate;
 
 class TaxRateController extends Controller
 {
@@ -14,7 +15,7 @@ class TaxRateController extends Controller
      */
     public function index()
     {
-        return 'Taxrate';
+        return Taxrate::latest()->paginate(10);
     }
 
     /**
