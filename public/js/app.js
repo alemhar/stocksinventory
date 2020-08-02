@@ -9474,7 +9474,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("api/taxrate").then(function (_ref3) {
         var res = _ref3.res;
-        return _this18.wtax = res.data;
+        return _this18.wtax = res;
       });
       console.log(this.wtax);
     }
@@ -9510,7 +9510,7 @@ __webpack_require__.r(__webpack_exports__);
     wtaxExist: function wtaxExist() {
       var _this20 = this;
 
-      return this.wtax.filter(function (wtax) {
+      return this.wtax.data.filter(function (wtax) {
         return wtax.atc_code.match(_this20.form_item.tax_type);
       });
     }

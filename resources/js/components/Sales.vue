@@ -1366,7 +1366,7 @@
             this.form_entry.branch_name = this.selected_branch.name;
           },
           loadWTax(){
-            axios.get("api/taxrate").then(({res}) => (this.wtax = res.data ));
+            axios.get("api/taxrate").then(({res}) => (this.wtax = res ));
             console.log(this.wtax);
           }
 
@@ -1412,7 +1412,7 @@
         },
         computed: {
           wtaxExist: function(){
-            return this.wtax.filter((wtax)=>{
+            return this.wtax.data.filter((wtax)=>{
               return wtax.atc_code.match(this.form_item.tax_type);
             });
           }  
