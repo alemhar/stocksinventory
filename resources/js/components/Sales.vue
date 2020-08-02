@@ -1373,8 +1373,13 @@
             axios.get('api/taxrate')
                 .then((response)=>{
                   this.wtax = response.data;
+
                   let found = this.wtax.find(tax => tax.atc_code = 'WC101');
-                  console.log(found);
+                  if(found){
+                    console.log('Found');
+                  } else {
+                    console.log('Not Found');
+                  }
 
                 })
                 .catch(()=>{
