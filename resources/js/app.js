@@ -13,6 +13,8 @@ import { Form, HasError, AlertError } from 'vform';
 import Gate from "./Gate";
 Vue.prototype.$gate = new Gate(window.user);
 
+import money from './v-money';
+Vue.use(money, {precision: 2});
 
 //npm install vue-progressbar --save
 import swal from 'sweetalert2';

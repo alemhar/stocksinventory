@@ -8935,6 +8935,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -9017,7 +9018,8 @@ __webpack_require__.r(__webpack_exports__);
       chart_of_accounts: {},
       chart_of_accounts_header: {},
       chart_of_accounts_detail: {},
-      wtax: []
+      wtax: [],
+      wTaxExist: null
     };
   },
   methods: {
@@ -9236,7 +9238,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.form_item.price && this.form_item.quantity) {
         this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
-        var wTaxExist = this.wtax.find(function (tax) {
+        this.wTaxExist = this.wtax.find(function (tax) {
           return tax.atc_code == _this10.form_item.tax_type;
         });
         /*
@@ -9247,14 +9249,14 @@ __webpack_require__.r(__webpack_exports__);
           }
         */
 
-        if (wTaxExist) {
-          console.log(wTaxExist); //this.form_item.amount = event.target.value;
-
-          this.form_item.tax_excluded = (this.form_item.sub_total / (1 + wTaxExist.tax_rate / 100)).toFixed(2) * 1;
-          this.form_item.vat = (this.form_item.tax_excluded * (wTaxExist.tax_rate / 100)).toFixed(2) * 1;
+        if (this.wTaxExist) {
+          //console.log(this.wTaxExist);
+          //this.form_item.amount = event.target.value;
+          this.form_item.tax_excluded = (this.form_item.sub_total / (1 + this.wTaxExist.tax_rate / 100)).toFixed(2) * 1;
+          this.form_item.vat = (this.form_item.tax_excluded * (this.wTaxExist.tax_rate / 100)).toFixed(2) * 1;
         } else {
-          console.log('Not Found'); //this.form_entry.amount = event.target.value;
-
+          //console.log('Not Found');
+          //this.form_entry.amount = event.target.value;
           this.form_item.vat = 0;
           this.form_item.tax_excluded = this.form_item.sub_total * 1;
         }
@@ -83177,7 +83179,13 @@ var render = function() {
                         _vm.$set(_vm.form_item, "tax_type", $event.target.value)
                       }
                     }
-                  })
+                  }),
+                  _vm._v(" "),
+                  !_vm.wTaxExist
+                    ? _c("p", { staticClass: "is-invalid" }, [
+                        _vm._v("Tax Code Not Found!")
+                      ])
+                    : _vm._e()
                 ]),
                 _vm._v(" "),
                 _c(

@@ -551,6 +551,7 @@
 
                 <input v-model="form_item.tax_type" name="tax_type" id="tax_type"
                   class="form-control"  aria-describedby="inputGroup-sizing-default" @blur="computeTaxChange">
+                  <p v-if="!wTaxExist" class="is-invalid">Tax Code Not Found!</p>
                   <!-- has-error :form="form_item" field="amount_ex_tax"></has-error -->
 
                 <!-- select v-model="form_item.tax_type" @change="computeTaxChange" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
@@ -896,6 +897,7 @@
               chart_of_accounts_header: {},
               chart_of_accounts_detail: {},
               wtax: [],
+              wTaxExist: null
 
           }
         },
@@ -1115,7 +1117,7 @@
               if(this.form_item.price && this.form_item.quantity){
                 this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
 
-                  let wTaxExist = this.wtax.find(tax => tax.atc_code == this.form_item.tax_type);
+                  this.wTaxExist = this.wtax.find(tax => tax.atc_code == this.form_item.tax_type);
                 
                 /*
                   if(wTaxExist){
@@ -1125,15 +1127,15 @@
                   }
                 */
                 
-                if(wTaxExist){
-                  console.log(wTaxExist);
+                if(this.wTaxExist){
+                  //console.log(this.wTaxExist);
                   //this.form_item.amount = event.target.value;
-                  this.form_item.tax_excluded = (this.form_item.sub_total/(1 + (wTaxExist.tax_rate/100))).toFixed(2) * 1;
+                  this.form_item.tax_excluded = (this.form_item.sub_total/(1 + (this.wTaxExist.tax_rate/100))).toFixed(2) * 1;
 
-                  this.form_item.vat = (this.form_item.tax_excluded * (wTaxExist.tax_rate/100)).toFixed(2)  * 1;
+                  this.form_item.vat = (this.form_item.tax_excluded * (this.wTaxExist.tax_rate/100)).toFixed(2)  * 1;
 
                 } else {
-                  console.log('Not Found');
+                  //console.log('Not Found');
                   //this.form_entry.amount = event.target.value;
                   this.form_item.vat = 0;
                   this.form_item.tax_excluded = this.form_item.sub_total  * 1;
