@@ -1126,12 +1126,14 @@
                 */
                 
                 if(wTaxExist){
+                  console.log(wTaxExist);
                   //this.form_item.amount = event.target.value;
                   this.form_item.tax_excluded = (this.form_item.sub_total/(1 + (wTaxExist.tax_rate/100))).toFixed(2) * 1;
 
                   this.form_item.vat = (this.form_item.tax_excluded * (wTaxExist.tax_rate/100)).toFixed(2)  * 1;
 
                 } else {
+                  console.log('Not Found');
                   //this.form_entry.amount = event.target.value;
                   this.form_item.vat = 0;
                   this.form_item.tax_excluded = this.form_item.sub_total  * 1;

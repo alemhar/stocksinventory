@@ -9248,11 +9248,13 @@ __webpack_require__.r(__webpack_exports__);
         */
 
         if (wTaxExist) {
-          //this.form_item.amount = event.target.value;
+          console.log(wTaxExist); //this.form_item.amount = event.target.value;
+
           this.form_item.tax_excluded = (this.form_item.sub_total / (1 + wTaxExist.tax_rate / 100)).toFixed(2) * 1;
           this.form_item.vat = (this.form_item.tax_excluded * (wTaxExist.tax_rate / 100)).toFixed(2) * 1;
         } else {
-          //this.form_entry.amount = event.target.value;
+          console.log('Not Found'); //this.form_entry.amount = event.target.value;
+
           this.form_item.vat = 0;
           this.form_item.tax_excluded = this.form_item.sub_total * 1;
         }
