@@ -83151,11 +83151,11 @@ var render = function() {
                     attrs: {
                       name: "tax_type",
                       id: "tax_type",
-                      "aria-describedby": "inputGroup-sizing-default",
-                      "keyup.enter": "computeTaxChange"
+                      "aria-describedby": "inputGroup-sizing-default"
                     },
                     domProps: { value: _vm.form_item.tax_type },
                     on: {
+                      blur: _vm.computeTaxChange,
                       input: function($event) {
                         if ($event.target.composing) {
                           return
