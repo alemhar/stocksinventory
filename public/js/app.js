@@ -9466,10 +9466,19 @@ __webpack_require__.r(__webpack_exports__);
     branchChange: function branchChange() {
       this.form_entry.branch_id = this.selected_branch.id;
       this.form_entry.branch_name = this.selected_branch.name;
+    },
+    loadWTax: function loadWTax() {
+      var _this18 = this;
+
+      axios.get("api/branch").then(function (_ref3) {
+        var data = _ref3.data;
+        return _this18.wtax = data;
+      });
+      console.log(this.wtax);
     }
   },
   created: function created() {
-    var _this18 = this;
+    var _this19 = this;
 
     this.loadPayees();
     this.loadBranches();
@@ -9478,10 +9487,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntries(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
 
     VueListen.$on('RefreshItemTable', function () {
-      _this18.loadEntryItems();
+      _this19.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this18.loadEntries();
+      _this19.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
