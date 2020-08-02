@@ -1374,7 +1374,7 @@
                 .then((response)=>{
                   this.wtax = response.data.data;
 
-                  let wTaxExist = this.wtax.find(tax => tax.atc_code == "WC020");
+                  let wTaxExist = this.wtax.find(tax => tax.atc_code == "WC0220");
                   
                   if(wTaxExist){
                     console.log(wTaxExist.tax_rate);
