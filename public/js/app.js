@@ -82201,7 +82201,7 @@ var render = function() {
                       _c(
                         "label",
                         {
-                          staticClass: "col-sm-4 col-form-label",
+                          staticClass: "col-sm-7 col-form-label",
                           staticStyle: { "text-align": "right" },
                           attrs: { for: "inputWTax" }
                         },
@@ -82242,7 +82242,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "div",
-                        { staticClass: "col-sm-2" },
+                        { staticClass: "col-sm-3" },
                         [
                           _c("currency-input", {
                             attrs: {
