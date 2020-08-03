@@ -82215,7 +82215,12 @@ var render = function() {
                                 expression: "form.wtax_code"
                               }
                             ],
-                            attrs: { fc: true, col: 12, id: "inputwtax_code" },
+                            attrs: {
+                              type: "text",
+                              fc: true,
+                              col: 12,
+                              id: "inputwtax_code"
+                            },
                             domProps: { value: _vm.form.wtax_code },
                             on: {
                               input: function($event) {
