@@ -9436,15 +9436,17 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     computerWTax: function computerWTax() {
+      var _this19 = this;
+
       this.wTaxExist = this.wtax.find(function (tax) {
-        return tax.atc_code == form.tax_code;
+        return tax.atc_code == _this19.form.tax_code;
       });
 
       if (this.wTaxExist) {} else {}
     }
   },
   created: function created() {
-    var _this19 = this;
+    var _this20 = this;
 
     this.loadPayees();
     this.loadBranches();
@@ -9454,10 +9456,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadWTax(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
 
     VueListen.$on('RefreshItemTable', function () {
-      _this19.loadEntryItems();
+      _this20.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this19.loadEntries();
+      _this20.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
