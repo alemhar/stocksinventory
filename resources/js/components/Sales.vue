@@ -283,15 +283,15 @@
               <div class="form-group col-12 float-right">
                 <div class="row">
                 
-                <label for="inputWTax" class="col-sm-6 col-form-label" style="text-align: right;">Withholding Tax</label>
-                <div class="col-sm-3">
+                <label for="inputWTax" class="col-sm-4 col-form-label" style="text-align: right;">Withholding Tax</label>
+                <div class="col-sm-2">
                   
-                  <!--input type="text"  v-model="form.wtax_code" class="form-control col-12" id="inputwtax_code" placeholder="ATC Code"-->
+                  <input type="text"  v-model="form.wtax_code" class="form-control col-12" id="inputwtax_code" placeholder="ATC Code"> 
 
                 
                  
                   </div>
-                  <div class="col-sm-3">
+                  <div class="col-sm-2">
                     <currency-input v-model="form.wtax" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputwtax"></currency-input>
                   </div>
                 
