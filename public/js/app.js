@@ -9078,7 +9078,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.$Progress.start();
-      this.form_entry.put('api/cd/' + this.form.id).then(function () {
+      this.form.put('api/cd/' + this.form.id).then(function () {
         swal.fire('Saved!', 'Transaction Completed.', 'success');
         _this5.transaction_created = false;
 

@@ -803,6 +803,7 @@
                   user_id: document.querySelector('meta[name="user-id"]').getAttribute('content'),
                   wtax_code: 'NA',
                   wtax: 0
+                  
               }),
               form_entry: new Form({
 
@@ -949,7 +950,7 @@
               return false;
             }
             this.$Progress.start();
-            this.form_entry.put('api/cd/'+this.form.id)
+            this.form.put('api/cd/'+this.form.id)
             .then(() => {
                 swal.fire(
                     'Saved!',
