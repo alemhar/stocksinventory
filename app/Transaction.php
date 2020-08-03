@@ -36,6 +36,8 @@ class Transaction extends Model
 						'debit_amount',
 						'amount_ex_tax',
 						'vat',
+						'wtax_code',
+						'wtax',
 						'canceled',
 						'user_id'
     					];

@@ -287,7 +287,7 @@
                 <div class="col-sm-2">
                   
                   <input type="text"  v-model="form.wtax_code" class="form-control col-12" id="inputwtax_code" placeholder="ATC Code"> 
-
+                  <p v-if="!wTaxExist" class="text-danger">Code Not Found!</p>
                 
                  
                   </div>
@@ -850,7 +850,9 @@
               entries: {},
               chart_of_accounts: {},
               chart_of_accounts_header: {},
-              chart_of_accounts_detail: {}
+              chart_of_accounts_detail: {},
+              wtax: [],
+              wTaxExist: null
 
           }
         },
@@ -1318,6 +1320,25 @@
           branchChange(){
             this.form_entry.branch_id = this.selected_branch.id ;
             this.form_entry.branch_name = this.selected_branch.name;
+          },
+          loadWTax(){
+            //axios.get("api/taxrate").then(({data}) => (this.wtax = json_decode(data.data) ));
+
+            axios.get('api/taxrate')
+                .then((response)=>{
+                  this.wtax = response.data;
+                })
+                .catch(()=>{
+                  //
+                });
+          },
+          computerWTax(){
+            this.wTaxExist = this.wtax.find(tax => tax.atc_code == this.tax_code);
+            if(this.wTaxExist){
+
+            } else {
+
+            }
           }
 
           
@@ -1333,6 +1354,7 @@
 
             this.loadEntryItems();
             this.loadEntries();
+            this.loadWTax();
             //this.SearchIt = _.debounce(this.SearchIt, 1000);
             
             VueListen.$on('RefreshItemTable',() => {

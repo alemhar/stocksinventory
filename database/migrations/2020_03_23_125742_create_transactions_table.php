@@ -28,6 +28,8 @@ class CreateTransactionsTable extends Migration
             $table->decimal('debit_amount', 14, 2);
             $table->decimal('amount_ex_tax', 14, 2);
             $table->decimal('vat', 14, 2);
+            $table->string('wtax_code');
+            $table->decimal('wtax', 14, 2);
             $table->boolean('canceled')->default(0);
             $table->integer('user_id')->unsigned();
             $table->tinyInteger('filter');
