@@ -105,7 +105,7 @@ class CDController extends Controller
 
         $transaction->update($request->all());
 
-        return $request->all();    
+        return $request['wtax_code'];    
         //return ['message' => 'Transaction updated!'];
     }
 
