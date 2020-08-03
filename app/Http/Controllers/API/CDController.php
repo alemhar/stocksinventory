@@ -104,8 +104,8 @@ class CDController extends Controller
 
 
         $transaction->update($request->all());
-
-        return ['message' => 'Transaction updated!'];
+        return $request;    
+        //return ['message' => 'Transaction updated!'];
     }
 
     /**
