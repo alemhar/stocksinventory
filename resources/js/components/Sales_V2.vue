@@ -266,7 +266,6 @@
                 </div>
                 </div>
               </div>
-
               <div class="form-group col-12 float-right">
                 <div class="row">
                 
@@ -276,25 +275,9 @@
                   <currency-input v-model="form.vat" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputVAT" placeholder="VAT"></currency-input>
 
                  
-                  </div>
                 </div>
               </div>
-
-              <div class="form-group col-12 float-right">
-                <div class="row">
-                
-                <label for="inputWTax" class="col-sm-9 col-form-label" style="text-align: right;">Withholding Tax</label>
-                <div class="col-sm-3">
-                  <input v-model="form.wtax_code" v-bind:fc="true" v-bind:col="12" id="inputwtax_code"></currency>
-
-                  <currency-input v-model="form.wtax" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputwtax"></currency-input>
-
-                 
-                  </div>
-                </div>
               </div>
-
-
               <div class="form-group col-12 float-right">
                 <div class="row">
                 
@@ -566,14 +549,17 @@
                   <span class="input-group-text inputGroup-sizing-default">Tax Type</span>
                 </div>
 
-              
+                <input v-model="form_item.tax_type" name="tax_type" id="tax_type"
+                  class="form-control"  aria-describedby="inputGroup-sizing-default" @blur="computeTaxChange">
+                  <p v-if="!wTaxExist" class="text-danger">Tax Code Not Found!</p>
+                  <!-- has-error :form="form_item" field="amount_ex_tax"></has-error -->
 
-                <select v-model="form_item.tax_type" @change="computeTaxChange" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
+                <!-- select v-model="form_item.tax_type" @change="computeTaxChange" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
                   <option value="VAT">VAT</option>
                   <option value="NON VAT">NON VAT</option>
                   <option value="VAT EXEMPT">VAT EXEMPT</option>
                   <option value="ZERO RATED">ZERO RATED</option>
-                </select>
+                </select -->
               </div>
 
               <div class="input-group mb-2">
@@ -749,6 +735,71 @@
       </div>
       
 
+      <!-- Search WTAX Modal 
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      -->
+
+      <div class="modal fade" id="select-payee" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <!--h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add New</h5>
+              <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update Entry</h5 -->
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form onsubmit="return false;">
+            <div class="modal-body">
+              
+              <div class="form-group">
+                <label>Search</label>
+                <input type="text" name="search" v-model="searchPayee" @change="SearchPayee" class="float-right col-6">
+              </div>
+              
+              <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tbody><tr>
+                  <th>Tax Rate</th>
+                  <th>ATC</th>
+                </tr>
+                <tr v-for="payee in payees.data" :key="payee.id">
+                  <td>{{ payee.id }}</td>
+                  <td>{{ payee.name }}</td> 
+                  <td>
+                    <a href="#" @click="selectPayee(payee.id,payee.name,payee.address,payee.tin)">Select
+                      <i class="fa fa-edit"></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody></table>
+            </div>
+            <!-- /.box-body -->
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+
+
     </div>
 </template>
 <script>
@@ -832,7 +883,7 @@
                   quantity: 0,
                   price: 0,
                   sub_total: 0,
-                  tax_type: 'VAT',
+                  tax_type: '',
                   tax_excluded: 0,
                   vat: 0
                   
@@ -844,7 +895,9 @@
               entries: {},
               chart_of_accounts: {},
               chart_of_accounts_header: {},
-              chart_of_accounts_detail: {}
+              chart_of_accounts_detail: {},
+              wtax: [],
+              wTaxExist: null
 
           }
         },
@@ -1060,22 +1113,34 @@
               return ""+n+this.user_id;
           },
           computeTaxChange(event){
+
               if(this.form_item.price && this.form_item.quantity){
                 this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
-                if(this.form_item.tax_type == 'VAT'){
+
+                  this.wTaxExist = this.wtax.find(tax => tax.atc_code == this.form_item.tax_type);
+                
+                /*
+                  if(wTaxExist){
+                    console.log(wTaxExist.tax_rate);
+                  } else {
+                    console.log('Not Found');
+                  }
+                */
+                
+                if(this.wTaxExist){
+                  //console.log(this.wTaxExist);
                   //this.form_item.amount = event.target.value;
+                  this.form_item.tax_excluded = (this.form_item.sub_total/(1 + (this.wTaxExist.tax_rate/100))).toFixed(2) * 1;
 
-                  
-
-                  this.form_item.tax_excluded = (this.form_item.sub_total/1.12).toFixed(2) * 1;
-
-                  this.form_item.vat = (this.form_item.tax_excluded * 0.12).toFixed(2)  * 1;
+                  this.form_item.vat = (this.form_item.tax_excluded * (this.wTaxExist.tax_rate/100)).toFixed(2)  * 1;
 
                 } else {
+                  //console.log('Not Found');
                   //this.form_entry.amount = event.target.value;
                   this.form_item.vat = 0;
                   this.form_item.tax_excluded = this.form_item.sub_total  * 1;
                 }
+                
               }
           },
           selectDebitRow(active_debit_row_id){
@@ -1312,6 +1377,17 @@
           branchChange(){
             this.form_entry.branch_id = this.selected_branch.id ;
             this.form_entry.branch_name = this.selected_branch.name;
+          },
+          loadWTax(){
+            //axios.get("api/taxrate").then(({data}) => (this.wtax = json_decode(data.data) ));
+
+            axios.get('api/taxrate')
+                .then((response)=>{
+                  this.wtax = response.data;
+                })
+                .catch(()=>{
+                  //
+                });
           }
 
           
@@ -1327,6 +1403,7 @@
 
             this.loadEntryItems();
             this.loadEntries();
+            this.loadWTax();
             //this.SearchIt = _.debounce(this.SearchIt, 1000);
             
             VueListen.$on('RefreshItemTable',() => {
@@ -1354,7 +1431,7 @@
             
         },
         computed: {
-            
+          
           
 
         },

@@ -8885,57 +8885,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -9017,9 +8966,7 @@ __webpack_require__.r(__webpack_exports__);
       entries: {},
       chart_of_accounts: {},
       chart_of_accounts_header: {},
-      chart_of_accounts_detail: {},
-      wtax: [],
-      wTaxExist: null
+      chart_of_accounts_detail: {}
     };
   },
   methods: {
@@ -9234,28 +9181,14 @@ __webpack_require__.r(__webpack_exports__);
       return "" + n + this.user_id;
     },
     computeTaxChange: function computeTaxChange(event) {
-      var _this10 = this;
-
       if (this.form_item.price && this.form_item.quantity) {
         this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
-        this.wTaxExist = this.wtax.find(function (tax) {
-          return tax.atc_code == _this10.form_item.tax_type;
-        });
-        /*
-          if(wTaxExist){
-            console.log(wTaxExist.tax_rate);
-          } else {
-            console.log('Not Found');
-          }
-        */
 
-        if (this.wTaxExist) {
-          //console.log(this.wTaxExist);
+        if (this.form_item.tax_type == 'VAT') {
           //this.form_item.amount = event.target.value;
-          this.form_item.tax_excluded = (this.form_item.sub_total / (1 + this.wTaxExist.tax_rate / 100)).toFixed(2) * 1;
-          this.form_item.vat = (this.form_item.tax_excluded * (this.wTaxExist.tax_rate / 100)).toFixed(2) * 1;
+          this.form_item.tax_excluded = (this.form_item.sub_total / 1.12).toFixed(2) * 1;
+          this.form_item.vat = (this.form_item.tax_excluded * 0.12).toFixed(2) * 1;
         } else {
-          //console.log('Not Found');
           //this.form_entry.amount = event.target.value;
           this.form_item.vat = 0;
           this.form_item.tax_excluded = this.form_item.sub_total * 1;
@@ -9268,7 +9201,7 @@ __webpack_require__.r(__webpack_exports__);
       VueListen.$emit('RefreshItemTable'); //console.log(active_debit_row);
     },
     newEntry: function newEntry() {
-      var _this11 = this;
+      var _this10 = this;
 
       this.editmode = false;
       this.form_entry.reset();
@@ -9276,7 +9209,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.transaction_no = this.form.transaction_no;
       this.form_entry.transaction_type = 'SALES';
       this.form_entry.post('api/cd/entry').then(function (data) {
-        _this11.form_entry.id = data.data.id; //console.log(data.data.id);
+        _this10.form_entry.id = data.data.id; //console.log(data.data.id);
 
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {//
@@ -9284,7 +9217,7 @@ __webpack_require__.r(__webpack_exports__);
       $('#entry-details').modal('show');
     },
     newItem: function newItem() {
-      var _this12 = this;
+      var _this11 = this;
 
       if (this.form_entry.account_code == 0) {
         this.no_entry_account_code = true;
@@ -9312,14 +9245,14 @@ __webpack_require__.r(__webpack_exports__);
       this.form_item.transaction_type = 'SALES';
       this.form_item.account_code = this.form_entry.account_code;
       this.form_item.post('api/cd/item').then(function (data) {
-        _this12.form_item.id = data.data.id; //console.log(data.data.id);
+        _this11.form_item.id = data.data.id; //console.log(data.data.id);
       })["catch"](function () {//
       });
       this.loadEntryItems();
       $('#entry-items').modal('show');
     },
     cancelDebitEntry: function cancelDebitEntry() {
-      var _this13 = this;
+      var _this12 = this;
 
       //this.$Progress.start();
       this.form_item["delete"]('api/cd/entry/' + this.form_entry.id).then(function () {
@@ -9335,11 +9268,11 @@ __webpack_require__.r(__webpack_exports__);
 
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this13.$Progress.fail();
+        _this12.$Progress.fail();
       });
     },
     saveDebitEntry: function saveDebitEntry() {
-      var _this14 = this;
+      var _this13 = this;
 
       //console.log('Edit Payee');
       // ** Temporary data to bypass Column cannot be null ERROR's
@@ -9360,19 +9293,19 @@ __webpack_require__.r(__webpack_exports__);
           );
         */
 
-        _this14.form.amount += _this14.form_entry.amount;
-        _this14.form.amount_ex_tax += _this14.form_entry.amount_ex_tax;
-        _this14.form.vat += _this14.form_entry.vat;
+        _this13.form.amount += _this13.form_entry.amount;
+        _this13.form.amount_ex_tax += _this13.form_entry.amount_ex_tax;
+        _this13.form.vat += _this13.form_entry.vat;
 
-        _this14.$Progress.finish();
+        _this13.$Progress.finish();
 
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this14.$Progress.fail();
+        _this13.$Progress.fail();
       });
     },
     deleteEntry: function deleteEntry(entry_id, entry_amount, entry_amount_ex_tax, entry_vat) {
-      var _this15 = this;
+      var _this14 = this;
 
       this.form_item["delete"]('api/cd/entry/' + entry_id).then(function () {
         //$('#entry-items').modal('hide');
@@ -9384,17 +9317,17 @@ __webpack_require__.r(__webpack_exports__);
             'success'
           );
         */
-        _this15.form.amount = parseFloat(_this15.form.amount - entry_amount).toFixed(2) * 1;
-        _this15.form.amount_ex_tax = (_this15.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
-        _this15.form.vat = (_this15.form.vat - entry_vat).toFixed(2) * 1;
+        _this14.form.amount = parseFloat(_this14.form.amount - entry_amount).toFixed(2) * 1;
+        _this14.form.amount_ex_tax = (_this14.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
+        _this14.form.vat = (_this14.form.vat - entry_vat).toFixed(2) * 1;
         VueListen.$emit('RefreshItemTable');
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this15.$Progress.fail();
+        _this14.$Progress.fail();
       });
     },
     cancelItem: function cancelItem() {
-      var _this16 = this;
+      var _this15 = this;
 
       //this.$Progress.start();
       this.form_item["delete"]('api/cd/item/' + this.form_item.id).then(function () {
@@ -9410,11 +9343,11 @@ __webpack_require__.r(__webpack_exports__);
 
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
-        _this16.$Progress.fail();
+        _this15.$Progress.fail();
       });
     },
     saveItem: function saveItem() {
-      var _this17 = this;
+      var _this16 = this;
 
       if (this.form_item.item.length == 0) {
         this.no_item = true;
@@ -9449,19 +9382,19 @@ __webpack_require__.r(__webpack_exports__);
           );
         */
 
-        _this17.form_entry.amount = parseFloat(_this17.form_entry.amount + _this17.form_item.sub_total).toFixed(2) * 1;
-        _this17.form_entry.amount_ex_tax = (_this17.form_entry.amount_ex_tax + _this17.form_item.tax_excluded).toFixed(2) * 1;
-        _this17.form_entry.vat += _this17.form_item.vat * 1;
+        _this16.form_entry.amount = parseFloat(_this16.form_entry.amount + _this16.form_item.sub_total).toFixed(2) * 1;
+        _this16.form_entry.amount_ex_tax = (_this16.form_entry.amount_ex_tax + _this16.form_item.tax_excluded).toFixed(2) * 1;
+        _this16.form_entry.vat += _this16.form_item.vat * 1;
 
-        _this17.$Progress.finish();
+        _this16.$Progress.finish();
 
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
-        _this17.$Progress.fail();
+        _this16.$Progress.fail();
       });
     },
     deleteItem: function deleteItem(item_id, item_sub_total, item_tax_excluded, item_vat) {
-      var _this18 = this;
+      var _this17 = this;
 
       this.form_item["delete"]('api/cd/item/' + item_id).then(function () {
         //$('#entry-items').modal('hide');
@@ -9473,43 +9406,33 @@ __webpack_require__.r(__webpack_exports__);
             'success'
           );
         */
-        _this18.form_entry.amount = parseFloat(_this18.form_entry.amount - item_sub_total).toFixed(2) * 1;
-        _this18.form_entry.amount_ex_tax = (_this18.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
-        _this18.form_entry.vat = (_this18.form_entry.vat - item_vat).toFixed(2) * 1;
+        _this17.form_entry.amount = parseFloat(_this17.form_entry.amount - item_sub_total).toFixed(2) * 1;
+        _this17.form_entry.amount_ex_tax = (_this17.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
+        _this17.form_entry.vat = (_this17.form_entry.vat - item_vat).toFixed(2) * 1;
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
-        _this18.$Progress.fail();
+        _this17.$Progress.fail();
       });
     },
     branchChange: function branchChange() {
       this.form_entry.branch_id = this.selected_branch.id;
       this.form_entry.branch_name = this.selected_branch.name;
-    },
-    loadWTax: function loadWTax() {
-      var _this19 = this;
-
-      //axios.get("api/taxrate").then(({data}) => (this.wtax = json_decode(data.data) ));
-      axios.get('api/taxrate').then(function (response) {
-        _this19.wtax = response.data;
-      })["catch"](function () {//
-      });
     }
   },
   created: function created() {
-    var _this20 = this;
+    var _this18 = this;
 
     this.loadPayees();
     this.loadBranches();
     this.initChartAccounts();
     this.loadEntryItems();
-    this.loadEntries();
-    this.loadWTax(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
+    this.loadEntries(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
 
     VueListen.$on('RefreshItemTable', function () {
-      _this20.loadEntryItems();
+      _this18.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this20.loadEntries();
+      _this18.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
@@ -82274,6 +82197,68 @@ var render = function() {
                         {
                           staticClass: "col-sm-9 col-form-label",
                           staticStyle: { "text-align": "right" },
+                          attrs: { for: "inputWTax" }
+                        },
+                        [_vm._v("Withholding Tax")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-3" },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.wtax_code,
+                                expression: "form.wtax_code"
+                              }
+                            ],
+                            attrs: { fc: true, col: 12, id: "inputwtax_code" },
+                            domProps: { value: _vm.form.wtax_code },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.form,
+                                  "wtax_code",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("currency-input", {
+                            attrs: {
+                              isReadonly: true,
+                              fc: true,
+                              col: 12,
+                              id: "inputwtax"
+                            },
+                            model: {
+                              value: _vm.form.wtax,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "wtax", $$v)
+                              },
+                              expression: "form.wtax"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-12 float-right" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-sm-9 col-form-label",
+                          staticStyle: { "text-align": "right" },
                           attrs: { for: "inputTotalAmount" }
                         },
                         [_vm._v("Total Amount")]
@@ -83154,38 +83139,62 @@ var render = function() {
                 _c("div", { staticClass: "input-group mb-2" }, [
                   _vm._m(24),
                   _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form_item.tax_type,
-                        expression: "form_item.tax_type"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      name: "tax_type",
-                      id: "tax_type",
-                      "aria-describedby": "inputGroup-sizing-default"
-                    },
-                    domProps: { value: _vm.form_item.tax_type },
-                    on: {
-                      blur: _vm.computeTaxChange,
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form_item.tax_type,
+                          expression: "form_item.tax_type"
                         }
-                        _vm.$set(_vm.form_item, "tax_type", $event.target.value)
+                      ],
+                      staticClass: "form-control col-12",
+                      attrs: {
+                        "aria-describedby": "inputGroup-sizing-default"
+                      },
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form_item,
+                              "tax_type",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                          _vm.computeTaxChange
+                        ]
                       }
-                    }
-                  }),
-                  _vm._v(" "),
-                  !_vm.wTaxExist
-                    ? _c("p", { staticClass: "is-invalid" }, [
-                        _vm._v("Tax Code Not Found!")
+                    },
+                    [
+                      _c("option", { attrs: { value: "VAT" } }, [
+                        _vm._v("VAT")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "NON VAT" } }, [
+                        _vm._v("NON VAT")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "VAT EXEMPT" } }, [
+                        _vm._v("VAT EXEMPT")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "ZERO RATED" } }, [
+                        _vm._v("ZERO RATED")
                       ])
-                    : _vm._e()
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
                 _c(
@@ -83521,116 +83530,6 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _vm._m(32)
-              ])
-            ])
-          ]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "select-payee",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "addNewLabel",
-          "aria-hidden": "true",
-          "data-backdrop": "static",
-          "data-keyboard": "false"
-        }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "modal-dialog modal-dialog-centered",
-            attrs: { role: "document" }
-          },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _vm._m(33),
-              _vm._v(" "),
-              _c("form", { attrs: { onsubmit: "return false;" } }, [
-                _c("div", { staticClass: "modal-body" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", [_vm._v("Search")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.searchPayee,
-                          expression: "searchPayee"
-                        }
-                      ],
-                      staticClass: "float-right col-6",
-                      attrs: { type: "text", name: "search" },
-                      domProps: { value: _vm.searchPayee },
-                      on: {
-                        change: _vm.SearchPayee,
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.searchPayee = $event.target.value
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "box-body table-responsive no-padding" },
-                    [
-                      _c("table", { staticClass: "table table-hover" }, [
-                        _c(
-                          "tbody",
-                          [
-                            _vm._m(34),
-                            _vm._v(" "),
-                            _vm._l(_vm.payees.data, function(payee) {
-                              return _c("tr", { key: payee.id }, [
-                                _c("td", [_vm._v(_vm._s(payee.id))]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(payee.name))]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _c(
-                                    "a",
-                                    {
-                                      attrs: { href: "#" },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.selectPayee(
-                                            payee.id,
-                                            payee.name,
-                                            payee.address,
-                                            payee.tin
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _vm._v("Select\n                  "),
-                                      _c("i", { staticClass: "fa fa-edit" })
-                                    ]
-                                  )
-                                ])
-                              ])
-                            })
-                          ],
-                          2
-                        )
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _vm._m(35)
               ])
             ])
           ]
@@ -84079,50 +83978,6 @@ var staticRenderFns = [
       _c("th", [_vm._v("Name")]),
       _vm._v(" "),
       _c("th", [_vm._v("Option")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-danger",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Close")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", [_vm._v("Tax Rate")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("ATC")])
     ])
   },
   function() {
@@ -101051,11 +100906,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
 /* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Gate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Gate */ "./resources/js/Gate.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var vue_progressbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-progressbar */ "./node_modules/vue-progressbar/dist/vue-progressbar.js");
-/* harmony import */ var vue_progressbar__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_progressbar__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _v_money__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./v-money */ "./resources/js/v-money.js");
+/* harmony import */ var _v_money__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_v_money__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_progressbar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-progressbar */ "./node_modules/vue-progressbar/dist/vue-progressbar.js");
+/* harmony import */ var vue_progressbar__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_progressbar__WEBPACK_IMPORTED_MODULE_6__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -101067,11 +100924,15 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
-Vue.prototype.$gate = new _Gate__WEBPACK_IMPORTED_MODULE_2__["default"](window.user); //npm install vue-progressbar --save
+Vue.prototype.$gate = new _Gate__WEBPACK_IMPORTED_MODULE_2__["default"](window.user);
+
+Vue.use(_v_money__WEBPACK_IMPORTED_MODULE_3___default.a, {
+  precision: 2
+}); //npm install vue-progressbar --save
 
 
-window.swal = sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a;
-var toast = sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.mixin({
+window.swal = sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a;
+var toast = sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.mixin({
   toast: true,
   position: 'top-end',
   showConfirmButton: false,
@@ -101118,7 +100979,7 @@ Vue.component('currency-input', {
   }
 });
 
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]);
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]);
 /*
 import DynamicSelect from 'vue-dynamic-select';
 Vue.use(DynamicSelect);
@@ -101130,7 +100991,7 @@ Vue.component('DynamicSelect', DynamicSelect);
 //npm install vue-progressbar | http://hilongjw.github.io/vue-progressbar/index.html 
 
 
-Vue.use(vue_progressbar__WEBPACK_IMPORTED_MODULE_5___default.a, {
+Vue.use(vue_progressbar__WEBPACK_IMPORTED_MODULE_6___default.a, {
   color: 'rgb(143, 255, 199)',
   failedColor: 'red',
   height: '3px'
@@ -101172,7 +101033,7 @@ var routes = [{
   path: '*',
   component: __webpack_require__(/*! ./components/NotFound.vue */ "./resources/js/components/NotFound.vue")["default"]
 }];
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]({
   mode: 'history',
   routes: routes // short for `routes: routes`
 
@@ -102548,6 +102409,338 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PersonalAccessTokens_vue_vue_type_template_id_49962cc0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/v-money.js":
+/*!*********************************!*\
+  !*** ./resources/js/v-money.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+(function (e, t) {
+  "object" == ( false ? undefined : _typeof(exports)) && "object" == ( false ? undefined : _typeof(module)) ? module.exports = t() :  true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (t),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : undefined;
+})(this, function () {
+  return function (e) {
+    function t(r) {
+      if (n[r]) return n[r].exports;
+      var i = n[r] = {
+        i: r,
+        l: !1,
+        exports: {}
+      };
+      return e[r].call(i.exports, i, i.exports, t), i.l = !0, i.exports;
+    }
+
+    var n = {};
+    return t.m = e, t.c = n, t.i = function (e) {
+      return e;
+    }, t.d = function (e, n, r) {
+      t.o(e, n) || Object.defineProperty(e, n, {
+        configurable: !1,
+        enumerable: !0,
+        get: r
+      });
+    }, t.n = function (e) {
+      var n = e && e.__esModule ? function () {
+        return e["default"];
+      } : function () {
+        return e;
+      };
+      return t.d(n, "a", n), n;
+    }, t.o = function (e, t) {
+      return Object.prototype.hasOwnProperty.call(e, t);
+    }, t.p = ".", t(t.s = 9);
+  }([function (e, t, n) {
+    "use strict";
+
+    t.a = {
+      prefix: "",
+      suffix: "",
+      thousands: ",",
+      decimal: ".",
+      precision: 2
+    };
+  }, function (e, t, n) {
+    "use strict";
+
+    var r = n(2),
+        i = n(5),
+        u = n(0);
+
+    t.a = function (e, t) {
+      if (t.value) {
+        var o = n.i(i.a)(u.a, t.value);
+
+        if ("INPUT" !== e.tagName.toLocaleUpperCase()) {
+          var a = e.getElementsByTagName("input");
+          1 !== a.length || (e = a[0]);
+        }
+
+        e.oninput = function () {
+          var t = e.value.length - e.selectionEnd;
+          e.value = n.i(r.a)(e.value, o), t = Math.max(t, o.suffix.length), t = e.value.length - t, t = Math.max(t, o.prefix.length + 1), n.i(r.b)(e, t), e.dispatchEvent(n.i(r.c)("change"));
+        }, e.onfocus = function () {
+          n.i(r.b)(e, e.value.length - o.suffix.length);
+        }, e.oninput(), e.dispatchEvent(n.i(r.c)("input"));
+      }
+    };
+  }, function (e, t, n) {
+    "use strict";
+
+    function r(e) {
+      var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : m.a;
+      "number" == typeof e && (e = e.toFixed(o(t.precision)));
+      var n = e.indexOf("-") >= 0 ? "-" : "",
+          r = u(e),
+          i = c(r, t.precision),
+          a = d(i).split("."),
+          p = a[0],
+          l = a[1];
+      return p = f(p, t.thousands), t.prefix + n + s(p, l, t.decimal) + t.suffix;
+    }
+
+    function i(e, t) {
+      var n = e.indexOf("-") >= 0 ? -1 : 1,
+          r = u(e),
+          i = c(r, t);
+      return parseFloat(i) * n;
+    }
+
+    function u(e) {
+      return d(e).replace(/\D+/g, "") || "0";
+    }
+
+    function o(e) {
+      return a(0, e, 20);
+    }
+
+    function a(e, t, n) {
+      return Math.max(e, Math.min(t, n));
+    }
+
+    function c(e, t) {
+      var n = Math.pow(10, t);
+      return (parseFloat(e) / n).toFixed(o(t));
+    }
+
+    function f(e, t) {
+      return e.replace(/(\d)(?=(?:\d{3})+\b)/gm, "$1" + t);
+    }
+
+    function s(e, t, n) {
+      return t ? e + n + t : e;
+    }
+
+    function d(e) {
+      return e ? e.toString() : "";
+    }
+
+    function p(e, t) {
+      var n = function n() {
+        e.setSelectionRange(t, t);
+      };
+
+      e === document.activeElement && (n(), setTimeout(n, 1));
+    }
+
+    function l(e) {
+      var t = document.createEvent("Event");
+      return t.initEvent(e, !0, !0), t;
+    }
+
+    var m = n(0);
+    n.d(t, "a", function () {
+      return r;
+    }), n.d(t, "d", function () {
+      return i;
+    }), n.d(t, "b", function () {
+      return p;
+    }), n.d(t, "c", function () {
+      return l;
+    });
+  }, function (e, t, n) {
+    "use strict";
+
+    function r(e, t) {
+      t && Object.keys(t).map(function (e) {
+        a.a[e] = t[e];
+      }), e.directive("money", o.a), e.component("money", u.a);
+    }
+
+    Object.defineProperty(t, "__esModule", {
+      value: !0
+    });
+    var i = n(6),
+        u = n.n(i),
+        o = n(1),
+        a = n(0);
+    n.d(t, "Money", function () {
+      return u.a;
+    }), n.d(t, "VMoney", function () {
+      return o.a;
+    }), n.d(t, "options", function () {
+      return a.a;
+    }), n.d(t, "VERSION", function () {
+      return c;
+    });
+    var c = "0.8.1";
+    t["default"] = r, "undefined" != typeof window && window.Vue && window.Vue.use(r);
+  }, function (e, t, n) {
+    "use strict";
+
+    Object.defineProperty(t, "__esModule", {
+      value: !0
+    });
+    var r = n(1),
+        i = n(0),
+        u = n(2);
+    t["default"] = {
+      name: "Money",
+      props: {
+        value: {
+          required: !0,
+          type: [Number, String],
+          "default": 0
+        },
+        masked: {
+          type: Boolean,
+          "default": !1
+        },
+        precision: {
+          type: Number,
+          "default": function _default() {
+            return i.a.precision;
+          }
+        },
+        decimal: {
+          type: String,
+          "default": function _default() {
+            return i.a.decimal;
+          }
+        },
+        thousands: {
+          type: String,
+          "default": function _default() {
+            return i.a.thousands;
+          }
+        },
+        prefix: {
+          type: String,
+          "default": function _default() {
+            return i.a.prefix;
+          }
+        },
+        suffix: {
+          type: String,
+          "default": function _default() {
+            return i.a.suffix;
+          }
+        }
+      },
+      directives: {
+        money: r.a
+      },
+      data: function data() {
+        return {
+          formattedValue: ""
+        };
+      },
+      watch: {
+        value: {
+          immediate: !0,
+          handler: function handler(e, t) {
+            var r = n.i(u.a)(e, this.$props);
+            r !== this.formattedValue && (this.formattedValue = r);
+          }
+        }
+      },
+      methods: {
+        change: function change(e) {
+          this.$emit("input", this.masked ? e.target.value : n.i(u.d)(e.target.value, this.precision));
+        }
+      }
+    };
+  }, function (e, t, n) {
+    "use strict";
+
+    t.a = function (e, t) {
+      return e = e || {}, t = t || {}, Object.keys(e).concat(Object.keys(t)).reduce(function (n, r) {
+        return n[r] = void 0 === t[r] ? e[r] : t[r], n;
+      }, {});
+    };
+  }, function (e, t, n) {
+    var r = n(7)(n(4), n(8), null, null);
+    e.exports = r.exports;
+  }, function (e, t) {
+    e.exports = function (e, t, n, r) {
+      var i,
+          u = e = e || {},
+          o = _typeof(e["default"]);
+
+      "object" !== o && "function" !== o || (i = e, u = e["default"]);
+      var a = "function" == typeof u ? u.options : u;
+
+      if (t && (a.render = t.render, a.staticRenderFns = t.staticRenderFns), n && (a._scopeId = n), r) {
+        var c = a.computed || (a.computed = {});
+        Object.keys(r).forEach(function (e) {
+          var t = r[e];
+
+          c[e] = function () {
+            return t;
+          };
+        });
+      }
+
+      return {
+        esModule: i,
+        exports: u,
+        options: a
+      };
+    };
+  }, function (e, t) {
+    e.exports = {
+      render: function render() {
+        var e = this,
+            t = e.$createElement;
+        return (e._self._c || t)("input", {
+          directives: [{
+            name: "money",
+            rawName: "v-money",
+            value: {
+              precision: e.precision,
+              decimal: e.decimal,
+              thousands: e.thousands,
+              prefix: e.prefix,
+              suffix: e.suffix
+            },
+            expression: "{precision, decimal, thousands, prefix, suffix}"
+          }],
+          staticClass: "v-money",
+          attrs: {
+            type: "tel"
+          },
+          domProps: {
+            value: e.formattedValue
+          },
+          on: {
+            change: e.change
+          }
+        });
+      },
+      staticRenderFns: []
+    };
+  }, function (e, t, n) {
+    e.exports = n(3);
+  }]);
+});
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/module.js */ "./node_modules/webpack/buildin/module.js")(module)))
 
 /***/ }),
 
