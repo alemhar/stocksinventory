@@ -9075,19 +9075,19 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.form.amount == 0) {
         return false;
-      }
+      } //this.$Progress.start();
 
-      this.$Progress.start();
+
       this.form.put('api/cd/' + this.form.id).then(function () {
         swal.fire('Saved!', 'Transaction Completed.', 'success');
         _this5.transaction_created = false;
 
-        _this5.form.post('api/cd/confirm/' + _this5.form.transaction_no);
+        _this5.form.post('api/cd/confirm/' + _this5.form.transaction_no); //this.$Progress.finish();
 
-        _this5.$Progress.finish();
-      })["catch"](function () {
-        _this5.$Progress.fail();
-      }); //this.$router.go();  
+
+        _this5.$router.go();
+      })["catch"](function () {//this.$Progress.fail();
+      });
     },
     cancelTransaction: function cancelTransaction() {
       this.transaction_created = false;
@@ -9439,6 +9439,7 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
 
+      this.form.wtax_code = this.form.wtax_code.toUpperCase();
       this.wTaxExist = this.wtax.find(function (tax) {
         return tax.atc_code == _this19.form.wtax_code;
       });

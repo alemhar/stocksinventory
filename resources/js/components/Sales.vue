@@ -949,7 +949,7 @@
             if(this.form.amount == 0) {
               return false;
             }
-            this.$Progress.start();
+            //this.$Progress.start();
             this.form.put('api/cd/'+this.form.id)
             .then(() => {
                 swal.fire(
@@ -959,15 +959,14 @@
                   );
                   this.transaction_created = false;
                   this.form.post('api/cd/confirm/'+this.form.transaction_no);
-                  this.$Progress.finish();
+                  //this.$Progress.finish();
+                  this.$router.go();  
                                     
             })
             .catch(() => {
-                this.$Progress.fail();
+                //this.$Progress.fail();
             });
 
-            
-            //this.$router.go();  
 
           },
           cancelTransaction(){
@@ -1331,9 +1330,11 @@
                 });
           },
           computedWTax(){
+
             if(!this.form.wtax_code){
               return false;
             }
+            this.form.wtax_code = this.form.wtax_code.toUpperCase();
             this.wTaxExist = this.wtax.find(tax => tax.atc_code == this.form.wtax_code);
             if(this.wTaxExist){
                this.form.wtax = (this.form.amount_ex_tax * (this.wTaxExist.tax_rate/100)).toFixed(2) * 1;
