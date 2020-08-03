@@ -286,7 +286,7 @@
                 <label for="inputWTax" class="col-sm-7 col-form-label" style="text-align: right;">Withholding Tax</label>
                 <div class="col-sm-2">
                   
-                  <input type="text"  v-model="form.wtax_code" class="form-control col-12" id="inputwtax_code" placeholder="ATC Code"> 
+                  <input type="text" @blur="computerWTax" v-model="form.wtax_code" class="form-control col-12" id="inputwtax_code" placeholder="ATC Code"> 
                   <p v-if="!wTaxExist" class="text-danger">Code Not Found!</p>
                 
                  
@@ -852,7 +852,7 @@
               chart_of_accounts_header: {},
               chart_of_accounts_detail: {},
               wtax: [],
-              wTaxExist: null
+              wTaxExist: true
 
           }
         },

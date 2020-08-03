@@ -8974,7 +8974,7 @@ __webpack_require__.r(__webpack_exports__);
       chart_of_accounts_header: {},
       chart_of_accounts_detail: {},
       wtax: [],
-      wTaxExist: null
+      wTaxExist: true
     };
   },
   methods: {
@@ -82247,6 +82247,7 @@ var render = function() {
                           },
                           domProps: { value: _vm.form.wtax_code },
                           on: {
+                            blur: _vm.computerWTax,
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
