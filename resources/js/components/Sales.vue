@@ -286,7 +286,7 @@
                 <label for="inputWTax" class="col-sm-6 col-form-label" style="text-align: right;">Withholding Tax</label>
                 <div class="col-sm-3">
                   
-                  <input type="text"  v-model="form.wtax_code" class="form-control col-12" id="inputwtax_code" placeholder="ATC Code">
+                  <!--input type="text"  v-model="form.wtax_code" class="form-control col-12" id="inputwtax_code" placeholder="ATC Code"-->
 
                 
                  
