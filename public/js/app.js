@@ -9442,7 +9442,9 @@ __webpack_require__.r(__webpack_exports__);
         return tax.atc_code == _this19.form.wtax_code;
       });
 
-      if (this.wTaxExist) {} else {}
+      if (this.wTaxExist) {
+        this.form.wtax = (this.form.amount_ex_tax / (1 + this.wTaxExist.tax_rate / 100)).toFixed(2) * 1;
+      } else {}
     }
   },
   created: function created() {
