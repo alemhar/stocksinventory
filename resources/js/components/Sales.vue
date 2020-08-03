@@ -86,7 +86,7 @@
                       <span class="input-group-text inputGroup-sizing-default">Ref. #</span>
                     </div>
 
-                    <input v-bind:readonly="transaction_created" type="text"  v-model="form.reference_no" class="form-control col-12" id="inputReferenceNo" placeholder="Reference No">
+                    <input v-bind:readonly="transaction_created" type="text" @focus="$event.target.select()"  v-model="form.reference_no" class="form-control col-12" id="inputReferenceNo" placeholder="Reference No">
                     <p v-show="no_reference_no" class="empty-field-message">** Please enter reference number!</p>
                   </div>
                   <div class="input-group mb-2">

@@ -81810,6 +81810,9 @@ var render = function() {
                             },
                             domProps: { value: _vm.form.reference_no },
                             on: {
+                              focus: function($event) {
+                                return $event.target.select()
+                              },
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
