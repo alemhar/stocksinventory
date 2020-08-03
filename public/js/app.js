@@ -8886,6 +8886,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -82196,47 +82199,49 @@ var render = function() {
                       _c(
                         "label",
                         {
-                          staticClass: "col-sm-9 col-form-label",
+                          staticClass: "col-sm-6 col-form-label",
                           staticStyle: { "text-align": "right" },
                           attrs: { for: "inputWTax" }
                         },
                         [_vm._v("Withholding Tax")]
                       ),
                       _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-3" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.wtax_code,
+                              expression: "form.wtax_code"
+                            }
+                          ],
+                          staticClass: "form-control col-12",
+                          attrs: {
+                            type: "text",
+                            id: "inputwtax_code",
+                            placeholder: "ATC Code"
+                          },
+                          domProps: { value: _vm.form.wtax_code },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form,
+                                "wtax_code",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
                       _c(
                         "div",
-                        { staticClass: "col-sm-6" },
+                        { staticClass: "col-sm-3" },
                         [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.wtax_code,
-                                expression: "form.wtax_code"
-                              }
-                            ],
-                            staticClass: "form-control col-12",
-                            attrs: {
-                              type: "text",
-                              id: "inputwtax_code",
-                              placeholder: "ATC Code"
-                            },
-                            domProps: { value: _vm.form.wtax_code },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.form,
-                                  "wtax_code",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
                           _c("currency-input", {
                             attrs: {
                               isReadonly: true,
