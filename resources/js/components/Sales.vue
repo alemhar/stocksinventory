@@ -286,7 +286,7 @@
                 <label for="inputWTax" class="col-sm-7 col-form-label" style="text-align: right;">Withholding Tax  <span v-if="wTaxExist" class="text-danger">  {{ this.wTaxExist.tax_rate}}%</span></label>
                 <div class="col-sm-2">
                   
-                  <input type="text" @blur="computerWTax" v-model="form.wtax_code" class="form-control col-12" id="inputwtax_code" placeholder="ATC Code"> 
+                  <input type="text" @blur="computedWTax" v-model="form.wtax_code" class="form-control col-12" id="inputwtax_code" placeholder="ATC Code"> 
                   <span v-if="!wTaxExist" class="text-danger"> Code Not Found!</span>
                   
                 
@@ -803,8 +803,6 @@
                   user_id: document.querySelector('meta[name="user-id"]').getAttribute('content'),
                   wtax_code: 'NA',
                   wtax: 0
-                  
-                  
               }),
               form_entry: new Form({
 
@@ -1331,7 +1329,7 @@
                   //
                 });
           },
-          computerWTax(){
+          computedWTax(){
             if(!this.form.wtax_code){
               return false;
             }
@@ -1362,13 +1360,13 @@
             
             VueListen.$on('RefreshItemTable',() => {
                 this.loadEntryItems();
-                this.computerWTax();
+                this.computerWTcomputedWTaxax();
 
             });
             
             VueListen.$on('RefreshEntryTable',() => {
                 this.loadEntries();
-                this.computerWTax();
+                this.computedWTax();
             });
             
 

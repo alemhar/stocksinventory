@@ -9432,7 +9432,7 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {//
       });
     },
-    computerWTax: function computerWTax() {
+    computedWTax: function computedWTax() {
       var _this19 = this;
 
       if (!this.form.wtax_code) {
@@ -9462,12 +9462,12 @@ __webpack_require__.r(__webpack_exports__);
     VueListen.$on('RefreshItemTable', function () {
       _this20.loadEntryItems();
 
-      _this20.computerWTax();
+      _this20.computerWTcomputedWTaxax();
     });
     VueListen.$on('RefreshEntryTable', function () {
       _this20.loadEntries();
 
-      _this20.computerWTax();
+      _this20.computedWTax();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
@@ -82264,7 +82264,7 @@ var render = function() {
                           },
                           domProps: { value: _vm.form.wtax_code },
                           on: {
-                            blur: _vm.computerWTax,
+                            blur: _vm.computedWTax,
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
