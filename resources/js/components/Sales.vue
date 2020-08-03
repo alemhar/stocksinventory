@@ -1335,7 +1335,7 @@
           computerWTax(){
             this.wTaxExist = this.wtax.find(tax => tax.atc_code == this.form.wtax_code);
             if(this.wTaxExist){
-               this.form.wtax = (this.form.amount_ex_tax/(1 + (this.wTaxExist.tax_rate/100))).toFixed(2) * 1;
+               this.form.wtax = (this.form.amount_ex_tax/ (this.wTaxExist.tax_rate/100)).toFixed(2) * 1;
             } else {
 
             }
