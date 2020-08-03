@@ -9463,7 +9463,7 @@ __webpack_require__.r(__webpack_exports__);
     VueListen.$on('RefreshItemTable', function () {
       _this20.loadEntryItems();
 
-      _this20.computerWTcomputedWTaxax();
+      _this20.computedWTax();
     });
     VueListen.$on('RefreshEntryTable', function () {
       _this20.loadEntries();
@@ -82275,6 +82275,11 @@ var render = function() {
                                 "wtax_code",
                                 $event.target.value
                               )
+                            }
+                          },
+                          nativeOn: {
+                            focus: function($event) {
+                              return $event.target.select()
                             }
                           }
                         }),
