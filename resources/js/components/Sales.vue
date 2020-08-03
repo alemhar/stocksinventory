@@ -287,7 +287,8 @@
                 <div class="col-sm-2">
                   
                   <input type="text" @blur="computerWTax" v-model="form.wtax_code" class="form-control col-12" id="inputwtax_code" placeholder="ATC Code"> 
-                  <p v-if="!wTaxExist" class="text-danger">Code Not Found!</p>
+                  <span v-if="!wTaxExist" class="text-danger"> Code Not Found!</span>
+                  <span v-if="wTaxExist" class="text-danger"> {{ this.wTaxExist.tax_rate}}%</span>
                 
                  
                   </div>
@@ -1333,11 +1334,13 @@
                 });
           },
           computerWTax(){
+            if(!this.form.wtax_code){
+              return false;
+            }
             this.wTaxExist = this.wtax.find(tax => tax.atc_code == this.form.wtax_code);
             if(this.wTaxExist){
                this.form.wtax = (this.form.amount_ex_tax * (this.wTaxExist.tax_rate/100)).toFixed(2) * 1;
                this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat) - parseFloat(this.form.wtax);
-
             } else {
 
             }
@@ -1361,11 +1364,13 @@
             
             VueListen.$on('RefreshItemTable',() => {
                 this.loadEntryItems();
+                this.computerWTax();
 
             });
             
             VueListen.$on('RefreshEntryTable',() => {
                 this.loadEntries();
+                this.computerWTax();
             });
             
 

@@ -8889,6 +8889,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -9438,6 +9439,10 @@ __webpack_require__.r(__webpack_exports__);
     computerWTax: function computerWTax() {
       var _this19 = this;
 
+      if (!this.form.wtax_code) {
+        return false;
+      }
+
       this.wTaxExist = this.wtax.find(function (tax) {
         return tax.atc_code == _this19.form.wtax_code;
       });
@@ -9460,9 +9465,13 @@ __webpack_require__.r(__webpack_exports__);
 
     VueListen.$on('RefreshItemTable', function () {
       _this20.loadEntryItems();
+
+      _this20.computerWTax();
     });
     VueListen.$on('RefreshEntryTable', function () {
       _this20.loadEntries();
+
+      _this20.computerWTax();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
@@ -82265,8 +82274,16 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         !_vm.wTaxExist
-                          ? _c("p", { staticClass: "text-danger" }, [
-                              _vm._v("Code Not Found!")
+                          ? _c("span", { staticClass: "text-danger" }, [
+                              _vm._v(" Code Not Found!")
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.wTaxExist
+                          ? _c("span", { staticClass: "text-danger" }, [
+                              _vm._v(
+                                " " + _vm._s(this.wTaxExist.tax_rate) + "%"
+                              )
                             ])
                           : _vm._e()
                       ]),
