@@ -8885,6 +8885,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -82204,7 +82205,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "div",
-                        { staticClass: "col-sm-3" },
+                        { staticClass: "col-sm-6" },
                         [
                           _c("input", {
                             directives: [
@@ -82215,11 +82216,11 @@ var render = function() {
                                 expression: "form.wtax_code"
                               }
                             ],
+                            staticClass: "form-control col-12",
                             attrs: {
                               type: "text",
-                              fc: true,
-                              col: 12,
-                              id: "inputwtax_code"
+                              id: "inputwtax_code",
+                              placeholder: "ATC Code"
                             },
                             domProps: { value: _vm.form.wtax_code },
                             on: {
