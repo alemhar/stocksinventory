@@ -1336,6 +1336,8 @@
             this.wTaxExist = this.wtax.find(tax => tax.atc_code == this.form.wtax_code);
             if(this.wTaxExist){
                this.form.wtax = (this.form.amount_ex_tax * (this.wTaxExist.tax_rate/100)).toFixed(2) * 1;
+               this.form.amount = parseInt(this.form.amount_ex_tax) + parseInt(this.form.vat) - parseInt(this.form.wtax);
+               
             } else {
 
             }
