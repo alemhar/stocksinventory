@@ -9087,11 +9087,7 @@ __webpack_require__.r(__webpack_exports__);
         _this5.$Progress.finish();
       })["catch"](function () {
         _this5.$Progress.fail();
-      }); //this.form.reset();
-      //this.form_entry.reset();
-      //this.form_item.reset();
-
-      this.$router.go(); // 
+      }); //this.$router.go();  
     },
     cancelTransaction: function cancelTransaction() {
       this.transaction_created = false;

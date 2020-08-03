@@ -967,10 +967,8 @@
                 this.$Progress.fail();
             });
 
-            //this.form.reset();
-            //this.form_entry.reset();
-            //this.form_item.reset();
-            this.$router.go(); // 
+            
+            //this.$router.go();  
 
           },
           cancelTransaction(){
