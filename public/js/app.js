@@ -9444,7 +9444,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.wTaxExist) {
         this.form.wtax = (this.form.amount_ex_tax * (this.wTaxExist.tax_rate / 100)).toFixed(2) * 1;
-        this.form.amount = parsefloat(this.form.amount_ex_tax) + parsefloat(this.form.vat) - parsefloat(this.form.wtax);
+        this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat) - parseFloat(this.form.wtax);
       } else {}
     }
   },
