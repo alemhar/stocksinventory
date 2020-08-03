@@ -82266,6 +82266,9 @@ var render = function() {
                           domProps: { value: _vm.form.wtax_code },
                           on: {
                             blur: _vm.computedWTax,
+                            focus: function($event) {
+                              return $event.target.select()
+                            },
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
@@ -82275,11 +82278,6 @@ var render = function() {
                                 "wtax_code",
                                 $event.target.value
                               )
-                            }
-                          },
-                          nativeOn: {
-                            focus: function($event) {
-                              return $event.target.select()
                             }
                           }
                         }),
