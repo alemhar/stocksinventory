@@ -799,7 +799,9 @@
                   amount_ex_tax: 0,
                   vat: 0,
                   canceled: 0,
-                  user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
+                  user_id: document.querySelector('meta[name="user-id"]').getAttribute('content'),
+                  wtax_code: '',
+                  wtax: 0
                   
                   
               }),
