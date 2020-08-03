@@ -801,7 +801,7 @@
                   vat: 0,
                   canceled: 0,
                   user_id: document.querySelector('meta[name="user-id"]').getAttribute('content'),
-                  wtax_code: '',
+                  wtax_code: 'NA',
                   wtax: 0
                   
                   

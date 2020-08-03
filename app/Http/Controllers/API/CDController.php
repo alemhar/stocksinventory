@@ -39,14 +39,14 @@ class CDController extends Controller
      */
     public function store(Request $request)
     {   
-        // // With holding tax is from Sales Entry Form
-        // if(!isset($request['wtax_code'])){
-        //     $wtax_code = 'NA';
-        //     $wtax = 0;
-        // } else {
-        //     $wtax_code = $request['wtax_code'];
-        //     $wtax = $request['wtax'];
-        // }
+        // With holding tax is from Sales Entry Form
+        if(!isset($request['wtax_code'])){
+            $wtax_code = 'NA';
+            $wtax = 0;
+        } else {
+            $wtax_code = $request['wtax_code'];
+            $wtax = $request['wtax'];
+        }
 
         return Transaction::create([
             'payee_id' => $request['payee_id'],
