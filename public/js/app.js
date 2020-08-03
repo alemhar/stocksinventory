@@ -82239,11 +82239,11 @@ var render = function() {
                           attrs: { for: "inputWTax" }
                         },
                         [
-                          _vm._v("Withholding Tax "),
+                          _vm._v("Withholding Tax  "),
                           _vm.wTaxExist
                             ? _c("span", { staticClass: "text-danger" }, [
                                 _vm._v(
-                                  " " + _vm._s(this.wTaxExist.tax_rate) + "%"
+                                  "  " + _vm._s(this.wTaxExist.tax_rate) + "%"
                                 )
                               ])
                             : _vm._e()

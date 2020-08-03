@@ -38,7 +38,16 @@ class CDController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        // With holding tax is from Sales Entry Form
+        if(!$request['wtax_code']){
+            $wtax_code = 'NA';
+            $wtax = 0;
+        } else {
+            $wtax_code = $request['wtax_code'];
+            $wtax = $request['wtax'];
+        }
+
         return Transaction::create([
             'payee_id' => $request['payee_id'],
             'account_code' => $request['account_code'],
@@ -52,10 +61,10 @@ class CDController extends Controller
             'debit_amount' => $request['debit_amount'],
             'amount_ex_tax' => $request['amount_ex_tax'],
             'vat' => $request['vat'],
+            'wtax_code' => $wtax_code,
+            'wtax' => $wtax,
             'canceled' => $request['canceled'],
             'user_id' => $request['user_id']
-
-            
         ]);
     }
 
