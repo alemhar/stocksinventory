@@ -1333,7 +1333,7 @@
                 });
           },
           computerWTax(){
-            this.wTaxExist = this.wtax.find(tax => tax.atc_code == this.form.tax_code);
+            this.wTaxExist = this.wtax.find(tax => tax.atc_code == this.form.wtax_code);
             if(this.wTaxExist){
 
             } else {

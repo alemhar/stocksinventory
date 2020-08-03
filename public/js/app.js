@@ -9439,7 +9439,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this19 = this;
 
       this.wTaxExist = this.wtax.find(function (tax) {
-        return tax.atc_code == _this19.form.tax_code;
+        return tax.atc_code == _this19.form.wtax_code;
       });
 
       if (this.wTaxExist) {} else {}
