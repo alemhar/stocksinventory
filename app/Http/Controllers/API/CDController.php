@@ -40,7 +40,7 @@ class CDController extends Controller
     public function store(Request $request)
     {   
         // With holding tax is from Sales Entry Form
-        if(!$request['wtax_code']){
+        if(!isset($request['wtax_code'])){
             $wtax_code = 'NA';
             $wtax = 0;
         } else {
