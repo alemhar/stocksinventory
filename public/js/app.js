@@ -76046,7 +76046,7 @@ var render = function() {
                         _c(
                           "h3",
                           { staticClass: "box-title box-title-transaction" },
-                          [_vm._v("Debits")]
+                          [_vm._v("Credits")]
                         ),
                         _vm._v(" "),
                         _c("div", { staticClass: "box-tools" }, [
@@ -81964,7 +81964,7 @@ var render = function() {
                         _c(
                           "h3",
                           { staticClass: "box-title box-title-transaction" },
-                          [_vm._v("Debits")]
+                          [_vm._v("Credits")]
                         ),
                         _vm._v(" "),
                         _c("div", { staticClass: "box-tools" }, [

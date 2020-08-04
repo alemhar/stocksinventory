@@ -139,7 +139,7 @@
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title box-title-transaction">Debits</h3>
+                  <h3 class="box-title box-title-transaction">Credits</h3>
                   <div class="box-tools">
                     <button class="btn btn-success" @click="newEntry">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
