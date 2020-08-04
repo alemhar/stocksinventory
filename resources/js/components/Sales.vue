@@ -288,7 +288,7 @@
                   
                   <input type="text" @blur="computedWTax" @focus="$event.target.select()" v-model="form.wtax_code" class="form-control col-12" id="inputwtax_code" placeholder="ATC Code"> <span class="input-group-btn col-1">
                     </span>   
-                  <span v-if="!wTaxExist" class="text-danger"> Code Not Found! <i class="far fa-question-circle" @click="showWTaxTable"></i></span>
+                  <span v-if="!wTaxExist" class="text-danger"> Code Not Found!<i class="fas fa-question-circle" @click="showWTaxTable"></i></span>
                   
                 
                  
