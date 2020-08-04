@@ -79357,7 +79357,7 @@ var render = function() {
                               type: "text",
                               readonly: "",
                               id: "inputDCNo",
-                              placeholder: "SALES Number"
+                              placeholder: "PURCHASE Number"
                             },
                             domProps: { value: _vm.form.transaction_no },
                             on: {

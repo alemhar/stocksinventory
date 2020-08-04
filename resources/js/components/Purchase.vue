@@ -99,7 +99,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">CR #</span>
                     </div>
-                    <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="SALES Number">
+                    <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="PURCHASE Number">
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
