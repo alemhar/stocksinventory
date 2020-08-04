@@ -74,8 +74,6 @@ class AccountController extends Controller
                     $accounts = Account::latest()->where('filter', '<', 99)->paginate(10);
                 }
 
-
-
             }else{
                 $accounts = Account::latest()->where('filter', '<', 99)->paginate(10);
             }

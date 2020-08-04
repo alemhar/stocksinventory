@@ -841,7 +841,6 @@
                 axios.get("api/branch").then(({data}) => (this.branches = data ));
                 //axios.get("api/user").then(({ data }) => (this.users = data.data));
             } 
-             
           },
           loadPayees(){
             if(this.$gate.isAdminOrUser()){
