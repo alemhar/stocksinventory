@@ -287,7 +287,7 @@
                 <div class="col-sm-2">
                   
                   <input type="text" @blur="computedWTax" @focus="$event.target.select()" v-model="form.wtax_code" class="form-control col-12" id="inputwtax_code" placeholder="ATC Code">
-                  <span v-if="!wTaxExist" class="text-danger"> Code Not Found! <i class="fas fa-question-circle" @click="showWTaxTable"></i></span>
+                  <span v-if="!wTaxExist" class="text-danger"> Code Not Found!  <i class="fas fa-question-circle" @click="showWTaxTable"></i></span>
                   
                 
                  
@@ -753,6 +753,64 @@
         </div>
       </div>
       
+
+
+      <!-- Show WTax Rates 
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      -->
+
+      <div class="modal fade" id="show-wtax" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <!--h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add New</h5>
+              <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update Entry</h5 -->
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form onsubmit="return false;">
+            <div class="modal-body">
+
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tbody><tr>
+                  <th>ATC</th>
+                  <th>Code</th>
+                  <th>Rate</th>
+                  <th>Description</th>
+                </tr>
+                <tr v-for="tax in wtax" :key="wtax.id">
+                  <td>{{ tax.atc }}</td>
+                  <td>{{ tax.atc_code }}</td> 
+                  <td>{{ tax.tax_rate }}</td> 
+                  <td>{{ tax.description }}, {{ tax.condition }}</td> 
+                </tr>
+              </tbody></table>
+            </div>
+            <!-- /.box-body -->
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
 
     </div>
 </template>
@@ -1344,7 +1402,9 @@
             }
           },
           showWTaxTable(){
-            alert('showWTaxTable');
+            
+            $('#show-wtax').modal('show');
+            
           }
 
           

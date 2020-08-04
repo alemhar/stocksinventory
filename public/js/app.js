@@ -8890,6 +8890,64 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -9450,7 +9508,7 @@ __webpack_require__.r(__webpack_exports__);
       } else {}
     },
     showWTaxTable: function showWTaxTable() {
-      alert('showWTaxTable');
+      $('#show-wtax').modal('show');
     }
   },
   created: function created() {
@@ -82290,7 +82348,7 @@ var render = function() {
                         _vm._v(" "),
                         !_vm.wTaxExist
                           ? _c("span", { staticClass: "text-danger" }, [
-                              _vm._v(" Code Not Found! "),
+                              _vm._v(" Code Not Found!  "),
                               _c("i", {
                                 staticClass: "fas fa-question-circle",
                                 on: { click: _vm.showWTaxTable }
@@ -83607,6 +83665,76 @@ var render = function() {
           ]
         )
       ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "show-wtax",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "addNewLabel",
+          "aria-hidden": "true",
+          "data-backdrop": "static",
+          "data-keyboard": "false"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(33),
+              _vm._v(" "),
+              _c("form", { attrs: { onsubmit: "return false;" } }, [
+                _c("div", { staticClass: "modal-body" }, [
+                  _c(
+                    "div",
+                    { staticClass: "box-body table-responsive no-padding" },
+                    [
+                      _c("table", { staticClass: "table table-hover" }, [
+                        _c(
+                          "tbody",
+                          [
+                            _vm._m(34),
+                            _vm._v(" "),
+                            _vm._l(_vm.wtax, function(tax) {
+                              return _c("tr", { key: _vm.wtax.id }, [
+                                _c("td", [_vm._v(_vm._s(tax.atc))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(tax.atc_code))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(tax.tax_rate))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(tax.description) +
+                                      ", " +
+                                      _vm._s(tax.condition)
+                                  )
+                                ])
+                              ])
+                            })
+                          ],
+                          2
+                        )
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(35)
+              ])
+            ])
+          ]
+        )
+      ]
     )
   ])
 }
@@ -84050,6 +84178,54 @@ var staticRenderFns = [
       _c("th", [_vm._v("Name")]),
       _vm._v(" "),
       _c("th", [_vm._v("Option")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("ATC")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Code")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Rate")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Description")])
     ])
   },
   function() {
