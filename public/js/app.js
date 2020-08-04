@@ -82300,7 +82300,12 @@ var render = function() {
                           attrs: { for: "inputWTax" }
                         },
                         [
-                          _vm._v("Withholding Tax  "),
+                          _vm._v("Withholding Tax    "),
+                          _c("i", {
+                            staticClass: "fas fa-question-circle",
+                            on: { click: _vm.showWTaxTable }
+                          }),
+                          _vm._v(" "),
                           _vm.wTaxExist
                             ? _c("span", { staticClass: "text-danger" }, [
                                 _vm._v(
@@ -82348,11 +82353,7 @@ var render = function() {
                         _vm._v(" "),
                         !_vm.wTaxExist
                           ? _c("span", { staticClass: "text-danger" }, [
-                              _vm._v(" Code Not Found!  "),
-                              _c("i", {
-                                staticClass: "fas fa-question-circle",
-                                on: { click: _vm.showWTaxTable }
-                              })
+                              _vm._v(" Code Not Found!")
                             ])
                           : _vm._e()
                       ]),
