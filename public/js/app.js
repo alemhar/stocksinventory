@@ -7656,11 +7656,11 @@ __webpack_require__.r(__webpack_exports__);
     initChartAccounts: function initChartAccounts() {
       var _this3 = this;
 
-      axios.get('api/chartaccount?headerordetail=header&transaction_type=SALES').then(function (data) {
+      axios.get('api/chartaccount?headerordetail=header&transaction_type=PURCHASE').then(function (data) {
         _this3.chart_of_accounts_header = data.data;
       })["catch"](function () {//
       });
-      axios.get('api/chartaccount?headerordetail=detail&transaction_type=SALES').then(function (data) {
+      axios.get('api/chartaccount?headerordetail=detail&transaction_type=PURCHASE').then(function (data) {
         _this3.chart_of_accounts_detail = data.data;
       })["catch"](function () {//
       });
@@ -9073,7 +9073,7 @@ __webpack_require__.r(__webpack_exports__);
     saveTransaction: function saveTransaction() {
       var _this5 = this;
 
-      if (this.form.amount == 0) {
+      if (this.form.amount == 0 || this.form.wtax == 0) {
         return false;
       } //this.$Progress.start();
 

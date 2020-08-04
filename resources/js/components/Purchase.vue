@@ -855,17 +855,16 @@
               } else {
                   this.chart_of_accounts = this.chart_of_accounts_detail;
               }
-
           },
           initChartAccounts(){
-              axios.get('api/chartaccount?headerordetail=header&transaction_type=SALES')
+              axios.get('api/chartaccount?headerordetail=header&transaction_type=PURCHASE')
                 .then((data)=>{
                   this.chart_of_accounts_header = data.data;
                 })
                 .catch(()=>{
                   //
                 });
-              axios.get('api/chartaccount?headerordetail=detail&transaction_type=SALES')
+              axios.get('api/chartaccount?headerordetail=detail&transaction_type=PURCHASE')
                 .then((data)=>{
                   this.chart_of_accounts_detail = data.data;
                 })

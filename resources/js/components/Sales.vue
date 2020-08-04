@@ -946,7 +946,7 @@
             
           },
           saveTransaction(){
-            if(this.form.amount == 0) {
+            if(this.form.amount == 0 || this.form.wtax == 0 ) {
               return false;
             }
             //this.$Progress.start();

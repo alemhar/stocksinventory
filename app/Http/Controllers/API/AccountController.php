@@ -60,6 +60,16 @@ class AccountController extends Controller
                         ->where('filter', '<', 99)
                         ->paginate(8);
                     }
+                }
+                elseif($transaction_type == 'PURCHASE'){
+                    if($headerordetail == 'header'){
+                        $accounts = Account::where('filter', '=', 5)
+                        ->paginate(8);
+                    } else {
+                        $accounts = Account::where('filter', '<>', 5)
+                        ->where('filter', '<', 99)
+                        ->paginate(8);
+                    }
                 } else {
                     $accounts = Account::latest()->where('filter', '<', 99)->paginate(10);
                 }
