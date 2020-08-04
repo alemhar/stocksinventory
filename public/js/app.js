@@ -8891,7 +8891,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -9450,6 +9449,9 @@ __webpack_require__.r(__webpack_exports__);
         this.form.wtax = (this.form.amount_ex_tax * (this.wTaxExist.tax_rate / 100)).toFixed(2) * 1;
         this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat) - parseFloat(this.form.wtax);
       } else {}
+    },
+    showWTaxTable: function showWTaxTable() {
+      alert('showWTaxTable');
     }
   },
   created: function created() {
@@ -82287,21 +82289,15 @@ var render = function() {
                           }
                         }),
                         _vm._v(" "),
-                        _c("span", { staticClass: "input-group-btn col-1" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-success",
-                              attrs: { type: "button" },
-                              on: { click: _vm.searchPayeeModal }
-                            },
-                            [_c("i", { staticClass: "fas fa-search fa-fw" })]
-                          )
-                        ]),
+                        _c("span", { staticClass: "input-group-btn col-1" }),
                         _vm._v(" "),
                         !_vm.wTaxExist
                           ? _c("span", { staticClass: "text-danger" }, [
-                              _vm._v(" Code Not Found!")
+                              _vm._v(" Code Not Found! "),
+                              _c("i", {
+                                staticClass: "far fa-question-circle",
+                                on: { click: _vm.showWTaxTable }
+                              })
                             ])
                           : _vm._e()
                       ]),
