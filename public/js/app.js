@@ -8890,6 +8890,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -82284,6 +82286,26 @@ var render = function() {
                             }
                           }
                         }),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "input-group-btn col-1" }, [
+                          _c(
+                            "button",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: !_vm.transaction_created,
+                                  expression: "!transaction_created"
+                                }
+                              ],
+                              staticClass: "btn btn-success",
+                              attrs: { type: "button" },
+                              on: { click: _vm.searchPayeeModal }
+                            },
+                            [_c("i", { staticClass: "fas fa-search fa-fw" })]
+                          )
+                        ]),
                         _vm._v(" "),
                         !_vm.wTaxExist
                           ? _c("span", { staticClass: "text-danger" }, [
