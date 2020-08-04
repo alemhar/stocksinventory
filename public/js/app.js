@@ -82291,14 +82291,6 @@ var render = function() {
                           _c(
                             "button",
                             {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: !_vm.transaction_created,
-                                  expression: "!transaction_created"
-                                }
-                              ],
                               staticClass: "btn btn-success",
                               attrs: { type: "button" },
                               on: { click: _vm.searchPayeeModal }
