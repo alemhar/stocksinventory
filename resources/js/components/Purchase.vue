@@ -856,6 +856,7 @@
               }
           },
           initChartAccounts(){
+
               axios.get('api/chartaccount?headerordetail=header&transaction_type=PURCHASE')
                 .then((data)=>{
                   this.chart_of_accounts_header = data.data;
@@ -863,6 +864,7 @@
                 .catch(()=>{
                   //
                 });
+            
               axios.get('api/chartaccount?headerordetail=detail&transaction_type=PURCHASE')
                 .then((data)=>{
                   this.chart_of_accounts_detail = data.data;
@@ -1339,15 +1341,11 @@
             VueListen.$on('RefreshEntryTable',() => {
                 this.loadEntries();
             });
-            
 
             this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
             //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
             //console.log(this.payees);
-
             //setInterval(() => this.loadUsers(),3000);
-
-
             /* Scrollbar fix
                If you have a modal on your page that exceeds the browser height, then you can't scroll in it when closing an second modal. To fix this add: */
             $(document).on('hidden.bs.modal', '.modal', function () {
