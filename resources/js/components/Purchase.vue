@@ -768,7 +768,7 @@
                   payee_id: '',
                   reference_no: '',
                   transaction_no: '',
-                  transaction_type: 'SALES', // default for SALES
+                  transaction_type: 'PURCHASE', // default for SALES
                   transaction_date: this.getDate(),
                   account_code: '',
                   account_name:'',
@@ -999,7 +999,7 @@
           SearchIt() {
               let query = this.searchText;
               let headerOrDetail = this.headerOrDetail;
-              axios.get('api/searchAccount?q='+query+'&transaction_type=SALES&headerordetail='+headerOrDetail)
+              axios.get('api/searchAccount?q='+query+'&transaction_type=PURCHASE&headerordetail='+headerOrDetail)
                 .then((data)=>{
                   this.chart_of_accounts = data.data;
                 })

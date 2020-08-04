@@ -7566,7 +7566,7 @@ __webpack_require__.r(__webpack_exports__);
         payee_id: '',
         reference_no: '',
         transaction_no: '',
-        transaction_type: 'SALES',
+        transaction_type: 'PURCHASE',
         // default for SALES
         transaction_date: this.getDate(),
         account_code: '',
@@ -7797,7 +7797,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var query = this.searchText;
       var headerOrDetail = this.headerOrDetail;
-      axios.get('api/searchAccount?q=' + query + '&transaction_type=SALES&headerordetail=' + headerOrDetail).then(function (data) {
+      axios.get('api/searchAccount?q=' + query + '&transaction_type=PURCHASE&headerordetail=' + headerOrDetail).then(function (data) {
         _this5.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
