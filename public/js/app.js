@@ -82300,7 +82300,7 @@ var render = function() {
                           attrs: { for: "inputWTax" }
                         },
                         [
-                          _vm._v("Withholding Tax    "),
+                          _vm._v("Withholding Tax   "),
                           _c("i", {
                             staticClass: "fas fa-question-circle",
                             on: { click: _vm.showWTaxTable }

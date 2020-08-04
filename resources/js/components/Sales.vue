@@ -283,7 +283,7 @@
               <div class="form-group col-12 float-right">
                 <div class="row">
                 
-                <label for="inputWTax" class="col-sm-7 col-form-label" style="text-align: right;">Withholding Tax    <i class="fas fa-question-circle" @click="showWTaxTable"></i> <span v-if="wTaxExist" class="text-danger">  {{ this.wTaxExist.tax_rate}}%</span></label>
+                <label for="inputWTax" class="col-sm-7 col-form-label" style="text-align: right;">Withholding Tax&nbsp;&nbsp;&nbsp;<i class="fas fa-question-circle" @click="showWTaxTable"></i> <span v-if="wTaxExist" class="text-danger">  {{ this.wTaxExist.tax_rate}}%</span></label>
                 <div class="col-sm-2">
                   
                   <input type="text" @blur="computedWTax" @focus="$event.target.select()" v-model="form.wtax_code" class="form-control col-12" id="inputwtax_code" placeholder="ATC Code">
