@@ -7531,7 +7531,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -80759,7 +80758,7 @@ var render = function() {
                       class: { "is-invalid": _vm.form_item.errors.has("vat") },
                       attrs: {
                         name: "vat",
-                        id: "vat",
+                        id: "vat2",
                         readonly: "",
                         "aria-describedby": "inputGroup-sizing-default"
                       },

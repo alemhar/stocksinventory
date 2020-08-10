@@ -564,7 +564,6 @@
                   <span class="input-group-text inputGroup-sizing-default">Tax Excluded</span>
                 </div>
                   <input v-model="form_item.tax_excluded" name="amount_ex_tax" id="amount_ex_tax2"
-                  
                   class="form-control" :class="{ 'is-invalid': form_item.errors.has('tax_excluded') }" readonly aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_item" field="amount_ex_tax"></has-error>
               </div>
@@ -574,7 +573,7 @@
                   <span class="input-group-text inputGroup-sizing-default">Tax</span>
                 </div>
               
-                  <input v-model="form_item.vat" name="vat" id="vat"
+                  <input v-model="form_item.vat" name="vat" id="vat2"
                   
                   class="form-control" :class="{ 'is-invalid': form_item.errors.has('vat') }" readonly aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_item" field="vat"></has-error>
