@@ -1267,19 +1267,22 @@
 
             this.form_item_arr.push(this.form_item);
 
-            $('#entry-items').modal('hide');
-            return true;
-            //this.$Progress.start();
-            /*
+            
+            //$('#entry-items').modal('hide');
+            //return true;
+
+            this.$Progress.start();
+            
             this.form_item.put('api/cd/item/'+this.form_item.id)
             .then(() => {
                 $('#entry-items').modal('hide');
-            
+                /*
                 swal.fire(
                     'Updated!',
                     'Payee information has been updated.',
                     'success'
                   );
+                  */
                 
                   this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
                   this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
@@ -1291,7 +1294,7 @@
             .catch(() => {
                 this.$Progress.fail();
             });
-            */
+            
           },
           deleteItem(item_id,item_sub_total,item_tax_excluded,item_vat){
               this.form_item.delete('api/cd/item/'+item_id)
