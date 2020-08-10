@@ -1069,17 +1069,22 @@
 
           },
           newEntry(){
+              /*
               this.editmode = false;
               this.form_entry.reset();
               ++this.form_entry.entry_id;
               //this.form_entry.transaction_id = this.form.id;
-
               this.form_entry.transaction_no = this.form.transaction_no;
               this.form_entry.entry_id = '' + this.form.transaction_no + this.form_entry.entry_id;
-              
               this.form_entry.transaction_type = 'PURCHASE';
+              */
 
-              /*
+              this.editmode = false;
+              this.form_entry.reset();
+              this.form_entry.transaction_id = this.form.id;
+              this.form_entry.transaction_no = this.form.transaction_no;
+              this.form_entry.transaction_type = 'PURCHASE';
+            
               this.form_entry.post('api/cd/entry')
                 .then((data)=>{
                   this.form_entry.id = data.data.id;
@@ -1089,7 +1094,6 @@
                 .catch(()=>{
                   //
                 });
-              */  
               $('#entry-details').modal('show');
 
 
