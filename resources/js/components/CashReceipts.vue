@@ -1298,9 +1298,6 @@
             this.form_entry.branch_name = this.selected_branch.name;
           }
 
-          
-
-
         },
 
         created() {

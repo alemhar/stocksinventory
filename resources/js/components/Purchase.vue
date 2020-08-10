@@ -563,15 +563,11 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Tax Excluded</span>
                 </div>
-
-              
                   <input v-model="form_item.tax_excluded" name="amount_ex_tax" id="amount_ex_tax2"
                   
                   class="form-control" :class="{ 'is-invalid': form_item.errors.has('tax_excluded') }" readonly aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_item" field="amount_ex_tax"></has-error>
               </div>
-
-
               <div class="input-group mb-2">
                 
                 <div class="input-group-prepend">
@@ -951,7 +947,6 @@
             //this.form_entry.reset();
             //this.form_item.reset();
             this.$router.go(); // 
-
           },
           cancelTransaction(){
             this.transaction_created = false;
