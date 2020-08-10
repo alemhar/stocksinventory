@@ -20,7 +20,6 @@ class CreateTransactionsTable extends Migration
             $table->bigInteger('transaction_no')->unsigned();
             $table->string('account_name');
             $table->string('reference_no');
-            $table->string('transaction_no');
             $table->string('transaction_type');
             $table->date('transaction_date');
             $table->decimal('amount', 14, 2);
