@@ -565,7 +565,7 @@
                 </div>
 
               
-                  <input v-model="form_item.tax_excluded" name="amount_ex_tax" id="amount_ex_tax"
+                  <input v-model="form_item.tax_excluded" name="amount_ex_tax" id="amount_ex_tax2"
                   
                   class="form-control" :class="{ 'is-invalid': form_item.errors.has('tax_excluded') }" readonly aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_item" field="amount_ex_tax"></has-error>
