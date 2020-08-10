@@ -12,7 +12,7 @@
             <!-- form start -->
             <form role="form" @submit.prevent="createTransaction()">
               <div class="box-header with-border">
-                <h3 class="box-title box-title-transaction" >Purchase</h3>
+                <h3 class="box-title box-title-transaction">Purchase</h3>
                 <div class="box-tools">
                   <button type="submit" v-show="!transaction_created" class="btn btn-success">Create <i class="fas fa-plus-circle fa-fw"></i></button>
                   <!-- @click="createCD()"  -->
@@ -97,7 +97,7 @@
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
-                      <span class="input-group-text inputGroup-sizing-default">Purchase #</span>
+                      <span class="input-group-text inputGroup-sizing-default">CR #</span>
                     </div>
                     <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="PURCHASE Number">
                   </div>
@@ -563,22 +563,17 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Tax Excluded</span>
                 </div>
-
-              
-                  <input v-model="form_item.tax_excluded" name="amount_ex_tax" id="amount_ex_tax"
-                  
+                  <input v-model="form_item.tax_excluded" name="amount_ex_tax" id="amount_ex_tax2"
                   class="form-control" :class="{ 'is-invalid': form_item.errors.has('tax_excluded') }" readonly aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_item" field="amount_ex_tax"></has-error>
               </div>
-
-
               <div class="input-group mb-2">
                 
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Tax</span>
                 </div>
               
-                  <input v-model="form_item.vat" name="vat" id="vat"
+                  <input v-model="form_item.vat" name="vat" id="vat2"
                   
                   class="form-control" :class="{ 'is-invalid': form_item.errors.has('vat') }" readonly aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_item" field="vat"></has-error>
@@ -768,7 +763,7 @@
                   payee_id: '',
                   reference_no: '',
                   transaction_no: '',
-                  transaction_type: 'PURCHASE', // default for Cash Disbursement
+                  transaction_type: 'PURCHASE', // default for SALES
                   transaction_date: this.getDate(),
                   account_code: '',
                   account_name:'',
@@ -785,6 +780,7 @@
               form_entry: new Form({
 
                   id:'',
+                  entry_id: 0,
                   transaction_id:'',
                   transaction_no:'',
                   transaction_type:'',
@@ -804,6 +800,7 @@
                   
                   
               }),
+              form_entry_arr:[],
               form_item: new Form({
 
                   id:'',
@@ -821,6 +818,7 @@
                   
                   
               }),
+              form_item_arr:[],
               payees: {},
               branches: {},
               items: {},
@@ -828,6 +826,7 @@
               chart_of_accounts: {},
               chart_of_accounts_header: {},
               chart_of_accounts_detail: {}
+
           }
         },
         methods: {
@@ -837,7 +836,6 @@
                 axios.get("api/branch").then(({data}) => (this.branches = data ));
                 //axios.get("api/user").then(({ data }) => (this.users = data.data));
             } 
-             
           },
           loadPayees(){
             if(this.$gate.isAdminOrUser()){
@@ -851,7 +849,6 @@
               } else {
                   this.chart_of_accounts = this.chart_of_accounts_detail;
               }
-
           },
           initChartAccounts(){
 
@@ -862,7 +859,7 @@
                 .catch(()=>{
                   //
                 });
-                
+            
               axios.get('api/chartaccount?headerordetail=detail&transaction_type=PURCHASE')
                 .then((data)=>{
                   this.chart_of_accounts_detail = data.data;
@@ -884,6 +881,7 @@
             return `${year}-${month}-${day}`;
           },
           createTransaction(){
+
             if(this.form.payee_id.length == 0) {
               this.no_payee = true;
             } else {
@@ -911,6 +909,7 @@
 
             this.form.transaction_no = this.createSerialNumber();
             this.form.transaction_type = 'PURCHASE';
+            /*
             this.form.post('api/cd')
                 .then((data)=>{
                   //console.log(data.data.id);
@@ -919,6 +918,7 @@
                 .catch(()=>{
                   //
                 });
+             */   
             
           },
           saveTransaction(){
@@ -946,7 +946,6 @@
             //this.form_entry.reset();
             //this.form_item.reset();
             this.$router.go(); // 
-
           },
           cancelTransaction(){
             this.transaction_created = false;
@@ -996,7 +995,7 @@
           SearchIt() {
               let query = this.searchText;
               let headerOrDetail = this.headerOrDetail;
-              axios.get('api/searchAccount?q='+query+'&transaction_type=CD&headerordetail='+headerOrDetail)
+              axios.get('api/searchAccount?q='+query+'&transaction_type=PURCHASE&headerordetail='+headerOrDetail)
                 .then((data)=>{
                   this.chart_of_accounts = data.data;
                 })
@@ -1067,14 +1066,25 @@
               this.form_entry.id = active_debit_row_id;
               VueListen.$emit('RefreshItemTable');
               //console.log(active_debit_row);
+
           },
           newEntry(){
+              /*
+              this.editmode = false;
+              this.form_entry.reset();
+              ++this.form_entry.entry_id;
+              //this.form_entry.transaction_id = this.form.id;
+              this.form_entry.transaction_no = this.form.transaction_no;
+              this.form_entry.entry_id = '' + this.form.transaction_no + this.form_entry.entry_id;
+              this.form_entry.transaction_type = 'PURCHASE';
+              */
+
               this.editmode = false;
               this.form_entry.reset();
               this.form_entry.transaction_id = this.form.id;
               this.form_entry.transaction_no = this.form.transaction_no;
               this.form_entry.transaction_type = 'PURCHASE';
-
+            
               this.form_entry.post('api/cd/entry')
                 .then((data)=>{
                   this.form_entry.id = data.data.id;
@@ -1084,7 +1094,6 @@
                 .catch(()=>{
                   //
                 });
-                
               $('#entry-details').modal('show');
 
 
@@ -1112,11 +1121,16 @@
               this.no_item = false;
               this.no_price = false;
               this.no_quantity = false;
-              this.form_item.transaction_entry_id = this.form_entry.id;
+              //this.form_item.transaction_entry_id = this.form_entry.id;
               this.form_item.transaction_no = this.form.transaction_no;
+              this.form_item.entry_id = this.form_entry.entry_id;
+
+
               this.form_item.transaction_type = 'PURCHASE';
               this.form_item.account_code = this.form_entry.account_code;
 
+              
+              /*
               this.form_item.post('api/cd/item')
                 .then((data)=>{
                   this.form_item.id = data.data.id;
@@ -1125,6 +1139,8 @@
                 .catch(()=>{
                   //
                 });
+              */  
+              
               this.loadEntryItems();
               $('#entry-items').modal('show');
           },
@@ -1247,9 +1263,14 @@
               return false;
             } 
 
+            this.form_item_arr.push(this.form_item);
+
             
+            //$('#entry-items').modal('hide');
+            //return true;
 
             this.$Progress.start();
+            
             this.form_item.put('api/cd/item/'+this.form_item.id)
             .then(() => {
                 $('#entry-items').modal('hide');
@@ -1259,7 +1280,8 @@
                     'Payee information has been updated.',
                     'success'
                   );
-                */
+                  */
+                
                   this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
                   this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
                   this.form_entry.vat += (this.form_item.vat * 1);
@@ -1270,6 +1292,7 @@
             .catch(() => {
                 this.$Progress.fail();
             });
+            
           },
           deleteItem(item_id,item_sub_total,item_tax_excluded,item_vat){
               this.form_item.delete('api/cd/item/'+item_id)
@@ -1297,6 +1320,9 @@
             this.form_entry.branch_name = this.selected_branch.name;
           }
 
+          
+
+
         },
 
         created() {
@@ -1316,15 +1342,11 @@
             VueListen.$on('RefreshEntryTable',() => {
                 this.loadEntries();
             });
-            
 
             this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
             //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
             //console.log(this.payees);
-
             //setInterval(() => this.loadUsers(),3000);
-
-
             /* Scrollbar fix
                If you have a modal on your page that exceeds the browser height, then you can't scroll in it when closing an second modal. To fix this add: */
             $(document).on('hidden.bs.modal', '.modal', function () {

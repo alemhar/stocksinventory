@@ -7531,6 +7531,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -7562,7 +7567,7 @@ __webpack_require__.r(__webpack_exports__);
         reference_no: '',
         transaction_no: '',
         transaction_type: 'PURCHASE',
-        // default for SALES
+        // default for Cash Disbursement
         transaction_date: this.getDate(),
         account_code: '',
         account_name: '',
@@ -7576,7 +7581,6 @@ __webpack_require__.r(__webpack_exports__);
       }),
       form_entry: new Form({
         id: '',
-        entry_id: 0,
         transaction_id: '',
         transaction_no: '',
         transaction_type: '',
@@ -7593,7 +7597,6 @@ __webpack_require__.r(__webpack_exports__);
         debit_amount: 0,
         transaction_date: this.getDate()
       }),
-      form_entry_arr: [],
       form_item: new Form({
         id: '',
         transaction_entry_id: '',
@@ -7608,7 +7611,6 @@ __webpack_require__.r(__webpack_exports__);
         tax_excluded: 0,
         vat: 0
       }),
-      form_item_arr: [],
       payees: {},
       branches: {},
       items: {},
@@ -7676,6 +7678,8 @@ __webpack_require__.r(__webpack_exports__);
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
     createTransaction: function createTransaction() {
+      var _this4 = this;
+
       if (this.form.payee_id.length == 0) {
         this.no_payee = true;
       } else {
@@ -7702,19 +7706,14 @@ __webpack_require__.r(__webpack_exports__);
 
       this.form.transaction_no = this.createSerialNumber();
       this.form.transaction_type = 'PURCHASE';
-      /*
-      this.form.post('api/cd')
-          .then((data)=>{
-            //console.log(data.data.id);
-            this.form.id = data.data.id;
-          })
-          .catch(()=>{
-            //
-          });
-       */
+      this.form.post('api/cd').then(function (data) {
+        //console.log(data.data.id);
+        _this4.form.id = data.data.id;
+      })["catch"](function () {//
+      });
     },
     saveTransaction: function saveTransaction() {
-      var _this4 = this;
+      var _this5 = this;
 
       if (this.form.amount == 0) {
         return false;
@@ -7723,13 +7722,13 @@ __webpack_require__.r(__webpack_exports__);
       this.$Progress.start();
       this.form_entry.put('api/cd/' + this.form.id).then(function () {
         swal.fire('Saved!', 'Transaction Completed.', 'success');
-        _this4.transaction_created = false;
+        _this5.transaction_created = false;
 
-        _this4.form.post('api/cd/confirm/' + _this4.form.transaction_no);
+        _this5.form.post('api/cd/confirm/' + _this5.form.transaction_no);
 
-        _this4.$Progress.finish();
+        _this5.$Progress.finish();
       })["catch"](function () {
-        _this4.$Progress.fail();
+        _this5.$Progress.fail();
       }); //this.form.reset();
       //this.form_entry.reset();
       //this.form_item.reset();
@@ -7788,39 +7787,39 @@ __webpack_require__.r(__webpack_exports__);
       $('#select-payee').modal('hide');
     },
     SearchIt: function SearchIt() {
-      var _this5 = this;
+      var _this6 = this;
 
       var query = this.searchText;
       var headerOrDetail = this.headerOrDetail;
-      axios.get('api/searchAccount?q=' + query + '&transaction_type=PURCHASE&headerordetail=' + headerOrDetail).then(function (data) {
-        _this5.chart_of_accounts = data.data;
+      axios.get('api/searchAccount?q=' + query + '&transaction_type=CD&headerordetail=' + headerOrDetail).then(function (data) {
+        _this6.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
     },
     SearchPayee: function SearchPayee() {
-      var _this6 = this;
+      var _this7 = this;
 
       var query = this.searchPayee;
       axios.get('api/searchPayee?q=' + query).then(function (data) {
-        _this6.payees = data.data;
+        _this7.payees = data.data;
       })["catch"](function () {//
       });
     },
     loadEntryItems: function loadEntryItems() {
-      var _this7 = this;
+      var _this8 = this;
 
       var entry_id = this.form_entry.id;
       axios.get('api/cd/items/list?entry_id=' + entry_id).then(function (data) {
-        _this7.items = data.data;
+        _this8.items = data.data;
       })["catch"](function () {//
       });
     },
     loadEntries: function loadEntries() {
-      var _this8 = this;
+      var _this9 = this;
 
       var transaction_no = this.form.transaction_no;
       axios.get('api/cd/entries/list?transaction_no=' + transaction_no).then(function (data) {
-        _this8.entries = data.data;
+        _this9.entries = data.data;
       })["catch"](function () {//
       });
     },
@@ -7853,24 +7852,15 @@ __webpack_require__.r(__webpack_exports__);
       VueListen.$emit('RefreshItemTable'); //console.log(active_debit_row);
     },
     newEntry: function newEntry() {
-      var _this9 = this;
+      var _this10 = this;
 
-      /*
-      this.editmode = false;
-      this.form_entry.reset();
-      ++this.form_entry.entry_id;
-      //this.form_entry.transaction_id = this.form.id;
-      this.form_entry.transaction_no = this.form.transaction_no;
-      this.form_entry.entry_id = '' + this.form.transaction_no + this.form_entry.entry_id;
-      this.form_entry.transaction_type = 'PURCHASE';
-      */
       this.editmode = false;
       this.form_entry.reset();
       this.form_entry.transaction_id = this.form.id;
       this.form_entry.transaction_no = this.form.transaction_no;
       this.form_entry.transaction_type = 'PURCHASE';
       this.form_entry.post('api/cd/entry').then(function (data) {
-        _this9.form_entry.id = data.data.id; //console.log(data.data.id);
+        _this10.form_entry.id = data.data.id; //console.log(data.data.id);
 
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {//
@@ -7878,6 +7868,8 @@ __webpack_require__.r(__webpack_exports__);
       $('#entry-details').modal('show');
     },
     newItem: function newItem() {
+      var _this11 = this;
+
       if (this.form_entry.account_code == 0) {
         this.no_entry_account_code = true;
       } else {
@@ -7898,28 +7890,20 @@ __webpack_require__.r(__webpack_exports__);
       this.form_item.reset();
       this.no_item = false;
       this.no_price = false;
-      this.no_quantity = false; //this.form_item.transaction_entry_id = this.form_entry.id;
-
+      this.no_quantity = false;
+      this.form_item.transaction_entry_id = this.form_entry.id;
       this.form_item.transaction_no = this.form.transaction_no;
-      this.form_item.entry_id = this.form_entry.entry_id;
       this.form_item.transaction_type = 'PURCHASE';
       this.form_item.account_code = this.form_entry.account_code;
-      /*
-      this.form_item.post('api/cd/item')
-        .then((data)=>{
-          this.form_item.id = data.data.id;
-          //console.log(data.data.id);
-        })
-        .catch(()=>{
-          //
-        });
-      */
-
+      this.form_item.post('api/cd/item').then(function (data) {
+        _this11.form_item.id = data.data.id; //console.log(data.data.id);
+      })["catch"](function () {//
+      });
       this.loadEntryItems();
       $('#entry-items').modal('show');
     },
     cancelDebitEntry: function cancelDebitEntry() {
-      var _this10 = this;
+      var _this12 = this;
 
       //this.$Progress.start();
       this.form_item["delete"]('api/cd/entry/' + this.form_entry.id).then(function () {
@@ -7935,11 +7919,11 @@ __webpack_require__.r(__webpack_exports__);
 
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this10.$Progress.fail();
+        _this12.$Progress.fail();
       });
     },
     saveDebitEntry: function saveDebitEntry() {
-      var _this11 = this;
+      var _this13 = this;
 
       //console.log('Edit Payee');
       // ** Temporary data to bypass Column cannot be null ERROR's
@@ -7960,19 +7944,19 @@ __webpack_require__.r(__webpack_exports__);
           );
         */
 
-        _this11.form.amount += _this11.form_entry.amount;
-        _this11.form.amount_ex_tax += _this11.form_entry.amount_ex_tax;
-        _this11.form.vat += _this11.form_entry.vat;
+        _this13.form.amount += _this13.form_entry.amount;
+        _this13.form.amount_ex_tax += _this13.form_entry.amount_ex_tax;
+        _this13.form.vat += _this13.form_entry.vat;
 
-        _this11.$Progress.finish();
+        _this13.$Progress.finish();
 
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this11.$Progress.fail();
+        _this13.$Progress.fail();
       });
     },
     deleteEntry: function deleteEntry(entry_id, entry_amount, entry_amount_ex_tax, entry_vat) {
-      var _this12 = this;
+      var _this14 = this;
 
       this.form_item["delete"]('api/cd/entry/' + entry_id).then(function () {
         //$('#entry-items').modal('hide');
@@ -7984,17 +7968,17 @@ __webpack_require__.r(__webpack_exports__);
             'success'
           );
         */
-        _this12.form.amount = parseFloat(_this12.form.amount - entry_amount).toFixed(2) * 1;
-        _this12.form.amount_ex_tax = (_this12.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
-        _this12.form.vat = (_this12.form.vat - entry_vat).toFixed(2) * 1;
+        _this14.form.amount = parseFloat(_this14.form.amount - entry_amount).toFixed(2) * 1;
+        _this14.form.amount_ex_tax = (_this14.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
+        _this14.form.vat = (_this14.form.vat - entry_vat).toFixed(2) * 1;
         VueListen.$emit('RefreshItemTable');
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this12.$Progress.fail();
+        _this14.$Progress.fail();
       });
     },
     cancelItem: function cancelItem() {
-      var _this13 = this;
+      var _this15 = this;
 
       //this.$Progress.start();
       this.form_item["delete"]('api/cd/item/' + this.form_item.id).then(function () {
@@ -8010,11 +7994,11 @@ __webpack_require__.r(__webpack_exports__);
 
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
-        _this13.$Progress.fail();
+        _this15.$Progress.fail();
       });
     },
     saveItem: function saveItem() {
-      var _this14 = this;
+      var _this16 = this;
 
       if (this.form_item.item.length == 0) {
         this.no_item = true;
@@ -8038,9 +8022,6 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
 
-      this.form_item_arr.push(this.form_item); //$('#entry-items').modal('hide');
-      //return true;
-
       this.$Progress.start();
       this.form_item.put('api/cd/item/' + this.form_item.id).then(function () {
         $('#entry-items').modal('hide');
@@ -8050,21 +8031,21 @@ __webpack_require__.r(__webpack_exports__);
             'Payee information has been updated.',
             'success'
           );
-          */
+        */
 
-        _this14.form_entry.amount = parseFloat(_this14.form_entry.amount + _this14.form_item.sub_total).toFixed(2) * 1;
-        _this14.form_entry.amount_ex_tax = (_this14.form_entry.amount_ex_tax + _this14.form_item.tax_excluded).toFixed(2) * 1;
-        _this14.form_entry.vat += _this14.form_item.vat * 1;
+        _this16.form_entry.amount = parseFloat(_this16.form_entry.amount + _this16.form_item.sub_total).toFixed(2) * 1;
+        _this16.form_entry.amount_ex_tax = (_this16.form_entry.amount_ex_tax + _this16.form_item.tax_excluded).toFixed(2) * 1;
+        _this16.form_entry.vat += _this16.form_item.vat * 1;
 
-        _this14.$Progress.finish();
+        _this16.$Progress.finish();
 
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
-        _this14.$Progress.fail();
+        _this16.$Progress.fail();
       });
     },
     deleteItem: function deleteItem(item_id, item_sub_total, item_tax_excluded, item_vat) {
-      var _this15 = this;
+      var _this17 = this;
 
       this.form_item["delete"]('api/cd/item/' + item_id).then(function () {
         //$('#entry-items').modal('hide');
@@ -8076,12 +8057,12 @@ __webpack_require__.r(__webpack_exports__);
             'success'
           );
         */
-        _this15.form_entry.amount = parseFloat(_this15.form_entry.amount - item_sub_total).toFixed(2) * 1;
-        _this15.form_entry.amount_ex_tax = (_this15.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
-        _this15.form_entry.vat = (_this15.form_entry.vat - item_vat).toFixed(2) * 1;
+        _this17.form_entry.amount = parseFloat(_this17.form_entry.amount - item_sub_total).toFixed(2) * 1;
+        _this17.form_entry.amount_ex_tax = (_this17.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
+        _this17.form_entry.vat = (_this17.form_entry.vat - item_vat).toFixed(2) * 1;
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
-        _this15.$Progress.fail();
+        _this17.$Progress.fail();
       });
     },
     branchChange: function branchChange() {
@@ -8090,7 +8071,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this16 = this;
+    var _this18 = this;
 
     this.loadPayees();
     this.loadBranches();
@@ -8099,10 +8080,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntries(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
 
     VueListen.$on('RefreshItemTable', function () {
-      _this16.loadEntryItems();
+      _this18.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this16.loadEntries();
+      _this18.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
@@ -80716,7 +80697,7 @@ var render = function() {
                       },
                       attrs: {
                         name: "amount_ex_tax",
-                        id: "amount_ex_tax2",
+                        id: "amount_ex_tax",
                         readonly: "",
                         "aria-describedby": "inputGroup-sizing-default"
                       },
@@ -80761,7 +80742,7 @@ var render = function() {
                       class: { "is-invalid": _vm.form_item.errors.has("vat") },
                       attrs: {
                         name: "vat",
-                        id: "vat2",
+                        id: "vat",
                         readonly: "",
                         "aria-describedby": "inputGroup-sizing-default"
                       },
@@ -81123,7 +81104,7 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("CR #")]
+        [_vm._v("Purchase #")]
       )
     ])
   },
