@@ -1403,66 +1403,13 @@
             this.form_entry.branch_name = this.selected_branch.name;
           }
 
-          // ,
-          // createUser(){
-            
-
-          //   this.$Progress.start()
-          //   this.form.post('api/user')
-          //   .then(()=>{
-          //       VueListen.$emit('RefreshUsersTable');
-          //       $('#UserDetails').modal('hide');
-
-          //       toast.fire({
-          //         type: 'success',
-          //         title: 'User created successfully'
-          //       })
-          //       this.$Progress.finish();
-          //   })
-          //   .catch(()=>{
-
-          //   });
-            
-          // },
-          // updateUser(){
-          //   console.log('Edit User');
-          //   this.$Progress.start();
-          //   this.form.put('api/user/'+this.form.id)
-          //   .then(() => {
-          //       $('#UserDetails').modal('hide');
-          //       swal.fire(
-          //           'Updated!',
-          //           'User information has been updated.',
-          //           'success'
-          //         );
-          //         this.$Progress.finish();
-          //         VueListen.$emit('RefreshUsersTable');
-          //   })
-          //   .catch(() => {
-          //       this.$Progress.fail();
-          //   });
-
-            
-
-          //}
+          
 
 
         },
 
         created() {
-            /*
-            VueListen.$on('Search',() => {
-                let query = this.$parent.search;
-                axios.get('api/findUser?q='+query)
-                .then((data)=>{
-                  this.users = data.data;
-                })
-                .catch(()=>{
-
-                });
-               //this.loadUsers();
-            });
-            */
+            
             
             //this.loadUsers();
             this.loadPayees();

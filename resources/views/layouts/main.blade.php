@@ -133,7 +133,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav nav-treeview">
               @can('isAdmin')
               <li class="nav-item">
-                <router-link to="/cd-view" class="nav-link">
+                <router-link to="/ledger" class="nav-link">
                   <i class="nav-icon fas fa-folder-minus"></i>
                   <p v-bind:style="[readabilityObject]">Ledger</p>
                 </router-link>
