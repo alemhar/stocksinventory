@@ -6671,13 +6671,6 @@ __webpack_require__.r(__webpack_exports__);
         console.log(_this3.ledgers);
       })["catch"](function () {//
       });
-    },
-    runningBalance: function runningBalance(debit_amount, credit_amount) {
-      var _this4 = this;
-
-      return this.ledgers.data.map(function (ledgers) {
-        return _this4.running_balance + parseFloat(debit_amount) - parseFloat(credit_amount);
-      });
     }
   },
   created: function created() {
@@ -6687,7 +6680,15 @@ __webpack_require__.r(__webpack_exports__);
       $('.modal:visible').length && $(document.body).addClass('modal-open');
     });
   },
-  computed: {},
+  computed: {
+    runningBalance: function runningBalance(debit_amount, credit_amount) {
+      var _this4 = this;
+
+      return this.ledgers.data.map(function (ledgers) {
+        return _this4.running_balance + parseFloat(debit_amount) - parseFloat(credit_amount);
+      });
+    }
+  },
   components: {}
 });
 

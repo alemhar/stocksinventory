@@ -185,12 +185,7 @@
                     .catch(()=>{
                     //
                     });
-            },
-            runningBalance(debit_amount,credit_amount){
-                 return this.ledgers.data.map((ledgers) => {
-                    return this.running_balance + parseFloat(debit_amount) - parseFloat(credit_amount); 
-                 });
-            }    
+            }  
         },
 
         created() {
@@ -203,7 +198,11 @@
             
         },
         computed: {
-            
+            runningBalance(debit_amount,credit_amount){
+                 return this.ledgers.data.map((ledgers) => {
+                    return this.running_balance + parseFloat(debit_amount) - parseFloat(credit_amount); 
+                 });
+            }  
           
 
         },
