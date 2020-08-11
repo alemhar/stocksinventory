@@ -15,7 +15,7 @@
                     <input type="text" class="form-control col-2" id="inputAccountCode" placeholder="Code"  v-model="account_code">
                     <input readonly="true" type="text" class="form-control col-9" id="inputAccountName" placeholder="Account Name" v-model="account_name">
                     <span class="input-group-btn col-1">
-                        <button type="button" v-show="!cd_created" class="btn btn-success" @click="searchAccountModal('header')"><i class="fas fa-search fa-fw"></i></button>
+                        <button type="button" class="btn btn-success" @click="searchAccountModal('header')"><i class="fas fa-search fa-fw"></i></button>
                     </span>
                   </div>
               </div>
@@ -135,12 +135,24 @@
               user_id: null,
               chart_of_accounts: {},
               account_code: '',
-              account_name: ''
+              account_name: '',
+              searchText: ''
           }
         },
         methods: {
             initChartAccounts(){
               axios.get('api/chartaccount?transaction_type=LEDGER')
+                .then((data)=>{
+                  this.chart_of_accounts = data.data;
+                })
+                .catch(()=>{
+                  //
+                });
+            },
+            SearchIt() {
+              let query = this.searchText;
+              let headerOrDetail = this.headerOrDetail;
+              axios.get('api/searchAccount?q='+query+'&transaction_type=CD&headerordetail='+headerOrDetail)
                 .then((data)=>{
                   this.chart_of_accounts = data.data;
                 })

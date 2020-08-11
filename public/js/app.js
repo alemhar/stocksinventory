@@ -6621,7 +6621,8 @@ __webpack_require__.r(__webpack_exports__);
       user_id: null,
       chart_of_accounts: {},
       account_code: '',
-      account_name: ''
+      account_name: '',
+      searchText: ''
     };
   },
   methods: {
@@ -6630,6 +6631,16 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('api/chartaccount?transaction_type=LEDGER').then(function (data) {
         _this.chart_of_accounts = data.data;
+      })["catch"](function () {//
+      });
+    },
+    SearchIt: function SearchIt() {
+      var _this2 = this;
+
+      var query = this.searchText;
+      var headerOrDetail = this.headerOrDetail;
+      axios.get('api/searchAccount?q=' + query + '&transaction_type=CD&headerordetail=' + headerOrDetail).then(function (data) {
+        _this2.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
     }
@@ -78441,14 +78452,6 @@ var render = function() {
                         _c(
                           "button",
                           {
-                            directives: [
-                              {
-                                name: "show",
-                                rawName: "v-show",
-                                value: !_vm.cd_created,
-                                expression: "!cd_created"
-                              }
-                            ],
                             staticClass: "btn btn-success",
                             attrs: { type: "button" },
                             on: {
