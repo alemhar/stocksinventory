@@ -6672,7 +6672,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     runningBalance: function runningBalance(debit_amount, credit_amount) {
-      return parseFloat(this.running_balance) + parseFloat(debit_amount) - parseFloat(credit_amount);
+      this.running_balance = parseFloat(this.running_balance) + parseFloat(debit_amount) - parseFloat(credit_amount);
+      return this.running_balance;
     }
   },
   created: function created() {
