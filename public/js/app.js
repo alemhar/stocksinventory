@@ -6681,11 +6681,12 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   computed: {
-    runningBalance: function runningBalance(debit_amount, credit_amount) {
+    runningBalance: function runningBalance() {
       var _this4 = this;
 
-      return this.ledgers.data.map(function (ledgers) {
-        return _this4.running_balance + parseFloat(debit_amount) - parseFloat(credit_amount);
+      return this.ledgers.data.map(function (ledger) {
+        _this4.running_balance = _this4.running_balance + Number(ledger.debit_amount - ledger.credit_amount);
+        return _this4.running_balance;
       });
     }
   },

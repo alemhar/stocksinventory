@@ -198,9 +198,10 @@
             
         },
         computed: {
-            runningBalance(debit_amount,credit_amount){
-                 return this.ledgers.data.map((ledgers) => {
-                    return this.running_balance + parseFloat(debit_amount) - parseFloat(credit_amount); 
+            runningBalance(){
+                 return this.ledgers.data.map((ledger) => {
+                    this.running_balance = this.running_balance + Number(ledger.debit_amount - ledger.credit_amount)
+                    return this.running_balance
                  });
             }  
           
