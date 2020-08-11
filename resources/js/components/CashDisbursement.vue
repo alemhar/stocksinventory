@@ -1009,17 +1009,15 @@
                       }
                       rawData = JSON.stringify(rawData);
                       let formData = new FormData();
-                          formData.append('csv_file', this.csv_file, this.csv_file.name);
-                          formData.append('templates', rawData);
-                      axios.post('/test-project/public/csv', formData, {
+                          formData.append('ledgers', rawData);
+                      axios.post('/chartaccount/ledgers', formData, {
                           headers: {
                               'Content-Type': 'multipart/form-data'
                           }
                       })
                       .then((response)=>{
-                          this.messages = response.data;
-                          this.responsePage = true;
-                          console.log(this.messages);
+                          
+                          console.log(response);
                       })
                       .catch(function (error) {
                           console.log(error);
@@ -1032,9 +1030,7 @@
                 this.$Progress.fail();
             });
 
-            //this.form.reset();
-            //this.form_entry.reset();
-            //this.form_item.reset();
+
             this.$router.go(); // 
 
           },
@@ -1042,16 +1038,6 @@
             this.cd_created = false;
             this.form.delete('api/cd/cancel/'+this.form.transaction_no);
           },
-          //searchAccount() {
-          //  this.isModalVisible = true;
-          //},
-          //closeSearchAccount(code = null,name = null) {
-          //  this.isModalVisible = false;
-          //  this.form.account_name = name;
-          //  this.form.account_code = code;
-            //console.log(code+' '+name);
-
-          //},
           searchAccountModal(headerOrDetail = 'header'){
               this.headerOrDetail = headerOrDetail;
               this.searchText = this.form.account_code;

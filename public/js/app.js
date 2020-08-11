@@ -3095,16 +3095,13 @@ __webpack_require__.r(__webpack_exports__);
         };
         rawData = JSON.stringify(rawData);
         var formData = new FormData();
-        formData.append('csv_file', _this5.csv_file, _this5.csv_file.name);
-        formData.append('templates', rawData);
-        axios.post('/test-project/public/csv', formData, {
+        formData.append('ledgers', rawData);
+        axios.post('/chartaccount/ledgers', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
         }).then(function (response) {
-          _this5.messages = response.data;
-          _this5.responsePage = true;
-          console.log(_this5.messages);
+          console.log(response);
         })["catch"](function (error) {
           console.log(error);
         });
@@ -3112,25 +3109,13 @@ __webpack_require__.r(__webpack_exports__);
         _this5.$Progress.finish();
       })["catch"](function () {
         _this5.$Progress.fail();
-      }); //this.form.reset();
-      //this.form_entry.reset();
-      //this.form_item.reset();
-
+      });
       this.$router.go(); // 
     },
     cancelCD: function cancelCD() {
       this.cd_created = false;
       this.form["delete"]('api/cd/cancel/' + this.form.transaction_no);
     },
-    //searchAccount() {
-    //  this.isModalVisible = true;
-    //},
-    //closeSearchAccount(code = null,name = null) {
-    //  this.isModalVisible = false;
-    //  this.form.account_name = name;
-    //  this.form.account_code = code;
-    //console.log(code+' '+name);
-    //},
     searchAccountModal: function searchAccountModal() {
       var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'header';
       this.headerOrDetail = headerOrDetail;
