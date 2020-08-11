@@ -6658,11 +6658,12 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       $('#select-account').modal('hide');
+      this.loadLedger(account_code);
     },
-    loadLedger: function loadLedger() {
+    loadLedger: function loadLedger(account_code) {
       var _this3 = this;
 
-      axios.get('api/ledgers/' + this.account_code).then(function (data) {
+      axios.get('api/ledgers/' + account_code).then(function (data) {
         _this3.ledgers = data.data;
         console.log(_this3.ledgers);
       })["catch"](function () {//

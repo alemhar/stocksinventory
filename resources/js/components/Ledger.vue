@@ -170,10 +170,11 @@
                     this.account_code = account_code;
                 }
                 $('#select-account').modal('hide');  
+                this.loadLedger(account_code);
 
             },
-            loadLedger() {
-                axios.get('api/ledgers/'+this.account_code)
+            loadLedger(account_code) {
+                axios.get('api/ledgers/'+account_code)
                     .then((data)=>{
                         this.ledgers = data.data;
                         console.log(this.ledgers);
