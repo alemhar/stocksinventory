@@ -6616,6 +6616,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -78540,6 +78544,14 @@ var render = function() {
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
+                                      _vm._v(_vm._s(ledger.transaction_no))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(ledger.transaction_type))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
                                       _vm._v(_vm._s(ledger.debit_amount))
                                     ]),
                                     _vm._v(" "),
@@ -78731,6 +78743,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("tr", [
       _c("th", [_vm._v("Date")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Transaction #")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Transaction Type")]),
       _vm._v(" "),
       _c("th", [_vm._v("Debits")]),
       _vm._v(" "),

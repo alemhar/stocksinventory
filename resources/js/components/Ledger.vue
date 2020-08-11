@@ -37,6 +37,8 @@
                         <tbody>
                           <tr>
                             <th>Date</th>
+                            <th>Transaction #</th>
+                            <th>Transaction Type</th>
                             <th>Debits</th>
                             <th>Credits</th>
                             <th>Balance</th>
@@ -45,6 +47,8 @@
                           
                           <tr v-for="(ledger, index) in ledgers.data" :key="ledger.id">
                             <td>{{ ledger.transaction_date }}</td>
+                            <td>{{ ledger.transaction_no }}</td>
+                            <td>{{ ledger.transaction_type }}</td>
                             <td>{{ ledger.debit_amount }}</td>
                             <td>{{ ledger.credit_amount }}</td>
                             <td>{{ runningBalance[index] }}</td>
