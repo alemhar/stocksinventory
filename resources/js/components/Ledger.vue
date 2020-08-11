@@ -47,7 +47,7 @@
                             <td>{{ ledger.transaction_date }}</td>
                             <td>{{ ledger.debit_amount }}</td>
                             <td>{{ ledger.credit_amount }}</td>
-                            <td>{{ running_balance = parseFloat(running_balance) + parseFloat(ledger.debit_amount) - parseFloat(ledger.credit_amount) }}</td>
+                            <td>{{ runningBalance(ledger.debit_amount, ledger.credit_amount) }}</td>
                           </tr>
                           
                       </tbody>
@@ -184,6 +184,9 @@
                     .catch(()=>{
                     //
                     });
+            },
+            runningBalance(debit_amount,credit_amount){
+                return parseFloat(this.running_balance) + parseFloat(debit_amount) - parseFloat(credit_amount); 
             }    
         },
 

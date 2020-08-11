@@ -6670,6 +6670,9 @@ __webpack_require__.r(__webpack_exports__);
         console.log(_this3.ledgers);
       })["catch"](function () {//
       });
+    },
+    runningBalance: function runningBalance(debit_amount, credit_amount) {
+      return parseFloat(this.running_balance) + parseFloat(debit_amount) - parseFloat(credit_amount);
     }
   },
   created: function created() {
@@ -78537,10 +78540,10 @@ var render = function() {
                                     _c("td", [
                                       _vm._v(
                                         _vm._s(
-                                          (_vm.running_balance =
-                                            parseFloat(_vm.running_balance) +
-                                            parseFloat(ledger.debit_amount) -
-                                            parseFloat(ledger.credit_amount))
+                                          _vm.runningBalance(
+                                            ledger.debit_amount,
+                                            ledger.credit_amount
+                                          )
                                         )
                                       )
                                     ])
