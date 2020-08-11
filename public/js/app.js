@@ -3111,7 +3111,7 @@ __webpack_require__.r(__webpack_exports__);
       });
       swal.fire({
         title: 'Saved!',
-        text: "Journal posted.",
+        text: "Journal posted",
         icon: 'success',
         showCancelButton: false,
         confirmButtonColor: '#3085d6',
