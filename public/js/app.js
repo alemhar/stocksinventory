@@ -6615,38 +6615,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       user_id: null,
-      chart_of_accounts: {}
+      chart_of_accounts: {},
+      account_code: '',
+      account_name: ''
     };
   },
   methods: {
@@ -78414,8 +78389,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.form.account_code,
-                            expression: "form.account_code"
+                            value: _vm.account_code,
+                            expression: "account_code"
                           }
                         ],
                         staticClass: "form-control col-2",
@@ -78424,17 +78399,13 @@ var render = function() {
                           id: "inputAccountCode",
                           placeholder: "Code"
                         },
-                        domProps: { value: _vm.form.account_code },
+                        domProps: { value: _vm.account_code },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(
-                              _vm.form,
-                              "account_code",
-                              $event.target.value
-                            )
+                            _vm.account_code = $event.target.value
                           }
                         }
                       }),
@@ -78444,8 +78415,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.form.account_name,
-                            expression: "form.account_name"
+                            value: _vm.account_name,
+                            expression: "account_name"
                           }
                         ],
                         staticClass: "form-control col-9",
@@ -78455,17 +78426,13 @@ var render = function() {
                           id: "inputAccountName",
                           placeholder: "Account Name"
                         },
-                        domProps: { value: _vm.form.account_name },
+                        domProps: { value: _vm.account_name },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(
-                              _vm.form,
-                              "account_name",
-                              $event.target.value
-                            )
+                            _vm.account_name = $event.target.value
                           }
                         }
                       }),

@@ -12,8 +12,8 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Account</span>
                     </div>
-                    <input type="text" class="form-control col-2" id="inputAccountCode" placeholder="Code"  v-model="form.account_code">
-                    <input readonly="true" type="text" class="form-control col-9" id="inputAccountName" placeholder="Account Name" v-model="form.account_name">
+                    <input type="text" class="form-control col-2" id="inputAccountCode" placeholder="Code"  v-model="account_code">
+                    <input readonly="true" type="text" class="form-control col-9" id="inputAccountName" placeholder="Account Name" v-model="account_name">
                     <span class="input-group-btn col-1">
                         <button type="button" v-show="!cd_created" class="btn btn-success" @click="searchAccountModal('header')"><i class="fas fa-search fa-fw"></i></button>
                     </span>
@@ -22,20 +22,7 @@
               
             </div>
           </div>  
-          <!-- CD List     
-          *
-          *
-          *
-          *
-          *
-          *
-          *
-          *
-          *
-          *
-          *
-          *
-          -->
+          <!-- CD List -->    
 
 
               <div  v-show="true" class="box box-warning mt-2">
@@ -82,27 +69,14 @@
         </div>
 
 
-        <!-- Search Account Modal 
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      -->
+        <!-- Search Account Modal -->
 
       <div class="modal fade" id="select-account" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <!--h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add New</h5>
-              <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update Entry</h5 -->
+              
+              
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -140,8 +114,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              <!--button v-show="editmode" type="submit" class="btn btn-success">Update</button -->
-              <!--button v-show="!editmode" type="submit" class="btn btn-primary">Create</button -->
+              
             </div>
 
             </form>
@@ -160,7 +133,9 @@
         data() {
           return {
               user_id: null,
-              chart_of_accounts: {}
+              chart_of_accounts: {},
+              account_code: '',
+              account_name: ''
           }
         },
         methods: {
