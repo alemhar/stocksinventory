@@ -3085,7 +3085,7 @@ __webpack_require__.r(__webpack_exports__);
           account_code: _this5.form.account_code,
           account_name: _this5.form.account_name,
           transaction_date: _this5.form.transaction_date,
-          credit_amount: _this5.form.amount_ex_tax,
+          credit_amount: _this5.form.amount,
           debit_amount: 0
         });
 

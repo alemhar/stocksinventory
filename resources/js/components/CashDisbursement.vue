@@ -995,7 +995,7 @@
                       account_code: this.form.account_code,
                       account_name: this.form.account_name,
                       transaction_date: this.form.transaction_date,
-                      credit_amount: this.form.amount_ex_tax,
+                      credit_amount: this.form.amount,
                       debit_amount: 0
                     });
 
