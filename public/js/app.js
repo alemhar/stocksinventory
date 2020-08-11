@@ -6685,7 +6685,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       return this.ledgers.data.map(function (ledger) {
-        _this4.running_balance = (_this4.running_balance + Number(ledger.debit_amount - ledger.credit_amount)).toFixed(2);
+        _this4.running_balance = _this4.running_balance + Number(ledger.debit_amount - ledger.credit_amount);
+        _this4.running_balance = _this4.running_balance.toFixed(2);
         return _this4.running_balance;
       });
     }

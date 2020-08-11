@@ -200,7 +200,8 @@
         computed: {
             runningBalance(){
                  return this.ledgers.data.map((ledger) => {
-                    this.running_balance = (this.running_balance + Number(ledger.debit_amount - ledger.credit_amount)).toFixed(2);
+                    this.running_balance = this.running_balance + Number(ledger.debit_amount - ledger.credit_amount);
+                    this.running_balance = this.running_balance.toFixed(2);
                     return this.running_balance;
                  });
             }  
