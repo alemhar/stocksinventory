@@ -15,7 +15,7 @@
                     <input type="text" class="form-control col-2" id="inputAccountCode" placeholder="Code"  v-model="account_code">
                     <input readonly="true" type="text" class="form-control col-9" id="inputAccountName" placeholder="Account Name" v-model="account_name">
                     <span class="input-group-btn col-1">
-                        <button type="button" class="btn btn-success" @click="searchAccountModal('header')"><i class="fas fa-search fa-fw"></i></button>
+                        <button type="button" class="btn btn-success" @click="searchAccountModal"><i class="fas fa-search fa-fw"></i></button>
                     </span>
                   </div>
               </div>
@@ -159,6 +159,9 @@
                 .catch(()=>{
                   //
                 });
+            },
+            searchAccountModal(){
+                $('#select-account').modal('show');
             }    
         },
 

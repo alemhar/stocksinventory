@@ -6643,6 +6643,9 @@ __webpack_require__.r(__webpack_exports__);
         _this2.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
+    },
+    searchAccountModal: function searchAccountModal() {
+      $('#select-account').modal('show');
     }
   },
   created: function created() {
@@ -78454,11 +78457,7 @@ var render = function() {
                           {
                             staticClass: "btn btn-success",
                             attrs: { type: "button" },
-                            on: {
-                              click: function($event) {
-                                return _vm.searchAccountModal("header")
-                              }
-                            }
+                            on: { click: _vm.searchAccountModal }
                           },
                           [_c("i", { staticClass: "fas fa-search fa-fw" })]
                         )
