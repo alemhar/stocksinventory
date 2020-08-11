@@ -136,7 +136,8 @@
               chart_of_accounts: {},
               account_code: '',
               account_name: '',
-              searchText: ''
+              searchText: '',
+              ledgers: null
           }
         },
         methods: {
@@ -170,6 +171,16 @@
                 }
                 $('#select-account').modal('hide');  
 
+            },
+            loadLedger() {
+                axios.get('api/ledgers/'+this.account_code)
+                    .then((data)=>{
+                        this.ledgers = data.data;
+                        console.log(this.ledgers);
+                    })
+                    .catch(()=>{
+                    //
+                    });
             }    
         },
 

@@ -1005,7 +1005,7 @@
                       rawData = JSON.stringify(rawData);
                       let formData = new FormData();
                           formData.append('ledgers', rawData);
-                      axios.post('api/post/ledgers', formData, {
+                      axios.post('api/ledgers', formData, {
                           headers: {
                               'Content-Type': 'multipart/form-data'
                           }

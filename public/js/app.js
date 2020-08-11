@@ -3095,7 +3095,7 @@ __webpack_require__.r(__webpack_exports__);
         rawData = JSON.stringify(rawData);
         var formData = new FormData();
         formData.append('ledgers', rawData);
-        axios.post('api/post/ledgers', formData, {
+        axios.post('api/ledgers', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -6622,7 +6622,8 @@ __webpack_require__.r(__webpack_exports__);
       chart_of_accounts: {},
       account_code: '',
       account_name: '',
-      searchText: ''
+      searchText: '',
+      ledgers: null
     };
   },
   methods: {
@@ -6657,6 +6658,15 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       $('#select-account').modal('hide');
+    },
+    loadLedger: function loadLedger() {
+      var _this3 = this;
+
+      axios.get('api/ledgers/' + this.account_code).then(function (data) {
+        _this3.ledgers = data.data;
+        console.log(_this3.ledgers);
+      })["catch"](function () {//
+      });
     }
   },
   created: function created() {

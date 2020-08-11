@@ -65,4 +65,5 @@ Route::delete('cd/cancel/{transaction_no}', 'API\CDController@cancelTransaction'
 Route::post('cd/confirm/{transaction_no}', 'API\CDController@confirmTransaction');
 Route::get('cd/items/list', 'API\CDItemController@list');
 Route::get('cd/entries/list', 'API\CDEntryController@list');
-Route::post('post/ledgers', 'API\AccountController@store_ledger');
+Route::post('ledgers', 'API\AccountController@store_ledger');
+Route::get('ledgers/{account_code}', 'API\AccountController@load_ledger');
