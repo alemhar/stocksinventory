@@ -6639,7 +6639,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var query = this.searchText;
       var headerOrDetail = this.headerOrDetail;
-      axios.get('api/searchAccount?q=' + query + '&transaction_type=CD&headerordetail=' + headerOrDetail).then(function (data) {
+      axios.get('api/searchAccount?q=' + query + '&transaction_type=LEDGER').then(function (data) {
         _this2.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
