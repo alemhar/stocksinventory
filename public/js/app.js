@@ -3079,8 +3079,8 @@ __webpack_require__.r(__webpack_exports__);
         _this5.form.post('api/cd/confirm/' + _this5.form.transaction_no);
 
         _this5.ledgers.push({
-          id: _this5.form.transaction_id,
-          transaction_id: _this5.form.transaction_id,
+          id: _this5.form.id,
+          transaction_id: _this5.form.id,
           transaction_no: _this5.form.transaction_no,
           transaction_type: _this5.form.transaction_type,
           account_code: _this5.form.account_code,
@@ -3327,7 +3327,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this13.ledgers.push({
           id: _this13.form_entry.id,
-          transaction_id: _this13.form.transaction_id,
+          transaction_id: _this13.form.id,
           transaction_no: _this13.form.transaction_no,
           transaction_type: _this13.form.transaction_type,
           account_code: _this13.form_entry.account_code,

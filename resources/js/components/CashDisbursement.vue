@@ -993,8 +993,8 @@
                   this.cd_created = false;
                   this.form.post('api/cd/confirm/'+this.form.transaction_no);
                   this.ledgers.push({ 
-                      id: this.form.transaction_id,
-                      transaction_id: this.form.transaction_id, 
+                      id: this.form.id,
+                      transaction_id: this.form.id, 
                       transaction_no: this.form.transaction_no,
                       transaction_type: this.form.transaction_type,
                       account_code: this.form.account_code,
@@ -1262,7 +1262,7 @@
 
                   this.ledgers.push({ 
                       id: this.form_entry.id,
-                      transaction_id: this.form.transaction_id, 
+                      transaction_id: this.form.id, 
                       transaction_no: this.form.transaction_no,
                       transaction_type: this.form.transaction_type,
                       account_code: this.form_entry.account_code,
