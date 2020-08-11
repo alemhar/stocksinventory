@@ -1,0 +1,200 @@
+<template>
+
+    <div class="container">
+        <div class="row mt-1" v-if="$gate.isAdminOrUser()">
+        <div class="col-md-12">
+          <div class="box mt-4">
+          <div class="box-header">
+            <h3 class="box-title">Ledger</h3>
+            <div class="box-tools">
+              <div class="input-group">
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text inputGroup-sizing-default">Account</span>
+                    </div>
+                    <input type="text" class="form-control col-2" id="inputAccountCode" placeholder="Code"  v-model="form.account_code">
+                    <input readonly="true" type="text" class="form-control col-9" id="inputAccountName" placeholder="Account Name" v-model="form.account_name">
+                    <span class="input-group-btn col-1">
+                        <button type="button" v-show="!cd_created" class="btn btn-success" @click="searchAccountModal('header')"><i class="fas fa-search fa-fw"></i></button>
+                    </span>
+                  </div>
+              </div>
+              
+            </div>
+          </div>  
+          <!-- CD List     
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          -->
+
+
+              <div  v-show="true" class="box box-warning mt-2">
+                <div class="col-md-12">
+                  <div class="box">
+                    
+
+
+                    <!-- /.box-header -->
+                    <div id="cd-list" class="box-body table-responsive no-padding">
+                      <table class="table table-hover">
+                        <tbody>
+                          <tr>
+                            <th>Date</th>
+                            <th>Debits</th>
+                            <th>Credits</th>
+                            <th>Balance</th>
+                            
+                          </tr>
+                          <tr>
+                            <td>Date</td>
+                            <td>Debits</td>
+                            <td>Credits</td>
+                            <td>Balance</td>
+                          </tr>
+                          
+                      </tbody>
+                    </table>
+                    </div>
+                    <div class="box-footer">
+                      <!-- pagination :data="cds" @pagination-change-page="getCDs"></pagination -->
+                    </div> 
+
+                  </div>
+                  <!-- /.box -->
+                </div>
+
+              </div>  
+              <!-- /.box -->
+        </div>
+
+        <div class="row mt-1" v-if="!$gate.isAdminOrUser()">
+          <not-found></not-found>
+        </div>
+
+
+        <!-- Search Account Modal 
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      -->
+
+      <div class="modal fade" id="select-account" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <!--h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add New</h5>
+              <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update Entry</h5 -->
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form onsubmit="return false;">
+            <div class="modal-body">
+              
+              <div class="form-group">
+                <label>Search</label>
+                <input type="text" name="search" v-model="searchText" @change="SearchIt" class="float-right col-6">
+              </div>
+              
+              <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tbody><tr>
+                  <th>Code</th>
+                  <th>Name</th>
+                  <th>Option</th>
+                </tr>
+                <tr v-for="chart_of_account in chart_of_accounts.data" :key="chart_of_account.id">
+                  <td>{{ chart_of_account.account_code }}</td>
+                  <td>{{ chart_of_account.account_name }}</td>
+                  <td>
+                    <a href="#" @click="selectAccount(chart_of_account.account_code,chart_of_account.account_name)">Select
+                      <i class="fa fa-edit"></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody></table>
+            </div>
+            <!-- /.box-body -->
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              <!--button v-show="editmode" type="submit" class="btn btn-success">Update</button -->
+              <!--button v-show="!editmode" type="submit" class="btn btn-primary">Create</button -->
+            </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Search Account Modal -->
+        
+    </div>
+    </div>
+    </div>
+    
+</template>
+<script>
+    export default {
+        data() {
+          return {
+              user_id: null,
+              chart_of_accounts: {}
+          }
+        },
+        methods: {
+            initChartAccounts(){
+              axios.get('api/chartaccount?transaction_type=LEDGER')
+                .then((data)=>{
+                  this.chart_of_accounts = data.data;
+                })
+                .catch(()=>{
+                  //
+                });
+            }    
+        },
+
+        created() {
+            this.initChartAccounts();
+            this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
+            $(document).on('hidden.bs.modal', '.modal', function () {
+                $('.modal:visible').length && $(document.body).addClass('modal-open');
+            });
+
+            
+        },
+        computed: {
+            
+          
+
+        },
+        components: {
+          
+          
+        }
+    }
+</script>
+<style type="text/css">
+
+</style>

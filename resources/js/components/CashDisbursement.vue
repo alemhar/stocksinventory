@@ -1028,7 +1028,7 @@
             swal.fire({
                   title: 'Saved!',
                   text: "Journal posted",
-                  icon: 'success',
+                  icon: 'info',
                   showCancelButton: false,
                   confirmButtonColor: '#3085d6',
                   cancelButtonColor: '#d33',

@@ -126,7 +126,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cogs"></i>
               <p v-bind:style="[readabilityObject]">
-                Views
+                Reports
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -135,18 +135,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <router-link to="/cd-view" class="nav-link">
                   <i class="nav-icon fas fa-folder-minus"></i>
-                  <p v-bind:style="[readabilityObject]">Cash Disbursements</p>
+                  <p v-bind:style="[readabilityObject]">Ledger</p>
                 </router-link>
               </li>
               @endcan
-              @can('isAdmin')
-              <li class="nav-item">
-                <router-link to="/cr-view" class="nav-link">
-                  <i class="nav-icon fas fa-folder-plus"></i>
-                  <p v-bind:style="[readabilityObject]">Cash Receipts</p>
-                </router-link>
-              </li>
-              @endcan
+              
             </ul>
           </li>
 
