@@ -3073,7 +3073,6 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$Progress.start();
       this.form_entry.put('api/cd/' + this.form.id).then(function () {
-        swal.fire('Saved!', 'Transaction Completed.', 'success');
         _this5.cd_created = false;
 
         _this5.form.post('api/cd/confirm/' + _this5.form.transaction_no);
@@ -3109,8 +3108,21 @@ __webpack_require__.r(__webpack_exports__);
         _this5.$Progress.finish();
       })["catch"](function () {
         _this5.$Progress.fail();
-      }); // Reload Current Page
-      //this.$router.go(); 
+      });
+      swal.fire({
+        title: 'Saved!',
+        text: "Journal posted.",
+        icon: 'success',
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ok'
+      }).then(function (result) {
+        if (result.value) {
+          //Reload Current Page
+          _this5.$router.go();
+        }
+      });
     },
     cancelCD: function cancelCD() {
       this.cd_created = false;

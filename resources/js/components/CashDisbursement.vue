@@ -985,11 +985,6 @@
             this.$Progress.start();
             this.form_entry.put('api/cd/'+this.form.id)
             .then(() => {
-                swal.fire(
-                    'Saved!',
-                    'Transaction Completed.',
-                    'success'
-                  );
                   this.cd_created = false;
                   this.form.post('api/cd/confirm/'+this.form.transaction_no);
                   this.ledgers.push({ 
@@ -1030,8 +1025,21 @@
                 this.$Progress.fail();
             });
 
-            // Reload Current Page
-            //this.$router.go(); 
+            swal.fire({
+                  title: 'Saved!',
+                  text: "Journal posted.",
+                  icon: 'success',
+                  showCancelButton: false,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Ok'
+                }).then((result) => {
+                  if (result.value) {
+                    //Reload Current Page
+                    this.$router.go();        
+                  }
+                });
+             
 
           },
           cancelCD(){
