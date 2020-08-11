@@ -3096,7 +3096,7 @@ __webpack_require__.r(__webpack_exports__);
         rawData = JSON.stringify(rawData);
         var formData = new FormData();
         formData.append('ledgers', rawData);
-        axios.post('post/ledgers', formData, {
+        axios.post('api/post/ledgers', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
