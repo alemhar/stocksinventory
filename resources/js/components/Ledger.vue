@@ -42,11 +42,12 @@
                             <th>Balance</th>
                             
                           </tr>
-                          <tr>
-                            <td>Date</td>
-                            <td>Debits</td>
-                            <td>Credits</td>
-                            <td>Balance</td>
+                          
+                          <tr v-for="ledger in ledgers.data" :key="ledger.id">
+                            <td>{{ ledger.transaction_date }}</td>
+                            <td>{{ ledger.debit_amount }}</td>
+                            <td>{{ ledger.credit_amount }}</td>
+                            <td>{{ running_balance }}</td>
                           </tr>
                           
                       </tbody>
@@ -137,7 +138,8 @@
               account_code: '',
               account_name: '',
               searchText: '',
-              ledgers: null
+              ledgers: null,
+              running_balance: 0
           }
         },
         methods: {
