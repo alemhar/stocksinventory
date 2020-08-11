@@ -47,7 +47,7 @@
                             <td>{{ ledger.transaction_date }}</td>
                             <td>{{ ledger.debit_amount }}</td>
                             <td>{{ ledger.credit_amount }}</td>
-                            <td>{{ running_balance = running_balance + ledger.debit_amount - ledger.credit_amount}}</td>
+                            <td>{{ running_balance = parseFloat(running_balance) + parseFloat(ledger.debit_amount) - parseFloat(ledger.credit_amount) }}</td>
                           </tr>
                           
                       </tbody>
