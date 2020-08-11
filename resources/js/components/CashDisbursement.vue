@@ -1030,8 +1030,8 @@
                 this.$Progress.fail();
             });
 
-
-            this.$router.go(); // 
+            // Reload Current Page
+            //this.$router.go(); 
 
           },
           cancelCD(){

@@ -3109,8 +3109,8 @@ __webpack_require__.r(__webpack_exports__);
         _this5.$Progress.finish();
       })["catch"](function () {
         _this5.$Progress.fail();
-      });
-      this.$router.go(); // 
+      }); // Reload Current Page
+      //this.$router.go(); 
     },
     cancelCD: function cancelCD() {
       this.cd_created = false;
