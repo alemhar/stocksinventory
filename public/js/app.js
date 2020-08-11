@@ -2871,8 +2871,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      ledgers: [],
       user_id: '',
-      //isModalVisible: false,
       editmode: false,
       cd_created: false,
       no_payee: false,
@@ -2956,49 +2956,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    // getResults(page = 1) {
-    //   axios.get('api/user?page=' + page)
-    //     .then(response => {
-    //       this.users = response.data;
-    //     });
-    // },
-    // editUser(user){
-    //     this.editmode = true;
-    //     this.form.reset();
-    //     $('#UserDetails').modal('show');
-    //     this.form.fill(user);
-    // },
-    // newUser(){
-    //     this.editmode = false;
-    //     this.form.reset();
-    //     $('#UserDetails').modal('show');
-    // },
-    // deleteUser(id){
-    //     swal.fire({
-    //           title: 'Are you sure?',
-    //           text: "You won't be able to revert this!",
-    //           type: 'warning',
-    //           showCancelButton: true,
-    //           confirmButtonColor: '#3085d6',
-    //           cancelButtonColor: '#d33',
-    //           confirmButtonText: 'Yes, delete it!'
-    //         }).then((result) => {
-    //           if (result.value) {
-    //             this.form.delete('api/user/'+id)
-    //             .then(()=>{
-    //                 swal.fire(
-    //                   'Deleted!',
-    //                   'User has been deleted.',
-    //                   'success'
-    //                 );
-    //                 Fire.$emit('RefreshUsersTable');
-    //             })
-    //             .catch(()=>{
-    //               swal("Failed!","Failed to delete user!", "warning");
-    //             });
-    //           }
-    //         });
-    // },
     loadBranches: function loadBranches() {
       var _this = this;
 
@@ -3120,6 +3077,18 @@ __webpack_require__.r(__webpack_exports__);
         _this5.cd_created = false;
 
         _this5.form.post('api/cd/confirm/' + _this5.form.transaction_no);
+
+        _this5.ledgers.push({
+          id: _this5.form.transaction_id,
+          transaction_id: _this5.form.transaction_id,
+          transaction_no: _this5.form.transaction_no,
+          transaction_type: _this5.form.transaction_type,
+          account_code: _this5.form.account_code,
+          account_name: _this5.form.account_name,
+          transaction_date: _this5.form.transaction_date,
+          credit_amount: _this5.form.amount_ex_tax,
+          debit_amount: 0
+        });
 
         _this5.$Progress.finish();
       })["catch"](function () {
@@ -3351,6 +3320,18 @@ __webpack_require__.r(__webpack_exports__);
         _this13.form.amount += _this13.form_entry.amount;
         _this13.form.amount_ex_tax += _this13.form_entry.amount_ex_tax;
         _this13.form.vat += _this13.form_entry.vat;
+
+        _this13.ledgers.push({
+          id: _this13.form_entry.id,
+          transaction_id: _this13.form.transaction_id,
+          transaction_no: _this13.form.transaction_no,
+          transaction_type: _this13.form.transaction_type,
+          account_code: _this13.form_entry.account_code,
+          account_name: _this13.form_entry.account_name,
+          transaction_date: _this13.form.transaction_date,
+          credit_amount: 0,
+          debit_amount: _this13.form_entry.amount_ex_tax
+        });
 
         _this13.$Progress.finish();
 

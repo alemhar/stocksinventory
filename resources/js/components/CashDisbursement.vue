@@ -774,8 +774,8 @@
     export default {
         data() {
           return {
+              ledgers: [],
               user_id: '',
-              //isModalVisible: false,
               editmode: false,
               cd_created: false,
               no_payee: false,
@@ -870,56 +870,7 @@
         },
         methods: {
 
-          // getResults(page = 1) {
-          //   axios.get('api/user?page=' + page)
-          //     .then(response => {
-          //       this.users = response.data;
-          //     });
-          // },
-          // editUser(user){
-          //     this.editmode = true;
-          //     this.form.reset();
-          //     $('#UserDetails').modal('show');
-          //     this.form.fill(user);
-          // },
-          // newUser(){
-          //     this.editmode = false;
-          //     this.form.reset();
-          //     $('#UserDetails').modal('show');
-          // },
-          // deleteUser(id){
-          //     swal.fire({
-          //           title: 'Are you sure?',
-          //           text: "You won't be able to revert this!",
-          //           type: 'warning',
-          //           showCancelButton: true,
-          //           confirmButtonColor: '#3085d6',
-          //           cancelButtonColor: '#d33',
-          //           confirmButtonText: 'Yes, delete it!'
-          //         }).then((result) => {
-          //           if (result.value) {
-                      
-          //             this.form.delete('api/user/'+id)
-          //             .then(()=>{
-          //                 swal.fire(
-          //                   'Deleted!',
-          //                   'User has been deleted.',
-          //                   'success'
-          //                 );
-
-          //                 Fire.$emit('RefreshUsersTable');
-          //             })
-          //             .catch(()=>{
-          //               swal("Failed!","Failed to delete user!", "warning");
-
-          //             });
-                      
-
-
-
-          //           }
-          //         });
-          // },
+          
           loadBranches(){
 
             if(this.$gate.isAdminOrUser()){
@@ -1042,6 +993,17 @@
                   );
                   this.cd_created = false;
                   this.form.post('api/cd/confirm/'+this.form.transaction_no);
+                  this.ledgers.push({ 
+                      id: this.form.transaction_id,
+                      transaction_id: this.form.transaction_id, 
+                      transaction_no: this.form.transaction_no,
+                      transaction_type: this.form.transaction_type,
+                      account_code: this.form.account_code,
+                      account_name: this.form.account_name,
+                      transaction_date: this.form.transaction_date,
+                      credit_amount: this.form.amount_ex_tax,
+                      debit_amount: 0
+                    });
                   this.$Progress.finish();
                                     
             })
@@ -1290,6 +1252,18 @@
                   this.form.amount += this.form_entry.amount;
                   this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
                   this.form.vat += this.form_entry.vat;
+
+                  this.ledgers.push({ 
+                      id: this.form_entry.id,
+                      transaction_id: this.form.transaction_id, 
+                      transaction_no: this.form.transaction_no,
+                      transaction_type: this.form.transaction_type,
+                      account_code: this.form_entry.account_code,
+                      account_name: this.form_entry.account_name,
+                      transaction_date: this.form.transaction_date,
+                      credit_amount: 0,
+                      debit_amount: this.form_entry.amount_ex_tax
+                    });
 
                   this.$Progress.finish();
                   VueListen.$emit('RefreshEntryTable');
