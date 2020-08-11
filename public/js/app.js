@@ -6670,6 +6670,7 @@ __webpack_require__.r(__webpack_exports__);
     loadLedger: function loadLedger(account_code) {
       var _this3 = this;
 
+      this.running_balance = 0;
       axios.get('api/ledgers/' + account_code).then(function (data) {
         _this3.ledgers = data.data;
         console.log(_this3.ledgers);

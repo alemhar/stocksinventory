@@ -181,6 +181,7 @@
 
             },
             loadLedger(account_code) {
+                this.running_balance = 0;
                 axios.get('api/ledgers/'+account_code)
                     .then((data)=>{
                         this.ledgers = data.data;
