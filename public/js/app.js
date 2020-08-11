@@ -78535,7 +78535,14 @@ var render = function() {
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      _vm._v(_vm._s(_vm.running_balance))
+                                      _vm._v(
+                                        _vm._s(
+                                          (_vm.running_balance =
+                                            _vm.running_balance +
+                                            ledger.debit_amount -
+                                            ledger.credit_amount)
+                                        )
+                                      )
                                     ])
                                   ])
                                 })
