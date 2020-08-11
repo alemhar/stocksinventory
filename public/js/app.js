@@ -6646,6 +6646,17 @@ __webpack_require__.r(__webpack_exports__);
     },
     searchAccountModal: function searchAccountModal() {
       $('#select-account').modal('show');
+    },
+    selectAccount: function selectAccount() {
+      var account_code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      var account_name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+      if (account_code != null && account_name != null) {
+        this.account_name = account_name;
+        this.account_code = account_code;
+      }
+
+      $('#select-account').modal('hide');
     }
   },
   created: function created() {

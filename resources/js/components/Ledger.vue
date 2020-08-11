@@ -162,6 +162,14 @@
             },
             searchAccountModal(){
                 $('#select-account').modal('show');
+            },
+            selectAccount(account_code  = null,account_name = null){
+                if (account_code != null && account_name != null){
+                    this.account_name = account_name;
+                    this.account_code = account_code;
+                }
+                $('#select-account').modal('hide');  
+
             }    
         },
 
