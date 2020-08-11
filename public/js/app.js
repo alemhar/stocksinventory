@@ -3333,6 +3333,8 @@ __webpack_require__.r(__webpack_exports__);
           debit_amount: _this13.form_entry.amount_ex_tax
         });
 
+        console.log(_this13.ledgers);
+
         _this13.$Progress.finish();
 
         VueListen.$emit('RefreshEntryTable');

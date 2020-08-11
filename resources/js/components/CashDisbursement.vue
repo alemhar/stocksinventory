@@ -797,7 +797,6 @@
               selected_branch: {},
               cd : {},
               form: new Form({
-
                   id:'',
                   payee_id: '',
                   reference_no: '',
@@ -1264,7 +1263,7 @@
                       credit_amount: 0,
                       debit_amount: this.form_entry.amount_ex_tax
                     });
-
+                  console.log(this.ledgers)
                   this.$Progress.finish();
                   VueListen.$emit('RefreshEntryTable');
             })
