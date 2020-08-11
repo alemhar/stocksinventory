@@ -1263,7 +1263,7 @@
                       credit_amount: 0,
                       debit_amount: this.form_entry.amount_ex_tax
                     });
-                  console.log(this.ledgers)
+                  console.log(this.ledgers);
                   this.$Progress.finish();
                   VueListen.$emit('RefreshEntryTable');
             })
@@ -1285,7 +1285,6 @@
                     this.form.amount = parseFloat(this.form.amount - entry_amount).toFixed(2) * 1;
                     this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
                     this.form.vat = (this.form.vat - entry_vat).toFixed(2) * 1;
-                    
                     VueListen.$emit('RefreshItemTable');
                     VueListen.$emit('RefreshEntryTable');
 
