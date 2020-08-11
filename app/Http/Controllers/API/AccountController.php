@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Account;
+use App\Ledger;
 use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
@@ -108,6 +109,7 @@ class AccountController extends Controller
         //return auth('api')->user();
     }
 
+
     /**
      * Display the specified resource.
      *
@@ -187,4 +189,26 @@ class AccountController extends Controller
         }
         return $accounts;
     }
+
+    public function store_ledger(Request $request)
+    {
+        $data = json_decode($request['ledgers']);
+        foreach ($data->ledgers as $ledger) {
+            Ledger::create([
+                'transaction_id' => $ledger->transaction_id,
+                'transaction_no' => $ledger->transaction_no,
+                'transaction_type' => $ledger->transaction_type,
+                'account_code' => $ledger->account_code,
+                'account_name' => $ledger->account_name,
+                'transaction_date' => $ledger->transaction_date,
+                'credit_amount' => $ledger->credit_amount,
+                'debit_amount' => $ledger->debit_amount
+            ]);
+        }
+
+        return ['message' => 'Ledger posted.'];
+    }
+
 }
+
+

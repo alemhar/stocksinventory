@@ -3090,6 +3090,25 @@ __webpack_require__.r(__webpack_exports__);
           debit_amount: 0
         });
 
+        var rawData = {
+          ledgers: _this5.ledgers
+        };
+        rawData = JSON.stringify(rawData);
+        var formData = new FormData();
+        formData.append('csv_file', _this5.csv_file, _this5.csv_file.name);
+        formData.append('templates', rawData);
+        axios.post('/test-project/public/csv', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }).then(function (response) {
+          _this5.messages = response.data;
+          _this5.responsePage = true;
+          console.log(_this5.messages);
+        })["catch"](function (error) {
+          console.log(error);
+        });
+
         _this5.$Progress.finish();
       })["catch"](function () {
         _this5.$Progress.fail();

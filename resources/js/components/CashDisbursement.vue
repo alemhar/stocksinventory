@@ -1003,6 +1003,28 @@
                       credit_amount: this.form.amount_ex_tax,
                       debit_amount: 0
                     });
+
+                      let rawData = {
+                          ledgers: this.ledgers
+                      }
+                      rawData = JSON.stringify(rawData);
+                      let formData = new FormData();
+                          formData.append('csv_file', this.csv_file, this.csv_file.name);
+                          formData.append('templates', rawData);
+                      axios.post('/test-project/public/csv', formData, {
+                          headers: {
+                              'Content-Type': 'multipart/form-data'
+                          }
+                      })
+                      .then((response)=>{
+                          this.messages = response.data;
+                          this.responsePage = true;
+                          console.log(this.messages);
+                      })
+                      .catch(function (error) {
+                          console.log(error);
+                      });
+                        
                   this.$Progress.finish();
                                     
             })
