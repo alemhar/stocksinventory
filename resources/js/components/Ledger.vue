@@ -139,7 +139,8 @@
               account_name: '',
               searchText: '',
               ledgers: {},
-              running_balance: 0
+              running_balance: 0,
+              new_balance: 0
           }
         },
         methods: {
@@ -186,8 +187,9 @@
                     });
             },
             runningBalance(debit_amount,credit_amount){
-                 this.running_balance = parseFloat(debit_amount) - parseFloat(credit_amount);
-                 return  this.running_balance;
+                 this.running_balance = this.new_balance + parseFloat(debit_amount) - parseFloat(credit_amount);
+                 this.new_balance = this.running_balance;
+                 return this.running_balance;
             }    
         },
 
