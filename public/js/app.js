@@ -6611,6 +6611,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -6619,7 +6624,7 @@ __webpack_require__.r(__webpack_exports__);
       account_code: '',
       account_name: '',
       searchText: '',
-      ledgers: null,
+      ledgers: {},
       running_balance: 0
     };
   },
@@ -78499,7 +78504,52 @@ var render = function() {
                   ],
                   staticClass: "box box-warning mt-2"
                 },
-                [_vm._m(1)]
+                [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "box" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "box-body table-responsive no-padding",
+                          attrs: { id: "cd-list" }
+                        },
+                        [
+                          _c("table", { staticClass: "table table-hover" }, [
+                            _c(
+                              "tbody",
+                              [
+                                _vm._m(1),
+                                _vm._v(" "),
+                                _vm._l(_vm.ledgers.data, function(ledger) {
+                                  return _c("tr", { key: ledger.id }, [
+                                    _c("td", [
+                                      _vm._v(_vm._s(ledger.transaction_date))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(ledger.debit_amount))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(ledger.credit_amount))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(_vm.running_balance))
+                                    ])
+                                  ])
+                                })
+                              ],
+                              2
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "box-footer" })
+                    ])
+                  ])
+                ]
               )
             ]),
             _vm._v(" "),
@@ -78666,33 +78716,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12" }, [
-      _c("div", { staticClass: "box" }, [
-        _c(
-          "div",
-          {
-            staticClass: "box-body table-responsive no-padding",
-            attrs: { id: "cd-list" }
-          },
-          [
-            _c("table", { staticClass: "table table-hover" }, [
-              _c("tbody", [
-                _c("tr", [
-                  _c("th", [_vm._v("Date")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Debits")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Credits")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Balance")])
-                ])
-              ])
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "box-footer" })
-      ])
+    return _c("tr", [
+      _c("th", [_vm._v("Date")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Debits")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Credits")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Balance")])
     ])
   },
   function() {
