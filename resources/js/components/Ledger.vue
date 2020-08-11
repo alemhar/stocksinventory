@@ -43,7 +43,7 @@
                             
                           </tr>
                           
-                          <tr v-for="ledger in ledgers.data" :key="ledger.id">
+                          <tr v-for="(ledger, index) in ledgers.data" :key="ledger.id">
                             <td>{{ ledger.transaction_date }}</td>
                             <td>{{ ledger.debit_amount }}</td>
                             <td>{{ ledger.credit_amount }}</td>

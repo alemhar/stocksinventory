@@ -78529,7 +78529,10 @@ var render = function() {
                               [
                                 _vm._m(1),
                                 _vm._v(" "),
-                                _vm._l(_vm.ledgers.data, function(ledger) {
+                                _vm._l(_vm.ledgers.data, function(
+                                  ledger,
+                                  index
+                                ) {
                                   return _c("tr", { key: ledger.id }, [
                                     _c("td", [
                                       _vm._v(_vm._s(ledger.transaction_date))
@@ -78544,9 +78547,7 @@ var render = function() {
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      _vm._v(
-                                        _vm._s(_vm.runningBalance[_vm.index])
-                                      )
+                                      _vm._v(_vm._s(_vm.runningBalance[index]))
                                     ])
                                   ])
                                 })
