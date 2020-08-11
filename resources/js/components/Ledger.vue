@@ -47,7 +47,7 @@
                             <td>{{ ledger.transaction_date }}</td>
                             <td>{{ ledger.debit_amount }}</td>
                             <td>{{ ledger.credit_amount }}</td>
-                            <td>{{ runningBalance(ledger.debit_amount, ledger.credit_amount) }}</td>
+                            <td>{{ runningBalance[index] }}</td>
                           </tr>
                           
                       </tbody>
@@ -187,9 +187,9 @@
                     });
             },
             runningBalance(debit_amount,credit_amount){
-                 this.running_balance = this.new_balance + parseFloat(debit_amount) - parseFloat(credit_amount);
-                 this.new_balance = this.running_balance;
-                 return this.running_balance;
+                 return this.ledgers.data.map((ledgers) => {
+                    return this.running_balance + parseFloat(debit_amount) - parseFloat(credit_amount); 
+                 });
             }    
         },
 
