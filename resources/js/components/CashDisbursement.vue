@@ -471,7 +471,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" @click="cancelDebitEntry">Cancel</button>
-              <button type="button" class="btn btn-success" @click="saveDebitEntry">Save</button>
+              <button type="button" :disabled="!save_button_entry_enabled" class="btn btn-success" @click="saveDebitEntry">Save</button>
             </div>
 
             <!-- /form -->
@@ -1295,7 +1295,7 @@
                       credit_amount: 0,
                       debit_amount: this.form_entry.amount_ex_tax
                     });
-                  console.log(this.ledgers);
+                  //console.log(this.ledgers);
                   this.$Progress.finish();
                   VueListen.$emit('RefreshEntryTable');
             })
