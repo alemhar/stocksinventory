@@ -2883,6 +2883,8 @@ __webpack_require__.r(__webpack_exports__);
       no_quantity: false,
       no_entry_account_code: false,
       no_entry_branch_id: false,
+      save_button_item_enabled: true,
+      save_button_entry_enabled: true,
       searchText: '',
       searchPayee: '',
       headerOrDetail: 'header',
@@ -3089,6 +3091,18 @@ __webpack_require__.r(__webpack_exports__);
           debit_amount: 0
         });
 
+        _this5.ledgers.push({
+          id: 1,
+          transaction_id: _this5.form.id,
+          transaction_no: _this5.form.transaction_no,
+          transaction_type: _this5.form.transaction_type,
+          account_code: '1105110',
+          account_name: 'Input Tax',
+          transaction_date: _this5.form.transaction_date,
+          credit_amount: 0,
+          debit_amount: _this5.form.vat
+        });
+
         var rawData = {
           ledgers: _this5.ledgers
         };
@@ -3248,6 +3262,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.transaction_id = this.form.id;
       this.form_entry.transaction_no = this.form.transaction_no;
       this.form_entry.transaction_type = 'CD';
+      this.save_button_entry_enabled = true;
       this.form_entry.post('api/cd/entry').then(function (data) {
         _this10.form_entry.id = data.data.id; //console.log(data.data.id);
 
@@ -3275,6 +3290,7 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
 
+      this.save_button_item_enabled = true;
       this.editmode = false;
       this.form_item.reset();
       this.no_item = false;
@@ -3322,6 +3338,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.credit_amount = this.form_entry.amount; //this.form_entry.debit_amount = 0;
       // ** Temporary data to bypass Column cannot be null ERROR's
 
+      this.save_button_entry_enabled = false;
       this.$Progress.start();
       this.form_entry.put('api/cd/entry/' + this.form_entry.id).then(function () {
         $('#entry-details').modal('hide');
@@ -3425,6 +3442,7 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
 
+      this.save_button_item_enabled = false;
       this.$Progress.start();
       this.form_item.put('api/cd/item/' + this.form_item.id).then(function () {
         $('#entry-items').modal('hide');
@@ -71418,7 +71436,10 @@ var render = function() {
                   "button",
                   {
                     staticClass: "btn btn-success",
-                    attrs: { type: "button" },
+                    attrs: {
+                      type: "button",
+                      disabled: !_vm.save_button_item_enabled
+                    },
                     on: { click: _vm.saveItem }
                   },
                   [_vm._v("Save")]
@@ -102048,15 +102069,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************************************!*\
   !*** ./resources/js/components/CashDisbursement.vue ***!
   \******************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CashDisbursement_vue_vue_type_template_id_4946dc5f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CashDisbursement.vue?vue&type=template&id=4946dc5f& */ "./resources/js/components/CashDisbursement.vue?vue&type=template&id=4946dc5f&");
 /* harmony import */ var _CashDisbursement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CashDisbursement.vue?vue&type=script&lang=js& */ "./resources/js/components/CashDisbursement.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _CashDisbursement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _CashDisbursement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -102086,7 +102106,7 @@ component.options.__file = "resources/js/components/CashDisbursement.vue"
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/CashDisbursement.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

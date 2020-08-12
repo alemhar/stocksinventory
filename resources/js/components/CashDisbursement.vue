@@ -612,7 +612,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" @click="cancelItem" class="btn btn-danger">Cancel</button>
-              <button type="button" @click="saveItem" class="btn btn-success">Save</button>
+              <button type="button" :disabled="!save_button_item_enabled" @click="saveItem" class="btn btn-success">Save</button>
             </div>
 
             <!-- /form -->
@@ -786,6 +786,8 @@
               no_quantity: false,
               no_entry_account_code: false,
               no_entry_branch_id: false,
+              save_button_item_enabled: true,
+              save_button_entry_enabled: true,
               searchText: '',
               searchPayee: '',
               headerOrDetail: 'header',
@@ -998,6 +1000,17 @@
                       credit_amount: this.form.amount,
                       debit_amount: 0
                     });
+                  this.ledgers.push({ 
+                      id: 1,
+                      transaction_id: this.form.id, 
+                      transaction_no: this.form.transaction_no,
+                      transaction_type: this.form.transaction_type,
+                      account_code: '1105110',
+                      account_name: 'Input Tax',
+                      transaction_date: this.form.transaction_date,
+                      credit_amount: 0,
+                      debit_amount: this.form.vat
+                    });  
 
                       let rawData = {
                           ledgers: this.ledgers
@@ -1169,7 +1182,7 @@
               this.form_entry.transaction_id = this.form.id;
               this.form_entry.transaction_no = this.form.transaction_no;
               this.form_entry.transaction_type = 'CD';
-
+              this.save_button_entry_enabled = true;
               this.form_entry.post('api/cd/entry')
                 .then((data)=>{
                   this.form_entry.id = data.data.id;
@@ -1200,6 +1213,8 @@
               if (this.no_entry_account_code || this.no_entry_branch_id){
                 return false;
               }
+
+              this.save_button_item_enabled = true;
 
               this.editmode = false;
               this.form_item.reset();
@@ -1252,7 +1267,8 @@
             this.form_entry.credit_amount = this.form_entry.amount
             //this.form_entry.debit_amount = 0;
             // ** Temporary data to bypass Column cannot be null ERROR's
-
+            this.save_button_entry_enabled = false;
+              
             this.$Progress.start();
             this.form_entry.put('api/cd/entry/'+this.form_entry.id)
             .then(() => {
@@ -1353,6 +1369,7 @@
               return false;
             } 
 
+            this.save_button_item_enabled = false;
             
 
             this.$Progress.start();
