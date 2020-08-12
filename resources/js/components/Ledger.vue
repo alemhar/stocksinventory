@@ -143,8 +143,7 @@
               account_name: '',
               searchText: '',
               ledgers: {},
-              running_balance: 0,
-              new_balance: 0
+              running_balance: 0
           }
         },
         methods: {
@@ -169,6 +168,7 @@
                 });
             },
             searchAccountModal(){
+                this.running_balance = 0;
                 $('#select-account').modal('show');
             },
             selectAccount(account_code  = null,account_name = null){
@@ -176,6 +176,7 @@
                     this.account_name = account_name;
                     this.account_code = account_code;
                 }
+                this.running_balance = 0;
                 $('#select-account').modal('hide');  
                 this.loadLedger(account_code);
 

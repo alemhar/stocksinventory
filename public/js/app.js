@@ -6720,8 +6720,7 @@ __webpack_require__.r(__webpack_exports__);
       account_name: '',
       searchText: '',
       ledgers: {},
-      running_balance: 0,
-      new_balance: 0
+      running_balance: 0
     };
   },
   methods: {
@@ -6744,6 +6743,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     searchAccountModal: function searchAccountModal() {
+      this.running_balance = 0;
       $('#select-account').modal('show');
     },
     selectAccount: function selectAccount() {
@@ -6755,6 +6755,7 @@ __webpack_require__.r(__webpack_exports__);
         this.account_code = account_code;
       }
 
+      this.running_balance = 0;
       $('#select-account').modal('hide');
       this.loadLedger(account_code);
     },
