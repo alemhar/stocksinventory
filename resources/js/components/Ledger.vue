@@ -184,11 +184,12 @@
 
             },
             loadLedger(account_code) {
-                this.running_balance = 0;
+                
                 axios.get('api/ledgers/'+account_code)
                     .then((data)=>{
+                        this.running_balance = 0;
                         this.ledgers = data.data;
-                        console.log(this.ledgers);
+                        //console.log(this.ledgers);
                     })
                     .catch(()=>{
                     //
