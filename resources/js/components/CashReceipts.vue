@@ -949,8 +949,8 @@
                       account_code: this.form.account_code,
                       account_name: this.form.account_name,
                       transaction_date: this.form.transaction_date,
-                      credit_amount: this.form.amount,
-                      debit_amount: 0
+                      credit_amount: 0,
+                      debit_amount: this.form.amount
                     });
                   this.ledgers.push({ 
                       id: 1,
@@ -960,8 +960,8 @@
                       account_code: '2105110',
                       account_name: 'Output Tax',
                       transaction_date: this.form.transaction_date,
-                      credit_amount: 0,
-                      debit_amount: this.form.vat
+                      credit_amount: this.form.vat,
+                      debit_amount: 0
                     });  
 
                       let rawData = {
@@ -1240,8 +1240,8 @@
                       account_code: this.form_entry.account_code,
                       account_name: this.form_entry.account_name,
                       transaction_date: this.form.transaction_date,
-                      credit_amount: 0,
-                      debit_amount: this.form_entry.amount_ex_tax
+                      credit_amount: this.form_entry.amount_ex_tax,
+                      debit_amount: 0
                     });
 
                   this.$Progress.finish();

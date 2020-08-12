@@ -6039,8 +6039,8 @@ __webpack_require__.r(__webpack_exports__);
           account_code: _this5.form.account_code,
           account_name: _this5.form.account_name,
           transaction_date: _this5.form.transaction_date,
-          credit_amount: _this5.form.amount,
-          debit_amount: 0
+          credit_amount: 0,
+          debit_amount: _this5.form.amount
         });
 
         _this5.ledgers.push({
@@ -6051,8 +6051,8 @@ __webpack_require__.r(__webpack_exports__);
           account_code: '2105110',
           account_name: 'Output Tax',
           transaction_date: _this5.form.transaction_date,
-          credit_amount: 0,
-          debit_amount: _this5.form.vat
+          credit_amount: _this5.form.vat,
+          debit_amount: 0
         });
 
         var rawData = {
@@ -6314,8 +6314,8 @@ __webpack_require__.r(__webpack_exports__);
           account_code: _this13.form_entry.account_code,
           account_name: _this13.form_entry.account_name,
           transaction_date: _this13.form.transaction_date,
-          credit_amount: 0,
-          debit_amount: _this13.form_entry.amount_ex_tax
+          credit_amount: _this13.form_entry.amount_ex_tax,
+          debit_amount: 0
         });
 
         _this13.$Progress.finish();
