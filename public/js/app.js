@@ -6743,6 +6743,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     searchAccountModal: function searchAccountModal() {
+      this.initChartAccounts();
+      this.searchText = '';
       this.running_balance = 0;
       $('#select-account').modal('show');
     },
