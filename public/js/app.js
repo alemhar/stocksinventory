@@ -6764,6 +6764,10 @@ __webpack_require__.r(__webpack_exports__);
     loadLedger: function loadLedger(account_code) {
       var _this3 = this;
 
+      if (account_code) {
+        return false;
+      }
+
       axios.get('api/ledgers/' + account_code).then(function (data) {
         _this3.running_balance = 0;
         _this3.ledgers = data.data; //console.log(this.ledgers);
@@ -7994,7 +7998,13 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$Progress.start();
       this.form_entry.put('api/cd/' + this.form.id).then(function () {
-        swal.fire('Saved!', 'Transaction Completed.', 'success');
+        /*
+        swal.fire(
+          'Saved!',
+          'Transaction Completed.',
+          'success'
+        );
+        */
         _this5.transaction_created = false;
 
         _this5.form.post('api/cd/confirm/' + _this5.form.transaction_no);
@@ -78628,6 +78638,21 @@ var render = function() {
                         },
                         domProps: { value: _vm.account_code },
                         on: {
+                          keyup: function($event) {
+                            if (
+                              !$event.type.indexOf("key") &&
+                              _vm._k(
+                                $event.keyCode,
+                                "enter",
+                                13,
+                                $event.key,
+                                "Enter"
+                              )
+                            ) {
+                              return null
+                            }
+                            return _vm.loadLedger(this.value)
+                          },
                           input: function($event) {
                             if ($event.target.composing) {
                               return

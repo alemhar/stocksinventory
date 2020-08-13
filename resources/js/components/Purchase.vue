@@ -931,11 +931,13 @@
             this.$Progress.start();
             this.form_entry.put('api/cd/'+this.form.id)
             .then(() => {
-                swal.fire(
+                  /*
+                  swal.fire(
                     'Saved!',
                     'Transaction Completed.',
                     'success'
                   );
+                  */
                   this.transaction_created = false;
                   this.form.post('api/cd/confirm/'+this.form.transaction_no);
 
