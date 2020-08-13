@@ -7809,6 +7809,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      ledgers: [],
       user_id: '',
       //isModalVisible: false,
       editmode: false,
@@ -7821,6 +7822,8 @@ __webpack_require__.r(__webpack_exports__);
       no_quantity: false,
       no_entry_account_code: false,
       no_entry_branch_id: false,
+      save_button_item_enabled: true,
+      save_button_entry_enabled: true,
       searchText: '',
       searchPayee: '',
       headerOrDetail: 'header',
@@ -7996,14 +7999,64 @@ __webpack_require__.r(__webpack_exports__);
 
         _this5.form.post('api/cd/confirm/' + _this5.form.transaction_no);
 
+        _this5.ledgers.push({
+          id: _this5.form.id,
+          transaction_id: _this5.form.id,
+          transaction_no: _this5.form.transaction_no,
+          transaction_type: _this5.form.transaction_type,
+          account_code: _this5.form.account_code,
+          account_name: _this5.form.account_name,
+          transaction_date: _this5.form.transaction_date,
+          credit_amount: _this5.form.amount,
+          debit_amount: 0
+        });
+
+        _this5.ledgers.push({
+          id: 1,
+          transaction_id: _this5.form.id,
+          transaction_no: _this5.form.transaction_no,
+          transaction_type: _this5.form.transaction_type,
+          account_code: '1105110',
+          account_name: 'Input Tax',
+          transaction_date: _this5.form.transaction_date,
+          credit_amount: 0,
+          debit_amount: _this5.form.vat
+        });
+
+        var rawData = {
+          ledgers: _this5.ledgers
+        };
+        rawData = JSON.stringify(rawData);
+        var formData = new FormData();
+        formData.append('ledgers', rawData);
+        axios.post('api/ledgers', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }).then(function (response) {
+          console.log(response);
+        })["catch"](function (error) {
+          console.log(error);
+        });
+
         _this5.$Progress.finish();
       })["catch"](function () {
         _this5.$Progress.fail();
-      }); //this.form.reset();
-      //this.form_entry.reset();
-      //this.form_item.reset();
-
-      this.$router.go(); // 
+      });
+      swal.fire({
+        title: 'Saved!',
+        text: "Journal posted",
+        icon: 'info',
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ok'
+      }).then(function (result) {
+        if (result.value) {
+          //Reload Current Page
+          _this5.$router.go();
+        }
+      });
     },
     cancelTransaction: function cancelTransaction() {
       this.transaction_created = false;
@@ -8129,6 +8182,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.transaction_id = this.form.id;
       this.form_entry.transaction_no = this.form.transaction_no;
       this.form_entry.transaction_type = 'PURCHASE';
+      this.save_button_entry_enabled = true;
       this.form_entry.post('api/cd/entry').then(function (data) {
         _this10.form_entry.id = data.data.id; //console.log(data.data.id);
 
@@ -8156,6 +8210,7 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
 
+      this.save_button_item_enabled = true;
       this.editmode = false;
       this.form_item.reset();
       this.no_item = false;
@@ -8203,6 +8258,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.credit_amount = this.form_entry.amount; //this.form_entry.debit_amount = 0;
       // ** Temporary data to bypass Column cannot be null ERROR's
 
+      this.save_button_entry_enabled = false;
       this.$Progress.start();
       this.form_entry.put('api/cd/entry/' + this.form_entry.id).then(function () {
         $('#entry-details').modal('hide');
@@ -8217,6 +8273,18 @@ __webpack_require__.r(__webpack_exports__);
         _this13.form.amount += _this13.form_entry.amount;
         _this13.form.amount_ex_tax += _this13.form_entry.amount_ex_tax;
         _this13.form.vat += _this13.form_entry.vat;
+
+        _this13.ledgers.push({
+          id: _this13.form_entry.id,
+          transaction_id: _this13.form.id,
+          transaction_no: _this13.form.transaction_no,
+          transaction_type: _this13.form.transaction_type,
+          account_code: _this13.form_entry.account_code,
+          account_name: _this13.form_entry.account_name,
+          transaction_date: _this13.form.transaction_date,
+          credit_amount: 0,
+          debit_amount: _this13.form_entry.amount_ex_tax
+        });
 
         _this13.$Progress.finish();
 
@@ -8292,6 +8360,7 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
 
+      this.save_button_item_enabled = false;
       this.$Progress.start();
       this.form_item.put('api/cd/item/' + this.form_item.id).then(function () {
         $('#entry-items').modal('hide');
@@ -80979,7 +81048,10 @@ var render = function() {
                     "button",
                     {
                       staticClass: "btn btn-success",
-                      attrs: { type: "button" },
+                      attrs: {
+                        type: "button",
+                        disabled: !_vm.save_button_entry_enabled
+                      },
                       on: { click: _vm.saveDebitEntry }
                     },
                     [_vm._v("Save")]
@@ -81462,7 +81534,10 @@ var render = function() {
                   "button",
                   {
                     staticClass: "btn btn-success",
-                    attrs: { type: "button" },
+                    attrs: {
+                      type: "button",
+                      disabled: !_vm.save_button_item_enabled
+                    },
                     on: { click: _vm.saveItem }
                   },
                   [_vm._v("Save")]
