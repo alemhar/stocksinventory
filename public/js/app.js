@@ -78651,7 +78651,7 @@ var render = function() {
                             ) {
                               return null
                             }
-                            return _vm.loadLedger(this.value)
+                            return _vm.loadLedger(_vm.account_code)
                           },
                           input: function($event) {
                             if ($event.target.composing) {
