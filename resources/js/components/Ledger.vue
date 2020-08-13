@@ -184,7 +184,7 @@
 
             },
             loadLedger(account_code) {
-                if(trim(account_code)  === "" ){
+                if(account_code.trim()  === "" ){
                   return false;
                 }
 
