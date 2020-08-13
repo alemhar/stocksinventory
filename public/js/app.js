@@ -6764,7 +6764,7 @@ __webpack_require__.r(__webpack_exports__);
     loadLedger: function loadLedger(account_code) {
       var _this3 = this;
 
-      if (account_code) {
+      if (trim(account_code) === "") {
         return false;
       }
 

@@ -184,9 +184,10 @@
 
             },
             loadLedger(account_code) {
-                if(account_code){
+                if(trim(account_code)  === "" ){
                   return false;
                 }
+
                 axios.get('api/ledgers/'+account_code)
                     .then((data)=>{
                         this.running_balance = 0;
