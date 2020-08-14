@@ -1051,7 +1051,7 @@
                       transaction_id: this.form.id, 
                       transaction_no: this.form.transaction_no,
                       transaction_type: this.form.transaction_type,
-                      account_code: '2105110',
+                      account_code: '1105120',
                       account_name: 'Creditable WTax',
                       transaction_date: this.form.transaction_date,
                       credit_amount: 0,

@@ -10932,7 +10932,7 @@ __webpack_require__.r(__webpack_exports__);
           transaction_id: _this5.form.id,
           transaction_no: _this5.form.transaction_no,
           transaction_type: _this5.form.transaction_type,
-          account_code: '2105110',
+          account_code: '1105120',
           account_name: 'Creditable WTax',
           transaction_date: _this5.form.transaction_date,
           credit_amount: 0,

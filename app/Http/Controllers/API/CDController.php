@@ -156,7 +156,9 @@ class CDController extends Controller
 
     public function list(){
         $transaction = Transaction::where(function($query){
-            $query->where('amount','>','total_payment')->where('status','CONFIRMED');
+            $query->where('amount','>','total_payment')
+            ->where('transaction_type','PURCHASE')
+            ->where('status','CONFIRMED');
         })->paginate(10);
         return $transaction;
     }
