@@ -1045,7 +1045,6 @@
                       credit_amount: this.form.vat,
                       debit_amount: 0
                     }); 
-                  
                   this.ledgers.push({ 
                       id: 1,
                       transaction_id: this.form.id, 
