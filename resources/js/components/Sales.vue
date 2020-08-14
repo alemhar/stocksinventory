@@ -1054,8 +1054,8 @@
                       account_code: '2105110',
                       account_name: 'Creditable WTax',
                       transaction_date: this.form.transaction_date,
-                      credit_amount: this.form.wtax,
-                      debit_amount: 0
+                      credit_amount: 0,
+                      debit_amount: this.form.wtax
                     }); 
 
 

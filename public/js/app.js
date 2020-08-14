@@ -9509,8 +9509,8 @@ __webpack_require__.r(__webpack_exports__);
           account_code: '2105110',
           account_name: 'Creditable WTax',
           transaction_date: _this5.form.transaction_date,
-          credit_amount: _this5.form.wtax,
-          debit_amount: 0
+          credit_amount: 0,
+          debit_amount: _this5.form.wtax
         });
 
         var rawData = {
