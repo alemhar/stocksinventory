@@ -820,8 +820,8 @@
     export default {
         data() {
           return {
+              ledgers: [],
               user_id: '',
-              //isModalVisible: false,
               editmode: false,
               transaction_created: false,
               no_payee: false,
@@ -832,6 +832,8 @@
               no_quantity: false,
               no_entry_account_code: false,
               no_entry_branch_id: false,
+              save_button_item_enabled: true,
+              save_button_entry_enabled: true,
               searchText: '',
               searchPayee: '',
               headerOrDetail: 'header',
@@ -1010,21 +1012,97 @@
             //this.$Progress.start();
             this.form.put('api/cd/'+this.form.id)
             .then(() => {
-                swal.fire(
+                  /*
+                  swal.fire(
                     'Saved!',
                     'Transaction Completed.',
                     'success'
                   );
+                  */
                   this.transaction_created = false;
                   this.form.post('api/cd/confirm/'+this.form.transaction_no);
+                  
+
+                  this.ledgers.push({ 
+                      id: this.form.id,
+                      transaction_id: this.form.id, 
+                      transaction_no: this.form.transaction_no,
+                      transaction_type: this.form.transaction_type,
+                      account_code: this.form.account_code,
+                      account_name: this.form.account_name,
+                      transaction_date: this.form.transaction_date,
+                      credit_amount: 0,
+                      debit_amount: this.form.amount
+                    });
+                  this.ledgers.push({ 
+                      id: 1,
+                      transaction_id: this.form.id, 
+                      transaction_no: this.form.transaction_no,
+                      transaction_type: this.form.transaction_type,
+                      account_code: '2105110',
+                      account_name: 'Output Tax',
+                      transaction_date: this.form.transaction_date,
+                      credit_amount: this.form.vat,
+                      debit_amount: 0
+                    }); 
+                  
+                  this.ledgers.push({ 
+                      id: 1,
+                      transaction_id: this.form.id, 
+                      transaction_no: this.form.transaction_no,
+                      transaction_type: this.form.transaction_type,
+                      account_code: '2105110',
+                      account_name: 'Creditable WTax',
+                      transaction_date: this.form.transaction_date,
+                      credit_amount: this.form.wtax,
+                      debit_amount: 0
+                    }); 
+
+
+
+                    
+                      let rawData = {
+                          ledgers: this.ledgers
+                      }
+                      rawData = JSON.stringify(rawData);
+                      let formData = new FormData();
+                          formData.append('ledgers', rawData);
+                      axios.post('api/ledgers', formData, {
+                          headers: {
+                              'Content-Type': 'multipart/form-data'
+                          }
+                      })
+                      .then((response)=>{
+                          
+                          console.log(response);
+                      })
+                      .catch(function (error) {
+                          console.log(error);
+                      });
+
+
                   //this.$Progress.finish();
-                  this.$router.go();  
+                  //this.$router.go();  
                                     
             })
             .catch(() => {
                 //this.$Progress.fail();
             });
 
+            swal.fire({
+                  title: 'Saved!',
+                  text: "Journal posted",
+                  icon: 'info',
+                  showCancelButton: false,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Ok'
+                }).then((result) => {
+                  if (result.value) {
+                    //Reload Current Page
+                    this.$router.go();        
+                  }
+                });
 
           },
           cancelTransaction(){
@@ -1154,7 +1232,7 @@
               this.form_entry.transaction_id = this.form.id;
               this.form_entry.transaction_no = this.form.transaction_no;
               this.form_entry.transaction_type = 'SALES';
-
+              this.save_button_entry_enabled = true;
               this.form_entry.post('api/cd/entry')
                 .then((data)=>{
                   this.form_entry.id = data.data.id;
@@ -1185,7 +1263,7 @@
               if (this.no_entry_account_code || this.no_entry_branch_id){
                 return false;
               }
-
+              this.save_button_item_enabled = true;
               this.editmode = false;
               this.form_item.reset();
 
@@ -1228,16 +1306,9 @@
             });
           },
           saveDebitEntry(){
-            //console.log('Edit Payee');
-            
-            // ** Temporary data to bypass Column cannot be null ERROR's
-            //this.form_entry.amount = 0;
-            //this.form_entry.amount_ex_tax = 0;
-            //this.form_entry.vat = 0;
-            this.form_entry.credit_amount = this.form_entry.amount
-            //this.form_entry.debit_amount = 0;
-            // ** Temporary data to bypass Column cannot be null ERROR's
 
+            this.form_entry.credit_amount = this.form_entry.amount
+            this.save_button_entry_enabled = false;
             this.$Progress.start();
             this.form_entry.put('api/cd/entry/'+this.form_entry.id)
             .then(() => {
@@ -1252,7 +1323,17 @@
                   this.form.amount += this.form_entry.amount;
                   this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
                   this.form.vat += this.form_entry.vat;
-
+                  this.ledgers.push({ 
+                      id: this.form_entry.id,
+                      transaction_id: this.form.id, 
+                      transaction_no: this.form.transaction_no,
+                      transaction_type: this.form.transaction_type,
+                      account_code: this.form_entry.account_code,
+                      account_name: this.form_entry.account_name,
+                      transaction_date: this.form.transaction_date,
+                      credit_amount: this.form_entry.amount_ex_tax,
+                      debit_amount: 0
+                    });
                   this.$Progress.finish();
                   VueListen.$emit('RefreshEntryTable');
             })
@@ -1328,7 +1409,7 @@
             } 
 
             
-
+            this.save_button_item_enabled = false;
             this.$Progress.start();
             this.form_item.put('api/cd/item/'+this.form_item.id)
             .then(() => {

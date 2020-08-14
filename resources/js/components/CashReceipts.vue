@@ -742,7 +742,6 @@
           return {
               ledgers: [],
               user_id: '',
-              //isModalVisible: false,
               editmode: false,
               transaction_created: false,
               no_payee: false,
@@ -1000,7 +999,7 @@
                   confirmButtonText: 'Ok'
                 }).then((result) => {
                   if (result.value) {
-                    //Reload Current Page
+                    //Reload Current Pages
                     this.$router.go();        
                   }
                 });
