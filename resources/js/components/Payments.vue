@@ -10,31 +10,31 @@
 
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" @submit.prevent="createTransaction()">
+            <form role="form" @submit.prevent="createCD()">
               <div class="box-header with-border">
-                <h3 class="box-title box-title-transaction" >Cash Receipts</h3>
+                <h3 class="box-title box-title-transaction">Cash Disbursement</h3>
                 <div class="box-tools">
-                  <button type="submit" v-show="!transaction_created" class="btn btn-success">Create <i class="fas fa-plus-circle fa-fw"></i></button>
+                  <button type="submit" v-show="!cd_created" class="btn btn-success">Create <i class="fas fa-plus-circle fa-fw"></i></button>
                   <!-- @click="createCD()"  -->
-                  <button  type="button" class="btn btn-danger"  v-show="transaction_created" @click="cancelTransaction">Cancel <i class="fas fa-window-close fa-fw"></i></button>
-                  <button type="button"  class="btn btn-success"  v-show="transaction_created" @click="saveTransaction">Save <i class="fas fa-save fa-fw"></i></button>
+                  <button  type="button" class="btn btn-danger"  v-show="cd_created" @click="cancelCD">Cancel <i class="fas fa-window-close fa-fw"></i></button>
+                  <button type="button"  class="btn btn-success"  v-show="cd_created" @click="saveCD">Save <i class="fas fa-save fa-fw"></i></button>
 
                 </div>
               </div>
               <div class="box-body row">
-                <!--Left Col-->
+                
                 <div class="col-8">
-                  
+
 
                   <div class="input-group mb-2">
                     
                     <div class="input-group-prepend">
-                      <span class="input-group-text inputGroup-sizing-default">Payee</span>
+                      <span class="input-group-text inputGroup-sizing-default"  v-bind:style="[readabilityObject]">Payee</span>
                     </div>  
-                    <input v-model="current_payee_name" v-bind:readonly="transaction_created" type="text" class="form-control col-12" id="inputPayeeName" placeholder="Payees Name">
+                    <input v-model="current_payee_name" v-bind:readonly="cd_created" type="text" class="form-control col-12" id="inputPayeeName" placeholder="Payees Name" v-bind:style="[readabilityObject]">
                       
                     <span class="input-group-btn col-1">
-                        <button type="button" v-show="!transaction_created" class="btn btn-success" @click="searchPayeeModal"><i class="fas fa-search fa-fw"></i></button>
+                        <button type="button" v-show="!cd_created" class="btn btn-success" @click="searchPayeeModal"><i class="fas fa-search fa-fw"></i></button>
                     </span>  
 
                     <p v-show="no_payee" class="empty-field-message">** Please select payee!</p>  
@@ -47,13 +47,13 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="inputGroup-sizing-default">Address</span>
                     </div>
-                    <input v-bind:readonly="transaction_created" type="text" class="form-control col-12" id="inputPayeesAddress" placeholder="Address" v-model="current_payee_address">
+                    <input v-bind:readonly="cd_created" type="text" class="form-control col-12" id="inputPayeesAddress" placeholder="Address" v-model="current_payee_address">
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="inputGroup-sizing-default">TIN</span>
                     </div>
-                      <input v-bind:readonly="transaction_created" type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN"  v-model="current_payee_tin">
+                      <input v-bind:readonly="cd_created" type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN"  v-model="current_payee_tin">
                     
                    
                   </div>
@@ -63,12 +63,12 @@
                     </div>
                     
                     
-                    <input v-bind:readonly="transaction_created" type="text" class="form-control col-2" id="inputAccountCode" placeholder="Code"  v-model="form.account_code">
+                    <input v-bind:readonly="cd_created" type="text" class="form-control col-2" id="inputAccountCode" placeholder="Code"  v-model="form.account_code">
 
                     <input readonly="true" type="text" class="form-control col-9" id="inputAccountName" placeholder="Account Name" v-model="form.account_name">
 
                     <span class="input-group-btn col-1">
-                        <button type="button" v-show="!transaction_created" class="btn btn-success" @click="searchAccountModal('header')"><i class="fas fa-search fa-fw"></i></button>
+                        <button type="button" v-show="!cd_created" class="btn btn-success" @click="searchAccountModal('header')"><i class="fas fa-search fa-fw"></i></button>
 
                     </span>
                     
@@ -86,27 +86,27 @@
                       <span class="input-group-text inputGroup-sizing-default">Ref. #</span>
                     </div>
 
-                    <input v-bind:readonly="transaction_created" type="text"  v-model="form.reference_no" class="form-control col-12" id="inputReferenceNo" placeholder="Reference No">
+                    <input v-bind:readonly="cd_created" type="text"  v-model="form.reference_no" class="form-control col-12" id="inputReferenceNo" placeholder="Reference No">
                     <p v-show="no_reference_no" class="empty-field-message">** Please enter reference number!</p>
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Date</span>
                     </div>
-                    <input v-bind:readonly="transaction_created" type="date" v-model="form.transaction_date" class="form-control col-12" id="inputDate" placeholder="Date">
+                    <input v-bind:readonly="cd_created" type="date" v-model="form.transaction_date" class="form-control col-12" id="inputDate" placeholder="Date">
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
-                      <span class="input-group-text inputGroup-sizing-default">CR #</span>
+                      <span class="input-group-text inputGroup-sizing-default">CD #</span>
                     </div>
-                    <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="CR Number">
+                    <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="CD Number">
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Amount</span>
                     </div>
                     
-                    
+                    <!--input type="text"  v-model="Number(form.amount).toLocaleString()" readonly class="form-control col-12" id="inputAmount" placeholder="Amount" -->
                     <currency-input v-model="form.amount" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputAmount" placeholder="Amount"></currency-input>
                   </div>
 
@@ -135,11 +135,11 @@
       -->
 
 
-          <div  v-show="transaction_created" class="box box-warning mt-2">
+          <div  v-show="cd_created" class="box box-warning mt-2">
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title box-title-transaction">Credits</h3>
+                  <h3 class="box-title box-title-transaction">Debits</h3>
                   <div class="box-tools">
                     <button class="btn btn-success" @click="newEntry">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
@@ -205,7 +205,7 @@
       MAIN FORM ITEMS TABLE
       -->
 
-          <div v-show="transaction_created" class="box box-warning mt-2">
+          <div v-show="cd_created" class="box box-warning mt-2">
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
@@ -253,16 +253,13 @@
           </div>  
           <!-- /.box -->
 
-            <div v-show="transaction_created" class="box box-warning mt-2">
+            <div v-show="cd_created" class="box box-warning mt-2">
               
               <div class="form-group col-12 float-right">
                 <div class="row mt-2">
                 <label for="inputAmountExclusiveTax" class="col-sm-9 col-form-label" style="text-align: right;">Amount Exclusive of Tax</label>
                 <div class="col-sm-3">
-
-                  <currency-input v-model="form.amount_ex_tax" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputAmountExclusiveTax" placeholder="Amount Exclusive of Tax"></currency-input>
-
-                  
+                  <input readonly v-model="Number(form.amount_ex_tax).toLocaleString()" type="text" class="form-control" id="inputAmountExclusiveTax" placeholder="Amount Exclusive of Tax">
                 </div>
                 </div>
               </div>
@@ -271,10 +268,7 @@
                 
                 <label for="inputVAT" class="col-sm-9 col-form-label" style="text-align: right;">VAT</label>
                 <div class="col-sm-3">
-
-                  <currency-input v-model="form.vat" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputVAT" placeholder="VAT"></currency-input>
-
-                 
+                  <input readonly v-model="Number(form.vat).toLocaleString()" type="text" class="form-control" id="inputVAT" placeholder="VAT">
                 </div>
               </div>
               </div>
@@ -283,9 +277,7 @@
                 
                 <label for="inputTotalAmount" class="col-sm-9 col-form-label" style="text-align: right;">Total Amount</label>
                 <div class="col-sm-3">
-                  <currency-input v-model="form.amount" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputTotalAmount" placeholder="Total Amount"></currency-input>
-
-                  
+                  <input readonly v-model="Number(form.amount).toLocaleString()" type="text" class="form-control" id="inputTotalAmount" placeholder="Total Amount">
                 </div>
               </div>
               </div>
@@ -317,7 +309,7 @@
       -->
 
 
-      <div class="modal fade" v-show="transaction_created" id="entry-details" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+      <div class="modal fade" v-show="cd_created" id="entry-details" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content" style="width: 800px;">
             <div class="modal-header">
@@ -472,7 +464,7 @@
       -->
 
 
-      <div class="modal fade"  v-show="transaction_created"  id="entry-items" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+      <div class="modal fade"  v-show="cd_created"  id="entry-items" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -730,12 +722,21 @@
           </div>
         </div>
       </div>
+      <!-- Search Payee Modal -->      
+
+      <!--search-account
+      v-show="isModalVisible"
+      @close="closeSearchAccount"
+      / -->
+
       
 
     </div>
 </template>
 <script>
-
+    //import { ModelSelect } from 'vue-search-select'
+    //import { DynamicSelect } from 'vue-dynamic-select'
+    //import { BasicSelect } from 'vue-search-select'
   
     export default {
         data() {
@@ -743,7 +744,7 @@
               ledgers: [],
               user_id: '',
               editmode: false,
-              transaction_created: false,
+              cd_created: false,
               no_payee: false,
               no_reference_no: false,
               no_account_code: false,
@@ -765,12 +766,11 @@
               selected_branch: {},
               cd : {},
               form: new Form({
-
                   id:'',
                   payee_id: '',
                   reference_no: '',
                   transaction_no: '',
-                  transaction_type: 'CR', // default for Cash Disbursement
+                  transaction_type: 'CD', // default for Cash Disbursement
                   transaction_date: this.getDate(),
                   account_code: '',
                   account_name:'',
@@ -829,10 +829,16 @@
               entries: {},
               chart_of_accounts: {},
               chart_of_accounts_header: {},
-              chart_of_accounts_detail: {}
+              chart_of_accounts_detail: {},
+              readabilityObject: {
+                fontSize: user.font_size
+              }
+
           }
         },
         methods: {
+
+          
           loadBranches(){
 
             if(this.$gate.isAdminOrUser()){
@@ -853,11 +859,26 @@
               } else {
                   this.chart_of_accounts = this.chart_of_accounts_detail;
               }
+              /*
+              if(headerOrDetail == null){
+                axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
+              } else {
+                //axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
 
+                axios.get('api/chartaccount?headerordetail='+headerOrDetail+'&transaction=CR')
+                .then((data)=>{
+                  this.chart_of_accounts = data.data;
+                })
+                .catch(()=>{
+                  //
+                });
+
+              }
+              */
           },
           initChartAccounts(){
 
-              axios.get('api/chartaccount?headerordetail=header&transaction_type=CR')
+              axios.get('api/chartaccount?headerordetail=header&transaction_type=CD')
                 .then((data)=>{
                   this.chart_of_accounts_header = data.data;
                 })
@@ -865,7 +886,7 @@
                   //
                 });
                 
-              axios.get('api/chartaccount?headerordetail=detail&transaction_type=CR')
+              axios.get('api/chartaccount?headerordetail=detail&transaction_type=CD')
                 .then((data)=>{
                   this.chart_of_accounts_detail = data.data;
                 })
@@ -873,10 +894,13 @@
                   //
                 });  
           },
+          
+          /* Check if this is still being used.*/
           eventChild(Obj){
             //console.log(Obj.id);
             this.form.payee_id = Obj.id;
           },
+
           getDate() {
             const toTwoDigits = num => num < 10 ? '0' + num : num;
             let today = new Date();
@@ -885,7 +909,7 @@
             let day = toTwoDigits(today.getDate());
             return `${year}-${month}-${day}`;
           },
-          createTransaction(){
+          createCD(){
             if(this.form.payee_id.length == 0) {
               this.no_payee = true;
             } else {
@@ -905,14 +929,14 @@
             }
 
             if (this.no_account_code || this.no_reference_no || this.no_payee){
-              this.transaction_created = false;
+              this.cd_created = false;
             } else {
-              this.transaction_created = true;
+              this.cd_created = true;
             }
 
 
             this.form.transaction_no = this.createSerialNumber();
-            this.form.transaction_type = 'CR';
+            this.form.transaction_type = 'CD';
             this.form.post('api/cd')
                 .then((data)=>{
                   //console.log(data.data.id);
@@ -923,23 +947,15 @@
                 });
             
           },
-          saveTransaction(){
+          saveCD(){
             if(this.form.amount == 0) {
               return false;
             }
             this.$Progress.start();
             this.form_entry.put('api/cd/'+this.form.id)
             .then(() => {
-                /*
-                swal.fire(
-                    'Saved!',
-                    'Transaction Completed.',
-                    'success'
-                  );
-                  */
-                  this.transaction_created = false;
+                  this.cd_created = false;
                   this.form.post('api/cd/confirm/'+this.form.transaction_no);
-
                   this.ledgers.push({ 
                       id: this.form.id,
                       transaction_id: this.form.id, 
@@ -948,19 +964,19 @@
                       account_code: this.form.account_code,
                       account_name: this.form.account_name,
                       transaction_date: this.form.transaction_date,
-                      credit_amount: 0,
-                      debit_amount: this.form.amount
+                      credit_amount: this.form.amount,
+                      debit_amount: 0
                     });
                   this.ledgers.push({ 
                       id: 1,
                       transaction_id: this.form.id, 
                       transaction_no: this.form.transaction_no,
                       transaction_type: this.form.transaction_type,
-                      account_code: '2105110',
-                      account_name: 'Output Tax',
+                      account_code: '1105110',
+                      account_name: 'Input Tax',
                       transaction_date: this.form.transaction_date,
-                      credit_amount: this.form.vat,
-                      debit_amount: 0
+                      credit_amount: 0,
+                      debit_amount: this.form.vat
                     });  
 
                       let rawData = {
@@ -981,7 +997,7 @@
                       .catch(function (error) {
                           console.log(error);
                       });
-
+                        
                   this.$Progress.finish();
                                     
             })
@@ -999,14 +1015,15 @@
                   confirmButtonText: 'Ok'
                 }).then((result) => {
                   if (result.value) {
-                    //Reload Current Pages
+                    //Reload Current Page
                     this.$router.go();        
                   }
                 });
+             
 
           },
-          cancelTransaction(){
-            this.transaction_created = false;
+          cancelCD(){
+            this.cd_created = false;
             this.form.delete('api/cd/cancel/'+this.form.transaction_no);
           },
           searchAccountModal(headerOrDetail = 'header'){
@@ -1082,10 +1099,24 @@
                 });
           },
           loadEntries() {
+              /*
               let transaction_no = this.form.transaction_no;
               axios.get('api/cd/entries/list?transaction_no='+transaction_no)
                 .then((data)=>{
                   this.entries = data.data;
+
+                })
+                .catch(()=>{
+                  //
+                });
+              */  
+          },
+          loadPurchase() {
+              
+              axios.get('api/cd/purchase/list')
+                .then((data)=>{
+                  this.entries = data.data;
+                  console.log(this.entries);
                 })
                 .catch(()=>{
                   //
@@ -1131,7 +1162,7 @@
               this.form_entry.reset();
               this.form_entry.transaction_id = this.form.id;
               this.form_entry.transaction_no = this.form.transaction_no;
-              this.form_entry.transaction_type = 'CR';
+              this.form_entry.transaction_type = 'CD';
               this.save_button_entry_enabled = true;
               this.form_entry.post('api/cd/entry')
                 .then((data)=>{
@@ -1163,7 +1194,9 @@
               if (this.no_entry_account_code || this.no_entry_branch_id){
                 return false;
               }
+
               this.save_button_item_enabled = true;
+
               this.editmode = false;
               this.form_item.reset();
 
@@ -1172,7 +1205,7 @@
               this.no_quantity = false;
               this.form_item.transaction_entry_id = this.form_entry.id;
               this.form_item.transaction_no = this.form.transaction_no;
-              this.form_item.transaction_type = 'CR';
+              this.form_item.transaction_type = 'CD';
               this.form_item.account_code = this.form_entry.account_code;
 
               this.form_item.post('api/cd/item')
@@ -1216,6 +1249,7 @@
             //this.form_entry.debit_amount = 0;
             // ** Temporary data to bypass Column cannot be null ERROR's
             this.save_button_entry_enabled = false;
+              
             this.$Progress.start();
             this.form_entry.put('api/cd/entry/'+this.form_entry.id)
             .then(() => {
@@ -1230,7 +1264,7 @@
                   this.form.amount += this.form_entry.amount;
                   this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
                   this.form.vat += this.form_entry.vat;
-                  
+
                   this.ledgers.push({ 
                       id: this.form_entry.id,
                       transaction_id: this.form.id, 
@@ -1239,10 +1273,10 @@
                       account_code: this.form_entry.account_code,
                       account_name: this.form_entry.account_name,
                       transaction_date: this.form.transaction_date,
-                      credit_amount: this.form_entry.amount_ex_tax,
-                      debit_amount: 0
+                      credit_amount: 0,
+                      debit_amount: this.form_entry.amount_ex_tax
                     });
-
+                  //console.log(this.ledgers);
                   this.$Progress.finish();
                   VueListen.$emit('RefreshEntryTable');
             })
@@ -1264,7 +1298,6 @@
                     this.form.amount = parseFloat(this.form.amount - entry_amount).toFixed(2) * 1;
                     this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
                     this.form.vat = (this.form.vat - entry_vat).toFixed(2) * 1;
-                    
                     VueListen.$emit('RefreshItemTable');
                     VueListen.$emit('RefreshEntryTable');
 
@@ -1318,6 +1351,7 @@
             } 
 
             this.save_button_item_enabled = false;
+            
 
             this.$Progress.start();
             this.form_item.put('api/cd/item/'+this.form_item.id)
@@ -1367,16 +1401,22 @@
             this.form_entry.branch_name = this.selected_branch.name;
           }
 
+          
+
+
         },
 
         created() {
             
+            
+            //this.loadUsers();
             this.loadPayees();
             this.loadBranches();
             this.initChartAccounts();
 
             this.loadEntryItems();
             this.loadEntries();
+            this.loadPurchase();
             //this.SearchIt = _.debounce(this.SearchIt, 1000);
             
             VueListen.$on('RefreshItemTable',() => {
@@ -1401,7 +1441,17 @@
                 $('.modal:visible').length && $(document.body).addClass('modal-open');
             });
 
-            
+            /*Backdrop z-index fix
+              This solution uses a setTimeout because the .modal-backdrop isn't created when the event show.bs.modal is triggered.
+
+            $(document).on('show.bs.modal', '.modal', function () {
+                var zIndex = 1040 + (10 * $('.modal:visible').length);
+                $(this).css('z-index', zIndex);
+                setTimeout(function() {
+                    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+                }, 0);
+            });
+            */
         },
         computed: {
             
@@ -1415,5 +1465,5 @@
     }
 </script>
 <style type="text/css">
-
+  
 </style>

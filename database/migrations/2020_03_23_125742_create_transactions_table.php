@@ -25,6 +25,7 @@ class CreateTransactionsTable extends Migration
             $table->decimal('amount', 14, 2);
             $table->decimal('credit_amount', 14, 2);
             $table->decimal('debit_amount', 14, 2);
+            $table->decimal('total_payment', 14, 2)->default(0);
             $table->decimal('amount_ex_tax', 14, 2);
             $table->decimal('vat', 14, 2);
             $table->string('wtax_code');

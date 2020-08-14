@@ -115,7 +115,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <router-link to="/purchase" class="nav-link">
 
                   <i class="nav-icon fas fa-cart-plus"></i>
-                  <p v-bind:style="[readabilityObject]">Purchase</p>
+                  <p v-bind:style="[readabilityObject]">Purchases</p>
+                </router-link>
+              </li>
+              @endcan
+              @can('isAdmin')
+              <li class="nav-item">
+                <router-link to="/payments" class="nav-link">
+
+                  <i class="nav-icon fas fa-cart-plus"></i>
+                  <p v-bind:style="[readabilityObject]">Payments</p>
                 </router-link>
               </li>
               @endcan
