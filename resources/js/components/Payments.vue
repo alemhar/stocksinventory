@@ -99,7 +99,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Payment #</span>
                     </div>
-                    <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="CD Number">
+                    <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="Payment Number">
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
@@ -166,8 +166,7 @@
                         <td>{{ entry.account_name }}</td>
                         <td>{{ entry.amount }}</td>
                         <td>{{ entry.total_payment }}</td>
-                        <td>{{ entry.vat }}</td>
-                        <td>{{ entry.vat }}</td> <!-- replace with computed amount minus total_payment -->
+                        <td>{{ currentBalance }}</td> <!-- replace with computed amount minus total_payment -->
                         <!-- 
                             X List should be ordered by updated_at 
                             Create payments/items object and store, entry.transaction_no, account_code, account_name, payment_amount
@@ -1461,6 +1460,9 @@
             */
         },
         computed: {
+          currentBalance(total_amount,payments){
+            return (total_amount - payments).toFixed(2);
+          }
             
           
 
