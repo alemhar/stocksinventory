@@ -7827,21 +7827,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -7935,23 +7920,32 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    loadBranches: function loadBranches() {
+    loadPurchase: function loadPurchase() {
       var _this = this;
+
+      axios.get('api/cd/purchase/list').then(function (data) {
+        _this.entries = data.data;
+        console.log(_this.entries);
+      })["catch"](function () {//
+      });
+    },
+    loadBranches: function loadBranches() {
+      var _this2 = this;
 
       if (this.$gate.isAdminOrUser()) {
         axios.get("api/branch").then(function (_ref) {
           var data = _ref.data;
-          return _this.branches = data;
+          return _this2.branches = data;
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
     },
     loadPayees: function loadPayees() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (this.$gate.isAdminOrUser()) {
         axios.get("api/payee").then(function (_ref2) {
           var data = _ref2.data;
-          return _this2.payees = data;
+          return _this3.payees = data;
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
     },
@@ -7980,14 +7974,14 @@ __webpack_require__.r(__webpack_exports__);
 
     },
     initChartAccounts: function initChartAccounts() {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.get('api/chartaccount?headerordetail=header&transaction_type=CD').then(function (data) {
-        _this3.chart_of_accounts_header = data.data;
+        _this4.chart_of_accounts_header = data.data;
       })["catch"](function () {//
       });
       axios.get('api/chartaccount?headerordetail=detail&transaction_type=CD').then(function (data) {
-        _this3.chart_of_accounts_detail = data.data;
+        _this4.chart_of_accounts_detail = data.data;
       })["catch"](function () {//
       });
     },
@@ -8009,7 +8003,7 @@ __webpack_require__.r(__webpack_exports__);
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
     createCD: function createCD() {
-      var _this4 = this;
+      var _this5 = this;
 
       if (this.form.payee_id.length == 0) {
         this.no_payee = true;
@@ -8039,12 +8033,12 @@ __webpack_require__.r(__webpack_exports__);
       this.form.transaction_type = 'CD';
       this.form.post('api/cd').then(function (data) {
         //console.log(data.data.id);
-        _this4.form.id = data.data.id;
+        _this5.form.id = data.data.id;
       })["catch"](function () {//
       });
     },
     saveCD: function saveCD() {
-      var _this5 = this;
+      var _this6 = this;
 
       if (this.form.amount == 0) {
         return false;
@@ -8052,36 +8046,36 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$Progress.start();
       this.form_entry.put('api/cd/' + this.form.id).then(function () {
-        _this5.cd_created = false;
+        _this6.cd_created = false;
 
-        _this5.form.post('api/cd/confirm/' + _this5.form.transaction_no);
+        _this6.form.post('api/cd/confirm/' + _this6.form.transaction_no);
 
-        _this5.ledgers.push({
-          id: _this5.form.id,
-          transaction_id: _this5.form.id,
-          transaction_no: _this5.form.transaction_no,
-          transaction_type: _this5.form.transaction_type,
-          account_code: _this5.form.account_code,
-          account_name: _this5.form.account_name,
-          transaction_date: _this5.form.transaction_date,
-          credit_amount: _this5.form.amount,
+        _this6.ledgers.push({
+          id: _this6.form.id,
+          transaction_id: _this6.form.id,
+          transaction_no: _this6.form.transaction_no,
+          transaction_type: _this6.form.transaction_type,
+          account_code: _this6.form.account_code,
+          account_name: _this6.form.account_name,
+          transaction_date: _this6.form.transaction_date,
+          credit_amount: _this6.form.amount,
           debit_amount: 0
         });
 
-        _this5.ledgers.push({
+        _this6.ledgers.push({
           id: 1,
-          transaction_id: _this5.form.id,
-          transaction_no: _this5.form.transaction_no,
-          transaction_type: _this5.form.transaction_type,
+          transaction_id: _this6.form.id,
+          transaction_no: _this6.form.transaction_no,
+          transaction_type: _this6.form.transaction_type,
           account_code: '1105110',
           account_name: 'Input Tax',
-          transaction_date: _this5.form.transaction_date,
+          transaction_date: _this6.form.transaction_date,
           credit_amount: 0,
-          debit_amount: _this5.form.vat
+          debit_amount: _this6.form.vat
         });
 
         var rawData = {
-          ledgers: _this5.ledgers
+          ledgers: _this6.ledgers
         };
         rawData = JSON.stringify(rawData);
         var formData = new FormData();
@@ -8096,9 +8090,9 @@ __webpack_require__.r(__webpack_exports__);
           console.log(error);
         });
 
-        _this5.$Progress.finish();
+        _this6.$Progress.finish();
       })["catch"](function () {
-        _this5.$Progress.fail();
+        _this6.$Progress.fail();
       });
       swal.fire({
         title: 'Saved!',
@@ -8111,7 +8105,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.value) {
           //Reload Current Page
-          _this5.$router.go();
+          _this6.$router.go();
         }
       });
     },
@@ -8167,39 +8161,39 @@ __webpack_require__.r(__webpack_exports__);
       $('#select-payee').modal('hide');
     },
     SearchIt: function SearchIt() {
-      var _this6 = this;
+      var _this7 = this;
 
       var query = this.searchText;
       var headerOrDetail = this.headerOrDetail;
       axios.get('api/searchAccount?q=' + query + '&transaction_type=CD&headerordetail=' + headerOrDetail).then(function (data) {
-        _this6.chart_of_accounts = data.data;
+        _this7.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
     },
     SearchPayee: function SearchPayee() {
-      var _this7 = this;
+      var _this8 = this;
 
       var query = this.searchPayee;
       axios.get('api/searchPayee?q=' + query).then(function (data) {
-        _this7.payees = data.data;
+        _this8.payees = data.data;
       })["catch"](function () {//
       });
     },
     loadEntryItems: function loadEntryItems() {
-      var _this8 = this;
+      var _this9 = this;
 
       var entry_id = this.form_entry.id;
       axios.get('api/cd/items/list?entry_id=' + entry_id).then(function (data) {
-        _this8.items = data.data;
+        _this9.items = data.data;
       })["catch"](function () {//
       });
     },
     loadEntries: function loadEntries() {
-      var _this9 = this;
+      var _this10 = this;
 
       var transaction_no = this.form.transaction_no;
       axios.get('api/cd/entries/list?transaction_no=' + transaction_no).then(function (data) {
-        _this9.entries = data.data;
+        _this10.entries = data.data;
       })["catch"](function () {//
       });
     },
@@ -8232,7 +8226,7 @@ __webpack_require__.r(__webpack_exports__);
       VueListen.$emit('RefreshItemTable'); //console.log(active_debit_row);
     },
     newEntry: function newEntry() {
-      var _this10 = this;
+      var _this11 = this;
 
       this.editmode = false;
       this.form_entry.reset();
@@ -8241,7 +8235,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.transaction_type = 'CD';
       this.save_button_entry_enabled = true;
       this.form_entry.post('api/cd/entry').then(function (data) {
-        _this10.form_entry.id = data.data.id; //console.log(data.data.id);
+        _this11.form_entry.id = data.data.id; //console.log(data.data.id);
 
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {//
@@ -8249,7 +8243,7 @@ __webpack_require__.r(__webpack_exports__);
       $('#entry-details').modal('show');
     },
     newItem: function newItem() {
-      var _this11 = this;
+      var _this12 = this;
 
       if (this.form_entry.account_code == 0) {
         this.no_entry_account_code = true;
@@ -8278,14 +8272,14 @@ __webpack_require__.r(__webpack_exports__);
       this.form_item.transaction_type = 'CD';
       this.form_item.account_code = this.form_entry.account_code;
       this.form_item.post('api/cd/item').then(function (data) {
-        _this11.form_item.id = data.data.id; //console.log(data.data.id);
+        _this12.form_item.id = data.data.id; //console.log(data.data.id);
       })["catch"](function () {//
       });
       this.loadEntryItems();
       $('#entry-items').modal('show');
     },
     cancelDebitEntry: function cancelDebitEntry() {
-      var _this12 = this;
+      var _this13 = this;
 
       //this.$Progress.start();
       this.form_item["delete"]('api/cd/entry/' + this.form_entry.id).then(function () {
@@ -8301,11 +8295,11 @@ __webpack_require__.r(__webpack_exports__);
 
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this12.$Progress.fail();
+        _this13.$Progress.fail();
       });
     },
     saveDebitEntry: function saveDebitEntry() {
-      var _this13 = this;
+      var _this14 = this;
 
       //console.log('Edit Payee');
       // ** Temporary data to bypass Column cannot be null ERROR's
@@ -8327,32 +8321,32 @@ __webpack_require__.r(__webpack_exports__);
           );
         */
 
-        _this13.form.amount += _this13.form_entry.amount;
-        _this13.form.amount_ex_tax += _this13.form_entry.amount_ex_tax;
-        _this13.form.vat += _this13.form_entry.vat;
+        _this14.form.amount += _this14.form_entry.amount;
+        _this14.form.amount_ex_tax += _this14.form_entry.amount_ex_tax;
+        _this14.form.vat += _this14.form_entry.vat;
 
-        _this13.ledgers.push({
-          id: _this13.form_entry.id,
-          transaction_id: _this13.form.id,
-          transaction_no: _this13.form.transaction_no,
-          transaction_type: _this13.form.transaction_type,
-          account_code: _this13.form_entry.account_code,
-          account_name: _this13.form_entry.account_name,
-          transaction_date: _this13.form.transaction_date,
+        _this14.ledgers.push({
+          id: _this14.form_entry.id,
+          transaction_id: _this14.form.id,
+          transaction_no: _this14.form.transaction_no,
+          transaction_type: _this14.form.transaction_type,
+          account_code: _this14.form_entry.account_code,
+          account_name: _this14.form_entry.account_name,
+          transaction_date: _this14.form.transaction_date,
           credit_amount: 0,
-          debit_amount: _this13.form_entry.amount_ex_tax
+          debit_amount: _this14.form_entry.amount_ex_tax
         }); //console.log(this.ledgers);
 
 
-        _this13.$Progress.finish();
+        _this14.$Progress.finish();
 
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this13.$Progress.fail();
+        _this14.$Progress.fail();
       });
     },
     deleteEntry: function deleteEntry(entry_id, entry_amount, entry_amount_ex_tax, entry_vat) {
-      var _this14 = this;
+      var _this15 = this;
 
       this.form_item["delete"]('api/cd/entry/' + entry_id).then(function () {
         //$('#entry-items').modal('hide');
@@ -8364,17 +8358,17 @@ __webpack_require__.r(__webpack_exports__);
             'success'
           );
         */
-        _this14.form.amount = parseFloat(_this14.form.amount - entry_amount).toFixed(2) * 1;
-        _this14.form.amount_ex_tax = (_this14.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
-        _this14.form.vat = (_this14.form.vat - entry_vat).toFixed(2) * 1;
+        _this15.form.amount = parseFloat(_this15.form.amount - entry_amount).toFixed(2) * 1;
+        _this15.form.amount_ex_tax = (_this15.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
+        _this15.form.vat = (_this15.form.vat - entry_vat).toFixed(2) * 1;
         VueListen.$emit('RefreshItemTable');
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this14.$Progress.fail();
+        _this15.$Progress.fail();
       });
     },
     cancelItem: function cancelItem() {
-      var _this15 = this;
+      var _this16 = this;
 
       //this.$Progress.start();
       this.form_item["delete"]('api/cd/item/' + this.form_item.id).then(function () {
@@ -8390,11 +8384,11 @@ __webpack_require__.r(__webpack_exports__);
 
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
-        _this15.$Progress.fail();
+        _this16.$Progress.fail();
       });
     },
     saveItem: function saveItem() {
-      var _this16 = this;
+      var _this17 = this;
 
       if (this.form_item.item.length == 0) {
         this.no_item = true;
@@ -8430,19 +8424,19 @@ __webpack_require__.r(__webpack_exports__);
           );
         */
 
-        _this16.form_entry.amount = parseFloat(_this16.form_entry.amount + _this16.form_item.sub_total).toFixed(2) * 1;
-        _this16.form_entry.amount_ex_tax = (_this16.form_entry.amount_ex_tax + _this16.form_item.tax_excluded).toFixed(2) * 1;
-        _this16.form_entry.vat += _this16.form_item.vat * 1;
+        _this17.form_entry.amount = parseFloat(_this17.form_entry.amount + _this17.form_item.sub_total).toFixed(2) * 1;
+        _this17.form_entry.amount_ex_tax = (_this17.form_entry.amount_ex_tax + _this17.form_item.tax_excluded).toFixed(2) * 1;
+        _this17.form_entry.vat += _this17.form_item.vat * 1;
 
-        _this16.$Progress.finish();
+        _this17.$Progress.finish();
 
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
-        _this16.$Progress.fail();
+        _this17.$Progress.fail();
       });
     },
     deleteItem: function deleteItem(item_id, item_sub_total, item_tax_excluded, item_vat) {
-      var _this17 = this;
+      var _this18 = this;
 
       this.form_item["delete"]('api/cd/item/' + item_id).then(function () {
         //$('#entry-items').modal('hide');
@@ -8454,12 +8448,12 @@ __webpack_require__.r(__webpack_exports__);
             'success'
           );
         */
-        _this17.form_entry.amount = parseFloat(_this17.form_entry.amount - item_sub_total).toFixed(2) * 1;
-        _this17.form_entry.amount_ex_tax = (_this17.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
-        _this17.form_entry.vat = (_this17.form_entry.vat - item_vat).toFixed(2) * 1;
+        _this18.form_entry.amount = parseFloat(_this18.form_entry.amount - item_sub_total).toFixed(2) * 1;
+        _this18.form_entry.amount_ex_tax = (_this18.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
+        _this18.form_entry.vat = (_this18.form_entry.vat - item_vat).toFixed(2) * 1;
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
-        _this17.$Progress.fail();
+        _this18.$Progress.fail();
       });
     },
     branchChange: function branchChange() {
@@ -8468,7 +8462,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this18 = this;
+    var _this19 = this;
 
     //this.loadUsers();
     this.loadPayees();
@@ -8478,10 +8472,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntries(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
 
     VueListen.$on('RefreshItemTable', function () {
-      _this18.loadEntryItems();
+      _this19.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this18.loadEntries();
+      _this19.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
@@ -81759,133 +81753,117 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c(
-                "div",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.cd_created,
-                      expression: "cd_created"
-                    }
-                  ],
-                  staticClass: "box box-warning mt-2"
-                },
-                [
-                  _c("div", { staticClass: "col-md-12" }, [
-                    _c("div", { staticClass: "box" }, [
-                      _c("div", { staticClass: "box-header" }, [
-                        _c(
-                          "h3",
-                          { staticClass: "box-title box-title-transaction" },
-                          [_vm._v("Debits")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "box-tools" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-success",
-                              on: { click: _vm.newEntry }
-                            },
-                            [
-                              _vm._v("Add Items "),
-                              _c("i", {
-                                staticClass: "fas fa-plus-circle fa-fw"
-                              })
-                            ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
+              _c("div", { staticClass: "box box-warning mt-2" }, [
+                _c("div", { staticClass: "col-md-12" }, [
+                  _c("div", { staticClass: "box" }, [
+                    _c("div", { staticClass: "box-header" }, [
                       _c(
-                        "div",
-                        {
-                          staticClass: "box-body table-responsive no-padding",
-                          attrs: { id: "debits-list" }
-                        },
-                        [
-                          _c("table", { staticClass: "table table-hover" }, [
-                            _c(
-                              "tbody",
-                              [
-                                _vm._m(7),
-                                _vm._v(" "),
-                                _vm._l(_vm.entries.data, function(entry) {
-                                  return _c(
-                                    "tr",
-                                    {
-                                      key: entry.id,
-                                      class: {
-                                        "table-warning":
-                                          _vm.active_debit_row == entry.id
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.selectDebitRow(entry.id)
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c("td", [
-                                        _vm._v(_vm._s(entry.account_code))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(entry.account_name))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(entry.branch_name))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v(_vm._s(entry.amount))]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(entry.amount_ex_tax))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v(_vm._s(entry.vat))]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _c(
-                                          "a",
-                                          {
-                                            attrs: { href: "#" },
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.deleteEntry(
-                                                  entry.id,
-                                                  entry.amount,
-                                                  entry.amount_ex_tax,
-                                                  entry.vat
-                                                )
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fa fa-trash"
-                                            })
-                                          ]
-                                        )
-                                      ])
-                                    ]
-                                  )
-                                })
-                              ],
-                              2
-                            )
-                          ])
-                        ]
+                        "h3",
+                        { staticClass: "box-title box-title-transaction" },
+                        [_vm._v("Debits")]
                       ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "box-footer" })
-                    ])
+                      _c("div", { staticClass: "box-tools" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-success",
+                            on: { click: _vm.newEntry }
+                          },
+                          [
+                            _vm._v("Add Items "),
+                            _c("i", { staticClass: "fas fa-plus-circle fa-fw" })
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "box-body table-responsive no-padding",
+                        attrs: { id: "debits-list" }
+                      },
+                      [
+                        _c("table", { staticClass: "table table-hover" }, [
+                          _c(
+                            "tbody",
+                            [
+                              _vm._m(7),
+                              _vm._v(" "),
+                              _vm._l(_vm.entries.data, function(entry) {
+                                return _c(
+                                  "tr",
+                                  {
+                                    key: entry.id,
+                                    class: {
+                                      "table-warning":
+                                        _vm.active_debit_row == entry.id
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.selectDebitRow(entry.id)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("td", [
+                                      _vm._v(_vm._s(entry.account_code))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(entry.account_name))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(entry.branch_name))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(entry.amount))]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(entry.amount_ex_tax))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(entry.vat))]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "a",
+                                        {
+                                          attrs: { href: "#" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.deleteEntry(
+                                                entry.id,
+                                                entry.amount,
+                                                entry.amount_ex_tax,
+                                                entry.vat
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "fa fa-trash"
+                                          })
+                                        ]
+                                      )
+                                    ])
+                                  ]
+                                )
+                              })
+                            ],
+                            2
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "box-footer" })
                   ])
-                ]
-              ),
+                ])
+              ]),
               _vm._v(" "),
               _c(
                 "div",

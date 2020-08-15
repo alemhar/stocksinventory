@@ -74,28 +74,14 @@
                     </div>
                       <input v-bind:readonly="cd_created" type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN"  v-model="current_payee_tin">
                     
-                    <!-- div class="col-6">
-                      <select v-model="form.tax_type" class="form-control col-12">
-                        <option value="TAX TYPE">TAX TYPE</option>
-                        <option value="VAT REG">VAT REG</option>
-                        <option value="NON VAT">NON VAT</option>
-                        <option value="VAT EXEMPT">VAT EXEMPT</option>
-                        <option value="ZERO RATED">ZERO RATED</option>
-                      </select>
-                    </div-->  
+                    
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Account</span>
                     </div>
                     
-                    <!-- select v-bind:readonly="cd_created" v-model="form.account_code" class="form-control col-12">
-                      <option>SALARIES AND WAGES</option>
-                      <option>TRAININGS AND SEMINARS</option>
-                      <option>TRAVEL AND TRANSPORTATION</option>
-                      <option>MEALS AMD SNACKS</option>
-                      <option>REPRESENTATION EXPENSES</option>
-                    </select -->
+                   
                     <input v-bind:readonly="cd_created" type="text" class="form-control col-2" id="inputAccountCode" placeholder="Code"  v-model="form.account_code">
 
                     <input readonly="true" type="text" class="form-control col-9" id="inputAccountName" placeholder="Account Name" v-model="form.account_name">
@@ -114,7 +100,7 @@
                 <!--Right Col-->
                 <div class="col-4">
                   <div class="input-group mb-2">
-                    <!--label for="inputReferenceNo">Reference No.</label -->
+                    
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Ref. #</span>
                     </div>
@@ -139,13 +125,12 @@
                       <span class="input-group-text inputGroup-sizing-default">Amount</span>
                     </div>
                     
-                    <!--input type="text"  v-model="Number(form.amount).toLocaleString()" readonly class="form-control col-12" id="inputAmount" placeholder="Amount" -->
-                    <currency-input v-model="form.amount" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputAmount" placeholder="Amount"></currency-input>
+                   <currency-input v-model="form.amount" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputAmount" placeholder="Amount"></currency-input>
                   </div>
 
                 </div>
               </div>
-              <!-- /.box-body -->
+              
             </form>
           </div>
 
@@ -167,8 +152,8 @@
       *
       -->
 
-
-          <div  v-show="cd_created" class="box box-warning mt-2">
+          <!-- v-show="cd_created" -->
+          <div   class="box box-warning mt-2">
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
@@ -870,8 +855,16 @@
           }
         },
         methods: {
-
-          
+          loadPurchase() {
+              axios.get('api/cd/purchase/list')
+                .then((data)=>{
+                  this.entries = data.data;
+                  console.log(this.entries);
+                })
+                .catch(()=>{
+                  //
+                });
+          },
           loadBranches(){
 
             if(this.$gate.isAdminOrUser()){
