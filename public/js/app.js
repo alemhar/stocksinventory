@@ -7814,12 +7814,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -8239,43 +8233,44 @@ __webpack_require__.r(__webpack_exports__);
       $('#entry-details').modal('show');
     },
     newItem: function newItem() {
-      var _this11 = this;
-
-      if (this.form_entry.account_code == 0) {
+      /*
+      if(this.form_entry.account_code == 0) {
         this.no_entry_account_code = true;
       } else {
         this.no_entry_account_code = false;
       }
-
-      if (this.form_entry.branch_id == 0) {
+      if(this.form_entry.branch_id == 0) {
         this.no_entry_branch_id = true;
       } else {
         this.no_entry_branch_id = false;
       }
-
-      if (this.no_entry_account_code || this.no_entry_branch_id) {
+       if (this.no_entry_account_code || this.no_entry_branch_id){
         return false;
       }
-
-      this.save_button_item_enabled = true;
-      this.editmode = false;
+       this.save_button_item_enabled = true;
+       this.editmode = false;
       this.form_item.reset();
-      this.no_item = false;
+       this.no_item = false;
       this.no_price = false;
       this.no_quantity = false;
       this.form_item.transaction_entry_id = this.form_entry.id;
       this.form_item.transaction_no = this.form.transaction_no;
       this.form_item.transaction_type = 'CD';
       this.form_item.account_code = this.form_entry.account_code;
-      this.form_item.post('api/cd/item').then(function (data) {
-        _this11.form_item.id = data.data.id; //console.log(data.data.id);
-      })["catch"](function () {//
-      });
+       this.form_item.post('api/cd/item')
+        .then((data)=>{
+          this.form_item.id = data.data.id;
+          //console.log(data.data.id);
+        })
+        .catch(()=>{
+          //
+        });
       this.loadEntryItems();
       $('#entry-items').modal('show');
+      */
     },
     cancelDebitEntry: function cancelDebitEntry() {
-      var _this12 = this;
+      var _this11 = this;
 
       //this.$Progress.start();
       this.form_item["delete"]('api/cd/entry/' + this.form_entry.id).then(function () {
@@ -8291,11 +8286,11 @@ __webpack_require__.r(__webpack_exports__);
 
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this12.$Progress.fail();
+        _this11.$Progress.fail();
       });
     },
     saveDebitEntry: function saveDebitEntry() {
-      var _this13 = this;
+      var _this12 = this;
 
       //console.log('Edit Payee');
       // ** Temporary data to bypass Column cannot be null ERROR's
@@ -8317,32 +8312,32 @@ __webpack_require__.r(__webpack_exports__);
           );
         */
 
-        _this13.form.amount += _this13.form_entry.amount;
-        _this13.form.amount_ex_tax += _this13.form_entry.amount_ex_tax;
-        _this13.form.vat += _this13.form_entry.vat;
+        _this12.form.amount += _this12.form_entry.amount;
+        _this12.form.amount_ex_tax += _this12.form_entry.amount_ex_tax;
+        _this12.form.vat += _this12.form_entry.vat;
 
-        _this13.ledgers.push({
-          id: _this13.form_entry.id,
-          transaction_id: _this13.form.id,
-          transaction_no: _this13.form.transaction_no,
-          transaction_type: _this13.form.transaction_type,
-          account_code: _this13.form_entry.account_code,
-          account_name: _this13.form_entry.account_name,
-          transaction_date: _this13.form.transaction_date,
+        _this12.ledgers.push({
+          id: _this12.form_entry.id,
+          transaction_id: _this12.form.id,
+          transaction_no: _this12.form.transaction_no,
+          transaction_type: _this12.form.transaction_type,
+          account_code: _this12.form_entry.account_code,
+          account_name: _this12.form_entry.account_name,
+          transaction_date: _this12.form.transaction_date,
           credit_amount: 0,
-          debit_amount: _this13.form_entry.amount_ex_tax
+          debit_amount: _this12.form_entry.amount_ex_tax
         }); //console.log(this.ledgers);
 
 
-        _this13.$Progress.finish();
+        _this12.$Progress.finish();
 
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this13.$Progress.fail();
+        _this12.$Progress.fail();
       });
     },
     deleteEntry: function deleteEntry(entry_id, entry_amount, entry_amount_ex_tax, entry_vat) {
-      var _this14 = this;
+      var _this13 = this;
 
       this.form_item["delete"]('api/cd/entry/' + entry_id).then(function () {
         //$('#entry-items').modal('hide');
@@ -8354,111 +8349,101 @@ __webpack_require__.r(__webpack_exports__);
             'success'
           );
         */
-        _this14.form.amount = parseFloat(_this14.form.amount - entry_amount).toFixed(2) * 1;
-        _this14.form.amount_ex_tax = (_this14.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
-        _this14.form.vat = (_this14.form.vat - entry_vat).toFixed(2) * 1;
+        _this13.form.amount = parseFloat(_this13.form.amount - entry_amount).toFixed(2) * 1;
+        _this13.form.amount_ex_tax = (_this13.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
+        _this13.form.vat = (_this13.form.vat - entry_vat).toFixed(2) * 1;
         VueListen.$emit('RefreshItemTable');
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this14.$Progress.fail();
+        _this13.$Progress.fail();
       });
     },
     cancelItem: function cancelItem() {
-      var _this15 = this;
-
-      //this.$Progress.start();
-      this.form_item["delete"]('api/cd/item/' + this.form_item.id).then(function () {
-        $('#entry-items').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        //this.$Progress.finish();
-
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {
-        _this15.$Progress.fail();
+      /*
+      this.form_item.delete('api/cd/item/'+this.form_item.id)
+      .then(() => {
+          $('#entry-items').modal('hide');
+      
+            VueListen.$emit('RefreshItemTable');
+      })
+      .catch(() => {
+          this.$Progress.fail();
       });
+      */
     },
     saveItem: function saveItem() {
-      var _this16 = this;
-
-      if (this.form_item.item.length == 0) {
+      /*
+      if(this.form_item.item.length == 0) {
         this.no_item = true;
       } else {
         this.no_item = false;
       }
-
-      if (this.form_item.price == 0) {
+       if(this.form_item.price == 0) {
         this.no_price = true;
       } else {
         this.no_price = false;
       }
-
-      if (this.form_item.quantity == 0) {
+      
+      if(this.form_item.quantity == 0) {
         this.no_quantity = true;
       } else {
         this.no_quantity = false;
       }
-
-      if (this.no_item || this.no_price || this.no_quantity) {
+      
+      if (this.no_item || this.no_price || this.no_quantity){
         return false;
-      }
-
-      this.save_button_item_enabled = false;
-      this.$Progress.start();
-      this.form_item.put('api/cd/item/' + this.form_item.id).then(function () {
-        $('#entry-items').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-
-        _this16.form_entry.amount = parseFloat(_this16.form_entry.amount + _this16.form_item.sub_total).toFixed(2) * 1;
-        _this16.form_entry.amount_ex_tax = (_this16.form_entry.amount_ex_tax + _this16.form_item.tax_excluded).toFixed(2) * 1;
-        _this16.form_entry.vat += _this16.form_item.vat * 1;
-
-        _this16.$Progress.finish();
-
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {
-        _this16.$Progress.fail();
+      } 
+       this.save_button_item_enabled = false;
+      
+       this.$Progress.start();
+      this.form_item.put('api/cd/item/'+this.form_item.id)
+      .then(() => {
+          $('#entry-items').modal('hide');
+          
+          
+            this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
+            this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
+            this.form_entry.vat += (this.form_item.vat * 1);
+            
+            this.$Progress.finish();
+            VueListen.$emit('RefreshItemTable');
+      })
+      .catch(() => {
+          this.$Progress.fail();
       });
+      */
     },
     deleteItem: function deleteItem(item_id, item_sub_total, item_tax_excluded, item_vat) {
-      var _this17 = this;
-
-      this.form_item["delete"]('api/cd/item/' + item_id).then(function () {
-        //$('#entry-items').modal('hide');
-
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        _this17.form_entry.amount = parseFloat(_this17.form_entry.amount - item_sub_total).toFixed(2) * 1;
-        _this17.form_entry.amount_ex_tax = (_this17.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
-        _this17.form_entry.vat = (_this17.form_entry.vat - item_vat).toFixed(2) * 1;
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {
-        _this17.$Progress.fail();
+      /*
+      this.form_item.delete('api/cd/item/'+item_id)
+      .then(() => {
+          //$('#entry-items').modal('hide');
+          
+            this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
+            this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
+            this.form_entry.vat = (this.form_entry.vat - item_vat).toFixed(2) * 1;
+            
+            VueListen.$emit('RefreshItemTable');
+      })
+      .catch(() => {
+          this.$Progress.fail();
       });
+      */
     },
     branchChange: function branchChange() {
       this.form_entry.branch_id = this.selected_branch.id;
       this.form_entry.branch_name = this.selected_branch.name;
+    },
+    payEntry: function payEntry() {
+      // entry_id,entry_transaction_no, account_code, account_name, payment_amount
+      $('#entry-payment').modal('show');
+    },
+    savePayment: function savePayment() {
+      $('#entry-payment').modal('hide');
     }
   },
   created: function created() {
-    var _this18 = this;
+    var _this14 = this;
 
     //this.loadUsers();
     this.loadPayees();
@@ -8469,10 +8454,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadPurchase(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
 
     VueListen.$on('RefreshItemTable', function () {
-      _this18.loadEntryItems();
+      _this14.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this18.loadEntries();
+      _this14.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
@@ -8495,7 +8480,11 @@ __webpack_require__.r(__webpack_exports__);
     });
     */
   },
-  computed: {},
+  computed: {
+    currentBalance: function currentBalance(total_amount, payments) {
+      return (total_amount - payments).toFixed(2);
+    }
+  },
   components: {}
 });
 
@@ -77475,7 +77464,7 @@ var render = function() {
                       _c(
                         "h3",
                         { staticClass: "box-title box-title-transaction" },
-                        [_vm._v("Cash Receipts")]
+                        [_vm._v("Cash Receipt")]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "box-tools" }, [
@@ -81701,7 +81690,7 @@ var render = function() {
                               type: "text",
                               readonly: "",
                               id: "inputDCNo",
-                              placeholder: "CD Number"
+                              placeholder: "Payment Number"
                             },
                             domProps: { value: _vm.form.transaction_no },
                             on: {
@@ -81757,8 +81746,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.cd_created,
-                      expression: "cd_created"
+                      value: !_vm.cd_created,
+                      expression: "!cd_created"
                     }
                   ],
                   staticClass: "box box-warning mt-2"
@@ -81837,9 +81826,9 @@ var render = function() {
                                         _vm._v(_vm._s(entry.total_payment))
                                       ]),
                                       _vm._v(" "),
-                                      _c("td", [_vm._v(_vm._s(entry.vat))]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v(_vm._s(entry.vat))]),
+                                      _c("td", [
+                                        _vm._v(_vm._s(_vm.currentBalance))
+                                      ]),
                                       _vm._v(" "),
                                       _c("td", [
                                         _c(
@@ -81848,19 +81837,17 @@ var render = function() {
                                             attrs: { href: "#" },
                                             on: {
                                               click: function($event) {
-                                                return _vm.payEntry(
-                                                  entry.id,
-                                                  entry.amount,
-                                                  entry.amount_ex_tax,
-                                                  entry.vat
-                                                )
+                                                return _vm.payEntry()
                                               }
                                             }
                                           },
                                           [
                                             _c("i", {
                                               staticClass: "fas fa-money-bill"
-                                            })
+                                            }),
+                                            _vm._v(
+                                              "\n                        Pay\n                        "
+                                            )
                                           ]
                                         )
                                       ])
@@ -82670,7 +82657,7 @@ var render = function() {
         ],
         staticClass: "modal fade",
         attrs: {
-          id: "entry-items",
+          id: "entry-payment",
           tabindex: "-1",
           role: "dialog",
           "aria-labelledby": "addNewLabel",
@@ -86397,7 +86384,7 @@ var render = function() {
                       _c(
                         "h3",
                         { staticClass: "box-title box-title-transaction" },
-                        [_vm._v("Sales")]
+                        [_vm._v("Sale")]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "box-tools" }, [
