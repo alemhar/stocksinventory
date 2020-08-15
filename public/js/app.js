@@ -8477,8 +8477,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.save_button_entry_enabled = false;
       this.form_entry.post('api/cd/entry').then(function (data) {
-        _this19.form_entry.id = data.data.id;
-        VueListen.$emit('RefreshItemTable');
+        _this19.form_entry.id = data.data.id; //VueListen.$emit('RefreshItemTable');    
       })["catch"](function () {//
       });
       $('#entry-payment').modal('hide');
@@ -81786,8 +81785,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: !_vm.cd_created,
-                      expression: "!cd_created"
+                      value: _vm.cd_created,
+                      expression: "cd_created"
                     }
                   ],
                   staticClass: "box box-warning mt-2"

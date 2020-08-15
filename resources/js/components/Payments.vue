@@ -149,7 +149,7 @@
       *
       *
       -->
-      <div  v-show="!cd_created" class="box box-warning mt-2">
+      <div  v-show="cd_created" class="box box-warning mt-2">
         <div class="col-md-12">
           <div class="">
             <div class="box-header">
@@ -1441,7 +1441,7 @@
                 .then((data)=>{
                   this.form_entry.id = data.data.id;
                   
-                  VueListen.$emit('RefreshItemTable');    
+                  //VueListen.$emit('RefreshItemTable');    
                 })
                 .catch(()=>{
                   //
