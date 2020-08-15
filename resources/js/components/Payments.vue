@@ -1498,7 +1498,7 @@
           savePayment(account_code)
           {
 
-            if(this.form_entry.amount = 0){
+            if(this.form_entry.amount == 0){
               return false;
             }
             this.amount +=  this.form_entry.amount;

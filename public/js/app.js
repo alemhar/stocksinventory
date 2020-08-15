@@ -8534,7 +8534,7 @@ __webpack_require__.r(__webpack_exports__);
     savePayment: function savePayment(account_code) {
       var _this20 = this;
 
-      if (this.form_entry.amount = 0) {
+      if (this.form_entry.amount == 0) {
         return false;
       }
 
