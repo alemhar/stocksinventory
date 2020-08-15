@@ -28,7 +28,7 @@ class CDEntryController extends Controller
     public function store(Request $request)
     {
 
-        return ['message' => 'Entry stored!'];
+        
         $this->validate($request,[
              'transaction_id' => 'required',
              'transaction_no' => 'required',
