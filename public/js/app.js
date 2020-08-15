@@ -8327,19 +8327,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this12.form.amount += _this12.form_entry.amount;
         _this12.form.amount_ex_tax += _this12.form_entry.amount_ex_tax;
         _this12.form.vat += _this12.form_entry.vat;
-
-        _this12.ledgers.push({
-          id: _this12.form_entry.id,
-          transaction_id: _this12.form.id,
-          transaction_no: _this12.form.transaction_no,
-          transaction_type: _this12.form.transaction_type,
-          account_code: _this12.form_entry.account_code,
-          account_name: _this12.form_entry.account_name,
-          transaction_date: _this12.form.transaction_date,
-          credit_amount: 0,
-          debit_amount: _this12.form_entry.amount_ex_tax
-        }); //console.log(this.ledgers);
-
+        /*
+        this.ledgers.push({ 
+            id: this.form_entry.id,
+            transaction_id: this.form.id, 
+            transaction_no: this.form.transaction_no,
+            transaction_type: this.form.transaction_type,
+            account_code: this.form_entry.account_code,
+            account_name: this.form_entry.account_name,
+            transaction_date: this.form.transaction_date,
+            credit_amount: 0,
+            debit_amount: this.form_entry.amount_ex_tax
+          });
+        */
+        //console.log(this.ledgers);
 
         _this12.$Progress.finish();
 

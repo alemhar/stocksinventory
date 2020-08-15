@@ -1284,7 +1284,7 @@
                   this.form.amount += this.form_entry.amount;
                   this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
                   this.form.vat += this.form_entry.vat;
-
+                  /*
                   this.ledgers.push({ 
                       id: this.form_entry.id,
                       transaction_id: this.form.id, 
@@ -1296,6 +1296,7 @@
                       credit_amount: 0,
                       debit_amount: this.form_entry.amount_ex_tax
                     });
+                  */  
                   //console.log(this.ledgers);
                   this.$Progress.finish();
                   VueListen.$emit('RefreshEntryTable');
