@@ -8470,7 +8470,7 @@ __webpack_require__.r(__webpack_exports__);
       });
       $('#entry-payment').modal('show');
     },
-    savePayment: function savePayment() {
+    savePayment: function savePayment(account_code) {
       var _this20 = this;
 
       this.save_button_entry_enabled = false;
@@ -8478,6 +8478,8 @@ __webpack_require__.r(__webpack_exports__);
         $('#entry-payment').modal('hide');
 
         _this20.loadPayments(account_code);
+
+        _this20.loadPaymentHistory();
       })["catch"](function () {
         _this20.$Progress.fail();
       });
@@ -8489,7 +8491,8 @@ __webpack_require__.r(__webpack_exports__);
     selectPaymentRow: function selectPaymentRow(active_debit_row_id, account_code) {
       this.active_debit_row = active_debit_row_id;
       this.form_entry.id = active_debit_row_id;
-      this.loadPayments(account_code); //VueListen.$emit('RefreshEntryTable');
+      this.loadPayments(account_code);
+      this.loadPaymentHistory(); //VueListen.$emit('RefreshEntryTable');
       //console.log(active_debit_row);
     },
     loadPayments: function loadPayments(account_code) {
@@ -8499,10 +8502,18 @@ __webpack_require__.r(__webpack_exports__);
         _this21.entries = data.data;
       })["catch"](function () {//
       });
+    },
+    loadPaymentHistory: function loadPaymentHistory() {
+      var _this22 = this;
+
+      axios.get('api/cd/entries/list?account_code=' + account_code).then(function (data) {
+        _this22.payment_history = data.data;
+      })["catch"](function () {//
+      });
     }
   },
   created: function created() {
-    var _this22 = this;
+    var _this23 = this;
 
     this.loadPayees();
     this.loadBranches();
@@ -8511,10 +8522,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntries();
     this.loadPurchase();
     VueListen.$on('RefreshItemTable', function () {
-      _this22.loadEntryItems();
+      _this23.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this22.loadEntries();
+      _this23.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);

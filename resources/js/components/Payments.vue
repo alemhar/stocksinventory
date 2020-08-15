@@ -1434,13 +1434,15 @@
               $('#entry-payment').modal('show');
 
           },
-          savePayment()
+          savePayment(account_code)
           {
             this.save_button_entry_enabled = false;
             this.form_entry.put('api/cd/entry/'+this.form_entry.id)
             .then(() => {
               $('#entry-payment').modal('hide');
+
               this.loadPayments(account_code);
+              this.loadPaymentHistory();
             })
             .catch(() => {
                 this.$Progress.fail();
@@ -1456,6 +1458,7 @@
               this.active_debit_row = active_debit_row_id;
               this.form_entry.id = active_debit_row_id;
               this.loadPayments(account_code);
+              this.loadPaymentHistory();
               //VueListen.$emit('RefreshEntryTable');
               //console.log(active_debit_row);
 
@@ -1469,7 +1472,15 @@
                   //
                 });
           },
-
+          loadPaymentHistory() {
+              axios.get('api/cd/entries/list?account_code='+account_code)
+                .then((data)=>{
+                  this.payment_history = data.data;
+                })
+                .catch(()=>{
+                  //
+                });
+          }
           
 
 
