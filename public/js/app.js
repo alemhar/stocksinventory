@@ -8538,7 +8538,7 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
 
-      this.amount += this.form_entry.amount;
+      this.form.amount += this.form_entry.amount;
       this.save_button_entry_enabled = false;
       this.form_entry.put('api/cd/entry/' + this.form_entry.id).then(function () {
         $('#entry-payment').modal('hide');
