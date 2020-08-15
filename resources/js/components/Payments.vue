@@ -451,7 +451,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" @click="cancelPayment">Cancel</button>
-              <button type="button" :disabled="!save_button_entry_enabled" class="btn btn-success" @click="saveDebitEntry">Save</button>
+              <button type="button" :disabled="!save_button_entry_enabled" class="btn btn-success" @click="savePayment">Save</button>
             </div>
 
             <!-- /form -->

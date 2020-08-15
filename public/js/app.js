@@ -82483,7 +82483,7 @@ var render = function() {
                         type: "button",
                         disabled: !_vm.save_button_entry_enabled
                       },
-                      on: { click: _vm.saveDebitEntry }
+                      on: { click: _vm.savePayment }
                     },
                     [_vm._v("Save")]
                   )
