@@ -28,6 +28,7 @@ class CDEntryController extends Controller
     public function store(Request $request)
     {
 
+        return ['message' => 'Entry stored!'];
         $this->validate($request,[
              'transaction_id' => 'required',
              'transaction_no' => 'required',
@@ -96,6 +97,7 @@ class CDEntryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        return ['message' => 'Entry updated!'];
         $transactionEntry = TransactionEntry::findOrFail($id);
 
         // $this->validate($request,[
