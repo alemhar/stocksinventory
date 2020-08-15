@@ -336,15 +336,15 @@
 
             <div v-show="cd_created" class="box box-warning mt-2">
               
-              <!-- div class="form-group col-12 float-right">
+              <div class="form-group col-12 float-right">
                 <div class="row mt-2">
                 <label for="inputAmountExclusiveTax" class="col-sm-9 col-form-label" style="text-align: right;">Amount Exclusive of Tax</label>
                 <div class="col-sm-3">
                   <input readonly v-model="Number(form.amount_ex_tax).toLocaleString()" type="text" class="form-control" id="inputAmountExclusiveTax" placeholder="Amount Exclusive of Tax">
                 </div>
                 </div>
-              </div -->
-              <!-- div class="form-group col-12 float-right">
+              </div>
+              <div class="form-group col-12 float-right">
                 <div class="row">
                 
                 <label for="inputVAT" class="col-sm-9 col-form-label" style="text-align: right;">VAT</label>
@@ -352,7 +352,7 @@
                   <input readonly v-model="Number(form.vat).toLocaleString()" type="text" class="form-control" id="inputVAT" placeholder="VAT">
                 </div>
               </div>
-              </div -->
+              </div>
               <div class="form-group col-12 float-right">
                 <div class="row">
                 

@@ -82077,6 +82077,109 @@ var render = function() {
                 },
                 [
                   _c("div", { staticClass: "form-group col-12 float-right" }, [
+                    _c("div", { staticClass: "row mt-2" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-sm-9 col-form-label",
+                          staticStyle: { "text-align": "right" },
+                          attrs: { for: "inputAmountExclusiveTax" }
+                        },
+                        [_vm._v("Amount Exclusive of Tax")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-3" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: Number(
+                                _vm.form.amount_ex_tax
+                              ).toLocaleString(),
+                              expression:
+                                "Number(form.amount_ex_tax).toLocaleString()"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            readonly: "",
+                            type: "text",
+                            id: "inputAmountExclusiveTax",
+                            placeholder: "Amount Exclusive of Tax"
+                          },
+                          domProps: {
+                            value: Number(
+                              _vm.form.amount_ex_tax
+                            ).toLocaleString()
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                Number(_vm.form.amount_ex_tax),
+                                "toLocaleString()",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-12 float-right" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-sm-9 col-form-label",
+                          staticStyle: { "text-align": "right" },
+                          attrs: { for: "inputVAT" }
+                        },
+                        [_vm._v("VAT")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-3" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: Number(_vm.form.vat).toLocaleString(),
+                              expression: "Number(form.vat).toLocaleString()"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            readonly: "",
+                            type: "text",
+                            id: "inputVAT",
+                            placeholder: "VAT"
+                          },
+                          domProps: {
+                            value: Number(_vm.form.vat).toLocaleString()
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                Number(_vm.form.vat),
+                                "toLocaleString()",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-12 float-right" }, [
                     _c("div", { staticClass: "row" }, [
                       _c(
                         "label",
