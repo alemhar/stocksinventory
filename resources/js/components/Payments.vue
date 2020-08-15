@@ -114,7 +114,7 @@
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
-                      <span class="input-group-text inputGroup-sizing-default">CD #</span>
+                      <span class="input-group-text inputGroup-sizing-default">Payment #</span>
                     </div>
                     <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="CD Number">
                   </div>
@@ -1424,6 +1424,8 @@
               this.form_entry.transaction_type = 'PAYMENT';
               this.form_entry.account_code = account_code;
               this.form_entry.account_name = account_name;
+              this.form_entry.branch_id = 0;
+              this.form_entry.branch_name = '';
               
 
               this.save_button_entry_enabled = true;

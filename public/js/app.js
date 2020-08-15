@@ -8467,6 +8467,8 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.transaction_type = 'PAYMENT';
       this.form_entry.account_code = account_code;
       this.form_entry.account_name = account_name;
+      this.form_entry.branch_id = 0;
+      this.form_entry.branch_name = '';
       this.save_button_entry_enabled = true;
       $('#entry-payment').modal('show');
     },
@@ -83265,7 +83267,7 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("CD #")]
+        [_vm._v("Payment #")]
       )
     ])
   },
