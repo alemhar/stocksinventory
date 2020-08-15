@@ -7809,6 +7809,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -81265,7 +81276,7 @@ var render = function() {
                       _c(
                         "h3",
                         { staticClass: "box-title box-title-transaction" },
-                        [_vm._v("Cash Disbursement")]
+                        [_vm._v("Payment")]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "box-tools" }, [
@@ -81809,6 +81820,10 @@ var render = function() {
                                     },
                                     [
                                       _c("td", [
+                                        _vm._v(_vm._s(entry.transaction_no))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
                                         _vm._v(_vm._s(entry.account_code))
                                       ]),
                                       _vm._v(" "),
@@ -81816,15 +81831,13 @@ var render = function() {
                                         _vm._v(_vm._s(entry.account_name))
                                       ]),
                                       _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(entry.branch_name))
-                                      ]),
-                                      _vm._v(" "),
                                       _c("td", [_vm._v(_vm._s(entry.amount))]),
                                       _vm._v(" "),
                                       _c("td", [
-                                        _vm._v(_vm._s(entry.amount_ex_tax))
+                                        _vm._v(_vm._s(entry.total_payment))
                                       ]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v(_vm._s(entry.vat))]),
                                       _vm._v(" "),
                                       _c("td", [_vm._v(_vm._s(entry.vat))]),
                                       _vm._v(" "),
@@ -81835,7 +81848,7 @@ var render = function() {
                                             attrs: { href: "#" },
                                             on: {
                                               click: function($event) {
-                                                return _vm.deleteEntry(
+                                                return _vm.payEntry(
                                                   entry.id,
                                                   entry.amount,
                                                   entry.amount_ex_tax,
@@ -81846,7 +81859,7 @@ var render = function() {
                                           },
                                           [
                                             _c("i", {
-                                              staticClass: "fa fa-trash"
+                                              staticClass: "fas fa-money-bill"
                                             })
                                           ]
                                         )
@@ -83429,7 +83442,7 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("CD #")]
+        [_vm._v("Payment #")]
       )
     ])
   },
@@ -83450,17 +83463,17 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", [
+      _c("th", [_vm._v("Purchase#")]),
+      _vm._v(" "),
       _c("th", [_vm._v("Account No.")]),
       _vm._v(" "),
       _c("th", [_vm._v("Name")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Branch")]),
-      _vm._v(" "),
       _c("th", [_vm._v("Amount")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Tax Excluded")]),
+      _c("th", [_vm._v("Payment")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Tax")]),
+      _c("th", [_vm._v("Balance")]),
       _vm._v(" "),
       _c("th", [_vm._v("Option")])
     ])

@@ -12,7 +12,7 @@
             <!-- form start -->
             <form role="form" @submit.prevent="createCD()">
               <div class="box-header with-border">
-                <h3 class="box-title box-title-transaction">Cash Disbursement</h3>
+                <h3 class="box-title box-title-transaction">Payment</h3>
                 <div class="box-tools">
                   <button type="submit" v-show="!cd_created" class="btn btn-success">Create <i class="fas fa-plus-circle fa-fw"></i></button>
                   <!-- @click="createCD()"  -->
@@ -97,7 +97,7 @@
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
-                      <span class="input-group-text inputGroup-sizing-default">CD #</span>
+                      <span class="input-group-text inputGroup-sizing-default">Payment #</span>
                     </div>
                     <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="CD Number">
                   </div>
@@ -151,25 +151,37 @@
                   <table class="table table-hover">
                     <tbody>
                       <tr>
+                        <th>Purchase#</th>
                         <th>Account No.</th>
                         <th>Name</th>
-                        <th>Branch</th>
                         <th>Amount</th>
-                        <th>Tax Excluded</th>
-                        <th>Tax</th>
+                        <th>Payment</th>
+                        <th>Balance</th>
                         <th>Option</th>
                         
                       </tr>
                       <tr v-for="entry in entries.data" :key="entry.id" @click="selectDebitRow(entry.id)" :class="{ 'table-warning' : active_debit_row == entry.id }" >
+                        <td>{{ entry.transaction_no }}</td>
                         <td>{{ entry.account_code }}</td>
                         <td>{{ entry.account_name }}</td>
-                        <td>{{ entry.branch_name }}</td>
                         <td>{{ entry.amount }}</td>
-                        <td>{{ entry.amount_ex_tax }}</td>
+                        <td>{{ entry.total_payment }}</td>
                         <td>{{ entry.vat }}</td>
+                        <td>{{ entry.vat }}</td> <!-- replace with computed amount minus total_payment -->
+                        <!-- 
+                            X List should be ordered by updated_at 
+                            Create payments/items object and store, entry.transaction_no, account_code, account_name, payment_amount
+                            Open a modal form for payment, Input payment.
+                            Update entry.balance/computed 
+
+                            Save-
+                            Update purchase transaction total_payment,
+                            entry.id,entry.transaction_no, account_code, account_name, payment_amount
+                        -->
                         <td>
-                          <a href="#" @click="deleteEntry(entry.id,entry.amount,entry.amount_ex_tax,entry.vat)">
-                            <i class="fa fa-trash"></i>
+                          <a href="#" @click="payEntry()">
+                            <i class="fas fa-money-bill"></i>
+                            <!-- i class="fa fa-money-bill"></i -->
                           </a>
                         </td>
                       </tr>
@@ -464,7 +476,7 @@
       -->
 
 
-      <div class="modal fade"  v-show="cd_created"  id="entry-items" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+      <div class="modal fade"  v-show="cd_created"  id="entry-payment" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -1179,7 +1191,7 @@
 
           },
           newItem(){
-
+              /*
               if(this.form_entry.account_code == 0) {
                 this.no_entry_account_code = true;
               } else {
@@ -1218,6 +1230,7 @@
                 });
               this.loadEntryItems();
               $('#entry-items').modal('show');
+              */
           },
           cancelDebitEntry(){
             //this.$Progress.start();
@@ -1307,27 +1320,20 @@
               });
           },
           cancelItem(){
-            //this.$Progress.start();
+            /*
             this.form_item.delete('api/cd/item/'+this.form_item.id)
             .then(() => {
                 $('#entry-items').modal('hide');
-                /*
-                swal.fire(
-                    'Updated!',
-                    'Payee information has been updated.',
-                    'success'
-                  );
-                */
-                  //this.$Progress.finish();
-
+            
                   VueListen.$emit('RefreshItemTable');
             })
             .catch(() => {
                 this.$Progress.fail();
             });
+            */
           },
           saveItem(){
-            
+            /*
             if(this.form_item.item.length == 0) {
               this.no_item = true;
             } else {
@@ -1357,13 +1363,8 @@
             this.form_item.put('api/cd/item/'+this.form_item.id)
             .then(() => {
                 $('#entry-items').modal('hide');
-                /*
-                swal.fire(
-                    'Updated!',
-                    'Payee information has been updated.',
-                    'success'
-                  );
-                */
+                
+                
                   this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
                   this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
                   this.form_entry.vat += (this.form_item.vat * 1);
@@ -1374,18 +1375,14 @@
             .catch(() => {
                 this.$Progress.fail();
             });
+            */
           },
           deleteItem(item_id,item_sub_total,item_tax_excluded,item_vat){
+              /*
               this.form_item.delete('api/cd/item/'+item_id)
               .then(() => {
                   //$('#entry-items').modal('hide');
-                  /*
-                  swal.fire(
-                      'Updated!',
-                      'Payee information has been updated.',
-                      'success'
-                    );
-                  */
+                  
                     this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
                     this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
                     this.form_entry.vat = (this.form_entry.vat - item_vat).toFixed(2) * 1;
@@ -1395,12 +1392,22 @@
               .catch(() => {
                   this.$Progress.fail();
               });
+              */
           },
           branchChange(){
             this.form_entry.branch_id = this.selected_branch.id ;
             this.form_entry.branch_name = this.selected_branch.name;
-          }
+          },
 
+          payEntry()
+          {
+            // entry_id,entry_transaction_no, account_code, account_name, payment_amount
+            $('#entry-payment').modal('show');
+          },
+          savePayment()
+          {
+            $('#entry-payment').modal('hide');
+          }
           
 
 
