@@ -8205,19 +8205,21 @@ __webpack_require__.r(__webpack_exports__);
       return "" + n + this.user_id;
     },
     computeTaxChange: function computeTaxChange(event) {
-      if (this.form_item.price && this.form_item.quantity) {
+      /*
+      if(this.form_item.price && this.form_item.quantity){
         this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
-
-        if (this.form_item.tax_type == 'VAT') {
+        if(this.form_item.tax_type == 'VAT'){
           //this.form_item.amount = event.target.value;
-          this.form_item.tax_excluded = (this.form_item.sub_total / 1.12).toFixed(2) * 1;
-          this.form_item.vat = (this.form_item.tax_excluded * 0.12).toFixed(2) * 1;
-        } else {
+           
+           this.form_item.tax_excluded = (this.form_item.sub_total/1.12).toFixed(2) * 1;
+           this.form_item.vat = (this.form_item.tax_excluded * 0.12).toFixed(2)  * 1;
+         } else {
           //this.form_entry.amount = event.target.value;
           this.form_item.vat = 0;
-          this.form_item.tax_excluded = this.form_item.sub_total * 1;
+          this.form_item.tax_excluded = this.form_item.sub_total  * 1;
         }
       }
+      */
     },
     selectDebitRow: function selectDebitRow(active_debit_row_id) {
       this.active_debit_row = active_debit_row_id;
@@ -81734,7 +81736,7 @@ var render = function() {
                               type: "text",
                               readonly: "",
                               id: "inputDCNo",
-                              placeholder: "CD Number"
+                              placeholder: "Payment Number"
                             },
                             domProps: { value: _vm.form.transaction_no },
                             on: {

@@ -116,7 +116,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Payment #</span>
                     </div>
-                    <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="CD Number">
+                    <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="Payment Number">
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
@@ -1144,6 +1144,7 @@
               return ""+n+this.user_id;
           },
           computeTaxChange(event){
+              /*
               if(this.form_item.price && this.form_item.quantity){
                 this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
                 if(this.form_item.tax_type == 'VAT'){
@@ -1161,6 +1162,7 @@
                   this.form_item.tax_excluded = this.form_item.sub_total  * 1;
                 }
               }
+              */
           },
           selectDebitRow(active_debit_row_id){
               this.active_debit_row = active_debit_row_id;
