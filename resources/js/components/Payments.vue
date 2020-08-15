@@ -420,7 +420,7 @@
                 
                 <label for="inputTotalAmount" class="col-sm-9 col-form-label" style="text-align: right;">Total Amount</label>
                 <div class="col-sm-3">
-                  <input readonly v-model="Number(form.amount).toLocaleString()" type="text" class="form-control" id="inputTotalAmount" placeholder="Total Amount">
+                  <input readonly v-model="form.amount" type="text" class="form-control" id="inputTotalAmount" placeholder="Total Amount">
                 </div>
               </div>
               </div>

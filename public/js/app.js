@@ -82320,8 +82320,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: Number(_vm.form.amount).toLocaleString(),
-                              expression: "Number(form.amount).toLocaleString()"
+                              value: _vm.form.amount,
+                              expression: "form.amount"
                             }
                           ],
                           staticClass: "form-control",
@@ -82331,19 +82331,13 @@ var render = function() {
                             id: "inputTotalAmount",
                             placeholder: "Total Amount"
                           },
-                          domProps: {
-                            value: Number(_vm.form.amount).toLocaleString()
-                          },
+                          domProps: { value: _vm.form.amount },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.$set(
-                                Number(_vm.form.amount),
-                                "toLocaleString()",
-                                $event.target.value
-                              )
+                              _vm.$set(_vm.form, "amount", $event.target.value)
                             }
                           }
                         })
