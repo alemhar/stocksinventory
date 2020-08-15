@@ -22,12 +22,31 @@
                 </div>
               </div>
               <div class="box-body row">
-                
+                <!--Left Col-->
                 <div class="col-8">
+                  <!-- div class="form-group">
+                    <label for="inputPayeesName">Payee</label>
+                    <input type="text" class="form-control col-12" id="inputPayeesName" placeholder="Payees Name">
+                  </div -->
 
+                  <!-- div class="form-group" -->
+                    <!--select name='payee_id' v-model='form.payee_id' class="form-control col-12">
+                      <option value=''>Please select payee...</option>
+                      <option v-for="payee in payees.data" v-bind:value="payee.id">{{ payee.name }}</option>
+                    </select -->
+                  <!-- /div -->
 
                   <div class="input-group mb-2">
-                    
+                    <!-- label for="inputPayeesName">Payee</label -->
+                    <!--dynamic-select 
+                      :options="payees.data"
+                      option-value="id"
+                      option-text="name"
+                      placeholder="Type to search"
+                      v-on:input="eventChild"
+                      v-model="current_payee"
+                      v-show="!cd_created"
+                      / -->
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default"  v-bind:style="[readabilityObject]">Payee</span>
                     </div>  
@@ -55,14 +74,28 @@
                     </div>
                       <input v-bind:readonly="cd_created" type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN"  v-model="current_payee_tin">
                     
-                   
+                    <!-- div class="col-6">
+                      <select v-model="form.tax_type" class="form-control col-12">
+                        <option value="TAX TYPE">TAX TYPE</option>
+                        <option value="VAT REG">VAT REG</option>
+                        <option value="NON VAT">NON VAT</option>
+                        <option value="VAT EXEMPT">VAT EXEMPT</option>
+                        <option value="ZERO RATED">ZERO RATED</option>
+                      </select>
+                    </div-->  
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Account</span>
                     </div>
                     
-                    
+                    <!-- select v-bind:readonly="cd_created" v-model="form.account_code" class="form-control col-12">
+                      <option>SALARIES AND WAGES</option>
+                      <option>TRAININGS AND SEMINARS</option>
+                      <option>TRAVEL AND TRANSPORTATION</option>
+                      <option>MEALS AMD SNACKS</option>
+                      <option>REPRESENTATION EXPENSES</option>
+                    </select -->
                     <input v-bind:readonly="cd_created" type="text" class="form-control col-2" id="inputAccountCode" placeholder="Code"  v-model="form.account_code">
 
                     <input readonly="true" type="text" class="form-control col-9" id="inputAccountName" placeholder="Account Name" v-model="form.account_name">
@@ -97,9 +130,9 @@
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
-                      <span class="input-group-text inputGroup-sizing-default">Payment #</span>
+                      <span class="input-group-text inputGroup-sizing-default">CD #</span>
                     </div>
-                    <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="Payment Number">
+                    <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="CD Number">
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
@@ -117,6 +150,8 @@
           </div>
 
 
+
+
       <!-- Debit List     
       *
       *
@@ -131,52 +166,43 @@
       *
       *
       -->
-          <div  v-show="!cd_created" class="box box-warning mt-2">
+
+
+          <div  v-show="cd_created" class="box box-warning mt-2">
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title box-title-transaction">Purchases</h3>
+                  <h3 class="box-title box-title-transaction">Debits</h3>
                   <div class="box-tools">
                     <button class="btn btn-success" @click="newEntry">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
                 </div>
+
+
                 <!-- /.box-header -->
                 <div id="debits-list" class="box-body table-responsive no-padding">
                   <table class="table table-hover">
                     <tbody>
                       <tr>
-                        <th>Purchase#</th>
                         <th>Account No.</th>
                         <th>Name</th>
+                        <th>Branch</th>
                         <th>Amount</th>
-                        <th>Payment</th>
-                        <th>Balance</th>
+                        <th>Tax Excluded</th>
+                        <th>Tax</th>
                         <th>Option</th>
                         
                       </tr>
                       <tr v-for="entry in entries.data" :key="entry.id" @click="selectDebitRow(entry.id)" :class="{ 'table-warning' : active_debit_row == entry.id }" >
-                        <td>{{ entry.transaction_no }}</td>
                         <td>{{ entry.account_code }}</td>
                         <td>{{ entry.account_name }}</td>
+                        <td>{{ entry.branch_name }}</td>
                         <td>{{ entry.amount }}</td>
-                        <td>{{ entry.total_payment }}</td>
-                        <td>{{ currentBalance(entry.amount,entry.total_payment) }}</td> <!-- replace with computed amount minus total_payment -->
-                        
-                        <!-- 
-                            X List should be ordered by updated_at 
-                            Create payments/items object and store, entry.transaction_no, account_code, account_name, payment_amount
-                            Open a modal form for payment, Input payment.
-                            Update entry.balance/computed 
-
-                            Save-
-                            Update purchase transaction total_payment,
-                            entry.id,entry.transaction_no, account_code, account_name, payment_amount
-                        -->
+                        <td>{{ entry.amount_ex_tax }}</td>
+                        <td>{{ entry.vat }}</td>
                         <td>
-                          <a href="#" @click="payEntry(entry.id,)">
-                            <i class="fas fa-money-bill"></i>
-                            Pay
-                            <!-- i class="fa fa-money-bill"></i -->
+                          <a href="#" @click="deleteEntry(entry.id,entry.amount,entry.amount_ex_tax,entry.vat)">
+                            <i class="fa fa-trash"></i>
                           </a>
                         </td>
                       </tr>
@@ -195,9 +221,72 @@
           </div>  
           <!-- /.box -->
 
- 
-          
-            <!-- div v-show="cd_created" class="box box-warning mt-2">
+
+      <!-- Item List     
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      MAIN FORM ITEMS TABLE
+      -->
+
+          <div v-show="cd_created" class="box box-warning mt-2">
+            <div class="col-md-12">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title box-title-transaction">Items</h3>
+                  <!--div class="box-tools">
+                    <button class="btn btn-success" @click="newItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
+                  </div-->
+                </div>
+                <!-- /.box-header -->
+                <div id="item-list" class="box-body table-responsive no-padding">
+                  <table class="table table-hover">
+                    <tbody>
+                      <tr>
+                        <th>Account No.</th>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Tax Type</th>
+                        <th>Sub-Total</th>
+                        <th>Tax Excluded</th>
+                        <th>Vat</th>
+                      </tr>
+                      <tr v-for="item in items.data" :key="item.id">
+                        <td>{{ item.account_code }}</td>
+                        <td>{{ item.item }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.price }}</td>
+                        <td>{{ item.tax_type }}</td>
+                        <td>{{ item.sub_total }}</td>
+                        <td>{{ item.tax_excluded }}</td>
+                        <td>{{ item.vat }}</td>
+                      </tr>
+                      
+                  </tbody>
+                </table>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                  
+                </div> 
+              </div>
+              <!-- /.box -->
+            </div>
+
+          </div>  
+          <!-- /.box -->
+
+            <div v-show="cd_created" class="box box-warning mt-2">
               
               <div class="form-group col-12 float-right">
                 <div class="row mt-2">
@@ -226,10 +315,10 @@
               </div>
               </div>
             
-            </div -->
+            </div>
           
           </div>
-          
+          <!-- /.box -->
         </div>
         </div>
 
@@ -253,7 +342,7 @@
       -->
 
 
-      <div class="modal fade" v-show="cd_created" id="entry-payment" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+      <div class="modal fade" v-show="cd_created" id="entry-details" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content" style="width: 800px;">
             <div class="modal-header">
@@ -303,7 +392,45 @@
               <div class="input-group mb-2">
                 <p v-show="no_entry_branch_id" class="empty-field-message">** Please indicate branch.</p>
               </div>
-              
+              <div class="box-header">
+                  <h3 class="box-title box-title-transaction">Items</h3>
+                  <div class="box-tools">
+                    <button class="btn btn-success" @click="newItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
+                  </div>
+                </div>
+
+                <!-- /.box-header -->
+                <div id="item-list" class="box-body table-responsive no-padding">
+                  <table class="table table-hover">
+                    <tbody>
+                      <tr>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Sub-Total</th>
+                        <th>Tax Excluded</th>
+                        <th>Vat</th>
+                        <th>Option</th>
+                      </tr>
+                      <tr v-for="item in items.data" :key="item.id">
+                        <td>{{ item.item }}</td>
+                        <td>{{ item.quantity }}</td> 
+                        <td>{{ item.price }}</td> 
+                        <td>{{ item.sub_total }}</td> 
+                        <td>{{ item.tax_excluded }}</td> 
+                        <td>{{ item.vat }}</td> 
+                        <td>
+                          <a href="#" @click="deleteItem(item.id,item.sub_total,item.tax_excluded,item.vat)">
+                            <i class="fa fa-trash"></i>
+                          </a>
+                        </td>
+                      </tr>  
+
+
+                  </tbody>
+                </table>
+                </div>
+                <!-- /.box-body -->
 
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
@@ -316,7 +443,30 @@
                   <has-error :form="form_entry" field="amount"></has-error>
               </div>
 
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text inputGroup-sizing-default">Tax Excluded</span>
+                </div>
+
               
+                  <input v-model="Number(form_entry.amount_ex_tax).toLocaleString()" name="amount_ex_tax" id="amount_ex_tax"
+                  
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount_ex_tax') }" readonly aria-describedby="inputGroup-sizing-default">
+                  <has-error :form="form_entry" field="amount_ex_tax"></has-error>
+              </div>
+
+
+              <div class="input-group mb-2">
+                
+                <div class="input-group-prepend">
+                  <span class="input-group-text inputGroup-sizing-default">Tax</span>
+                </div>
+              
+                  <input v-model="Number(form_entry.vat).toLocaleString()" name="vat" id="vat"
+                  
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('vat') }" readonly aria-describedby="inputGroup-sizing-default">
+                  <has-error :form="form_entry" field="vat"></has-error>
+              </div>
 
             </div>
             <div class="modal-footer">
@@ -331,7 +481,145 @@
       <!-- Entry Modal -->
 
 
-      
+      <!-- Item Modal
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      -->
+
+
+      <div class="modal fade"  v-show="cd_created"  id="entry-items" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add Item</h5>
+              <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update Entry</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <!-- form onsubmit="return false;" -->
+            <div class="modal-body">
+              
+              
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text inputGroup-sizing-default">Name</span>
+                </div>
+                
+                
+                <input v-model="form_item.item" type="text" name="item_name"
+                  
+                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('item') }" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
+                   
+                <has-error :form="form_item" field="item_name"></has-error>
+              </div>
+              <div class="input-group mb-2">
+                <p v-show="no_item" class="empty-field-message">** Please enter item.</p>
+              </div>  
+
+
+
+
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text inputGroup-sizing-default">Price</span>
+                </div>
+
+              
+                  <input v-model="form_item.price" name="price" id="price"
+                  @change="computeTaxChange"
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('price') }" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
+                  <has-error :form="form_item" field="price"></has-error>
+              </div>
+              <div class="input-group mb-2">
+                <p v-show="no_price" class="empty-field-message">** Please enter price.</p> 
+              </div>  
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text inputGroup-sizing-default">Quantity</span>
+                </div>
+
+                <input v-model="form_item.quantity" type="text" name="entry_description"
+                  @change="computeTaxChange"
+                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('quantity') }" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
+                  
+                <has-error :form="form_item" field="entry_description"></has-error>
+              </div>
+              <div class="input-group mb-2">
+                <p v-show="no_quantity" class="empty-field-message">** Please enter quantity.</p> 
+              </div>  
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text inputGroup-sizing-default">Total</span>
+                </div>
+
+                <input v-model="form_item.sub_total" type="text" name="entry_description"
+                  @change="computeTaxChange"
+                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('sub_total') }" aria-describedby="inputGroup-sizing-default" readonly>
+                <has-error :form="form_item" field="entry_description"></has-error>
+              </div>
+
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text inputGroup-sizing-default">Tax Type</span>
+                </div>
+
+              
+
+                <select v-model="form_item.tax_type" @change="computeTaxChange" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
+                  <option value="VAT">VAT</option>
+                  <option value="NON VAT">NON VAT</option>
+                  <option value="VAT EXEMPT">VAT EXEMPT</option>
+                  <option value="ZERO RATED">ZERO RATED</option>
+                </select>
+              </div>
+
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text inputGroup-sizing-default">Tax Excluded</span>
+                </div>
+
+              
+                  <input v-model="form_item.tax_excluded" name="amount_ex_tax" id="amount_ex_tax"
+                  
+                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('tax_excluded') }" readonly aria-describedby="inputGroup-sizing-default">
+                  <has-error :form="form_item" field="amount_ex_tax"></has-error>
+              </div>
+
+
+              <div class="input-group mb-2">
+                
+                <div class="input-group-prepend">
+                  <span class="input-group-text inputGroup-sizing-default">Tax</span>
+                </div>
+              
+                  <input v-model="form_item.vat" name="vat" id="vat"
+                  
+                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('vat') }" readonly aria-describedby="inputGroup-sizing-default">
+                  <has-error :form="form_item" field="vat"></has-error>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" @click="cancelItem" class="btn btn-danger">Cancel</button>
+              <button type="button" :disabled="!save_button_item_enabled" @click="saveItem" class="btn btn-success">Save</button>
+            </div>
+
+            <!-- /form -->
+          </div>
+        </div>
+      </div>
+      <!-- Item Modal -->
 
 
       <!-- Search Account Modal 
@@ -485,7 +773,6 @@
   
     export default {
         data() {
-          /*
           return {
               ledgers: [],
               user_id: '',
@@ -578,38 +865,13 @@
               chart_of_accounts_detail: {},
               readabilityObject: {
                 fontSize: user.font_size
-              },
-
-              ledgers: { 
-                      id: this.form.id,
-                      transaction_id: this.form.id, 
-                      transaction_no: this.form.transaction_no,
-                      transaction_type: this.form.transaction_type,
-                      account_code: this.form.account_code,
-                      account_name: this.form.account_name,
-                      transaction_date: this.form.transaction_date,
-                      credit_amount: this.form.amount,
-                      debit_amount: 0
-                    }
-
-
+              }
 
           }
-          */
         },
         methods: {
 
-          loadPurchase() {
-              
-              axios.get('api/cd/purchase/list')
-                .then((data)=>{
-                  this.entries = data.data;
-                  console.log(this.entries);
-                })
-                .catch(()=>{
-                  //
-                });
-          },
+          
           loadBranches(){
 
             if(this.$gate.isAdminOrUser()){
@@ -727,7 +989,6 @@
             .then(() => {
                   this.cd_created = false;
                   this.form.post('api/cd/confirm/'+this.form.transaction_no);
-                  /*
                   this.ledgers.push({ 
                       id: this.form.id,
                       transaction_id: this.form.id, 
@@ -769,7 +1030,7 @@
                       .catch(function (error) {
                           console.log(error);
                       });
-                  */      
+                        
                   this.$Progress.finish();
                                     
             })
@@ -871,19 +1132,15 @@
                 });
           },
           loadEntries() {
-              /*
               let transaction_no = this.form.transaction_no;
               axios.get('api/cd/entries/list?transaction_no='+transaction_no)
                 .then((data)=>{
                   this.entries = data.data;
-
                 })
                 .catch(()=>{
                   //
                 });
-              */  
           },
-          
           createSerialNumber(){
               // Get current date
               var d = new Date();
@@ -941,7 +1198,7 @@
 
           },
           newItem(){
-              /*
+
               if(this.form_entry.account_code == 0) {
                 this.no_entry_account_code = true;
               } else {
@@ -980,7 +1237,6 @@
                 });
               this.loadEntryItems();
               $('#entry-items').modal('show');
-              */
           },
           cancelDebitEntry(){
             //this.$Progress.start();
@@ -1027,7 +1283,7 @@
                   this.form.amount += this.form_entry.amount;
                   this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
                   this.form.vat += this.form_entry.vat;
-                  /*
+
                   this.ledgers.push({ 
                       id: this.form_entry.id,
                       transaction_id: this.form.id, 
@@ -1039,7 +1295,6 @@
                       credit_amount: 0,
                       debit_amount: this.form_entry.amount_ex_tax
                     });
-                  */  
                   //console.log(this.ledgers);
                   this.$Progress.finish();
                   VueListen.$emit('RefreshEntryTable');
@@ -1071,20 +1326,27 @@
               });
           },
           cancelItem(){
-            /*
+            //this.$Progress.start();
             this.form_item.delete('api/cd/item/'+this.form_item.id)
             .then(() => {
                 $('#entry-items').modal('hide');
-            
+                /*
+                swal.fire(
+                    'Updated!',
+                    'Payee information has been updated.',
+                    'success'
+                  );
+                */
+                  //this.$Progress.finish();
+
                   VueListen.$emit('RefreshItemTable');
             })
             .catch(() => {
                 this.$Progress.fail();
             });
-            */
           },
           saveItem(){
-            /*
+            
             if(this.form_item.item.length == 0) {
               this.no_item = true;
             } else {
@@ -1114,8 +1376,13 @@
             this.form_item.put('api/cd/item/'+this.form_item.id)
             .then(() => {
                 $('#entry-items').modal('hide');
-                
-                
+                /*
+                swal.fire(
+                    'Updated!',
+                    'Payee information has been updated.',
+                    'success'
+                  );
+                */
                   this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
                   this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
                   this.form_entry.vat += (this.form_item.vat * 1);
@@ -1126,14 +1393,18 @@
             .catch(() => {
                 this.$Progress.fail();
             });
-            */
           },
           deleteItem(item_id,item_sub_total,item_tax_excluded,item_vat){
-              /*
               this.form_item.delete('api/cd/item/'+item_id)
               .then(() => {
                   //$('#entry-items').modal('hide');
-                  
+                  /*
+                  swal.fire(
+                      'Updated!',
+                      'Payee information has been updated.',
+                      'success'
+                    );
+                  */
                     this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
                     this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
                     this.form_entry.vat = (this.form_entry.vat - item_vat).toFixed(2) * 1;
@@ -1143,25 +1414,12 @@
               .catch(() => {
                   this.$Progress.fail();
               });
-              */
           },
           branchChange(){
             this.form_entry.branch_id = this.selected_branch.id ;
             this.form_entry.branch_name = this.selected_branch.name;
-          },
-
-          payEntry()
-          {
-            // entry_id,entry_transaction_no, account_code, account_name, payment_amount
-            $('#entry-payment').modal('show');
-          },
-          savePayment()
-          {
-            $('#entry-payment').modal('hide');
-          },
-          currentBalance(total_amount,payments){
-            return (total_amount - payments).toFixed(2);
           }
+
           
 
 
@@ -1175,9 +1433,8 @@
             this.loadBranches();
             this.initChartAccounts();
 
-            //this.loadEntryItems();
-            //this.loadEntries();
-            this.loadPurchase();
+            this.loadEntryItems();
+            this.loadEntries();
             //this.SearchIt = _.debounce(this.SearchIt, 1000);
             
             VueListen.$on('RefreshItemTable',() => {
@@ -1215,7 +1472,6 @@
             */
         },
         computed: {
-          
             
           
 

@@ -7554,144 +7554,404 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    /*
     return {
-        ledgers: [],
-        user_id: '',
-        editmode: false,
-        cd_created: false,
-        no_payee: false,
-        no_reference_no: false,
-        no_account_code: false,
-        no_item: false,
-        no_price: false,
-        no_quantity: false,
-        no_entry_account_code: false,
-        no_entry_branch_id: false,
-        save_button_item_enabled: true,
-        save_button_entry_enabled: true,
-        searchText: '',
-        searchPayee: '',
-        headerOrDetail: 'header',
-        current_payee_id: '',
-        current_payee_name: '',
-        current_payee_address: '',
-        current_payee_tin: '',
-        active_debit_row: 0,
-        selected_branch: {},
-        cd : {},
-        form: new Form({
-            id:'',
-            payee_id: '',
-            reference_no: '',
-            transaction_no: '',
-            transaction_type: 'CD', // default for Cash Disbursement
-            transaction_date: this.getDate(),
-            account_code: '',
-            account_name:'',
-            amount: 0,
-            credit_amount: 0,
-            debit_amount: 0,
-            amount_ex_tax: 0,
-            vat: 0,
-            canceled: 0,
-            user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
-            
-            
-        }),
-        form_entry: new Form({
-             id:'',
-            transaction_id:'',
-            transaction_no:'',
-            transaction_type:'',
-            account_code : '',
-            account_name: '',
-            //entry_name: '',
-            //entry_description: '',
-            branch_id: '',
-            branch_name: '',
-            amount: 0,
-            amount_ex_tax: 0,
-            
-            vat: 0,
-            credit_amount: 0,
-            debit_amount: 0,
-            transaction_date: this.getDate(),
-            
-            
-        }),
-        form_item: new Form({
-             id:'',
-            transaction_entry_id:'',
-            transaction_no:'',
-            transaction_type:'',
-            account_code : '',
-            item: '',
-            quantity: 0,
-            price: 0,
-            sub_total: 0,
-            tax_type: 'VAT',
-            tax_excluded: 0,
-            vat: 0
-            
-            
-        }),
-        payees: {},
-        branches: {},
-        items: {},
-        entries: {},
-        chart_of_accounts: {},
-        chart_of_accounts_header: {},
-        chart_of_accounts_detail: {},
-        readabilityObject: {
-          fontSize: user.font_size
-        },
-         ledgers: { 
-                id: this.form.id,
-                transaction_id: this.form.id, 
-                transaction_no: this.form.transaction_no,
-                transaction_type: this.form.transaction_type,
-                account_code: this.form.account_code,
-                account_name: this.form.account_name,
-                transaction_date: this.form.transaction_date,
-                credit_amount: this.form.amount,
-                debit_amount: 0
-              }
-       }
-    */
+      ledgers: [],
+      user_id: '',
+      editmode: false,
+      cd_created: false,
+      no_payee: false,
+      no_reference_no: false,
+      no_account_code: false,
+      no_item: false,
+      no_price: false,
+      no_quantity: false,
+      no_entry_account_code: false,
+      no_entry_branch_id: false,
+      save_button_item_enabled: true,
+      save_button_entry_enabled: true,
+      searchText: '',
+      searchPayee: '',
+      headerOrDetail: 'header',
+      current_payee_id: '',
+      current_payee_name: '',
+      current_payee_address: '',
+      current_payee_tin: '',
+      active_debit_row: 0,
+      selected_branch: {},
+      cd: {},
+      form: new Form({
+        id: '',
+        payee_id: '',
+        reference_no: '',
+        transaction_no: '',
+        transaction_type: 'CD',
+        // default for Cash Disbursement
+        transaction_date: this.getDate(),
+        account_code: '',
+        account_name: '',
+        amount: 0,
+        credit_amount: 0,
+        debit_amount: 0,
+        amount_ex_tax: 0,
+        vat: 0,
+        canceled: 0,
+        user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
+      }),
+      form_entry: new Form({
+        id: '',
+        transaction_id: '',
+        transaction_no: '',
+        transaction_type: '',
+        account_code: '',
+        account_name: '',
+        //entry_name: '',
+        //entry_description: '',
+        branch_id: '',
+        branch_name: '',
+        amount: 0,
+        amount_ex_tax: 0,
+        vat: 0,
+        credit_amount: 0,
+        debit_amount: 0,
+        transaction_date: this.getDate()
+      }),
+      form_item: new Form({
+        id: '',
+        transaction_entry_id: '',
+        transaction_no: '',
+        transaction_type: '',
+        account_code: '',
+        item: '',
+        quantity: 0,
+        price: 0,
+        sub_total: 0,
+        tax_type: 'VAT',
+        tax_excluded: 0,
+        vat: 0
+      }),
+      payees: {},
+      branches: {},
+      items: {},
+      entries: {},
+      chart_of_accounts: {},
+      chart_of_accounts_header: {},
+      chart_of_accounts_detail: {},
+      readabilityObject: {
+        fontSize: user.font_size
+      }
+    };
   },
   methods: {
-    loadPurchase: function loadPurchase() {
-      var _this = this;
-
-      axios.get('api/cd/purchase/list').then(function (data) {
-        _this.entries = data.data;
-        console.log(_this.entries);
-      })["catch"](function () {//
-      });
-    },
     loadBranches: function loadBranches() {
-      var _this2 = this;
+      var _this = this;
 
       if (this.$gate.isAdminOrUser()) {
         axios.get("api/branch").then(function (_ref) {
           var data = _ref.data;
-          return _this2.branches = data;
+          return _this.branches = data;
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
     },
     loadPayees: function loadPayees() {
-      var _this3 = this;
+      var _this2 = this;
 
       if (this.$gate.isAdminOrUser()) {
         axios.get("api/payee").then(function (_ref2) {
           var data = _ref2.data;
-          return _this3.payees = data;
+          return _this2.payees = data;
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
     },
@@ -7720,14 +7980,14 @@ __webpack_require__.r(__webpack_exports__);
 
     },
     initChartAccounts: function initChartAccounts() {
-      var _this4 = this;
+      var _this3 = this;
 
       axios.get('api/chartaccount?headerordetail=header&transaction_type=CD').then(function (data) {
-        _this4.chart_of_accounts_header = data.data;
+        _this3.chart_of_accounts_header = data.data;
       })["catch"](function () {//
       });
       axios.get('api/chartaccount?headerordetail=detail&transaction_type=CD').then(function (data) {
-        _this4.chart_of_accounts_detail = data.data;
+        _this3.chart_of_accounts_detail = data.data;
       })["catch"](function () {//
       });
     },
@@ -7749,7 +8009,7 @@ __webpack_require__.r(__webpack_exports__);
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
     createCD: function createCD() {
-      var _this5 = this;
+      var _this4 = this;
 
       if (this.form.payee_id.length == 0) {
         this.no_payee = true;
@@ -7779,12 +8039,12 @@ __webpack_require__.r(__webpack_exports__);
       this.form.transaction_type = 'CD';
       this.form.post('api/cd').then(function (data) {
         //console.log(data.data.id);
-        _this5.form.id = data.data.id;
+        _this4.form.id = data.data.id;
       })["catch"](function () {//
       });
     },
     saveCD: function saveCD() {
-      var _this6 = this;
+      var _this5 = this;
 
       if (this.form.amount == 0) {
         return false;
@@ -7792,56 +8052,53 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$Progress.start();
       this.form_entry.put('api/cd/' + this.form.id).then(function () {
-        _this6.cd_created = false;
+        _this5.cd_created = false;
 
-        _this6.form.post('api/cd/confirm/' + _this6.form.transaction_no);
-        /*
-        this.ledgers.push({ 
-            id: this.form.id,
-            transaction_id: this.form.id, 
-            transaction_no: this.form.transaction_no,
-            transaction_type: this.form.transaction_type,
-            account_code: this.form.account_code,
-            account_name: this.form.account_name,
-            transaction_date: this.form.transaction_date,
-            credit_amount: this.form.amount,
-            debit_amount: 0
-          });
-        this.ledgers.push({ 
-            id: 1,
-            transaction_id: this.form.id, 
-            transaction_no: this.form.transaction_no,
-            transaction_type: this.form.transaction_type,
-            account_code: '1105110',
-            account_name: 'Input Tax',
-            transaction_date: this.form.transaction_date,
-            credit_amount: 0,
-            debit_amount: this.form.vat
-          });  
-             let rawData = {
-                ledgers: this.ledgers
-            }
-            rawData = JSON.stringify(rawData);
-            let formData = new FormData();
-                formData.append('ledgers', rawData);
-            axios.post('api/ledgers', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            })
-            .then((response)=>{
-                
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-        */
+        _this5.form.post('api/cd/confirm/' + _this5.form.transaction_no);
 
+        _this5.ledgers.push({
+          id: _this5.form.id,
+          transaction_id: _this5.form.id,
+          transaction_no: _this5.form.transaction_no,
+          transaction_type: _this5.form.transaction_type,
+          account_code: _this5.form.account_code,
+          account_name: _this5.form.account_name,
+          transaction_date: _this5.form.transaction_date,
+          credit_amount: _this5.form.amount,
+          debit_amount: 0
+        });
 
-        _this6.$Progress.finish();
+        _this5.ledgers.push({
+          id: 1,
+          transaction_id: _this5.form.id,
+          transaction_no: _this5.form.transaction_no,
+          transaction_type: _this5.form.transaction_type,
+          account_code: '1105110',
+          account_name: 'Input Tax',
+          transaction_date: _this5.form.transaction_date,
+          credit_amount: 0,
+          debit_amount: _this5.form.vat
+        });
+
+        var rawData = {
+          ledgers: _this5.ledgers
+        };
+        rawData = JSON.stringify(rawData);
+        var formData = new FormData();
+        formData.append('ledgers', rawData);
+        axios.post('api/ledgers', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }).then(function (response) {
+          console.log(response);
+        })["catch"](function (error) {
+          console.log(error);
+        });
+
+        _this5.$Progress.finish();
       })["catch"](function () {
-        _this6.$Progress.fail();
+        _this5.$Progress.fail();
       });
       swal.fire({
         title: 'Saved!',
@@ -7854,7 +8111,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.value) {
           //Reload Current Page
-          _this6.$router.go();
+          _this5.$router.go();
         }
       });
     },
@@ -7910,44 +8167,41 @@ __webpack_require__.r(__webpack_exports__);
       $('#select-payee').modal('hide');
     },
     SearchIt: function SearchIt() {
-      var _this7 = this;
+      var _this6 = this;
 
       var query = this.searchText;
       var headerOrDetail = this.headerOrDetail;
       axios.get('api/searchAccount?q=' + query + '&transaction_type=CD&headerordetail=' + headerOrDetail).then(function (data) {
-        _this7.chart_of_accounts = data.data;
+        _this6.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
     },
     SearchPayee: function SearchPayee() {
-      var _this8 = this;
+      var _this7 = this;
 
       var query = this.searchPayee;
       axios.get('api/searchPayee?q=' + query).then(function (data) {
-        _this8.payees = data.data;
+        _this7.payees = data.data;
       })["catch"](function () {//
       });
     },
     loadEntryItems: function loadEntryItems() {
-      var _this9 = this;
+      var _this8 = this;
 
       var entry_id = this.form_entry.id;
       axios.get('api/cd/items/list?entry_id=' + entry_id).then(function (data) {
-        _this9.items = data.data;
+        _this8.items = data.data;
       })["catch"](function () {//
       });
     },
     loadEntries: function loadEntries() {
-      /*
-      let transaction_no = this.form.transaction_no;
-      axios.get('api/cd/entries/list?transaction_no='+transaction_no)
-        .then((data)=>{
-          this.entries = data.data;
-         })
-        .catch(()=>{
-          //
-        });
-      */
+      var _this9 = this;
+
+      var transaction_no = this.form.transaction_no;
+      axios.get('api/cd/entries/list?transaction_no=' + transaction_no).then(function (data) {
+        _this9.entries = data.data;
+      })["catch"](function () {//
+      });
     },
     createSerialNumber: function createSerialNumber() {
       // Get current date
@@ -7995,44 +8249,43 @@ __webpack_require__.r(__webpack_exports__);
       $('#entry-details').modal('show');
     },
     newItem: function newItem() {
-      /*
-      if(this.form_entry.account_code == 0) {
+      var _this11 = this;
+
+      if (this.form_entry.account_code == 0) {
         this.no_entry_account_code = true;
       } else {
         this.no_entry_account_code = false;
       }
-      if(this.form_entry.branch_id == 0) {
+
+      if (this.form_entry.branch_id == 0) {
         this.no_entry_branch_id = true;
       } else {
         this.no_entry_branch_id = false;
       }
-       if (this.no_entry_account_code || this.no_entry_branch_id){
+
+      if (this.no_entry_account_code || this.no_entry_branch_id) {
         return false;
       }
-       this.save_button_item_enabled = true;
-       this.editmode = false;
+
+      this.save_button_item_enabled = true;
+      this.editmode = false;
       this.form_item.reset();
-       this.no_item = false;
+      this.no_item = false;
       this.no_price = false;
       this.no_quantity = false;
       this.form_item.transaction_entry_id = this.form_entry.id;
       this.form_item.transaction_no = this.form.transaction_no;
       this.form_item.transaction_type = 'CD';
       this.form_item.account_code = this.form_entry.account_code;
-       this.form_item.post('api/cd/item')
-        .then((data)=>{
-          this.form_item.id = data.data.id;
-          //console.log(data.data.id);
-        })
-        .catch(()=>{
-          //
-        });
+      this.form_item.post('api/cd/item').then(function (data) {
+        _this11.form_item.id = data.data.id; //console.log(data.data.id);
+      })["catch"](function () {//
+      });
       this.loadEntryItems();
       $('#entry-items').modal('show');
-      */
     },
     cancelDebitEntry: function cancelDebitEntry() {
-      var _this11 = this;
+      var _this12 = this;
 
       //this.$Progress.start();
       this.form_item["delete"]('api/cd/entry/' + this.form_entry.id).then(function () {
@@ -8048,11 +8301,11 @@ __webpack_require__.r(__webpack_exports__);
 
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this11.$Progress.fail();
+        _this12.$Progress.fail();
       });
     },
     saveDebitEntry: function saveDebitEntry() {
-      var _this12 = this;
+      var _this13 = this;
 
       //console.log('Edit Payee');
       // ** Temporary data to bypass Column cannot be null ERROR's
@@ -8074,33 +8327,32 @@ __webpack_require__.r(__webpack_exports__);
           );
         */
 
-        _this12.form.amount += _this12.form_entry.amount;
-        _this12.form.amount_ex_tax += _this12.form_entry.amount_ex_tax;
-        _this12.form.vat += _this12.form_entry.vat;
-        /*
-        this.ledgers.push({ 
-            id: this.form_entry.id,
-            transaction_id: this.form.id, 
-            transaction_no: this.form.transaction_no,
-            transaction_type: this.form.transaction_type,
-            account_code: this.form_entry.account_code,
-            account_name: this.form_entry.account_name,
-            transaction_date: this.form.transaction_date,
-            credit_amount: 0,
-            debit_amount: this.form_entry.amount_ex_tax
-          });
-        */
-        //console.log(this.ledgers);
+        _this13.form.amount += _this13.form_entry.amount;
+        _this13.form.amount_ex_tax += _this13.form_entry.amount_ex_tax;
+        _this13.form.vat += _this13.form_entry.vat;
 
-        _this12.$Progress.finish();
+        _this13.ledgers.push({
+          id: _this13.form_entry.id,
+          transaction_id: _this13.form.id,
+          transaction_no: _this13.form.transaction_no,
+          transaction_type: _this13.form.transaction_type,
+          account_code: _this13.form_entry.account_code,
+          account_name: _this13.form_entry.account_name,
+          transaction_date: _this13.form.transaction_date,
+          credit_amount: 0,
+          debit_amount: _this13.form_entry.amount_ex_tax
+        }); //console.log(this.ledgers);
+
+
+        _this13.$Progress.finish();
 
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this12.$Progress.fail();
+        _this13.$Progress.fail();
       });
     },
     deleteEntry: function deleteEntry(entry_id, entry_amount, entry_amount_ex_tax, entry_vat) {
-      var _this13 = this;
+      var _this14 = this;
 
       this.form_item["delete"]('api/cd/entry/' + entry_id).then(function () {
         //$('#entry-items').modal('hide');
@@ -8112,118 +8364,124 @@ __webpack_require__.r(__webpack_exports__);
             'success'
           );
         */
-        _this13.form.amount = parseFloat(_this13.form.amount - entry_amount).toFixed(2) * 1;
-        _this13.form.amount_ex_tax = (_this13.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
-        _this13.form.vat = (_this13.form.vat - entry_vat).toFixed(2) * 1;
+        _this14.form.amount = parseFloat(_this14.form.amount - entry_amount).toFixed(2) * 1;
+        _this14.form.amount_ex_tax = (_this14.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
+        _this14.form.vat = (_this14.form.vat - entry_vat).toFixed(2) * 1;
         VueListen.$emit('RefreshItemTable');
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this13.$Progress.fail();
+        _this14.$Progress.fail();
       });
     },
     cancelItem: function cancelItem() {
-      /*
-      this.form_item.delete('api/cd/item/'+this.form_item.id)
-      .then(() => {
-          $('#entry-items').modal('hide');
-      
-            VueListen.$emit('RefreshItemTable');
-      })
-      .catch(() => {
-          this.$Progress.fail();
+      var _this15 = this;
+
+      //this.$Progress.start();
+      this.form_item["delete"]('api/cd/item/' + this.form_item.id).then(function () {
+        $('#entry-items').modal('hide');
+        /*
+        swal.fire(
+            'Updated!',
+            'Payee information has been updated.',
+            'success'
+          );
+        */
+        //this.$Progress.finish();
+
+        VueListen.$emit('RefreshItemTable');
+      })["catch"](function () {
+        _this15.$Progress.fail();
       });
-      */
     },
     saveItem: function saveItem() {
-      /*
-      if(this.form_item.item.length == 0) {
+      var _this16 = this;
+
+      if (this.form_item.item.length == 0) {
         this.no_item = true;
       } else {
         this.no_item = false;
       }
-       if(this.form_item.price == 0) {
+
+      if (this.form_item.price == 0) {
         this.no_price = true;
       } else {
         this.no_price = false;
       }
-      
-      if(this.form_item.quantity == 0) {
+
+      if (this.form_item.quantity == 0) {
         this.no_quantity = true;
       } else {
         this.no_quantity = false;
       }
-      
-      if (this.no_item || this.no_price || this.no_quantity){
+
+      if (this.no_item || this.no_price || this.no_quantity) {
         return false;
-      } 
-       this.save_button_item_enabled = false;
-      
-       this.$Progress.start();
-      this.form_item.put('api/cd/item/'+this.form_item.id)
-      .then(() => {
-          $('#entry-items').modal('hide');
-          
-          
-            this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
-            this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
-            this.form_entry.vat += (this.form_item.vat * 1);
-            
-            this.$Progress.finish();
-            VueListen.$emit('RefreshItemTable');
-      })
-      .catch(() => {
-          this.$Progress.fail();
+      }
+
+      this.save_button_item_enabled = false;
+      this.$Progress.start();
+      this.form_item.put('api/cd/item/' + this.form_item.id).then(function () {
+        $('#entry-items').modal('hide');
+        /*
+        swal.fire(
+            'Updated!',
+            'Payee information has been updated.',
+            'success'
+          );
+        */
+
+        _this16.form_entry.amount = parseFloat(_this16.form_entry.amount + _this16.form_item.sub_total).toFixed(2) * 1;
+        _this16.form_entry.amount_ex_tax = (_this16.form_entry.amount_ex_tax + _this16.form_item.tax_excluded).toFixed(2) * 1;
+        _this16.form_entry.vat += _this16.form_item.vat * 1;
+
+        _this16.$Progress.finish();
+
+        VueListen.$emit('RefreshItemTable');
+      })["catch"](function () {
+        _this16.$Progress.fail();
       });
-      */
     },
     deleteItem: function deleteItem(item_id, item_sub_total, item_tax_excluded, item_vat) {
-      /*
-      this.form_item.delete('api/cd/item/'+item_id)
-      .then(() => {
-          //$('#entry-items').modal('hide');
-          
-            this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
-            this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
-            this.form_entry.vat = (this.form_entry.vat - item_vat).toFixed(2) * 1;
-            
-            VueListen.$emit('RefreshItemTable');
-      })
-      .catch(() => {
-          this.$Progress.fail();
+      var _this17 = this;
+
+      this.form_item["delete"]('api/cd/item/' + item_id).then(function () {
+        //$('#entry-items').modal('hide');
+
+        /*
+        swal.fire(
+            'Updated!',
+            'Payee information has been updated.',
+            'success'
+          );
+        */
+        _this17.form_entry.amount = parseFloat(_this17.form_entry.amount - item_sub_total).toFixed(2) * 1;
+        _this17.form_entry.amount_ex_tax = (_this17.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
+        _this17.form_entry.vat = (_this17.form_entry.vat - item_vat).toFixed(2) * 1;
+        VueListen.$emit('RefreshItemTable');
+      })["catch"](function () {
+        _this17.$Progress.fail();
       });
-      */
     },
     branchChange: function branchChange() {
       this.form_entry.branch_id = this.selected_branch.id;
       this.form_entry.branch_name = this.selected_branch.name;
-    },
-    payEntry: function payEntry() {
-      // entry_id,entry_transaction_no, account_code, account_name, payment_amount
-      $('#entry-payment').modal('show');
-    },
-    savePayment: function savePayment() {
-      $('#entry-payment').modal('hide');
-    },
-    currentBalance: function currentBalance(total_amount, payments) {
-      return (total_amount - payments).toFixed(2);
     }
   },
   created: function created() {
-    var _this14 = this;
+    var _this18 = this;
 
     //this.loadUsers();
     this.loadPayees();
     this.loadBranches();
-    this.initChartAccounts(); //this.loadEntryItems();
-    //this.loadEntries();
-
-    this.loadPurchase(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
+    this.initChartAccounts();
+    this.loadEntryItems();
+    this.loadEntries(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
 
     VueListen.$on('RefreshItemTable', function () {
-      _this14.loadEntryItems();
+      _this18.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this14.loadEntries();
+      _this18.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
@@ -81452,7 +81710,7 @@ var render = function() {
                               type: "text",
                               readonly: "",
                               id: "inputDCNo",
-                              placeholder: "Payment Number"
+                              placeholder: "CD Number"
                             },
                             domProps: { value: _vm.form.transaction_no },
                             on: {
@@ -81508,8 +81766,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: !_vm.cd_created,
-                      expression: "!cd_created"
+                      value: _vm.cd_created,
+                      expression: "cd_created"
                     }
                   ],
                   staticClass: "box box-warning mt-2"
@@ -81521,7 +81779,7 @@ var render = function() {
                         _c(
                           "h3",
                           { staticClass: "box-title box-title-transaction" },
-                          [_vm._v("Purchases")]
+                          [_vm._v("Debits")]
                         ),
                         _vm._v(" "),
                         _c("div", { staticClass: "box-tools" }, [
@@ -81571,10 +81829,6 @@ var render = function() {
                                     },
                                     [
                                       _c("td", [
-                                        _vm._v(_vm._s(entry.transaction_no))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
                                         _vm._v(_vm._s(entry.account_code))
                                       ]),
                                       _vm._v(" "),
@@ -81582,22 +81836,17 @@ var render = function() {
                                         _vm._v(_vm._s(entry.account_name))
                                       ]),
                                       _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(entry.branch_name))
+                                      ]),
+                                      _vm._v(" "),
                                       _c("td", [_vm._v(_vm._s(entry.amount))]),
                                       _vm._v(" "),
                                       _c("td", [
-                                        _vm._v(_vm._s(entry.total_payment))
+                                        _vm._v(_vm._s(entry.amount_ex_tax))
                                       ]),
                                       _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(
-                                          _vm._s(
-                                            _vm.currentBalance(
-                                              entry.amount,
-                                              entry.total_payment
-                                            )
-                                          )
-                                        )
-                                      ]),
+                                      _c("td", [_vm._v(_vm._s(entry.vat))]),
                                       _vm._v(" "),
                                       _c("td", [
                                         _c(
@@ -81606,17 +81855,19 @@ var render = function() {
                                             attrs: { href: "#" },
                                             on: {
                                               click: function($event) {
-                                                return _vm.payEntry(entry.id)
+                                                return _vm.deleteEntry(
+                                                  entry.id,
+                                                  entry.amount,
+                                                  entry.amount_ex_tax,
+                                                  entry.vat
+                                                )
                                               }
                                             }
                                           },
                                           [
                                             _c("i", {
-                                              staticClass: "fas fa-money-bill"
-                                            }),
-                                            _vm._v(
-                                              "\n                        Pay\n                        "
-                                            )
+                                              staticClass: "fa fa-trash"
+                                            })
                                           ]
                                         )
                                       ])
@@ -81631,6 +81882,241 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "box-footer" })
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.cd_created,
+                      expression: "cd_created"
+                    }
+                  ],
+                  staticClass: "box box-warning mt-2"
+                },
+                [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "box" }, [
+                      _vm._m(8),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "box-body table-responsive no-padding",
+                          attrs: { id: "item-list" }
+                        },
+                        [
+                          _c("table", { staticClass: "table table-hover" }, [
+                            _c(
+                              "tbody",
+                              [
+                                _vm._m(9),
+                                _vm._v(" "),
+                                _vm._l(_vm.items.data, function(item) {
+                                  return _c("tr", { key: item.id }, [
+                                    _c("td", [
+                                      _vm._v(_vm._s(item.account_code))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(item.item))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(item.quantity))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(item.price))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(item.tax_type))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(item.sub_total))]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(item.tax_excluded))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(item.vat))])
+                                  ])
+                                })
+                              ],
+                              2
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "box-footer" })
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.cd_created,
+                      expression: "cd_created"
+                    }
+                  ],
+                  staticClass: "box box-warning mt-2"
+                },
+                [
+                  _c("div", { staticClass: "form-group col-12 float-right" }, [
+                    _c("div", { staticClass: "row mt-2" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-sm-9 col-form-label",
+                          staticStyle: { "text-align": "right" },
+                          attrs: { for: "inputAmountExclusiveTax" }
+                        },
+                        [_vm._v("Amount Exclusive of Tax")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-3" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: Number(
+                                _vm.form.amount_ex_tax
+                              ).toLocaleString(),
+                              expression:
+                                "Number(form.amount_ex_tax).toLocaleString()"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            readonly: "",
+                            type: "text",
+                            id: "inputAmountExclusiveTax",
+                            placeholder: "Amount Exclusive of Tax"
+                          },
+                          domProps: {
+                            value: Number(
+                              _vm.form.amount_ex_tax
+                            ).toLocaleString()
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                Number(_vm.form.amount_ex_tax),
+                                "toLocaleString()",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-12 float-right" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-sm-9 col-form-label",
+                          staticStyle: { "text-align": "right" },
+                          attrs: { for: "inputVAT" }
+                        },
+                        [_vm._v("VAT")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-3" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: Number(_vm.form.vat).toLocaleString(),
+                              expression: "Number(form.vat).toLocaleString()"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            readonly: "",
+                            type: "text",
+                            id: "inputVAT",
+                            placeholder: "VAT"
+                          },
+                          domProps: {
+                            value: Number(_vm.form.vat).toLocaleString()
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                Number(_vm.form.vat),
+                                "toLocaleString()",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-12 float-right" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-sm-9 col-form-label",
+                          staticStyle: { "text-align": "right" },
+                          attrs: { for: "inputTotalAmount" }
+                        },
+                        [_vm._v("Total Amount")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-3" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: Number(_vm.form.amount).toLocaleString(),
+                              expression: "Number(form.amount).toLocaleString()"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            readonly: "",
+                            type: "text",
+                            id: "inputTotalAmount",
+                            placeholder: "Total Amount"
+                          },
+                          domProps: {
+                            value: Number(_vm.form.amount).toLocaleString()
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                Number(_vm.form.amount),
+                                "toLocaleString()",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
                     ])
                   ])
                 ]
@@ -81657,7 +82143,7 @@ var render = function() {
         ],
         staticClass: "modal fade",
         attrs: {
-          id: "entry-payment",
+          id: "entry-details",
           tabindex: "-1",
           role: "dialog",
           "aria-labelledby": "addNewLabel",
@@ -81696,7 +82182,7 @@ var render = function() {
                     [_vm._v("Add Entry")]
                   ),
                   _vm._v(" "),
-                  _vm._m(8)
+                  _vm._m(10)
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-body" }, [
@@ -81704,7 +82190,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(9),
+                      _vm._m(11),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -81787,7 +82273,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(10),
+                      _vm._m(12),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -81836,7 +82322,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(11),
+                      _vm._m(13),
                       _vm._v(" "),
                       _c(
                         "select",
@@ -81911,11 +82397,88 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
+                  _c("div", { staticClass: "box-header" }, [
+                    _c(
+                      "h3",
+                      { staticClass: "box-title box-title-transaction" },
+                      [_vm._v("Items")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "box-tools" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success",
+                          on: { click: _vm.newItem }
+                        },
+                        [
+                          _vm._v("Add Items "),
+                          _c("i", { staticClass: "fas fa-plus-circle fa-fw" })
+                        ]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "box-body table-responsive no-padding",
+                      attrs: { id: "item-list" }
+                    },
+                    [
+                      _c("table", { staticClass: "table table-hover" }, [
+                        _c(
+                          "tbody",
+                          [
+                            _vm._m(14),
+                            _vm._v(" "),
+                            _vm._l(_vm.items.data, function(item) {
+                              return _c("tr", { key: item.id }, [
+                                _c("td", [_vm._v(_vm._s(item.item))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(item.quantity))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(item.price))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(item.sub_total))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(item.tax_excluded))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(item.vat))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _c(
+                                    "a",
+                                    {
+                                      attrs: { href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.deleteItem(
+                                            item.id,
+                                            item.sub_total,
+                                            item.tax_excluded,
+                                            item.vat
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_c("i", { staticClass: "fa fa-trash" })]
+                                  )
+                                ])
+                              ])
+                            })
+                          ],
+                          2
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
                   _c(
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(12),
+                      _vm._m(15),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -81961,6 +82524,112 @@ var render = function() {
                       })
                     ],
                     1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "input-group mb-2" },
+                    [
+                      _vm._m(16),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: Number(
+                              _vm.form_entry.amount_ex_tax
+                            ).toLocaleString(),
+                            expression:
+                              "Number(form_entry.amount_ex_tax).toLocaleString()"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: {
+                          "is-invalid": _vm.form_entry.errors.has(
+                            "amount_ex_tax"
+                          )
+                        },
+                        attrs: {
+                          name: "amount_ex_tax",
+                          id: "amount_ex_tax",
+                          readonly: "",
+                          "aria-describedby": "inputGroup-sizing-default"
+                        },
+                        domProps: {
+                          value: Number(
+                            _vm.form_entry.amount_ex_tax
+                          ).toLocaleString()
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              Number(_vm.form_entry.amount_ex_tax),
+                              "toLocaleString()",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form_entry, field: "amount_ex_tax" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "input-group mb-2" },
+                    [
+                      _vm._m(17),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: Number(_vm.form_entry.vat).toLocaleString(),
+                            expression:
+                              "Number(form_entry.vat).toLocaleString()"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: {
+                          "is-invalid": _vm.form_entry.errors.has("vat")
+                        },
+                        attrs: {
+                          name: "vat",
+                          id: "vat",
+                          readonly: "",
+                          "aria-describedby": "inputGroup-sizing-default"
+                        },
+                        domProps: {
+                          value: Number(_vm.form_entry.vat).toLocaleString()
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              Number(_vm.form_entry.vat),
+                              "toLocaleString()",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form_entry, field: "vat" }
+                      })
+                    ],
+                    1
                   )
                 ]),
                 _vm._v(" "),
@@ -81998,6 +82667,491 @@ var render = function() {
     _c(
       "div",
       {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.cd_created,
+            expression: "cd_created"
+          }
+        ],
+        staticClass: "modal fade",
+        attrs: {
+          id: "entry-items",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "addNewLabel",
+          "aria-hidden": "true",
+          "data-backdrop": "static",
+          "data-keyboard": "false"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: !_vm.editmode,
+                        expression: "!editmode"
+                      }
+                    ],
+                    staticClass: "modal-title",
+                    attrs: { id: "addNewLabel" }
+                  },
+                  [_vm._v("Add Item")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "h5",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.editmode,
+                        expression: "editmode"
+                      }
+                    ],
+                    staticClass: "modal-title",
+                    attrs: { id: "addNewLabel" }
+                  },
+                  [_vm._v("Update Entry")]
+                ),
+                _vm._v(" "),
+                _vm._m(18)
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c(
+                  "div",
+                  { staticClass: "input-group mb-2" },
+                  [
+                    _vm._m(19),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form_item.item,
+                          expression: "form_item.item"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      class: { "is-invalid": _vm.form_item.errors.has("item") },
+                      attrs: {
+                        type: "text",
+                        name: "item_name",
+                        "aria-describedby": "inputGroup-sizing-default",
+                        onfocus: "this.select()"
+                      },
+                      domProps: { value: _vm.form_item.item },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form_item, "item", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("has-error", {
+                      attrs: { form: _vm.form_item, field: "item_name" }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group mb-2" }, [
+                  _c(
+                    "p",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.no_item,
+                          expression: "no_item"
+                        }
+                      ],
+                      staticClass: "empty-field-message"
+                    },
+                    [_vm._v("** Please enter item.")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "input-group mb-2" },
+                  [
+                    _vm._m(20),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form_item.price,
+                          expression: "form_item.price"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.form_entry.errors.has("price")
+                      },
+                      attrs: {
+                        name: "price",
+                        id: "price",
+                        "aria-describedby": "inputGroup-sizing-default",
+                        onfocus: "this.select()"
+                      },
+                      domProps: { value: _vm.form_item.price },
+                      on: {
+                        change: _vm.computeTaxChange,
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form_item, "price", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("has-error", {
+                      attrs: { form: _vm.form_item, field: "price" }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group mb-2" }, [
+                  _c(
+                    "p",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.no_price,
+                          expression: "no_price"
+                        }
+                      ],
+                      staticClass: "empty-field-message"
+                    },
+                    [_vm._v("** Please enter price.")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "input-group mb-2" },
+                  [
+                    _vm._m(21),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form_item.quantity,
+                          expression: "form_item.quantity"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.form_item.errors.has("quantity")
+                      },
+                      attrs: {
+                        type: "text",
+                        name: "entry_description",
+                        "aria-describedby": "inputGroup-sizing-default",
+                        onfocus: "this.select()"
+                      },
+                      domProps: { value: _vm.form_item.quantity },
+                      on: {
+                        change: _vm.computeTaxChange,
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form_item,
+                            "quantity",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("has-error", {
+                      attrs: { form: _vm.form_item, field: "entry_description" }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group mb-2" }, [
+                  _c(
+                    "p",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.no_quantity,
+                          expression: "no_quantity"
+                        }
+                      ],
+                      staticClass: "empty-field-message"
+                    },
+                    [_vm._v("** Please enter quantity.")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "input-group mb-2" },
+                  [
+                    _vm._m(22),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form_item.sub_total,
+                          expression: "form_item.sub_total"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.form_item.errors.has("sub_total")
+                      },
+                      attrs: {
+                        type: "text",
+                        name: "entry_description",
+                        "aria-describedby": "inputGroup-sizing-default",
+                        readonly: ""
+                      },
+                      domProps: { value: _vm.form_item.sub_total },
+                      on: {
+                        change: _vm.computeTaxChange,
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form_item,
+                            "sub_total",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("has-error", {
+                      attrs: { form: _vm.form_item, field: "entry_description" }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group mb-2" }, [
+                  _vm._m(23),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form_item.tax_type,
+                          expression: "form_item.tax_type"
+                        }
+                      ],
+                      staticClass: "form-control col-12",
+                      attrs: {
+                        "aria-describedby": "inputGroup-sizing-default"
+                      },
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form_item,
+                              "tax_type",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                          _vm.computeTaxChange
+                        ]
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "VAT" } }, [
+                        _vm._v("VAT")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "NON VAT" } }, [
+                        _vm._v("NON VAT")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "VAT EXEMPT" } }, [
+                        _vm._v("VAT EXEMPT")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "ZERO RATED" } }, [
+                        _vm._v("ZERO RATED")
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "input-group mb-2" },
+                  [
+                    _vm._m(24),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form_item.tax_excluded,
+                          expression: "form_item.tax_excluded"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.form_item.errors.has("tax_excluded")
+                      },
+                      attrs: {
+                        name: "amount_ex_tax",
+                        id: "amount_ex_tax",
+                        readonly: "",
+                        "aria-describedby": "inputGroup-sizing-default"
+                      },
+                      domProps: { value: _vm.form_item.tax_excluded },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form_item,
+                            "tax_excluded",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("has-error", {
+                      attrs: { form: _vm.form_item, field: "amount_ex_tax" }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "input-group mb-2" },
+                  [
+                    _vm._m(25),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form_item.vat,
+                          expression: "form_item.vat"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      class: { "is-invalid": _vm.form_item.errors.has("vat") },
+                      attrs: {
+                        name: "vat",
+                        id: "vat",
+                        readonly: "",
+                        "aria-describedby": "inputGroup-sizing-default"
+                      },
+                      domProps: { value: _vm.form_item.vat },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form_item, "vat", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("has-error", {
+                      attrs: { form: _vm.form_item, field: "vat" }
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    attrs: { type: "button" },
+                    on: { click: _vm.cancelItem }
+                  },
+                  [_vm._v("Cancel")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: {
+                      type: "button",
+                      disabled: !_vm.save_button_item_enabled
+                    },
+                    on: { click: _vm.saveItem }
+                  },
+                  [_vm._v("Save")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
         staticClass: "modal fade",
         attrs: {
           id: "select-account",
@@ -82018,7 +83172,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(13),
+              _vm._m(26),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -82057,7 +83211,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(14),
+                            _vm._m(27),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -82101,7 +83255,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(15)
+                _vm._m(28)
               ])
             ])
           ]
@@ -82132,7 +83286,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(16),
+              _vm._m(29),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -82171,7 +83325,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(17),
+                            _vm._m(30),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -82211,7 +83365,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(18)
+                _vm._m(31)
               ])
             ])
           ]
@@ -82295,7 +83449,7 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Payment #")]
+        [_vm._v("CD #")]
       )
     ])
   },
@@ -82316,19 +83470,51 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", [
-      _c("th", [_vm._v("Purchase#")]),
-      _vm._v(" "),
       _c("th", [_vm._v("Account No.")]),
       _vm._v(" "),
       _c("th", [_vm._v("Name")]),
       _vm._v(" "),
+      _c("th", [_vm._v("Branch")]),
+      _vm._v(" "),
       _c("th", [_vm._v("Amount")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Payment")]),
+      _c("th", [_vm._v("Tax Excluded")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Balance")]),
+      _c("th", [_vm._v("Tax")]),
       _vm._v(" "),
       _c("th", [_vm._v("Option")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-header" }, [
+      _c("h3", { staticClass: "box-title box-title-transaction" }, [
+        _vm._v("Items")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Account No.")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Item")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Qty")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Price")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Tax Type")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Sub-Total")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Tax Excluded")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Vat")])
     ])
   },
   function() {
@@ -82388,11 +83574,156 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Item")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Qty")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Price")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Sub-Total")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Tax Excluded")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Vat")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Option")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "input-group-prepend" }, [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Amount")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Tax Excluded")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Tax")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Name")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Price")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Quantity")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Total")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Tax Type")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Tax Excluded")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Tax")]
       )
     ])
   },
