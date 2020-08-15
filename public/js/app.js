@@ -7824,54 +7824,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -8509,16 +8461,35 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.branch_id = this.selected_branch.id;
       this.form_entry.branch_name = this.selected_branch.name;
     },
-    payEntry: function payEntry() {
+    payEntry: function payEntry(account_code, account_name) {
       // entry_id,entry_transaction_no, account_code, account_name, payment_amount
+      this.form_entry.reset();
+      this.form_entry.transaction_id = this.form.id;
+      this.form_entry.transaction_no = this.form.transaction_no;
+      this.form_entry.transaction_type = 'PAYMENT';
+      this.form_entry.account_code = account_code;
+      this.form_entry.account_name = account_name;
+      this.save_button_entry_enabled = true;
       $('#entry-payment').modal('show');
     },
     savePayment: function savePayment() {
+      var _this19 = this;
+
+      this.save_button_entry_enabled = false;
+      this.form_entry.post('api/cd/entry').then(function (data) {
+        _this19.form_entry.id = data.data.id;
+        VueListen.$emit('RefreshItemTable');
+      })["catch"](function () {//
+      });
+      $('#entry-payment').modal('hide');
+    },
+    cancelPayment: function cancelPayment() {
+      this.form_entry.reset();
       $('#entry-payment').modal('hide');
     }
   },
   created: function created() {
-    var _this19 = this;
+    var _this20 = this;
 
     this.loadPayees();
     this.loadBranches();
@@ -8527,10 +8498,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntries();
     this.loadPurchase();
     VueListen.$on('RefreshItemTable', function () {
-      _this19.loadEntryItems();
+      _this20.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this19.loadEntries();
+      _this20.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
@@ -81895,7 +81866,10 @@ var render = function() {
                                             attrs: { href: "#" },
                                             on: {
                                               click: function($event) {
-                                                return _vm.payEntry(purchase.id)
+                                                return _vm.payEntry(
+                                                  purchase.account_code,
+                                                  purchase.account_name
+                                                )
                                               }
                                             }
                                           },
@@ -82396,93 +82370,48 @@ var render = function() {
                       _vm._v(" "),
                       _c("has-error", {
                         attrs: { form: _vm.form_entry, field: "account_code" }
-                      }),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "input-group-btn col-1" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-success",
-                            attrs: { type: "button" },
-                            on: {
-                              click: function($event) {
-                                return _vm.searchAccountModal("detail")
-                              }
-                            }
-                          },
-                          [_c("i", { staticClass: "fas fa-search fa-fw" })]
-                        )
-                      ])
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "input-group mb-2" }, [
-                    _c(
-                      "p",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.no_entry_account_code,
-                            expression: "no_entry_account_code"
-                          }
-                        ],
-                        staticClass: "empty-field-message"
-                      },
-                      [_vm._v("** Please select account!")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "input-group mb-2" },
-                    [
-                      _vm._m(14),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form_entry.account_name,
-                            expression: "form_entry.account_name"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        class: {
-                          "is-invalid": _vm.form_entry.errors.has(
-                            "account_name"
-                          )
-                        },
-                        attrs: {
-                          type: "text",
-                          name: "account_name",
-                          readonly: "",
-                          "aria-describedby": "inputGroup-sizing-default"
-                        },
-                        domProps: { value: _vm.form_entry.account_name },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.form_entry,
-                              "account_name",
-                              $event.target.value
-                            )
-                          }
+                    _vm._m(14),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form_entry.account_name,
+                          expression: "form_entry.account_name"
                         }
-                      }),
-                      _vm._v(" "),
-                      _c("has-error", {
-                        attrs: { form: _vm.form_entry, field: "account_name" }
-                      })
-                    ],
-                    1
-                  ),
+                      ],
+                      staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.form_entry.errors.has("account_name")
+                      },
+                      attrs: {
+                        type: "text",
+                        name: "account_name",
+                        readonly: "",
+                        "aria-describedby": "inputGroup-sizing-default"
+                      },
+                      domProps: { value: _vm.form_entry.account_name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form_entry,
+                            "account_name",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -82542,7 +82471,7 @@ var render = function() {
                     {
                       staticClass: "btn btn-danger",
                       attrs: { type: "button" },
-                      on: { click: _vm.cancelDebitEntry }
+                      on: { click: _vm.cancelPayment }
                     },
                     [_vm._v("Cancel")]
                   ),

@@ -189,7 +189,7 @@
                         entry.id,entry.transaction_no, account_code, account_name, payment_amount
                     -->
                     <td>
-                      <a href="#" @click="payEntry(purchase.id,)">
+                      <a href="#" @click="payEntry(purchase.account_code,purchase.account_name)">
                         <i class="fas fa-money-bill"></i>
                         Pay
                         <!-- i class="fa fa-money-bill"></i -->
@@ -423,45 +423,20 @@
                   readonly
                   class="form-control col-4" :class="{ 'is-invalid': form_entry.errors.has('account_code') }" aria-describedby="inputGroup-sizing-default">
                 <has-error :form="form_entry" field="account_code"></has-error>
-                <span class="input-group-btn col-1">
+                <!-- span class="input-group-btn col-1">
                     <button type="button" class="btn btn-success" @click="searchAccountModal('detail')"><i class="fas fa-search fa-fw"></i></button>
-                </span>
+                </span -->
               </div>
-              <div class="input-group mb-2">
-                <p v-show="no_entry_account_code" class="empty-field-message">** Please select account!</p>
-              </div>
+
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Account</span>
                 </div>
                 
                 <input v-model="form_entry.account_name" type="text" name="account_name"
-                  
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('account_name') }" readonly aria-describedby="inputGroup-sizing-default">
-                <has-error :form="form_entry" field="account_name"></has-error>
-              </div>
-
-              <!-- div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Branch</span>
-                </div>
-                  <select v-model="selected_branch" class="form-control col-12" aria-describedby="inputGroup-sizing-default" @change="branchChange">
-                      <option v-for="branch in branches.data" v-bind:value="{ id: branch.id, name: branch.name }">{{ branch.name }}</option>
-                  </select>
-                  <has-error :form="form_entry" field="branch_id"></has-error>
-              </div>
-              <div class="input-group mb-2">
-                <p v-show="no_entry_branch_id" class="empty-field-message">** Please indicate branch.</p>
-              </div -->
-              <!-- div class="box-header">
-                  <h3 class="box-title box-title-transaction">Items</h3>
-                  <div class="box-tools">
-                    <button class="btn btn-success" @click="newItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
-                  </div>
-              </div -->
-
                 
-
+              </div>
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Amount</span>
@@ -473,34 +448,11 @@
                   <has-error :form="form_entry" field="amount"></has-error>
               </div>
 
-              <!-- div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Tax Excluded</span>
-                </div>
-
               
-                  <input v-model="Number(form_entry.amount_ex_tax).toLocaleString()" name="amount_ex_tax" id="amount_ex_tax"
-                  
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount_ex_tax') }" readonly aria-describedby="inputGroup-sizing-default">
-                  <has-error :form="form_entry" field="amount_ex_tax"></has-error>
-              </div -->
-
-
-              <!-- div class="input-group mb-2">
-                
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Tax</span>
-                </div>
-              
-                  <input v-model="Number(form_entry.vat).toLocaleString()" name="vat" id="vat"
-                  
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('vat') }" readonly aria-describedby="inputGroup-sizing-default">
-                  <has-error :form="form_entry" field="vat"></has-error>
-              </div -->
 
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" @click="cancelDebitEntry">Cancel</button>
+              <button type="button" class="btn btn-danger" @click="cancelPayment">Cancel</button>
               <button type="button" :disabled="!save_button_entry_enabled" class="btn btn-success" @click="saveDebitEntry">Save</button>
             </div>
 
@@ -1462,15 +1414,45 @@
             this.form_entry.branch_id = this.selected_branch.id ;
             this.form_entry.branch_name = this.selected_branch.name;
           },
-          payEntry()
+          payEntry(account_code,account_name)
           {
             // entry_id,entry_transaction_no, account_code, account_name, payment_amount
-            $('#entry-payment').modal('show');
+            
+
+              this.form_entry.reset();
+              this.form_entry.transaction_id = this.form.id;
+              this.form_entry.transaction_no = this.form.transaction_no;
+              this.form_entry.transaction_type = 'PAYMENT';
+              this.form_entry.account_code = account_code;
+              this.form_entry.account_name = account_name;
+              
+
+              this.save_button_entry_enabled = true;
+
+              
+                
+              $('#entry-payment').modal('show');
+
           },
           savePayment()
           {
+            this.save_button_entry_enabled = false;
+            this.form_entry.post('api/cd/entry')
+                .then((data)=>{
+                  this.form_entry.id = data.data.id;
+                  
+                  VueListen.$emit('RefreshItemTable');    
+                })
+                .catch(()=>{
+                  //
+                });
+
             $('#entry-payment').modal('hide');
           },
+          cancelPayment(){
+            this.form_entry.reset();
+            $('#entry-payment').modal('hide');
+          }
 
           
 

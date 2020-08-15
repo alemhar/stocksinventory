@@ -27,12 +27,38 @@ class CDEntryController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate($request,[
+             'transaction_id' => 'required',
+             'transaction_no' => 'required',
+             'transaction_type' => 'required'
+        ]);
+
+        $transaction_id = $request['transaction_id'];
+        $transaction_no = $request['transaction_no'];
+        $transaction_type = $request['transaction_type'];
+
+        
+        if(isset($request['account_code'])){
+            $account_code = $request['account_code'];
+        } else {
+            $account_code = 0;
+        }
+        if(isset($request['account_name'])){
+            $account_name = $request['account_name'];
+        } else {
+            $account_name = '';
+        }
+      
+
+
+
         return TransactionEntry::create([
-            'transaction_id' => $request['transaction_id'],
-            'transaction_no' => $request['transaction_no'],
-            'transaction_type' => $request['transaction_type'],
-            'account_code' => 0,
-            'account_name' => '',
+            'transaction_id' => $transaction_id,
+            'transaction_no' => $transaction_no,
+            'transaction_type' => $transaction_type,
+            'account_code' => $account_code,
+            'account_name' => $account_name,
             //'entry_name' => '',
             //'entry_description' => '',
             'branch_id' => 0,

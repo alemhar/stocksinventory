@@ -117,7 +117,7 @@
           </div>
 
 
-      <!-- Debit List     
+      <!-- Purchase List     
       *
       *
       *
@@ -310,7 +310,6 @@
       *
       *
       -->
-
 
       <div class="modal fade" v-show="cd_created" id="entry-payment" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
