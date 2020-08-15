@@ -81827,7 +81827,14 @@ var render = function() {
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [
-                                        _vm._v(_vm._s(_vm.currentBalance))
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.currentBalance(
+                                              entry.amount,
+                                              entry.total_payment
+                                            )
+                                          )
+                                        )
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [

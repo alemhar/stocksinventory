@@ -160,7 +160,7 @@
                         <td>{{ entry.account_name }}</td>
                         <td>{{ entry.amount }}</td>
                         <td>{{ entry.total_payment }}</td>
-                        <td>{{ currentBalance }}</td> <!-- replace with computed amount minus total_payment -->
+                        <td>{{ currentBalance(entry.amount,entry.total_payment) }}</td> <!-- replace with computed amount minus total_payment -->
                         <!-- 
                             X List should be ordered by updated_at 
                             Create payments/items object and store, entry.transaction_no, account_code, account_name, payment_amount
