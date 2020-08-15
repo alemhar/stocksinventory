@@ -172,7 +172,7 @@
                             entry.id,entry.transaction_no, account_code, account_name, payment_amount
                         -->
                         <td>
-                          <a href="#" @click="payEntry()">
+                          <a href="#" @click="payEntry(entry.id,)">
                             <i class="fas fa-money-bill"></i>
                             Pay
                             <!-- i class="fa fa-money-bill"></i -->
@@ -314,7 +314,7 @@
       -->
 
 
-      <div class="modal fade" v-show="cd_created" id="entry-details" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+      <div class="modal fade" v-show="cd_created" id="entry-payment" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content" style="width: 800px;">
             <div class="modal-header">
@@ -364,14 +364,14 @@
               <div class="input-group mb-2">
                 <p v-show="no_entry_branch_id" class="empty-field-message">** Please indicate branch.</p>
               </div>
-              <div class="box-header">
+              <!-- div class="box-header">
                   <h3 class="box-title box-title-transaction">Items</h3>
                   <div class="box-tools">
                     <button class="btn btn-success" @click="newItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
                 </div>
 
-                <!-- /.box-header -->
+                
                 <div id="item-list" class="box-body table-responsive no-padding">
                   <table class="table table-hover">
                     <tbody>
@@ -401,7 +401,7 @@
 
                   </tbody>
                 </table>
-                </div>
+                </div -->
                 <!-- /.box-body -->
 
               <div class="input-group mb-2">
@@ -415,7 +415,7 @@
                   <has-error :form="form_entry" field="amount"></has-error>
               </div>
 
-              <div class="input-group mb-2">
+              <!-- div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Tax Excluded</span>
                 </div>
@@ -425,10 +425,10 @@
                   
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount_ex_tax') }" readonly aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_entry" field="amount_ex_tax"></has-error>
-              </div>
+              </div -->
 
 
-              <div class="input-group mb-2">
+              <!-- div class="input-group mb-2">
                 
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Tax</span>
@@ -438,7 +438,7 @@
                   
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('vat') }" readonly aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_entry" field="vat"></has-error>
-              </div>
+              </div -->
 
             </div>
             <div class="modal-footer">
@@ -469,7 +469,7 @@
       -->
 
 
-      <div class="modal fade"  v-show="cd_created"  id="entry-payment" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+      <div class="modal fade"  v-show="cd_created"  id="entry-item" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -837,13 +837,37 @@
               chart_of_accounts_detail: {},
               readabilityObject: {
                 fontSize: user.font_size
-              }
+              },
+
+              ledgers: { 
+                      id: this.form.id,
+                      transaction_id: this.form.id, 
+                      transaction_no: this.form.transaction_no,
+                      transaction_type: this.form.transaction_type,
+                      account_code: this.form.account_code,
+                      account_name: this.form.account_name,
+                      transaction_date: this.form.transaction_date,
+                      credit_amount: this.form.amount,
+                      debit_amount: 0
+                    }
+
+
 
           }
         },
         methods: {
 
-          
+          loadPurchase() {
+              
+              axios.get('api/cd/purchase/list')
+                .then((data)=>{
+                  this.entries = data.data;
+                  console.log(this.entries);
+                })
+                .catch(()=>{
+                  //
+                });
+          },
           loadBranches(){
 
             if(this.$gate.isAdminOrUser()){
@@ -1116,17 +1140,7 @@
                 });
               */  
           },
-          loadPurchase() {
-              
-              axios.get('api/cd/purchase/list')
-                .then((data)=>{
-                  this.entries = data.data;
-                  console.log(this.entries);
-                })
-                .catch(()=>{
-                  //
-                });
-          },
+          
           createSerialNumber(){
               // Get current date
               var d = new Date();
