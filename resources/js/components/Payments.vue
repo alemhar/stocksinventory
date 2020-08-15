@@ -142,8 +142,6 @@
                     <button class="btn btn-success" @click="newEntry">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
                 </div>
-
-
                 <!-- /.box-header -->
                 <div id="debits-list" class="box-body table-responsive no-padding">
                   <table class="table table-hover">
@@ -178,6 +176,7 @@
                         <td>
                           <a href="#" @click="payEntry()">
                             <i class="fas fa-money-bill"></i>
+                            Pay
                             <!-- i class="fa fa-money-bill"></i -->
                           </a>
                         </td>
