@@ -135,6 +135,84 @@
           </div>
 
 
+      <!-- Purchase List     
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      -->
+      <div  v-show="!cd_created" class="box box-warning mt-2">
+        <div class="col-md-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title box-title-transaction">Purchases</h3>
+              <div class="box-tools">
+                <button class="btn btn-success" @click="newEntry">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div id="debits-list" class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tbody>
+                  <tr>
+                    <th>Purchase#</th>
+                    <th>Account No.</th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Payment</th>
+                    <th>Balance</th>
+                    <th>Option</th>
+                    
+                  </tr>
+                  <tr v-for="purchase in purchases.data" :key="purchase.id" @click="selectDebitRow(entry.id)" :class="{ 'table-warning' : active_debit_row == purchase.id }" >
+                    <td>{{ purchase.transaction_no }}</td>
+                    <td>{{ purchase.account_code }}</td>
+                    <td>{{ purchase.account_name }}</td>
+                    <td>{{ purchase.amount }}</td>
+                    <td>{{ purchase.total_payment }}</td>
+                    <td>{{ currentBalance(purchase.amount,purchase.total_payment) }}</td> <!-- replace with computed amount minus total_payment -->
+                    
+                    <!-- 
+                        X List should be ordered by updated_at 
+                        Create payments/items object and store, entry.transaction_no, account_code, account_name, payment_amount
+                        Open a modal form for payment, Input payment.
+                        Update entry.balance/computed 
+
+                        Save-
+                        Update purchase transaction total_payment,
+                        entry.id,entry.transaction_no, account_code, account_name, payment_amount
+                    -->
+                    <td>
+                      <a href="#" @click="payEntry(purchase.id,)">
+                        <i class="fas fa-money-bill"></i>
+                        Pay
+                        <!-- i class="fa fa-money-bill"></i -->
+                      </a>
+                    </td>
+                  </tr>
+                  
+              </tbody>
+            </table>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+              
+            </div> 
+          </div>
+          <!-- /.box -->
+        </div>
+
+      </div>  
+      <!-- /.box -->
+
 
 
       <!-- Debit List     
@@ -845,6 +923,7 @@
               branches: {},
               items: {},
               entries: {},
+              purchases:{},
               chart_of_accounts: {},
               chart_of_accounts_header: {},
               chart_of_accounts_detail: {},
@@ -855,11 +934,15 @@
           }
         },
         methods: {
+          
+          currentBalance(total_amount,payments){
+            return (total_amount - payments).toFixed(2);
+          },
           loadPurchase() {
               axios.get('api/cd/purchase/list')
                 .then((data)=>{
-                  this.entries = data.data;
-                  console.log(this.entries);
+                  this.purchases = data.data;
+                  console.log(this.purchases);
                 })
                 .catch(()=>{
                   //
