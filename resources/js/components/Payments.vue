@@ -485,6 +485,7 @@
   
     export default {
         data() {
+          /*
           return {
               ledgers: [],
               user_id: '',
@@ -594,6 +595,7 @@
 
 
           }
+          */
         },
         methods: {
 

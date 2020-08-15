@@ -7074,8 +7074,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -7561,102 +7559,111 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //import { BasicSelect } from 'vue-search-select'
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return _defineProperty({
-      ledgers: [],
-      user_id: '',
-      editmode: false,
-      cd_created: false,
-      no_payee: false,
-      no_reference_no: false,
-      no_account_code: false,
-      no_item: false,
-      no_price: false,
-      no_quantity: false,
-      no_entry_account_code: false,
-      no_entry_branch_id: false,
-      save_button_item_enabled: true,
-      save_button_entry_enabled: true,
-      searchText: '',
-      searchPayee: '',
-      headerOrDetail: 'header',
-      current_payee_id: '',
-      current_payee_name: '',
-      current_payee_address: '',
-      current_payee_tin: '',
-      active_debit_row: 0,
-      selected_branch: {},
-      cd: {},
-      form: new Form({
-        id: '',
-        payee_id: '',
-        reference_no: '',
-        transaction_no: '',
-        transaction_type: 'CD',
-        // default for Cash Disbursement
-        transaction_date: this.getDate(),
-        account_code: '',
-        account_name: '',
-        amount: 0,
-        credit_amount: 0,
-        debit_amount: 0,
-        amount_ex_tax: 0,
-        vat: 0,
-        canceled: 0,
-        user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
-      }),
-      form_entry: new Form({
-        id: '',
-        transaction_id: '',
-        transaction_no: '',
-        transaction_type: '',
-        account_code: '',
-        account_name: '',
-        //entry_name: '',
-        //entry_description: '',
-        branch_id: '',
-        branch_name: '',
-        amount: 0,
-        amount_ex_tax: 0,
-        vat: 0,
-        credit_amount: 0,
-        debit_amount: 0,
-        transaction_date: this.getDate()
-      }),
-      form_item: new Form({
-        id: '',
-        transaction_entry_id: '',
-        transaction_no: '',
-        transaction_type: '',
-        account_code: '',
-        item: '',
-        quantity: 0,
-        price: 0,
-        sub_total: 0,
-        tax_type: 'VAT',
-        tax_excluded: 0,
-        vat: 0
-      }),
-      payees: {},
-      branches: {},
-      items: {},
-      entries: {},
-      chart_of_accounts: {},
-      chart_of_accounts_header: {},
-      chart_of_accounts_detail: {},
-      readabilityObject: {
-        fontSize: user.font_size
-      }
-    }, "ledgers", {
-      id: this.form.id,
-      transaction_id: this.form.id,
-      transaction_no: this.form.transaction_no,
-      transaction_type: this.form.transaction_type,
-      account_code: this.form.account_code,
-      account_name: this.form.account_name,
-      transaction_date: this.form.transaction_date,
-      credit_amount: this.form.amount,
-      debit_amount: 0
-    });
+    /*
+    return {
+        ledgers: [],
+        user_id: '',
+        editmode: false,
+        cd_created: false,
+        no_payee: false,
+        no_reference_no: false,
+        no_account_code: false,
+        no_item: false,
+        no_price: false,
+        no_quantity: false,
+        no_entry_account_code: false,
+        no_entry_branch_id: false,
+        save_button_item_enabled: true,
+        save_button_entry_enabled: true,
+        searchText: '',
+        searchPayee: '',
+        headerOrDetail: 'header',
+        current_payee_id: '',
+        current_payee_name: '',
+        current_payee_address: '',
+        current_payee_tin: '',
+        active_debit_row: 0,
+        selected_branch: {},
+        cd : {},
+        form: new Form({
+            id:'',
+            payee_id: '',
+            reference_no: '',
+            transaction_no: '',
+            transaction_type: 'CD', // default for Cash Disbursement
+            transaction_date: this.getDate(),
+            account_code: '',
+            account_name:'',
+            amount: 0,
+            credit_amount: 0,
+            debit_amount: 0,
+            amount_ex_tax: 0,
+            vat: 0,
+            canceled: 0,
+            user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
+            
+            
+        }),
+        form_entry: new Form({
+             id:'',
+            transaction_id:'',
+            transaction_no:'',
+            transaction_type:'',
+            account_code : '',
+            account_name: '',
+            //entry_name: '',
+            //entry_description: '',
+            branch_id: '',
+            branch_name: '',
+            amount: 0,
+            amount_ex_tax: 0,
+            
+            vat: 0,
+            credit_amount: 0,
+            debit_amount: 0,
+            transaction_date: this.getDate(),
+            
+            
+        }),
+        form_item: new Form({
+             id:'',
+            transaction_entry_id:'',
+            transaction_no:'',
+            transaction_type:'',
+            account_code : '',
+            item: '',
+            quantity: 0,
+            price: 0,
+            sub_total: 0,
+            tax_type: 'VAT',
+            tax_excluded: 0,
+            vat: 0
+            
+            
+        }),
+        payees: {},
+        branches: {},
+        items: {},
+        entries: {},
+        chart_of_accounts: {},
+        chart_of_accounts_header: {},
+        chart_of_accounts_detail: {},
+        readabilityObject: {
+          fontSize: user.font_size
+        },
+         ledgers: { 
+                id: this.form.id,
+                transaction_id: this.form.id, 
+                transaction_no: this.form.transaction_no,
+                transaction_type: this.form.transaction_type,
+                account_code: this.form.account_code,
+                account_name: this.form.account_name,
+                transaction_date: this.form.transaction_date,
+                credit_amount: this.form.amount,
+                debit_amount: 0
+              }
+       }
+    */
   },
   methods: {
     loadPurchase: function loadPurchase() {
@@ -7672,8 +7679,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       if (this.$gate.isAdminOrUser()) {
-        axios.get("api/branch").then(function (_ref2) {
-          var data = _ref2.data;
+        axios.get("api/branch").then(function (_ref) {
+          var data = _ref.data;
           return _this2.branches = data;
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
@@ -7682,8 +7689,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this3 = this;
 
       if (this.$gate.isAdminOrUser()) {
-        axios.get("api/payee").then(function (_ref3) {
-          var data = _ref3.data;
+        axios.get("api/payee").then(function (_ref2) {
+          var data = _ref2.data;
           return _this3.payees = data;
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
