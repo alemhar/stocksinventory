@@ -81746,8 +81746,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.cd_created,
-                      expression: "cd_created"
+                      value: !_vm.cd_created,
+                      expression: "!cd_created"
                     }
                   ],
                   staticClass: "box box-warning mt-2"
@@ -81759,7 +81759,7 @@ var render = function() {
                         _c(
                           "h3",
                           { staticClass: "box-title box-title-transaction" },
-                          [_vm._v("Debits")]
+                          [_vm._v("Purchases")]
                         ),
                         _vm._v(" "),
                         _c("div", { staticClass: "box-tools" }, [
