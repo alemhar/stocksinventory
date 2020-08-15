@@ -211,16 +211,14 @@
       MAIN FORM ITEMS TABLE
       -->
 
-          <div v-show="cd_created" class="box box-warning mt-2">
+          <!-- div v-show="cd_created" class="box box-warning mt-2">
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
                   <h3 class="box-title box-title-transaction">Items</h3>
-                  <!--div class="box-tools">
-                    <button class="btn btn-success" @click="newItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
-                  </div-->
+
                 </div>
-                <!-- /.box-header -->
+
                 <div id="item-list" class="box-body table-responsive no-padding">
                   <table class="table table-hover">
                     <tbody>
@@ -248,18 +246,17 @@
                   </tbody>
                 </table>
                 </div>
-                <!-- /.box-body -->
+                
                 <div class="box-footer">
                   
                 </div> 
               </div>
-              <!-- /.box -->
+             
             </div>
 
-          </div>  
-          <!-- /.box -->
-
-            <div v-show="cd_created" class="box box-warning mt-2">
+          </div -->  
+          
+            <!-- div v-show="cd_created" class="box box-warning mt-2">
               
               <div class="form-group col-12 float-right">
                 <div class="row mt-2">
@@ -288,16 +285,16 @@
               </div>
               </div>
             
-            </div>
+            </div -->
           
           </div>
-          <!-- /.box -->
+          
         </div>
         </div>
 
         <div class="row mt-1" v-if="!$gate.isAdminOrUser()">
           <not-found></not-found>
-        </div>  
+        </div -->  
 
       <!-- Entry Modal
       *
