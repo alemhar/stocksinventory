@@ -8534,6 +8534,11 @@ __webpack_require__.r(__webpack_exports__);
     savePayment: function savePayment(account_code) {
       var _this20 = this;
 
+      if (this.form_entry.amount = 0) {
+        return false;
+      }
+
+      this.amount += this.form_entry.amount;
       this.save_button_entry_enabled = false;
       this.form_entry.put('api/cd/entry/' + this.form_entry.id).then(function () {
         $('#entry-payment').modal('hide');
