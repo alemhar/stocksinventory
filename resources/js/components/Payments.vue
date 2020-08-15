@@ -420,7 +420,7 @@
                 
                 <label for="inputTotalAmount" class="col-sm-9 col-form-label" style="text-align: right;">Total Amount</label>
                 <div class="col-sm-3">
-                  <input readonly v-model="form.amount" type="text" class="form-control" id="inputTotalAmount" placeholder="Total Amount">
+                  <input readonly v-model="Number(form.amount).toLocaleString()" type="text" class="form-control" id="inputTotalAmount" placeholder="Total Amount">
                 </div>
               </div>
               </div>
@@ -1497,7 +1497,7 @@
             if(this.form_entry.amount == 0){
               return false;
             }
-            this.form.amount +=  this.form_entry.amount;
+            this.form.amount +=  parseFloat(this.form_entry.amount);
             
             this.save_button_entry_enabled = false;
             this.form_entry.put('api/cd/entry/'+this.form_entry.id)

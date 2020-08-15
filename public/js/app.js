@@ -8532,7 +8532,7 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
 
-      this.form.amount += this.form_entry.amount;
+      this.form.amount += parseFloat(this.form_entry.amount);
       this.save_button_entry_enabled = false;
       this.form_entry.put('api/cd/entry/' + this.form_entry.id).then(function () {
         $('#entry-payment').modal('hide');
@@ -82320,8 +82320,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.amount,
-                              expression: "form.amount"
+                              value: Number(_vm.form.amount).toLocaleString(),
+                              expression: "Number(form.amount).toLocaleString()"
                             }
                           ],
                           staticClass: "form-control",
@@ -82331,13 +82331,19 @@ var render = function() {
                             id: "inputTotalAmount",
                             placeholder: "Total Amount"
                           },
-                          domProps: { value: _vm.form.amount },
+                          domProps: {
+                            value: Number(_vm.form.amount).toLocaleString()
+                          },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.$set(_vm.form, "amount", $event.target.value)
+                              _vm.$set(
+                                Number(_vm.form.amount),
+                                "toLocaleString()",
+                                $event.target.value
+                              )
                             }
                           }
                         })
