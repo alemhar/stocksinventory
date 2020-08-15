@@ -405,7 +405,7 @@
       -->
 
 
-      <div class="modal fade" v-show="cd_created" id="entry-details" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+      <div class="modal fade" v-show="cd_created" id="entry-payment" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content" style="width: 800px;">
             <div class="modal-header">
@@ -460,40 +460,9 @@
                   <div class="box-tools">
                     <button class="btn btn-success" @click="newItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
-                </div>
+              </div>
 
-                <!-- /.box-header -->
-                <div id="item-list" class="box-body table-responsive no-padding">
-                  <table class="table table-hover">
-                    <tbody>
-                      <tr>
-                        <th>Item</th>
-                        <th>Qty</th>
-                        <th>Price</th>
-                        <th>Sub-Total</th>
-                        <th>Tax Excluded</th>
-                        <th>Vat</th>
-                        <th>Option</th>
-                      </tr>
-                      <tr v-for="item in items.data" :key="item.id">
-                        <td>{{ item.item }}</td>
-                        <td>{{ item.quantity }}</td> 
-                        <td>{{ item.price }}</td> 
-                        <td>{{ item.sub_total }}</td> 
-                        <td>{{ item.tax_excluded }}</td> 
-                        <td>{{ item.vat }}</td> 
-                        <td>
-                          <a href="#" @click="deleteItem(item.id,item.sub_total,item.tax_excluded,item.vat)">
-                            <i class="fa fa-trash"></i>
-                          </a>
-                        </td>
-                      </tr>  
-
-
-                  </tbody>
-                </table>
-                </div>
-                <!-- /.box-body -->
+                
 
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
@@ -1494,7 +1463,16 @@
           branchChange(){
             this.form_entry.branch_id = this.selected_branch.id ;
             this.form_entry.branch_name = this.selected_branch.name;
-          }
+          },
+          payEntry()
+          {
+            // entry_id,entry_transaction_no, account_code, account_name, payment_amount
+            $('#entry-payment').modal('show');
+          },
+          savePayment()
+          {
+            $('#entry-payment').modal('hide');
+          },
 
           
 
@@ -1514,7 +1492,7 @@
             
             this.loadPurchase();
 
-            
+
             VueListen.$on('RefreshItemTable',() => {
                 this.loadEntryItems();
             });
