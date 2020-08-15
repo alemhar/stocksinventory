@@ -1173,8 +1173,8 @@
             this.loadBranches();
             this.initChartAccounts();
 
-            this.loadEntryItems();
-            this.loadEntries();
+            //this.loadEntryItems();
+            //this.loadEntries();
             this.loadPurchase();
             //this.SearchIt = _.debounce(this.SearchIt, 1000);
             

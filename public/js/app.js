@@ -8207,9 +8207,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     //this.loadUsers();
     this.loadPayees();
     this.loadBranches();
-    this.initChartAccounts();
-    this.loadEntryItems();
-    this.loadEntries();
+    this.initChartAccounts(); //this.loadEntryItems();
+    //this.loadEntries();
+
     this.loadPurchase(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
 
     VueListen.$on('RefreshItemTable', function () {
