@@ -362,45 +362,7 @@
               <div class="input-group mb-2">
                 <p v-show="no_entry_branch_id" class="empty-field-message">** Please indicate branch.</p>
               </div>
-              <!-- div class="box-header">
-                  <h3 class="box-title box-title-transaction">Items</h3>
-                  <div class="box-tools">
-                    <button class="btn btn-success" @click="newItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
-                  </div>
-                </div>
-
-                
-                <div id="item-list" class="box-body table-responsive no-padding">
-                  <table class="table table-hover">
-                    <tbody>
-                      <tr>
-                        <th>Item</th>
-                        <th>Qty</th>
-                        <th>Price</th>
-                        <th>Sub-Total</th>
-                        <th>Tax Excluded</th>
-                        <th>Vat</th>
-                        <th>Option</th>
-                      </tr>
-                      <tr v-for="item in items.data" :key="item.id">
-                        <td>{{ item.item }}</td>
-                        <td>{{ item.quantity }}</td> 
-                        <td>{{ item.price }}</td> 
-                        <td>{{ item.sub_total }}</td> 
-                        <td>{{ item.tax_excluded }}</td> 
-                        <td>{{ item.vat }}</td> 
-                        <td>
-                          <a href="#" @click="deleteItem(item.id,item.sub_total,item.tax_excluded,item.vat)">
-                            <i class="fa fa-trash"></i>
-                          </a>
-                        </td>
-                      </tr>  
-
-
-                  </tbody>
-                </table>
-                </div -->
-                <!-- /.box-body -->
+              
 
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
@@ -413,30 +375,7 @@
                   <has-error :form="form_entry" field="amount"></has-error>
               </div>
 
-              <!-- div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Tax Excluded</span>
-                </div>
-
               
-                  <input v-model="Number(form_entry.amount_ex_tax).toLocaleString()" name="amount_ex_tax" id="amount_ex_tax"
-                  
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount_ex_tax') }" readonly aria-describedby="inputGroup-sizing-default">
-                  <has-error :form="form_entry" field="amount_ex_tax"></has-error>
-              </div -->
-
-
-              <!-- div class="input-group mb-2">
-                
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Tax</span>
-                </div>
-              
-                  <input v-model="Number(form_entry.vat).toLocaleString()" name="vat" id="vat"
-                  
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('vat') }" readonly aria-describedby="inputGroup-sizing-default">
-                  <has-error :form="form_entry" field="vat"></has-error>
-              </div -->
 
             </div>
             <div class="modal-footer">
@@ -451,145 +390,7 @@
       <!-- Entry Modal -->
 
 
-      <!-- Item Modal
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      -->
-
-
-      <div class="modal fade"  v-show="cd_created"  id="entry-item" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add Item</h5>
-              <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update Entry</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <!-- form onsubmit="return false;" -->
-            <div class="modal-body">
-              
-              
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Name</span>
-                </div>
-                
-                
-                <input v-model="form_item.item" type="text" name="item_name"
-                  
-                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('item') }" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
-                   
-                <has-error :form="form_item" field="item_name"></has-error>
-              </div>
-              <div class="input-group mb-2">
-                <p v-show="no_item" class="empty-field-message">** Please enter item.</p>
-              </div>  
-
-
-
-
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Price</span>
-                </div>
-
-              
-                  <input v-model="form_item.price" name="price" id="price"
-                  @change="computeTaxChange"
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('price') }" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
-                  <has-error :form="form_item" field="price"></has-error>
-              </div>
-              <div class="input-group mb-2">
-                <p v-show="no_price" class="empty-field-message">** Please enter price.</p> 
-              </div>  
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Quantity</span>
-                </div>
-
-                <input v-model="form_item.quantity" type="text" name="entry_description"
-                  @change="computeTaxChange"
-                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('quantity') }" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
-                  
-                <has-error :form="form_item" field="entry_description"></has-error>
-              </div>
-              <div class="input-group mb-2">
-                <p v-show="no_quantity" class="empty-field-message">** Please enter quantity.</p> 
-              </div>  
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Total</span>
-                </div>
-
-                <input v-model="form_item.sub_total" type="text" name="entry_description"
-                  @change="computeTaxChange"
-                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('sub_total') }" aria-describedby="inputGroup-sizing-default" readonly>
-                <has-error :form="form_item" field="entry_description"></has-error>
-              </div>
-
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Tax Type</span>
-                </div>
-
-              
-
-                <select v-model="form_item.tax_type" @change="computeTaxChange" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
-                  <option value="VAT">VAT</option>
-                  <option value="NON VAT">NON VAT</option>
-                  <option value="VAT EXEMPT">VAT EXEMPT</option>
-                  <option value="ZERO RATED">ZERO RATED</option>
-                </select>
-              </div>
-
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Tax Excluded</span>
-                </div>
-
-              
-                  <input v-model="form_item.tax_excluded" name="amount_ex_tax" id="amount_ex_tax"
-                  
-                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('tax_excluded') }" readonly aria-describedby="inputGroup-sizing-default">
-                  <has-error :form="form_item" field="amount_ex_tax"></has-error>
-              </div>
-
-
-              <div class="input-group mb-2">
-                
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Tax</span>
-                </div>
-              
-                  <input v-model="form_item.vat" name="vat" id="vat"
-                  
-                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('vat') }" readonly aria-describedby="inputGroup-sizing-default">
-                  <has-error :form="form_item" field="vat"></has-error>
-              </div>
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" @click="cancelItem" class="btn btn-danger">Cancel</button>
-              <button type="button" :disabled="!save_button_item_enabled" @click="saveItem" class="btn btn-success">Save</button>
-            </div>
-
-            <!-- /form -->
-          </div>
-        </div>
-      </div>
-      <!-- Item Modal -->
+      
 
 
       <!-- Search Account Modal 
