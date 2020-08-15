@@ -1429,14 +1429,7 @@
               this.form_entry.branch_id = 0;
               this.form_entry.branch_name = 'NA';
               this.save_button_entry_enabled = true;
-                
-              $('#entry-payment').modal('show');
-
-          },
-          savePayment()
-          {
-            this.save_button_entry_enabled = false;
-            this.form_entry.post('api/cd/entry')
+              this.form_entry.post('api/cd/entry')
                 .then((data)=>{
                   this.form_entry.id = data.data.id;
                   
@@ -1446,7 +1439,22 @@
                   //
                 });
 
-            $('#entry-payment').modal('hide');
+
+              $('#entry-payment').modal('show');
+
+          },
+          savePayment()
+          {
+            this.save_button_entry_enabled = false;
+            this.form_entry.put('api/cd/entry/'+this.form_entry.id)
+            .then(() => {
+              $('#entry-payment').modal('hide');
+            })
+            .catch(() => {
+                this.$Progress.fail();
+            });
+
+            
           },
           cancelPayment(){
             this.form_entry.reset();

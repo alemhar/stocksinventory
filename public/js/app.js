@@ -8462,6 +8462,8 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.branch_name = this.selected_branch.name;
     },
     payEntry: function payEntry(account_code, account_name) {
+      var _this19 = this;
+
       // entry_id,entry_transaction_no, account_code, account_name, payment_amount
       this.form_entry.reset();
       this.form_entry.transaction_id = this.form.id;
@@ -8472,17 +8474,21 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.branch_id = 0;
       this.form_entry.branch_name = 'NA';
       this.save_button_entry_enabled = true;
-      $('#entry-payment').modal('show');
-    },
-    savePayment: function savePayment() {
-      var _this19 = this;
-
-      this.save_button_entry_enabled = false;
       this.form_entry.post('api/cd/entry').then(function (data) {
         _this19.form_entry.id = data.data.id; //VueListen.$emit('RefreshItemTable');    
       })["catch"](function () {//
       });
-      $('#entry-payment').modal('hide');
+      $('#entry-payment').modal('show');
+    },
+    savePayment: function savePayment() {
+      var _this20 = this;
+
+      this.save_button_entry_enabled = false;
+      this.form_entry.put('api/cd/entry/' + this.form_entry.id).then(function () {
+        $('#entry-payment').modal('hide');
+      })["catch"](function () {
+        _this20.$Progress.fail();
+      });
     },
     cancelPayment: function cancelPayment() {
       this.form_entry.reset();
@@ -8495,7 +8501,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this20 = this;
+    var _this21 = this;
 
     this.loadPayees();
     this.loadBranches();
@@ -8504,10 +8510,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntries();
     this.loadPurchase();
     VueListen.$on('RefreshItemTable', function () {
-      _this20.loadEntryItems();
+      _this21.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this20.loadEntries();
+      _this21.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);

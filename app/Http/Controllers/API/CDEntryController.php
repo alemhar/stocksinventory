@@ -97,7 +97,7 @@ class CDEntryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return ['message' => 'Entry updated!'];
+        
         $transactionEntry = TransactionEntry::findOrFail($id);
 
         // $this->validate($request,[
