@@ -332,7 +332,69 @@
       <!-- /.box -->
 
       
-      
+      <!-- Item List     
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      MAIN FORM ITEMS TABLE
+      -->
+
+          <div v-show="false" class="box box-warning mt-2">
+            <div class="col-md-12">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title box-title-transaction">Items</h3>
+                  <!--div class="box-tools">
+                    <button class="btn btn-success" @click="newItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
+                  </div-->
+                </div>
+                <!-- /.box-header -->
+                <div id="item-list" class="box-body table-responsive no-padding">
+                  <table class="table table-hover">
+                    <tbody>
+                      <tr>
+                        <th>Account No.</th>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Tax Type</th>
+                        <th>Sub-Total</th>
+                        <th>Tax Excluded</th>
+                        <th>Vat</th>
+                      </tr>
+                      <tr v-for="item in items.data" :key="item.id">
+                        <td>{{ item.account_code }}</td>
+                        <td>{{ item.item }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.price }}</td>
+                        <td>{{ item.tax_type }}</td>
+                        <td>{{ item.sub_total }}</td>
+                        <td>{{ item.tax_excluded }}</td>
+                        <td>{{ item.vat }}</td>
+                      </tr>
+                      
+                  </tbody>
+                </table>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                  
+                </div> 
+              </div>
+              <!-- /.box -->
+            </div>
+
+          </div>  
+          <!-- /.box -->
 
             <div v-show="cd_created" class="box box-warning mt-2">
               
@@ -1436,10 +1498,12 @@
           savePayment(account_code)
           {
 
-            if(this.form_entry.amount == 0){
+            /*  
+            if(this.form_entry.amount = 0){
               return false;
             }
-            this.form.amount +=  this.form_entry.amount;
+            this.amount +=  this.form_entry.amount;
+            */
             this.save_button_entry_enabled = false;
             this.form_entry.put('api/cd/entry/'+this.form_entry.id)
             .then(() => {
