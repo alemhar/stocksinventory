@@ -73,8 +73,6 @@
                       <span class="input-group-text" id="inputGroup-sizing-default">TIN</span>
                     </div>
                       <input v-bind:readonly="cd_created" type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN"  v-model="current_payee_tin">
-                    
-                    
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
@@ -229,7 +227,7 @@
       -->
 
           <!-- -->
-          <div  v-show="cd_created"  class="box box-warning mt-2">
+          <div  v-show="false"  class="box box-warning mt-2">
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
@@ -299,7 +297,7 @@
       MAIN FORM ITEMS TABLE
       -->
 
-          <div v-show="cd_created" class="box box-warning mt-2">
+          <div v-show="false" class="box box-warning mt-2">
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
@@ -479,7 +477,7 @@
       -->
 
 
-      <div class="modal fade"  v-show="cd_created"  id="entry-items" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+      <div class="modal fade"  v-show="false"  id="entry-items" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
