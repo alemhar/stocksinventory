@@ -227,14 +227,14 @@
       -->
 
           <!-- -->
-          <div  v-show="false"  class="box box-warning mt-2">
+          <div  v-show="cd_created"  class="box box-warning mt-2">
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title box-title-transaction">Debits</h3>
-                  <div class="box-tools">
+                  <h3 class="box-title box-title-transaction">Payment History</h3>
+                  <!-- div class="box-tools">
                     <button class="btn btn-success" @click="newEntry">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
-                  </div>
+                  </div -->
                 </div>
 
 
@@ -243,27 +243,18 @@
                   <table class="table table-hover">
                     <tbody>
                       <tr>
+                        <th>Payment#</th>
                         <th>Account No.</th>
                         <th>Name</th>
-                        <th>Branch</th>
                         <th>Amount</th>
-                        <th>Tax Excluded</th>
-                        <th>Tax</th>
-                        <th>Option</th>
+                        
                         
                       </tr>
-                      <tr v-for="entry in entries.data" :key="entry.id" @click="selectDebitRow(entry.id)" :class="{ 'table-warning' : active_debit_row == entry.id }" >
+                      <tr v-for="entry in entries.data" :key="entry.id" :class="{ 'table-warning' : active_debit_row == entry.id }" >
+                        <td>{{ entry.transaction_no }}</td>
                         <td>{{ entry.account_code }}</td>
                         <td>{{ entry.account_name }}</td>
-                        <td>{{ entry.branch_name }}</td>
                         <td>{{ entry.amount }}</td>
-                        <td>{{ entry.amount_ex_tax }}</td>
-                        <td>{{ entry.vat }}</td>
-                        <td>
-                          <a href="#" @click="deleteEntry(entry.id,entry.amount,entry.amount_ex_tax,entry.vat)">
-                            <i class="fa fa-trash"></i>
-                          </a>
-                        </td>
                       </tr>
                       
                   </tbody>
@@ -1463,7 +1454,7 @@
           selectPaymentRow(active_debit_row_id){
               this.active_debit_row = active_debit_row_id;
               this.form_entry.id = active_debit_row_id;
-              VueListen.$emit('RefreshItemTable');
+              VueListen.$emit('RefreshEntryTable');
               //console.log(active_debit_row);
 
           }
