@@ -7643,6 +7643,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       ledgers: [],
+      current_balance: 0,
       user_id: '',
       editmode: false,
       cd_created: false,
@@ -8272,7 +8273,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this18 = this;
 
       // entry_id,entry_transaction_no, account_code, account_name, payment_amount
-      console.log(current_balance);
+      this.current_balance = current_balance;
       this.form_entry.reset();
       this.form_entry.transaction_id = this.form.id;
       this.form_entry.transaction_no = this.form.transaction_no;
@@ -8291,7 +8292,13 @@ __webpack_require__.r(__webpack_exports__);
     savePayment: function savePayment(account_code) {
       var _this19 = this;
 
+      if (this.current_balance < this.form_entry.amount) {
+        swal.fire('Error!', 'Current balance is only ' + this.current_balance + '!', 'error');
+        return false;
+      }
+
       if (parseFloat(this.form_entry.amount) == 0) {
+        swal.fire('Error!', 'Please enter amount!', 'error');
         return false;
       }
 

@@ -569,6 +569,7 @@
         data() {
           return {
               ledgers: [],
+              current_balance: 0,
               user_id: '',
               editmode: false,
               cd_created: false,
@@ -1229,7 +1230,7 @@
           {
             // entry_id,entry_transaction_no, account_code, account_name, payment_amount
             
-              console.log(current_balance);
+              this.current_balance = current_balance;
               this.form_entry.reset();
               this.form_entry.transaction_id = this.form.id;
               this.form_entry.transaction_no = this.form.transaction_no;
@@ -1256,8 +1257,21 @@
           savePayment(account_code)
           {
 
-            
+            if(this.current_balance < this.form_entry.amount){
+              swal.fire(
+                      'Error!',
+                      'Current balance is only '+this.current_balance+'!',
+                      'error'
+                    );
+              return false;
+            }
+
             if( parseFloat(this.form_entry.amount) == 0){
+              swal.fire(
+                      'Error!',
+                      'Please enter amount!',
+                      'error'
+                    );
               return false;
             }
             this.form.amount +=  parseFloat(this.form_entry.amount);
