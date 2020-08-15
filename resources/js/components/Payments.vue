@@ -24,17 +24,7 @@
               <div class="box-body row">
                 <!--Left Col-->
                 <div class="col-8">
-                  <!-- div class="form-group">
-                    <label for="inputPayeesName">Payee</label>
-                    <input type="text" class="form-control col-12" id="inputPayeesName" placeholder="Payees Name">
-                  </div -->
 
-                  <!-- div class="form-group" -->
-                    <!--select name='payee_id' v-model='form.payee_id' class="form-control col-12">
-                      <option value=''>Please select payee...</option>
-                      <option v-for="payee in payees.data" v-bind:value="payee.id">{{ payee.name }}</option>
-                    </select -->
-                  <!-- /div -->
 
                   <div class="input-group mb-2">
                     <!-- label for="inputPayeesName">Payee</label -->
@@ -174,20 +164,9 @@
                     <td>{{ purchase.account_name }}</td>
                     <td>{{ purchase.amount }}</td>
                     <td>{{ purchase.total_payment }}</td>
-                    <td>{{ currentBalance(purchase.amount,purchase.total_payment) }}</td> <!-- replace with computed amount minus total_payment -->
-                    
-                    <!-- 
-                        X List should be ordered by updated_at 
-                        Create payments/items object and store, entry.transaction_no, account_code, account_name, payment_amount
-                        Open a modal form for payment, Input payment.
-                        Update entry.balance/computed 
-
-                        Save-
-                        Update purchase transaction total_payment,
-                        entry.id,entry.transaction_no, account_code, account_name, payment_amount
-                    -->
+                    <td>{{ currentBalance(purchase.amount,purchase.total_payment) }}</td> 
                     <td>
-                      <a href="#" @click="payEntry(purchase.account_code,purchase.account_name)">
+                      <a href="#" @click="payEntry(purchase.account_code,purchase.account_name,currentBalance(purchase.amount,purchase.total_payment))">
                         <i class="fas fa-money-bill"></i>
                         Pay
                         <!-- i class="fa fa-money-bill"></i -->
@@ -229,7 +208,7 @@
           <!-- -->
           <div  v-show="cd_created"  class="box box-warning mt-2">
             <div class="col-md-12">
-              <div class="box">
+              <div class="">
                 <div class="box-header">
                   <h3 class="box-title box-title-transaction">Payments</h3>
                   <!-- div class="box-tools">
@@ -289,7 +268,7 @@
       <!-- -->
       <div  v-show="cd_created"  class="box box-warning mt-2">
         <div class="col-md-12">
-          <div class="box">
+          <div class="">
             <div class="box-header">
               <h3 class="box-title box-title-transaction">Payment History</h3>
               <!-- div class="box-tools">
@@ -332,84 +311,11 @@
       <!-- /.box -->
 
       
-      <!-- Item List     
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      MAIN FORM ITEMS TABLE
-      -->
-
-          <!-- div v-show="false" class="box box-warning mt-2">
-            <div class="col-md-12">
-              <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title box-title-transaction">Items</h3>
-
-                </div>
-                <div id="item-list" class="box-body table-responsive no-padding">
-                  <table class="table table-hover">
-                    <tbody>
-                      <tr>
-                        <th>Account No.</th>
-                        <th>Item</th>
-                        <th>Qty</th>
-                        <th>Price</th>
-                        <th>Tax Type</th>
-                        <th>Sub-Total</th>
-                        <th>Tax Excluded</th>
-                        <th>Vat</th>
-                      </tr>
-                      <tr v-for="item in items.data" :key="item.id">
-                        <td>{{ item.account_code }}</td>
-                        <td>{{ item.item }}</td>
-                        <td>{{ item.quantity }}</td>
-                        <td>{{ item.price }}</td>
-                        <td>{{ item.tax_type }}</td>
-                        <td>{{ item.sub_total }}</td>
-                        <td>{{ item.tax_excluded }}</td>
-                        <td>{{ item.vat }}</td>
-                      </tr>
-                      
-                  </tbody>
-                </table>
-                </div>
-                <div class="box-footer">
-                  
-                </div> 
-              </div>
-            </div>
-
-          </div -->  
-          <!-- /.box -->
+      
 
             <div v-show="cd_created" class="box box-warning mt-2">
               
-              <!-- div class="form-group col-12 float-right">
-                <div class="row mt-2">
-                <label for="inputAmountExclusiveTax" class="col-sm-9 col-form-label" style="text-align: right;">Amount Exclusive of Tax</label>
-                <div class="col-sm-3">
-                  <input readonly v-model="Number(form.amount_ex_tax).toLocaleString()" type="text" class="form-control" id="inputAmountExclusiveTax" placeholder="Amount Exclusive of Tax">
-                </div>
-                </div>
-              </div>
-              <div class="form-group col-12 float-right">
-                <div class="row">
-                
-                <label for="inputVAT" class="col-sm-9 col-form-label" style="text-align: right;">VAT</label>
-                <div class="col-sm-3">
-                  <input readonly v-model="Number(form.vat).toLocaleString()" type="text" class="form-control" id="inputVAT" placeholder="VAT">
-                </div>
-              </div>
-              </div -->
+              
               <div class="form-group col-12 float-right">
                 <div class="row">
                 
@@ -927,7 +833,7 @@
                       })
                       .then((response)=>{
                           
-                          console.log(response);
+                          //console.log(response);
                       })
                       .catch(function (error) {
                           console.log(error);
@@ -992,7 +898,7 @@
 
           selectPayee(id = null,name = null,address = null,tin = null){
               if (id){
-                    console.log(name);
+                    //console.log(name);
                       this.current_payee_id = id;
                       this.form.payee_id = id;
                       this.current_payee_name = name;
@@ -1319,11 +1225,11 @@
             this.form_entry.branch_id = this.selected_branch.id ;
             this.form_entry.branch_name = this.selected_branch.name;
           },
-          payEntry(account_code,account_name)
+          payEntry(account_code,account_name,current_balance)
           {
             // entry_id,entry_transaction_no, account_code, account_name, payment_amount
             
-
+              console.log(current_balance);
               this.form_entry.reset();
               this.form_entry.transaction_id = this.form.id;
               this.form_entry.transaction_no = this.form.transaction_no;

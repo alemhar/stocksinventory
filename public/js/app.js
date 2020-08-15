@@ -7636,100 +7636,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -7991,8 +7897,7 @@ __webpack_require__.r(__webpack_exports__);
           headers: {
             'Content-Type': 'multipart/form-data'
           }
-        }).then(function (response) {
-          console.log(response);
+        }).then(function (response) {//console.log(response);
         })["catch"](function (error) {
           console.log(error);
         });
@@ -8057,7 +7962,7 @@ __webpack_require__.r(__webpack_exports__);
       var tin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
 
       if (id) {
-        console.log(name);
+        //console.log(name);
         this.current_payee_id = id;
         this.form.payee_id = id;
         this.current_payee_name = name;
@@ -8363,10 +8268,11 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.branch_id = this.selected_branch.id;
       this.form_entry.branch_name = this.selected_branch.name;
     },
-    payEntry: function payEntry(account_code, account_name) {
+    payEntry: function payEntry(account_code, account_name, current_balance) {
       var _this18 = this;
 
       // entry_id,entry_transaction_no, account_code, account_name, payment_amount
+      console.log(current_balance);
       this.form_entry.reset();
       this.form_entry.transaction_id = this.form.id;
       this.form_entry.transaction_no = this.form.transaction_no;
@@ -81808,9 +81714,13 @@ var render = function() {
                                             attrs: { href: "#" },
                                             on: {
                                               click: function($event) {
-                                                return _vm.payEntry(
+                                                _vm.payEntry(
                                                   purchase.account_code,
-                                                  purchase.account_name
+                                                  purchase.account_name,
+                                                  _vm.currentBalance(
+                                                    purchase.amount,
+                                                    purchase.total_payment
+                                                  )
                                                 )
                                               }
                                             }
@@ -81856,7 +81766,7 @@ var render = function() {
                 },
                 [
                   _c("div", { staticClass: "col-md-12" }, [
-                    _c("div", { staticClass: "box" }, [
+                    _c("div", {}, [
                       _vm._m(9),
                       _vm._v(" "),
                       _c(
@@ -81927,7 +81837,7 @@ var render = function() {
                 },
                 [
                   _c("div", { staticClass: "col-md-12" }, [
-                    _c("div", { staticClass: "box" }, [
+                    _c("div", {}, [
                       _vm._m(11),
                       _vm._v(" "),
                       _c(
