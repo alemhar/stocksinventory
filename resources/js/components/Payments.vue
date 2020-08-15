@@ -211,7 +211,7 @@
 
 
 
-      <!-- Debit List     
+      <!-- Payment List     
       *
       *
       *
@@ -271,7 +271,67 @@
           </div>  
           <!-- /.box -->
 
+      <!-- Payment History List     
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      -->
 
+      <!-- -->
+      <div  v-show="cd_created"  class="box box-warning mt-2">
+        <div class="col-md-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title box-title-transaction">Payment History</h3>
+              <!-- div class="box-tools">
+                <button class="btn btn-success" @click="newEntry">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
+              </div -->
+            </div>
+
+
+            <!-- /.box-header -->
+            <div id="debits-list" class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tbody>
+                  <tr>
+                    <th>Payment#</th>
+                    <th>Account No.</th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    
+                    
+                  </tr>
+                  <tr v-for="payment in payment_history.data" :key="payment.id">
+                    <td>{{ payment.transaction_no }}</td>
+                    <td>{{ payment.account_code }}</td>
+                    <td>{{ payment.account_name }}</td>
+                    <td>{{ payment.amount }}</td>
+                  </tr>
+                  
+              </tbody>
+            </table>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+              
+            </div> 
+          </div>
+          <!-- /.box -->
+        </div>
+
+      </div>  
+      <!-- /.box -->
+
+      
       <!-- Item List     
       *
       *
@@ -831,6 +891,7 @@
               branches: {},
               items: {},
               entries: {},
+              payment_history: {},
               purchases:{},
               chart_of_accounts: {},
               chart_of_accounts_header: {},
