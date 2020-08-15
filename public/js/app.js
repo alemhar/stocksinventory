@@ -7872,8 +7872,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -81825,30 +81823,8 @@ var render = function() {
                 },
                 [
                   _c("div", { staticClass: "col-md-12" }, [
-                    _c("div", { staticClass: "box" }, [
-                      _c("div", { staticClass: "box-header" }, [
-                        _c(
-                          "h3",
-                          { staticClass: "box-title box-title-transaction" },
-                          [_vm._v("Purchases")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "box-tools" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-success",
-                              on: { click: _vm.newEntry }
-                            },
-                            [
-                              _vm._v("Add Items "),
-                              _c("i", {
-                                staticClass: "fas fa-plus-circle fa-fw"
-                              })
-                            ]
-                          )
-                        ])
-                      ]),
+                    _c("div", {}, [
+                      _vm._m(7),
                       _vm._v(" "),
                       _c(
                         "div",
@@ -81861,7 +81837,7 @@ var render = function() {
                             _c(
                               "tbody",
                               [
-                                _vm._m(7),
+                                _vm._m(8),
                                 _vm._v(" "),
                                 _vm._l(_vm.purchases.data, function(purchase) {
                                   return _c(
@@ -82000,7 +81976,7 @@ var render = function() {
                             _c(
                               "tbody",
                               [
-                                _vm._m(8),
+                                _vm._m(9),
                                 _vm._v(" "),
                                 _vm._l(_vm.entries.data, function(entry) {
                                   return _c(
@@ -82093,7 +82069,7 @@ var render = function() {
                 [
                   _c("div", { staticClass: "col-md-12" }, [
                     _c("div", { staticClass: "box" }, [
-                      _vm._m(9),
+                      _vm._m(10),
                       _vm._v(" "),
                       _c(
                         "div",
@@ -82106,7 +82082,7 @@ var render = function() {
                             _c(
                               "tbody",
                               [
-                                _vm._m(10),
+                                _vm._m(11),
                                 _vm._v(" "),
                                 _vm._l(_vm.items.data, function(item) {
                                   return _c("tr", { key: item.id }, [
@@ -82372,7 +82348,7 @@ var render = function() {
                     [_vm._v("Add Entry")]
                   ),
                   _vm._v(" "),
-                  _vm._m(11)
+                  _vm._m(12)
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-body" }, [
@@ -82380,7 +82356,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(12),
+                      _vm._m(13),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -82463,7 +82439,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(13),
+                      _vm._m(14),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -82512,107 +82488,6 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(14),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.selected_branch,
-                              expression: "selected_branch"
-                            }
-                          ],
-                          staticClass: "form-control col-12",
-                          attrs: {
-                            "aria-describedby": "inputGroup-sizing-default"
-                          },
-                          on: {
-                            change: [
-                              function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.selected_branch = $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              },
-                              _vm.branchChange
-                            ]
-                          }
-                        },
-                        _vm._l(_vm.branches.data, function(branch) {
-                          return _c(
-                            "option",
-                            {
-                              domProps: {
-                                value: { id: branch.id, name: branch.name }
-                              }
-                            },
-                            [_vm._v(_vm._s(branch.name))]
-                          )
-                        }),
-                        0
-                      ),
-                      _vm._v(" "),
-                      _c("has-error", {
-                        attrs: { form: _vm.form_entry, field: "branch_id" }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "input-group mb-2" }, [
-                    _c(
-                      "p",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.no_entry_branch_id,
-                            expression: "no_entry_branch_id"
-                          }
-                        ],
-                        staticClass: "empty-field-message"
-                      },
-                      [_vm._v("** Please indicate branch.")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "box-header" }, [
-                    _c(
-                      "h3",
-                      { staticClass: "box-title box-title-transaction" },
-                      [_vm._v("Items")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "box-tools" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-success",
-                          on: { click: _vm.newItem }
-                        },
-                        [
-                          _vm._v("Add Items "),
-                          _c("i", { staticClass: "fas fa-plus-circle fa-fw" })
-                        ]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "input-group mb-2" },
-                    [
                       _vm._m(15),
                       _vm._v(" "),
                       _c("input", {
@@ -82634,7 +82509,6 @@ var render = function() {
                         attrs: {
                           name: "amount",
                           id: "amount",
-                          readonly: "",
                           "aria-describedby": "inputGroup-sizing-default"
                         },
                         domProps: {
@@ -82656,112 +82530,6 @@ var render = function() {
                       _vm._v(" "),
                       _c("has-error", {
                         attrs: { form: _vm.form_entry, field: "amount" }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "input-group mb-2" },
-                    [
-                      _vm._m(16),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: Number(
-                              _vm.form_entry.amount_ex_tax
-                            ).toLocaleString(),
-                            expression:
-                              "Number(form_entry.amount_ex_tax).toLocaleString()"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        class: {
-                          "is-invalid": _vm.form_entry.errors.has(
-                            "amount_ex_tax"
-                          )
-                        },
-                        attrs: {
-                          name: "amount_ex_tax",
-                          id: "amount_ex_tax",
-                          readonly: "",
-                          "aria-describedby": "inputGroup-sizing-default"
-                        },
-                        domProps: {
-                          value: Number(
-                            _vm.form_entry.amount_ex_tax
-                          ).toLocaleString()
-                        },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              Number(_vm.form_entry.amount_ex_tax),
-                              "toLocaleString()",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("has-error", {
-                        attrs: { form: _vm.form_entry, field: "amount_ex_tax" }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "input-group mb-2" },
-                    [
-                      _vm._m(17),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: Number(_vm.form_entry.vat).toLocaleString(),
-                            expression:
-                              "Number(form_entry.vat).toLocaleString()"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        class: {
-                          "is-invalid": _vm.form_entry.errors.has("vat")
-                        },
-                        attrs: {
-                          name: "vat",
-                          id: "vat",
-                          readonly: "",
-                          "aria-describedby": "inputGroup-sizing-default"
-                        },
-                        domProps: {
-                          value: Number(_vm.form_entry.vat).toLocaleString()
-                        },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              Number(_vm.form_entry.vat),
-                              "toLocaleString()",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("has-error", {
-                        attrs: { form: _vm.form_entry, field: "vat" }
                       })
                     ],
                     1
@@ -82865,7 +82633,7 @@ var render = function() {
                   [_vm._v("Update Entry")]
                 ),
                 _vm._v(" "),
-                _vm._m(18)
+                _vm._m(16)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -82873,7 +82641,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(19),
+                    _vm._m(17),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -82932,7 +82700,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(20),
+                    _vm._m(18),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -82994,7 +82762,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(21),
+                    _vm._m(19),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -83060,7 +82828,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(22),
+                    _vm._m(20),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -83105,7 +82873,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(23),
+                  _vm._m(21),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -83169,7 +82937,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(24),
+                    _vm._m(22),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -83216,7 +82984,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(25),
+                    _vm._m(23),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -83307,7 +83075,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(26),
+              _vm._m(24),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -83346,7 +83114,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(27),
+                            _vm._m(25),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -83390,7 +83158,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(28)
+                _vm._m(26)
               ])
             ])
           ]
@@ -83421,7 +83189,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(29),
+              _vm._m(27),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -83460,7 +83228,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(30),
+                            _vm._m(28),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -83500,7 +83268,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(31)
+                _vm._m(29)
               ])
             ])
           ]
@@ -83598,6 +83366,16 @@ var staticRenderFns = [
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Amount")]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-header" }, [
+      _c("h3", { staticClass: "box-title box-title-transaction" }, [
+        _vm._v("Purchases")
+      ])
     ])
   },
   function() {
@@ -83721,43 +83499,7 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Branch")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Amount")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Tax Excluded")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Tax")]
       )
     ])
   },

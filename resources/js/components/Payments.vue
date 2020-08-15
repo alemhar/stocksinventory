@@ -151,12 +151,10 @@
       -->
       <div  v-show="!cd_created" class="box box-warning mt-2">
         <div class="col-md-12">
-          <div class="box">
+          <div class="">
             <div class="box-header">
               <h3 class="box-title box-title-transaction">Purchases</h3>
-              <div class="box-tools">
-                <button class="btn btn-success" @click="newEntry">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
-              </div>
+              
             </div>
             <!-- /.box-header -->
             <div id="debits-list" class="box-body table-responsive no-padding">
@@ -389,7 +387,7 @@
           <not-found></not-found>
         </div>  
 
-      <!-- Entry Modal
+      <!-- Payments Modal
       *
       *
       *
@@ -443,7 +441,7 @@
                 <has-error :form="form_entry" field="account_name"></has-error>
               </div>
 
-              <div class="input-group mb-2">
+              <!-- div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Branch</span>
                 </div>
@@ -454,13 +452,13 @@
               </div>
               <div class="input-group mb-2">
                 <p v-show="no_entry_branch_id" class="empty-field-message">** Please indicate branch.</p>
-              </div>
-              <div class="box-header">
+              </div -->
+              <!-- div class="box-header">
                   <h3 class="box-title box-title-transaction">Items</h3>
                   <div class="box-tools">
                     <button class="btn btn-success" @click="newItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
-              </div>
+              </div -->
 
                 
 
@@ -470,12 +468,12 @@
                 </div>
 
                   <input v-model="Number(form_entry.amount).toLocaleString()" name="amount" id="amount"
-                  readonly
+                  
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount') }" aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_entry" field="amount"></has-error>
               </div>
 
-              <div class="input-group mb-2">
+              <!-- div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Tax Excluded</span>
                 </div>
@@ -485,10 +483,10 @@
                   
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount_ex_tax') }" readonly aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_entry" field="amount_ex_tax"></has-error>
-              </div>
+              </div -->
 
 
-              <div class="input-group mb-2">
+              <!-- div class="input-group mb-2">
                 
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Tax</span>
@@ -498,7 +496,7 @@
                   
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('vat') }" readonly aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_entry" field="vat"></has-error>
-              </div>
+              </div -->
 
             </div>
             <div class="modal-footer">
