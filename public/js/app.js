@@ -8485,6 +8485,11 @@ __webpack_require__.r(__webpack_exports__);
     cancelPayment: function cancelPayment() {
       this.form_entry.reset();
       $('#entry-payment').modal('hide');
+    },
+    selectPaymentRow: function selectPaymentRow(active_debit_row_id) {
+      this.active_debit_row = active_debit_row_id;
+      this.form_entry.id = active_debit_row_id;
+      VueListen.$emit('RefreshItemTable'); //console.log(active_debit_row);
     }
   },
   created: function created() {
@@ -81820,8 +81825,8 @@ var render = function() {
                                       },
                                       on: {
                                         click: function($event) {
-                                          return _vm.selectDebitRow(
-                                            _vm.entry.id
+                                          return _vm.selectPaymentRow(
+                                            purchase.id
                                           )
                                         }
                                       }

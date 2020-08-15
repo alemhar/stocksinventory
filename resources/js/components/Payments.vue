@@ -170,7 +170,7 @@
                     <th>Option</th>
                     
                   </tr>
-                  <tr v-for="purchase in purchases.data" :key="purchase.id" @click="selectDebitRow(entry.id)" :class="{ 'table-warning' : active_debit_row == purchase.id }" >
+                  <tr v-for="purchase in purchases.data" :key="purchase.id" @click="selectPaymentRow(purchase.id)" :class="{ 'table-warning' : active_debit_row == purchase.id }" >
                     <td>{{ purchase.transaction_no }}</td>
                     <td>{{ purchase.account_code }}</td>
                     <td>{{ purchase.account_name }}</td>
@@ -1171,6 +1171,7 @@
               //console.log(active_debit_row);
 
           },
+          
           newEntry(){
               this.editmode = false;
               this.form_entry.reset();
@@ -1452,6 +1453,13 @@
           cancelPayment(){
             this.form_entry.reset();
             $('#entry-payment').modal('hide');
+          },
+          selectPaymentRow(active_debit_row_id){
+              this.active_debit_row = active_debit_row_id;
+              this.form_entry.id = active_debit_row_id;
+              VueListen.$emit('RefreshItemTable');
+              //console.log(active_debit_row);
+
           }
 
           
