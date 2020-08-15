@@ -332,81 +332,19 @@
       <!-- /.box -->
 
       
-      <!-- Item List     
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      MAIN FORM ITEMS TABLE
-      -->
-
-          <div v-show="false" class="box box-warning mt-2">
-            <div class="col-md-12">
-              <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title box-title-transaction">Items</h3>
-                  <!--div class="box-tools">
-                    <button class="btn btn-success" @click="newItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
-                  </div-->
-                </div>
-                <!-- /.box-header -->
-                <div id="item-list" class="box-body table-responsive no-padding">
-                  <table class="table table-hover">
-                    <tbody>
-                      <tr>
-                        <th>Account No.</th>
-                        <th>Item</th>
-                        <th>Qty</th>
-                        <th>Price</th>
-                        <th>Tax Type</th>
-                        <th>Sub-Total</th>
-                        <th>Tax Excluded</th>
-                        <th>Vat</th>
-                      </tr>
-                      <tr v-for="item in items.data" :key="item.id">
-                        <td>{{ item.account_code }}</td>
-                        <td>{{ item.item }}</td>
-                        <td>{{ item.quantity }}</td>
-                        <td>{{ item.price }}</td>
-                        <td>{{ item.tax_type }}</td>
-                        <td>{{ item.sub_total }}</td>
-                        <td>{{ item.tax_excluded }}</td>
-                        <td>{{ item.vat }}</td>
-                      </tr>
-                      
-                  </tbody>
-                </table>
-                </div>
-                <!-- /.box-body -->
-                <div class="box-footer">
-                  
-                </div> 
-              </div>
-              <!-- /.box -->
-            </div>
-
-          </div>  
-          <!-- /.box -->
+      
 
             <div v-show="cd_created" class="box box-warning mt-2">
               
-              <div class="form-group col-12 float-right">
+              <!-- div class="form-group col-12 float-right">
                 <div class="row mt-2">
                 <label for="inputAmountExclusiveTax" class="col-sm-9 col-form-label" style="text-align: right;">Amount Exclusive of Tax</label>
                 <div class="col-sm-3">
                   <input readonly v-model="Number(form.amount_ex_tax).toLocaleString()" type="text" class="form-control" id="inputAmountExclusiveTax" placeholder="Amount Exclusive of Tax">
                 </div>
                 </div>
-              </div>
-              <div class="form-group col-12 float-right">
+              </div -->
+              <!-- div class="form-group col-12 float-right">
                 <div class="row">
                 
                 <label for="inputVAT" class="col-sm-9 col-form-label" style="text-align: right;">VAT</label>
@@ -414,7 +352,7 @@
                   <input readonly v-model="Number(form.vat).toLocaleString()" type="text" class="form-control" id="inputVAT" placeholder="VAT">
                 </div>
               </div>
-              </div>
+              </div -->
               <div class="form-group col-12 float-right">
                 <div class="row">
                 
@@ -1501,7 +1439,7 @@
             if(this.form_entry.amount == 0){
               return false;
             }
-            this.amount +=  this.form_entry.amount;
+            this.form.amount +=  this.form_entry.amount;
             this.save_button_entry_enabled = false;
             this.form_entry.put('api/cd/entry/'+this.form_entry.id)
             .then(() => {
