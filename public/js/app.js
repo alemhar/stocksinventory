@@ -8546,13 +8546,12 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this19 = this;
 
-    //this.loadUsers();
     this.loadPayees();
     this.loadBranches();
     this.initChartAccounts();
     this.loadEntryItems();
-    this.loadEntries(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
-
+    this.loadEntries();
+    this.loadPurchase();
     VueListen.$on('RefreshItemTable', function () {
       _this19.loadEntryItems();
     });
@@ -81974,117 +81973,133 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "box box-warning mt-2" }, [
-                _c("div", { staticClass: "col-md-12" }, [
-                  _c("div", { staticClass: "box" }, [
-                    _c("div", { staticClass: "box-header" }, [
-                      _c(
-                        "h3",
-                        { staticClass: "box-title box-title-transaction" },
-                        [_vm._v("Debits")]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "box-tools" }, [
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.cd_created,
+                      expression: "cd_created"
+                    }
+                  ],
+                  staticClass: "box box-warning mt-2"
+                },
+                [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "box" }, [
+                      _c("div", { staticClass: "box-header" }, [
                         _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-success",
-                            on: { click: _vm.newEntry }
-                          },
-                          [
-                            _vm._v("Add Items "),
-                            _c("i", { staticClass: "fas fa-plus-circle fa-fw" })
-                          ]
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "box-body table-responsive no-padding",
-                        attrs: { id: "debits-list" }
-                      },
-                      [
-                        _c("table", { staticClass: "table table-hover" }, [
+                          "h3",
+                          { staticClass: "box-title box-title-transaction" },
+                          [_vm._v("Debits")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "box-tools" }, [
                           _c(
-                            "tbody",
+                            "button",
+                            {
+                              staticClass: "btn btn-success",
+                              on: { click: _vm.newEntry }
+                            },
                             [
-                              _vm._m(8),
-                              _vm._v(" "),
-                              _vm._l(_vm.entries.data, function(entry) {
-                                return _c(
-                                  "tr",
-                                  {
-                                    key: entry.id,
-                                    class: {
-                                      "table-warning":
-                                        _vm.active_debit_row == entry.id
-                                    },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.selectDebitRow(entry.id)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("td", [
-                                      _vm._v(_vm._s(entry.account_code))
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(entry.account_name))
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(entry.branch_name))
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(entry.amount))]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(entry.amount_ex_tax))
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(entry.vat))]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _c(
-                                        "a",
-                                        {
-                                          attrs: { href: "#" },
-                                          on: {
-                                            click: function($event) {
-                                              return _vm.deleteEntry(
-                                                entry.id,
-                                                entry.amount,
-                                                entry.amount_ex_tax,
-                                                entry.vat
-                                              )
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass: "fa fa-trash"
-                                          })
-                                        ]
-                                      )
-                                    ])
-                                  ]
-                                )
+                              _vm._v("Add Items "),
+                              _c("i", {
+                                staticClass: "fas fa-plus-circle fa-fw"
                               })
-                            ],
-                            2
+                            ]
                           )
                         ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "box-footer" })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "box-body table-responsive no-padding",
+                          attrs: { id: "debits-list" }
+                        },
+                        [
+                          _c("table", { staticClass: "table table-hover" }, [
+                            _c(
+                              "tbody",
+                              [
+                                _vm._m(8),
+                                _vm._v(" "),
+                                _vm._l(_vm.entries.data, function(entry) {
+                                  return _c(
+                                    "tr",
+                                    {
+                                      key: entry.id,
+                                      class: {
+                                        "table-warning":
+                                          _vm.active_debit_row == entry.id
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.selectDebitRow(entry.id)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("td", [
+                                        _vm._v(_vm._s(entry.account_code))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(entry.account_name))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(entry.branch_name))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v(_vm._s(entry.amount))]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(entry.amount_ex_tax))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v(_vm._s(entry.vat))]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _c(
+                                          "a",
+                                          {
+                                            attrs: { href: "#" },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.deleteEntry(
+                                                  entry.id,
+                                                  entry.amount,
+                                                  entry.amount_ex_tax,
+                                                  entry.vat
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fa fa-trash"
+                                            })
+                                          ]
+                                        )
+                                      ])
+                                    ]
+                                  )
+                                })
+                              ],
+                              2
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "box-footer" })
+                    ])
                   ])
-                ])
-              ]),
+                ]
+              ),
               _vm._v(" "),
               _c(
                 "div",

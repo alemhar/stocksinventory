@@ -230,8 +230,8 @@
       *
       -->
 
-          <!-- v-show="cd_created" -->
-          <div   class="box box-warning mt-2">
+          <!-- -->
+          <div  v-show="cd_created"  class="box box-warning mt-2">
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
@@ -1504,14 +1504,16 @@
         created() {
             
             
-            //this.loadUsers();
+            
             this.loadPayees();
             this.loadBranches();
             this.initChartAccounts();
 
             this.loadEntryItems();
             this.loadEntries();
-            //this.SearchIt = _.debounce(this.SearchIt, 1000);
+            
+            this.loadPurchase();
+
             
             VueListen.$on('RefreshItemTable',() => {
                 this.loadEntryItems();
