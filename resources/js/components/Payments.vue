@@ -1400,6 +1400,9 @@
           savePayment()
           {
             $('#entry-payment').modal('hide');
+          },
+          currentBalance(total_amount,payments){
+            return (total_amount - payments).toFixed(2);
           }
           
 
@@ -1454,9 +1457,7 @@
             */
         },
         computed: {
-          currentBalance(total_amount,payments){
-            return (total_amount - payments).toFixed(2);
-          }
+          
             
           
 

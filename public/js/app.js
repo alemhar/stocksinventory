@@ -8440,6 +8440,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     savePayment: function savePayment() {
       $('#entry-payment').modal('hide');
+    },
+    currentBalance: function currentBalance(total_amount, payments) {
+      return (total_amount - payments).toFixed(2);
     }
   },
   created: function created() {
@@ -8480,11 +8483,7 @@ __webpack_require__.r(__webpack_exports__);
     });
     */
   },
-  computed: {
-    currentBalance: function currentBalance(total_amount, payments) {
-      return (total_amount - payments).toFixed(2);
-    }
-  },
+  computed: {},
   components: {}
 });
 
