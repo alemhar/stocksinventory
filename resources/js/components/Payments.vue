@@ -195,66 +195,7 @@
           </div>  
           <!-- /.box -->
 
-      <!-- Item List     
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      *
-      MAIN FORM ITEMS TABLE
-      -->
-
-          <!-- div v-show="cd_created" class="box box-warning mt-2">
-            <div class="col-md-12">
-              <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title box-title-transaction">Items</h3>
-
-                </div>
-
-                <div id="item-list" class="box-body table-responsive no-padding">
-                  <table class="table table-hover">
-                    <tbody>
-                      <tr>
-                        <th>Account No.</th>
-                        <th>Item</th>
-                        <th>Qty</th>
-                        <th>Price</th>
-                        <th>Tax Type</th>
-                        <th>Sub-Total</th>
-                        <th>Tax Excluded</th>
-                        <th>Vat</th>
-                      </tr>
-                      <tr v-for="item in items.data" :key="item.id">
-                        <td>{{ item.account_code }}</td>
-                        <td>{{ item.item }}</td>
-                        <td>{{ item.quantity }}</td>
-                        <td>{{ item.price }}</td>
-                        <td>{{ item.tax_type }}</td>
-                        <td>{{ item.sub_total }}</td>
-                        <td>{{ item.tax_excluded }}</td>
-                        <td>{{ item.vat }}</td>
-                      </tr>
-                      
-                  </tbody>
-                </table>
-                </div>
-                
-                <div class="box-footer">
-                  
-                </div> 
-              </div>
-             
-            </div>
-
-          </div -->  
+ 
           
             <!-- div v-show="cd_created" class="box box-warning mt-2">
               
