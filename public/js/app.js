@@ -8485,14 +8485,23 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.reset();
       $('#entry-payment').modal('hide');
     },
-    selectPaymentRow: function selectPaymentRow(active_debit_row_id) {
+    selectPaymentRow: function selectPaymentRow(active_debit_row_id, account_code) {
       this.active_debit_row = active_debit_row_id;
       this.form_entry.id = active_debit_row_id;
-      VueListen.$emit('RefreshEntryTable'); //console.log(active_debit_row);
+      this.loadPayments(account_code); //VueListen.$emit('RefreshEntryTable');
+      //console.log(active_debit_row);
+    },
+    loadPayments: function loadPayments(account_code) {
+      var _this21 = this;
+
+      axios.get('api/cd/entries/list?account_code=' + account_code).then(function (data) {
+        _this21.entries = data.data;
+      })["catch"](function () {//
+      });
     }
   },
   created: function created() {
-    var _this21 = this;
+    var _this22 = this;
 
     this.loadPayees();
     this.loadBranches();
@@ -8501,10 +8510,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntries();
     this.loadPurchase();
     VueListen.$on('RefreshItemTable', function () {
-      _this21.loadEntryItems();
+      _this22.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this21.loadEntries();
+      _this22.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
@@ -81825,7 +81834,8 @@ var render = function() {
                                       on: {
                                         click: function($event) {
                                           return _vm.selectPaymentRow(
-                                            purchase.id
+                                            purchase.id,
+                                            purchase.account_code
                                           )
                                         }
                                       }

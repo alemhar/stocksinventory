@@ -168,7 +168,7 @@
                     <th>Option</th>
                     
                   </tr>
-                  <tr v-for="purchase in purchases.data" :key="purchase.id" @click="selectPaymentRow(purchase.id)" :class="{ 'table-warning' : active_debit_row == purchase.id }" >
+                  <tr v-for="purchase in purchases.data" :key="purchase.id" @click="selectPaymentRow(purchase.id,purchase.account_code)" :class="{ 'table-warning' : active_debit_row == purchase.id }" >
                     <td>{{ purchase.transaction_no }}</td>
                     <td>{{ purchase.account_code }}</td>
                     <td>{{ purchase.account_name }}</td>
@@ -1451,13 +1451,23 @@
             this.form_entry.reset();
             $('#entry-payment').modal('hide');
           },
-          selectPaymentRow(active_debit_row_id){
+          selectPaymentRow(active_debit_row_id,account_code){
               this.active_debit_row = active_debit_row_id;
               this.form_entry.id = active_debit_row_id;
-              VueListen.$emit('RefreshEntryTable');
+              this.loadPayments(account_code);
+              //VueListen.$emit('RefreshEntryTable');
               //console.log(active_debit_row);
 
-          }
+          },
+          loadPayments(account_code) {
+              axios.get('api/cd/entries/list?account_code='+account_code)
+                .then((data)=>{
+                  this.entries = data.data;
+                })
+                .catch(()=>{
+                  //
+                });
+          },
 
           
 
