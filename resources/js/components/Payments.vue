@@ -442,7 +442,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" @click="cancelPayment">Cancel</button>
-              <button type="button" :disabled="!save_button_entry_enabled" class="btn btn-success" @click="savePayment">Save</button>
+              <button type="button" :disabled="!save_button_entry_enabled" class="btn btn-success" @click="savePayment(form_entry.account_code)">Save</button>
             </div>
 
             <!-- /form -->
@@ -850,7 +850,7 @@
               axios.get('api/cd/purchase/list')
                 .then((data)=>{
                   this.purchases = data.data;
-                  console.log(this.purchases);
+                  //console.log(this.purchases);
                 })
                 .catch(()=>{
                   //
@@ -1440,6 +1440,7 @@
             this.form_entry.put('api/cd/entry/'+this.form_entry.id)
             .then(() => {
               $('#entry-payment').modal('hide');
+              this.loadPayments(account_code);
             })
             .catch(() => {
                 this.$Progress.fail();
@@ -1460,7 +1461,7 @@
 
           },
           loadPayments(account_code) {
-              axios.get('api/cd/entries/list?account_code='+account_code)
+              axios.get('api/cd/entries/list?account_code='+account_code+'&transaction_no='+this.form.transaction_no)
                 .then((data)=>{
                   this.entries = data.data;
                 })

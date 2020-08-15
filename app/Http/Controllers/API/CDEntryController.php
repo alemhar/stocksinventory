@@ -139,12 +139,17 @@ class CDEntryController extends Controller
     // }
 
     public function list(){
-
         if ($transaction_no = \Request::get('transaction_no')) {
-            $transactionEntries = TransactionEntry::where(function($query) use ($transaction_no){
-                $query->where('transaction_no',$transaction_no);
-            })->paginate(10);
 
+            if ($account_code = \Request::get('account_code')) {
+                $transactionEntries = TransactionEntry::where(function($query) use ($account_code,$transaction_no ){
+                    $query->where('account_code',$account_code)->where('transaction_type','PAYMENT')->where('transaction_no',$transaction_no);
+                })->paginate(10);
+            } else {
+                $transactionEntries = TransactionEntry::where(function($query) use ($transaction_no){
+                    $query->where('transaction_no',$transaction_no);
+                })->paginate(10);
+            }
         } elseif ($account_code = \Request::get('account_code')) {
             $transactionEntries = TransactionEntry::where(function($query) use ($account_code){
                 $query->where('account_code',$account_code)->where('transaction_type','PAYMENT');
