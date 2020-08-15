@@ -149,7 +149,7 @@
       *
       *
       -->
-      <div  v-show="cd_created" class="box box-warning mt-2">
+      <div  v-show="!cd_created" class="box box-warning mt-2">
         <div class="col-md-12">
           <div class="">
             <div class="box-header">
@@ -403,7 +403,7 @@
       -->
 
 
-      <div class="modal fade" v-show="cd_created" id="entry-payment" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+      <div class="modal fade" id="entry-payment" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content" style="width: 800px;">
             <div class="modal-header">
