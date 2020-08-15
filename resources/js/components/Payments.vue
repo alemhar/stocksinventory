@@ -161,6 +161,7 @@
                         <td>{{ entry.amount }}</td>
                         <td>{{ entry.total_payment }}</td>
                         <td>{{ currentBalance(entry.amount,entry.total_payment) }}</td> <!-- replace with computed amount minus total_payment -->
+                        
                         <!-- 
                             X List should be ordered by updated_at 
                             Create payments/items object and store, entry.transaction_no, account_code, account_name, payment_amount
@@ -985,6 +986,7 @@
             .then(() => {
                   this.cd_created = false;
                   this.form.post('api/cd/confirm/'+this.form.transaction_no);
+                  /*
                   this.ledgers.push({ 
                       id: this.form.id,
                       transaction_id: this.form.id, 
@@ -1026,7 +1028,7 @@
                       .catch(function (error) {
                           console.log(error);
                       });
-                        
+                  */      
                   this.$Progress.finish();
                                     
             })

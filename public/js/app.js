@@ -7816,6 +7816,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -8048,46 +8049,49 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this6.cd_created = false;
 
         _this6.form.post('api/cd/confirm/' + _this6.form.transaction_no);
+        /*
+        this.ledgers.push({ 
+            id: this.form.id,
+            transaction_id: this.form.id, 
+            transaction_no: this.form.transaction_no,
+            transaction_type: this.form.transaction_type,
+            account_code: this.form.account_code,
+            account_name: this.form.account_name,
+            transaction_date: this.form.transaction_date,
+            credit_amount: this.form.amount,
+            debit_amount: 0
+          });
+        this.ledgers.push({ 
+            id: 1,
+            transaction_id: this.form.id, 
+            transaction_no: this.form.transaction_no,
+            transaction_type: this.form.transaction_type,
+            account_code: '1105110',
+            account_name: 'Input Tax',
+            transaction_date: this.form.transaction_date,
+            credit_amount: 0,
+            debit_amount: this.form.vat
+          });  
+             let rawData = {
+                ledgers: this.ledgers
+            }
+            rawData = JSON.stringify(rawData);
+            let formData = new FormData();
+                formData.append('ledgers', rawData);
+            axios.post('api/ledgers', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then((response)=>{
+                
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        */
 
-        _this6.ledgers.push({
-          id: _this6.form.id,
-          transaction_id: _this6.form.id,
-          transaction_no: _this6.form.transaction_no,
-          transaction_type: _this6.form.transaction_type,
-          account_code: _this6.form.account_code,
-          account_name: _this6.form.account_name,
-          transaction_date: _this6.form.transaction_date,
-          credit_amount: _this6.form.amount,
-          debit_amount: 0
-        });
-
-        _this6.ledgers.push({
-          id: 1,
-          transaction_id: _this6.form.id,
-          transaction_no: _this6.form.transaction_no,
-          transaction_type: _this6.form.transaction_type,
-          account_code: '1105110',
-          account_name: 'Input Tax',
-          transaction_date: _this6.form.transaction_date,
-          credit_amount: 0,
-          debit_amount: _this6.form.vat
-        });
-
-        var rawData = {
-          ledgers: _this6.ledgers
-        };
-        rawData = JSON.stringify(rawData);
-        var formData = new FormData();
-        formData.append('ledgers', rawData);
-        axios.post('api/ledgers', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        }).then(function (response) {
-          console.log(response);
-        })["catch"](function (error) {
-          console.log(error);
-        });
 
         _this6.$Progress.finish();
       })["catch"](function () {
