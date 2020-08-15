@@ -1425,7 +1425,7 @@
               this.form_entry.account_code = account_code;
               this.form_entry.account_name = account_name;
               this.form_entry.branch_id = 0;
-              this.form_entry.branch_name = '';
+              this.form_entry.branch_name = 'NA';
               
 
               this.save_button_entry_enabled = true;
