@@ -1352,16 +1352,10 @@
             });
           },
           deleteEntry(entry_id,entry_amount,entry_amount_ex_tax,entry_vat){
+            /*
             this.form_item.delete('api/cd/entry/'+entry_id)
               .then(() => {
-                  //$('#entry-items').modal('hide');
-                  /*
-                  swal.fire(
-                      'Updated!',
-                      'Payee information has been updated.',
-                      'success'
-                    );
-                  */
+                  
                     this.form.amount = parseFloat(this.form.amount - entry_amount).toFixed(2) * 1;
                     this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
                     this.form.vat = (this.form.vat - entry_vat).toFixed(2) * 1;
@@ -1372,6 +1366,7 @@
               .catch(() => {
                   this.$Progress.fail();
               });
+              */
           },
           cancelItem(){
             //this.$Progress.start();
