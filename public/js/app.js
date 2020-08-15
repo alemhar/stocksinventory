@@ -8477,9 +8477,9 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.put('api/cd/entry/' + this.form_entry.id).then(function () {
         $('#entry-payment').modal('hide');
 
-        _this20.loadPayments(account_code);
+        _this20.loadPayments();
 
-        _this20.loadPaymentHistory();
+        _this20.loadPaymentHistory(account_code);
       })["catch"](function () {
         _this20.$Progress.fail();
       });
@@ -8491,19 +8491,19 @@ __webpack_require__.r(__webpack_exports__);
     selectPaymentRow: function selectPaymentRow(active_debit_row_id, account_code) {
       this.active_debit_row = active_debit_row_id;
       this.form_entry.id = active_debit_row_id;
-      this.loadPayments(account_code);
-      this.loadPaymentHistory(); //VueListen.$emit('RefreshEntryTable');
+      this.loadPayments();
+      this.loadPaymentHistory(account_code); //VueListen.$emit('RefreshEntryTable');
       //console.log(active_debit_row);
     },
-    loadPayments: function loadPayments(account_code) {
+    loadPayments: function loadPayments() {
       var _this21 = this;
 
-      axios.get('api/cd/entries/list?account_code=' + account_code + '&transaction_no=' + this.form.transaction_no).then(function (data) {
+      axios.get('api/cd/entries/list?transaction_no=' + this.form.transaction_no).then(function (data) {
         _this21.entries = data.data;
       })["catch"](function () {//
       });
     },
-    loadPaymentHistory: function loadPaymentHistory() {
+    loadPaymentHistory: function loadPaymentHistory(account_code) {
       var _this22 = this;
 
       axios.get('api/cd/entries/list?account_code=' + account_code).then(function (data) {

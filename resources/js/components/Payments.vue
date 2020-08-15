@@ -1441,8 +1441,8 @@
             .then(() => {
               $('#entry-payment').modal('hide');
 
-              this.loadPayments(account_code);
-              this.loadPaymentHistory();
+              this.loadPayments();
+              this.loadPaymentHistory(account_code);
             })
             .catch(() => {
                 this.$Progress.fail();
@@ -1457,14 +1457,14 @@
           selectPaymentRow(active_debit_row_id,account_code){
               this.active_debit_row = active_debit_row_id;
               this.form_entry.id = active_debit_row_id;
-              this.loadPayments(account_code);
-              this.loadPaymentHistory();
+              this.loadPayments();
+              this.loadPaymentHistory(account_code);
               //VueListen.$emit('RefreshEntryTable');
               //console.log(active_debit_row);
 
           },
-          loadPayments(account_code) {
-              axios.get('api/cd/entries/list?account_code='+account_code+'&transaction_no='+this.form.transaction_no)
+          loadPayments() {
+              axios.get('api/cd/entries/list?transaction_no='+this.form.transaction_no)
                 .then((data)=>{
                   this.entries = data.data;
                 })
@@ -1472,7 +1472,7 @@
                   //
                 });
           },
-          loadPaymentHistory() {
+          loadPaymentHistory(account_code) {
               axios.get('api/cd/entries/list?account_code='+account_code)
                 .then((data)=>{
                   this.payment_history = data.data;
