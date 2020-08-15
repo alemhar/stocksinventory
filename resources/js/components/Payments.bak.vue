@@ -294,7 +294,7 @@
 
         <div class="row mt-1" v-if="!$gate.isAdminOrUser()">
           <not-found></not-found>
-        </div>  
+        </div -->  
 
       <!-- Entry Modal
       *
