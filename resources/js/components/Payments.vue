@@ -442,7 +442,7 @@
                   <span class="input-group-text inputGroup-sizing-default">Amount</span>
                 </div>
 
-                  <input v-model="Number(form_entry.amount).toLocaleString()" name="amount" id="amount"
+                  <input v-model="form_entry.amount" name="amount" id="amount"
                   
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount') }" aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_entry" field="amount"></has-error>
