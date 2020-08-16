@@ -7726,7 +7726,8 @@ __webpack_require__.r(__webpack_exports__);
       chart_of_accounts_detail: {},
       readabilityObject: {
         fontSize: user.font_size
-      }
+      },
+      account_code: ''
     };
   },
   methods: {
@@ -8331,6 +8332,7 @@ __webpack_require__.r(__webpack_exports__);
     selectPaymentRow: function selectPaymentRow(active_debit_row_id, account_code) {
       this.active_debit_row = active_debit_row_id;
       this.form_entry.id = active_debit_row_id;
+      this.account_code = account_code;
       this.loadPayments();
       this.loadPaymentHistory(account_code);
     },
@@ -8351,20 +8353,16 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     getPaymentHistotyPage: function getPaymentHistotyPage(page) {
-      alert(page);
-      /*
-      axios.get('api/cd/entries/list?account_code='+account_code+'&page='+ page)
-        .then((data)=>{
-          this.payment_history = data.data;
-        })
-        .catch(()=>{
-          //
-        });
-      */
+      var _this23 = this;
+
+      axios.get('api/cd/entries/list?account_code=' + this.account_code + '&page=' + page).then(function (data) {
+        _this23.payment_history = data.data;
+      })["catch"](function () {//
+      });
     }
   },
   created: function created() {
-    var _this23 = this;
+    var _this24 = this;
 
     this.loadPayees();
     this.loadBranches();
@@ -8373,10 +8371,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntries();
     this.loadPurchase();
     VueListen.$on('RefreshItemTable', function () {
-      _this23.loadEntryItems();
+      _this24.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this23.loadEntries();
+      _this24.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
@@ -81912,9 +81910,8 @@ var render = function() {
                           _c("pagination", {
                             attrs: { data: _vm.payment_history },
                             on: {
-                              "pagination-change-page": function($event) {
-                                return _vm.getPaymentHistotyPage(this.page)
-                              }
+                              "pagination-change-page":
+                                _vm.getPaymentHistotyPage
                             }
                           })
                         ],

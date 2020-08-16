@@ -300,7 +300,7 @@
             <!-- /.box-body -->
             <div class="box-footer">
               <!-- getPaymentHistotyPage(payment.account_code) -->
-              <pagination :data="payment_history"  @pagination-change-page="getPaymentHistotyPage(this.page)"></pagination>
+              <pagination :data="payment_history"  @pagination-change-page="getPaymentHistotyPage"></pagination>
             </div> 
           </div>
           <!-- /.box -->
@@ -660,7 +660,8 @@
               chart_of_accounts_detail: {},
               readabilityObject: {
                 fontSize: user.font_size
-              }
+              },
+              account_code: ''
 
           }
         },
@@ -1322,6 +1323,7 @@
           selectPaymentRow(active_debit_row_id,account_code){
               this.active_debit_row = active_debit_row_id;
               this.form_entry.id = active_debit_row_id;
+              this.account_code = account_code;
               this.loadPayments();
               this.loadPaymentHistory(account_code);
           },
@@ -1345,17 +1347,15 @@
           },
           getPaymentHistotyPage(page){
               
-              alert(page);
-              /*
-              axios.get('api/cd/entries/list?account_code='+account_code+'&page='+ page)
+              
+              axios.get('api/cd/entries/list?account_code='+this.account_code+'&page='+ page)
                 .then((data)=>{
                   this.payment_history = data.data;
                 })
                 .catch(()=>{
                   //
                 });
-              */  
-
+              
           }
           
 
