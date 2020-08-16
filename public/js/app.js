@@ -8292,7 +8292,7 @@ __webpack_require__.r(__webpack_exports__);
     savePayment: function savePayment(account_code) {
       var _this19 = this;
 
-      if (this.current_balance < this.form_entry.amount) {
+      if (parseFloat(this.current_balance) < parseFloat(this.form_entry.amount)) {
         // *************** If this is triggered another duplicate entry/post is made on the transactions_1 table. s 
         swal.fire('Error!', 'Current balance is only ' + this.current_balance + '!', 'error');
         return true;

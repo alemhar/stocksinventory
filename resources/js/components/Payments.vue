@@ -1258,7 +1258,7 @@
           },
           savePayment(account_code)
           {
-            if(this.current_balance < this.form_entry.amount){
+            if(parseFloat(this.current_balance) < parseFloat(this.form_entry.amount)){
               // *************** If this is triggered another duplicate entry/post is made on the transactions_1 table. s 
               swal.fire(
                       'Error!',
