@@ -165,7 +165,7 @@ class CDController extends Controller
 
     public function record_payment(Request $request)
     {
-        return $data = json_decode($request['payments']);
+        $data = json_decode($request['payments']);
         
         foreach ($data->payments as $payment) {
             $transaction = Transaction::find($payment->id);
