@@ -7875,18 +7875,20 @@ __webpack_require__.r(__webpack_exports__);
           credit_amount: _this6.form.amount,
           debit_amount: 0
         });
+        /*
+        this.ledgers.push({ 
+            id: 1,
+            transaction_id: this.form.id, 
+            transaction_no: this.form.transaction_no,
+            transaction_type: this.form.transaction_type,
+            account_code: '1105110',
+            account_name: 'Input Tax',
+            transaction_date: this.form.transaction_date,
+            credit_amount: 0,
+            debit_amount: this.form.vat
+          });  
+        */
 
-        _this6.ledgers.push({
-          id: 1,
-          transaction_id: _this6.form.id,
-          transaction_no: _this6.form.transaction_no,
-          transaction_type: _this6.form.transaction_type,
-          account_code: '1105110',
-          account_name: 'Input Tax',
-          transaction_date: _this6.form.transaction_date,
-          credit_amount: 0,
-          debit_amount: _this6.form.vat
-        });
 
         var rawData = {
           ledgers: _this6.ledgers
@@ -7899,6 +7901,21 @@ __webpack_require__.r(__webpack_exports__);
             'Content-Type': 'multipart/form-data'
           }
         }).then(function (response) {//console.log(response);
+        })["catch"](function (error) {
+          console.log(error);
+        });
+        var paymentData = {
+          purchases: _this6.purchases.data
+        };
+        paymentData = JSON.stringify(paymentData);
+        var paymentFormData = new FormData();
+        paymentFormData.append('ledgers', paymentData);
+        axios.post('api/record_payment', paymentFormData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }).then(function (response) {
+          console.log(response);
         })["catch"](function (error) {
           console.log(error);
         });
@@ -8312,7 +8329,19 @@ __webpack_require__.r(__webpack_exports__);
 
         _this19.loadPaymentHistory(account_code);
 
-        _this19.updatePurchase(parseFloat(payment_amount)); //this.addPaymentToPurchseRecord();
+        _this19.updatePurchase(parseFloat(payment_amount));
+
+        _this19.ledgers.push({
+          id: _this19.form_entry.id,
+          transaction_id: _this19.form.id,
+          transaction_no: _this19.form.transaction_no,
+          transaction_type: _this19.form.transaction_type,
+          account_code: _this19.form_entry.account_code,
+          account_name: _this19.form_entry.account_name,
+          transaction_date: _this19.form.transaction_date,
+          credit_amount: 0,
+          debit_amount: _this19.form_entry.amount_ex_tax
+        }); //this.addPaymentToPurchseRecord();
 
       })["catch"](function () {
         _this19.$Progress.fail();

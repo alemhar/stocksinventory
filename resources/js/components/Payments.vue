@@ -809,6 +809,8 @@
                       credit_amount: this.form.amount,
                       debit_amount: 0
                     });
+
+                  /*
                   this.ledgers.push({ 
                       id: 1,
                       transaction_id: this.form.id, 
@@ -820,7 +822,7 @@
                       credit_amount: 0,
                       debit_amount: this.form.vat
                     });  
-
+                  */
                       let rawData = {
                           ledgers: this.ledgers
                       }
@@ -839,7 +841,27 @@
                       .catch(function (error) {
                           console.log(error);
                       });
-                        
+
+
+                      let paymentData = {
+                          purchases: this.purchases.data
+                      }
+
+                      paymentData = JSON.stringify(paymentData);
+                      let paymentFormData = new FormData();
+                          paymentFormData.append('ledgers', paymentData);
+                      axios.post('api/record_payment', paymentFormData, {
+                          headers: {
+                              'Content-Type': 'multipart/form-data'
+                          }
+                      })
+                      .then((response)=>{
+                          
+                          console.log(response);
+                      })
+                      .catch(function (error) {
+                          console.log(error);
+                      });  
                   this.$Progress.finish();
                                     
             })
@@ -1296,7 +1318,19 @@
               this.loadPaymentHistory(account_code);
               
               this.updatePurchase(parseFloat(payment_amount));
-            
+
+              this.ledgers.push({ 
+                      id: this.form_entry.id,
+                      transaction_id: this.form.id, 
+                      transaction_no: this.form.transaction_no,
+                      transaction_type: this.form.transaction_type,
+                      account_code: this.form_entry.account_code,
+                      account_name: this.form_entry.account_name,
+                      transaction_date: this.form.transaction_date,
+                      credit_amount: 0,
+                      debit_amount: this.form_entry.amount_ex_tax
+                    });
+
 
               //this.addPaymentToPurchseRecord();
               
