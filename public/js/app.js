@@ -7845,6 +7845,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.form.transaction_no = this.createSerialNumber();
       this.form.transaction_type = 'PAYMENT';
+      this.loadPurchase();
       this.form.post('api/cd').then(function (data) {
         //console.log(data.data.id);
         _this5.form.id = data.data.id;
@@ -8383,7 +8384,6 @@ __webpack_require__.r(__webpack_exports__);
     this.initChartAccounts();
     this.loadEntryItems();
     this.loadEntries();
-    this.loadPurchase();
     VueListen.$on('RefreshItemTable', function () {
       _this17.loadEntryItems();
     });

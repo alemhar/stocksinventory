@@ -779,6 +779,7 @@
 
             this.form.transaction_no = this.createSerialNumber();
             this.form.transaction_type = 'PAYMENT';
+            this.loadPurchase();
             this.form.post('api/cd')
                 .then((data)=>{
                   //console.log(data.data.id);
@@ -1405,7 +1406,7 @@
             this.loadEntryItems();
             this.loadEntries();
             
-            this.loadPurchase();
+            
 
 
             VueListen.$on('RefreshItemTable',() => {
