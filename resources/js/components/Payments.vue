@@ -1228,14 +1228,15 @@
           },
           payEntry(account_code,account_name,current_balance)
           {
-              if(!this.form_entry.id){
-               
               
+               
+                console.log('payEntry');
             
                 this.current_balance = current_balance;
                 
 
                 this.form_entry.reset();
+                
                 this.form_entry.transaction_id = this.form.id;
                 this.form_entry.transaction_no = this.form.transaction_no;
                 this.form_entry.transaction_type = 'PAYMENT';
@@ -1256,12 +1257,15 @@
 
 
                 $('#entry-payment').modal('show');
-              }
+              
 
           },
           savePayment(account_code)
           {
+            
+            console.log('savePayment');
             if( parseFloat(this.form_entry.amount) == 0){
+              console.log('zero amount');
               swal.fire(
                       'Error!',
                       'Please enter amount!',
@@ -1272,6 +1276,8 @@
 
             if(parseFloat(this.current_balance) < parseFloat(this.form_entry.amount)){
               // *************** If this is triggered another duplicate entry/post is made on the transactions_1 table. s 
+              console.log('over balance');
+              
               swal.fire(
                       'Warning!',
                       'Current balance is only '+this.current_balance+'!',
