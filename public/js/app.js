@@ -7933,8 +7933,9 @@ __webpack_require__.r(__webpack_exports__);
         cancelButtonColor: '#d33',
         confirmButtonText: 'Ok'
       }).then(function (result) {
-        if (result.value) {//Reload Current Page
-          //this.$router.go();        
+        if (result.value) {
+          //Reload Current Page
+          _this6.$router.go();
         }
       });
     },

@@ -880,7 +880,7 @@
                 }).then((result) => {
                   if (result.value) {
                     //Reload Current Page
-                    //this.$router.go();        
+                    this.$router.go();        
                   }
                 });
              
