@@ -823,7 +823,7 @@
                   transaction_id:'',
                   transaction_no:'',
                   transaction_type:'',
-                  account_code : '',
+                  account_code : 0,
                   account_name: '',
                   //entry_name: '',
                   //entry_description: '',
