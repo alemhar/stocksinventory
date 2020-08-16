@@ -401,7 +401,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" @click="cancelPayment(form_entry.account_code)">Cancel</button>
-              <button type="button" :disabled="!save_button_entry_enabled" class="btn btn-success" @click="savePayment(form_entry.account_code)">Save</button>
+              <button type="button" :disabled="!save_button_entry_enabled" class="btn btn-success" @click="savePayment(form_entry.account_code,form_entry.amount)">Save</button>
             </div>
 
             <!-- /form -->
@@ -1257,7 +1257,7 @@
               
 
           },
-          savePayment(account_code)
+          savePayment(account_code,payment_amount)
           {
             
             
@@ -1295,7 +1295,7 @@
               this.loadPayments();
               this.loadPaymentHistory(account_code);
               
-              this.updatePurchase(parseFloat(this.form_entry.amount));
+              this.updatePurchase(parseFloat(payment_amount));
             
 
               //this.addPaymentToPurchseRecord();
@@ -1372,7 +1372,7 @@
               //this.current_purchase_id
           },
           updatePurchase(payment_amount){
-            
+
             this.purchases.data.map((purchase) => {
               if(purchase.id == this.current_purchase_id){
                 return purchase.total_payment = purchase.total_payment + payment_amount;

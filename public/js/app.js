@@ -8289,7 +8289,7 @@ __webpack_require__.r(__webpack_exports__);
       });
       $('#entry-payment').modal('show');
     },
-    savePayment: function savePayment(account_code) {
+    savePayment: function savePayment(account_code, payment_amount) {
       var _this19 = this;
 
       if (parseFloat(this.form_entry.amount) == 0) {
@@ -8312,7 +8312,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this19.loadPaymentHistory(account_code);
 
-        _this19.updatePurchase(parseFloat(_this19.form_entry.amount)); //this.addPaymentToPurchseRecord();
+        _this19.updatePurchase(parseFloat(payment_amount)); //this.addPaymentToPurchseRecord();
 
       })["catch"](function () {
         _this19.$Progress.fail();
@@ -82223,7 +82223,10 @@ var render = function() {
                       },
                       on: {
                         click: function($event) {
-                          return _vm.savePayment(_vm.form_entry.account_code)
+                          return _vm.savePayment(
+                            _vm.form_entry.account_code,
+                            _vm.form_entry.amount
+                          )
                         }
                       }
                     },
