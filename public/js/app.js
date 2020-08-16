@@ -7844,7 +7844,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.form.transaction_no = this.createSerialNumber();
-      this.form.transaction_type = 'CD';
+      this.form.transaction_type = 'PAYMENT';
       this.form.post('api/cd').then(function (data) {
         //console.log(data.data.id);
         _this5.form.id = data.data.id;

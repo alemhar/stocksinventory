@@ -778,7 +778,7 @@
 
 
             this.form.transaction_no = this.createSerialNumber();
-            this.form.transaction_type = 'CD';
+            this.form.transaction_type = 'PAYMENT';
             this.form.post('api/cd')
                 .then((data)=>{
                   //console.log(data.data.id);
@@ -1288,7 +1288,7 @@
                       credit_amount: 0,
                       debit_amount: this.form_entry.amount
                     });
-                    
+
             this.form_entry.put('api/cd/entry/'+this.form_entry.id)
             .then(() => {
               
