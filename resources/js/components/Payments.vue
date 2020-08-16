@@ -849,7 +849,7 @@
 
                       paymentData = JSON.stringify(paymentData);
                       let paymentFormData = new FormData();
-                          paymentFormData.append('ledgers', paymentData);
+                          paymentFormData.append('payments', paymentData);
                       axios.post('api/record_payment', paymentFormData, {
                           headers: {
                               'Content-Type': 'multipart/form-data'

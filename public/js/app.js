@@ -7909,7 +7909,7 @@ __webpack_require__.r(__webpack_exports__);
         };
         paymentData = JSON.stringify(paymentData);
         var paymentFormData = new FormData();
-        paymentFormData.append('ledgers', paymentData);
+        paymentFormData.append('payments', paymentData);
         axios.post('api/record_payment', paymentFormData, {
           headers: {
             'Content-Type': 'multipart/form-data'
