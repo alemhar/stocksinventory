@@ -844,7 +844,7 @@
 
 
                       let paymentData = {
-                          purchases: this.purchases.data
+                          payments: this.purchases.data
                       }
 
                       paymentData = JSON.stringify(paymentData);

@@ -7905,7 +7905,7 @@ __webpack_require__.r(__webpack_exports__);
           console.log(error);
         });
         var paymentData = {
-          purchases: _this6.purchases.data
+          payments: _this6.purchases.data
         };
         paymentData = JSON.stringify(paymentData);
         var paymentFormData = new FormData();
