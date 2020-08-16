@@ -8009,20 +8009,23 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     loadEntryItems: function loadEntryItems() {
-      var _this9 = this;
-
-      var entry_id = this.form_entry.id;
-      axios.get('api/cd/items/list?entry_id=' + entry_id).then(function (data) {
-        _this9.items = data.data;
-      })["catch"](function () {//
-      });
+      /*
+      let entry_id = this.form_entry.id;
+      axios.get('api/cd/items/list?entry_id='+entry_id)
+        .then((data)=>{
+          this.items = data.data;
+        })
+        .catch(()=>{
+          //
+        });
+        */
     },
     loadEntries: function loadEntries() {
-      var _this10 = this;
+      var _this9 = this;
 
       var transaction_no = this.form.transaction_no;
       axios.get('api/cd/entries/list?transaction_no=' + transaction_no).then(function (data) {
-        _this10.entries = data.data;
+        _this9.entries = data.data;
       })["catch"](function () {//
       });
     },
@@ -8052,109 +8055,107 @@ __webpack_require__.r(__webpack_exports__);
       */
     },
     selectDebitRow: function selectDebitRow(active_debit_row_id) {
+      /*
       this.active_debit_row = active_debit_row_id;
       this.form_entry.id = active_debit_row_id;
-      VueListen.$emit('RefreshItemTable'); //console.log(active_debit_row);
+      VueListen.$emit('RefreshItemTable');
+      //console.log(active_debit_row);
+      */
     },
     newEntry: function newEntry() {
-      var _this11 = this;
-
+      /*
       this.editmode = false;
       this.form_entry.reset();
       this.form_entry.transaction_id = this.form.id;
       this.form_entry.transaction_no = this.form.transaction_no;
       this.form_entry.transaction_type = 'CD';
       this.save_button_entry_enabled = true;
-      this.form_entry.post('api/cd/entry').then(function (data) {
-        _this11.form_entry.id = data.data.id; //console.log(data.data.id);
-
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {//
-      });
+      this.form_entry.post('api/cd/entry')
+        .then((data)=>{
+          this.form_entry.id = data.data.id;
+          //console.log(data.data.id);
+          VueListen.$emit('RefreshItemTable');    
+        })
+        .catch(()=>{
+          //
+        });
+        
       $('#entry-details').modal('show');
+      */
     },
     newItem: function newItem() {
-      var _this12 = this;
-
-      if (this.form_entry.account_code == 0) {
+      /*
+      if(this.form_entry.account_code == 0) {
         this.no_entry_account_code = true;
       } else {
         this.no_entry_account_code = false;
       }
-
-      if (this.form_entry.branch_id == 0) {
+      if(this.form_entry.branch_id == 0) {
         this.no_entry_branch_id = true;
       } else {
         this.no_entry_branch_id = false;
       }
-
-      if (this.no_entry_account_code || this.no_entry_branch_id) {
+       if (this.no_entry_account_code || this.no_entry_branch_id){
         return false;
       }
-
-      this.save_button_item_enabled = true;
-      this.editmode = false;
+       this.save_button_item_enabled = true;
+       this.editmode = false;
       this.form_item.reset();
-      this.no_item = false;
+       this.no_item = false;
       this.no_price = false;
       this.no_quantity = false;
       this.form_item.transaction_entry_id = this.form_entry.id;
       this.form_item.transaction_no = this.form.transaction_no;
       this.form_item.transaction_type = 'CD';
       this.form_item.account_code = this.form_entry.account_code;
-      this.form_item.post('api/cd/item').then(function (data) {
-        _this12.form_item.id = data.data.id; //console.log(data.data.id);
-      })["catch"](function () {//
-      });
+       this.form_item.post('api/cd/item')
+        .then((data)=>{
+          this.form_item.id = data.data.id;
+          //console.log(data.data.id);
+        })
+        .catch(()=>{
+          //
+        });
       this.loadEntryItems();
       $('#entry-items').modal('show');
+      */
     },
     cancelDebitEntry: function cancelDebitEntry() {
-      var _this13 = this;
-
+      /*
       //this.$Progress.start();
-      this.form_item["delete"]('api/cd/entry/' + this.form_entry.id).then(function () {
-        $('#entry-details').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        //this.$Progress.finish();
-
-        VueListen.$emit('RefreshEntryTable');
-      })["catch"](function () {
-        _this13.$Progress.fail();
+      this.form_item.delete('api/cd/entry/'+this.form_entry.id)
+      .then(() => {
+          $('#entry-details').modal('hide');
+         
+            //this.$Progress.finish();
+            VueListen.$emit('RefreshEntryTable');
+      })
+      .catch(() => {
+          this.$Progress.fail();
       });
+      */
     },
     saveDebitEntry: function saveDebitEntry() {
-      var _this14 = this;
-
-      this.form_entry.credit_amount = this.form_entry.amount;
+      /*
+      this.form_entry.credit_amount = this.form_entry.amount
       this.save_button_entry_enabled = false;
       this.$Progress.start();
-      this.form_entry.put('api/cd/entry/' + this.form_entry.id).then(function () {
-        $('#entry-details').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-
-        _this14.form.amount += _this14.form_entry.amount;
-        _this14.form.amount_ex_tax += _this14.form_entry.amount_ex_tax;
-        _this14.form.vat += _this14.form_entry.vat; //console.log(this.ledgers);
-
-        _this14.$Progress.finish();
-
-        VueListen.$emit('RefreshEntryTable');
-      })["catch"](function () {
-        _this14.$Progress.fail();
+      this.form_entry.put('api/cd/entry/'+this.form_entry.id)
+      .then(() => {
+          $('#entry-details').modal('hide');
+         
+            this.form.amount += this.form_entry.amount;
+            this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
+            this.form.vat += this.form_entry.vat;
+             
+            //console.log(this.ledgers);
+            this.$Progress.finish();
+            VueListen.$emit('RefreshEntryTable');
+      })
+      .catch(() => {
+          this.$Progress.fail();
       });
+      */
     },
     deleteEntry: function deleteEntry(entry_id, entry_amount, entry_amount_ex_tax, entry_vat) {
       /*
@@ -8173,100 +8174,84 @@ __webpack_require__.r(__webpack_exports__);
         */
     },
     cancelItem: function cancelItem() {
-      var _this15 = this;
-
+      /*
       //this.$Progress.start();
-      this.form_item["delete"]('api/cd/item/' + this.form_item.id).then(function () {
-        $('#entry-items').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        //this.$Progress.finish();
-
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {
-        _this15.$Progress.fail();
+      this.form_item.delete('api/cd/item/'+this.form_item.id)
+      .then(() => {
+          $('#entry-items').modal('hide');
+          
+            //this.$Progress.finish();
+             VueListen.$emit('RefreshItemTable');
+      })
+      .catch(() => {
+          this.$Progress.fail();
       });
+      */
     },
     saveItem: function saveItem() {
-      var _this16 = this;
-
-      if (this.form_item.item.length == 0) {
+      /*
+      if(this.form_item.item.length == 0) {
         this.no_item = true;
       } else {
         this.no_item = false;
       }
-
-      if (this.form_item.price == 0) {
+       if(this.form_item.price == 0) {
         this.no_price = true;
       } else {
         this.no_price = false;
       }
-
-      if (this.form_item.quantity == 0) {
+      
+      if(this.form_item.quantity == 0) {
         this.no_quantity = true;
       } else {
         this.no_quantity = false;
       }
-
-      if (this.no_item || this.no_price || this.no_quantity) {
+      
+      if (this.no_item || this.no_price || this.no_quantity){
         return false;
-      }
-
-      this.save_button_item_enabled = false;
-      this.$Progress.start();
-      this.form_item.put('api/cd/item/' + this.form_item.id).then(function () {
-        $('#entry-items').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-
-        _this16.form_entry.amount = parseFloat(_this16.form_entry.amount + _this16.form_item.sub_total).toFixed(2) * 1;
-        _this16.form_entry.amount_ex_tax = (_this16.form_entry.amount_ex_tax + _this16.form_item.tax_excluded).toFixed(2) * 1;
-        _this16.form_entry.vat += _this16.form_item.vat * 1;
-
-        _this16.$Progress.finish();
-
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {
-        _this16.$Progress.fail();
+      } 
+       this.save_button_item_enabled = false;
+      
+       this.$Progress.start();
+      this.form_item.put('api/cd/item/'+this.form_item.id)
+      .then(() => {
+          $('#entry-items').modal('hide');
+          
+            this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
+            this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
+            this.form_entry.vat += (this.form_item.vat * 1);
+            
+            this.$Progress.finish();
+            VueListen.$emit('RefreshItemTable');
+      })
+      .catch(() => {
+          this.$Progress.fail();
       });
+      */
     },
     deleteItem: function deleteItem(item_id, item_sub_total, item_tax_excluded, item_vat) {
-      var _this17 = this;
-
-      this.form_item["delete"]('api/cd/item/' + item_id).then(function () {
-        //$('#entry-items').modal('hide');
-
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        _this17.form_entry.amount = parseFloat(_this17.form_entry.amount - item_sub_total).toFixed(2) * 1;
-        _this17.form_entry.amount_ex_tax = (_this17.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
-        _this17.form_entry.vat = (_this17.form_entry.vat - item_vat).toFixed(2) * 1;
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {
-        _this17.$Progress.fail();
+      /*
+      this.form_item.delete('api/cd/item/'+item_id)
+      .then(() => {
+          //$('#entry-items').modal('hide');
+          
+            this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
+            this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
+            this.form_entry.vat = (this.form_entry.vat - item_vat).toFixed(2) * 1;
+            
+            VueListen.$emit('RefreshItemTable');
+      })
+      .catch(() => {
+          this.$Progress.fail();
       });
+      */
     },
     branchChange: function branchChange() {
       this.form_entry.branch_id = this.selected_branch.id;
       this.form_entry.branch_name = this.selected_branch.name;
     },
     payEntry: function payEntry(purchase_id, account_code, account_name, current_balance) {
-      var _this18 = this;
+      var _this10 = this;
 
       this.current_balance = current_balance;
       this.current_purchase_id = purchase_id;
@@ -8280,13 +8265,13 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.branch_name = 'NA';
       this.save_button_entry_enabled = true;
       this.form_entry.post('api/cd/entry').then(function (data) {
-        _this18.form_entry.id = data.data.id; //VueListen.$emit('RefreshItemTable');    
+        _this10.form_entry.id = data.data.id; //VueListen.$emit('RefreshItemTable');    
       })["catch"](function () {//
       });
       $('#entry-payment').modal('show');
     },
     savePayment: function savePayment(account_code, payment_amount) {
-      var _this19 = this;
+      var _this11 = this;
 
       if (parseFloat(this.form_entry.amount) == 0) {
         swal.fire('Error!', 'Please enter amount!', 'error');
@@ -8301,43 +8286,42 @@ __webpack_require__.r(__webpack_exports__);
 
       this.form.amount += parseFloat(this.form_entry.amount);
       this.save_button_entry_enabled = false;
+      this.ledgers.push({
+        id: this.form_entry.id,
+        transaction_id: this.form.id,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        account_code: this.form_entry.account_code,
+        account_name: this.form_entry.account_name,
+        transaction_date: this.form.transaction_date,
+        credit_amount: 0,
+        debit_amount: this.form_entry.amount
+      });
       this.form_entry.put('api/cd/entry/' + this.form_entry.id).then(function () {
-        _this19.ledgers.push({
-          id: _this19.form_entry.id,
-          transaction_id: _this19.form.id,
-          transaction_no: _this19.form.transaction_no,
-          transaction_type: _this19.form.transaction_type,
-          account_code: _this19.form_entry.account_code,
-          account_name: _this19.form_entry.account_name,
-          transaction_date: _this19.form.transaction_date,
-          credit_amount: 0,
-          debit_amount: _this19.form_entry.amount
-        });
-
         $('#entry-payment').modal('hide');
 
-        _this19.loadPayments();
+        _this11.loadPayments();
 
-        _this19.loadPaymentHistory(account_code);
+        _this11.loadPaymentHistory(account_code);
 
-        _this19.updatePurchase(parseFloat(payment_amount)); //this.addPaymentToPurchseRecord();
+        _this11.updatePurchase(parseFloat(payment_amount)); //this.addPaymentToPurchseRecord();
 
       })["catch"](function () {
-        _this19.$Progress.fail();
+        _this11.$Progress.fail();
       });
       this.form_entry.reset();
     },
     cancelPayment: function cancelPayment(account_code) {
-      var _this20 = this;
+      var _this12 = this;
 
       this.form_entry["delete"]('api/cd/entry/' + this.form_entry.id).then(function () {
         $('#entry-payment').modal('hide');
 
-        _this20.loadPayments();
+        _this12.loadPayments();
 
-        _this20.loadPaymentHistory(account_code);
+        _this12.loadPaymentHistory(account_code);
       })["catch"](function () {
-        _this20.$Progress.fail();
+        _this12.$Progress.fail();
       });
       this.form_entry.reset();
       $('#entry-payment').modal('hide');
@@ -8350,35 +8334,35 @@ __webpack_require__.r(__webpack_exports__);
       this.loadPaymentHistory(account_code);
     },
     loadPayments: function loadPayments() {
-      var _this21 = this;
+      var _this13 = this;
 
       axios.get('api/cd/entries/list?transaction_no=' + this.form.transaction_no).then(function (data) {
-        _this21.entries = data.data;
+        _this13.entries = data.data;
       })["catch"](function () {//
       });
     },
     loadPaymentHistory: function loadPaymentHistory(account_code) {
-      var _this22 = this;
+      var _this14 = this;
 
       axios.get('api/cd/entries/list?account_code=' + account_code).then(function (data) {
-        _this22.payment_history = data.data;
+        _this14.payment_history = data.data;
       })["catch"](function () {//
       });
     },
     getPaymentHistotyPage: function getPaymentHistotyPage(page) {
-      var _this23 = this;
+      var _this15 = this;
 
       axios.get('api/cd/entries/list?account_code=' + this.account_code + '&page=' + page).then(function (data) {
-        _this23.payment_history = data.data;
+        _this15.payment_history = data.data;
       })["catch"](function () {});
     },
     addPaymentToPurchseRecord: function addPaymentToPurchseRecord() {//this.current_purchase_id
     },
     updatePurchase: function updatePurchase(payment_amount) {
-      var _this24 = this;
+      var _this16 = this;
 
       this.purchases.data.map(function (purchase) {
-        if (purchase.id == _this24.current_purchase_id) {
+        if (purchase.id == _this16.current_purchase_id) {
           return purchase.total_payment = purchase.total_payment + payment_amount;
         } else {
           return purchase.total_payment = purchase.total_payment;
@@ -8387,7 +8371,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this25 = this;
+    var _this17 = this;
 
     this.loadPayees();
     this.loadBranches();
@@ -8396,10 +8380,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntries();
     this.loadPurchase();
     VueListen.$on('RefreshItemTable', function () {
-      _this25.loadEntryItems();
+      _this17.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this25.loadEntries();
+      _this17.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);

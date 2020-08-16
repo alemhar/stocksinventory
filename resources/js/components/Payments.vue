@@ -953,6 +953,7 @@
                 });
           },
           loadEntryItems() {
+              /*
               let entry_id = this.form_entry.id;
               axios.get('api/cd/items/list?entry_id='+entry_id)
                 .then((data)=>{
@@ -961,6 +962,7 @@
                 .catch(()=>{
                   //
                 });
+                */
           },
           loadEntries() {
               let transaction_no = this.form.transaction_no;
@@ -1003,14 +1005,16 @@
               */
           },
           selectDebitRow(active_debit_row_id){
+              /*
               this.active_debit_row = active_debit_row_id;
               this.form_entry.id = active_debit_row_id;
               VueListen.$emit('RefreshItemTable');
               //console.log(active_debit_row);
-
+              */
           },
           
           newEntry(){
+              /*
               this.editmode = false;
               this.form_entry.reset();
               this.form_entry.transaction_id = this.form.id;
@@ -1029,10 +1033,10 @@
                 
               $('#entry-details').modal('show');
 
-
+            */
           },
           newItem(){
-
+              /*
               if(this.form_entry.account_code == 0) {
                 this.no_entry_account_code = true;
               } else {
@@ -1071,42 +1075,33 @@
                 });
               this.loadEntryItems();
               $('#entry-items').modal('show');
+              */
           },
           cancelDebitEntry(){
+            /*
             //this.$Progress.start();
             this.form_item.delete('api/cd/entry/'+this.form_entry.id)
             .then(() => {
                 $('#entry-details').modal('hide');
-                /*
-                swal.fire(
-                    'Updated!',
-                    'Payee information has been updated.',
-                    'success'
-                  );
-                */
+               
                   //this.$Progress.finish();
                   VueListen.$emit('RefreshEntryTable');
             })
             .catch(() => {
                 this.$Progress.fail();
             });
+            */
           },
           saveDebitEntry(){
             
-
+            /*
             this.form_entry.credit_amount = this.form_entry.amount
             this.save_button_entry_enabled = false;
             this.$Progress.start();
             this.form_entry.put('api/cd/entry/'+this.form_entry.id)
             .then(() => {
                 $('#entry-details').modal('hide');
-                /*
-                swal.fire(
-                    'Updated!',
-                    'Payee information has been updated.',
-                    'success'
-                  );
-                */
+               
                   this.form.amount += this.form_entry.amount;
                   this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
                   this.form.vat += this.form_entry.vat;
@@ -1119,6 +1114,7 @@
             .catch(() => {
                 this.$Progress.fail();
             });
+            */
           },
           deleteEntry(entry_id,entry_amount,entry_amount_ex_tax,entry_vat){
             /*
@@ -1138,17 +1134,12 @@
               */
           },
           cancelItem(){
+            /*
             //this.$Progress.start();
             this.form_item.delete('api/cd/item/'+this.form_item.id)
             .then(() => {
                 $('#entry-items').modal('hide');
-                /*
-                swal.fire(
-                    'Updated!',
-                    'Payee information has been updated.',
-                    'success'
-                  );
-                */
+                
                   //this.$Progress.finish();
 
                   VueListen.$emit('RefreshItemTable');
@@ -1156,9 +1147,10 @@
             .catch(() => {
                 this.$Progress.fail();
             });
+            */
           },
           saveItem(){
-            
+            /*
             if(this.form_item.item.length == 0) {
               this.no_item = true;
             } else {
@@ -1188,13 +1180,7 @@
             this.form_item.put('api/cd/item/'+this.form_item.id)
             .then(() => {
                 $('#entry-items').modal('hide');
-                /*
-                swal.fire(
-                    'Updated!',
-                    'Payee information has been updated.',
-                    'success'
-                  );
-                */
+                
                   this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
                   this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
                   this.form_entry.vat += (this.form_item.vat * 1);
@@ -1205,18 +1191,14 @@
             .catch(() => {
                 this.$Progress.fail();
             });
+            */
           },
           deleteItem(item_id,item_sub_total,item_tax_excluded,item_vat){
+              /*
               this.form_item.delete('api/cd/item/'+item_id)
               .then(() => {
                   //$('#entry-items').modal('hide');
-                  /*
-                  swal.fire(
-                      'Updated!',
-                      'Payee information has been updated.',
-                      'success'
-                    );
-                  */
+                  
                     this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
                     this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
                     this.form_entry.vat = (this.form_entry.vat - item_vat).toFixed(2) * 1;
@@ -1226,6 +1208,7 @@
               .catch(() => {
                   this.$Progress.fail();
               });
+              */
           },
           branchChange(){
             this.form_entry.branch_id = this.selected_branch.id ;
@@ -1293,9 +1276,8 @@
             this.form.amount +=  parseFloat(this.form_entry.amount);
             
             this.save_button_entry_enabled = false;
-            this.form_entry.put('api/cd/entry/'+this.form_entry.id)
-            .then(() => {
-              this.ledgers.push({ 
+
+            this.ledgers.push({ 
                       id: this.form_entry.id,
                       transaction_id: this.form.id, 
                       transaction_no: this.form.transaction_no,
@@ -1307,6 +1289,10 @@
                       debit_amount: this.form_entry.amount
                     });
                     
+            this.form_entry.put('api/cd/entry/'+this.form_entry.id)
+            .then(() => {
+              
+
               $('#entry-payment').modal('hide');
 
               this.loadPayments();
