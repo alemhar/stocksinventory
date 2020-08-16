@@ -179,7 +179,7 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-              
+              <pagination :data="purchases"></pagination>
             </div> 
           </div>
           <!-- /.box -->
@@ -1325,8 +1325,6 @@
               this.form_entry.id = active_debit_row_id;
               this.loadPayments();
               this.loadPaymentHistory(account_code);
-              
-
           },
           loadPayments() {
               axios.get('api/cd/entries/list?transaction_no='+this.form.transaction_no)
