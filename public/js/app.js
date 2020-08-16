@@ -7738,7 +7738,7 @@ __webpack_require__.r(__webpack_exports__);
     loadPurchase: function loadPurchase() {
       var _this = this;
 
-      axios.get('api/cd/purchase/list').then(function (data) {
+      axios.get('api/cd/purchase/list?payee_id=' + this.current_payee_id).then(function (data) {
         _this.purchases = data.data; //console.log(this.purchases);
       })["catch"](function () {//
       });
@@ -9461,7 +9461,6 @@ __webpack_require__.r(__webpack_exports__);
       var tin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
 
       if (id) {
-        console.log(name);
         this.current_payee_id = id;
         this.form.payee_id = id;
         this.current_payee_name = name;

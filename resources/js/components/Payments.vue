@@ -672,7 +672,7 @@
             return (total_amount - payments).toFixed(2);
           },
           loadPurchase() {
-              axios.get('api/cd/purchase/list')
+              axios.get('api/cd/purchase/list?payee_id='+this.current_payee_id)
                 .then((data)=>{
                   this.purchases = data.data;
                   //console.log(this.purchases);

@@ -1041,7 +1041,7 @@
 
           selectPayee(id = null,name = null,address = null,tin = null){
               if (id){
-                    console.log(name);
+                    
                       this.current_payee_id = id;
                       this.form.payee_id = id;
                       this.current_payee_name = name;
