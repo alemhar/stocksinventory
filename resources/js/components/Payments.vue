@@ -1384,12 +1384,9 @@
               } else {
                 return purchase.total_payment = purchase.total_payment;
               }
-
             })
             
           }
-
-
         },
 
         created() {
