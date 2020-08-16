@@ -357,8 +357,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content" style="width: 800px;">
             <div class="modal-header">
-              <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add Entry</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close" data-dismiss="modal" @click="cancelPayment(form_entry.account_code)" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -402,7 +401,7 @@
 
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" @click="cancelPayment">Cancel</button>
+              <button type="button" class="btn btn-danger" @click="cancelPayment(form_entry.account_code)">Cancel</button>
               <button type="button" :disabled="!save_button_entry_enabled" class="btn btn-success" @click="savePayment(form_entry.account_code)">Save</button>
             </div>
 
@@ -1230,7 +1229,7 @@
           {
               
                
-                console.log('payEntry');
+               
             
                 this.current_balance = current_balance;
                 
@@ -1263,9 +1262,9 @@
           savePayment(account_code)
           {
             
-            console.log('savePayment');
+            
             if( parseFloat(this.form_entry.amount) == 0){
-              console.log('zero amount');
+              
               swal.fire(
                       'Error!',
                       'Please enter amount!',
@@ -1276,7 +1275,7 @@
 
             if(parseFloat(this.current_balance) < parseFloat(this.form_entry.amount)){
               // *************** If this is triggered another duplicate entry/post is made on the transactions_1 table. s 
-              console.log('over balance');
+              
               
               swal.fire(
                       'Warning!',
@@ -1305,8 +1304,20 @@
 
             
           },
-          cancelPayment(){
+          cancelPayment(account_code){
+
+            this.form_entry.delete('api/cd/entry/'+this.form_entry.id)
+            .then(() => {
+              $('#entry-payment').modal('hide');
+              this.loadPayments();
+              this.loadPaymentHistory(account_code);
+            })
+            .catch(() => {
+                this.$Progress.fail();
+            });
+
             this.form_entry.reset();
+
             $('#entry-payment').modal('hide');
           },
           selectPaymentRow(active_debit_row_id,account_code){
@@ -1314,8 +1325,7 @@
               this.form_entry.id = active_debit_row_id;
               this.loadPayments();
               this.loadPaymentHistory(account_code);
-              //VueListen.$emit('RefreshEntryTable');
-              //console.log(active_debit_row);
+              
 
           },
           loadPayments() {

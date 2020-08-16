@@ -7635,7 +7635,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -8272,7 +8271,6 @@ __webpack_require__.r(__webpack_exports__);
     payEntry: function payEntry(account_code, account_name, current_balance) {
       var _this18 = this;
 
-      console.log('payEntry');
       this.current_balance = current_balance;
       this.form_entry.reset();
       this.form_entry.transaction_id = this.form.id;
@@ -8292,17 +8290,13 @@ __webpack_require__.r(__webpack_exports__);
     savePayment: function savePayment(account_code) {
       var _this19 = this;
 
-      console.log('savePayment');
-
       if (parseFloat(this.form_entry.amount) == 0) {
-        console.log('zero amount');
         swal.fire('Error!', 'Please enter amount!', 'error');
         return false;
       }
 
       if (parseFloat(this.current_balance) < parseFloat(this.form_entry.amount)) {
         // *************** If this is triggered another duplicate entry/post is made on the transactions_1 table. s 
-        console.log('over balance');
         swal.fire('Warning!', 'Current balance is only ' + this.current_balance + '!', 'error');
         return true;
       }
@@ -8320,7 +8314,18 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.form_entry.reset();
     },
-    cancelPayment: function cancelPayment() {
+    cancelPayment: function cancelPayment(account_code) {
+      var _this20 = this;
+
+      this.form_entry["delete"]('api/cd/entry/' + this.form_entry.id).then(function () {
+        $('#entry-payment').modal('hide');
+
+        _this20.loadPayments();
+
+        _this20.loadPaymentHistory(account_code);
+      })["catch"](function () {
+        _this20.$Progress.fail();
+      });
       this.form_entry.reset();
       $('#entry-payment').modal('hide');
     },
@@ -8328,28 +8333,27 @@ __webpack_require__.r(__webpack_exports__);
       this.active_debit_row = active_debit_row_id;
       this.form_entry.id = active_debit_row_id;
       this.loadPayments();
-      this.loadPaymentHistory(account_code); //VueListen.$emit('RefreshEntryTable');
-      //console.log(active_debit_row);
+      this.loadPaymentHistory(account_code);
     },
     loadPayments: function loadPayments() {
-      var _this20 = this;
+      var _this21 = this;
 
       axios.get('api/cd/entries/list?transaction_no=' + this.form.transaction_no).then(function (data) {
-        _this20.entries = data.data;
+        _this21.entries = data.data;
       })["catch"](function () {//
       });
     },
     loadPaymentHistory: function loadPaymentHistory(account_code) {
-      var _this21 = this;
+      var _this22 = this;
 
       axios.get('api/cd/entries/list?account_code=' + account_code).then(function (data) {
-        _this21.payment_history = data.data;
+        _this22.payment_history = data.data;
       })["catch"](function () {//
       });
     }
   },
   created: function created() {
-    var _this22 = this;
+    var _this23 = this;
 
     this.loadPayees();
     this.loadBranches();
@@ -8358,10 +8362,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntries();
     this.loadPurchase();
     VueListen.$on('RefreshItemTable', function () {
-      _this22.loadEntryItems();
+      _this23.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this22.loadEntries();
+      _this23.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
@@ -81999,23 +82003,26 @@ var render = function() {
               [
                 _c("div", { staticClass: "modal-header" }, [
                   _c(
-                    "h5",
+                    "button",
                     {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: !_vm.editmode,
-                          expression: "!editmode"
+                      staticClass: "close",
+                      attrs: {
+                        type: "button",
+                        "data-dismiss": "modal",
+                        "aria-label": "Close"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.cancelPayment(_vm.form_entry.account_code)
                         }
-                      ],
-                      staticClass: "modal-title",
-                      attrs: { id: "addNewLabel" }
+                      }
                     },
-                    [_vm._v("Add Entry")]
-                  ),
-                  _vm._v(" "),
-                  _vm._m(13)
+                    [
+                      _c("span", { attrs: { "aria-hidden": "true" } }, [
+                        _vm._v("×")
+                      ])
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-body" }, [
@@ -82023,7 +82030,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(14),
+                      _vm._m(13),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -82069,7 +82076,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "input-group mb-2" }, [
-                    _vm._m(15),
+                    _vm._m(14),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -82110,7 +82117,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(16),
+                      _vm._m(15),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -82159,7 +82166,11 @@ var render = function() {
                     {
                       staticClass: "btn btn-danger",
                       attrs: { type: "button" },
-                      on: { click: _vm.cancelPayment }
+                      on: {
+                        click: function($event) {
+                          return _vm.cancelPayment(_vm.form_entry.account_code)
+                        }
+                      }
                     },
                     [_vm._v("Cancel")]
                   ),
@@ -82211,7 +82222,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(17),
+              _vm._m(16),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -82250,7 +82261,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(18),
+                            _vm._m(17),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -82294,7 +82305,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(19)
+                _vm._m(18)
               ])
             ])
           ]
@@ -82325,7 +82336,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(20),
+              _vm._m(19),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -82364,7 +82375,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(21),
+                            _vm._m(20),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -82404,7 +82415,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(22)
+                _vm._m(21)
               ])
             ])
           ]
@@ -82581,23 +82592,6 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Amount")])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: {
-          type: "button",
-          "data-dismiss": "modal",
-          "aria-label": "Close"
-        }
-      },
-      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-    )
   },
   function() {
     var _vm = this
