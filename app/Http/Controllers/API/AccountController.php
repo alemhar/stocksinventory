@@ -212,7 +212,7 @@ class AccountController extends Controller
     public function load_ledger($account_code)
     {
         
-        $ledger = Ledger::latest('update_at')->where('account_code',$account_code)->paginate(10);
+        $ledger = Ledger::latest('updated_at')->where('account_code',$account_code)->paginate(10);
         return $ledger;
     }
 
