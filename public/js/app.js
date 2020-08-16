@@ -7729,9 +7729,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    getPaymentHistotyPage: function getPaymentHistotyPage() {
-      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-    },
     currentBalance: function currentBalance(total_amount, payments) {
       return (total_amount - payments).toFixed(2);
     },
@@ -8351,10 +8348,19 @@ __webpack_require__.r(__webpack_exports__);
         _this22.payment_history = data.data;
       })["catch"](function () {//
       });
+    },
+    getPaymentHistotyPage: function getPaymentHistotyPage() {
+      var _this23 = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get('api/cd/entries/list?account_code=' + account_code + '&page=' + page).then(function (data) {
+        _this23.payment_history = data.data;
+      })["catch"](function () {//
+      });
     }
   },
   created: function created() {
-    var _this23 = this;
+    var _this24 = this;
 
     this.loadPayees();
     this.loadBranches();
@@ -8363,10 +8369,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntries();
     this.loadPurchase();
     VueListen.$on('RefreshItemTable', function () {
-      _this23.loadEntryItems();
+      _this24.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this23.loadEntries();
+      _this24.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);

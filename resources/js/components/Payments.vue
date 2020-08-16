@@ -664,9 +664,7 @@
           }
         },
         methods: {
-          getPaymentHistotyPage(page=1){
-            
-          },
+          
           currentBalance(total_amount,payments){
             return (total_amount - payments).toFixed(2);
           },
@@ -1336,13 +1334,24 @@
                 });
           },
           loadPaymentHistory(account_code) {
-              axios.get('api/cd/entries/list?account_code='+account_code)
+                axios.get('api/cd/entries/list?account_code='+account_code)
                 .then((data)=>{
                   this.payment_history = data.data;
                 })
                 .catch(()=>{
                   //
                 });
+          },
+          getPaymentHistotyPage(page = 1){
+              axios.get('api/cd/entries/list?account_code='+account_code+'&page='+ page)
+                .then((data)=>{
+                  this.payment_history = data.data;
+                })
+                .catch(()=>{
+                  //
+                });
+                
+
           }
           
 
