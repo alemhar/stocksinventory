@@ -1092,18 +1092,8 @@
             });
           },
           saveDebitEntry(){
-            this.ledgers.push({ 
-                      id: this.form_entry.id,
-                      transaction_id: this.form.id, 
-                      transaction_no: this.form.transaction_no,
-                      transaction_type: this.form.transaction_type,
-                      account_code: this.form_entry.account_code,
-                      account_name: this.form_entry.account_name,
-                      transaction_date: this.form.transaction_date,
-                      credit_amount: 0,
-                      debit_amount: this.form_entry.amount
-                    });
-                    
+            
+
             this.form_entry.credit_amount = this.form_entry.amount
             this.save_button_entry_enabled = false;
             this.$Progress.start();
@@ -1305,13 +1295,6 @@
             this.save_button_entry_enabled = false;
             this.form_entry.put('api/cd/entry/'+this.form_entry.id)
             .then(() => {
-              $('#entry-payment').modal('hide');
-
-              this.loadPayments();
-              this.loadPaymentHistory(account_code);
-              
-              this.updatePurchase(parseFloat(payment_amount));
-
               this.ledgers.push({ 
                       id: this.form_entry.id,
                       transaction_id: this.form.id, 
@@ -1321,8 +1304,17 @@
                       account_name: this.form_entry.account_name,
                       transaction_date: this.form.transaction_date,
                       credit_amount: 0,
-                      debit_amount: this.form_entry.amount_ex_tax
+                      debit_amount: this.form_entry.amount
                     });
+                    
+              $('#entry-payment').modal('hide');
+
+              this.loadPayments();
+              this.loadPaymentHistory(account_code);
+              
+              this.updatePurchase(parseFloat(payment_amount));
+
+              
 
 
               //this.addPaymentToPurchseRecord();

@@ -8132,17 +8132,6 @@ __webpack_require__.r(__webpack_exports__);
     saveDebitEntry: function saveDebitEntry() {
       var _this14 = this;
 
-      this.ledgers.push({
-        id: this.form_entry.id,
-        transaction_id: this.form.id,
-        transaction_no: this.form.transaction_no,
-        transaction_type: this.form.transaction_type,
-        account_code: this.form_entry.account_code,
-        account_name: this.form_entry.account_name,
-        transaction_date: this.form.transaction_date,
-        credit_amount: 0,
-        debit_amount: this.form_entry.amount
-      });
       this.form_entry.credit_amount = this.form_entry.amount;
       this.save_button_entry_enabled = false;
       this.$Progress.start();
@@ -8313,14 +8302,6 @@ __webpack_require__.r(__webpack_exports__);
       this.form.amount += parseFloat(this.form_entry.amount);
       this.save_button_entry_enabled = false;
       this.form_entry.put('api/cd/entry/' + this.form_entry.id).then(function () {
-        $('#entry-payment').modal('hide');
-
-        _this19.loadPayments();
-
-        _this19.loadPaymentHistory(account_code);
-
-        _this19.updatePurchase(parseFloat(payment_amount));
-
         _this19.ledgers.push({
           id: _this19.form_entry.id,
           transaction_id: _this19.form.id,
@@ -8330,8 +8311,16 @@ __webpack_require__.r(__webpack_exports__);
           account_name: _this19.form_entry.account_name,
           transaction_date: _this19.form.transaction_date,
           credit_amount: 0,
-          debit_amount: _this19.form_entry.amount_ex_tax
-        }); //this.addPaymentToPurchseRecord();
+          debit_amount: _this19.form_entry.amount
+        });
+
+        $('#entry-payment').modal('hide');
+
+        _this19.loadPayments();
+
+        _this19.loadPaymentHistory(account_code);
+
+        _this19.updatePurchase(parseFloat(payment_amount)); //this.addPaymentToPurchseRecord();
 
       })["catch"](function () {
         _this19.$Progress.fail();
