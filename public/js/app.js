@@ -8362,6 +8362,10 @@ __webpack_require__.r(__webpack_exports__);
     updatePurchase: function updatePurchase(payment_amount) {
       var _this16 = this;
 
+      if (!purchase.total_payment) {
+        purchase.total_payment = 0;
+      }
+
       this.purchases.data.map(function (purchase) {
         if (purchase.id == _this16.current_purchase_id) {
           return purchase.total_payment = parseFloat(purchase.total_payment) + parseFloat(payment_amount);

@@ -1377,9 +1377,12 @@
               //this.current_purchase_id
           },
           updatePurchase(payment_amount){
-
+            if(!purchase.total_payment){
+              purchase.total_payment = 0;
+            }  
             this.purchases.data.map((purchase) => {
               if(purchase.id == this.current_purchase_id){
+                
                 return purchase.total_payment = parseFloat(purchase.total_payment) + parseFloat(payment_amount);
               } else {
                 return purchase.total_payment = purchase.total_payment;
@@ -1387,7 +1390,7 @@
             })
             
           }
-        },
+          },
 
         created() {
             
