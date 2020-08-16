@@ -1231,6 +1231,8 @@
             // entry_id,entry_transaction_no, account_code, account_name, payment_amount
             
               this.current_balance = current_balance;
+              
+
               this.form_entry.reset();
               this.form_entry.transaction_id = this.form.id;
               this.form_entry.transaction_no = this.form.transaction_no;
@@ -1258,12 +1260,13 @@
           {
 
             if(this.current_balance < this.form_entry.amount){
+              // *************** If this is triggered another duplicate entry/post is made on the transactions_1 table. s 
               swal.fire(
                       'Error!',
                       'Current balance is only '+this.current_balance+'!',
                       'error'
                     );
-              return false;
+              return true;
             }
 
             if( parseFloat(this.form_entry.amount) == 0){
@@ -1274,6 +1277,7 @@
                     );
               return false;
             }
+
             this.form.amount +=  parseFloat(this.form_entry.amount);
             
             this.save_button_entry_enabled = false;
