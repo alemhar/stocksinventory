@@ -597,7 +597,7 @@
                   payee_id: '',
                   reference_no: '',
                   transaction_no: '',
-                  transaction_type: 'CD', // default for Cash Disbursement
+                  transaction_type: 'PAYMENT', // default for Cash Disbursement
                   transaction_date: this.getDate(),
                   account_code: '',
                   account_name:'',
@@ -1092,17 +1092,20 @@
             });
           },
           saveDebitEntry(){
-            //console.log('Edit Payee');
-            
-            // ** Temporary data to bypass Column cannot be null ERROR's
-            //this.form_entry.amount = 0;
-            //this.form_entry.amount_ex_tax = 0;
-            //this.form_entry.vat = 0;
+            this.ledgers.push({ 
+                      id: this.form_entry.id,
+                      transaction_id: this.form.id, 
+                      transaction_no: this.form.transaction_no,
+                      transaction_type: this.form.transaction_type,
+                      account_code: this.form_entry.account_code,
+                      account_name: this.form_entry.account_name,
+                      transaction_date: this.form.transaction_date,
+                      credit_amount: 0,
+                      debit_amount: this.form_entry.amount
+                    });
+                    
             this.form_entry.credit_amount = this.form_entry.amount
-            //this.form_entry.debit_amount = 0;
-            // ** Temporary data to bypass Column cannot be null ERROR's
             this.save_button_entry_enabled = false;
-              
             this.$Progress.start();
             this.form_entry.put('api/cd/entry/'+this.form_entry.id)
             .then(() => {
@@ -1118,17 +1121,7 @@
                   this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
                   this.form.vat += this.form_entry.vat;
 
-                  this.ledgers.push({ 
-                      id: this.form_entry.id,
-                      transaction_id: this.form.id, 
-                      transaction_no: this.form.transaction_no,
-                      transaction_type: this.form.transaction_type,
-                      account_code: this.form_entry.account_code,
-                      account_name: this.form_entry.account_name,
-                      transaction_date: this.form.transaction_date,
-                      credit_amount: 0,
-                      debit_amount: this.form_entry.amount_ex_tax
-                    });
+                  
                   //console.log(this.ledgers);
                   this.$Progress.finish();
                   VueListen.$emit('RefreshEntryTable');

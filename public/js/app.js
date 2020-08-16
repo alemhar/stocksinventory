@@ -7671,7 +7671,7 @@ __webpack_require__.r(__webpack_exports__);
         payee_id: '',
         reference_no: '',
         transaction_no: '',
-        transaction_type: 'CD',
+        transaction_type: 'PAYMENT',
         // default for Cash Disbursement
         transaction_date: this.getDate(),
         account_code: '',
@@ -8132,14 +8132,18 @@ __webpack_require__.r(__webpack_exports__);
     saveDebitEntry: function saveDebitEntry() {
       var _this14 = this;
 
-      //console.log('Edit Payee');
-      // ** Temporary data to bypass Column cannot be null ERROR's
-      //this.form_entry.amount = 0;
-      //this.form_entry.amount_ex_tax = 0;
-      //this.form_entry.vat = 0;
-      this.form_entry.credit_amount = this.form_entry.amount; //this.form_entry.debit_amount = 0;
-      // ** Temporary data to bypass Column cannot be null ERROR's
-
+      this.ledgers.push({
+        id: this.form_entry.id,
+        transaction_id: this.form.id,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        account_code: this.form_entry.account_code,
+        account_name: this.form_entry.account_name,
+        transaction_date: this.form.transaction_date,
+        credit_amount: 0,
+        debit_amount: this.form_entry.amount
+      });
+      this.form_entry.credit_amount = this.form_entry.amount;
       this.save_button_entry_enabled = false;
       this.$Progress.start();
       this.form_entry.put('api/cd/entry/' + this.form_entry.id).then(function () {
@@ -8154,20 +8158,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this14.form.amount += _this14.form_entry.amount;
         _this14.form.amount_ex_tax += _this14.form_entry.amount_ex_tax;
-        _this14.form.vat += _this14.form_entry.vat;
-
-        _this14.ledgers.push({
-          id: _this14.form_entry.id,
-          transaction_id: _this14.form.id,
-          transaction_no: _this14.form.transaction_no,
-          transaction_type: _this14.form.transaction_type,
-          account_code: _this14.form_entry.account_code,
-          account_name: _this14.form_entry.account_name,
-          transaction_date: _this14.form.transaction_date,
-          credit_amount: 0,
-          debit_amount: _this14.form_entry.amount_ex_tax
-        }); //console.log(this.ledgers);
-
+        _this14.form.vat += _this14.form_entry.vat; //console.log(this.ledgers);
 
         _this14.$Progress.finish();
 
