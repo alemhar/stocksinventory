@@ -178,9 +178,7 @@
             </table>
             </div>
             <!-- /.box-body -->
-            <div class="box-footer">
-              <pagination :data="purchases"></pagination>
-            </div> 
+            
           </div>
           <!-- /.box -->
         </div>
@@ -301,7 +299,7 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-              
+              <pagination :data="payment_history"  @pagination-change-page="getPaymentHistotyPage"></pagination>
             </div> 
           </div>
           <!-- /.box -->
@@ -666,7 +664,9 @@
           }
         },
         methods: {
-          
+          getPaymentHistotyPage(page=1){
+            
+          },
           currentBalance(total_amount,payments){
             return (total_amount - payments).toFixed(2);
           },

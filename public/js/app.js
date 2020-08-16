@@ -7633,8 +7633,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -7731,6 +7729,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    getPaymentHistotyPage: function getPaymentHistotyPage() {
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+    },
     currentBalance: function currentBalance(total_amount, payments) {
       return (total_amount - payments).toFixed(2);
     },
@@ -81760,13 +81761,6 @@ var render = function() {
                             )
                           ])
                         ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "box-footer" },
-                        [_c("pagination", { attrs: { data: _vm.purchases } })],
-                        1
                       )
                     ])
                   ])
@@ -81901,7 +81895,20 @@ var render = function() {
                         ]
                       ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "box-footer" })
+                      _c(
+                        "div",
+                        { staticClass: "box-footer" },
+                        [
+                          _c("pagination", {
+                            attrs: { data: _vm.payment_history },
+                            on: {
+                              "pagination-change-page":
+                                _vm.getPaymentHistotyPage
+                            }
+                          })
+                        ],
+                        1
+                      )
                     ])
                   ])
                 ]
