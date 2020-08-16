@@ -300,7 +300,7 @@
             <!-- /.box-body -->
             <div class="box-footer">
               <!-- getPaymentHistotyPage(payment.account_code) -->
-              <pagination :data="payment_history"  @pagination-change-page="alert(this.page)"></pagination>
+              <pagination :data="payment_history"  @pagination-change-page="getPaymentHistotyPage(this.page)"></pagination>
             </div> 
           </div>
           <!-- /.box -->
@@ -1343,8 +1343,10 @@
                   //
                 });
           },
-          getPaymentHistotyPage(page = 1){
+          getPaymentHistotyPage(page){
               
+              alert(page);
+              /*
               axios.get('api/cd/entries/list?account_code='+account_code+'&page='+ page)
                 .then((data)=>{
                   this.payment_history = data.data;
@@ -1352,7 +1354,7 @@
                 .catch(()=>{
                   //
                 });
-                
+              */  
 
           }
           
