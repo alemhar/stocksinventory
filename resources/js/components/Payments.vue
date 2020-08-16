@@ -392,7 +392,7 @@
 
                   <input v-model="form_entry.amount" name="amount" id="amount"
                   
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount') }" aria-describedby="inputGroup-sizing-default">
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount') }" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
                   <has-error :form="form_entry" field="amount"></has-error>
               </div>
 

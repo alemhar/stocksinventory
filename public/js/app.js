@@ -82166,7 +82166,8 @@ var render = function() {
                         attrs: {
                           name: "amount",
                           id: "amount",
-                          "aria-describedby": "inputGroup-sizing-default"
+                          "aria-describedby": "inputGroup-sizing-default",
+                          onfocus: "this.select()"
                         },
                         domProps: { value: _vm.form_entry.amount },
                         on: {
