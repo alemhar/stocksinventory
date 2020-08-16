@@ -7875,20 +7875,7 @@ __webpack_require__.r(__webpack_exports__);
           transaction_date: _this6.form.transaction_date,
           credit_amount: _this6.form.amount,
           debit_amount: 0
-        });
-        /*
-        this.ledgers.push({ 
-            id: 1,
-            transaction_id: this.form.id, 
-            transaction_no: this.form.transaction_no,
-            transaction_type: this.form.transaction_type,
-            account_code: '1105110',
-            account_name: 'Input Tax',
-            transaction_date: this.form.transaction_date,
-            credit_amount: 0,
-            debit_amount: this.form.vat
-          });  
-        */
+        }); // Ledger Posting START ********************
 
 
         var rawData = {
@@ -7919,7 +7906,15 @@ __webpack_require__.r(__webpack_exports__);
           console.log(response);
         })["catch"](function (error) {
           console.log(error);
-        });
+        }); // Ledger Posting END ********************
+        // Update Payee Account START ********************
+
+        axios.post('api/update_payee_account', {
+          payee_id: _this6.form.payee_id,
+          amount: _this6.form.amount,
+          operation: 'sub',
+          account: 'payable'
+        }).then(function (response) {})["catch"](function () {}); // Update Payee Account END ********************
 
         _this6.$Progress.finish();
       })["catch"](function () {

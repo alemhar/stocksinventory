@@ -811,19 +811,8 @@
                       debit_amount: 0
                     });
 
-                  /*
-                  this.ledgers.push({ 
-                      id: 1,
-                      transaction_id: this.form.id, 
-                      transaction_no: this.form.transaction_no,
-                      transaction_type: this.form.transaction_type,
-                      account_code: '1105110',
-                      account_name: 'Input Tax',
-                      transaction_date: this.form.transaction_date,
-                      credit_amount: 0,
-                      debit_amount: this.form.vat
-                    });  
-                  */
+                      // Ledger Posting START ********************
+
                       let rawData = {
                           ledgers: this.ledgers
                       }
@@ -863,6 +852,24 @@
                       .catch(function (error) {
                           console.log(error);
                       });  
+                      // Ledger Posting END ********************
+
+
+                      // Update Payee Account START ********************
+                      axios.post('api/update_payee_account', {
+                          payee_id: this.form.payee_id,
+                          amount: this.form.amount,
+                          operation: 'sub',
+                          account: 'payable',
+                      })
+                      .then((response)=>{
+
+                      })
+                      .catch(()=>{
+                          
+                      });
+                      // Update Payee Account END ********************
+                      
                   this.$Progress.finish();
                                     
             })
