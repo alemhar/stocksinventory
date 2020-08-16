@@ -7633,6 +7633,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -81908,8 +81909,9 @@ var render = function() {
                           _c("pagination", {
                             attrs: { data: _vm.payment_history },
                             on: {
-                              "pagination-change-page":
-                                _vm.getPaymentHistotyPage
+                              "pagination-change-page": function($event) {
+                                return _vm.alert(this.page)
+                              }
                             }
                           })
                         ],
