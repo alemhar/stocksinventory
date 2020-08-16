@@ -8364,9 +8364,9 @@ __webpack_require__.r(__webpack_exports__);
 
       this.purchases.data.map(function (purchase) {
         if (purchase.id == _this16.current_purchase_id) {
-          return purchase.total_payment = purchase.total_payment + payment_amount;
+          return purchase.total_payment = parseFloat(purchase.total_payment) + parseFloat(payment_amount);
         } else {
-          return purchase.total_payment = purchase.total_payment;
+          return purchase.total_payment = parseFloat(purchase.total_payment);
         }
       });
     }
