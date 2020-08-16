@@ -872,7 +872,7 @@
                   transaction_no:'',
                   transaction_type:'',
                   account_code : 0,
-                  account_name: '',
+                  account_name: 'NA',
                   //entry_name: '',
                   //entry_description: '',
                   branch_id: '',
