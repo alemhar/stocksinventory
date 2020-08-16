@@ -8249,8 +8249,10 @@ __webpack_require__.r(__webpack_exports__);
       */
     },
     branchChange: function branchChange() {
-      this.form_entry.branch_id = this.selected_branch.id;
+      /*
+      this.form_entry.branch_id = this.selected_branch.id ;
       this.form_entry.branch_name = this.selected_branch.name;
+      */
     },
     payEntry: function payEntry(purchase_id, account_code, account_name, current_balance) {
       var _this10 = this;
@@ -8263,8 +8265,8 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.transaction_type = 'PAYMENT';
       this.form_entry.account_code = account_code;
       this.form_entry.account_name = account_name;
-      this.form_entry.branch_id = 0;
-      this.form_entry.branch_name = 'NA';
+      this.form_entry.branch_id = this.current_payee_id;
+      this.form_entry.branch_name = this.current_payee_name;
       this.save_button_entry_enabled = true;
       this.form_entry.post('api/cd/entry').then(function (data) {
         _this10.form_entry.id = data.data.id; //VueListen.$emit('RefreshItemTable');    
@@ -8346,7 +8348,7 @@ __webpack_require__.r(__webpack_exports__);
     loadPaymentHistory: function loadPaymentHistory(account_code) {
       var _this14 = this;
 
-      axios.get('api/cd/entries/list?account_code=' + account_code).then(function (data) {
+      axios.get('api/cd/entries/list?payee_id=' + account_code).then(function (data) {
         _this14.payment_history = data.data;
       })["catch"](function () {//
       });
@@ -8354,7 +8356,7 @@ __webpack_require__.r(__webpack_exports__);
     getPaymentHistotyPage: function getPaymentHistotyPage(page) {
       var _this15 = this;
 
-      axios.get('api/cd/entries/list?account_code=' + this.account_code + '&page=' + page).then(function (data) {
+      axios.get('api/cd/entries/list?payee_id=' + this.current_payee_id + '&page=' + page).then(function (data) {
         _this15.payment_history = data.data;
       })["catch"](function () {});
     },
@@ -9350,13 +9352,6 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$Progress.start();
       this.form.put('api/cd/' + this.form.id).then(function () {
-        /*
-        swal.fire(
-          'Saved!',
-          'Transaction Completed.',
-          'success'
-        );
-        */
         _this5.transaction_created = false;
 
         _this5.form.post('api/cd/confirm/' + _this5.form.transaction_no);
@@ -9383,7 +9378,8 @@ __webpack_require__.r(__webpack_exports__);
           transaction_date: _this5.form.transaction_date,
           credit_amount: 0,
           debit_amount: _this5.form.vat
-        });
+        }); // Ledger Posting START ********************
+
 
         var rawData = {
           ledgers: _this5.ledgers
@@ -9399,7 +9395,15 @@ __webpack_require__.r(__webpack_exports__);
           console.log(response);
         })["catch"](function (error) {
           console.log(error);
-        });
+        }); // Ledger Posting END ********************
+        // Update Payee Account START ********************
+
+        axios.post('api/update_payee_account', {
+          payee_id: _this5.form.payee_id,
+          amount: _this5.form.amount,
+          operation: 'add',
+          account: 'payable'
+        }).then(function (response) {})["catch"](function () {}); // Update Payee Account END ********************
 
         _this5.$Progress.finish();
       })["catch"](function () {

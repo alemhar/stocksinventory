@@ -68,5 +68,6 @@ Route::get('cd/entries/list', 'API\CDEntryController@list');
 Route::get('cd/purchase/list', 'API\CDController@list');
 Route::post('ledgers', 'API\AccountController@store_ledger');
 Route::post('record_payment', 'API\CDController@record_payment');
+Route::post('update_payee_account', 'API\PayeeController@updateAccount');
 
 Route::get('ledgers/{account_code}', 'API\AccountController@load_ledger');

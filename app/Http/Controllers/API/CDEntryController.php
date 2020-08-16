@@ -141,18 +141,23 @@ class CDEntryController extends Controller
     public function list(){
         if ($transaction_no = \Request::get('transaction_no')) {
 
-            if ($account_code = \Request::get('account_code')) {
-                $transactionEntries = TransactionEntry::where(function($query) use ($account_code,$transaction_no ){
-                    $query->where('account_code',$account_code)->where('transaction_type','PAYMENT')->where('transaction_no',$transaction_no);
+            if ($payee_id = \Request::get('payee_id')) {
+                $transactionEntries = TransactionEntry::where(function($query) use ($payee_id,$transaction_no ){
+                    $query->where('branch_id',$payee_id)
+                    ->where('transaction_type','PAYMENT')
+                    ->where('transaction_no',$transaction_no);
                 })->paginate(10);
             } else {
                 $transactionEntries = TransactionEntry::where(function($query) use ($transaction_no){
                     $query->where('transaction_no',$transaction_no);
                 })->paginate(10);
             }
-        } elseif ($account_code = \Request::get('account_code')) {
-            $transactionEntries = TransactionEntry::where(function($query) use ($account_code){
-                $query->where('account_code',$account_code)->where('transaction_type','PAYMENT');
+
+        } elseif ($payee_id = \Request::get('payee_id')) {
+            $transactionEntries = TransactionEntry::where(function($query) use ($payee_id){
+                $query->where('branch_id',$payee_id)
+                ->where('status','CONFIRMED')
+                ->where('transaction_type','PAYMENT');
             })->paginate(10);
         } else {
             $transactionEntries = null;//TransactionEntry::latest()->paginate(10);

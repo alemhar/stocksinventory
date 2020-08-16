@@ -931,13 +931,7 @@
             this.$Progress.start();
             this.form.put('api/cd/'+this.form.id)
             .then(() => {
-                  /*
-                  swal.fire(
-                    'Saved!',
-                    'Transaction Completed.',
-                    'success'
-                  );
-                  */
+                  
                   this.transaction_created = false;
                   this.form.post('api/cd/confirm/'+this.form.transaction_no);
 
@@ -964,25 +958,42 @@
                       debit_amount: this.form.vat
                     });  
 
-                      let rawData = {
-                          ledgers: this.ledgers
-                      }
-                      rawData = JSON.stringify(rawData);
-                      let formData = new FormData();
-                          formData.append('ledgers', rawData);
-                      axios.post('api/ledgers', formData, {
-                          headers: {
-                              'Content-Type': 'multipart/form-data'
-                          }
-                      })
-                      .then((response)=>{
-                          
-                          console.log(response);
-                      })
-                      .catch(function (error) {
-                          console.log(error);
-                      });
-                      
+                    // Ledger Posting START ********************
+                    let rawData = {
+                        ledgers: this.ledgers
+                    }
+                    rawData = JSON.stringify(rawData);
+                    let formData = new FormData();
+                        formData.append('ledgers', rawData);
+                    axios.post('api/ledgers', formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    })
+                    .then((response)=>{
+                        
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                    // Ledger Posting END ********************
+
+                    // Update Payee Account START ********************
+                    axios.post('api/update_payee_account', {
+                        payee_id: this.form.payee_id,
+                        amount: this.form.amount,
+                        operation: 'add',
+                        account: 'payable',
+                    })
+                    .then((response)=>{
+
+                    })
+                    .catch(()=>{
+                        
+                    });
+                    // Update Payee Account END ********************
+
                   this.$Progress.finish();
                                     
             })

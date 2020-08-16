@@ -86,13 +86,38 @@ class PayeeController extends Controller
             'address' => 'required|string|max:191',
             'city' => 'required|string|max:191',
             'phone' => 'required|string|max:191'
-
         ]);
-
 
         $payee->update($request->all());
 
         return ['message' => 'Payee info updated!'];
+    }
+
+    public function updateAccount(Request $request)
+    {
+        $id = $request['payee_id']; // payment or charge amount
+        $amount = $request['amount']; // payment or charge amount
+        $operation = $request['operation']; // add or sub
+        $account = $request['account']; // payable or receivable
+
+        $payee = Payee::findOrFail($id);
+        
+        
+        if($account == 'payable'){
+            if($operation == 'add'){
+                $payee->payable = $payee->payable + $amount;
+            } else {
+                $payee->payable = $payee->payable - $amount;
+            }  
+        } else {
+            if($operation == 'add'){
+                $payee->receivable = $payee->receivable + $amount;
+            } else {
+                $payee->receivable = $payee->receivable - $amount;
+            } 
+        }
+        $payee->save();
+        return ['message' => 'Payee account updated!'];
     }
 
     /**
