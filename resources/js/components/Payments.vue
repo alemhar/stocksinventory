@@ -794,7 +794,7 @@
               return false;
             }
             this.$Progress.start();
-            this.form_entry.put('api/cd/'+this.form.id)
+            this.form.put('api/cd/'+this.form.id)
             .then(() => {
                   this.cd_created = false;
                   this.form.post('api/cd/confirm/'+this.form.transaction_no);

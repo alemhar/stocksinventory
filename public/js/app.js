@@ -6018,7 +6018,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.$Progress.start();
-      this.form_entry.put('api/cd/' + this.form.id).then(function () {
+      this.form.put('api/cd/' + this.form.id).then(function () {
         /*
         swal.fire(
             'Saved!',
@@ -7859,7 +7859,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.$Progress.start();
-      this.form_entry.put('api/cd/' + this.form.id).then(function () {
+      this.form.put('api/cd/' + this.form.id).then(function () {
         _this6.cd_created = false;
 
         _this6.form.post('api/cd/confirm/' + _this6.form.transaction_no);
@@ -9380,7 +9380,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.$Progress.start();
-      this.form_entry.put('api/cd/' + this.form.id).then(function () {
+      this.form.put('api/cd/' + this.form.id).then(function () {
         /*
         swal.fire(
           'Saved!',
