@@ -8369,13 +8369,13 @@ __webpack_require__.r(__webpack_exports__);
     updatePurchase: function updatePurchase(payment_amount) {
       var _this24 = this;
 
-      this.purchases.data = function (purchase) {
+      this.purchases.data.map(function (purchase) {
         if (purchase.id == _this24.current_purchase_id) {
           return purchase.total_payment = purchase.total_payment + payment_amount;
         } else {
           return purchase.total_payment = purchase.total_payment;
         }
-      };
+      });
     }
   },
   created: function created() {
