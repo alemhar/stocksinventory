@@ -166,7 +166,7 @@
                     <td>{{ purchase.total_payment }}</td>
                     <td>{{ currentBalance(purchase.amount,purchase.total_payment) }}</td> 
                     <td>
-                      <a href="#" @click="payEntry(purchase.account_code,purchase.account_name,currentBalance(purchase.amount,purchase.total_payment))">
+                      <a href="#" @click="payEntry(purchase.id,purchase.account_code,purchase.account_name,currentBalance(purchase.amount,purchase.total_payment))">
                         <i class="fas fa-money-bill"></i>
                         Pay
                         <!-- i class="fa fa-money-bill"></i -->
@@ -568,6 +568,7 @@
           return {
               ledgers: [],
               current_balance: 0,
+              current_purchase_id: 0,
               user_id: '',
               editmode: false,
               cd_created: false,
@@ -1225,13 +1226,10 @@
             this.form_entry.branch_id = this.selected_branch.id ;
             this.form_entry.branch_name = this.selected_branch.name;
           },
-          payEntry(account_code,account_name,current_balance)
+          payEntry(purchase_id,account_code,account_name,current_balance)
           {
-              
-               
-               
-            
                 this.current_balance = current_balance;
+                this.current_purchase_id = purchase_id;
                 
 
                 this.form_entry.reset();
@@ -1296,14 +1294,26 @@
 
               this.loadPayments();
               this.loadPaymentHistory(account_code);
+              
+              this.updatePurchase(parseFloat(this.form_entry.amount));
+            
+
+              //this.addPaymentToPurchseRecord();
+              
+
             })
             .catch(() => {
                 this.$Progress.fail();
             });
+
+
             this.form_entry.reset();
 
             
           },
+
+
+
           cancelPayment(account_code){
 
             this.form_entry.delete('api/cd/entry/'+this.form_entry.id)
@@ -1344,6 +1354,7 @@
                 .catch(()=>{
                   //
                 });
+
           },
           getPaymentHistotyPage(page){
               
@@ -1353,11 +1364,24 @@
                   this.payment_history = data.data;
                 })
                 .catch(()=>{
-                  //
                 });
               
+          },
+          addPaymentToPurchseRecord(){
+              
+              //this.current_purchase_id
+          },
+          updatePurchase(payment_amount){
+
+            purchases.data = (purchase) => {
+              if(purchase.id == this.current_purchase_id){
+                return purchase.total_payment = purchase.total_payment + payment_amount;
+              } else {
+                return purchase.total_payment = purchase.total_payment;
+              }
+
+            } 
           }
-          
 
 
         },

@@ -7642,6 +7642,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       ledgers: [],
       current_balance: 0,
+      current_purchase_id: 0,
       user_id: '',
       editmode: false,
       cd_created: false,
@@ -8268,10 +8269,11 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.branch_id = this.selected_branch.id;
       this.form_entry.branch_name = this.selected_branch.name;
     },
-    payEntry: function payEntry(account_code, account_name, current_balance) {
+    payEntry: function payEntry(purchase_id, account_code, account_name, current_balance) {
       var _this18 = this;
 
       this.current_balance = current_balance;
+      this.current_purchase_id = purchase_id;
       this.form_entry.reset();
       this.form_entry.transaction_id = this.form.id;
       this.form_entry.transaction_no = this.form.transaction_no;
@@ -8309,6 +8311,9 @@ __webpack_require__.r(__webpack_exports__);
         _this19.loadPayments();
 
         _this19.loadPaymentHistory(account_code);
+
+        _this19.updatePurchase(parseFloat(_this19.form_entry.amount)); //this.addPaymentToPurchseRecord();
+
       })["catch"](function () {
         _this19.$Progress.fail();
       });
@@ -8357,12 +8362,24 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('api/cd/entries/list?account_code=' + this.account_code + '&page=' + page).then(function (data) {
         _this23.payment_history = data.data;
-      })["catch"](function () {//
-      });
+      })["catch"](function () {});
+    },
+    addPaymentToPurchseRecord: function addPaymentToPurchseRecord() {//this.current_purchase_id
+    },
+    updatePurchase: function updatePurchase(payment_amount) {
+      var _this24 = this;
+
+      purchases.data = function (purchase) {
+        if (purchase.id == _this24.current_purchase_id) {
+          return purchase.total_payment = purchase.total_payment + payment_amount;
+        } else {
+          return purchase.total_payment = purchase.total_payment;
+        }
+      };
     }
   },
   created: function created() {
-    var _this24 = this;
+    var _this25 = this;
 
     this.loadPayees();
     this.loadBranches();
@@ -8371,10 +8388,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntries();
     this.loadPurchase();
     VueListen.$on('RefreshItemTable', function () {
-      _this24.loadEntryItems();
+      _this25.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this24.loadEntries();
+      _this25.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
@@ -81741,6 +81758,7 @@ var render = function() {
                                             on: {
                                               click: function($event) {
                                                 _vm.payEntry(
+                                                  purchase.id,
                                                   purchase.account_code,
                                                   purchase.account_name,
                                                   _vm.currentBalance(
