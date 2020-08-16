@@ -8272,35 +8272,36 @@ __webpack_require__.r(__webpack_exports__);
     payEntry: function payEntry(account_code, account_name, current_balance) {
       var _this18 = this;
 
-      // entry_id,entry_transaction_no, account_code, account_name, payment_amount
-      this.current_balance = current_balance;
-      this.form_entry.reset();
-      this.form_entry.transaction_id = this.form.id;
-      this.form_entry.transaction_no = this.form.transaction_no;
-      this.form_entry.transaction_type = 'PAYMENT';
-      this.form_entry.account_code = account_code;
-      this.form_entry.account_name = account_name;
-      this.form_entry.branch_id = 0;
-      this.form_entry.branch_name = 'NA';
-      this.save_button_entry_enabled = true;
-      this.form_entry.post('api/cd/entry').then(function (data) {
-        _this18.form_entry.id = data.data.id; //VueListen.$emit('RefreshItemTable');    
-      })["catch"](function () {//
-      });
-      $('#entry-payment').modal('show');
+      if (!this.form_entry.id) {
+        this.current_balance = current_balance;
+        this.form_entry.reset();
+        this.form_entry.transaction_id = this.form.id;
+        this.form_entry.transaction_no = this.form.transaction_no;
+        this.form_entry.transaction_type = 'PAYMENT';
+        this.form_entry.account_code = account_code;
+        this.form_entry.account_name = account_name;
+        this.form_entry.branch_id = 0;
+        this.form_entry.branch_name = 'NA';
+        this.save_button_entry_enabled = true;
+        this.form_entry.post('api/cd/entry').then(function (data) {
+          _this18.form_entry.id = data.data.id; //VueListen.$emit('RefreshItemTable');    
+        })["catch"](function () {//
+        });
+        $('#entry-payment').modal('show');
+      }
     },
     savePayment: function savePayment(account_code) {
       var _this19 = this;
 
-      if (parseFloat(this.current_balance) < parseFloat(this.form_entry.amount)) {
-        // *************** If this is triggered another duplicate entry/post is made on the transactions_1 table. s 
-        swal.fire('Error!', 'Current balance is only ' + this.current_balance + '!', 'error');
-        return true;
-      }
-
       if (parseFloat(this.form_entry.amount) == 0) {
         swal.fire('Error!', 'Please enter amount!', 'error');
         return false;
+      }
+
+      if (parseFloat(this.current_balance) < parseFloat(this.form_entry.amount)) {
+        // *************** If this is triggered another duplicate entry/post is made on the transactions_1 table. s 
+        swal.fire('Warning!', 'Current balance is only ' + this.current_balance + '!', 'error');
+        return true;
       }
 
       this.form.amount += parseFloat(this.form_entry.amount);
@@ -8314,6 +8315,7 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {
         _this19.$Progress.fail();
       });
+      this.form_entry.reset();
     },
     cancelPayment: function cancelPayment() {
       this.form_entry.reset();

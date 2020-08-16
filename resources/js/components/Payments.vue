@@ -1228,46 +1228,39 @@
           },
           payEntry(account_code,account_name,current_balance)
           {
-            // entry_id,entry_transaction_no, account_code, account_name, payment_amount
-            
-              this.current_balance = current_balance;
+              if(!this.form_entry.id){
+               
               
+            
+                this.current_balance = current_balance;
+                
 
-              this.form_entry.reset();
-              this.form_entry.transaction_id = this.form.id;
-              this.form_entry.transaction_no = this.form.transaction_no;
-              this.form_entry.transaction_type = 'PAYMENT';
-              this.form_entry.account_code = account_code;
-              this.form_entry.account_name = account_name;
-              this.form_entry.branch_id = 0;
-              this.form_entry.branch_name = 'NA';
-              this.save_button_entry_enabled = true;
-              this.form_entry.post('api/cd/entry')
-                .then((data)=>{
-                  this.form_entry.id = data.data.id;
-                  
-                  //VueListen.$emit('RefreshItemTable');    
-                })
-                .catch(()=>{
-                  //
-                });
+                this.form_entry.reset();
+                this.form_entry.transaction_id = this.form.id;
+                this.form_entry.transaction_no = this.form.transaction_no;
+                this.form_entry.transaction_type = 'PAYMENT';
+                this.form_entry.account_code = account_code;
+                this.form_entry.account_name = account_name;
+                this.form_entry.branch_id = 0;
+                this.form_entry.branch_name = 'NA';
+                this.save_button_entry_enabled = true;
+                this.form_entry.post('api/cd/entry')
+                  .then((data)=>{
+                    this.form_entry.id = data.data.id;
+                    
+                    //VueListen.$emit('RefreshItemTable');    
+                  })
+                  .catch(()=>{
+                    //
+                  });
 
 
-              $('#entry-payment').modal('show');
+                $('#entry-payment').modal('show');
+              }
 
           },
           savePayment(account_code)
           {
-            if(parseFloat(this.current_balance) < parseFloat(this.form_entry.amount)){
-              // *************** If this is triggered another duplicate entry/post is made on the transactions_1 table. s 
-              swal.fire(
-                      'Error!',
-                      'Current balance is only '+this.current_balance+'!',
-                      'error'
-                    );
-              return true;
-            }
-
             if( parseFloat(this.form_entry.amount) == 0){
               swal.fire(
                       'Error!',
@@ -1276,6 +1269,18 @@
                     );
               return false;
             }
+
+            if(parseFloat(this.current_balance) < parseFloat(this.form_entry.amount)){
+              // *************** If this is triggered another duplicate entry/post is made on the transactions_1 table. s 
+              swal.fire(
+                      'Warning!',
+                      'Current balance is only '+this.current_balance+'!',
+                      'error'
+                    );
+              return true;
+            }
+
+            
 
             this.form.amount +=  parseFloat(this.form_entry.amount);
             
@@ -1290,6 +1295,7 @@
             .catch(() => {
                 this.$Progress.fail();
             });
+            this.form_entry.reset();
 
             
           },
