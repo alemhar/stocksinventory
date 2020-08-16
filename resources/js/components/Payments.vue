@@ -1373,7 +1373,7 @@
           },
           updatePurchase(payment_amount){
 
-            purchases.data = (purchase) => {
+            this.purchases.data = (purchase) => {
               if(purchase.id == this.current_purchase_id){
                 return purchase.total_payment = purchase.total_payment + payment_amount;
               } else {
