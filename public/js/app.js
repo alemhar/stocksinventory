@@ -11483,11 +11483,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      message: 'Hello'
+    };
+  },
   methods: {
     test: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["test"]
   },
   created: function created() {
-    this.test('Testing 123');
+    this.test(this.message);
   },
   mounted: function mounted() {
     console.log('Component mounted.');

@@ -17,11 +17,16 @@
 <script>
 import { test } from './methods/cd.js'
     export default {
+        data() {
+          return {
+              message: 'Hello'
+          }
+        },        
         methods: {
             test,
         },
         created(){
-            this.test('Testing 123');
+            this.test(this.message);
         },
         mounted() {
             
