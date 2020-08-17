@@ -20,8 +20,11 @@ import { test } from './methods/cd.js'
         methods: {
             test,
         },
-        mounted() {
+        created(){
             this.test();
+        },
+        mounted() {
+            
             console.log('Component mounted.')
         }
     }

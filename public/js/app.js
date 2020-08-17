@@ -11486,8 +11486,10 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     test: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["test"]
   },
-  mounted: function mounted() {
+  created: function created() {
     this.test();
+  },
+  mounted: function mounted() {
     console.log('Component mounted.');
   }
 });
