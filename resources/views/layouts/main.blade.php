@@ -183,7 +183,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
 
           <li class="nav-item">
-            <router-link to="/test" class="nav-link">
+            <router-link to="/testing" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p v-bind:style="[readabilityObject]">
                 Test  
