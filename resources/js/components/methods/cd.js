@@ -87,16 +87,7 @@ export { test }
 
     this.form.transaction_no = this.createSerialNumber();
     this.form.transaction_type = 'CD';
-    /*
-    this.form.post('api/cd')
-        .then((data)=>{
-          //console.log(data.data.id);
-          this.form.id = data.data.id;
-        })
-        .catch(()=>{
-          //
-        });
-    */
+    
 
   },
   saveCD(){
@@ -303,17 +294,7 @@ export { test }
       this.form_entry.transaction_no = this.form.transaction_no;
       this.form_entry.transaction_type = 'CD';
       this.save_button_entry_enabled = true;
-      /*  
-      this.form_entry.post('api/cd/entry')
-        .then((data)=>{
-          this.form_entry.id = data.data.id;
-          //console.log(data.data.id);
-          VueListen.$emit('RefreshItemTable');    
-        })
-        .catch(()=>{
-          //
-        });
-      */  
+      
       $('#entry-details').modal('show');
 
 
@@ -364,13 +345,7 @@ export { test }
     this.form_item.delete('api/cd/entry/'+this.form_entry.id)
     .then(() => {
         $('#entry-details').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
+        
           //this.$Progress.finish();
           VueListen.$emit('RefreshEntryTable');
     })
@@ -394,13 +369,7 @@ export { test }
     this.form_entry.put('api/cd/entry/'+this.form_entry.id)
     .then(() => {
         $('#entry-details').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
+        
           this.form.amount += this.form_entry.amount;
           this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
           this.form.vat += this.form_entry.vat;
@@ -428,13 +397,7 @@ export { test }
     this.form_item.delete('api/cd/entry/'+entry_id)
       .then(() => {
           //$('#entry-items').modal('hide');
-          /*
-          swal.fire(
-              'Updated!',
-              'Payee information has been updated.',
-              'success'
-            );
-          */
+          
             this.form.amount = parseFloat(this.form.amount - entry_amount).toFixed(2) * 1;
             this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
             this.form.vat = (this.form.vat - entry_vat).toFixed(2) * 1;
@@ -451,13 +414,7 @@ export { test }
     this.form_item.delete('api/cd/item/'+this.form_item.id)
     .then(() => {
         $('#entry-items').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
+        
           //this.$Progress.finish();
 
           VueListen.$emit('RefreshItemTable');
@@ -497,13 +454,7 @@ export { test }
     this.form_item.put('api/cd/item/'+this.form_item.id)
     .then(() => {
         $('#entry-items').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
+        
           this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
           this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
           this.form_entry.vat += (this.form_item.vat * 1);
@@ -519,13 +470,7 @@ export { test }
       this.form_item.delete('api/cd/item/'+item_id)
       .then(() => {
           //$('#entry-items').modal('hide');
-          /*
-          swal.fire(
-              'Updated!',
-              'Payee information has been updated.',
-              'success'
-            );
-          */
+          
             this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
             this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
             this.form_entry.vat = (this.form_entry.vat - item_vat).toFixed(2) * 1;
