@@ -21,7 +21,7 @@ import { test } from './methods/cd.js'
             test,
         },
         created(){
-            this.test();
+            this.test('Testing 123');
         },
         mounted() {
             
