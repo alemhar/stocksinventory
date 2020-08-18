@@ -2097,6 +2097,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _cd_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../cd.js */ "./resources/js/cd.js");
 //
 //
 //
@@ -2832,40 +2833,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
-/*
-
-import { 
-        loadBranches,
-        loadPayees,
-        loadChartAccounts,
-        initChartAccounts,
-        eventChild,
-        getDate,
-        createCD,
-        saveCD,
-        cancelCD,
-        searchAccountModal,
-        searchPayeeModal,
-        selectAccount,
-        selectPayee,
-        SearchIt,
-        SearchPayee,
-        loadEntryItems,
-        loadEntries,
-        createSerialNumber,
-        computeTaxChange,
-        selectDebitRow,
-        newEntry,
-        newItem,
-        cancelDebitEntry,
-        saveDebitEntry,
-        deleteEntry,
-        cancelItem,
-        saveItem,
-        deleteItem,
-        branchChange 
-} from './methods/cd.js'
-*/
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2956,58 +2923,54 @@ import {
     };
   },
   methods: {
-    /*
-    loadBranches,
-    loadPayees,
-    loadChartAccounts,
-    initChartAccounts,
-    eventChild,
-    getDate,
-    createCD,
-    saveCD,
-    cancelCD,
-    searchAccountModal,
-    searchPayeeModal,
-    selectAccount,
-    selectPayee,
-    SearchIt,
-    SearchPayee,
-    loadEntryItems,
-    loadEntries,
-    createSerialNumber,
-    computeTaxChange,
-    selectDebitRow,
-    newEntry,
-    newItem,
-    cancelDebitEntry,
-    saveDebitEntry,
-    deleteEntry,
-    cancelItem,
-    saveItem,
-    deleteItem,
-    branchChange
-    */
+    loadBranches: _cd_js__WEBPACK_IMPORTED_MODULE_0__["loadBranches"],
+    loadPayees: _cd_js__WEBPACK_IMPORTED_MODULE_0__["loadPayees"],
+    loadChartAccounts: _cd_js__WEBPACK_IMPORTED_MODULE_0__["loadChartAccounts"],
+    initChartAccounts: _cd_js__WEBPACK_IMPORTED_MODULE_0__["initChartAccounts"],
+    eventChild: _cd_js__WEBPACK_IMPORTED_MODULE_0__["eventChild"],
+    getDate: _cd_js__WEBPACK_IMPORTED_MODULE_0__["getDate"],
+    createCD: _cd_js__WEBPACK_IMPORTED_MODULE_0__["createCD"],
+    saveCD: _cd_js__WEBPACK_IMPORTED_MODULE_0__["saveCD"],
+    cancelCD: _cd_js__WEBPACK_IMPORTED_MODULE_0__["cancelCD"],
+    searchAccountModal: _cd_js__WEBPACK_IMPORTED_MODULE_0__["searchAccountModal"],
+    searchPayeeModal: _cd_js__WEBPACK_IMPORTED_MODULE_0__["searchPayeeModal"],
+    selectAccount: _cd_js__WEBPACK_IMPORTED_MODULE_0__["selectAccount"],
+    selectPayee: _cd_js__WEBPACK_IMPORTED_MODULE_0__["selectPayee"],
+    SearchIt: _cd_js__WEBPACK_IMPORTED_MODULE_0__["SearchIt"],
+    SearchPayee: _cd_js__WEBPACK_IMPORTED_MODULE_0__["SearchPayee"],
+    loadEntryItems: _cd_js__WEBPACK_IMPORTED_MODULE_0__["loadEntryItems"],
+    loadEntries: _cd_js__WEBPACK_IMPORTED_MODULE_0__["loadEntries"],
+    createSerialNumber: _cd_js__WEBPACK_IMPORTED_MODULE_0__["createSerialNumber"],
+    computeTaxChange: _cd_js__WEBPACK_IMPORTED_MODULE_0__["computeTaxChange"],
+    selectDebitRow: _cd_js__WEBPACK_IMPORTED_MODULE_0__["selectDebitRow"],
+    newEntry: _cd_js__WEBPACK_IMPORTED_MODULE_0__["newEntry"],
+    newItem: _cd_js__WEBPACK_IMPORTED_MODULE_0__["newItem"],
+    cancelDebitEntry: _cd_js__WEBPACK_IMPORTED_MODULE_0__["cancelDebitEntry"],
+    saveDebitEntry: _cd_js__WEBPACK_IMPORTED_MODULE_0__["saveDebitEntry"],
+    deleteEntry: _cd_js__WEBPACK_IMPORTED_MODULE_0__["deleteEntry"],
+    cancelItem: _cd_js__WEBPACK_IMPORTED_MODULE_0__["cancelItem"],
+    saveItem: _cd_js__WEBPACK_IMPORTED_MODULE_0__["saveItem"],
+    deleteItem: _cd_js__WEBPACK_IMPORTED_MODULE_0__["deleteItem"],
+    branchChange: _cd_js__WEBPACK_IMPORTED_MODULE_0__["branchChange"]
   },
   created: function created() {
-    /*
-     this.loadPayees();
+    var _this = this;
+
+    this.loadPayees();
     this.loadBranches();
     this.initChartAccounts();
-     this.loadEntryItems();
+    this.loadEntryItems();
     this.loadEntries();
-     
-    VueListen.$on('RefreshItemTable',() => {
-        this.loadEntryItems();
+    VueListen.$on('RefreshItemTable', function () {
+      _this.loadEntryItems();
     });
-    
-    VueListen.$on('RefreshEntryTable',() => {
-        this.loadEntries();
+    VueListen.$on('RefreshEntryTable', function () {
+      _this.loadEntries();
     });
-    
-     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
-    */
-    /// Scrollbar fix
-    //   If you have a modal on your page that exceeds the browser height, then you can't scroll in it when closing an second modal. To fix this add: 
+    this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
+    /* Scrollbar fix
+       If you have a modal on your page that exceeds the browser height, then you can't scroll in it when closing an second modal. To fix this add: */
+
     $(document).on('hidden.bs.modal', '.modal', function () {
       $('.modal:visible').length && $(document.body).addClass('modal-open');
     });
@@ -108725,6 +108688,513 @@ if (token) {
 
 /***/ }),
 
+/***/ "./resources/js/cd.js":
+/*!****************************!*\
+  !*** ./resources/js/cd.js ***!
+  \****************************/
+/*! exports provided: loadBranches, loadPayees, loadChartAccounts, initChartAccounts, eventChild, getDate, createCD, saveCD, cancelCD, searchAccountModal, searchPayeeModal, selectAccount, selectPayee, SearchIt, SearchPayee, loadEntryItems, loadEntries, createSerialNumber, computeTaxChange, selectDebitRow, newEntry, newItem, cancelDebitEntry, saveDebitEntry, deleteEntry, cancelItem, saveItem, deleteItem, branchChange */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadBranches", function() { return loadBranches; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadPayees", function() { return loadPayees; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadChartAccounts", function() { return loadChartAccounts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initChartAccounts", function() { return initChartAccounts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "eventChild", function() { return eventChild; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDate", function() { return getDate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCD", function() { return createCD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "saveCD", function() { return saveCD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cancelCD", function() { return cancelCD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "searchAccountModal", function() { return searchAccountModal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "searchPayeeModal", function() { return searchPayeeModal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectAccount", function() { return selectAccount; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectPayee", function() { return selectPayee; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SearchIt", function() { return SearchIt; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SearchPayee", function() { return SearchPayee; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadEntryItems", function() { return loadEntryItems; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadEntries", function() { return loadEntries; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSerialNumber", function() { return createSerialNumber; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "computeTaxChange", function() { return computeTaxChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectDebitRow", function() { return selectDebitRow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "newEntry", function() { return newEntry; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "newItem", function() { return newItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cancelDebitEntry", function() { return cancelDebitEntry; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "saveDebitEntry", function() { return saveDebitEntry; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteEntry", function() { return deleteEntry; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cancelItem", function() { return cancelItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "saveItem", function() { return saveItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteItem", function() { return deleteItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "branchChange", function() { return branchChange; });
+var _this = undefined;
+
+var test = function test() {
+  var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'testCD';
+  console.log(message);
+};
+
+var loadBranches = function loadBranches() {
+  if (_this.$gate.isAdminOrUser()) {
+    axios.get("api/branch").then(function (_ref) {
+      var data = _ref.data;
+      return _this.branches = data;
+    }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
+  }
+};
+
+var loadPayees = function loadPayees() {
+  if (_this.$gate.isAdminOrUser()) {
+    axios.get("api/payee").then(function (_ref2) {
+      var data = _ref2.data;
+      return _this.payees = data;
+    }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
+  }
+};
+
+var loadChartAccounts = function loadChartAccounts() {
+  var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+  if (headerOrDetail == 'header') {
+    _this.chart_of_accounts = _this.chart_of_accounts_header;
+  } else {
+    _this.chart_of_accounts = _this.chart_of_accounts_detail;
+  }
+};
+
+var initChartAccounts = function initChartAccounts() {
+  axios.get('api/chartaccount?headerordetail=header&transaction_type=CD').then(function (data) {
+    _this.chart_of_accounts_header = data.data;
+  })["catch"](function () {//
+  });
+  axios.get('api/chartaccount?headerordetail=detail&transaction_type=CD').then(function (data) {
+    _this.chart_of_accounts_detail = data.data;
+  })["catch"](function () {//
+  });
+}; //  Check if this is still being used.
+
+
+var eventChild = function eventChild(Obj) {
+  _this.form.payee_id = Obj.id;
+};
+
+var getDate = function getDate() {
+  var toTwoDigits = function toTwoDigits(num) {
+    return num < 10 ? '0' + num : num;
+  };
+
+  var today = new Date();
+  var year = today.getFullYear();
+  var month = toTwoDigits(today.getMonth() + 1);
+  var day = toTwoDigits(today.getDate());
+  return "".concat(year, "-").concat(month, "-").concat(day);
+};
+
+var createCD = function createCD() {
+  if (_this.form.payee_id.length == 0) {
+    _this.no_payee = true;
+  } else {
+    _this.no_payee = false;
+  }
+
+  if (_this.form.account_code.length == 0) {
+    _this.no_account_code = true;
+  } else {
+    _this.no_account_code = false;
+  }
+
+  if (_this.form.reference_no.length == 0) {
+    _this.no_reference_no = true;
+  } else {
+    _this.no_reference_no = false;
+  }
+
+  if (_this.no_account_code || _this.no_reference_no || _this.no_payee) {
+    _this.cd_created = false;
+  } else {
+    _this.cd_created = true;
+  }
+
+  _this.form.transaction_no = _this.createSerialNumber();
+  _this.form.transaction_type = 'CD';
+};
+
+var saveCD = function saveCD() {
+  if (_this.form.amount == 0) {
+    return false;
+  }
+
+  _this.$Progress.start();
+
+  _this.form_entry.put('api/cd/' + _this.form.id).then(function () {
+    _this.cd_created = false;
+
+    _this.form.post('api/cd/confirm/' + _this.form.transaction_no);
+
+    _this.ledgers.push({
+      id: _this.form.id,
+      transaction_id: _this.form.id,
+      transaction_no: _this.form.transaction_no,
+      transaction_type: _this.form.transaction_type,
+      account_code: _this.form.account_code,
+      account_name: _this.form.account_name,
+      transaction_date: _this.form.transaction_date,
+      credit_amount: _this.form.amount,
+      debit_amount: 0
+    });
+
+    _this.ledgers.push({
+      id: 1,
+      transaction_id: _this.form.id,
+      transaction_no: _this.form.transaction_no,
+      transaction_type: _this.form.transaction_type,
+      account_code: '1105110',
+      account_name: 'Input Tax',
+      transaction_date: _this.form.transaction_date,
+      credit_amount: 0,
+      debit_amount: _this.form.vat
+    });
+
+    var rawData = {
+      ledgers: _this.ledgers
+    };
+    rawData = JSON.stringify(rawData);
+    var formData = new FormData();
+    formData.append('ledgers', rawData);
+    axios.post('api/ledgers', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }).then(function (response) {
+      console.log(response);
+    })["catch"](function (error) {
+      console.log(error);
+    });
+
+    _this.$Progress.finish();
+  })["catch"](function () {
+    _this.$Progress.fail();
+  });
+
+  swal.fire({
+    title: 'Saved!',
+    text: "Journal posted",
+    icon: 'info',
+    showCancelButton: false,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Ok'
+  }).then(function (result) {
+    if (result.value) {
+      //Reload Current Page
+      _this.$router.go();
+    }
+  });
+};
+
+var cancelCD = function cancelCD() {
+  _this.cd_created = false;
+
+  _this.form["delete"]('api/cd/cancel/' + _this.form.transaction_no);
+};
+
+var searchAccountModal = function searchAccountModal() {
+  var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'header';
+  _this.headerOrDetail = headerOrDetail;
+  _this.searchText = _this.form.account_code; //this.searchText = '';
+
+  _this.loadChartAccounts(headerOrDetail);
+
+  $('#select-account').modal('show');
+};
+
+var searchPayeeModal = function searchPayeeModal() {
+  _this.searchPayee = _this.form.payee_id; //this.searchPayee = '';
+
+  _this.loadPayees();
+
+  $('#select-payee').modal('show');
+};
+
+var selectAccount = function selectAccount() {
+  var account_code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var account_name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+  if (account_code != null && account_name != null) {
+    if (_this.headerOrDetail == 'header') {
+      _this.form.account_name = account_name;
+      _this.form.account_code = account_code;
+    } else {
+      _this.form_entry.account_name = account_name;
+      _this.form_entry.account_code = account_code;
+    }
+  }
+
+  $('#select-account').modal('hide');
+};
+
+var selectPayee = function selectPayee() {
+  var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  var address = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  var tin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+
+  if (id) {
+    console.log(name);
+    _this.current_payee_id = id;
+    _this.form.payee_id = id;
+    _this.current_payee_name = name;
+    _this.current_payee_address = address;
+    _this.current_payee_tin = tin;
+  }
+
+  $('#select-payee').modal('hide');
+};
+
+var SearchIt = function SearchIt() {
+  var query = _this.searchText;
+  var headerOrDetail = _this.headerOrDetail;
+  axios.get('api/searchAccount?q=' + query + '&transaction_type=CD&headerordetail=' + headerOrDetail).then(function (data) {
+    _this.chart_of_accounts = data.data;
+  })["catch"](function () {//
+  });
+};
+
+var SearchPayee = function SearchPayee() {
+  var query = _this.searchPayee;
+  axios.get('api/searchPayee?q=' + query).then(function (data) {
+    _this.payees = data.data;
+  })["catch"](function () {//
+  });
+};
+
+var loadEntryItems = function loadEntryItems() {
+  var entry_id = _this.form_entry.id;
+  axios.get('api/cd/items/list?entry_id=' + entry_id).then(function (data) {
+    _this.items = data.data;
+  })["catch"](function () {//
+  });
+};
+
+var loadEntries = function loadEntries() {
+  var transaction_no = _this.form.transaction_no;
+  axios.get('api/cd/entries/list?transaction_no=' + transaction_no).then(function (data) {
+    _this.entries = data.data;
+  })["catch"](function () {//
+  });
+};
+
+var createSerialNumber = function createSerialNumber() {
+  // Get current date
+  var d = new Date(); // Get pirmative value of date
+
+  var n = d.valueOf(); // Return concatenated primative value with the user id. 
+
+  return "" + n + _this.user_id;
+};
+
+var computeTaxChange = function computeTaxChange(event) {
+  if (_this.form_item.price && _this.form_item.quantity) {
+    _this.form_item.sub_total = _this.form_item.price * _this.form_item.quantity;
+
+    if (_this.form_item.tax_type == 'VAT') {
+      //this.form_item.amount = event.target.value;
+      _this.form_item.tax_excluded = (_this.form_item.sub_total / 1.12).toFixed(2) * 1;
+      _this.form_item.vat = (_this.form_item.tax_excluded * 0.12).toFixed(2) * 1;
+    } else {
+      //this.form_entry.amount = event.target.value;
+      _this.form_item.vat = 0;
+      _this.form_item.tax_excluded = _this.form_item.sub_total * 1;
+    }
+  }
+};
+
+var selectDebitRow = function selectDebitRow(active_debit_row_id) {
+  _this.active_debit_row = active_debit_row_id;
+  _this.form_entry.id = active_debit_row_id;
+  VueListen.$emit('RefreshItemTable'); //console.log(active_debit_row);
+};
+
+var newEntry = function newEntry() {
+  _this.editmode = false;
+
+  _this.form_entry.reset(); //this.form_entry.transaction_id = this.form.id;
+
+
+  _this.form_entry.transaction_id = 0;
+  _this.form_entry.transaction_no = _this.form.transaction_no;
+  _this.form_entry.transaction_type = 'CD';
+  _this.save_button_entry_enabled = true;
+  $('#entry-details').modal('show');
+};
+
+var newItem = function newItem() {
+  if (_this.form_entry.account_code == 0) {
+    _this.no_entry_account_code = true;
+  } else {
+    _this.no_entry_account_code = false;
+  }
+
+  if (_this.form_entry.branch_id == 0) {
+    _this.no_entry_branch_id = true;
+  } else {
+    _this.no_entry_branch_id = false;
+  }
+
+  if (_this.no_entry_account_code || _this.no_entry_branch_id) {
+    return false;
+  }
+
+  _this.save_button_item_enabled = true;
+  _this.editmode = false;
+
+  _this.form_item.reset();
+
+  _this.no_item = false;
+  _this.no_price = false;
+  _this.no_quantity = false;
+  _this.form_item.transaction_entry_id = _this.form_entry.id;
+  _this.form_item.transaction_no = _this.form.transaction_no;
+  _this.form_item.transaction_type = 'CD';
+  _this.form_item.account_code = _this.form_entry.account_code;
+
+  _this.form_item.post('api/cd/item').then(function (data) {
+    _this.form_item.id = data.data.id; //console.log(data.data.id);
+  })["catch"](function () {//
+  });
+
+  _this.loadEntryItems();
+
+  $('#entry-items').modal('show');
+};
+
+var cancelDebitEntry = function cancelDebitEntry() {
+  _this.form_item["delete"]('api/cd/entry/' + _this.form_entry.id).then(function () {
+    $('#entry-details').modal('hide');
+    VueListen.$emit('RefreshEntryTable');
+  })["catch"](function () {
+    _this.$Progress.fail();
+  });
+};
+
+var saveDebitEntry = function saveDebitEntry() {
+  _this.form_entry.credit_amount = _this.form_entry.amount;
+  _this.save_button_entry_enabled = false;
+
+  _this.$Progress.start();
+
+  _this.form_entry.put('api/cd/entry/' + _this.form_entry.id).then(function () {
+    $('#entry-details').modal('hide');
+    _this.form.amount += _this.form_entry.amount;
+    _this.form.amount_ex_tax += _this.form_entry.amount_ex_tax;
+    _this.form.vat += _this.form_entry.vat;
+
+    _this.ledgers.push({
+      id: _this.form_entry.id,
+      transaction_id: _this.form.id,
+      transaction_no: _this.form.transaction_no,
+      transaction_type: _this.form.transaction_type,
+      account_code: _this.form_entry.account_code,
+      account_name: _this.form_entry.account_name,
+      transaction_date: _this.form.transaction_date,
+      credit_amount: 0,
+      debit_amount: _this.form_entry.amount_ex_tax
+    }); //console.log(this.ledgers);
+
+
+    _this.$Progress.finish();
+
+    VueListen.$emit('RefreshEntryTable');
+  })["catch"](function () {
+    _this.$Progress.fail();
+  });
+};
+
+var deleteEntry = function deleteEntry(entry_id, entry_amount, entry_amount_ex_tax, entry_vat) {
+  _this.form_item["delete"]('api/cd/entry/' + entry_id).then(function () {
+    //$('#entry-items').modal('hide');
+    _this.form.amount = parseFloat(_this.form.amount - entry_amount).toFixed(2) * 1;
+    _this.form.amount_ex_tax = (_this.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
+    _this.form.vat = (_this.form.vat - entry_vat).toFixed(2) * 1;
+    VueListen.$emit('RefreshItemTable');
+    VueListen.$emit('RefreshEntryTable');
+  })["catch"](function () {
+    _this.$Progress.fail();
+  });
+};
+
+var cancelItem = function cancelItem() {
+  //this.$Progress.start();
+  _this.form_item["delete"]('api/cd/item/' + _this.form_item.id).then(function () {
+    $('#entry-items').modal('hide'); //this.$Progress.finish();
+
+    VueListen.$emit('RefreshItemTable');
+  })["catch"](function () {
+    _this.$Progress.fail();
+  });
+};
+
+var saveItem = function saveItem() {
+  if (_this.form_item.item.length == 0) {
+    _this.no_item = true;
+  } else {
+    _this.no_item = false;
+  }
+
+  if (_this.form_item.price == 0) {
+    _this.no_price = true;
+  } else {
+    _this.no_price = false;
+  }
+
+  if (_this.form_item.quantity == 0) {
+    _this.no_quantity = true;
+  } else {
+    _this.no_quantity = false;
+  }
+
+  if (_this.no_item || _this.no_price || _this.no_quantity) {
+    return false;
+  }
+
+  _this.save_button_item_enabled = false;
+
+  _this.$Progress.start();
+
+  _this.form_item.put('api/cd/item/' + _this.form_item.id).then(function () {
+    $('#entry-items').modal('hide');
+    _this.form_entry.amount = parseFloat(_this.form_entry.amount + _this.form_item.sub_total).toFixed(2) * 1;
+    _this.form_entry.amount_ex_tax = (_this.form_entry.amount_ex_tax + _this.form_item.tax_excluded).toFixed(2) * 1;
+    _this.form_entry.vat += _this.form_item.vat * 1;
+
+    _this.$Progress.finish();
+
+    VueListen.$emit('RefreshItemTable');
+  })["catch"](function () {
+    _this.$Progress.fail();
+  });
+};
+
+var deleteItem = function deleteItem(item_id, item_sub_total, item_tax_excluded, item_vat) {
+  _this.form_item["delete"]('api/cd/item/' + item_id).then(function () {
+    //$('#entry-items').modal('hide');
+    _this.form_entry.amount = parseFloat(_this.form_entry.amount - item_sub_total).toFixed(2) * 1;
+    _this.form_entry.amount_ex_tax = (_this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
+    _this.form_entry.vat = (_this.form_entry.vat - item_vat).toFixed(2) * 1;
+    VueListen.$emit('RefreshItemTable');
+  })["catch"](function () {
+    _this.$Progress.fail();
+  });
+};
+
+var branchChange = function branchChange() {
+  _this.form_entry.branch_id = _this.selected_branch.id;
+  _this.form_entry.branch_name = _this.selected_branch.name;
+};
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Account.vue":
 /*!*********************************************!*\
   !*** ./resources/js/components/Account.vue ***!
@@ -109939,505 +110409,9 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./resources/js/components/methods/cd.js ***!
   \***********************************************/
 /*! exports provided: loadBranches, loadPayees, loadChartAccounts, initChartAccounts, eventChild, getDate, createCD, saveCD, cancelCD, searchAccountModal, searchPayeeModal, selectAccount, selectPayee, SearchIt, SearchPayee, loadEntryItems, loadEntries, createSerialNumber, computeTaxChange, selectDebitRow, newEntry, newItem, cancelDebitEntry, saveDebitEntry, deleteEntry, cancelItem, saveItem, deleteItem, branchChange */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadBranches", function() { return loadBranches; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadPayees", function() { return loadPayees; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadChartAccounts", function() { return loadChartAccounts; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initChartAccounts", function() { return initChartAccounts; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "eventChild", function() { return eventChild; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDate", function() { return getDate; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCD", function() { return createCD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "saveCD", function() { return saveCD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cancelCD", function() { return cancelCD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "searchAccountModal", function() { return searchAccountModal; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "searchPayeeModal", function() { return searchPayeeModal; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectAccount", function() { return selectAccount; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectPayee", function() { return selectPayee; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SearchIt", function() { return SearchIt; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SearchPayee", function() { return SearchPayee; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadEntryItems", function() { return loadEntryItems; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadEntries", function() { return loadEntries; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSerialNumber", function() { return createSerialNumber; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "computeTaxChange", function() { return computeTaxChange; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectDebitRow", function() { return selectDebitRow; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "newEntry", function() { return newEntry; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "newItem", function() { return newItem; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cancelDebitEntry", function() { return cancelDebitEntry; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "saveDebitEntry", function() { return saveDebitEntry; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteEntry", function() { return deleteEntry; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cancelItem", function() { return cancelItem; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "saveItem", function() { return saveItem; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteItem", function() { return deleteItem; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "branchChange", function() { return branchChange; });
-var _this = undefined;
-
-var test = function test() {
-  var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'testCD';
-  console.log(message);
-};
-
-var loadBranches = function loadBranches() {
-  if (_this.$gate.isAdminOrUser()) {
-    axios.get("api/branch").then(function (_ref) {
-      var data = _ref.data;
-      return _this.branches = data;
-    }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
-  }
-};
-
-var loadPayees = function loadPayees() {
-  if (_this.$gate.isAdminOrUser()) {
-    axios.get("api/payee").then(function (_ref2) {
-      var data = _ref2.data;
-      return _this.payees = data;
-    }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
-  }
-};
-
-var loadChartAccounts = function loadChartAccounts() {
-  var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-
-  if (headerOrDetail == 'header') {
-    _this.chart_of_accounts = _this.chart_of_accounts_header;
-  } else {
-    _this.chart_of_accounts = _this.chart_of_accounts_detail;
-  }
-};
-
-var initChartAccounts = function initChartAccounts() {
-  axios.get('api/chartaccount?headerordetail=header&transaction_type=CD').then(function (data) {
-    _this.chart_of_accounts_header = data.data;
-  })["catch"](function () {//
-  });
-  axios.get('api/chartaccount?headerordetail=detail&transaction_type=CD').then(function (data) {
-    _this.chart_of_accounts_detail = data.data;
-  })["catch"](function () {//
-  });
-}; //  Check if this is still being used.
-
-
-var eventChild = function eventChild(Obj) {
-  _this.form.payee_id = Obj.id;
-};
-
-var getDate = function getDate() {
-  var toTwoDigits = function toTwoDigits(num) {
-    return num < 10 ? '0' + num : num;
-  };
-
-  var today = new Date();
-  var year = today.getFullYear();
-  var month = toTwoDigits(today.getMonth() + 1);
-  var day = toTwoDigits(today.getDate());
-  return "".concat(year, "-").concat(month, "-").concat(day);
-};
-
-var createCD = function createCD() {
-  if (_this.form.payee_id.length == 0) {
-    _this.no_payee = true;
-  } else {
-    _this.no_payee = false;
-  }
-
-  if (_this.form.account_code.length == 0) {
-    _this.no_account_code = true;
-  } else {
-    _this.no_account_code = false;
-  }
-
-  if (_this.form.reference_no.length == 0) {
-    _this.no_reference_no = true;
-  } else {
-    _this.no_reference_no = false;
-  }
-
-  if (_this.no_account_code || _this.no_reference_no || _this.no_payee) {
-    _this.cd_created = false;
-  } else {
-    _this.cd_created = true;
-  }
-
-  _this.form.transaction_no = _this.createSerialNumber();
-  _this.form.transaction_type = 'CD';
-};
-
-var saveCD = function saveCD() {
-  if (_this.form.amount == 0) {
-    return false;
-  }
-
-  _this.$Progress.start();
-
-  _this.form_entry.put('api/cd/' + _this.form.id).then(function () {
-    _this.cd_created = false;
-
-    _this.form.post('api/cd/confirm/' + _this.form.transaction_no);
-
-    _this.ledgers.push({
-      id: _this.form.id,
-      transaction_id: _this.form.id,
-      transaction_no: _this.form.transaction_no,
-      transaction_type: _this.form.transaction_type,
-      account_code: _this.form.account_code,
-      account_name: _this.form.account_name,
-      transaction_date: _this.form.transaction_date,
-      credit_amount: _this.form.amount,
-      debit_amount: 0
-    });
-
-    _this.ledgers.push({
-      id: 1,
-      transaction_id: _this.form.id,
-      transaction_no: _this.form.transaction_no,
-      transaction_type: _this.form.transaction_type,
-      account_code: '1105110',
-      account_name: 'Input Tax',
-      transaction_date: _this.form.transaction_date,
-      credit_amount: 0,
-      debit_amount: _this.form.vat
-    });
-
-    var rawData = {
-      ledgers: _this.ledgers
-    };
-    rawData = JSON.stringify(rawData);
-    var formData = new FormData();
-    formData.append('ledgers', rawData);
-    axios.post('api/ledgers', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    }).then(function (response) {
-      console.log(response);
-    })["catch"](function (error) {
-      console.log(error);
-    });
-
-    _this.$Progress.finish();
-  })["catch"](function () {
-    _this.$Progress.fail();
-  });
-
-  swal.fire({
-    title: 'Saved!',
-    text: "Journal posted",
-    icon: 'info',
-    showCancelButton: false,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Ok'
-  }).then(function (result) {
-    if (result.value) {
-      //Reload Current Page
-      _this.$router.go();
-    }
-  });
-};
-
-var cancelCD = function cancelCD() {
-  _this.cd_created = false;
-
-  _this.form["delete"]('api/cd/cancel/' + _this.form.transaction_no);
-};
-
-var searchAccountModal = function searchAccountModal() {
-  var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'header';
-  _this.headerOrDetail = headerOrDetail;
-  _this.searchText = _this.form.account_code; //this.searchText = '';
-
-  _this.loadChartAccounts(headerOrDetail);
-
-  $('#select-account').modal('show');
-};
-
-var searchPayeeModal = function searchPayeeModal() {
-  _this.searchPayee = _this.form.payee_id; //this.searchPayee = '';
-
-  _this.loadPayees();
-
-  $('#select-payee').modal('show');
-};
-
-var selectAccount = function selectAccount() {
-  var account_code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var account_name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-
-  if (account_code != null && account_name != null) {
-    if (_this.headerOrDetail == 'header') {
-      _this.form.account_name = account_name;
-      _this.form.account_code = account_code;
-    } else {
-      _this.form_entry.account_name = account_name;
-      _this.form_entry.account_code = account_code;
-    }
-  }
-
-  $('#select-account').modal('hide');
-};
-
-var selectPayee = function selectPayee() {
-  var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-  var address = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-  var tin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
-
-  if (id) {
-    console.log(name);
-    _this.current_payee_id = id;
-    _this.form.payee_id = id;
-    _this.current_payee_name = name;
-    _this.current_payee_address = address;
-    _this.current_payee_tin = tin;
-  }
-
-  $('#select-payee').modal('hide');
-};
-
-var SearchIt = function SearchIt() {
-  var query = _this.searchText;
-  var headerOrDetail = _this.headerOrDetail;
-  axios.get('api/searchAccount?q=' + query + '&transaction_type=CD&headerordetail=' + headerOrDetail).then(function (data) {
-    _this.chart_of_accounts = data.data;
-  })["catch"](function () {//
-  });
-};
-
-var SearchPayee = function SearchPayee() {
-  var query = _this.searchPayee;
-  axios.get('api/searchPayee?q=' + query).then(function (data) {
-    _this.payees = data.data;
-  })["catch"](function () {//
-  });
-};
-
-var loadEntryItems = function loadEntryItems() {
-  var entry_id = _this.form_entry.id;
-  axios.get('api/cd/items/list?entry_id=' + entry_id).then(function (data) {
-    _this.items = data.data;
-  })["catch"](function () {//
-  });
-};
-
-var loadEntries = function loadEntries() {
-  var transaction_no = _this.form.transaction_no;
-  axios.get('api/cd/entries/list?transaction_no=' + transaction_no).then(function (data) {
-    _this.entries = data.data;
-  })["catch"](function () {//
-  });
-};
-
-var createSerialNumber = function createSerialNumber() {
-  // Get current date
-  var d = new Date(); // Get pirmative value of date
-
-  var n = d.valueOf(); // Return concatenated primative value with the user id. 
-
-  return "" + n + _this.user_id;
-};
-
-var computeTaxChange = function computeTaxChange(event) {
-  if (_this.form_item.price && _this.form_item.quantity) {
-    _this.form_item.sub_total = _this.form_item.price * _this.form_item.quantity;
-
-    if (_this.form_item.tax_type == 'VAT') {
-      //this.form_item.amount = event.target.value;
-      _this.form_item.tax_excluded = (_this.form_item.sub_total / 1.12).toFixed(2) * 1;
-      _this.form_item.vat = (_this.form_item.tax_excluded * 0.12).toFixed(2) * 1;
-    } else {
-      //this.form_entry.amount = event.target.value;
-      _this.form_item.vat = 0;
-      _this.form_item.tax_excluded = _this.form_item.sub_total * 1;
-    }
-  }
-};
-
-var selectDebitRow = function selectDebitRow(active_debit_row_id) {
-  _this.active_debit_row = active_debit_row_id;
-  _this.form_entry.id = active_debit_row_id;
-  VueListen.$emit('RefreshItemTable'); //console.log(active_debit_row);
-};
-
-var newEntry = function newEntry() {
-  _this.editmode = false;
-
-  _this.form_entry.reset(); //this.form_entry.transaction_id = this.form.id;
-
-
-  _this.form_entry.transaction_id = 0;
-  _this.form_entry.transaction_no = _this.form.transaction_no;
-  _this.form_entry.transaction_type = 'CD';
-  _this.save_button_entry_enabled = true;
-  $('#entry-details').modal('show');
-};
-
-var newItem = function newItem() {
-  if (_this.form_entry.account_code == 0) {
-    _this.no_entry_account_code = true;
-  } else {
-    _this.no_entry_account_code = false;
-  }
-
-  if (_this.form_entry.branch_id == 0) {
-    _this.no_entry_branch_id = true;
-  } else {
-    _this.no_entry_branch_id = false;
-  }
-
-  if (_this.no_entry_account_code || _this.no_entry_branch_id) {
-    return false;
-  }
-
-  _this.save_button_item_enabled = true;
-  _this.editmode = false;
-
-  _this.form_item.reset();
-
-  _this.no_item = false;
-  _this.no_price = false;
-  _this.no_quantity = false;
-  _this.form_item.transaction_entry_id = _this.form_entry.id;
-  _this.form_item.transaction_no = _this.form.transaction_no;
-  _this.form_item.transaction_type = 'CD';
-  _this.form_item.account_code = _this.form_entry.account_code;
-
-  _this.form_item.post('api/cd/item').then(function (data) {
-    _this.form_item.id = data.data.id; //console.log(data.data.id);
-  })["catch"](function () {//
-  });
-
-  _this.loadEntryItems();
-
-  $('#entry-items').modal('show');
-};
-
-var cancelDebitEntry = function cancelDebitEntry() {
-  _this.form_item["delete"]('api/cd/entry/' + _this.form_entry.id).then(function () {
-    $('#entry-details').modal('hide');
-    VueListen.$emit('RefreshEntryTable');
-  })["catch"](function () {
-    _this.$Progress.fail();
-  });
-};
-
-var saveDebitEntry = function saveDebitEntry() {
-  _this.form_entry.credit_amount = _this.form_entry.amount;
-  _this.save_button_entry_enabled = false;
-
-  _this.$Progress.start();
-
-  _this.form_entry.put('api/cd/entry/' + _this.form_entry.id).then(function () {
-    $('#entry-details').modal('hide');
-    _this.form.amount += _this.form_entry.amount;
-    _this.form.amount_ex_tax += _this.form_entry.amount_ex_tax;
-    _this.form.vat += _this.form_entry.vat;
-
-    _this.ledgers.push({
-      id: _this.form_entry.id,
-      transaction_id: _this.form.id,
-      transaction_no: _this.form.transaction_no,
-      transaction_type: _this.form.transaction_type,
-      account_code: _this.form_entry.account_code,
-      account_name: _this.form_entry.account_name,
-      transaction_date: _this.form.transaction_date,
-      credit_amount: 0,
-      debit_amount: _this.form_entry.amount_ex_tax
-    }); //console.log(this.ledgers);
-
-
-    _this.$Progress.finish();
-
-    VueListen.$emit('RefreshEntryTable');
-  })["catch"](function () {
-    _this.$Progress.fail();
-  });
-};
-
-var deleteEntry = function deleteEntry(entry_id, entry_amount, entry_amount_ex_tax, entry_vat) {
-  _this.form_item["delete"]('api/cd/entry/' + entry_id).then(function () {
-    //$('#entry-items').modal('hide');
-    _this.form.amount = parseFloat(_this.form.amount - entry_amount).toFixed(2) * 1;
-    _this.form.amount_ex_tax = (_this.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
-    _this.form.vat = (_this.form.vat - entry_vat).toFixed(2) * 1;
-    VueListen.$emit('RefreshItemTable');
-    VueListen.$emit('RefreshEntryTable');
-  })["catch"](function () {
-    _this.$Progress.fail();
-  });
-};
-
-var cancelItem = function cancelItem() {
-  //this.$Progress.start();
-  _this.form_item["delete"]('api/cd/item/' + _this.form_item.id).then(function () {
-    $('#entry-items').modal('hide'); //this.$Progress.finish();
-
-    VueListen.$emit('RefreshItemTable');
-  })["catch"](function () {
-    _this.$Progress.fail();
-  });
-};
-
-var saveItem = function saveItem() {
-  if (_this.form_item.item.length == 0) {
-    _this.no_item = true;
-  } else {
-    _this.no_item = false;
-  }
-
-  if (_this.form_item.price == 0) {
-    _this.no_price = true;
-  } else {
-    _this.no_price = false;
-  }
-
-  if (_this.form_item.quantity == 0) {
-    _this.no_quantity = true;
-  } else {
-    _this.no_quantity = false;
-  }
-
-  if (_this.no_item || _this.no_price || _this.no_quantity) {
-    return false;
-  }
-
-  _this.save_button_item_enabled = false;
-
-  _this.$Progress.start();
-
-  _this.form_item.put('api/cd/item/' + _this.form_item.id).then(function () {
-    $('#entry-items').modal('hide');
-    _this.form_entry.amount = parseFloat(_this.form_entry.amount + _this.form_item.sub_total).toFixed(2) * 1;
-    _this.form_entry.amount_ex_tax = (_this.form_entry.amount_ex_tax + _this.form_item.tax_excluded).toFixed(2) * 1;
-    _this.form_entry.vat += _this.form_item.vat * 1;
-
-    _this.$Progress.finish();
-
-    VueListen.$emit('RefreshItemTable');
-  })["catch"](function () {
-    _this.$Progress.fail();
-  });
-};
-
-var deleteItem = function deleteItem(item_id, item_sub_total, item_tax_excluded, item_vat) {
-  _this.form_item["delete"]('api/cd/item/' + item_id).then(function () {
-    //$('#entry-items').modal('hide');
-    _this.form_entry.amount = parseFloat(_this.form_entry.amount - item_sub_total).toFixed(2) * 1;
-    _this.form_entry.amount_ex_tax = (_this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
-    _this.form_entry.vat = (_this.form_entry.vat - item_vat).toFixed(2) * 1;
-    VueListen.$emit('RefreshItemTable');
-  })["catch"](function () {
-    _this.$Progress.fail();
-  });
-};
-
-var branchChange = function branchChange() {
-  _this.form_entry.branch_id = _this.selected_branch.id;
-  _this.form_entry.branch_name = _this.selected_branch.name;
-};
-
-
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'D:\\stocksinventory\\resources\\js\\components\\methods\\cd.js'");
 
 /***/ }),
 

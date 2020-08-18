@@ -733,7 +733,6 @@
     </div>
 </template>
 <script>
-    /*
     
     import { 
             loadBranches,
@@ -765,8 +764,8 @@
             saveItem,
             deleteItem,
             branchChange 
-    } from './methods/cd.js'
-    */
+    } from '../cd.js'
+
     export default {
         data() {
           return {
@@ -866,7 +865,6 @@
           }
         },
         methods: {
-            /*
             loadBranches,
             loadPayees,
             loadChartAccounts,
@@ -896,12 +894,11 @@
             saveItem,
             deleteItem,
             branchChange
-            */
         },
 
         created() {
             
-            /*
+            
 
             this.loadPayees();
             this.loadBranches();
@@ -921,10 +918,10 @@
             
 
             this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
-            */
 
-            /// Scrollbar fix
-            //   If you have a modal on your page that exceeds the browser height, then you can't scroll in it when closing an second modal. To fix this add: 
+
+            /* Scrollbar fix
+               If you have a modal on your page that exceeds the browser height, then you can't scroll in it when closing an second modal. To fix this add: */
             $(document).on('hidden.bs.modal', '.modal', function () {
                 $('.modal:visible').length && $(document.body).addClass('modal-open');
             });
