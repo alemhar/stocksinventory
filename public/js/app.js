@@ -2097,6 +2097,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2833,8 +2835,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {
+    var _ref;
+
+    return _ref = {
       ledgers: [],
+      transactions: [],
+      items: [],
+      index_no: 0,
       user_id: '',
       editmode: false,
       cd_created: false,
@@ -2859,7 +2866,7 @@ __webpack_require__.r(__webpack_exports__);
       selected_branch: {},
       cd: {},
       form: new Form({
-        id: '',
+        //id:'',
         payee_id: '',
         reference_no: '',
         transaction_no: '',
@@ -2877,8 +2884,8 @@ __webpack_require__.r(__webpack_exports__);
         user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
       }),
       form_entry: new Form({
-        id: '',
-        transaction_id: '',
+        //id:'',
+        //transaction_id:'',
         transaction_no: '',
         transaction_type: '',
         account_code: 0,
@@ -2909,24 +2916,18 @@ __webpack_require__.r(__webpack_exports__);
         vat: 0
       }),
       payees: {},
-      branches: {},
-      items: {},
-      entries: {},
-      chart_of_accounts: {},
-      chart_of_accounts_header: {},
-      chart_of_accounts_detail: {},
-      readabilityObject: {
-        fontSize: user.font_size
-      }
-    };
+      branches: {}
+    }, _defineProperty(_ref, "items", {}), _defineProperty(_ref, "entries", {}), _defineProperty(_ref, "chart_of_accounts", {}), _defineProperty(_ref, "chart_of_accounts_header", {}), _defineProperty(_ref, "chart_of_accounts_detail", {}), _defineProperty(_ref, "readabilityObject", {
+      fontSize: user.font_size
+    }), _ref;
   },
   methods: {
     loadBranches: function loadBranches() {
       var _this = this;
 
       if (this.$gate.isAdminOrUser()) {
-        axios.get("api/branch").then(function (_ref) {
-          var data = _ref.data;
+        axios.get("api/branch").then(function (_ref2) {
+          var data = _ref2.data;
           return _this.branches = data;
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
@@ -2935,8 +2936,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       if (this.$gate.isAdminOrUser()) {
-        axios.get("api/payee").then(function (_ref2) {
-          var data = _ref2.data;
+        axios.get("api/payee").then(function (_ref3) {
+          var data = _ref3.data;
           return _this2.payees = data;
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
@@ -2949,21 +2950,6 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.chart_of_accounts = this.chart_of_accounts_detail;
       }
-      /*
-      if(headerOrDetail == null){
-        axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
-      } else {
-        //axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
-         axios.get('api/chartaccount?headerordetail='+headerOrDetail+'&transaction=CR')
-        .then((data)=>{
-          this.chart_of_accounts = data.data;
-        })
-        .catch(()=>{
-          //
-        });
-       }
-      */
-
     },
     initChartAccounts: function initChartAccounts() {
       var _this3 = this;
@@ -2995,8 +2981,6 @@ __webpack_require__.r(__webpack_exports__);
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
     createCD: function createCD() {
-      var _this4 = this;
-
       if (this.form.payee_id.length == 0) {
         this.no_payee = true;
       } else {
@@ -3023,69 +3007,143 @@ __webpack_require__.r(__webpack_exports__);
 
       this.form.transaction_no = this.createSerialNumber();
       this.form.transaction_type = 'CD';
-      this.form.post('api/cd').then(function (data) {
-        //console.log(data.data.id);
-        _this4.form.id = data.data.id;
-      })["catch"](function () {//
-      });
+      /*
+      this.form.post('api/cd')
+          .then((data)=>{
+            //console.log(data.data.id);
+            this.form.id = data.data.id;
+          })
+          .catch(()=>{
+            //
+          });
+      */
     },
     saveCD: function saveCD() {
-      var _this5 = this;
+      var _this4 = this;
 
       if (this.form.amount == 0) {
         return false;
       }
 
       this.$Progress.start();
-      this.form_entry.put('api/cd/' + this.form.id).then(function () {
-        _this5.cd_created = false;
+      this.cd_created = false; // **
 
-        _this5.form.post('api/cd/confirm/' + _this5.form.transaction_no);
-
-        _this5.ledgers.push({
-          id: _this5.form.id,
-          transaction_id: _this5.form.id,
-          transaction_no: _this5.form.transaction_no,
-          transaction_type: _this5.form.transaction_type,
-          account_code: _this5.form.account_code,
-          account_name: _this5.form.account_name,
-          transaction_date: _this5.form.transaction_date,
-          credit_amount: _this5.form.amount,
-          debit_amount: 0
-        });
-
-        _this5.ledgers.push({
-          id: 1,
-          transaction_id: _this5.form.id,
-          transaction_no: _this5.form.transaction_no,
-          transaction_type: _this5.form.transaction_type,
-          account_code: '1105110',
-          account_name: 'Input Tax',
-          transaction_date: _this5.form.transaction_date,
-          credit_amount: 0,
-          debit_amount: _this5.form.vat
-        });
-
-        var rawData = {
-          ledgers: _this5.ledgers
-        };
-        rawData = JSON.stringify(rawData);
-        var formData = new FormData();
-        formData.append('ledgers', rawData);
-        axios.post('api/ledgers', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        }).then(function (response) {
-          console.log(response);
-        })["catch"](function (error) {
-          console.log(error);
-        });
-
-        _this5.$Progress.finish();
-      })["catch"](function () {
-        _this5.$Progress.fail();
+      ++this.index_no;
+      this.transactions.push({
+        index_no: this.index_no,
+        payee_id: this.form.payee_id,
+        account_code: this.form.account_code,
+        account_name: this.form.account_name,
+        reference_no: this.form.reference_no,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        transaction_date: this.form.transaction_date,
+        amount: this.form.amount,
+        credit_amount: this.form.amount,
+        debit_amount: 0,
+        total_payment: 0,
+        amount_ex_tax: this.form.amount_ex_tax,
+        vat: this.form.vat,
+        wtax_code: 0,
+        wtax: 0,
+        user_id: this.form.user_id,
+        status: 'CONFIRMED',
+        branch_id: 0
       });
+      ++this.index_no;
+      this.transactions.push({
+        //id: 1,
+        //  transaction_id: this.form.id, 
+        index_no: this.index_no,
+        payee_id: this.form.payee_id,
+        account_code: '1105110',
+        account_name: 'Input Tax',
+        reference_no: this.form.reference_no,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        transaction_date: this.form.transaction_date,
+        amount: this.form.vat,
+        credit_amount: 0,
+        debit_amount: this.form.vat,
+        total_payment: 0,
+        amount_ex_tax: 0,
+        vat: this.form.vat,
+        wtax_code: 0,
+        wtax: 0,
+        user_id: this.form.user_id,
+        status: 'CONFIRMED',
+        branch_id: 0
+      });
+      var rawData = {
+        transactions: this.transactions
+      };
+      rawData = JSON.stringify(rawData);
+      var formData = new FormData();
+      formData.append('transactions', rawData);
+      axios.post('api/transactions', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+      this.$Progress.finish();
+      /*
+      this.form_entry.put('api/cd/'+this.form.id)
+      .then(() => {
+            this.cd_created = false;
+            this.form.post('api/cd/confirm/'+this.form.transaction_no);
+            this.ledgers.push({ 
+                id: this.form.id,
+                transaction_id: this.form.id, 
+                transaction_no: this.form.transaction_no,
+                transaction_type: this.form.transaction_type,
+                account_code: this.form.account_code,
+                account_name: this.form.account_name,
+                transaction_date: this.form.transaction_date,
+                credit_amount: this.form.amount,
+                debit_amount: 0
+              });
+            this.ledgers.push({ 
+                id: 1,
+                transaction_id: this.form.id, 
+                transaction_no: this.form.transaction_no,
+                transaction_type: this.form.transaction_type,
+                account_code: '1105110',
+                account_name: 'Input Tax',
+                transaction_date: this.form.transaction_date,
+                credit_amount: 0,
+                debit_amount: this.form.vat
+              });  
+                 let rawData = {
+                    ledgers: this.ledgers
+                }
+                rawData = JSON.stringify(rawData);
+                let formData = new FormData();
+                    formData.append('ledgers', rawData);
+                axios.post('api/ledgers', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                .then((response)=>{
+                    
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+                  
+            this.$Progress.finish();
+                              
+      })
+      .catch(() => {
+          this.$Progress.fail();
+      });
+      */
+
       swal.fire({
         title: 'Saved!',
         text: "Journal posted",
@@ -3097,7 +3155,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.value) {
           //Reload Current Page
-          _this5.$router.go();
+          _this4.$router.go();
         }
       });
     },
@@ -3153,39 +3211,39 @@ __webpack_require__.r(__webpack_exports__);
       $('#select-payee').modal('hide');
     },
     SearchIt: function SearchIt() {
-      var _this6 = this;
+      var _this5 = this;
 
       var query = this.searchText;
       var headerOrDetail = this.headerOrDetail;
       axios.get('api/searchAccount?q=' + query + '&transaction_type=CD&headerordetail=' + headerOrDetail).then(function (data) {
-        _this6.chart_of_accounts = data.data;
+        _this5.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
     },
     SearchPayee: function SearchPayee() {
-      var _this7 = this;
+      var _this6 = this;
 
       var query = this.searchPayee;
       axios.get('api/searchPayee?q=' + query).then(function (data) {
-        _this7.payees = data.data;
+        _this6.payees = data.data;
       })["catch"](function () {//
       });
     },
     loadEntryItems: function loadEntryItems() {
-      var _this8 = this;
+      var _this7 = this;
 
       var entry_id = this.form_entry.id;
       axios.get('api/cd/items/list?entry_id=' + entry_id).then(function (data) {
-        _this8.items = data.data;
+        _this7.items = data.data;
       })["catch"](function () {//
       });
     },
     loadEntries: function loadEntries() {
-      var _this9 = this;
+      var _this8 = this;
 
       var transaction_no = this.form.transaction_no;
       axios.get('api/cd/entries/list?transaction_no=' + transaction_no).then(function (data) {
-        _this9.entries = data.data;
+        _this8.entries = data.data;
       })["catch"](function () {//
       });
     },
@@ -3218,25 +3276,27 @@ __webpack_require__.r(__webpack_exports__);
       VueListen.$emit('RefreshItemTable'); //console.log(active_debit_row);
     },
     newEntry: function newEntry() {
-      var _this10 = this;
-
       this.editmode = false;
       this.form_entry.reset();
       this.form_entry.transaction_id = this.form.id;
       this.form_entry.transaction_no = this.form.transaction_no;
       this.form_entry.transaction_type = 'CD';
       this.save_button_entry_enabled = true;
-      this.form_entry.post('api/cd/entry').then(function (data) {
-        _this10.form_entry.id = data.data.id; //console.log(data.data.id);
+      /*  
+      this.form_entry.post('api/cd/entry')
+        .then((data)=>{
+          this.form_entry.id = data.data.id;
+          //console.log(data.data.id);
+          VueListen.$emit('RefreshItemTable');    
+        })
+        .catch(()=>{
+          //
+        });
+      */
 
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {//
-      });
       $('#entry-details').modal('show');
     },
     newItem: function newItem() {
-      var _this11 = this;
-
       if (this.form_entry.account_code == 0) {
         this.no_entry_account_code = true;
       } else {
@@ -3263,15 +3323,22 @@ __webpack_require__.r(__webpack_exports__);
       this.form_item.transaction_no = this.form.transaction_no;
       this.form_item.transaction_type = 'CD';
       this.form_item.account_code = this.form_entry.account_code;
-      this.form_item.post('api/cd/item').then(function (data) {
-        _this11.form_item.id = data.data.id; //console.log(data.data.id);
-      })["catch"](function () {//
-      });
+      /*  
+      this.form_item.post('api/cd/item')
+        .then((data)=>{
+          this.form_item.id = data.data.id;
+          //console.log(data.data.id);
+        })
+        .catch(()=>{
+          //
+        });
+      */
+
       this.loadEntryItems();
       $('#entry-items').modal('show');
     },
     cancelDebitEntry: function cancelDebitEntry() {
-      var _this12 = this;
+      var _this9 = this;
 
       //this.$Progress.start();
       this.form_item["delete"]('api/cd/entry/' + this.form_entry.id).then(function () {
@@ -3287,12 +3354,10 @@ __webpack_require__.r(__webpack_exports__);
 
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this12.$Progress.fail();
+        _this9.$Progress.fail();
       });
     },
     saveDebitEntry: function saveDebitEntry() {
-      var _this13 = this;
-
       //console.log('Edit Payee');
       // ** Temporary data to bypass Column cannot be null ERROR's
       //this.form_entry.amount = 0;
@@ -3303,42 +3368,58 @@ __webpack_require__.r(__webpack_exports__);
 
       this.save_button_entry_enabled = false;
       this.$Progress.start();
-      this.form_entry.put('api/cd/entry/' + this.form_entry.id).then(function () {
-        $('#entry-details').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-
-        _this13.form.amount += _this13.form_entry.amount;
-        _this13.form.amount_ex_tax += _this13.form_entry.amount_ex_tax;
-        _this13.form.vat += _this13.form_entry.vat;
-
-        _this13.ledgers.push({
-          id: _this13.form_entry.id,
-          transaction_id: _this13.form.id,
-          transaction_no: _this13.form.transaction_no,
-          transaction_type: _this13.form.transaction_type,
-          account_code: _this13.form_entry.account_code,
-          account_name: _this13.form_entry.account_name,
-          transaction_date: _this13.form.transaction_date,
-          credit_amount: 0,
-          debit_amount: _this13.form_entry.amount_ex_tax
-        }); //console.log(this.ledgers);
-
-
-        _this13.$Progress.finish();
-
-        VueListen.$emit('RefreshEntryTable');
-      })["catch"](function () {
-        _this13.$Progress.fail();
+      ++this.index_no;
+      this.transactions.push({
+        index_no: this.index_no,
+        payee_id: this.form.payee_id,
+        account_code: this.form_entry.account_code,
+        account_name: this.form_entry.account_name,
+        reference_no: this.form.reference_no,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        transaction_date: this.form.transaction_date,
+        amount: this.form_entry.amount_ex_tax,
+        credit_amount: 0,
+        debit_amount: this.form_entry.amount_ex_tax,
+        total_payment: 0,
+        amount_ex_tax: 0,
+        vat: this.form_entry.vat,
+        wtax_code: 0,
+        wtax: 0,
+        user_id: this.form.user_id,
+        status: 'CONFIRMED',
+        branch_id: 0
       });
+      this.$Progress.finish();
+      /*
+      this.form_entry.put('api/cd/entry/'+this.form_entry.id)
+      .then(() => {
+          $('#entry-details').modal('hide');
+             this.form.amount += this.form_entry.amount;
+            this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
+            this.form.vat += this.form_entry.vat;
+             this.ledgers.push({ 
+                id: this.form_entry.id,
+                transaction_id: this.form.id, 
+                transaction_no: this.form.transaction_no,
+                transaction_type: this.form.transaction_type,
+                account_code: this.form_entry.account_code,
+                account_name: this.form_entry.account_name,
+                transaction_date: this.form.transaction_date,
+                credit_amount: 0,
+                debit_amount: this.form_entry.amount_ex_tax
+              });
+            //console.log(this.ledgers);
+            this.$Progress.finish();
+            VueListen.$emit('RefreshEntryTable');
+      })
+      .catch(() => {
+          this.$Progress.fail();
+      });
+      */
     },
     deleteEntry: function deleteEntry(entry_id, entry_amount, entry_amount_ex_tax, entry_vat) {
-      var _this14 = this;
+      var _this10 = this;
 
       this.form_item["delete"]('api/cd/entry/' + entry_id).then(function () {
         //$('#entry-items').modal('hide');
@@ -3350,17 +3431,17 @@ __webpack_require__.r(__webpack_exports__);
             'success'
           );
         */
-        _this14.form.amount = parseFloat(_this14.form.amount - entry_amount).toFixed(2) * 1;
-        _this14.form.amount_ex_tax = (_this14.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
-        _this14.form.vat = (_this14.form.vat - entry_vat).toFixed(2) * 1;
+        _this10.form.amount = parseFloat(_this10.form.amount - entry_amount).toFixed(2) * 1;
+        _this10.form.amount_ex_tax = (_this10.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
+        _this10.form.vat = (_this10.form.vat - entry_vat).toFixed(2) * 1;
         VueListen.$emit('RefreshItemTable');
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this14.$Progress.fail();
+        _this10.$Progress.fail();
       });
     },
     cancelItem: function cancelItem() {
-      var _this15 = this;
+      var _this11 = this;
 
       //this.$Progress.start();
       this.form_item["delete"]('api/cd/item/' + this.form_item.id).then(function () {
@@ -3376,12 +3457,10 @@ __webpack_require__.r(__webpack_exports__);
 
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
-        _this15.$Progress.fail();
+        _this11.$Progress.fail();
       });
     },
     saveItem: function saveItem() {
-      var _this16 = this;
-
       if (this.form_item.item.length == 0) {
         this.no_item = true;
       } else {
@@ -3406,29 +3485,40 @@ __webpack_require__.r(__webpack_exports__);
 
       this.save_button_item_enabled = false;
       this.$Progress.start();
-      this.form_item.put('api/cd/item/' + this.form_item.id).then(function () {
-        $('#entry-items').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-
-        _this16.form_entry.amount = parseFloat(_this16.form_entry.amount + _this16.form_item.sub_total).toFixed(2) * 1;
-        _this16.form_entry.amount_ex_tax = (_this16.form_entry.amount_ex_tax + _this16.form_item.tax_excluded).toFixed(2) * 1;
-        _this16.form_entry.vat += _this16.form_item.vat * 1;
-
-        _this16.$Progress.finish();
-
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {
-        _this16.$Progress.fail();
+      ++this.index_no;
+      this.items.push({
+        index_no: this.index_no,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        account_code: this.form_entry.account_code,
+        item: this.form_item.item,
+        quantity: this.form_item.quantity,
+        price: this.form_item.price,
+        sub_total: this.form_item.sub_total,
+        tax_type: this.form_item.tax_type,
+        tax_excluded: this.form_item.tax_excluded,
+        vat: this.form_item.vat,
+        status: 'CONFIRMED'
       });
+      /*
+      this.form_item.put('api/cd/item/'+this.form_item.id)
+      .then(() => {
+          $('#entry-items').modal('hide');
+          
+            this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
+            this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
+            this.form_entry.vat += (this.form_item.vat * 1);
+            
+            this.$Progress.finish();
+            VueListen.$emit('RefreshItemTable');
+      })
+      .catch(() => {
+          this.$Progress.fail();
+      });
+      */
     },
     deleteItem: function deleteItem(item_id, item_sub_total, item_tax_excluded, item_vat) {
-      var _this17 = this;
+      var _this12 = this;
 
       this.form_item["delete"]('api/cd/item/' + item_id).then(function () {
         //$('#entry-items').modal('hide');
@@ -3440,12 +3530,12 @@ __webpack_require__.r(__webpack_exports__);
             'success'
           );
         */
-        _this17.form_entry.amount = parseFloat(_this17.form_entry.amount - item_sub_total).toFixed(2) * 1;
-        _this17.form_entry.amount_ex_tax = (_this17.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
-        _this17.form_entry.vat = (_this17.form_entry.vat - item_vat).toFixed(2) * 1;
+        _this12.form_entry.amount = parseFloat(_this12.form_entry.amount - item_sub_total).toFixed(2) * 1;
+        _this12.form_entry.amount_ex_tax = (_this12.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
+        _this12.form_entry.vat = (_this12.form_entry.vat - item_vat).toFixed(2) * 1;
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
-        _this17.$Progress.fail();
+        _this12.$Progress.fail();
       });
     },
     branchChange: function branchChange() {
@@ -3454,7 +3544,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this18 = this;
+    var _this13 = this;
 
     this.loadPayees();
     this.loadBranches();
@@ -3462,10 +3552,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntryItems();
     this.loadEntries();
     VueListen.$on('RefreshItemTable', function () {
-      _this18.loadEntryItems();
+      _this13.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this18.loadEntries();
+      _this13.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
     /* Scrollbar fix

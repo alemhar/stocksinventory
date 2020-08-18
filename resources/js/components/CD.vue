@@ -740,6 +740,9 @@
         data() {
           return {
               ledgers: [],
+              transactions: [],
+              items: [],
+              index_no: 0,
               user_id: '',
               editmode: false,
               cd_created: false,
@@ -764,7 +767,7 @@
               selected_branch: {},
               cd : {},
               form: new Form({
-                  id:'',
+                  //id:'',
                   payee_id: '',
                   reference_no: '',
                   transaction_no: '',
@@ -782,8 +785,8 @@
               }),
               form_entry: new Form({
 
-                  id:'',
-                  transaction_id:'',
+                  //id:'',
+                  //transaction_id:'',
                   transaction_no:'',
                   transaction_type:'',
                   account_code : 0,
@@ -833,15 +836,11 @@
           }
         },
         methods: {
-
-          
           loadBranches(){
-
             if(this.$gate.isAdminOrUser()){
                 axios.get("api/branch").then(({data}) => (this.branches = data ));
                 //axios.get("api/user").then(({ data }) => (this.users = data.data));
             } 
-             
           },
           loadPayees(){
             if(this.$gate.isAdminOrUser()){
@@ -855,22 +854,7 @@
               } else {
                   this.chart_of_accounts = this.chart_of_accounts_detail;
               }
-              /*
-              if(headerOrDetail == null){
-                axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
-              } else {
-                //axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
-
-                axios.get('api/chartaccount?headerordetail='+headerOrDetail+'&transaction=CR')
-                .then((data)=>{
-                  this.chart_of_accounts = data.data;
-                })
-                .catch(()=>{
-                  //
-                });
-
-              }
-              */
+              
           },
           initChartAccounts(){
 
@@ -933,6 +917,7 @@
 
             this.form.transaction_no = this.createSerialNumber();
             this.form.transaction_type = 'CD';
+            /*
             this.form.post('api/cd')
                 .then((data)=>{
                   //console.log(data.data.id);
@@ -941,13 +926,88 @@
                 .catch(()=>{
                   //
                 });
-            
+            */
           },
           saveCD(){
             if(this.form.amount == 0) {
               return false;
             }
+
+
             this.$Progress.start();
+            
+            this.cd_created = false; // **
+            ++this.index_no;
+            this.transactions.push({ 
+                index_no: this.index_no,
+                payee_id: this.form.payee_id,
+                account_code: this.form.account_code,
+                account_name: this.form.account_name,
+                reference_no: this.form.reference_no,
+                transaction_no: this.form.transaction_no,
+                transaction_type: this.form.transaction_type,
+                transaction_date: this.form.transaction_date,
+                amount: this.form.amount,
+                credit_amount: this.form.amount,
+                debit_amount: 0,
+                total_payment: 0,
+                amount_ex_tax: this.form.amount_ex_tax,
+                vat: this.form.vat,
+                wtax_code: 0,
+                wtax: 0,
+                user_id: this.form.user_id,
+                status: 'CONFIRMED',
+                branch_id: 0
+
+            });
+            ++this.index_no;
+            
+            this.transactions.push({ 
+                //id: 1,
+                //  transaction_id: this.form.id, 
+                index_no: this.index_no,
+                payee_id: this.form.payee_id,
+                account_code: '1105110',
+                account_name: 'Input Tax',
+                reference_no: this.form.reference_no,
+                transaction_no: this.form.transaction_no,
+                transaction_type: this.form.transaction_type,
+                transaction_date: this.form.transaction_date,
+                amount: this.form.vat,
+                credit_amount: 0,
+                debit_amount: this.form.vat,
+                total_payment: 0,
+                amount_ex_tax: 0,
+                vat: this.form.vat,
+                wtax_code: 0,
+                wtax: 0,
+                user_id: this.form.user_id,
+                status: 'CONFIRMED',
+                branch_id: 0
+            });  
+
+                let rawData = {
+                    transactions: this.transactions
+                }
+                rawData = JSON.stringify(rawData);
+                let formData = new FormData();
+                    formData.append('transactions', rawData);
+                axios.post('api/transactions', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                .then((response)=>{
+                    
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+                
+            this.$Progress.finish();
+
+            /*
             this.form_entry.put('api/cd/'+this.form.id)
             .then(() => {
                   this.cd_created = false;
@@ -1000,21 +1060,21 @@
             .catch(() => {
                 this.$Progress.fail();
             });
-
+            */
             swal.fire({
-                  title: 'Saved!',
-                  text: "Journal posted",
-                  icon: 'info',
-                  showCancelButton: false,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Ok'
-                }).then((result) => {
-                  if (result.value) {
-                    //Reload Current Page
-                    this.$router.go();        
-                  }
-                });
+                title: 'Saved!',
+                text: "Journal posted",
+                icon: 'info',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ok'
+            }).then((result) => {
+                if (result.value) {
+                //Reload Current Page
+                this.$router.go();        
+                }
+            });
              
 
           },
@@ -1146,6 +1206,8 @@
               this.form_entry.transaction_no = this.form.transaction_no;
               this.form_entry.transaction_type = 'CD';
               this.save_button_entry_enabled = true;
+             
+              /*  
               this.form_entry.post('api/cd/entry')
                 .then((data)=>{
                   this.form_entry.id = data.data.id;
@@ -1155,7 +1217,8 @@
                 .catch(()=>{
                   //
                 });
-                
+              */  
+
               $('#entry-details').modal('show');
 
 
@@ -1189,7 +1252,7 @@
               this.form_item.transaction_no = this.form.transaction_no;
               this.form_item.transaction_type = 'CD';
               this.form_item.account_code = this.form_entry.account_code;
-
+              /*  
               this.form_item.post('api/cd/item')
                 .then((data)=>{
                   this.form_item.id = data.data.id;
@@ -1198,6 +1261,7 @@
                 .catch(()=>{
                   //
                 });
+              */  
               this.loadEntryItems();
               $('#entry-items').modal('show');
           },
@@ -1233,16 +1297,34 @@
             this.save_button_entry_enabled = false;
               
             this.$Progress.start();
+            ++this.index_no;
+            this.transactions.push({ 
+                index_no: this.index_no,
+                payee_id: this.form.payee_id,
+                account_code: this.form_entry.account_code,
+                account_name: this.form_entry.account_name,
+                reference_no: this.form.reference_no,
+                transaction_no: this.form.transaction_no,
+                transaction_type: this.form.transaction_type,
+                transaction_date: this.form.transaction_date,
+                amount: this.form_entry.amount_ex_tax,
+                credit_amount: 0,
+                debit_amount: this.form_entry.amount_ex_tax,
+                total_payment: 0,
+                amount_ex_tax: 0,
+                vat: this.form_entry.vat,
+                wtax_code: 0,
+                wtax: 0,
+                user_id: this.form.user_id,
+                status: 'CONFIRMED',
+                branch_id: 0
+            });
+            this.$Progress.finish();
+            /*
             this.form_entry.put('api/cd/entry/'+this.form_entry.id)
             .then(() => {
                 $('#entry-details').modal('hide');
-                /*
-                swal.fire(
-                    'Updated!',
-                    'Payee information has been updated.',
-                    'success'
-                  );
-                */
+
                   this.form.amount += this.form_entry.amount;
                   this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
                   this.form.vat += this.form_entry.vat;
@@ -1265,6 +1347,8 @@
             .catch(() => {
                 this.$Progress.fail();
             });
+            */
+
           },
           deleteEntry(entry_id,entry_amount,entry_amount_ex_tax,entry_vat){
             this.form_item.delete('api/cd/entry/'+entry_id)
@@ -1336,16 +1420,28 @@
             
 
             this.$Progress.start();
+            ++this.index_no;
+            this.items.push({ 
+                index_no: this.index_no,
+                transaction_no: this.form.transaction_no,
+                transaction_type: this.form.transaction_type,
+                account_code: this.form_entry.account_code,
+                item: this.form_item.item,
+                quantity: this.form_item.quantity,
+                price: this.form_item.price, 
+                sub_total: this.form_item.sub_total,
+                tax_type: this.form_item.tax_type, 
+                tax_excluded: this.form_item.tax_excluded, 
+                vat: this.form_item.vat, 
+                status: 'CONFIRMED'
+
+            });
+
+            /*
             this.form_item.put('api/cd/item/'+this.form_item.id)
             .then(() => {
                 $('#entry-items').modal('hide');
-                /*
-                swal.fire(
-                    'Updated!',
-                    'Payee information has been updated.',
-                    'success'
-                  );
-                */
+                
                   this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
                   this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
                   this.form_entry.vat += (this.form_item.vat * 1);
@@ -1356,6 +1452,9 @@
             .catch(() => {
                 this.$Progress.fail();
             });
+            */
+
+
           },
           deleteItem(item_id,item_sub_total,item_tax_excluded,item_vat){
               this.form_item.delete('api/cd/item/'+item_id)
@@ -1382,20 +1481,12 @@
             this.form_entry.branch_id = this.selected_branch.id ;
             this.form_entry.branch_name = this.selected_branch.name;
           }
-
-          
-
-
         },
 
         created() {
-            
-            
-
             this.loadPayees();
             this.loadBranches();
             this.initChartAccounts();
-
             this.loadEntryItems();
             this.loadEntries();
 
