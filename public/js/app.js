@@ -73325,7 +73325,7 @@ var render = function() {
                               [
                                 _vm._m(9),
                                 _vm._v(" "),
-                                _vm._l(_vm.items, function(item) {
+                                _vm._l(_vm.currentItems, function(item) {
                                   return _c("tr", { key: item.item_no }, [
                                     _c("td", [
                                       _vm._v(_vm._s(item.account_code))

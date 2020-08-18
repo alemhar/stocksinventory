@@ -227,7 +227,7 @@
                         <th>Tax Excluded</th>
                         <th>Vat</th>
                       </tr>
-                      <tr v-for="item in items" :key="item.item_no">
+                      <tr v-for="item in currentItems" :key="item.item_no">
                         <td>{{ item.account_code }}</td>
                         <td>{{ item.item }}</td>
                         <td>{{ item.quantity }}</td>
