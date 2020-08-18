@@ -73821,8 +73821,8 @@ var render = function() {
                           [
                             _vm._m(14),
                             _vm._v(" "),
-                            _vm._l(_vm.items.data, function(item) {
-                              return _c("tr", { key: item.id }, [
+                            _vm._l(_vm.items, function(item) {
+                              return _c("tr", { key: item.index_no }, [
                                 _c("td", [_vm._v(_vm._s(item.item))]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(item.quantity))]),
