@@ -1297,7 +1297,11 @@
             //this.form_entry.debit_amount = 0;
             // ** Temporary data to bypass Column cannot be null ERROR's
             this.save_button_entry_enabled = false;
-              
+
+            this.form.amount += this.form_entry.amount;
+            this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
+            this.form.vat += this.form_entry.vat;  
+            
             this.$Progress.start();
             ++this.index_no;
             this.transactions.push({ 
@@ -1380,6 +1384,7 @@
             this.form_item.delete('api/cd/item/'+this.form_item.id)
             .then(() => {
                 $('#entry-items').modal('hide');
+
                 /*
                 swal.fire(
                     'Updated!',
@@ -1423,6 +1428,11 @@
             
 
             this.$Progress.start();
+            
+            this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
+            this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
+            this.form_entry.vat += (this.form_item.vat * 1);
+            
             ++this.index_no;
             this.items.push({ 
                 index_no: this.index_no,
