@@ -1532,8 +1532,8 @@
 
         },
         computed: {
-            currentItems(current_index_no){
-                return this.items.filter(index_no => current_index_no);
+            currentItems(){
+                return this.items.filter(index_no => this.current_index_no);
             }
           
 
