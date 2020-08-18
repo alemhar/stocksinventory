@@ -3232,22 +3232,28 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     loadEntryItems: function loadEntryItems() {
-      var _this7 = this;
-
-      var entry_id = this.form_entry.id;
-      axios.get('api/cd/items/list?entry_id=' + entry_id).then(function (data) {
-        _this7.items = data.data;
-      })["catch"](function () {//
-      });
+      /*
+      let entry_id = this.form_entry.id;
+      axios.get('api/cd/items/list?entry_id='+entry_id)
+        .then((data)=>{
+          this.items = data.data;
+        })
+        .catch(()=>{
+          //
+        });
+      */
     },
     loadEntries: function loadEntries() {
-      var _this8 = this;
-
-      var transaction_no = this.form.transaction_no;
-      axios.get('api/cd/entries/list?transaction_no=' + transaction_no).then(function (data) {
-        _this8.entries = data.data;
-      })["catch"](function () {//
-      });
+      /*
+      let transaction_no = this.form.transaction_no;
+      axios.get('api/cd/entries/list?transaction_no='+transaction_no)
+        .then((data)=>{
+          this.entries = data.data;
+        })
+        .catch(()=>{
+          //
+        });
+      */
     },
     createSerialNumber: function createSerialNumber() {
       // Get current date
@@ -3340,7 +3346,7 @@ __webpack_require__.r(__webpack_exports__);
       $('#entry-items').modal('show');
     },
     cancelDebitEntry: function cancelDebitEntry() {
-      var _this9 = this;
+      var _this7 = this;
 
       //this.$Progress.start();
       this.form_item["delete"]('api/cd/entry/' + this.form_entry.id).then(function () {
@@ -3356,7 +3362,7 @@ __webpack_require__.r(__webpack_exports__);
 
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this9.$Progress.fail();
+        _this7.$Progress.fail();
       });
     },
     saveDebitEntry: function saveDebitEntry() {
@@ -3421,7 +3427,7 @@ __webpack_require__.r(__webpack_exports__);
       */
     },
     deleteEntry: function deleteEntry(entry_id, entry_amount, entry_amount_ex_tax, entry_vat) {
-      var _this10 = this;
+      var _this8 = this;
 
       this.form_item["delete"]('api/cd/entry/' + entry_id).then(function () {
         //$('#entry-items').modal('hide');
@@ -3433,17 +3439,17 @@ __webpack_require__.r(__webpack_exports__);
             'success'
           );
         */
-        _this10.form.amount = parseFloat(_this10.form.amount - entry_amount).toFixed(2) * 1;
-        _this10.form.amount_ex_tax = (_this10.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
-        _this10.form.vat = (_this10.form.vat - entry_vat).toFixed(2) * 1;
+        _this8.form.amount = parseFloat(_this8.form.amount - entry_amount).toFixed(2) * 1;
+        _this8.form.amount_ex_tax = (_this8.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
+        _this8.form.vat = (_this8.form.vat - entry_vat).toFixed(2) * 1;
         VueListen.$emit('RefreshItemTable');
         VueListen.$emit('RefreshEntryTable');
       })["catch"](function () {
-        _this10.$Progress.fail();
+        _this8.$Progress.fail();
       });
     },
     cancelItem: function cancelItem() {
-      var _this11 = this;
+      var _this9 = this;
 
       //this.$Progress.start();
       this.form_item["delete"]('api/cd/item/' + this.form_item.id).then(function () {
@@ -3459,7 +3465,7 @@ __webpack_require__.r(__webpack_exports__);
 
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
-        _this11.$Progress.fail();
+        _this9.$Progress.fail();
       });
     },
     saveItem: function saveItem() {
@@ -3520,7 +3526,7 @@ __webpack_require__.r(__webpack_exports__);
       */
     },
     deleteItem: function deleteItem(item_id, item_sub_total, item_tax_excluded, item_vat) {
-      var _this12 = this;
+      var _this10 = this;
 
       this.form_item["delete"]('api/cd/item/' + item_id).then(function () {
         //$('#entry-items').modal('hide');
@@ -3532,12 +3538,12 @@ __webpack_require__.r(__webpack_exports__);
             'success'
           );
         */
-        _this12.form_entry.amount = parseFloat(_this12.form_entry.amount - item_sub_total).toFixed(2) * 1;
-        _this12.form_entry.amount_ex_tax = (_this12.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
-        _this12.form_entry.vat = (_this12.form_entry.vat - item_vat).toFixed(2) * 1;
+        _this10.form_entry.amount = parseFloat(_this10.form_entry.amount - item_sub_total).toFixed(2) * 1;
+        _this10.form_entry.amount_ex_tax = (_this10.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
+        _this10.form_entry.vat = (_this10.form_entry.vat - item_vat).toFixed(2) * 1;
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
-        _this12.$Progress.fail();
+        _this10.$Progress.fail();
       });
     },
     branchChange: function branchChange() {
@@ -3546,7 +3552,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this13 = this;
+    var _this11 = this;
 
     this.loadPayees();
     this.loadBranches();
@@ -3554,10 +3560,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntryItems();
     this.loadEntries();
     VueListen.$on('RefreshItemTable', function () {
-      _this13.loadEntryItems();
+      _this11.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this13.loadEntries();
+      _this11.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
     /* Scrollbar fix

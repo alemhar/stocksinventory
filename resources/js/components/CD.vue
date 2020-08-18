@@ -1143,6 +1143,7 @@
                 });
           },
           loadEntryItems() {
+              /*
               let entry_id = this.form_entry.id;
               axios.get('api/cd/items/list?entry_id='+entry_id)
                 .then((data)=>{
@@ -1151,8 +1152,10 @@
                 .catch(()=>{
                   //
                 });
+             */   
           },
           loadEntries() {
+              /*
               let transaction_no = this.form.transaction_no;
               axios.get('api/cd/entries/list?transaction_no='+transaction_no)
                 .then((data)=>{
@@ -1161,6 +1164,7 @@
                 .catch(()=>{
                   //
                 });
+             */   
           },
           createSerialNumber(){
               // Get current date
