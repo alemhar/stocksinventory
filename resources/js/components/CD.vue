@@ -737,7 +737,37 @@
     //import { ModelSelect } from 'vue-search-select'
     //import { DynamicSelect } from 'vue-dynamic-select'
     //import { BasicSelect } from 'vue-search-select'
-  
+    import { 
+            loadBranches,
+            loadPayees,
+            loadChartAccounts,
+            initChartAccounts,
+            eventChild,
+            getDate,
+            createCD,
+            saveCD,
+            cancelCD,
+            searchAccountModal,
+            searchPayeeModal,
+            selectAccount,
+            selectPayee,
+            SearchIt,
+            SearchPayee,
+            loadEntryItems,
+            loadEntries,
+            createSerialNumber,
+            computeTaxChange,
+            selectDebitRow,
+            newEntry,
+            newItem,
+            cancelDebitEntry,
+            saveDebitEntry,
+            deleteEntry,
+            cancelItem,
+            saveItem,
+            deleteItem,
+            branchChange 
+    } from './methods/cd.js'
     export default {
         data() {
           return {
@@ -837,12 +867,35 @@
           }
         },
         methods: {
-
-          
-          
-          
-
-
+            loadBranches,
+            loadPayees,
+            loadChartAccounts,
+            initChartAccounts,
+            eventChild,
+            getDate,
+            createCD,
+            saveCD,
+            cancelCD,
+            searchAccountModal,
+            searchPayeeModal,
+            selectAccount,
+            selectPayee,
+            SearchIt,
+            SearchPayee,
+            loadEntryItems,
+            loadEntries,
+            createSerialNumber,
+            computeTaxChange,
+            selectDebitRow,
+            newEntry,
+            newItem,
+            cancelDebitEntry,
+            saveDebitEntry,
+            deleteEntry,
+            cancelItem,
+            saveItem,
+            deleteItem,
+            branchChange
         },
 
         created() {
