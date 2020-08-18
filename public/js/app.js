@@ -108630,10 +108630,7 @@ var app = new Vue({
   el: '#app',
   router: router,
   data: {
-    search: '',
-    readabilityObject: {
-      fontSize: user.font_size
-    }
+    search: ''
   },
   methods: {
     SearchIt: _.debounce(function () {

@@ -188,10 +188,8 @@ const app = new Vue({
     el: '#app',
     router,
     data: {
-      search: '',
-      readabilityObject: {
-        fontSize: user.font_size
-      }
+      search: ''
+      
       
     },
     methods:{
