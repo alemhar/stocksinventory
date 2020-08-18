@@ -2839,6 +2839,7 @@ __webpack_require__.r(__webpack_exports__);
       items: [],
       item_no: 0,
       index_no: 0,
+      current_index_no: 0,
       user_id: '',
       editmode: false,
       cd_created: false,
@@ -3556,12 +3557,9 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.branch_id = this.selected_branch.id;
       this.form_entry.branch_name = this.selected_branch.name;
     },
-    selectDebitRow: function selectDebitRow(active_debit_row_id) {
-      /*
-      this.active_debit_row = active_debit_row_id;
-      this.form_entry.id = active_debit_row_id;
-      VueListen.$emit('RefreshItemTable');
-      */
+    selectDebitRow: function selectDebitRow(current_index_no) {
+      this.current_index_no = current_index_no; //this.form_entry.id = active_debit_row_id;
+      //VueListen.$emit('RefreshItemTable');
       //console.log(active_debit_row);
     }
   },
@@ -3587,7 +3585,13 @@ __webpack_require__.r(__webpack_exports__);
       $('.modal:visible').length && $(document.body).addClass('modal-open');
     });
   },
-  computed: {},
+  computed: {
+    currentItems: function currentItems(current_index_no) {
+      return this.items.filter(function (index_no) {
+        return current_index_no;
+      });
+    }
+  },
   components: {}
 });
 

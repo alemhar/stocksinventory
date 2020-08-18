@@ -742,6 +742,7 @@
               items: [],
               item_no: 0,
               index_no: 0,
+              current_index_no: 0,
               user_id: '',
               editmode: false,
               cd_created: false,
@@ -1490,13 +1491,12 @@
             this.form_entry.branch_id = this.selected_branch.id ;
             this.form_entry.branch_name = this.selected_branch.name;
           },
-          selectDebitRow(active_debit_row_id){
+          selectDebitRow(current_index_no){
                 
-              /*
-              this.active_debit_row = active_debit_row_id;
-              this.form_entry.id = active_debit_row_id;
-              VueListen.$emit('RefreshItemTable');
-              */
+              this.current_index_no = current_index_no;
+              //this.form_entry.id = active_debit_row_id;
+              //VueListen.$emit('RefreshItemTable');
+              
 
               //console.log(active_debit_row);
 
@@ -1532,7 +1532,9 @@
 
         },
         computed: {
-            
+            currentItems(current_index_no){
+                return this.items.filter(index_no => current_index_no);
+            }
           
 
         },
