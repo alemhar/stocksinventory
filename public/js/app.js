@@ -2097,7 +2097,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./methods/cd.js */ "./resources/js/components/methods/cd.js");
 //
 //
 //
@@ -2833,6 +2832,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+/*
+
+import { 
+        loadBranches,
+        loadPayees,
+        loadChartAccounts,
+        initChartAccounts,
+        eventChild,
+        getDate,
+        createCD,
+        saveCD,
+        cancelCD,
+        searchAccountModal,
+        searchPayeeModal,
+        selectAccount,
+        selectPayee,
+        SearchIt,
+        SearchPayee,
+        loadEntryItems,
+        loadEntries,
+        createSerialNumber,
+        computeTaxChange,
+        selectDebitRow,
+        newEntry,
+        newItem,
+        cancelDebitEntry,
+        saveDebitEntry,
+        deleteEntry,
+        cancelItem,
+        saveItem,
+        deleteItem,
+        branchChange 
+} from './methods/cd.js'
+*/
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2956,23 +2989,25 @@ __webpack_require__.r(__webpack_exports__);
     */
   },
   created: function created() {
-    var _this = this;
-
-    this.loadPayees();
+    /*
+     this.loadPayees();
     this.loadBranches();
     this.initChartAccounts();
-    this.loadEntryItems();
+     this.loadEntryItems();
     this.loadEntries();
-    VueListen.$on('RefreshItemTable', function () {
-      _this.loadEntryItems();
+     
+    VueListen.$on('RefreshItemTable',() => {
+        this.loadEntryItems();
     });
-    VueListen.$on('RefreshEntryTable', function () {
-      _this.loadEntries();
+    
+    VueListen.$on('RefreshEntryTable',() => {
+        this.loadEntries();
     });
-    this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
-    /* Scrollbar fix
-       If you have a modal on your page that exceeds the browser height, then you can't scroll in it when closing an second modal. To fix this add: */
-
+    
+     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
+    */
+    /// Scrollbar fix
+    //   If you have a modal on your page that exceeds the browser height, then you can't scroll in it when closing an second modal. To fix this add: 
     $(document).on('hidden.bs.modal', '.modal', function () {
       $('.modal:visible').length && $(document.body).addClass('modal-open');
     });
