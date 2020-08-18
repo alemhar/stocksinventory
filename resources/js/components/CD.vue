@@ -734,7 +734,7 @@
 </template>
 <script>
     
-    /*
+    
     import { 
             loadBranches,
             loadPayees,
@@ -766,7 +766,7 @@
             deleteItem,
             branchChange 
     } from './methods/cd.js'
-    */
+    
     export default {
         data() {
           return {

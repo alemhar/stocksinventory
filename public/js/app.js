@@ -2097,6 +2097,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./methods/cd.js */ "./resources/js/components/methods/cd.js");
 //
 //
 //
@@ -2832,39 +2833,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
-/*
-import { 
-        loadBranches,
-        loadPayees,
-        loadChartAccounts,
-        initChartAccounts,
-        eventChild,
-        getDate,
-        createCD,
-        saveCD,
-        cancelCD,
-        searchAccountModal,
-        searchPayeeModal,
-        selectAccount,
-        selectPayee,
-        SearchIt,
-        SearchPayee,
-        loadEntryItems,
-        loadEntries,
-        createSerialNumber,
-        computeTaxChange,
-        selectDebitRow,
-        newEntry,
-        newItem,
-        cancelDebitEntry,
-        saveDebitEntry,
-        deleteEntry,
-        cancelItem,
-        saveItem,
-        deleteItem,
-        branchChange 
-} from './methods/cd.js'
-*/
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
