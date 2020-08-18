@@ -429,7 +429,7 @@
                   <span class="input-group-text inputGroup-sizing-default">Tax</span>
                 </div>
               
-                  <input v-model="Number(form_entry.vat).toLocaleString()" name="vat" id="vat"
+                  <input v-model="Number(form_entry.vat).toLocaleString()" name="vat" id="vat2"
                   
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('vat') }" readonly aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_entry" field="vat"></has-error>

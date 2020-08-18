@@ -73412,7 +73412,7 @@ var render = function() {
                         },
                         attrs: {
                           name: "vat",
-                          id: "vat",
+                          id: "vat2",
                           readonly: "",
                           "aria-describedby": "inputGroup-sizing-default"
                         },
