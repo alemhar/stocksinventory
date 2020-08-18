@@ -822,7 +822,7 @@
               }),
               payees: {},
               branches: {},
-              items: {},
+              //items: {},
               entries: {},
               chart_of_accounts: {},
               chart_of_accounts_header: {},

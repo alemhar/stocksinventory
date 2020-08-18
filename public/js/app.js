@@ -2097,8 +2097,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -2835,9 +2833,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    var _ref;
-
-    return _ref = {
+    return {
       ledgers: [],
       transactions: [],
       items: [],
@@ -2916,18 +2912,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         vat: 0
       }),
       payees: {},
-      branches: {}
-    }, _defineProperty(_ref, "items", {}), _defineProperty(_ref, "entries", {}), _defineProperty(_ref, "chart_of_accounts", {}), _defineProperty(_ref, "chart_of_accounts_header", {}), _defineProperty(_ref, "chart_of_accounts_detail", {}), _defineProperty(_ref, "readabilityObject", {
-      fontSize: user.font_size
-    }), _ref;
+      branches: {},
+      //items: {},
+      entries: {},
+      chart_of_accounts: {},
+      chart_of_accounts_header: {},
+      chart_of_accounts_detail: {},
+      readabilityObject: {
+        fontSize: user.font_size
+      }
+    };
   },
   methods: {
     loadBranches: function loadBranches() {
       var _this = this;
 
       if (this.$gate.isAdminOrUser()) {
-        axios.get("api/branch").then(function (_ref2) {
-          var data = _ref2.data;
+        axios.get("api/branch").then(function (_ref) {
+          var data = _ref.data;
           return _this.branches = data;
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
@@ -2936,8 +2938,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       if (this.$gate.isAdminOrUser()) {
-        axios.get("api/payee").then(function (_ref3) {
-          var data = _ref3.data;
+        axios.get("api/payee").then(function (_ref2) {
+          var data = _ref2.data;
           return _this2.payees = data;
         }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
       }
