@@ -735,35 +735,7 @@
 <script>
     
     import { 
-            loadBranches,
-            loadPayees,
-            loadChartAccounts,
-            initChartAccounts,
-            eventChild,
-            getDate,
-            createCD,
-            saveCD,
-            cancelCD,
-            searchAccountModal,
-            searchPayeeModal,
-            selectAccount,
-            selectPayee,
-            SearchIt,
-            SearchPayee,
-            loadEntryItems,
-            loadEntries,
-            createSerialNumber,
-            computeTaxChange,
-            selectDebitRow,
-            newEntry,
-            newItem,
-            cancelDebitEntry,
-            saveDebitEntry,
-            deleteEntry,
-            cancelItem,
-            saveItem,
-            deleteItem,
-            branchChange 
+            test
     } from '../cd.js'
 
 
@@ -864,35 +836,7 @@
           }
         },
         methods: {
-            loadBranches,
-            loadPayees,
-            loadChartAccounts,
-            initChartAccounts,
-            eventChild,
-            getDate,
-            createCD,
-            saveCD,
-            cancelCD,
-            searchAccountModal,
-            searchPayeeModal,
-            selectAccount,
-            selectPayee,
-            SearchIt,
-            SearchPayee,
-            loadEntryItems,
-            loadEntries,
-            createSerialNumber,
-            computeTaxChange,
-            selectDebitRow,
-            newEntry,
-            newItem,
-            cancelDebitEntry,
-            saveDebitEntry,
-            deleteEntry,
-            cancelItem,
-            saveItem,
-            deleteItem,
-            branchChange
+            test
         },
 
         created() {
