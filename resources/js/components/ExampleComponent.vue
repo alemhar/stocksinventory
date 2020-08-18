@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { test } from './methods/cd.js'
+import { test } from '../cd.js'
     export default {
         methods: {
             test,

@@ -7436,7 +7436,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./methods/cd.js */ "./resources/js/components/methods/cd.js");
+/* harmony import */ var _cd_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../cd.js */ "./resources/js/cd.js");
 //
 //
 //
@@ -7456,7 +7456,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
-    test: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["test"]
+    test: _cd_js__WEBPACK_IMPORTED_MODULE_0__["test"]
   },
   mounted: function mounted() {
     this.test();
@@ -110401,17 +110401,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Users_vue_vue_type_template_id_30c27aa6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
-
-/***/ }),
-
-/***/ "./resources/js/components/methods/cd.js":
-/*!***********************************************!*\
-  !*** ./resources/js/components/methods/cd.js ***!
-  \***********************************************/
-/*! exports provided: loadBranches, loadPayees, loadChartAccounts, initChartAccounts, eventChild, getDate, createCD, saveCD, cancelCD, searchAccountModal, searchPayeeModal, selectAccount, selectPayee, SearchIt, SearchPayee, loadEntryItems, loadEntries, createSerialNumber, computeTaxChange, selectDebitRow, newEntry, newItem, cancelDebitEntry, saveDebitEntry, deleteEntry, cancelItem, saveItem, deleteItem, branchChange */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'D:\\stocksinventory\\resources\\js\\components\\methods\\cd.js'");
 
 /***/ }),
 
