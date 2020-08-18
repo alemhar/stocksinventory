@@ -810,8 +810,6 @@
                   vat: 0,
                   canceled: 0,
                   user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
-                  
-                  
               }),
               form_entry: new Form({
 
