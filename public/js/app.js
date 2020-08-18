@@ -73360,7 +73360,7 @@ var render = function() {
                         },
                         attrs: {
                           name: "amount_ex_tax",
-                          id: "amount_ex_tax",
+                          id: "amount_ex_tax2",
                           readonly: "",
                           "aria-describedby": "inputGroup-sizing-default"
                         },
