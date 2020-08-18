@@ -1,5 +1,4 @@
 <template>
-
     <div class="container">
         <div class="row mt-1" v-if="$gate.isAdminOrUser()">
         <div class="col-md-12">
@@ -734,9 +733,8 @@
     </div>
 </template>
 <script>
-    //import { ModelSelect } from 'vue-search-select'
-    //import { DynamicSelect } from 'vue-dynamic-select'
-    //import { BasicSelect } from 'vue-search-select'
+    
+    /*
     import { 
             loadBranches,
             loadPayees,
@@ -768,6 +766,7 @@
             deleteItem,
             branchChange 
     } from './methods/cd.js'
+    */
     export default {
         data() {
           return {
@@ -867,6 +866,7 @@
           }
         },
         methods: {
+            /*
             loadBranches,
             loadPayees,
             loadChartAccounts,
@@ -896,19 +896,20 @@
             saveItem,
             deleteItem,
             branchChange
+            */
         },
 
         created() {
             
             
-            //this.loadUsers();
+
             this.loadPayees();
             this.loadBranches();
             this.initChartAccounts();
 
             this.loadEntryItems();
             this.loadEntries();
-            //this.SearchIt = _.debounce(this.SearchIt, 1000);
+
             
             VueListen.$on('RefreshItemTable',() => {
                 this.loadEntryItems();
@@ -920,10 +921,6 @@
             
 
             this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
-            //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
-            //console.log(this.payees);
-
-            //setInterval(() => this.loadUsers(),3000);
 
 
             /* Scrollbar fix
@@ -932,17 +929,7 @@
                 $('.modal:visible').length && $(document.body).addClass('modal-open');
             });
 
-            /*Backdrop z-index fix
-              This solution uses a setTimeout because the .modal-backdrop isn't created when the event show.bs.modal is triggered.
 
-            $(document).on('show.bs.modal', '.modal', function () {
-                var zIndex = 1040 + (10 * $('.modal:visible').length);
-                $(this).css('z-index', zIndex);
-                setTimeout(function() {
-                    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-                }, 0);
-            });
-            */
         },
         computed: {
             

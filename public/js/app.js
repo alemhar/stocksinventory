@@ -2097,7 +2097,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./methods/cd.js */ "./resources/js/components/methods/cd.js");
 //
 //
 //
@@ -2832,11 +2831,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//import { ModelSelect } from 'vue-search-select'
-//import { DynamicSelect } from 'vue-dynamic-select'
-//import { BasicSelect } from 'vue-search-select'
 
+/*
+import { 
+        loadBranches,
+        loadPayees,
+        loadChartAccounts,
+        initChartAccounts,
+        eventChild,
+        getDate,
+        createCD,
+        saveCD,
+        cancelCD,
+        searchAccountModal,
+        searchPayeeModal,
+        selectAccount,
+        selectPayee,
+        SearchIt,
+        SearchPayee,
+        loadEntryItems,
+        loadEntries,
+        createSerialNumber,
+        computeTaxChange,
+        selectDebitRow,
+        newEntry,
+        newItem,
+        cancelDebitEntry,
+        saveDebitEntry,
+        deleteEntry,
+        cancelItem,
+        saveItem,
+        deleteItem,
+        branchChange 
+} from './methods/cd.js'
+*/
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2927,72 +2955,59 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    loadBranches: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["loadBranches"],
-    loadPayees: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["loadPayees"],
-    loadChartAccounts: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["loadChartAccounts"],
-    initChartAccounts: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["initChartAccounts"],
-    eventChild: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["eventChild"],
-    getDate: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["getDate"],
-    createCD: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["createCD"],
-    saveCD: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["saveCD"],
-    cancelCD: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["cancelCD"],
-    searchAccountModal: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["searchAccountModal"],
-    searchPayeeModal: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["searchPayeeModal"],
-    selectAccount: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["selectAccount"],
-    selectPayee: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["selectPayee"],
-    SearchIt: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["SearchIt"],
-    SearchPayee: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["SearchPayee"],
-    loadEntryItems: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["loadEntryItems"],
-    loadEntries: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["loadEntries"],
-    createSerialNumber: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["createSerialNumber"],
-    computeTaxChange: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["computeTaxChange"],
-    selectDebitRow: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["selectDebitRow"],
-    newEntry: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["newEntry"],
-    newItem: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["newItem"],
-    cancelDebitEntry: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["cancelDebitEntry"],
-    saveDebitEntry: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["saveDebitEntry"],
-    deleteEntry: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["deleteEntry"],
-    cancelItem: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["cancelItem"],
-    saveItem: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["saveItem"],
-    deleteItem: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["deleteItem"],
-    branchChange: _methods_cd_js__WEBPACK_IMPORTED_MODULE_0__["branchChange"]
+    /*
+    loadBranches,
+    loadPayees,
+    loadChartAccounts,
+    initChartAccounts,
+    eventChild,
+    getDate,
+    createCD,
+    saveCD,
+    cancelCD,
+    searchAccountModal,
+    searchPayeeModal,
+    selectAccount,
+    selectPayee,
+    SearchIt,
+    SearchPayee,
+    loadEntryItems,
+    loadEntries,
+    createSerialNumber,
+    computeTaxChange,
+    selectDebitRow,
+    newEntry,
+    newItem,
+    cancelDebitEntry,
+    saveDebitEntry,
+    deleteEntry,
+    cancelItem,
+    saveItem,
+    deleteItem,
+    branchChange
+    */
   },
   created: function created() {
     var _this = this;
 
-    //this.loadUsers();
     this.loadPayees();
     this.loadBranches();
     this.initChartAccounts();
     this.loadEntryItems();
-    this.loadEntries(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
-
+    this.loadEntries();
     VueListen.$on('RefreshItemTable', function () {
       _this.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
       _this.loadEntries();
     });
-    this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
-    //console.log(this.payees);
-    //setInterval(() => this.loadUsers(),3000);
-
+    this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
     /* Scrollbar fix
        If you have a modal on your page that exceeds the browser height, then you can't scroll in it when closing an second modal. To fix this add: */
 
     $(document).on('hidden.bs.modal', '.modal', function () {
       $('.modal:visible').length && $(document.body).addClass('modal-open');
     });
-    /*Backdrop z-index fix
-      This solution uses a setTimeout because the .modal-backdrop isn't created when the event show.bs.modal is triggered.
-     $(document).on('show.bs.modal', '.modal', function () {
-        var zIndex = 1040 + (10 * $('.modal:visible').length);
-        $(this).css('z-index', zIndex);
-        setTimeout(function() {
-            $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-        }, 0);
-    });
-    */
   },
   computed: {},
   components: {}
