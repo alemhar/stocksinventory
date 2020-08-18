@@ -2837,6 +2837,7 @@ __webpack_require__.r(__webpack_exports__);
       ledgers: [],
       transactions: [],
       items: [],
+      item_no: 0,
       index_no: 0,
       user_id: '',
       editmode: false,
@@ -3278,11 +3279,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
     },
-    selectDebitRow: function selectDebitRow(active_debit_row_id) {
-      this.active_debit_row = active_debit_row_id;
-      this.form_entry.id = active_debit_row_id;
-      VueListen.$emit('RefreshItemTable'); //console.log(active_debit_row);
-    },
     newEntry: function newEntry() {
       this.editmode = false;
       this.form_entry.reset();
@@ -3290,6 +3286,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.transaction_no = this.form.transaction_no;
       this.form_entry.transaction_type = 'CD';
       this.save_button_entry_enabled = true;
+      ++this.index_no;
       /*  
       this.form_entry.post('api/cd/entry')
         .then((data)=>{
@@ -3378,8 +3375,8 @@ __webpack_require__.r(__webpack_exports__);
       this.form.amount += this.form_entry.amount;
       this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
       this.form.vat += this.form_entry.vat;
-      this.$Progress.start();
-      ++this.index_no;
+      this.$Progress.start(); //++this.index_no;
+
       this.transactions.push({
         index_no: this.index_no,
         payee_id: this.form.payee_id,
@@ -3500,8 +3497,9 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
       this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
       this.form_entry.vat += this.form_item.vat * 1;
-      ++this.index_no;
+      ++this.item_no;
       this.items.push({
+        item_no: this.item_no,
         index_no: this.index_no,
         transaction_no: this.form.transaction_no,
         transaction_type: this.form.transaction_type,
@@ -3557,6 +3555,14 @@ __webpack_require__.r(__webpack_exports__);
     branchChange: function branchChange() {
       this.form_entry.branch_id = this.selected_branch.id;
       this.form_entry.branch_name = this.selected_branch.name;
+    },
+    selectDebitRow: function selectDebitRow(active_debit_row_id) {
+      /*
+      this.active_debit_row = active_debit_row_id;
+      this.form_entry.id = active_debit_row_id;
+      VueListen.$emit('RefreshItemTable');
+      */
+      //console.log(active_debit_row);
     }
   },
   created: function created() {
@@ -73207,18 +73213,20 @@ var render = function() {
                               [
                                 _vm._m(7),
                                 _vm._v(" "),
-                                _vm._l(_vm.entries.data, function(entry) {
+                                _vm._l(_vm.transactions, function(entry) {
                                   return _c(
                                     "tr",
                                     {
-                                      key: entry.id,
+                                      key: entry.index_no,
                                       class: {
                                         "table-warning":
-                                          _vm.active_debit_row == entry.id
+                                          _vm.active_debit_row == entry.index_no
                                       },
                                       on: {
                                         click: function($event) {
-                                          return _vm.selectDebitRow(entry.id)
+                                          return _vm.selectDebitRow(
+                                            entry.index_no
+                                          )
                                         }
                                       }
                                     },
@@ -73251,7 +73259,7 @@ var render = function() {
                                             on: {
                                               click: function($event) {
                                                 return _vm.deleteEntry(
-                                                  entry.id,
+                                                  entry.index_no,
                                                   entry.amount,
                                                   entry.amount_ex_tax,
                                                   entry.vat
@@ -73313,8 +73321,8 @@ var render = function() {
                               [
                                 _vm._m(9),
                                 _vm._v(" "),
-                                _vm._l(_vm.items.data, function(item) {
-                                  return _c("tr", { key: item.id }, [
+                                _vm._l(_vm.items, function(item) {
+                                  return _c("tr", { key: item.item_no }, [
                                     _c("td", [
                                       _vm._v(_vm._s(item.account_code))
                                     ]),
@@ -73828,7 +73836,7 @@ var render = function() {
                             _vm._m(14),
                             _vm._v(" "),
                             _vm._l(_vm.items, function(item) {
-                              return _c("tr", { key: item.index_no }, [
+                              return _c("tr", { key: item.item_no }, [
                                 _c("td", [_vm._v(_vm._s(item.item))]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(item.quantity))]),
@@ -73849,7 +73857,7 @@ var render = function() {
                                       on: {
                                         click: function($event) {
                                           return _vm.deleteItem(
-                                            item.id,
+                                            item.item_no,
                                             item.sub_total,
                                             item.tax_excluded,
                                             item.vat

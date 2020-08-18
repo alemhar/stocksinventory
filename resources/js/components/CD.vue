@@ -159,7 +159,7 @@
                         <th>Option</th>
                         
                       </tr>
-                      <tr v-for="entry in entries.data" :key="entry.id" @click="selectDebitRow(entry.id)" :class="{ 'table-warning' : active_debit_row == entry.id }" >
+                      <tr v-for="entry in transactions" :key="entry.index_no" @click="selectDebitRow(entry.index_no)" :class="{ 'table-warning' : active_debit_row == entry.index_no }" >
                         <td>{{ entry.account_code }}</td>
                         <td>{{ entry.account_name }}</td>
                         <td>{{ entry.branch_name }}</td>
@@ -167,7 +167,7 @@
                         <td>{{ entry.amount_ex_tax }}</td>
                         <td>{{ entry.vat }}</td>
                         <td>
-                          <a href="#" @click="deleteEntry(entry.id,entry.amount,entry.amount_ex_tax,entry.vat)">
+                          <a href="#" @click="deleteEntry(entry.index_no,entry.amount,entry.amount_ex_tax,entry.vat)">
                             <i class="fa fa-trash"></i>
                           </a>
                         </td>
@@ -227,7 +227,7 @@
                         <th>Tax Excluded</th>
                         <th>Vat</th>
                       </tr>
-                      <tr v-for="item in items.data" :key="item.id">
+                      <tr v-for="item in items" :key="item.item_no">
                         <td>{{ item.account_code }}</td>
                         <td>{{ item.item }}</td>
                         <td>{{ item.quantity }}</td>
@@ -378,7 +378,7 @@
                         <th>Vat</th>
                         <th>Option</th>
                       </tr>
-                      <tr v-for="item in items" :key="item.index_no">
+                      <tr v-for="item in items" :key="item.item_no">
                         <td>{{ item.item }}</td>
                         <td>{{ item.quantity }}</td> 
                         <td>{{ item.price }}</td> 
@@ -386,7 +386,7 @@
                         <td>{{ item.tax_excluded }}</td> 
                         <td>{{ item.vat }}</td> 
                         <td>
-                          <a href="#" @click="deleteItem(item.id,item.sub_total,item.tax_excluded,item.vat)">
+                          <a href="#" @click="deleteItem(item.item_no,item.sub_total,item.tax_excluded,item.vat)">
                             <i class="fa fa-trash"></i>
                           </a>
                         </td>
@@ -740,6 +740,7 @@
               ledgers: [],
               transactions: [],
               items: [],
+              item_no: 0,
               index_no: 0,
               user_id: '',
               editmode: false,
@@ -1194,13 +1195,6 @@
                 }
               }
           },
-          selectDebitRow(active_debit_row_id){
-              this.active_debit_row = active_debit_row_id;
-              this.form_entry.id = active_debit_row_id;
-              VueListen.$emit('RefreshItemTable');
-              //console.log(active_debit_row);
-
-          },
           newEntry(){
               this.editmode = false;
               this.form_entry.reset();
@@ -1208,7 +1202,7 @@
               this.form_entry.transaction_no = this.form.transaction_no;
               this.form_entry.transaction_type = 'CD';
               this.save_button_entry_enabled = true;
-             
+              ++this.index_no;
               /*  
               this.form_entry.post('api/cd/entry')
                 .then((data)=>{
@@ -1303,7 +1297,7 @@
             this.form.vat += this.form_entry.vat;  
             
             this.$Progress.start();
-            ++this.index_no;
+            //++this.index_no;
             this.transactions.push({ 
                 index_no: this.index_no,
                 payee_id: this.form.payee_id,
@@ -1433,8 +1427,10 @@
             this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
             this.form_entry.vat += (this.form_item.vat * 1);
             
-            ++this.index_no;
+            ++this.item_no;
+            
             this.items.push({ 
+                item_no: this.item_no,
                 index_no: this.index_no,
                 transaction_no: this.form.transaction_no,
                 transaction_type: this.form.transaction_type,
@@ -1493,6 +1489,17 @@
           branchChange(){
             this.form_entry.branch_id = this.selected_branch.id ;
             this.form_entry.branch_name = this.selected_branch.name;
+          },
+          selectDebitRow(active_debit_row_id){
+                
+              /*
+              this.active_debit_row = active_debit_row_id;
+              this.form_entry.id = active_debit_row_id;
+              VueListen.$emit('RefreshItemTable');
+              */
+
+              //console.log(active_debit_row);
+
           }
         },
 
