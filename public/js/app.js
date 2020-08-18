@@ -3398,6 +3398,7 @@ __webpack_require__.r(__webpack_exports__);
         status: 'CONFIRMED',
         branch_id: 0
       });
+      $('#entry-details').modal('hide');
       this.$Progress.finish();
       /*
       this.form_entry.put('api/cd/entry/'+this.form_entry.id)
@@ -3508,6 +3509,7 @@ __webpack_require__.r(__webpack_exports__);
         vat: this.form_item.vat,
         status: 'CONFIRMED'
       });
+      $('#entry-items').modal('hide');
       /*
       this.form_item.put('api/cd/item/'+this.form_item.id)
       .then(() => {
