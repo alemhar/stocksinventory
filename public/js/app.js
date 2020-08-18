@@ -2097,7 +2097,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _cd_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../cd.js */ "./resources/js/cd.js");
 //
 //
 //
@@ -2832,7 +2831,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2923,10 +2921,540 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    test: _cd_js__WEBPACK_IMPORTED_MODULE_0__["test"]
+    loadBranches: function loadBranches() {
+      var _this = this;
+
+      if (this.$gate.isAdminOrUser()) {
+        axios.get("api/branch").then(function (_ref) {
+          var data = _ref.data;
+          return _this.branches = data;
+        }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
+      }
+    },
+    loadPayees: function loadPayees() {
+      var _this2 = this;
+
+      if (this.$gate.isAdminOrUser()) {
+        axios.get("api/payee").then(function (_ref2) {
+          var data = _ref2.data;
+          return _this2.payees = data;
+        }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
+      }
+    },
+    loadChartAccounts: function loadChartAccounts() {
+      var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+      if (headerOrDetail == 'header') {
+        this.chart_of_accounts = this.chart_of_accounts_header;
+      } else {
+        this.chart_of_accounts = this.chart_of_accounts_detail;
+      }
+      /*
+      if(headerOrDetail == null){
+        axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
+      } else {
+        //axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
+         axios.get('api/chartaccount?headerordetail='+headerOrDetail+'&transaction=CR')
+        .then((data)=>{
+          this.chart_of_accounts = data.data;
+        })
+        .catch(()=>{
+          //
+        });
+       }
+      */
+
+    },
+    initChartAccounts: function initChartAccounts() {
+      var _this3 = this;
+
+      axios.get('api/chartaccount?headerordetail=header&transaction_type=CD').then(function (data) {
+        _this3.chart_of_accounts_header = data.data;
+      })["catch"](function () {//
+      });
+      axios.get('api/chartaccount?headerordetail=detail&transaction_type=CD').then(function (data) {
+        _this3.chart_of_accounts_detail = data.data;
+      })["catch"](function () {//
+      });
+    },
+
+    /* Check if this is still being used.*/
+    eventChild: function eventChild(Obj) {
+      //console.log(Obj.id);
+      this.form.payee_id = Obj.id;
+    },
+    getDate: function getDate() {
+      var toTwoDigits = function toTwoDigits(num) {
+        return num < 10 ? '0' + num : num;
+      };
+
+      var today = new Date();
+      var year = today.getFullYear();
+      var month = toTwoDigits(today.getMonth() + 1);
+      var day = toTwoDigits(today.getDate());
+      return "".concat(year, "-").concat(month, "-").concat(day);
+    },
+    createCD: function createCD() {
+      var _this4 = this;
+
+      if (this.form.payee_id.length == 0) {
+        this.no_payee = true;
+      } else {
+        this.no_payee = false;
+      }
+
+      if (this.form.account_code.length == 0) {
+        this.no_account_code = true;
+      } else {
+        this.no_account_code = false;
+      }
+
+      if (this.form.reference_no.length == 0) {
+        this.no_reference_no = true;
+      } else {
+        this.no_reference_no = false;
+      }
+
+      if (this.no_account_code || this.no_reference_no || this.no_payee) {
+        this.cd_created = false;
+      } else {
+        this.cd_created = true;
+      }
+
+      this.form.transaction_no = this.createSerialNumber();
+      this.form.transaction_type = 'CD';
+      this.form.post('api/cd').then(function (data) {
+        //console.log(data.data.id);
+        _this4.form.id = data.data.id;
+      })["catch"](function () {//
+      });
+    },
+    saveCD: function saveCD() {
+      var _this5 = this;
+
+      if (this.form.amount == 0) {
+        return false;
+      }
+
+      this.$Progress.start();
+      this.form_entry.put('api/cd/' + this.form.id).then(function () {
+        _this5.cd_created = false;
+
+        _this5.form.post('api/cd/confirm/' + _this5.form.transaction_no);
+
+        _this5.ledgers.push({
+          id: _this5.form.id,
+          transaction_id: _this5.form.id,
+          transaction_no: _this5.form.transaction_no,
+          transaction_type: _this5.form.transaction_type,
+          account_code: _this5.form.account_code,
+          account_name: _this5.form.account_name,
+          transaction_date: _this5.form.transaction_date,
+          credit_amount: _this5.form.amount,
+          debit_amount: 0
+        });
+
+        _this5.ledgers.push({
+          id: 1,
+          transaction_id: _this5.form.id,
+          transaction_no: _this5.form.transaction_no,
+          transaction_type: _this5.form.transaction_type,
+          account_code: '1105110',
+          account_name: 'Input Tax',
+          transaction_date: _this5.form.transaction_date,
+          credit_amount: 0,
+          debit_amount: _this5.form.vat
+        });
+
+        var rawData = {
+          ledgers: _this5.ledgers
+        };
+        rawData = JSON.stringify(rawData);
+        var formData = new FormData();
+        formData.append('ledgers', rawData);
+        axios.post('api/ledgers', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }).then(function (response) {
+          console.log(response);
+        })["catch"](function (error) {
+          console.log(error);
+        });
+
+        _this5.$Progress.finish();
+      })["catch"](function () {
+        _this5.$Progress.fail();
+      });
+      swal.fire({
+        title: 'Saved!',
+        text: "Journal posted",
+        icon: 'info',
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ok'
+      }).then(function (result) {
+        if (result.value) {
+          //Reload Current Page
+          _this5.$router.go();
+        }
+      });
+    },
+    cancelCD: function cancelCD() {
+      this.cd_created = false;
+      this.form["delete"]('api/cd/cancel/' + this.form.transaction_no);
+    },
+    searchAccountModal: function searchAccountModal() {
+      var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'header';
+      this.headerOrDetail = headerOrDetail;
+      this.searchText = this.form.account_code; //this.searchText = '';
+
+      this.loadChartAccounts(headerOrDetail);
+      $('#select-account').modal('show');
+    },
+    searchPayeeModal: function searchPayeeModal() {
+      this.searchPayee = this.form.payee_id; //this.searchPayee = '';
+
+      this.loadPayees();
+      $('#select-payee').modal('show');
+    },
+    selectAccount: function selectAccount() {
+      var account_code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      var account_name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+      if (account_code != null && account_name != null) {
+        if (this.headerOrDetail == 'header') {
+          this.form.account_name = account_name;
+          this.form.account_code = account_code;
+        } else {
+          this.form_entry.account_name = account_name;
+          this.form_entry.account_code = account_code;
+        }
+      }
+
+      $('#select-account').modal('hide');
+    },
+    selectPayee: function selectPayee() {
+      var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      var address = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+      var tin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+
+      if (id) {
+        console.log(name);
+        this.current_payee_id = id;
+        this.form.payee_id = id;
+        this.current_payee_name = name;
+        this.current_payee_address = address;
+        this.current_payee_tin = tin;
+      }
+
+      $('#select-payee').modal('hide');
+    },
+    SearchIt: function SearchIt() {
+      var _this6 = this;
+
+      var query = this.searchText;
+      var headerOrDetail = this.headerOrDetail;
+      axios.get('api/searchAccount?q=' + query + '&transaction_type=CD&headerordetail=' + headerOrDetail).then(function (data) {
+        _this6.chart_of_accounts = data.data;
+      })["catch"](function () {//
+      });
+    },
+    SearchPayee: function SearchPayee() {
+      var _this7 = this;
+
+      var query = this.searchPayee;
+      axios.get('api/searchPayee?q=' + query).then(function (data) {
+        _this7.payees = data.data;
+      })["catch"](function () {//
+      });
+    },
+    loadEntryItems: function loadEntryItems() {
+      var _this8 = this;
+
+      var entry_id = this.form_entry.id;
+      axios.get('api/cd/items/list?entry_id=' + entry_id).then(function (data) {
+        _this8.items = data.data;
+      })["catch"](function () {//
+      });
+    },
+    loadEntries: function loadEntries() {
+      var _this9 = this;
+
+      var transaction_no = this.form.transaction_no;
+      axios.get('api/cd/entries/list?transaction_no=' + transaction_no).then(function (data) {
+        _this9.entries = data.data;
+      })["catch"](function () {//
+      });
+    },
+    createSerialNumber: function createSerialNumber() {
+      // Get current date
+      var d = new Date(); // Get pirmative value of date
+
+      var n = d.valueOf(); // Return concatenated primative value with the user id. 
+
+      return "" + n + this.user_id;
+    },
+    computeTaxChange: function computeTaxChange(event) {
+      if (this.form_item.price && this.form_item.quantity) {
+        this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
+
+        if (this.form_item.tax_type == 'VAT') {
+          //this.form_item.amount = event.target.value;
+          this.form_item.tax_excluded = (this.form_item.sub_total / 1.12).toFixed(2) * 1;
+          this.form_item.vat = (this.form_item.tax_excluded * 0.12).toFixed(2) * 1;
+        } else {
+          //this.form_entry.amount = event.target.value;
+          this.form_item.vat = 0;
+          this.form_item.tax_excluded = this.form_item.sub_total * 1;
+        }
+      }
+    },
+    selectDebitRow: function selectDebitRow(active_debit_row_id) {
+      this.active_debit_row = active_debit_row_id;
+      this.form_entry.id = active_debit_row_id;
+      VueListen.$emit('RefreshItemTable'); //console.log(active_debit_row);
+    },
+    newEntry: function newEntry() {
+      var _this10 = this;
+
+      this.editmode = false;
+      this.form_entry.reset();
+      this.form_entry.transaction_id = this.form.id;
+      this.form_entry.transaction_no = this.form.transaction_no;
+      this.form_entry.transaction_type = 'CD';
+      this.save_button_entry_enabled = true;
+      this.form_entry.post('api/cd/entry').then(function (data) {
+        _this10.form_entry.id = data.data.id; //console.log(data.data.id);
+
+        VueListen.$emit('RefreshItemTable');
+      })["catch"](function () {//
+      });
+      $('#entry-details').modal('show');
+    },
+    newItem: function newItem() {
+      var _this11 = this;
+
+      if (this.form_entry.account_code == 0) {
+        this.no_entry_account_code = true;
+      } else {
+        this.no_entry_account_code = false;
+      }
+
+      if (this.form_entry.branch_id == 0) {
+        this.no_entry_branch_id = true;
+      } else {
+        this.no_entry_branch_id = false;
+      }
+
+      if (this.no_entry_account_code || this.no_entry_branch_id) {
+        return false;
+      }
+
+      this.save_button_item_enabled = true;
+      this.editmode = false;
+      this.form_item.reset();
+      this.no_item = false;
+      this.no_price = false;
+      this.no_quantity = false;
+      this.form_item.transaction_entry_id = this.form_entry.id;
+      this.form_item.transaction_no = this.form.transaction_no;
+      this.form_item.transaction_type = 'CD';
+      this.form_item.account_code = this.form_entry.account_code;
+      this.form_item.post('api/cd/item').then(function (data) {
+        _this11.form_item.id = data.data.id; //console.log(data.data.id);
+      })["catch"](function () {//
+      });
+      this.loadEntryItems();
+      $('#entry-items').modal('show');
+    },
+    cancelDebitEntry: function cancelDebitEntry() {
+      var _this12 = this;
+
+      //this.$Progress.start();
+      this.form_item["delete"]('api/cd/entry/' + this.form_entry.id).then(function () {
+        $('#entry-details').modal('hide');
+        /*
+        swal.fire(
+            'Updated!',
+            'Payee information has been updated.',
+            'success'
+          );
+        */
+        //this.$Progress.finish();
+
+        VueListen.$emit('RefreshEntryTable');
+      })["catch"](function () {
+        _this12.$Progress.fail();
+      });
+    },
+    saveDebitEntry: function saveDebitEntry() {
+      var _this13 = this;
+
+      //console.log('Edit Payee');
+      // ** Temporary data to bypass Column cannot be null ERROR's
+      //this.form_entry.amount = 0;
+      //this.form_entry.amount_ex_tax = 0;
+      //this.form_entry.vat = 0;
+      this.form_entry.credit_amount = this.form_entry.amount; //this.form_entry.debit_amount = 0;
+      // ** Temporary data to bypass Column cannot be null ERROR's
+
+      this.save_button_entry_enabled = false;
+      this.$Progress.start();
+      this.form_entry.put('api/cd/entry/' + this.form_entry.id).then(function () {
+        $('#entry-details').modal('hide');
+        /*
+        swal.fire(
+            'Updated!',
+            'Payee information has been updated.',
+            'success'
+          );
+        */
+
+        _this13.form.amount += _this13.form_entry.amount;
+        _this13.form.amount_ex_tax += _this13.form_entry.amount_ex_tax;
+        _this13.form.vat += _this13.form_entry.vat;
+
+        _this13.ledgers.push({
+          id: _this13.form_entry.id,
+          transaction_id: _this13.form.id,
+          transaction_no: _this13.form.transaction_no,
+          transaction_type: _this13.form.transaction_type,
+          account_code: _this13.form_entry.account_code,
+          account_name: _this13.form_entry.account_name,
+          transaction_date: _this13.form.transaction_date,
+          credit_amount: 0,
+          debit_amount: _this13.form_entry.amount_ex_tax
+        }); //console.log(this.ledgers);
+
+
+        _this13.$Progress.finish();
+
+        VueListen.$emit('RefreshEntryTable');
+      })["catch"](function () {
+        _this13.$Progress.fail();
+      });
+    },
+    deleteEntry: function deleteEntry(entry_id, entry_amount, entry_amount_ex_tax, entry_vat) {
+      var _this14 = this;
+
+      this.form_item["delete"]('api/cd/entry/' + entry_id).then(function () {
+        //$('#entry-items').modal('hide');
+
+        /*
+        swal.fire(
+            'Updated!',
+            'Payee information has been updated.',
+            'success'
+          );
+        */
+        _this14.form.amount = parseFloat(_this14.form.amount - entry_amount).toFixed(2) * 1;
+        _this14.form.amount_ex_tax = (_this14.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
+        _this14.form.vat = (_this14.form.vat - entry_vat).toFixed(2) * 1;
+        VueListen.$emit('RefreshItemTable');
+        VueListen.$emit('RefreshEntryTable');
+      })["catch"](function () {
+        _this14.$Progress.fail();
+      });
+    },
+    cancelItem: function cancelItem() {
+      var _this15 = this;
+
+      //this.$Progress.start();
+      this.form_item["delete"]('api/cd/item/' + this.form_item.id).then(function () {
+        $('#entry-items').modal('hide');
+        /*
+        swal.fire(
+            'Updated!',
+            'Payee information has been updated.',
+            'success'
+          );
+        */
+        //this.$Progress.finish();
+
+        VueListen.$emit('RefreshItemTable');
+      })["catch"](function () {
+        _this15.$Progress.fail();
+      });
+    },
+    saveItem: function saveItem() {
+      var _this16 = this;
+
+      if (this.form_item.item.length == 0) {
+        this.no_item = true;
+      } else {
+        this.no_item = false;
+      }
+
+      if (this.form_item.price == 0) {
+        this.no_price = true;
+      } else {
+        this.no_price = false;
+      }
+
+      if (this.form_item.quantity == 0) {
+        this.no_quantity = true;
+      } else {
+        this.no_quantity = false;
+      }
+
+      if (this.no_item || this.no_price || this.no_quantity) {
+        return false;
+      }
+
+      this.save_button_item_enabled = false;
+      this.$Progress.start();
+      this.form_item.put('api/cd/item/' + this.form_item.id).then(function () {
+        $('#entry-items').modal('hide');
+        /*
+        swal.fire(
+            'Updated!',
+            'Payee information has been updated.',
+            'success'
+          );
+        */
+
+        _this16.form_entry.amount = parseFloat(_this16.form_entry.amount + _this16.form_item.sub_total).toFixed(2) * 1;
+        _this16.form_entry.amount_ex_tax = (_this16.form_entry.amount_ex_tax + _this16.form_item.tax_excluded).toFixed(2) * 1;
+        _this16.form_entry.vat += _this16.form_item.vat * 1;
+
+        _this16.$Progress.finish();
+
+        VueListen.$emit('RefreshItemTable');
+      })["catch"](function () {
+        _this16.$Progress.fail();
+      });
+    },
+    deleteItem: function deleteItem(item_id, item_sub_total, item_tax_excluded, item_vat) {
+      var _this17 = this;
+
+      this.form_item["delete"]('api/cd/item/' + item_id).then(function () {
+        //$('#entry-items').modal('hide');
+
+        /*
+        swal.fire(
+            'Updated!',
+            'Payee information has been updated.',
+            'success'
+          );
+        */
+        _this17.form_entry.amount = parseFloat(_this17.form_entry.amount - item_sub_total).toFixed(2) * 1;
+        _this17.form_entry.amount_ex_tax = (_this17.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
+        _this17.form_entry.vat = (_this17.form_entry.vat - item_vat).toFixed(2) * 1;
+        VueListen.$emit('RefreshItemTable');
+      })["catch"](function () {
+        _this17.$Progress.fail();
+      });
+    },
+    branchChange: function branchChange() {
+      this.form_entry.branch_id = this.selected_branch.id;
+      this.form_entry.branch_name = this.selected_branch.name;
+    }
   },
   created: function created() {
-    var _this = this;
+    var _this18 = this;
 
     this.loadPayees();
     this.loadBranches();
@@ -2934,10 +3462,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntryItems();
     this.loadEntries();
     VueListen.$on('RefreshItemTable', function () {
-      _this.loadEntryItems();
+      _this18.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this.loadEntries();
+      _this18.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
     /* Scrollbar fix
