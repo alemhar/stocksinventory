@@ -1534,7 +1534,9 @@
         computed: {
             currentItems(){
                 //this.current_index_no
-                return this.items.filter((item) => item.index_no == 2);
+                return this.items.filter(function(item) {
+                   return item.index_no == this.current_index_no;  
+                });
                 
             }
         },
