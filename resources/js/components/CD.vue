@@ -378,7 +378,7 @@
                         <th>Vat</th>
                         <th>Option</th>
                       </tr>
-                      <tr v-for="item in items" :key="item.item_no">
+                      <tr v-for="item in currentItems" :key="item.item_no">
                         <td>{{ item.item }}</td>
                         <td>{{ item.quantity }}</td> 
                         <td>{{ item.price }}</td> 
