@@ -3434,6 +3434,9 @@ __webpack_require__.r(__webpack_exports__);
       this.transactions = this.transactions.filter(function (transaction) {
         return transaction.index_no !== index_no;
       });
+      this.items = this.items.filter(function (item) {
+        return item.index_no !== index_no;
+      });
       this.form.amount = parseFloat(this.form.amount - entry_amount).toFixed(2) * 1;
       this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
       this.form.vat = (this.form.vat - entry_vat).toFixed(2) * 1;
