@@ -1533,9 +1533,11 @@
         },
         computed: {
             currentItems(){
-                return this.items.filter((item) => {
-                    return parseInt(item.index_no) == parseInt(this.current_index_no);  
-                })
+                return this.items.filter(item  => 
+                    {
+                    return parseInt(item.index_no)==parseInt(this.current_index_no);
+                  }  
+                )
                 //return filteredItems;
 
                 /*
