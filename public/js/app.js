@@ -3375,7 +3375,9 @@ __webpack_require__.r(__webpack_exports__);
       this.save_button_entry_enabled = false;
       this.form.amount += this.form_entry.amount;
       this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
-      this.form.vat += this.form_entry.vat;
+      this.form.vat += this.form_entry.vat; // To refresh ITEMS table
+
+      this.current_index_no = this.index_no;
       this.$Progress.start(); //++this.index_no;
 
       this.transactions.push({
@@ -3493,7 +3495,9 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
 
-      this.save_button_item_enabled = false;
+      this.save_button_item_enabled = false; // To refresh ITEMS table
+
+      this.current_index_no = this.index_no;
       this.$Progress.start();
       this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
       this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;

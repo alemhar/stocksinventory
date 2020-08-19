@@ -1296,6 +1296,9 @@
             this.form.amount += this.form_entry.amount;
             this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
             this.form.vat += this.form_entry.vat;  
+
+            // To refresh ITEMS table
+            this.current_index_no = this.index_no;
             
             this.$Progress.start();
             //++this.index_no;
@@ -1420,7 +1423,10 @@
             } 
 
             this.save_button_item_enabled = false;
-            
+
+
+            // To refresh ITEMS table
+            this.current_index_no = this.index_no;
 
             this.$Progress.start();
             
