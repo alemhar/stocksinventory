@@ -1463,8 +1463,6 @@
                 this.$Progress.fail();
             });
             */
-
-
           },
           deleteItem(item_id,item_sub_total,item_tax_excluded,item_vat){
               this.form_item.delete('api/cd/item/'+item_id)
