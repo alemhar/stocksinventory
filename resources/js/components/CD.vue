@@ -154,7 +154,7 @@
                         <th>Name</th>
                         <th>Branch</th>
                         <th>Amount</th>
-                        <th>Tax Excluded</th>
+                        <!-- th>Tax Excluded</th -->
                         <th>Tax</th>
                         <th>Option</th>
                         
@@ -164,10 +164,10 @@
                         <td>{{ entry.account_name }}</td>
                         <td>{{ entry.branch_name }}</td>
                         <td>{{ entry.amount }}</td>
-                        <td>{{ entry.amount_ex_tax }}</td>
+                        <!-- td>{{ entry.amount_ex_tax }}</td -->
                         <td>{{ entry.vat }}</td>
                         <td>
-                          <a href="#" @click="deleteEntry(entry.index_no,entry.amount,entry.amount_ex_tax,entry.vat)">
+                          <a href="#" @click="deleteEntry(entry.index_no,entry.amount,entry.vat)">
                             <i class="fa fa-trash"></i>
                           </a>
                         </td>
@@ -1355,7 +1355,7 @@
             */
 
           },
-          deleteEntry(index_no,entry_amount,entry_amount_ex_tax,entry_vat){
+          deleteEntry(index_no,entry_amount,entry_vat){
 
             this.transactions = this.transactions.filter(function( transaction ) {
                 return transaction.index_no !== index_no;
@@ -1365,8 +1365,8 @@
                 return item.index_no !== index_no;
             });
 
-            this.form.amount = parseFloat(this.form.amount - entry_amount).toFixed(2) * 1;
-            this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
+            this.form.amount = parseFloat(this.form.amount - entry_amount - entry_vat).toFixed(2) * 1;
+            this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount).toFixed(2) * 1;
             this.form.vat = (this.form.vat - entry_vat).toFixed(2) * 1;
             
             /*

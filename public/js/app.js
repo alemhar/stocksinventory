@@ -3430,15 +3430,15 @@ __webpack_require__.r(__webpack_exports__);
       });
       */
     },
-    deleteEntry: function deleteEntry(index_no, entry_amount, entry_amount_ex_tax, entry_vat) {
+    deleteEntry: function deleteEntry(index_no, entry_amount, entry_vat) {
       this.transactions = this.transactions.filter(function (transaction) {
         return transaction.index_no !== index_no;
       });
       this.items = this.items.filter(function (item) {
         return item.index_no !== index_no;
       });
-      this.form.amount = parseFloat(this.form.amount - entry_amount).toFixed(2) * 1;
-      this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
+      this.form.amount = parseFloat(this.form.amount - entry_amount - entry_vat).toFixed(2) * 1;
+      this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount).toFixed(2) * 1;
       this.form.vat = (this.form.vat - entry_vat).toFixed(2) * 1;
       /*
       this.form_item.delete('api/cd/entry/'+entry_id)
@@ -73266,10 +73266,6 @@ var render = function() {
                                       _vm._v(" "),
                                       _c("td", [_vm._v(_vm._s(entry.amount))]),
                                       _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(entry.amount_ex_tax))
-                                      ]),
-                                      _vm._v(" "),
                                       _c("td", [_vm._v(_vm._s(entry.vat))]),
                                       _vm._v(" "),
                                       _c("td", [
@@ -73282,7 +73278,6 @@ var render = function() {
                                                 return _vm.deleteEntry(
                                                   entry.index_no,
                                                   entry.amount,
-                                                  entry.amount_ex_tax,
                                                   entry.vat
                                                 )
                                               }
@@ -74901,8 +74896,6 @@ var staticRenderFns = [
       _c("th", [_vm._v("Branch")]),
       _vm._v(" "),
       _c("th", [_vm._v("Amount")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Tax Excluded")]),
       _vm._v(" "),
       _c("th", [_vm._v("Tax")]),
       _vm._v(" "),
