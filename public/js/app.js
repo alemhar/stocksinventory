@@ -3593,6 +3593,7 @@ __webpack_require__.r(__webpack_exports__);
       var filteredItems = this.items.filter(function (item) {
         return parseInt(item.index_no) == parseInt(_this12.current_index_no);
       });
+      return filteredItems;
     }
   },
   components: {}

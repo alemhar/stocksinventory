@@ -1538,6 +1538,7 @@
                 let filteredItems = this.items.filter((item) => {
                     return parseInt(item.index_no) == parseInt(this.current_index_no);  
                 })
+                return filteredItems;
                 
                 
                 
