@@ -3430,30 +3430,31 @@ __webpack_require__.r(__webpack_exports__);
       });
       */
     },
-    deleteEntry: function deleteEntry(entry_id, entry_amount, entry_amount_ex_tax, entry_vat) {
-      var _this8 = this;
-
-      this.form_item["delete"]('api/cd/entry/' + entry_id).then(function () {
-        //$('#entry-items').modal('hide');
-
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        _this8.form.amount = parseFloat(_this8.form.amount - entry_amount).toFixed(2) * 1;
-        _this8.form.amount_ex_tax = (_this8.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
-        _this8.form.vat = (_this8.form.vat - entry_vat).toFixed(2) * 1;
-        VueListen.$emit('RefreshItemTable');
-        VueListen.$emit('RefreshEntryTable');
-      })["catch"](function () {
-        _this8.$Progress.fail();
+    deleteEntry: function deleteEntry(index_no, entry_amount, entry_amount_ex_tax, entry_vat) {
+      this.transactions = this.transactions.filter(function (transaction) {
+        return transaction.index_no !== entry_id;
       });
+      this.form.amount = parseFloat(this.form.amount - entry_amount).toFixed(2) * 1;
+      this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
+      this.form.vat = (this.form.vat - entry_vat).toFixed(2) * 1;
+      /*
+      this.form_item.delete('api/cd/entry/'+entry_id)
+        .then(() => {
+            //$('#entry-items').modal('hide');
+              
+               this.form.amount = parseFloat(this.form.amount - entry_amount).toFixed(2) * 1;
+              this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
+              this.form.vat = (this.form.vat - entry_vat).toFixed(2) * 1;
+              VueListen.$emit('RefreshItemTable');
+              VueListen.$emit('RefreshEntryTable');
+         })
+        .catch(() => {
+            this.$Progress.fail();
+        });
+      */
     },
     cancelItem: function cancelItem() {
-      var _this9 = this;
+      var _this8 = this;
 
       //this.$Progress.start();
       this.form_item["delete"]('api/cd/item/' + this.form_item.id).then(function () {
@@ -3469,7 +3470,7 @@ __webpack_require__.r(__webpack_exports__);
 
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
-        _this9.$Progress.fail();
+        _this8.$Progress.fail();
       });
     },
     saveItem: function saveItem() {
@@ -3537,7 +3538,7 @@ __webpack_require__.r(__webpack_exports__);
       */
     },
     deleteItem: function deleteItem(item_id, item_sub_total, item_tax_excluded, item_vat) {
-      var _this10 = this;
+      var _this9 = this;
 
       this.form_item["delete"]('api/cd/item/' + item_id).then(function () {
         //$('#entry-items').modal('hide');
@@ -3549,12 +3550,12 @@ __webpack_require__.r(__webpack_exports__);
             'success'
           );
         */
-        _this10.form_entry.amount = parseFloat(_this10.form_entry.amount - item_sub_total).toFixed(2) * 1;
-        _this10.form_entry.amount_ex_tax = (_this10.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
-        _this10.form_entry.vat = (_this10.form_entry.vat - item_vat).toFixed(2) * 1;
+        _this9.form_entry.amount = parseFloat(_this9.form_entry.amount - item_sub_total).toFixed(2) * 1;
+        _this9.form_entry.amount_ex_tax = (_this9.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
+        _this9.form_entry.vat = (_this9.form_entry.vat - item_vat).toFixed(2) * 1;
         VueListen.$emit('RefreshItemTable');
       })["catch"](function () {
-        _this10.$Progress.fail();
+        _this9.$Progress.fail();
       });
     },
     branchChange: function branchChange() {
@@ -3568,7 +3569,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this11 = this;
+    var _this10 = this;
 
     this.loadPayees();
     this.loadBranches();
@@ -3576,10 +3577,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntryItems();
     this.loadEntries();
     VueListen.$on('RefreshItemTable', function () {
-      _this11.loadEntryItems();
+      _this10.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this11.loadEntries();
+      _this10.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
     /* Scrollbar fix
@@ -3591,10 +3592,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     currentItems: function currentItems() {
-      var _this12 = this;
+      var _this11 = this;
 
       return this.items.filter(function (item) {
-        return parseInt(item.index_no) == parseInt(_this12.current_index_no);
+        return parseInt(item.index_no) == parseInt(_this11.current_index_no);
       }); //return filteredItems;
 
       /*
