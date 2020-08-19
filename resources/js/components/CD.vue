@@ -1534,9 +1534,12 @@
         computed: {
             currentItems(){
                 //this.current_index_no
-                this.items.filter(function(item) {
-                   return item.index_no == this.current_index_no;  
-                });
+                
+                let filteredItems = this.items.filter((item) => {
+                    return parseInt(item.index_no) == parseInt(this.current_index_no);  
+                })
+                
+                
                 
             }
         },

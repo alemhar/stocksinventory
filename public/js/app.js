@@ -3587,9 +3587,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     currentItems: function currentItems() {
+      var _this12 = this;
+
       //this.current_index_no
-      this.items.filter(function (item) {
-        return item.index_no == this.current_index_no;
+      var filteredItems = this.items.filter(function (item) {
+        return parseInt(item.index_no) == parseInt(_this12.current_index_no);
       });
     }
   },
