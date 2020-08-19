@@ -1358,7 +1358,7 @@
           deleteEntry(index_no,entry_amount,entry_amount_ex_tax,entry_vat){
 
             this.transactions = this.transactions.filter(function( transaction ) {
-                return transaction.index_no !== entry_id;
+                return transaction.index_no !== index_no;
             });
 
             this.form.amount = parseFloat(this.form.amount - entry_amount).toFixed(2) * 1;
