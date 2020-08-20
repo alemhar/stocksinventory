@@ -73188,8 +73188,8 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.form.name_name,
-                                expression: "form.name_name"
+                                value: _vm.form.branch_name,
+                                expression: "form.branch_name"
                               }
                             ],
                             staticClass: "form-control col-9",
@@ -73199,7 +73199,7 @@ var render = function() {
                               id: "inputBranchName",
                               placeholder: "Branch Name"
                             },
-                            domProps: { value: _vm.form.name_name },
+                            domProps: { value: _vm.form.branch_name },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
@@ -73207,7 +73207,7 @@ var render = function() {
                                 }
                                 _vm.$set(
                                   _vm.form,
-                                  "name_name",
+                                  "branch_name",
                                   $event.target.value
                                 )
                               }
