@@ -196,6 +196,7 @@ class CDController extends Controller
                 'transaction_no' => $transaction->transaction_no,
                 'transaction_type' => $transaction->transaction_type,
                 'transaction_date' => $transaction->transaction_date,
+                'transaction_entry_id' => $transaction->transaction_entry_id,
                 'amount' => $transaction->amount,
                 'credit_amount' => $transaction->credit_amount,
                 'debit_amount' => $transaction->debit_amount,
