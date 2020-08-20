@@ -3086,7 +3086,7 @@ __webpack_require__.r(__webpack_exports__);
       this.transaction_created = false;
       ++this.transaction_entry_id;
       this.transactions.push({
-        transaction_entry_id: 0,
+        transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
         branch_id: this.current_branch_id,
         account_code: this.form.account_code,
@@ -3108,7 +3108,7 @@ __webpack_require__.r(__webpack_exports__);
       });
       ++this.transaction_entry_id;
       this.transactions.push({
-        transaction_entry_id: 0,
+        transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
         branch_id: this.current_branch_id,
         account_code: '1105110',
