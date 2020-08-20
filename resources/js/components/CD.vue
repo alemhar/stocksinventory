@@ -1006,7 +1006,7 @@
                 wtax_code: 0,
                 wtax: 0,
                 user_id: this.form.user_id,
-                status: 'CONFIRMED',
+                status: 'CONFIRMED'
             });
             ++this.transaction_entry_id;
             
@@ -1029,7 +1029,7 @@
                 wtax_code: 0,
                 wtax: 0,
                 user_id: this.form.user_id,
-                status: 'CONFIRMED',
+                status: 'CONFIRMED'
             });  
 
 
@@ -1322,7 +1322,7 @@
                 wtax_code: 0,
                 wtax: 0,
                 user_id: this.form.user_id,
-                status: 'CONFIRMED',
+                status: 'CONFIRMED'
             });
             $('#entry-details').modal('hide');
             //this.$Progress.finish();
