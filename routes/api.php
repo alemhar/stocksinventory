@@ -57,6 +57,7 @@ Route::get('account', 'API\UserController@account');
 Route::get('findUser', 'API\UserController@search');
 Route::get('searchAccount', 'API\AccountController@search');
 Route::get('searchPayee', 'API\PayeeController@search');
+Route::get('searchBranch', 'API\BranchController@search');
 
 Route::get('searchCD', 'API\CDController@search');
 Route::put('account', 'API\UserController@updateAccountInfo');
@@ -66,7 +67,10 @@ Route::post('cd/confirm/{transaction_no}', 'API\CDController@confirmTransaction'
 Route::get('cd/items/list', 'API\CDItemController@list');
 Route::get('cd/entries/list', 'API\CDEntryController@list');
 Route::get('cd/purchase/list', 'API\CDController@list');
+
 Route::post('ledgers', 'API\AccountController@store_ledger');
+Route::post('transactions', 'API\CDController@store_transactions');
+
 Route::post('record_payment', 'API\CDController@record_payment');
 Route::post('update_payee_account', 'API\PayeeController@updateAccount');
 

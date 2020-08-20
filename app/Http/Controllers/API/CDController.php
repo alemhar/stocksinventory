@@ -183,4 +183,41 @@ class CDController extends Controller
         return ['message' => 'Payment posted.'];
     }
 
+    public function store_transactions(Request $request)
+    {
+        $data = json_decode($request['transactions']);
+        foreach ($data->transactions as $transaction) {
+            Transaction::create([
+                'payee_id' => $transaction->payee_id,
+                'branch_id' => $transaction->branch_id,
+                'account_code' => $transaction->account_code,
+                'account_name' => $transaction->account_name,
+                'reference_no' => $transaction->reference_no,
+                'transaction_no' => $transaction->transaction_no,
+                'transaction_type' => $transaction->transaction_type,
+                'transaction_date' => $transaction->transaction_date,
+                'amount' => $transaction->amount,
+                'credit_amount' => $transaction->credit_amount,
+                'debit_amount' => $transaction->debit_amount,
+                'total_payment' => $transaction->total_payment,
+                'amount_ex_tax' => $transaction->amount_ex_tax,
+                'vat' => $transaction->vat,
+                'wtax_code' => $transaction->wtax_code,
+                'wtax' => $transaction->wtax,
+                'user_id' => $transaction->user_id,
+                'status' => $transaction->status
+            ]);
+        }
+
+        return ['message' => 'Transactions posted.'];
+    }
+
 }
+
+              
+               
+                
+                
+                
+                
+                

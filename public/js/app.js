@@ -2919,7 +2919,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      ledgers: [],
+      transaction_type: 'CD',
+      //ledgers: [],
       transactions: [],
       items: [],
       item_no: 0,
@@ -2957,7 +2958,7 @@ __webpack_require__.r(__webpack_exports__);
         payee_id: '',
         reference_no: '',
         transaction_no: '',
-        transaction_type: 'CD',
+        transaction_type: this.transaction_type,
         // default for Cash Disbursement
         transaction_date: this.getDate(),
         account_code: '',
@@ -2975,11 +2976,9 @@ __webpack_require__.r(__webpack_exports__);
         //id:'',
         //transaction_id:'',
         transaction_no: '',
-        transaction_type: '',
+        transaction_type: this.transaction_type,
         account_code: 0,
         account_name: 'NA',
-        //entry_name: '',
-        //entry_description: '',
         branch_id: '',
         branch_name: '',
         amount: 0,
@@ -2993,7 +2992,7 @@ __webpack_require__.r(__webpack_exports__);
         id: '',
         transaction_entry_id: '',
         transaction_no: '',
-        transaction_type: '',
+        transaction_type: this.transaction_type,
         account_code: '',
         item: '',
         quantity: 0,
@@ -3006,7 +3005,7 @@ __webpack_require__.r(__webpack_exports__);
       payees: {},
       branches: {},
       //items: {},
-      entries: {},
+      //entries: {},
       chart_of_accounts: {},
       chart_of_accounts_header: {},
       chart_of_accounts_detail: {},
@@ -3048,21 +3047,24 @@ __webpack_require__.r(__webpack_exports__);
     initChartAccounts: function initChartAccounts() {
       var _this3 = this;
 
-      axios.get('api/chartaccount?headerordetail=header&transaction_type=CD').then(function (data) {
+      axios.get('api/chartaccount?headerordetail=header&transaction_type=' + transaction_type).then(function (data) {
         _this3.chart_of_accounts_header = data.data;
       })["catch"](function () {//
       });
-      axios.get('api/chartaccount?headerordetail=detail&transaction_type=CD').then(function (data) {
+      axios.get('api/chartaccount?headerordetail=detail&transaction_type=' + transaction_type).then(function (data) {
         _this3.chart_of_accounts_detail = data.data;
       })["catch"](function () {//
       });
     },
 
     /* Check if this is still being used.*/
-    eventChild: function eventChild(Obj) {
+
+    /*
+    eventChild(Obj){
       //console.log(Obj.id);
       this.form.payee_id = Obj.id;
     },
+    */
     getDate: function getDate() {
       var toTwoDigits = function toTwoDigits(num) {
         return num < 10 ? '0' + num : num;
@@ -3106,7 +3108,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.form.transaction_no = this.createSerialNumber();
-      this.form.transaction_type = 'CD';
+      this.form.transaction_type = transaction_type;
       /*
       this.form.post('api/cd')
           .then((data)=>{
@@ -3123,15 +3125,16 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.form.amount == 0) {
         return false;
-      }
+      } //this.$Progress.start();
 
-      this.$Progress.start();
+
       this.cd_created = false; // **
 
       ++this.index_no;
       this.transactions.push({
         index_no: this.index_no,
         payee_id: this.form.payee_id,
+        branch_id: this.form.branch_id,
         account_code: this.form.account_code,
         account_name: this.form.account_name,
         reference_no: this.form.reference_no,
@@ -3147,8 +3150,7 @@ __webpack_require__.r(__webpack_exports__);
         wtax_code: 0,
         wtax: 0,
         user_id: this.form.user_id,
-        status: 'CONFIRMED',
-        branch_id: 0
+        status: 'CONFIRMED'
       });
       ++this.index_no;
       this.transactions.push({
@@ -3156,6 +3158,7 @@ __webpack_require__.r(__webpack_exports__);
         //  transaction_id: this.form.id, 
         index_no: this.index_no,
         payee_id: this.form.payee_id,
+        branch_id: this.form.branch_id,
         account_code: '1105110',
         account_name: 'Input Tax',
         reference_no: this.form.reference_no,
@@ -3171,8 +3174,7 @@ __webpack_require__.r(__webpack_exports__);
         wtax_code: 0,
         wtax: 0,
         user_id: this.form.user_id,
-        status: 'CONFIRMED',
-        branch_id: 0
+        status: 'CONFIRMED'
       });
       var rawData = {
         transactions: this.transactions
@@ -3188,8 +3190,8 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response);
       })["catch"](function (error) {
         console.log(error);
-      });
-      this.$Progress.finish();
+      }); //this.$Progress.finish();
+
       /*
       this.form_entry.put('api/cd/'+this.form.id)
       .then(() => {
@@ -3255,13 +3257,36 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.value) {
           //Reload Current Page
-          _this4.$router.go();
+          //this.$router.go(); // Next Update - Just initialize the data and cd_created = false;  
+          _this4.dataReset();
         }
       });
     },
+    dataReset: function dataReset() {
+      this.form.reset();
+      this.form_entry.reset();
+      this.form_item.reset(); //this.ledgers = [];
+
+      this.transactions = [];
+      this.items = [];
+      this.index_no = 0;
+      this.item_no = 0;
+      this.current_index_no = 0;
+      this.searchText = '';
+      this.searchPayee = '';
+      this.searchBranch = '';
+      this.headerOrDetail = 'header';
+      this.current_branch_id = '';
+      this.current_branch_name = '';
+      this.current_payee_id = '';
+      this.current_payee_name = '';
+      this.current_payee_address = '';
+      this.current_payee_tin = '';
+      this.active_debit_row = 0;
+    },
     cancelCD: function cancelCD() {
       this.cd_created = false;
-      this.form["delete"]('api/cd/cancel/' + this.form.transaction_no);
+      this.dataReset(); //this.form.delete('api/cd/cancel/'+this.form.transaction_no);
     },
     searchAccountModal: function searchAccountModal() {
       var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'header';
@@ -3332,7 +3357,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var query = this.searchText;
       var headerOrDetail = this.headerOrDetail;
-      axios.get('api/searchAccount?q=' + query + '&transaction_type=CD&headerordetail=' + headerOrDetail).then(function (data) {
+      axios.get('api/searchAccount?q=' + query + '&transaction_type=' + transaction_type + '&headerordetail=' + headerOrDetail).then(function (data) {
         _this5.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
@@ -3407,7 +3432,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.reset();
       this.form_entry.transaction_id = this.form.id;
       this.form_entry.transaction_no = this.form.transaction_no;
-      this.form_entry.transaction_type = 'CD';
+      this.form_entry.transaction_type = transaction_type;
       this.save_button_entry_enabled = true;
       ++this.index_no;
       /*  
@@ -3430,14 +3455,16 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.no_entry_account_code = false;
       }
-
-      if (this.form_entry.branch_id == 0) {
+      /*
+      if(this.form_entry.branch_id == 0) {
         this.no_entry_branch_id = true;
       } else {
         this.no_entry_branch_id = false;
       }
+      */
 
-      if (this.no_entry_account_code || this.no_entry_branch_id) {
+
+      if (this.no_entry_account_code) {
         return false;
       }
 
@@ -3449,7 +3476,7 @@ __webpack_require__.r(__webpack_exports__);
       this.no_quantity = false;
       this.form_item.transaction_entry_id = this.form_entry.id;
       this.form_item.transaction_no = this.form.transaction_no;
-      this.form_item.transaction_type = 'CD';
+      this.form_item.transaction_type = transaction_type;
       this.form_item.account_code = this.form_entry.account_code;
       /*  
       this.form_item.post('api/cd/item')
@@ -3466,24 +3493,23 @@ __webpack_require__.r(__webpack_exports__);
       $('#entry-items').modal('show');
     },
     cancelDebitEntry: function cancelDebitEntry() {
-      var _this8 = this;
-
       //this.$Progress.start();
-      this.form_item["delete"]('api/cd/entry/' + this.form_entry.id).then(function () {
-        $('#entry-details').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        //this.$Progress.finish();
-
-        VueListen.$emit('RefreshEntryTable');
-      })["catch"](function () {
-        _this8.$Progress.fail();
+      this.items = this.items.filter(function (item) {
+        return item.index_no !== this.index_no;
       });
+      $('#entry-details').modal('hide');
+      /*
+      this.form_item.delete('api/cd/entry/'+this.form_entry.id)
+      .then(() => {
+          $('#entry-details').modal('hide');
+          
+            //this.$Progress.finish();
+            VueListen.$emit('RefreshEntryTable');
+      })
+      .catch(() => {
+          this.$Progress.fail();
+      });
+      */
     },
     saveDebitEntry: function saveDebitEntry() {
       //console.log('Edit Payee');
@@ -3505,6 +3531,7 @@ __webpack_require__.r(__webpack_exports__);
       this.transactions.push({
         index_no: this.index_no,
         payee_id: this.form.payee_id,
+        branch_id: this.form.branch_id,
         account_code: this.form_entry.account_code,
         account_name: this.form_entry.account_name,
         reference_no: this.form.reference_no,
@@ -3520,8 +3547,7 @@ __webpack_require__.r(__webpack_exports__);
         wtax_code: 0,
         wtax: 0,
         user_id: this.form.user_id,
-        status: 'CONFIRMED',
-        branch_id: 0
+        status: 'CONFIRMED'
       });
       $('#entry-details').modal('hide');
       this.$Progress.finish();
@@ -3579,24 +3605,20 @@ __webpack_require__.r(__webpack_exports__);
       */
     },
     cancelItem: function cancelItem() {
-      var _this9 = this;
-
       //this.$Progress.start();
-      this.form_item["delete"]('api/cd/item/' + this.form_item.id).then(function () {
-        $('#entry-items').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        //this.$Progress.finish();
-
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {
-        _this9.$Progress.fail();
+      $('#entry-items').modal('hide');
+      /*
+      this.form_item.delete('api/cd/item/'+this.form_item.id)
+      .then(() => {
+          $('#entry-items').modal('hide');
+          
+            //this.$Progress.finish();
+             VueListen.$emit('RefreshItemTable');
+      })
+      .catch(() => {
+          this.$Progress.fail();
       });
+      */
     },
     saveItem: function saveItem() {
       if (this.form_item.item.length == 0) {
@@ -3623,8 +3645,8 @@ __webpack_require__.r(__webpack_exports__);
 
       this.save_button_item_enabled = false; // To refresh ITEMS table
 
-      this.current_index_no = this.index_no;
-      this.$Progress.start();
+      this.current_index_no = this.index_no; //this.$Progress.start();
+
       this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
       this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
       this.form_entry.vat += this.form_item.vat * 1;
@@ -3662,26 +3684,28 @@ __webpack_require__.r(__webpack_exports__);
       });
       */
     },
-    deleteItem: function deleteItem(item_id, item_sub_total, item_tax_excluded, item_vat) {
-      var _this10 = this;
-
-      this.form_item["delete"]('api/cd/item/' + item_id).then(function () {
-        //$('#entry-items').modal('hide');
-
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        _this10.form_entry.amount = parseFloat(_this10.form_entry.amount - item_sub_total).toFixed(2) * 1;
-        _this10.form_entry.amount_ex_tax = (_this10.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
-        _this10.form_entry.vat = (_this10.form_entry.vat - item_vat).toFixed(2) * 1;
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {
-        _this10.$Progress.fail();
+    deleteItem: function deleteItem(item_no, item_sub_total, item_tax_excluded, item_vat) {
+      this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
+      this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
+      this.form_entry.vat = (this.form_entry.vat - item_vat).toFixed(2) * 1;
+      this.items = this.items.filter(function (item) {
+        return item.item_no !== item_no;
       });
+      /*  
+      this.form_item.delete('api/cd/item/'+item_id)
+      .then(() => {
+          //$('#entry-items').modal('hide');
+          
+            this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
+            this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
+            this.form_entry.vat = (this.form_entry.vat - item_vat).toFixed(2) * 1;
+            
+            VueListen.$emit('RefreshItemTable');
+      })
+      .catch(() => {
+          this.$Progress.fail();
+      });
+      */
     },
     branchChange: function branchChange() {
       this.form_entry.branch_id = this.selected_branch.id;
@@ -3694,19 +3718,21 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this11 = this;
-
     this.loadPayees();
     this.loadBranch();
     this.initChartAccounts();
-    this.loadEntryItems();
-    this.loadEntries();
-    VueListen.$on('RefreshItemTable', function () {
-      _this11.loadEntryItems();
+    this.loadEntryItems(); //this.loadEntries();
+
+    /*
+    VueListen.$on('RefreshItemTable',() => {
+        this.loadEntryItems();
     });
-    VueListen.$on('RefreshEntryTable', function () {
-      _this11.loadEntries();
+    
+    VueListen.$on('RefreshEntryTable',() => {
+        this.loadEntries();
     });
+    */
+
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
     /* Scrollbar fix
        If you have a modal on your page that exceeds the browser height, then you can't scroll in it when closing an second modal. To fix this add: */
@@ -3717,10 +3743,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     currentItems: function currentItems() {
-      var _this12 = this;
+      var _this8 = this;
 
       return this.items.filter(function (item) {
-        return parseInt(item.index_no) == parseInt(_this12.current_index_no);
+        return parseInt(item.index_no) == parseInt(_this8.current_index_no);
       }); //return filteredItems;
 
       /*
@@ -73963,85 +73989,6 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "input-group mb-2" },
-                    [
-                      _vm._m(14),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.selected_branch,
-                              expression: "selected_branch"
-                            }
-                          ],
-                          staticClass: "form-control col-12",
-                          attrs: {
-                            "aria-describedby": "inputGroup-sizing-default"
-                          },
-                          on: {
-                            change: [
-                              function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.selected_branch = $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              },
-                              _vm.branchChange
-                            ]
-                          }
-                        },
-                        _vm._l(_vm.branches.data, function(branch) {
-                          return _c(
-                            "option",
-                            {
-                              domProps: {
-                                value: { id: branch.id, name: branch.name }
-                              }
-                            },
-                            [_vm._v(_vm._s(branch.name))]
-                          )
-                        }),
-                        0
-                      ),
-                      _vm._v(" "),
-                      _c("has-error", {
-                        attrs: { form: _vm.form_entry, field: "branch_id" }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "input-group mb-2" }, [
-                    _c(
-                      "p",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.no_entry_branch_id,
-                            expression: "no_entry_branch_id"
-                          }
-                        ],
-                        staticClass: "empty-field-message"
-                      },
-                      [_vm._v("** Please indicate branch.")]
-                    )
-                  ]),
-                  _vm._v(" "),
                   _c("div", { staticClass: "box-header" }, [
                     _c(
                       "h3",
@@ -74075,7 +74022,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(15),
+                            _vm._m(14),
                             _vm._v(" "),
                             _vm._l(_vm.currentItems, function(item) {
                               return _c("tr", { key: item.item_no }, [
@@ -74123,7 +74070,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(16),
+                      _vm._m(15),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -74175,7 +74122,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(17),
+                      _vm._m(16),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -74231,7 +74178,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(18),
+                      _vm._m(17),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -74375,7 +74322,7 @@ var render = function() {
                   [_vm._v("Update Entry")]
                 ),
                 _vm._v(" "),
-                _vm._m(19)
+                _vm._m(18)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -74383,7 +74330,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(20),
+                    _vm._m(19),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -74442,7 +74389,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(21),
+                    _vm._m(20),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -74504,7 +74451,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(22),
+                    _vm._m(21),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -74570,7 +74517,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(23),
+                    _vm._m(22),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -74615,7 +74562,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(24),
+                  _vm._m(23),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -74679,7 +74626,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(25),
+                    _vm._m(24),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -74726,7 +74673,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(26),
+                    _vm._m(25),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -74817,7 +74764,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(27),
+              _vm._m(26),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -74856,7 +74803,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(28),
+                            _vm._m(27),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -74900,7 +74847,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(29)
+                _vm._m(28)
               ])
             ])
           ]
@@ -74931,7 +74878,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(30),
+              _vm._m(29),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -74970,7 +74917,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(31),
+                            _vm._m(30),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -75010,7 +74957,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(32)
+                _vm._m(31)
               ])
             ])
           ]
@@ -75041,7 +74988,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(33),
+              _vm._m(32),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -75080,7 +75027,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(34),
+                            _vm._m(33),
                             _vm._v(" "),
                             _vm._l(_vm.branches.data, function(branch) {
                               return _c("tr", { key: branch.id }, [
@@ -75118,7 +75065,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(35)
+                _vm._m(34)
               ])
             ])
           ]
@@ -75318,18 +75265,6 @@ var staticRenderFns = [
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Account")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Branch")]
       )
     ])
   },

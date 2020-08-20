@@ -92,14 +92,14 @@ class BranchController extends Controller
 
     public function search(){
         if ($search = \Request::get('q')) {
-            $accounts = Branch::where(function($query) use ($search){
-                $query->where('account_code','LIKE',"%$search%")
-                        ->orWhere('account_name','LIKE',"%$search%");
+            $branch = Branch::where(function($query) use ($search){
+                $query->where('id','LIKE',"%$search%")
+                        ->orWhere('name','LIKE',"%$search%");
             })->paginate(10);
 
         }else{
-            $accounts = Branch::latest()->paginate(10);
+            $branch = Branch::latest()->paginate(10);
         }
-        return $accounts;
+        return $branch;
     }
 }
