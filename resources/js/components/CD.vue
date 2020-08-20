@@ -56,6 +56,7 @@
                     
 
                   </div>
+
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Account</span>
@@ -70,12 +71,27 @@
                         <button type="button" v-show="!cd_created" class="btn btn-success" @click="searchAccountModal('header')"><i class="fas fa-search fa-fw"></i></button>
 
                     </span>
-                    
-                    
                   </div>
+
                   <div class="input-group mb-2">
                     <p v-show="no_account_code" class="empty-field-message">** Please select account!</p>
                   </div>  
+
+
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text inputGroup-sizing-default">Branch</span>
+                    </div>
+                    <input v-bind:readonly="cd_created" type="text" class="form-control col-2" id="inputBranchId" placeholder="Code"  v-model="form.branch_id">
+                    <input readonly="true" type="text" class="form-control col-9" id="inputBranchName" placeholder="Branch Name" v-model="form.name_name">
+                    <span class="input-group-btn col-1">
+                        <button type="button" v-show="!cd_created" class="btn btn-success" @click="searchBranchModal()"><i class="fas fa-search fa-fw"></i></button>
+                    </span>
+                  </div>
+                  <div class="input-group mb-2">
+                    <p v-show="no_branch_id" class="empty-field-message">** Please select branch!</p>
+                  </div>
+
                 </div>
                 <!--Right Col-->
                 <div class="col-4">
@@ -723,6 +739,75 @@
       </div>
       <!-- Search Payee Modal -->      
 
+
+      <!-- Search Branch Modal 
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      -->
+
+      <div class="modal fade" id="select-branch" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <!--h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add New</h5>
+              <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update Entry</h5 -->
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form onsubmit="return false;">
+            <div class="modal-body">
+              
+              <div class="form-group">
+                <label>Search</label>
+                <input type="text" name="search" v-model="searchBranch" @change="SearchBranch" class="float-right col-6">
+              </div>
+              
+              <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tbody><tr>
+                  <th>Code</th>
+                  <th>Branch</th>
+                  <th>Option</th>
+                </tr>
+                <tr v-for="branch in branches.data" :key="branch.id">
+                  <td>{{ branch.id }}</td>
+                  <td>{{ branch.name }}</td> 
+                  <td>
+                    <a href="#" @click="selectBranch(branch.id,branch.name)">Select
+                      <i class="fa fa-edit"></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody></table>
+            </div>
+            <!-- /.box-body -->
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Search Branch Modal -->   
+
+
+
       <!--search-account
       v-show="isModalVisible"
       @close="closeSearchAccount"
@@ -749,6 +834,7 @@
               no_payee: false,
               no_reference_no: false,
               no_account_code: false,
+              no_branch_id: false,
               no_item: false,
               no_price: false,
               no_quantity: false,
@@ -758,7 +844,10 @@
               save_button_entry_enabled: true,
               searchText: '',
               searchPayee: '',
+              searchBranch: '',
               headerOrDetail: 'header',
+              current_branch_id: '',
+              current_branch_name: '',
               current_payee_id: '',
               current_payee_name: '',
               current_payee_address: '',
@@ -781,6 +870,7 @@
                   amount_ex_tax: 0,
                   vat: 0,
                   canceled: 0,
+                  branch_id: '',
                   user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
               }),
               form_entry: new Form({
@@ -836,10 +926,10 @@
           }
         },
         methods: {
-          loadBranches(){
+          loadBranch(){
             if(this.$gate.isAdminOrUser()){
                 axios.get("api/branch").then(({data}) => (this.branches = data ));
-                //axios.get("api/user").then(({ data }) => (this.users = data.data));
+                
             } 
           },
           loadPayees(){
@@ -901,6 +991,12 @@
             } else {
               this.no_account_code = false;
             }
+
+            if(this.form.branch_id.length == 0) {
+              this.no_branch_id = true;
+            } else {
+              this.no_branch_id = false;
+            }
             
             if(this.form.reference_no.length == 0) {
               this.no_reference_no = true;
@@ -908,7 +1004,7 @@
               this.no_reference_no = false;
             }
 
-            if (this.no_account_code || this.no_reference_no || this.no_payee){
+            if (this.no_account_code || this.no_reference_no || this.no_payee || this.no_branch_id){
               this.cd_created = false;
             } else {
               this.cd_created = true;
@@ -1091,9 +1187,13 @@
           },
           searchPayeeModal(){
               this.searchPayee = this.form.payee_id;
-              //this.searchPayee = '';
               this.loadPayees();
               $('#select-payee').modal('show');
+          },
+          searchBranchModal(){
+              this.searchBranch = this.form.branch_id;
+              this.loadBranch();
+              $('#select-branch').modal('show');
           },
 
           selectAccount(account_code  = null,account_name = null){
@@ -1113,7 +1213,7 @@
 
           selectPayee(id = null,name = null,address = null,tin = null){
               if (id){
-                    console.log(name);
+                    //console.log(name);
                       this.current_payee_id = id;
                       this.form.payee_id = id;
                       this.current_payee_name = name;
@@ -1121,6 +1221,17 @@
                       this.current_payee_tin = tin;
               }
               $('#select-payee').modal('hide');  
+
+          },
+          
+          selectBranch(id = null,name = null){
+              if (id){
+                    //console.log(name);
+                      this.current_branch_id = id;
+                      this.form.branch_id = id;
+                      this.current_branch_name = name;
+              }
+              $('#select-branch').modal('hide');  
 
           },
           SearchIt() {
@@ -1139,6 +1250,16 @@
               axios.get('api/searchPayee?q='+query)
                 .then((data)=>{
                   this.payees = data.data;
+                })
+                .catch(()=>{
+                  //
+                });
+          },
+          SearchBranch() {
+              let query = this.searchBranch;
+              axios.get('api/searchBranch?q='+query)
+                .then((data)=>{
+                  this.branches = data.data;
                 })
                 .catch(()=>{
                   //
@@ -1519,7 +1640,7 @@
 
         created() {
             this.loadPayees();
-            this.loadBranches();
+            this.loadBranch();
             this.initChartAccounts();
             this.loadEntryItems();
             this.loadEntries();

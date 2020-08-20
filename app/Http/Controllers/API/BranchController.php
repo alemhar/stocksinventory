@@ -27,7 +27,7 @@ class BranchController extends Controller
     public function index()
     {
         if (\Gate::allows('isAdmin') || \Gate::allows('isUser')) {
-            return Branch::latest()->paginate(5);
+            return Branch::latest()->paginate(10);
         }    
     }
 
