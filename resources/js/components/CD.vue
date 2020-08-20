@@ -168,7 +168,6 @@
                       <tr>
                         <th>Account No.</th>
                         <th>Name</th>
-                        <th>Branch</th>
                         <th>Amount</th>
                         <!-- th>Tax Excluded</th -->
                         <th>Tax</th>
@@ -178,7 +177,6 @@
                       <tr v-for="entry in transactions" :key="entry.index_no" @click="selectDebitRow(entry.index_no)" :class="{ 'table-warning' : active_debit_row == entry.index_no }" >
                         <td>{{ entry.account_code }}</td>
                         <td>{{ entry.account_name }}</td>
-                        <td>{{ entry.branch_name }}</td>
                         <td>{{ entry.amount }}</td>
                         <!-- td>{{ entry.amount_ex_tax }}</td -->
                         <td>{{ entry.vat }}</td>
@@ -1031,7 +1029,7 @@
             this.transactions.push({ 
                 index_no: this.index_no,
                 payee_id: this.form.payee_id,
-                branch_id: this.form.branch_id,
+                branch_id: this.current_branch_id,
                 account_code: this.form.account_code,
                 account_name: this.form.account_name,
                 reference_no: this.form.reference_no,
@@ -1056,7 +1054,7 @@
                 //  transaction_id: this.form.id, 
                 index_no: this.index_no,
                 payee_id: this.form.payee_id,
-                branch_id: this.form.branch_id,
+                branch_id: this.current_branch_id,
                 account_code: '1105110',
                 account_name: 'Input Tax',
                 reference_no: this.form.reference_no,
@@ -1441,7 +1439,7 @@
             this.transactions.push({ 
                 index_no: this.index_no,
                 payee_id: this.form.payee_id,
-                branch_id: this.form.branch_id,
+                branch_id: this.current_branch_id,
                 account_code: this.form_entry.account_code,
                 account_name: this.form_entry.account_name,
                 reference_no: this.form.reference_no,

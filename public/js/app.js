@@ -2914,8 +2914,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3134,7 +3132,7 @@ __webpack_require__.r(__webpack_exports__);
       this.transactions.push({
         index_no: this.index_no,
         payee_id: this.form.payee_id,
-        branch_id: this.form.branch_id,
+        branch_id: this.current_branch_id,
         account_code: this.form.account_code,
         account_name: this.form.account_name,
         reference_no: this.form.reference_no,
@@ -3158,7 +3156,7 @@ __webpack_require__.r(__webpack_exports__);
         //  transaction_id: this.form.id, 
         index_no: this.index_no,
         payee_id: this.form.payee_id,
-        branch_id: this.form.branch_id,
+        branch_id: this.current_branch_id,
         account_code: '1105110',
         account_name: 'Input Tax',
         reference_no: this.form.reference_no,
@@ -3531,7 +3529,7 @@ __webpack_require__.r(__webpack_exports__);
       this.transactions.push({
         index_no: this.index_no,
         payee_id: this.form.payee_id,
-        branch_id: this.form.branch_id,
+        branch_id: this.current_branch_id,
         account_code: this.form_entry.account_code,
         account_name: this.form_entry.account_name,
         reference_no: this.form.reference_no,
@@ -73512,10 +73510,6 @@ var render = function() {
                                         _vm._v(_vm._s(entry.account_name))
                                       ]),
                                       _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(entry.branch_name))
-                                      ]),
-                                      _vm._v(" "),
                                       _c("td", [_vm._v(_vm._s(entry.amount))]),
                                       _vm._v(" "),
                                       _c("td", [_vm._v(_vm._s(entry.vat))]),
@@ -75185,8 +75179,6 @@ var staticRenderFns = [
       _c("th", [_vm._v("Account No.")]),
       _vm._v(" "),
       _c("th", [_vm._v("Name")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Branch")]),
       _vm._v(" "),
       _c("th", [_vm._v("Amount")]),
       _vm._v(" "),
