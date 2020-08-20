@@ -83,7 +83,7 @@
                       <span class="input-group-text inputGroup-sizing-default">Branch</span>
                     </div>
                     <input v-bind:readonly="cd_created" type="text" class="form-control col-2" id="inputBranchId" placeholder="Code"  v-model="form.branch_id">
-                    <input readonly="true" type="text" class="form-control col-9" id="inputBranchName" placeholder="Branch Name" v-model="form.branch_name">
+                    <input readonly="true" type="text" class="form-control col-9" id="inputBranchName" placeholder="Branch Name" v-model="current_branch_name">
                     <span class="input-group-btn col-1">
                         <button type="button" v-show="!cd_created" class="btn btn-success" @click="searchBranchModal()"><i class="fas fa-search fa-fw"></i></button>
                     </span>
@@ -1206,7 +1206,6 @@
                       this.form_entry.account_code = account_code;
                   }
               }
-
               $('#select-account').modal('hide');  
 
           },
@@ -1229,6 +1228,7 @@
                     //console.log(name);
                       this.current_branch_id = id;
                       this.form.branch_id = id;
+
                       this.current_branch_name = name;
               }
               $('#select-branch').modal('hide');  

@@ -73188,8 +73188,8 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.form.branch_name,
-                                expression: "form.branch_name"
+                                value: _vm.current_branch_name,
+                                expression: "current_branch_name"
                               }
                             ],
                             staticClass: "form-control col-9",
@@ -73199,17 +73199,13 @@ var render = function() {
                               id: "inputBranchName",
                               placeholder: "Branch Name"
                             },
-                            domProps: { value: _vm.form.branch_name },
+                            domProps: { value: _vm.current_branch_name },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
-                                _vm.$set(
-                                  _vm.form,
-                                  "branch_name",
-                                  $event.target.value
-                                )
+                                _vm.current_branch_name = $event.target.value
                               }
                             }
                           }),
