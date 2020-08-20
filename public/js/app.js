@@ -3318,8 +3318,10 @@ __webpack_require__.r(__webpack_exports__);
     newEntry: function newEntry() {
       this.editmode = false;
       this.form_entry.reset();
-      ++this.transaction_entry_id; //this.form_entry.transaction_id = this.transaction_entry_id;
+      ++this.transaction_entry_id; // To refresh ITEMS table
 
+      this.current_transaction_entry_id = this.transaction_entry_id;
+      this.form_entry.transaction_id = this.transaction_entry_id;
       this.form_entry.transaction_no = this.form.transaction_no;
       this.form_entry.transaction_type = this.transaction_type;
       this.save_button_entry_enabled = true;
