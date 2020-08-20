@@ -11,7 +11,7 @@
             <!-- form start -->
             <form role="form" @submit.prevent="createTransaction()">
               <div class="box-header with-border">
-                <h3 class="box-title box-title-transaction">Cash Disbursement</h3>
+                <h3 class="box-title box-title-transaction">Cash Receipt</h3>
                 <div class="box-tools">
                   <button type="submit" v-show="!transaction_created" class="btn btn-success">Create <i class="fas fa-plus-circle fa-fw"></i></button>
                   <!-- @click="createCD()"  -->
@@ -174,14 +174,14 @@
                         <th>Option</th>
                         
                       </tr>
-                      <tr v-for="entry in transactions" :key="entry.transaction_entry_id" @click="selectEntryRow(entry.transaction_entry_id)" :class="{ 'table-warning' : active_debit_row == entry.transaction_entry_id }" >
+                      <tr v-for="entry in transactions" :key="entry.index_no" @click="selectEntryRow(entry.index_no)" :class="{ 'table-warning' : active_debit_row == entry.index_no }" >
                         <td>{{ entry.account_code }}</td>
                         <td>{{ entry.account_name }}</td>
                         <td>{{ entry.amount }}</td>
                         <!-- td>{{ entry.amount_ex_tax }}</td -->
                         <td>{{ entry.vat }}</td>
                         <td>
-                          <a href="#" @click="deleteEntry(entry.transaction_entry_id,entry.amount,entry.vat)">
+                          <a href="#" @click="deleteEntry(entry.index_no,entry.amount,entry.vat)">
                             <i class="fa fa-trash"></i>
                           </a>
                         </td>
@@ -798,13 +798,13 @@
     export default {
         data() {
           return {
-              transaction_type: 'CD',
+              transaction_type: 'CR',
               //ledgers: [],
               transactions: [],
               items: [],
               item_no: 0,
-              transaction_entry_id: 0,
-              current_transaction_entry_id: 0,
+              index_no: 0,
+              current_index_no: 0,
               user_id: '',
               editmode: false,
               transaction_created: false,
@@ -855,7 +855,6 @@
                   //id:'',
                   //transaction_id:'',
                   transaction_no:'',
-                  transaction_entry_id: 0,
                   transaction_type: this.transaction_type,
                   account_code : 0,
                   account_name: 'NA',
@@ -986,9 +985,9 @@
             }
             
             this.transaction_created = false; 
-            ++this.transaction_entry_id;
+            ++this.index_no;
             this.transactions.push({ 
-                transaction_entry_id: 0,
+                index_no: this.index_no,
                 payee_id: this.form.payee_id,
                 branch_id: this.current_branch_id,
                 account_code: this.form.account_code,
@@ -998,8 +997,8 @@
                 transaction_type: this.form.transaction_type,
                 transaction_date: this.form.transaction_date,
                 amount: this.form.amount,
-                credit_amount: this.form.amount,
-                debit_amount: 0,
+                credit_amount: 0,
+                debit_amount: this.form.amount,
                 total_payment: 0,
                 amount_ex_tax: this.form.amount_ex_tax,
                 vat: this.form.vat,
@@ -1008,21 +1007,21 @@
                 user_id: this.form.user_id,
                 status: 'CONFIRMED',
             });
-            ++this.transaction_entry_id;
+            ++this.index_no;
             
             this.transactions.push({ 
-                transaction_entry_id: 0,
+                index_no: this.index_no,
                 payee_id: this.form.payee_id,
                 branch_id: this.current_branch_id,
-                account_code: '1105110',
-                account_name: 'Input Tax',
+                account_code: '2105110',
+                account_name: 'Output Tax',
                 reference_no: this.form.reference_no,
                 transaction_no: this.form.transaction_no,
                 transaction_type: this.form.transaction_type,
                 transaction_date: this.form.transaction_date,
                 amount: this.form.vat,
-                credit_amount: 0,
-                debit_amount: this.form.vat,
+                credit_amount: this.form.vat,
+                debit_amount: 0,
                 total_payment: 0,
                 amount_ex_tax: 0,
                 vat: 0,
@@ -1032,8 +1031,6 @@
                 status: 'CONFIRMED',
             });  
 
-
-                // Save Transactions START
                 let rawData = {
                     transactions: this.transactions
                 }
@@ -1052,32 +1049,7 @@
                 .catch(function (error) {
                     console.log(error);
                 });
-                // Save Transactions END
-
-
-
-                // Save Items START
-                let rawItemData = {
-                    items: this.items
-                }
-                rawItemData = JSON.stringify(rawItemData);
-                let formItemData = new FormData();
-                    formItemData.append('items', rawItemData);
-                axios.post('api/items', formItemData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                })
-                .then((response)=>{
-                    
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-                // Save Items END
-
-
+            
                 swal.fire({
                     title: 'Saved!',
                     text: "Journal posted",
@@ -1099,9 +1071,9 @@
                   this.form_item.reset();
                   this.transactions = [];
                   this.items = [];
-                  this.transaction_entry_id = 0;
+                  this.index_no = 0;
                   this.item_no = 0;
-                  this.current_transaction_entry_id = 0;
+                  this.current_index_no = 0;
                   this.searchText = '';
                   this.searchPayee = '';
                   this.searchBranch = '';
@@ -1236,12 +1208,11 @@
           newEntry(){
               this.editmode = false;
               this.form_entry.reset();
-              ++this.transaction_entry_id;
-              //this.form_entry.transaction_id = this.transaction_entry_id;
+              this.form_entry.transaction_id = this.form.id;
               this.form_entry.transaction_no = this.form.transaction_no;
               this.form_entry.transaction_type = this.transaction_type;
               this.save_button_entry_enabled = true;
-              
+              ++this.index_no;
 
 
               $('#entry-details').modal('show');
@@ -1268,7 +1239,7 @@
               this.no_item = false;
               this.no_price = false;
               this.no_quantity = false;
-              this.form_item.transaction_entry_id = this.transaction_entry_id;
+              this.form_item.transaction_entry_id = this.form_entry.id;
               this.form_item.transaction_no = this.form.transaction_no;
               this.form_item.transaction_type = this.transaction_type;
               this.form_item.account_code = this.form_entry.account_code;
@@ -1279,7 +1250,7 @@
           cancelEntry(){
             //this.$Progress.start();
             this.items = this.items.filter(function( item ) {
-                return item.transaction_entry_id !== this.transaction_entry_id;
+                return item.index_no !== this.index_no;
             });
             $('#entry-details').modal('hide');
  
@@ -1296,11 +1267,12 @@
             this.form.vat += this.form_entry.vat;  
 
             // To refresh ITEMS table
-            this.current_transaction_entry_id = this.transaction_entry_id;
+            this.current_index_no = this.index_no;
             
             //this.$Progress.start();
+            //++this.index_no;
             this.transactions.push({ 
-                transaction_entry_id: this.transaction_entry_id,
+                index_no: this.index_no,
                 payee_id: this.form.payee_id,
                 branch_id: this.current_branch_id,
                 account_code: this.form_entry.account_code,
@@ -1310,8 +1282,8 @@
                 transaction_type: this.form.transaction_type,
                 transaction_date: this.form.transaction_date,
                 amount: this.form_entry.amount_ex_tax,
-                credit_amount: 0,
-                debit_amount: this.form_entry.amount_ex_tax,
+                credit_amount: this.form_entry.amount_ex_tax,
+                debit_amount: 0,
                 total_payment: 0,
                 amount_ex_tax: 0,
                 vat: this.form_entry.vat,
@@ -1325,14 +1297,14 @@
             
 
           },
-          deleteEntry(transaction_entry_id,entry_amount,entry_vat){
+          deleteEntry(index_no,entry_amount,entry_vat){
 
             this.transactions = this.transactions.filter(function( transaction ) {
-                return transaction.transaction_entry_id !== transaction_entry_id;
+                return transaction.index_no !== index_no;
             });
 
             this.items = this.items.filter(function( item ) {
-                return item.transaction_entry_id !== transaction_entry_id;
+                return item.index_no !== index_no;
             });
 
             this.form.amount = parseFloat(this.form.amount - entry_amount - entry_vat).toFixed(2) * 1;
@@ -1374,7 +1346,7 @@
 
 
             // To refresh ITEMS table
-            this.current_transaction_entry_id = this.transaction_entry_id;
+            this.current_index_no = this.index_no;
 
             //this.$Progress.start();
             
@@ -1386,7 +1358,7 @@
             
             this.items.push({ 
                 item_no: this.item_no,
-                transaction_entry_id: this.transaction_entry_id,
+                index_no: this.index_no,
                 transaction_no: this.form.transaction_no,
                 transaction_type: this.form.transaction_type,
                 account_code: this.form_entry.account_code,
@@ -1419,8 +1391,8 @@
             this.form_entry.branch_id = this.selected_branch.id ;
             this.form_entry.branch_name = this.selected_branch.name;
           },
-          selectEntryRow(current_transaction_entry_id){
-              this.current_transaction_entry_id = current_transaction_entry_id;
+          selectEntryRow(current_index_no){
+              this.current_index_no = current_index_no;
               
           }
         },
@@ -1444,7 +1416,7 @@
             currentItems(){
                 return this.items.filter(item  => 
                     {
-                    return parseInt(item.transaction_entry_id)==parseInt(this.current_transaction_entry_id);
+                    return parseInt(item.index_no)==parseInt(this.current_index_no);
                   }  
                 )
             }

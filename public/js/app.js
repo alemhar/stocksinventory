@@ -2892,28 +2892,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2922,11 +2900,11 @@ __webpack_require__.r(__webpack_exports__);
       transactions: [],
       items: [],
       item_no: 0,
-      index_no: 0,
-      current_index_no: 0,
+      transaction_entry_id: 0,
+      current_transaction_entry_id: 0,
       user_id: '',
       editmode: false,
-      cd_created: false,
+      transaction_created: false,
       no_payee: false,
       no_reference_no: false,
       no_account_code: false,
@@ -2974,6 +2952,7 @@ __webpack_require__.r(__webpack_exports__);
         //id:'',
         //transaction_id:'',
         transaction_no: '',
+        transaction_entry_id: 0,
         transaction_type: this.transaction_type,
         account_code: 0,
         account_name: 'NA',
@@ -3002,8 +2981,6 @@ __webpack_require__.r(__webpack_exports__);
       }),
       payees: {},
       branches: {},
-      //items: {},
-      //entries: {},
       chart_of_accounts: {},
       chart_of_accounts_header: {},
       chart_of_accounts_detail: {},
@@ -3054,15 +3031,6 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {//
       });
     },
-
-    /* Check if this is still being used.*/
-
-    /*
-    eventChild(Obj){
-      //console.log(Obj.id);
-      this.form.payee_id = Obj.id;
-    },
-    */
     getDate: function getDate() {
       var toTwoDigits = function toTwoDigits(num) {
         return num < 10 ? '0' + num : num;
@@ -3074,7 +3042,7 @@ __webpack_require__.r(__webpack_exports__);
       var day = toTwoDigits(today.getDate());
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
-    createCD: function createCD() {
+    createTransaction: function createTransaction() {
       if (this.form.payee_id.length == 0) {
         this.no_payee = true;
       } else {
@@ -3100,37 +3068,25 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (this.no_account_code || this.no_reference_no || this.no_payee || this.no_branch_id) {
-        this.cd_created = false;
+        this.transaction_created = false;
       } else {
-        this.cd_created = true;
+        this.transaction_created = true;
       }
 
       this.form.transaction_no = this.createSerialNumber();
       this.form.transaction_type = this.transaction_type;
-      /*
-      this.form.post('api/cd')
-          .then((data)=>{
-            //console.log(data.data.id);
-            this.form.id = data.data.id;
-          })
-          .catch(()=>{
-            //
-          });
-      */
     },
-    saveCD: function saveCD() {
+    saveTransaction: function saveTransaction() {
       var _this4 = this;
 
       if (this.form.amount == 0) {
         return false;
-      } //this.$Progress.start();
+      }
 
-
-      this.cd_created = false; // **
-
-      ++this.index_no;
+      this.transaction_created = false;
+      ++this.transaction_entry_id;
       this.transactions.push({
-        index_no: this.index_no,
+        transaction_entry_id: 0,
         payee_id: this.form.payee_id,
         branch_id: this.current_branch_id,
         account_code: this.form.account_code,
@@ -3150,11 +3106,9 @@ __webpack_require__.r(__webpack_exports__);
         user_id: this.form.user_id,
         status: 'CONFIRMED'
       });
-      ++this.index_no;
+      ++this.transaction_entry_id;
       this.transactions.push({
-        //id: 1,
-        //  transaction_id: this.form.id, 
-        index_no: this.index_no,
+        transaction_entry_id: 0,
         payee_id: this.form.payee_id,
         branch_id: this.current_branch_id,
         account_code: '1105110',
@@ -3168,12 +3122,13 @@ __webpack_require__.r(__webpack_exports__);
         debit_amount: this.form.vat,
         total_payment: 0,
         amount_ex_tax: 0,
-        vat: this.form.vat,
+        vat: 0,
         wtax_code: 0,
         wtax: 0,
         user_id: this.form.user_id,
         status: 'CONFIRMED'
-      });
+      }); // Save Transactions START
+
       var rawData = {
         transactions: this.transactions
       };
@@ -3188,61 +3143,24 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response);
       })["catch"](function (error) {
         console.log(error);
-      }); //this.$Progress.finish();
+      }); // Save Transactions END
+      // Save Items START
 
-      /*
-      this.form_entry.put('api/cd/'+this.form.id)
-      .then(() => {
-            this.cd_created = false;
-            this.form.post('api/cd/confirm/'+this.form.transaction_no);
-            this.ledgers.push({ 
-                id: this.form.id,
-                transaction_id: this.form.id, 
-                transaction_no: this.form.transaction_no,
-                transaction_type: this.form.transaction_type,
-                account_code: this.form.account_code,
-                account_name: this.form.account_name,
-                transaction_date: this.form.transaction_date,
-                credit_amount: this.form.amount,
-                debit_amount: 0
-              });
-            this.ledgers.push({ 
-                id: 1,
-                transaction_id: this.form.id, 
-                transaction_no: this.form.transaction_no,
-                transaction_type: this.form.transaction_type,
-                account_code: '1105110',
-                account_name: 'Input Tax',
-                transaction_date: this.form.transaction_date,
-                credit_amount: 0,
-                debit_amount: this.form.vat
-              });  
-                 let rawData = {
-                    ledgers: this.ledgers
-                }
-                rawData = JSON.stringify(rawData);
-                let formData = new FormData();
-                    formData.append('ledgers', rawData);
-                axios.post('api/ledgers', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                })
-                .then((response)=>{
-                    
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-                  
-            this.$Progress.finish();
-                              
-      })
-      .catch(() => {
-          this.$Progress.fail();
-      });
-      */
+      var rawItemData = {
+        items: this.items
+      };
+      rawItemData = JSON.stringify(rawItemData);
+      var formItemData = new FormData();
+      formItemData.append('items', rawItemData);
+      axios.post('api/items', formItemData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      }); // Save Items END
 
       swal.fire({
         title: 'Saved!',
@@ -3255,7 +3173,6 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.value) {
           //Reload Current Page
-          //this.$router.go(); // Next Update - Just initialize the data and cd_created = false;  
           _this4.dataReset();
         }
       });
@@ -3263,13 +3180,12 @@ __webpack_require__.r(__webpack_exports__);
     dataReset: function dataReset() {
       this.form.reset();
       this.form_entry.reset();
-      this.form_item.reset(); //this.ledgers = [];
-
+      this.form_item.reset();
       this.transactions = [];
       this.items = [];
-      this.index_no = 0;
+      this.transaction_entry_id = 0;
       this.item_no = 0;
-      this.current_index_no = 0;
+      this.current_transaction_entry_id = 0;
       this.searchText = '';
       this.searchPayee = '';
       this.searchBranch = '';
@@ -3282,9 +3198,9 @@ __webpack_require__.r(__webpack_exports__);
       this.current_payee_tin = '';
       this.active_debit_row = 0;
     },
-    cancelCD: function cancelCD() {
-      this.cd_created = false;
-      this.dataReset(); //this.form.delete('api/cd/cancel/'+this.form.transaction_no);
+    cancelTransaction: function cancelTransaction() {
+      this.transaction_created = false;
+      this.dataReset();
     },
     searchAccountModal: function searchAccountModal() {
       var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'header';
@@ -3327,7 +3243,6 @@ __webpack_require__.r(__webpack_exports__);
       var tin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
 
       if (id) {
-        //console.log(name);
         this.current_payee_id = id;
         this.form.payee_id = id;
         this.current_payee_name = name;
@@ -3342,7 +3257,6 @@ __webpack_require__.r(__webpack_exports__);
       var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
       if (id) {
-        //console.log(name);
         this.current_branch_id = id;
         this.form.branch_id = id;
         this.current_branch_name = name;
@@ -3378,30 +3292,6 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {//
       });
     },
-    loadEntryItems: function loadEntryItems() {
-      /*
-      let entry_id = this.form_entry.id;
-      axios.get('api/cd/items/list?entry_id='+entry_id)
-        .then((data)=>{
-          this.items = data.data;
-        })
-        .catch(()=>{
-          //
-        });
-      */
-    },
-    loadEntries: function loadEntries() {
-      /*
-      let transaction_no = this.form.transaction_no;
-      axios.get('api/cd/entries/list?transaction_no='+transaction_no)
-        .then((data)=>{
-          this.entries = data.data;
-        })
-        .catch(()=>{
-          //
-        });
-      */
-    },
     createSerialNumber: function createSerialNumber() {
       // Get current date
       var d = new Date(); // Get pirmative value of date
@@ -3428,23 +3318,11 @@ __webpack_require__.r(__webpack_exports__);
     newEntry: function newEntry() {
       this.editmode = false;
       this.form_entry.reset();
-      this.form_entry.transaction_id = this.form.id;
+      ++this.transaction_entry_id; //this.form_entry.transaction_id = this.transaction_entry_id;
+
       this.form_entry.transaction_no = this.form.transaction_no;
       this.form_entry.transaction_type = this.transaction_type;
       this.save_button_entry_enabled = true;
-      ++this.index_no;
-      /*  
-      this.form_entry.post('api/cd/entry')
-        .then((data)=>{
-          this.form_entry.id = data.data.id;
-          //console.log(data.data.id);
-          VueListen.$emit('RefreshItemTable');    
-        })
-        .catch(()=>{
-          //
-        });
-      */
-
       $('#entry-details').modal('show');
     },
     newItem: function newItem() {
@@ -3453,14 +3331,6 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.no_entry_account_code = false;
       }
-      /*
-      if(this.form_entry.branch_id == 0) {
-        this.no_entry_branch_id = true;
-      } else {
-        this.no_entry_branch_id = false;
-      }
-      */
-
 
       if (this.no_entry_account_code) {
         return false;
@@ -3472,62 +3342,31 @@ __webpack_require__.r(__webpack_exports__);
       this.no_item = false;
       this.no_price = false;
       this.no_quantity = false;
-      this.form_item.transaction_entry_id = this.form_entry.id;
+      this.form_item.transaction_entry_id = this.transaction_entry_id;
       this.form_item.transaction_no = this.form.transaction_no;
       this.form_item.transaction_type = this.transaction_type;
       this.form_item.account_code = this.form_entry.account_code;
-      /*  
-      this.form_item.post('api/cd/item')
-        .then((data)=>{
-          this.form_item.id = data.data.id;
-          //console.log(data.data.id);
-        })
-        .catch(()=>{
-          //
-        });
-      */
-
-      this.loadEntryItems();
       $('#entry-items').modal('show');
     },
-    cancelDebitEntry: function cancelDebitEntry() {
+    cancelEntry: function cancelEntry() {
       //this.$Progress.start();
       this.items = this.items.filter(function (item) {
-        return item.index_no !== this.index_no;
+        return item.transaction_entry_id !== this.transaction_entry_id;
       });
       $('#entry-details').modal('hide');
-      /*
-      this.form_item.delete('api/cd/entry/'+this.form_entry.id)
-      .then(() => {
-          $('#entry-details').modal('hide');
-          
-            //this.$Progress.finish();
-            VueListen.$emit('RefreshEntryTable');
-      })
-      .catch(() => {
-          this.$Progress.fail();
-      });
-      */
     },
-    saveDebitEntry: function saveDebitEntry() {
-      //console.log('Edit Payee');
-      // ** Temporary data to bypass Column cannot be null ERROR's
-      //this.form_entry.amount = 0;
-      //this.form_entry.amount_ex_tax = 0;
-      //this.form_entry.vat = 0;
-      this.form_entry.credit_amount = this.form_entry.amount; //this.form_entry.debit_amount = 0;
-      // ** Temporary data to bypass Column cannot be null ERROR's
+    saveEntry: function saveEntry() {
+      this.form_entry.credit_amount = this.form_entry.amount; // ** Temporary data to bypass Column cannot be null ERROR's
 
       this.save_button_entry_enabled = false;
       this.form.amount += this.form_entry.amount;
       this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
       this.form.vat += this.form_entry.vat; // To refresh ITEMS table
 
-      this.current_index_no = this.index_no;
-      this.$Progress.start(); //++this.index_no;
+      this.current_transaction_entry_id = this.transaction_entry_id; //this.$Progress.start();
 
       this.transactions.push({
-        index_no: this.index_no,
+        transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
         branch_id: this.current_branch_id,
         account_code: this.form_entry.account_code,
@@ -3547,76 +3386,21 @@ __webpack_require__.r(__webpack_exports__);
         user_id: this.form.user_id,
         status: 'CONFIRMED'
       });
-      $('#entry-details').modal('hide');
-      this.$Progress.finish();
-      /*
-      this.form_entry.put('api/cd/entry/'+this.form_entry.id)
-      .then(() => {
-          $('#entry-details').modal('hide');
-             this.form.amount += this.form_entry.amount;
-            this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
-            this.form.vat += this.form_entry.vat;
-             this.ledgers.push({ 
-                id: this.form_entry.id,
-                transaction_id: this.form.id, 
-                transaction_no: this.form.transaction_no,
-                transaction_type: this.form.transaction_type,
-                account_code: this.form_entry.account_code,
-                account_name: this.form_entry.account_name,
-                transaction_date: this.form.transaction_date,
-                credit_amount: 0,
-                debit_amount: this.form_entry.amount_ex_tax
-              });
-            //console.log(this.ledgers);
-            this.$Progress.finish();
-            VueListen.$emit('RefreshEntryTable');
-      })
-      .catch(() => {
-          this.$Progress.fail();
-      });
-      */
+      $('#entry-details').modal('hide'); //this.$Progress.finish();
     },
-    deleteEntry: function deleteEntry(index_no, entry_amount, entry_vat) {
+    deleteEntry: function deleteEntry(transaction_entry_id, entry_amount, entry_vat) {
       this.transactions = this.transactions.filter(function (transaction) {
-        return transaction.index_no !== index_no;
+        return transaction.transaction_entry_id !== transaction_entry_id;
       });
       this.items = this.items.filter(function (item) {
-        return item.index_no !== index_no;
+        return item.transaction_entry_id !== transaction_entry_id;
       });
       this.form.amount = parseFloat(this.form.amount - entry_amount - entry_vat).toFixed(2) * 1;
       this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount).toFixed(2) * 1;
       this.form.vat = (this.form.vat - entry_vat).toFixed(2) * 1;
-      /*
-      this.form_item.delete('api/cd/entry/'+entry_id)
-        .then(() => {
-            //$('#entry-items').modal('hide');
-              
-               this.form.amount = parseFloat(this.form.amount - entry_amount).toFixed(2) * 1;
-              this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
-              this.form.vat = (this.form.vat - entry_vat).toFixed(2) * 1;
-              VueListen.$emit('RefreshItemTable');
-              VueListen.$emit('RefreshEntryTable');
-         })
-        .catch(() => {
-            this.$Progress.fail();
-        });
-      */
     },
     cancelItem: function cancelItem() {
-      //this.$Progress.start();
       $('#entry-items').modal('hide');
-      /*
-      this.form_item.delete('api/cd/item/'+this.form_item.id)
-      .then(() => {
-          $('#entry-items').modal('hide');
-          
-            //this.$Progress.finish();
-             VueListen.$emit('RefreshItemTable');
-      })
-      .catch(() => {
-          this.$Progress.fail();
-      });
-      */
     },
     saveItem: function saveItem() {
       if (this.form_item.item.length == 0) {
@@ -3643,7 +3427,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.save_button_item_enabled = false; // To refresh ITEMS table
 
-      this.current_index_no = this.index_no; //this.$Progress.start();
+      this.current_transaction_entry_id = this.transaction_entry_id; //this.$Progress.start();
 
       this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
       this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
@@ -3651,7 +3435,7 @@ __webpack_require__.r(__webpack_exports__);
       ++this.item_no;
       this.items.push({
         item_no: this.item_no,
-        index_no: this.index_no,
+        transaction_entry_id: this.transaction_entry_id,
         transaction_no: this.form.transaction_no,
         transaction_type: this.form.transaction_type,
         account_code: this.form_entry.account_code,
@@ -3665,22 +3449,6 @@ __webpack_require__.r(__webpack_exports__);
         status: 'CONFIRMED'
       });
       $('#entry-items').modal('hide');
-      /*
-      this.form_item.put('api/cd/item/'+this.form_item.id)
-      .then(() => {
-          $('#entry-items').modal('hide');
-          
-            this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
-            this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
-            this.form_entry.vat += (this.form_item.vat * 1);
-            
-            this.$Progress.finish();
-            VueListen.$emit('RefreshItemTable');
-      })
-      .catch(() => {
-          this.$Progress.fail();
-      });
-      */
     },
     deleteItem: function deleteItem(item_no, item_sub_total, item_tax_excluded, item_vat) {
       this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
@@ -3689,48 +3457,19 @@ __webpack_require__.r(__webpack_exports__);
       this.items = this.items.filter(function (item) {
         return item.item_no !== item_no;
       });
-      /*  
-      this.form_item.delete('api/cd/item/'+item_id)
-      .then(() => {
-          //$('#entry-items').modal('hide');
-          
-            this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
-            this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
-            this.form_entry.vat = (this.form_entry.vat - item_vat).toFixed(2) * 1;
-            
-            VueListen.$emit('RefreshItemTable');
-      })
-      .catch(() => {
-          this.$Progress.fail();
-      });
-      */
     },
     branchChange: function branchChange() {
       this.form_entry.branch_id = this.selected_branch.id;
       this.form_entry.branch_name = this.selected_branch.name;
     },
-    selectDebitRow: function selectDebitRow(current_index_no) {
-      this.current_index_no = current_index_no; //this.form_entry.id = active_debit_row_id;
-      //VueListen.$emit('RefreshItemTable');
-      //console.log(active_debit_row);
+    selectEntryRow: function selectEntryRow(current_transaction_entry_id) {
+      this.current_transaction_entry_id = current_transaction_entry_id;
     }
   },
   created: function created() {
     this.loadPayees();
     this.loadBranch();
     this.initChartAccounts();
-    this.loadEntryItems(); //this.loadEntries();
-
-    /*
-    VueListen.$on('RefreshItemTable',() => {
-        this.loadEntryItems();
-    });
-    
-    VueListen.$on('RefreshEntryTable',() => {
-        this.loadEntries();
-    });
-    */
-
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
     /* Scrollbar fix
        If you have a modal on your page that exceeds the browser height, then you can't scroll in it when closing an second modal. To fix this add: */
@@ -3744,15 +3483,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this8 = this;
 
       return this.items.filter(function (item) {
-        return parseInt(item.index_no) == parseInt(_this8.current_index_no);
-      }); //return filteredItems;
-
-      /*
-      let filteredItems = this.items.filter((item) => {
-          return parseInt(item.index_no) == parseInt(this.current_index_no);  
-      })
-      return filteredItems;
-      */
+        return parseInt(item.transaction_entry_id) == parseInt(_this8.current_transaction_entry_id);
+      });
     }
   },
   components: {}
@@ -72844,7 +72576,7 @@ var render = function() {
                     on: {
                       submit: function($event) {
                         $event.preventDefault()
-                        return _vm.createCD()
+                        return _vm.createTransaction()
                       }
                     }
                   },
@@ -72864,8 +72596,8 @@ var render = function() {
                               {
                                 name: "show",
                                 rawName: "v-show",
-                                value: !_vm.cd_created,
-                                expression: "!cd_created"
+                                value: !_vm.transaction_created,
+                                expression: "!transaction_created"
                               }
                             ],
                             staticClass: "btn btn-success",
@@ -72884,13 +72616,13 @@ var render = function() {
                               {
                                 name: "show",
                                 rawName: "v-show",
-                                value: _vm.cd_created,
-                                expression: "cd_created"
+                                value: _vm.transaction_created,
+                                expression: "transaction_created"
                               }
                             ],
                             staticClass: "btn btn-danger",
                             attrs: { type: "button" },
-                            on: { click: _vm.cancelCD }
+                            on: { click: _vm.cancelTransaction }
                           },
                           [
                             _vm._v("Cancel "),
@@ -72907,13 +72639,13 @@ var render = function() {
                               {
                                 name: "show",
                                 rawName: "v-show",
-                                value: _vm.cd_created,
-                                expression: "cd_created"
+                                value: _vm.transaction_created,
+                                expression: "transaction_created"
                               }
                             ],
                             staticClass: "btn btn-success",
                             attrs: { type: "button" },
-                            on: { click: _vm.saveCD }
+                            on: { click: _vm.saveTransaction }
                           },
                           [
                             _vm._v("Save "),
@@ -72950,7 +72682,7 @@ var render = function() {
                             staticClass: "form-control col-12",
                             style: [_vm.readabilityObject],
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "text",
                               id: "inputPayeeName",
                               placeholder: "Payees Name"
@@ -72974,8 +72706,8 @@ var render = function() {
                                   {
                                     name: "show",
                                     rawName: "v-show",
-                                    value: !_vm.cd_created,
-                                    expression: "!cd_created"
+                                    value: !_vm.transaction_created,
+                                    expression: "!transaction_created"
                                   }
                                 ],
                                 staticClass: "btn btn-success",
@@ -73017,7 +72749,7 @@ var render = function() {
                             ],
                             staticClass: "form-control col-12",
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "text",
                               id: "inputPayeesAddress",
                               placeholder: "Address"
@@ -73048,7 +72780,7 @@ var render = function() {
                             ],
                             staticClass: "form-control",
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "text",
                               id: "inputPayeesTIN",
                               placeholder: "TIN"
@@ -73079,7 +72811,7 @@ var render = function() {
                             ],
                             staticClass: "form-control col-2",
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "text",
                               id: "inputAccountCode",
                               placeholder: "Code"
@@ -73138,8 +72870,8 @@ var render = function() {
                                   {
                                     name: "show",
                                     rawName: "v-show",
-                                    value: !_vm.cd_created,
-                                    expression: "!cd_created"
+                                    value: !_vm.transaction_created,
+                                    expression: "!transaction_created"
                                   }
                                 ],
                                 staticClass: "btn btn-success",
@@ -73187,7 +72919,7 @@ var render = function() {
                             ],
                             staticClass: "form-control col-2",
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "text",
                               id: "inputBranchId",
                               placeholder: "Code"
@@ -73242,8 +72974,8 @@ var render = function() {
                                   {
                                     name: "show",
                                     rawName: "v-show",
-                                    value: !_vm.cd_created,
-                                    expression: "!cd_created"
+                                    value: !_vm.transaction_created,
+                                    expression: "!transaction_created"
                                   }
                                 ],
                                 staticClass: "btn btn-success",
@@ -73293,7 +73025,7 @@ var render = function() {
                             ],
                             staticClass: "form-control col-12",
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "text",
                               id: "inputReferenceNo",
                               placeholder: "Reference No"
@@ -73344,7 +73076,7 @@ var render = function() {
                             ],
                             staticClass: "form-control col-12",
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "date",
                               id: "inputDate",
                               placeholder: "Date"
@@ -73382,7 +73114,7 @@ var render = function() {
                               type: "text",
                               readonly: "",
                               id: "inputDCNo",
-                              placeholder: "CD Number"
+                              placeholder: "Transaction Number"
                             },
                             domProps: { value: _vm.form.transaction_no },
                             on: {
@@ -73438,8 +73170,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.cd_created,
-                      expression: "cd_created"
+                      value: _vm.transaction_created,
+                      expression: "transaction_created"
                     }
                   ],
                   staticClass: "box box-warning mt-2"
@@ -73451,7 +73183,7 @@ var render = function() {
                         _c(
                           "h3",
                           { staticClass: "box-title box-title-transaction" },
-                          [_vm._v("Debits")]
+                          [_vm._v("Entries")]
                         ),
                         _vm._v(" "),
                         _c("div", { staticClass: "box-tools" }, [
@@ -73462,7 +73194,7 @@ var render = function() {
                               on: { click: _vm.newEntry }
                             },
                             [
-                              _vm._v("Add Items "),
+                              _vm._v("Add Entry "),
                               _c("i", {
                                 staticClass: "fas fa-plus-circle fa-fw"
                               })
@@ -73488,15 +73220,16 @@ var render = function() {
                                   return _c(
                                     "tr",
                                     {
-                                      key: entry.index_no,
+                                      key: entry.transaction_entry_id,
                                       class: {
                                         "table-warning":
-                                          _vm.active_debit_row == entry.index_no
+                                          _vm.active_debit_row ==
+                                          entry.transaction_entry_id
                                       },
                                       on: {
                                         click: function($event) {
-                                          return _vm.selectDebitRow(
-                                            entry.index_no
+                                          return _vm.selectEntryRow(
+                                            entry.transaction_entry_id
                                           )
                                         }
                                       }
@@ -73522,7 +73255,7 @@ var render = function() {
                                             on: {
                                               click: function($event) {
                                                 return _vm.deleteEntry(
-                                                  entry.index_no,
+                                                  entry.transaction_entry_id,
                                                   entry.amount,
                                                   entry.vat
                                                 )
@@ -73559,8 +73292,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.cd_created,
-                      expression: "cd_created"
+                      value: _vm.transaction_created,
+                      expression: "transaction_created"
                     }
                   ],
                   staticClass: "box box-warning mt-2"
@@ -73626,8 +73359,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.cd_created,
-                      expression: "cd_created"
+                      value: _vm.transaction_created,
+                      expression: "transaction_created"
                     }
                   ],
                   staticClass: "box box-warning mt-2"
@@ -73802,8 +73535,8 @@ var render = function() {
           {
             name: "show",
             rawName: "v-show",
-            value: _vm.cd_created,
-            expression: "cd_created"
+            value: _vm.transaction_created,
+            expression: "transaction_created"
           }
         ],
         staticClass: "modal fade",
@@ -74225,7 +73958,7 @@ var render = function() {
                     {
                       staticClass: "btn btn-danger",
                       attrs: { type: "button" },
-                      on: { click: _vm.cancelDebitEntry }
+                      on: { click: _vm.cancelEntry }
                     },
                     [_vm._v("Cancel")]
                   ),
@@ -74238,7 +73971,7 @@ var render = function() {
                         type: "button",
                         disabled: !_vm.save_button_entry_enabled
                       },
-                      on: { click: _vm.saveDebitEntry }
+                      on: { click: _vm.saveEntry }
                     },
                     [_vm._v("Save")]
                   )
@@ -74257,8 +73990,8 @@ var render = function() {
           {
             name: "show",
             rawName: "v-show",
-            value: _vm.cd_created,
-            expression: "cd_created"
+            value: _vm.transaction_created,
+            expression: "transaction_created"
           }
         ],
         staticClass: "modal fade",
@@ -75155,7 +74888,7 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("CD #")]
+        [_vm._v("Transaction #")]
       )
     ])
   },
@@ -110234,14 +109967,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************************!*\
   !*** ./resources/js/components/CD.vue ***!
   \****************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CD_vue_vue_type_template_id_e71f1928___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CD.vue?vue&type=template&id=e71f1928& */ "./resources/js/components/CD.vue?vue&type=template&id=e71f1928&");
 /* harmony import */ var _CD_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CD.vue?vue&type=script&lang=js& */ "./resources/js/components/CD.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _CD_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _CD_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -110271,7 +110005,7 @@ component.options.__file = "resources/js/components/CD.vue"
 /*!*****************************************************************!*\
   !*** ./resources/js/components/CD.vue?vue&type=script&lang=js& ***!
   \*****************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

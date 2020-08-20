@@ -100,4 +100,29 @@ class CDItemController extends Controller
         }
         return $transactionItems;
     }
+
+
+    public function store_items(Request $request)
+    {
+        $data = json_decode($request['items']);
+        foreach ($data->items as $item) {
+            TransactionItem::create([
+                'transaction_entry_id' => $item->transaction_entry_id,
+                'transaction_no' => $item->transaction_no,
+                'transaction_type' => $item->transaction_type,
+                'account_code' => $item->account_code,
+                'item' => $item->item,
+                'quantity' => $item->quantity,
+                'price' => $item->price,
+                'sub_total' => $item->sub_total,
+                'tax_type' => $item->tax_type,
+                'tax_excluded' => $item->tax_excluded,
+                'vat' => $item->vat,
+                'status' => $item->status
+            ]);
+        }
+
+        return ['message' => 'Items saved.'];
+    }
+
 }

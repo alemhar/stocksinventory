@@ -70,6 +70,7 @@ Route::get('cd/purchase/list', 'API\CDController@list');
 
 Route::post('ledgers', 'API\AccountController@store_ledger');
 Route::post('transactions', 'API\CDController@store_transactions');
+Route::post('items', 'API\CDItemController@store_items');
 
 Route::post('record_payment', 'API\CDController@record_payment');
 Route::post('update_payee_account', 'API\PayeeController@updateAccount');
