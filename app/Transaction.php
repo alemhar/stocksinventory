@@ -31,6 +31,7 @@ class Transaction extends Model
 						'transaction_no',
 						'transaction_type', 
 						'transaction_date',
+						'transaction_entry_id',
 						'amount',
 						'credit_amount',
 						'debit_amount',
@@ -40,6 +41,7 @@ class Transaction extends Model
 						'wtax',
 						'canceled',
 						'user_id',
-						'branch_id'
+						'branch_id',
+						'status'
     					];
 }
