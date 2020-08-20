@@ -944,7 +944,7 @@
           },
           initChartAccounts(){
 
-              axios.get('api/chartaccount?headerordetail=header&transaction_type='+transaction_type)
+              axios.get('api/chartaccount?headerordetail=header&transaction_type='+this.transaction_type)
                 .then((data)=>{
                   this.chart_of_accounts_header = data.data;
                 })
@@ -952,7 +952,7 @@
                   //
                 });
                 
-              axios.get('api/chartaccount?headerordetail=detail&transaction_type='+transaction_type)
+              axios.get('api/chartaccount?headerordetail=detail&transaction_type='+this.transaction_type)
                 .then((data)=>{
                   this.chart_of_accounts_detail = data.data;
                 })
@@ -1009,7 +1009,7 @@
 
 
             this.form.transaction_no = this.createSerialNumber();
-            this.form.transaction_type = transaction_type;
+            this.form.transaction_type = this.transaction_type;
             /*
             this.form.post('api/cd')
                 .then((data)=>{
@@ -1251,7 +1251,7 @@
           SearchIt() {
               let query = this.searchText;
               let headerOrDetail = this.headerOrDetail;
-              axios.get('api/searchAccount?q='+query+'&transaction_type='+transaction_type+'&headerordetail='+headerOrDetail)
+              axios.get('api/searchAccount?q='+query+'&transaction_type='+this.transaction_type+'&headerordetail='+headerOrDetail)
                 .then((data)=>{
                   this.chart_of_accounts = data.data;
                 })
@@ -1336,7 +1336,7 @@
               this.form_entry.reset();
               this.form_entry.transaction_id = this.form.id;
               this.form_entry.transaction_no = this.form.transaction_no;
-              this.form_entry.transaction_type = transaction_type;
+              this.form_entry.transaction_type = this.transaction_type;
               this.save_button_entry_enabled = true;
               ++this.index_no;
               /*  
@@ -1383,7 +1383,7 @@
               this.no_quantity = false;
               this.form_item.transaction_entry_id = this.form_entry.id;
               this.form_item.transaction_no = this.form.transaction_no;
-              this.form_item.transaction_type = transaction_type;
+              this.form_item.transaction_type = this.transaction_type;
               this.form_item.account_code = this.form_entry.account_code;
               /*  
               this.form_item.post('api/cd/item')
