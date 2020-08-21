@@ -215,8 +215,6 @@
                         <th>Account No.</th>
                         <th>Name</th>
                         <th>Amount</th>
-                        
-                        
                       </tr>
                       <tr v-for="entry in transactions" :key="entry.transaction_entry_id" :class="{ 'table-warning' : active_debit_row == entry.transaction_entry_id }" >
                         <td>{{ entry.transaction_no }}</td>
