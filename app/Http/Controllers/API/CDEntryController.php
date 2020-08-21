@@ -137,7 +137,9 @@ class CDEntryController extends Controller
     //     $transactionEntry->delete();
     //     return ['message' => 'Debit Deleted'];
     // }
-
+    
+    
+    /*
     public function list(){
         if ($transaction_no = \Request::get('transaction_no')) {
 
@@ -164,4 +166,5 @@ class CDEntryController extends Controller
         }
         return $transactionEntries;
     }
+    */
 }

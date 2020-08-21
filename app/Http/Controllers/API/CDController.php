@@ -169,6 +169,24 @@ class CDController extends Controller
         return $transaction;
     }
 
+
+    public function paymentList(){
+        $account_code = \Request::get('account_code');
+        $payee_id = \Request::get('payee_id');
+
+        if($payee_id) {
+            $transactions = Transaction::where(function($query) use ($payee_id, $account_code){
+                $query->where('branch_id',$payee_id)
+                ->where('status','CONFIRMED')
+                ->where('account_code',$account_code)
+                ->where('transaction_type','PAYMENT');
+            })->paginate(10);
+        } else{
+            $transactions = null;
+        }
+        return $transactions;
+    }
+
     public function record_payment(Request $request)
     {
         

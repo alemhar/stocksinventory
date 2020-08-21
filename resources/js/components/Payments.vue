@@ -1458,16 +1458,14 @@
 
           },
           loadPaymentHistory(account_code) {
-
-                /*
-                axios.get('api/cd/entries/list?payee_id='+account_code)
+                axios.get('api/cd/entries/list?payee_id='+this.form.payee_id+'&account_code='+account_code)
                 .then((data)=>{
                   this.payment_history = data.data;
                 })
                 .catch(()=>{
                   //
                 });
-                */
+                
 
           },
           getPaymentHistotyPage(page){

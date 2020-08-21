@@ -8442,34 +8442,31 @@ __webpack_require__.r(__webpack_exports__);
       */
     },
     loadPaymentHistory: function loadPaymentHistory(account_code) {
-      /*
-      axios.get('api/cd/entries/list?payee_id='+account_code)
-      .then((data)=>{
-        this.payment_history = data.data;
-      })
-      .catch(()=>{
-        //
-      });
-      */
-    },
-    getPaymentHistotyPage: function getPaymentHistotyPage(page) {
       var _this9 = this;
 
-      axios.get('api/cd/entries/list?payee_id=' + this.current_payee_id + '&page=' + page).then(function (data) {
+      axios.get('api/cd/entries/list?payee_id=' + this.form.payee_id + '&account_code=' + account_code).then(function (data) {
         _this9.payment_history = data.data;
+      })["catch"](function () {//
+      });
+    },
+    getPaymentHistotyPage: function getPaymentHistotyPage(page) {
+      var _this10 = this;
+
+      axios.get('api/cd/entries/list?payee_id=' + this.current_payee_id + '&page=' + page).then(function (data) {
+        _this10.payment_history = data.data;
       })["catch"](function () {});
     },
     addPaymentToPurchseRecord: function addPaymentToPurchseRecord() {//this.current_purchase_id
     },
     updatePurchase: function updatePurchase(payment_amount) {
-      var _this10 = this;
+      var _this11 = this;
 
       this.purchases.data.map(function (purchase) {
         if (!purchase.total_payment) {
           purchase.total_payment = 0;
         }
 
-        if (purchase.id == _this10.current_purchase_id) {
+        if (purchase.id == _this11.current_purchase_id) {
           return purchase.total_payment = parseFloat(purchase.total_payment) + parseFloat(payment_amount);
         } else {
           return purchase.total_payment = purchase.total_payment;
@@ -8478,7 +8475,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this11 = this;
+    var _this12 = this;
 
     this.loadPayees();
     this.loadBranches();
@@ -8486,10 +8483,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntryItems();
     this.loadEntries();
     VueListen.$on('RefreshItemTable', function () {
-      _this11.loadEntryItems();
+      _this12.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this11.loadEntries();
+      _this12.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
@@ -8514,10 +8511,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     currentTransctions: function currentTransctions() {
-      var _this12 = this;
+      var _this13 = this;
 
       return this.transactions.filter(function (transaction) {
-        return parseInt(transaction.transaction_no) == parseInt(_this12.form.transaction_no);
+        return parseInt(transaction.transaction_no) == parseInt(_this13.form.transaction_no);
       });
     }
   },
