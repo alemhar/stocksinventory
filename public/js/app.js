@@ -7849,6 +7849,63 @@ __webpack_require__.r(__webpack_exports__);
       if (this.form.amount == 0) {
         return false;
       }
+
+      ++this.transaction_entry_id;
+      this.transactions.push({
+        transaction_entry_id: this.transaction_entry_id,
+        payee_id: this.form.payee_id,
+        branch_id: 0,
+        account_code: this.form.account_code,
+        account_name: this.form.account_name,
+        reference_no: this.form.reference_no,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        transaction_date: this.form.transaction_date,
+        amount: this.form.amount,
+        credit_amount: this.form.amount,
+        debit_amount: 0,
+        total_payment: 0,
+        amount_ex_tax: 0,
+        vat: 0,
+        wtax_code: 0,
+        wtax: 0,
+        user_id: this.form.user_id,
+        status: 'CONFIRMED'
+      }); // Save Transactions START
+
+      var rawData = {
+        transactions: this.transactions
+      };
+      rawData = JSON.stringify(rawData);
+      var formData = new FormData();
+      formData.append('transactions', rawData);
+      axios.post('api/transactions', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      }); // Save Transactions END
+      // Save Payment START
+
+      var paymentData = {
+        payments: this.purchases.data
+      };
+      paymentData = JSON.stringify(paymentData);
+      var paymentFormData = new FormData();
+      paymentFormData.append('payments', paymentData);
+      axios.post('api/record_payment', paymentFormData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      }); // Save Payment END
+
       /*
        this.$Progress.start();
       this.form.put('api/cd/'+this.form.id)
@@ -7939,7 +7996,6 @@ __webpack_require__.r(__webpack_exports__);
             }
           });
       */
-
     },
     cancelTransaction: function cancelTransaction() {
       this.transaction_created = false;
@@ -8386,31 +8442,34 @@ __webpack_require__.r(__webpack_exports__);
       */
     },
     loadPaymentHistory: function loadPaymentHistory(account_code) {
-      var _this9 = this;
-
-      axios.get('api/cd/entries/list?payee_id=' + account_code).then(function (data) {
-        _this9.payment_history = data.data;
-      })["catch"](function () {//
+      /*
+      axios.get('api/cd/entries/list?payee_id='+account_code)
+      .then((data)=>{
+        this.payment_history = data.data;
+      })
+      .catch(()=>{
+        //
       });
+      */
     },
     getPaymentHistotyPage: function getPaymentHistotyPage(page) {
-      var _this10 = this;
+      var _this9 = this;
 
       axios.get('api/cd/entries/list?payee_id=' + this.current_payee_id + '&page=' + page).then(function (data) {
-        _this10.payment_history = data.data;
+        _this9.payment_history = data.data;
       })["catch"](function () {});
     },
     addPaymentToPurchseRecord: function addPaymentToPurchseRecord() {//this.current_purchase_id
     },
     updatePurchase: function updatePurchase(payment_amount) {
-      var _this11 = this;
+      var _this10 = this;
 
       this.purchases.data.map(function (purchase) {
         if (!purchase.total_payment) {
           purchase.total_payment = 0;
         }
 
-        if (purchase.id == _this11.current_purchase_id) {
+        if (purchase.id == _this10.current_purchase_id) {
           return purchase.total_payment = parseFloat(purchase.total_payment) + parseFloat(payment_amount);
         } else {
           return purchase.total_payment = purchase.total_payment;
@@ -8419,7 +8478,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this12 = this;
+    var _this11 = this;
 
     this.loadPayees();
     this.loadBranches();
@@ -8427,10 +8486,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntryItems();
     this.loadEntries();
     VueListen.$on('RefreshItemTable', function () {
-      _this12.loadEntryItems();
+      _this11.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this12.loadEntries();
+      _this11.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
@@ -8455,10 +8514,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     currentTransctions: function currentTransctions() {
-      var _this13 = this;
+      var _this12 = this;
 
       return this.transactions.filter(function (transaction) {
-        return parseInt(transaction.transaction_no) == parseInt(_this13.form.transaction_no);
+        return parseInt(transaction.transaction_no) == parseInt(_this12.form.transaction_no);
       });
     }
   },
@@ -109520,14 +109579,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************!*\
   !*** ./resources/js/components/Payments.vue ***!
   \**********************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Payments_vue_vue_type_template_id_04c873d0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Payments.vue?vue&type=template&id=04c873d0& */ "./resources/js/components/Payments.vue?vue&type=template&id=04c873d0&");
 /* harmony import */ var _Payments_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Payments.vue?vue&type=script&lang=js& */ "./resources/js/components/Payments.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Payments_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Payments_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -109557,7 +109617,7 @@ component.options.__file = "resources/js/components/Payments.vue"
 /*!***********************************************************************!*\
   !*** ./resources/js/components/Payments.vue?vue&type=script&lang=js& ***!
   \***********************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

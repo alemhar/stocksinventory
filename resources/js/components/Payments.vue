@@ -783,7 +783,73 @@
               return false;
             }
 
+            ++this.transaction_entry_id;
+            this.transactions.push({ 
+                transaction_entry_id: this.transaction_entry_id,
+                payee_id: this.form.payee_id,
+                branch_id: 0,
+                account_code: this.form.account_code,
+                account_name: this.form.account_name,
+                reference_no: this.form.reference_no,
+                transaction_no: this.form.transaction_no,
+                transaction_type: this.form.transaction_type,
+                transaction_date: this.form.transaction_date,
+                amount: this.form.amount,
+                credit_amount: this.form.amount,
+                debit_amount: 0,
+                total_payment: 0,
+                amount_ex_tax: 0,
+                vat: 0,
+                wtax_code: 0,
+                wtax: 0,
+                user_id: this.form.user_id,
+                status: 'CONFIRMED'
+            });
 
+                // Save Transactions START
+                let rawData = {
+                    transactions: this.transactions
+                }
+                rawData = JSON.stringify(rawData);
+                let formData = new FormData();
+                    formData.append('transactions', rawData);
+                axios.post('api/transactions', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                .then((response)=>{
+                    
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+                // Save Transactions END
+
+
+                // Save Payment START
+                let paymentData = {
+                    payments: this.purchases.data
+                }
+
+                paymentData = JSON.stringify(paymentData);
+                let paymentFormData = new FormData();
+                    paymentFormData.append('payments', paymentData);
+                axios.post('api/record_payment', paymentFormData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                .then((response)=>{
+                    
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });  
+                // Save Payment END
+                
             /*
 
             this.$Progress.start();
@@ -1393,6 +1459,7 @@
           },
           loadPaymentHistory(account_code) {
 
+                /*
                 axios.get('api/cd/entries/list?payee_id='+account_code)
                 .then((data)=>{
                   this.payment_history = data.data;
@@ -1400,6 +1467,7 @@
                 .catch(()=>{
                   //
                 });
+                */
 
           },
           getPaymentHistotyPage(page){

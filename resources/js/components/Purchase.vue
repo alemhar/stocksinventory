@@ -799,7 +799,6 @@
         data() {
           return {
               transaction_type: 'PURCHASE',
-              //ledgers: [],
               transactions: [],
               items: [],
               item_no: 0,
@@ -986,6 +985,7 @@
             }
             
             this.transaction_created = false; 
+            
             ++this.transaction_entry_id;
             this.transactions.push({ 
                 transaction_entry_id: this.transaction_entry_id,
@@ -1236,6 +1236,7 @@
           newEntry(){
               this.editmode = false;
               this.form_entry.reset();
+
               ++this.transaction_entry_id;
 
               // To refresh ITEMS table
@@ -1324,6 +1325,8 @@
                 user_id: this.form.user_id,
                 status: 'CONFIRMED'
             });
+
+
             $('#entry-details').modal('hide');
             //this.$Progress.finish();
             
