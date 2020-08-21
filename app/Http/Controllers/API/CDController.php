@@ -176,7 +176,7 @@ class CDController extends Controller
 
         if($payee_id) {
             $transactions = Transaction::where(function($query) use ($payee_id, $account_code){
-                $query->where('branch_id',$payee_id)
+                $query->where('payee_id',$payee_id)
                 ->where('status','CONFIRMED')
                 ->where('account_code',$account_code)
                 ->where('transaction_type','PAYMENT');
