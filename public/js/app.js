@@ -8055,14 +8055,6 @@ __webpack_require__.r(__webpack_exports__);
       }
       */
     },
-    selectDebitRow: function selectDebitRow(active_debit_row_id) {
-      /*
-      this.active_debit_row = active_debit_row_id;
-      this.form_entry.id = active_debit_row_id;
-      VueListen.$emit('RefreshItemTable');
-      //console.log(active_debit_row);
-      */
-    },
     newEntry: function newEntry() {
       /*
       this.editmode = false;
@@ -8253,7 +8245,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.branch_name = this.selected_branch.name;
       */
     },
-    payEntry: function payEntry(purchase_id, account_code, account_name, current_balance) {
+    pay: function pay(purchase_id, account_code, account_name, current_balance) {
       this.current_balance = current_balance;
       this.current_purchase_id = purchase_id;
       ++this.transaction_entry_id;
@@ -8354,61 +8346,71 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.reset();
     },
     cancelPayment: function cancelPayment(account_code) {
-      var _this9 = this;
-
-      this.form_entry["delete"]('api/cd/entry/' + this.form_entry.id).then(function () {
-        $('#entry-payment').modal('hide');
-
-        _this9.loadPayments();
-
-        _this9.loadPaymentHistory(account_code);
-      })["catch"](function () {
-        _this9.$Progress.fail();
+      /*
+      //this.$Progress.start();
+      this.items = this.items.filter(function( item ) {
+          return item.transaction_entry_id !== this.transaction_entry_id;
       });
+      */
+
+      /*
+      this.form_entry.delete('api/cd/entry/'+this.form_entry.id)
+      .then(() => {
+        $('#entry-payment').modal('hide');
+        this.loadPayments();
+        this.loadPaymentHistory(account_code);
+      })
+      .catch(() => {
+          this.$Progress.fail();
+      });
+      */
       this.form_entry.reset();
       $('#entry-payment').modal('hide');
     },
     selectPaymentRow: function selectPaymentRow(active_debit_row_id, account_code) {
-      this.active_debit_row = active_debit_row_id;
-      this.form_entry.id = active_debit_row_id;
-      this.account_code = account_code;
-      this.loadPayments();
+      //this.active_debit_row = active_debit_row_id;
+      //this.form_entry.id = active_debit_row_id;
+      //this.account_code = account_code;
+      //this.loadPayments();
       this.loadPaymentHistory(account_code);
     },
     loadPayments: function loadPayments() {
-      var _this10 = this;
-
-      axios.get('api/cd/entries/list?transaction_no=' + this.form.transaction_no).then(function (data) {
-        _this10.entries = data.data;
-      })["catch"](function () {//
+      /*
+      axios.get('api/cd/entries/list?transaction_no='+this.form.transaction_no)
+      .then((data)=>{
+        this.entries = data.data;
+      })
+      .catch(()=>{
+        //
       });
+      */
     },
     loadPaymentHistory: function loadPaymentHistory(account_code) {
-      var _this11 = this;
+      var _this9 = this;
 
       axios.get('api/cd/entries/list?payee_id=' + account_code).then(function (data) {
-        _this11.payment_history = data.data;
+        _this9.payment_history = data.data;
       })["catch"](function () {//
       });
     },
     getPaymentHistotyPage: function getPaymentHistotyPage(page) {
-      var _this12 = this;
+      var _this10 = this;
 
       axios.get('api/cd/entries/list?payee_id=' + this.current_payee_id + '&page=' + page).then(function (data) {
-        _this12.payment_history = data.data;
+        _this10.payment_history = data.data;
       })["catch"](function () {});
     },
     addPaymentToPurchseRecord: function addPaymentToPurchseRecord() {//this.current_purchase_id
     },
     updatePurchase: function updatePurchase(payment_amount) {
-      var _this13 = this;
+      var _this11 = this;
 
       this.purchases.data.map(function (purchase) {
         if (!purchase.total_payment) {
           purchase.total_payment = 0;
         }
 
-        if (purchase.id == _this13.current_purchase_id) {
+        if (purchase.id == _this11.current_purchase_id) {
           return purchase.total_payment = parseFloat(purchase.total_payment) + parseFloat(payment_amount);
         } else {
           return purchase.total_payment = purchase.total_payment;
@@ -8417,7 +8419,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this14 = this;
+    var _this12 = this;
 
     this.loadPayees();
     this.loadBranches();
@@ -8425,10 +8427,10 @@ __webpack_require__.r(__webpack_exports__);
     this.loadEntryItems();
     this.loadEntries();
     VueListen.$on('RefreshItemTable', function () {
-      _this14.loadEntryItems();
+      _this12.loadEntryItems();
     });
     VueListen.$on('RefreshEntryTable', function () {
-      _this14.loadEntries();
+      _this12.loadEntries();
     });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
@@ -8451,7 +8453,15 @@ __webpack_require__.r(__webpack_exports__);
     });
     */
   },
-  computed: {},
+  computed: {
+    currentTransctions: function currentTransctions() {
+      var _this13 = this;
+
+      return this.transactions.filter(function (transaction) {
+        return parseInt(transaction.transaction_no) == parseInt(_this13.form.transaction_no);
+      });
+    }
+  },
   components: {}
 });
 
@@ -83149,7 +83159,7 @@ var render = function() {
                                             attrs: { href: "#" },
                                             on: {
                                               click: function($event) {
-                                                _vm.payEntry(
+                                                _vm.pay(
                                                   purchase.id,
                                                   purchase.account_code,
                                                   purchase.account_name,

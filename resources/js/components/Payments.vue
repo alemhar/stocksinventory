@@ -157,7 +157,7 @@
                     <td>{{ purchase.total_payment }}</td>
                     <td>{{ currentBalance(purchase.amount,purchase.total_payment) }}</td> 
                     <td>
-                      <a href="#" @click="payEntry(purchase.id,purchase.account_code,purchase.account_name,currentBalance(purchase.amount,purchase.total_payment))">
+                      <a href="#" @click="pay(purchase.id,purchase.account_code,purchase.account_name,currentBalance(purchase.amount,purchase.total_payment))">
                         <i class="fas fa-money-bill"></i>
                         Pay
                         <!-- i class="fa fa-money-bill"></i -->
@@ -1002,14 +1002,6 @@
               }
               */
           },
-          selectDebitRow(active_debit_row_id){
-              /*
-              this.active_debit_row = active_debit_row_id;
-              this.form_entry.id = active_debit_row_id;
-              VueListen.$emit('RefreshItemTable');
-              //console.log(active_debit_row);
-              */
-          },
           
           newEntry(){
               /*
@@ -1214,7 +1206,7 @@
             this.form_entry.branch_name = this.selected_branch.name;
             */
           },
-          payEntry(purchase_id,account_code,account_name,current_balance)
+          pay(purchase_id,account_code,account_name,current_balance)
           {
                 this.current_balance = current_balance;
                 this.current_purchase_id = purchase_id;
@@ -1319,7 +1311,7 @@
 
 
 
-                $('#entry-payment').modal('hide');
+              $('#entry-payment').modal('hide');
 
               this.loadPayments();
               this.loadPaymentHistory(account_code);
@@ -1352,7 +1344,15 @@
 
 
           cancelPayment(account_code){
+            /*
+            //this.$Progress.start();
+            this.items = this.items.filter(function( item ) {
+                return item.transaction_entry_id !== this.transaction_entry_id;
+            });
+            */
 
+
+            /*
             this.form_entry.delete('api/cd/entry/'+this.form_entry.id)
             .then(() => {
               $('#entry-payment').modal('hide');
@@ -1362,30 +1362,37 @@
             .catch(() => {
                 this.$Progress.fail();
             });
-
+            */
             this.form_entry.reset();
 
             $('#entry-payment').modal('hide');
           },
           selectPaymentRow(active_debit_row_id,account_code){
-              this.active_debit_row = active_debit_row_id;
-              this.form_entry.id = active_debit_row_id;
-              this.account_code = account_code;
-              this.loadPayments();
+
+              //this.active_debit_row = active_debit_row_id;
+              //this.form_entry.id = active_debit_row_id;
+              //this.account_code = account_code;
+              
+              //this.loadPayments();
               this.loadPaymentHistory(account_code);
           },
           loadPayments() {
 
-              axios.get('api/cd/entries/list?transaction_no='+this.form.transaction_no)
+              
+                /*
+                axios.get('api/cd/entries/list?transaction_no='+this.form.transaction_no)
                 .then((data)=>{
                   this.entries = data.data;
                 })
                 .catch(()=>{
                   //
                 });
+                */
+
 
           },
           loadPaymentHistory(account_code) {
+
                 axios.get('api/cd/entries/list?payee_id='+account_code)
                 .then((data)=>{
                   this.payment_history = data.data;
@@ -1477,7 +1484,13 @@
             */
         },
         computed: {
-            
+            currentTransctions(){
+                return this.transactions.filter(transaction  => 
+                    {
+                    return parseInt(transaction.transaction_no)==parseInt(this.form.transaction_no);
+                  }  
+                )
+            }
           
 
         },
