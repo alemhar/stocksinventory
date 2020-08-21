@@ -111,9 +111,9 @@ let routes = [
   { path: '/cr', component: require('./components/CashReceipts.vue').default },
   
   { path: '/cr-view', component: require('./components/CashReceiptLedger.vue').default },
-  { path: '/sales', component: require('./components/Sales.vue').default },
-  { path: '/purchase', component: require('./components/Purchase.vue').default },
-  { path: '/payments', component: require('./components/Payments.vue').default },
+  { path: '/sales', component: require('./components/SalesPrev.vue').default },
+  { path: '/purchase', component: require('./components/PurchasePrev.vue').default },
+  { path: '/payments', component: require('./components/PaymentsPrev.vue').default },
   
   { path: '/payees', component: require('./components/Payees.vue').default },
   { path: '/ledger', component: require('./components/Ledger.vue').default },

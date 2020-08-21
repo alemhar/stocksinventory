@@ -1,4 +1,5 @@
 <template>
+
     <div class="container">
         <div class="row mt-1" v-if="$gate.isAdminOrUser()">
         <div class="col-md-12">
@@ -11,7 +12,7 @@
             <!-- form start -->
             <form role="form" @submit.prevent="createTransaction()">
               <div class="box-header with-border">
-                <h3 class="box-title box-title-transaction">Cash Disbursement</h3>
+                <h3 class="box-title box-title-transaction" >Sale</h3>
                 <div class="box-tools">
                   <button type="submit" v-show="!transaction_created" class="btn btn-success">Create <i class="fas fa-plus-circle fa-fw"></i></button>
                   <!-- @click="createCD()"  -->
@@ -23,14 +24,14 @@
               <div class="box-body row">
                 <!--Left Col-->
                 <div class="col-8">
-
+                  
 
                   <div class="input-group mb-2">
-
+                    
                     <div class="input-group-prepend">
-                      <span class="input-group-text inputGroup-sizing-default"  v-bind:style="[readabilityObject]">Payee</span>
+                      <span class="input-group-text inputGroup-sizing-default">Payee</span>
                     </div>  
-                    <input v-model="current_payee_name" v-bind:readonly="transaction_created" type="text" class="form-control col-12" id="inputPayeeName" placeholder="Payees Name" v-bind:style="[readabilityObject]">
+                    <input v-model="current_payee_name" v-bind:readonly="transaction_created" type="text" class="form-control col-12" id="inputPayeeName" placeholder="Payees Name">
                       
                     <span class="input-group-btn col-1">
                         <button type="button" v-show="!transaction_created" class="btn btn-success" @click="searchPayeeModal"><i class="fas fa-search fa-fw"></i></button>
@@ -54,15 +55,14 @@
                     </div>
                       <input v-bind:readonly="transaction_created" type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN"  v-model="current_payee_tin">
                     
-
+                   
                   </div>
-
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Account</span>
                     </div>
                     
-
+                    
                     <input v-bind:readonly="transaction_created" type="text" class="form-control col-2" id="inputAccountCode" placeholder="Code"  v-model="form.account_code">
 
                     <input readonly="true" type="text" class="form-control col-9" id="inputAccountName" placeholder="Account Name" v-model="form.account_name">
@@ -71,27 +71,12 @@
                         <button type="button" v-show="!transaction_created" class="btn btn-success" @click="searchAccountModal('header')"><i class="fas fa-search fa-fw"></i></button>
 
                     </span>
+                    
+                    
                   </div>
-
                   <div class="input-group mb-2">
                     <p v-show="no_account_code" class="empty-field-message">** Please select account!</p>
                   </div>  
-
-
-                  <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text inputGroup-sizing-default">Branch</span>
-                    </div>
-                    <input v-bind:readonly="transaction_created" type="text" class="form-control col-2" id="inputBranchId" placeholder="Code"  v-model="form.branch_id">
-                    <input readonly="true" type="text" class="form-control col-9" id="inputBranchName" placeholder="Branch Name" v-model="current_branch_name">
-                    <span class="input-group-btn col-1">
-                        <button type="button" v-show="!transaction_created" class="btn btn-success" @click="searchBranchModal()"><i class="fas fa-search fa-fw"></i></button>
-                    </span>
-                  </div>
-                  <div class="input-group mb-2">
-                    <p v-show="no_branch_id" class="empty-field-message">** Please select branch!</p>
-                  </div>
-
                 </div>
                 <!--Right Col-->
                 <div class="col-4">
@@ -101,7 +86,7 @@
                       <span class="input-group-text inputGroup-sizing-default">Ref. #</span>
                     </div>
 
-                    <input v-bind:readonly="transaction_created" type="text"  v-model="form.reference_no" class="form-control col-12" id="inputReferenceNo" placeholder="Reference No">
+                    <input v-bind:readonly="transaction_created" type="text" @focus="$event.target.select()"  v-model="form.reference_no" class="form-control col-12" id="inputReferenceNo" placeholder="Reference No">
                     <p v-show="no_reference_no" class="empty-field-message">** Please enter reference number!</p>
                   </div>
                   <div class="input-group mb-2">
@@ -112,16 +97,16 @@
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
-                      <span class="input-group-text inputGroup-sizing-default">Transaction #</span>
+                      <span class="input-group-text inputGroup-sizing-default">CR #</span>
                     </div>
-                    <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="Transaction Number">
+                    <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="SALES Number">
                   </div>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Amount</span>
                     </div>
                     
-                    <!--input type="text"  v-model="Number(form.amount).toLocaleString()" readonly class="form-control col-12" id="inputAmount" placeholder="Amount" -->
+                    
                     <currency-input v-model="form.amount" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputAmount" placeholder="Amount"></currency-input>
                   </div>
 
@@ -134,7 +119,7 @@
 
 
 
-      <!-- Entry List     
+      <!-- Debit List     
       *
       *
       *
@@ -154,9 +139,9 @@
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title box-title-transaction">Entries</h3>
+                  <h3 class="box-title box-title-transaction">Credits</h3>
                   <div class="box-tools">
-                    <button class="btn btn-success" @click="newEntry">Add Entry <i class="fas fa-plus-circle fa-fw"></i></button>
+                    <button class="btn btn-success" @click="newEntry">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
                 </div>
 
@@ -168,20 +153,22 @@
                       <tr>
                         <th>Account No.</th>
                         <th>Name</th>
+                        <th>Branch</th>
                         <th>Amount</th>
-                        <!-- th>Tax Excluded</th -->
+                        <th>Tax Excluded</th>
                         <th>Tax</th>
                         <th>Option</th>
                         
                       </tr>
-                      <tr v-for="entry in transactions" :key="entry.transaction_entry_id" @click="selectEntryRow(entry.transaction_entry_id)" :class="{ 'table-warning' : active_debit_row == entry.transaction_entry_id }" >
+                      <tr v-for="entry in entries.data" :key="entry.id" @click="selectDebitRow(entry.id)" :class="{ 'table-warning' : active_debit_row == entry.id }" >
                         <td>{{ entry.account_code }}</td>
                         <td>{{ entry.account_name }}</td>
+                        <td>{{ entry.branch_name }}</td>
                         <td>{{ entry.amount }}</td>
-                        <!-- td>{{ entry.amount_ex_tax }}</td -->
+                        <td>{{ entry.amount_ex_tax }}</td>
                         <td>{{ entry.vat }}</td>
                         <td>
-                          <a href="#" @click="deleteEntry(entry.transaction_entry_id,entry.amount,entry.vat)">
+                          <a href="#" @click="deleteEntry(entry.id,entry.amount,entry.amount_ex_tax,entry.vat)">
                             <i class="fa fa-trash"></i>
                           </a>
                         </td>
@@ -241,7 +228,7 @@
                         <th>Tax Excluded</th>
                         <th>Vat</th>
                       </tr>
-                      <tr v-for="item in currentItems" :key="item.item_no">
+                      <tr v-for="item in items.data" :key="item.id">
                         <td>{{ item.account_code }}</td>
                         <td>{{ item.item }}</td>
                         <td>{{ item.quantity }}</td>
@@ -272,25 +259,55 @@
                 <div class="row mt-2">
                 <label for="inputAmountExclusiveTax" class="col-sm-9 col-form-label" style="text-align: right;">Amount Exclusive of Tax</label>
                 <div class="col-sm-3">
-                  <input readonly v-model="Number(form.amount_ex_tax).toLocaleString()" type="text" class="form-control" id="inputAmountExclusiveTax" placeholder="Amount Exclusive of Tax">
+
+                  <currency-input v-model="form.amount_ex_tax" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputAmountExclusiveTax" placeholder="Amount Exclusive of Tax"></currency-input>
+
+                  
                 </div>
                 </div>
               </div>
+
               <div class="form-group col-12 float-right">
                 <div class="row">
                 
                 <label for="inputVAT" class="col-sm-9 col-form-label" style="text-align: right;">VAT</label>
                 <div class="col-sm-3">
-                  <input readonly v-model="Number(form.vat).toLocaleString()" type="text" class="form-control" id="inputVAT" placeholder="VAT">
+
+                  <currency-input v-model="form.vat" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputVAT" placeholder="VAT"></currency-input>
+
+                 
+                  </div>
                 </div>
               </div>
+
+              <div class="form-group col-12 float-right">
+                <div class="row">
+                
+                <label for="inputWTax" class="col-sm-7 col-form-label" style="text-align: right;">Withholding Tax&nbsp;&nbsp;&nbsp;<i class="fas fa-question-circle" @click="showWTaxTable"></i> <span v-if="wTaxExist" class="text-danger">  {{ this.wTaxExist.tax_rate}}%</span></label>
+                <div class="col-sm-2">
+                  
+                  <input type="text" @blur="computedWTax" @focus="$event.target.select()" v-model="form.wtax_code" class="form-control col-12" id="inputwtax_code" placeholder="ATC Code">
+                  <span v-if="!wTaxExist" class="text-danger"> Code Not Found!</span>
+                  
+                
+                 
+                  </div>
+                  <div class="col-sm-3">
+                    <currency-input v-model="form.wtax" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputwtax"></currency-input>
+                  </div>
+                
+                </div>
               </div>
+
+
               <div class="form-group col-12 float-right">
                 <div class="row">
                 
                 <label for="inputTotalAmount" class="col-sm-9 col-form-label" style="text-align: right;">Total Amount</label>
                 <div class="col-sm-3">
-                  <input readonly v-model="Number(form.amount).toLocaleString()" type="text" class="form-control" id="inputTotalAmount" placeholder="Total Amount">
+                  <currency-input v-model="form.amount" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputTotalAmount" placeholder="Total Amount"></currency-input>
+
+                  
                 </div>
               </div>
               </div>
@@ -360,7 +377,18 @@
                 <has-error :form="form_entry" field="account_name"></has-error>
               </div>
 
-              
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text inputGroup-sizing-default">Branch</span>
+                </div>
+                  <select v-model="selected_branch" class="form-control col-12" aria-describedby="inputGroup-sizing-default" @change="branchChange">
+                      <option v-for="branch in branches.data" v-bind:value="{ id: branch.id, name: branch.name }">{{ branch.name }}</option>
+                  </select>
+                  <has-error :form="form_entry" field="branch_id"></has-error>
+              </div>
+              <div class="input-group mb-2">
+                <p v-show="no_entry_branch_id" class="empty-field-message">** Please indicate branch.</p>
+              </div>
               <div class="box-header">
                   <h3 class="box-title box-title-transaction">Items</h3>
                   <div class="box-tools">
@@ -381,7 +409,7 @@
                         <th>Vat</th>
                         <th>Option</th>
                       </tr>
-                      <tr v-for="item in currentItems" :key="item.item_no">
+                      <tr v-for="item in items.data" :key="item.id">
                         <td>{{ item.item }}</td>
                         <td>{{ item.quantity }}</td> 
                         <td>{{ item.price }}</td> 
@@ -389,7 +417,7 @@
                         <td>{{ item.tax_excluded }}</td> 
                         <td>{{ item.vat }}</td> 
                         <td>
-                          <a href="#" @click="deleteItem(item.item_no,item.sub_total,item.tax_excluded,item.vat)">
+                          <a href="#" @click="deleteItem(item.id,item.sub_total,item.tax_excluded,item.vat)">
                             <i class="fa fa-trash"></i>
                           </a>
                         </td>
@@ -418,7 +446,7 @@
                 </div>
 
               
-                  <input v-model="Number(form_entry.amount_ex_tax).toLocaleString()" name="amount_ex_tax" id="amount_ex_tax2"
+                  <input v-model="Number(form_entry.amount_ex_tax).toLocaleString()" name="amount_ex_tax" id="amount_ex_tax"
                   
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount_ex_tax') }" readonly aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_entry" field="amount_ex_tax"></has-error>
@@ -431,7 +459,7 @@
                   <span class="input-group-text inputGroup-sizing-default">Tax</span>
                 </div>
               
-                  <input v-model="Number(form_entry.vat).toLocaleString()" name="vat" id="vat2"
+                  <input v-model="Number(form_entry.vat).toLocaleString()" name="vat" id="vat"
                   
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('vat') }" readonly aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_entry" field="vat"></has-error>
@@ -439,8 +467,8 @@
 
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" @click="cancelEntry">Cancel</button>
-              <button type="button" :disabled="!save_button_entry_enabled" class="btn btn-success" @click="saveEntry">Save</button>
+              <button type="button" class="btn btn-danger" @click="cancelDebitEntry">Cancel</button>
+              <button type="button" class="btn btn-success" @click="saveDebitEntry">Save</button>
             </div>
 
             <!-- /form -->
@@ -581,7 +609,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" @click="cancelItem" class="btn btn-danger">Cancel</button>
-              <button type="button" :disabled="!save_button_item_enabled" @click="saveItem" class="btn btn-success">Save</button>
+              <button type="button" @click="saveItem" class="btn btn-success">Save</button>
             </div>
 
             <!-- /form -->
@@ -649,7 +677,8 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              
+              <!--button v-show="editmode" type="submit" class="btn btn-success">Update</button -->
+              <!--button v-show="!editmode" type="submit" class="btn btn-primary">Create</button -->
             </div>
 
             </form>
@@ -678,7 +707,8 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              
+              <!--h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add New</h5>
+              <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update Entry</h5 -->
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -722,10 +752,10 @@
           </div>
         </div>
       </div>
-      <!-- Search Payee Modal -->      
+      
 
 
-      <!-- Search Branch Modal 
+      <!-- Show WTax Rates 
       *
       *
       *
@@ -740,39 +770,32 @@
       *
       -->
 
-      <div class="modal fade" id="select-branch" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+      <div class="modal fade" id="show-wtax" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              
+              <!--h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add New</h5>
+              <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update Entry</h5 -->
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <form onsubmit="return false;">
             <div class="modal-body">
-              
-              <div class="form-group">
-                <label>Search</label>
-                <input type="text" name="search" v-model="searchBranch" @change="SearchBranch" class="float-right col-6">
-              </div>
-              
-              <!-- /.box-header -->
+
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <tbody><tr>
+                  <th>ATC</th>
                   <th>Code</th>
-                  <th>Branch</th>
-                  <th>Option</th>
+                  <th>Rate</th>
+                  <th>Description</th>
                 </tr>
-                <tr v-for="branch in branches.data" :key="branch.id">
-                  <td>{{ branch.id }}</td>
-                  <td>{{ branch.name }}</td> 
-                  <td>
-                    <a href="#" @click="selectBranch(branch.id,branch.name)">Select
-                      <i class="fa fa-edit"></i>
-                    </a>
-                  </td>
+                <tr v-for="tax in wtax" :key="wtax.id">
+                  <td>{{ tax.atc }}</td>
+                  <td>{{ tax.atc_code }}</td> 
+                  <td>{{ tax.tax_rate }}</td> 
+                  <td>{{ tax.description }}, {{ tax.condition }}</td> 
                 </tr>
               </tbody></table>
             </div>
@@ -788,30 +811,22 @@
           </div>
         </div>
       </div>
-      <!-- Search Branch Modal -->   
-      
 
     </div>
 </template>
 <script>
 
+  
     export default {
         data() {
           return {
-              transaction_type: 'CD',
-              //ledgers: [],
-              transactions: [],
-              items: [],
-              item_no: 0,
-              transaction_entry_id: 0,
-              current_transaction_entry_id: 0,
+              ledgers: [],
               user_id: '',
               editmode: false,
               transaction_created: false,
               no_payee: false,
               no_reference_no: false,
               no_account_code: false,
-              no_branch_id: false,
               no_item: false,
               no_price: false,
               no_quantity: false,
@@ -821,10 +836,7 @@
               save_button_entry_enabled: true,
               searchText: '',
               searchPayee: '',
-              searchBranch: '',
               headerOrDetail: 'header',
-              current_branch_id: '',
-              current_branch_name: '',
               current_payee_id: '',
               current_payee_name: '',
               current_payee_address: '',
@@ -833,11 +845,12 @@
               selected_branch: {},
               cd : {},
               form: new Form({
-                  //id:'',
+
+                  id:'',
                   payee_id: '',
                   reference_no: '',
                   transaction_no: '',
-                  transaction_type: this.transaction_type, // default for Cash Disbursement
+                  transaction_type: 'SALES', // default for SALES
                   transaction_date: this.getDate(),
                   account_code: '',
                   account_name:'',
@@ -847,33 +860,39 @@
                   amount_ex_tax: 0,
                   vat: 0,
                   canceled: 0,
-                  branch_id: '',
-                  user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
+                  user_id: document.querySelector('meta[name="user-id"]').getAttribute('content'),
+                  wtax_code: 'NA',
+                  wtax: 0
+                  
               }),
               form_entry: new Form({
 
-                  //id:'',
-                  //transaction_id:'',
+                  id:'',
+                  transaction_id:'',
                   transaction_no:'',
-                  transaction_entry_id: 0,
-                  transaction_type: this.transaction_type,
+                  transaction_type:'',
                   account_code : 0,
                   account_name: 'NA',
+                  //entry_name: '',
+                  //entry_description: '',
                   branch_id: '',
                   branch_name: '',
                   amount: 0,
                   amount_ex_tax: 0,
+                  
                   vat: 0,
                   credit_amount: 0,
                   debit_amount: 0,
                   transaction_date: this.getDate(),
+                  
+                  
               }),
               form_item: new Form({
 
                   id:'',
                   transaction_entry_id:'',
                   transaction_no:'',
-                  transaction_type: this.transaction_type,
+                  transaction_type:'',
                   account_code : '',
                   item: '',
                   quantity: 0,
@@ -887,21 +906,24 @@
               }),
               payees: {},
               branches: {},
+              items: {},
+              entries: {},
               chart_of_accounts: {},
               chart_of_accounts_header: {},
               chart_of_accounts_detail: {},
-              readabilityObject: {
-                fontSize: user.font_size
-              }
+              wtax: [],
+              wTaxExist: true
 
           }
         },
         methods: {
-          loadBranch(){
+          loadBranches(){
+
             if(this.$gate.isAdminOrUser()){
                 axios.get("api/branch").then(({data}) => (this.branches = data ));
-                
+                //axios.get("api/user").then(({ data }) => (this.users = data.data));
             } 
+             
           },
           loadPayees(){
             if(this.$gate.isAdminOrUser()){
@@ -915,19 +937,17 @@
               } else {
                   this.chart_of_accounts = this.chart_of_accounts_detail;
               }
-              
+
           },
           initChartAccounts(){
-
-              axios.get('api/chartaccount?headerordetail=header&transaction_type='+this.transaction_type)
+              axios.get('api/chartaccount?headerordetail=header&transaction_type=SALES')
                 .then((data)=>{
                   this.chart_of_accounts_header = data.data;
                 })
                 .catch(()=>{
                   //
                 });
-                
-              axios.get('api/chartaccount?headerordetail=detail&transaction_type='+this.transaction_type)
+              axios.get('api/chartaccount?headerordetail=detail&transaction_type=SALES')
                 .then((data)=>{
                   this.chart_of_accounts_detail = data.data;
                 })
@@ -935,7 +955,10 @@
                   //
                 });  
           },
-          
+          eventChild(Obj){
+            //console.log(Obj.id);
+            this.form.payee_id = Obj.id;
+          },
           getDate() {
             const toTwoDigits = num => num < 10 ? '0' + num : num;
             let today = new Date();
@@ -956,12 +979,6 @@
             } else {
               this.no_account_code = false;
             }
-
-            if(this.form.branch_id.length == 0) {
-              this.no_branch_id = true;
-            } else {
-              this.no_branch_id = false;
-            }
             
             if(this.form.reference_no.length == 0) {
               this.no_reference_no = true;
@@ -969,7 +986,7 @@
               this.no_reference_no = false;
             }
 
-            if (this.no_account_code || this.no_reference_no || this.no_payee || this.no_branch_id){
+            if (this.no_account_code || this.no_reference_no || this.no_payee){
               this.transaction_created = false;
             } else {
               this.transaction_created = true;
@@ -977,146 +994,121 @@
 
 
             this.form.transaction_no = this.createSerialNumber();
-            this.form.transaction_type = this.transaction_type;
-
+            this.form.transaction_type = 'SALES';
+            this.form.post('api/cd')
+                .then((data)=>{
+                  //console.log(data.data.id);
+                  this.form.id = data.data.id;
+                })
+                .catch(()=>{
+                  //
+                });
+            
           },
           saveTransaction(){
-            if(this.form.amount == 0) {
+            if(this.form.amount == 0 || this.form.wtax == 0 ) {
               return false;
             }
-            
-            this.transaction_created = false; 
-            ++this.transaction_entry_id;
-            this.transactions.push({ 
-                transaction_entry_id: this.transaction_entry_id,
-                payee_id: this.form.payee_id,
-                branch_id: this.current_branch_id,
-                account_code: this.form.account_code,
-                account_name: this.form.account_name,
-                reference_no: this.form.reference_no,
-                transaction_no: this.form.transaction_no,
-                transaction_type: this.form.transaction_type,
-                transaction_date: this.form.transaction_date,
-                amount: this.form.amount,
-                credit_amount: this.form.amount,
-                debit_amount: 0,
-                total_payment: 0,
-                amount_ex_tax: this.form.amount_ex_tax,
-                vat: this.form.vat,
-                wtax_code: 0,
-                wtax: 0,
-                user_id: this.form.user_id,
-                status: 'CONFIRMED'
+            //this.$Progress.start();
+            this.form.put('api/cd/'+this.form.id)
+            .then(() => {
+                  /*
+                  swal.fire(
+                    'Saved!',
+                    'Transaction Completed.',
+                    'success'
+                  );
+                  */
+                  this.transaction_created = false;
+                  this.form.post('api/cd/confirm/'+this.form.transaction_no);
+                  
+
+                  this.ledgers.push({ 
+                      id: this.form.id,
+                      transaction_id: this.form.id, 
+                      transaction_no: this.form.transaction_no,
+                      transaction_type: this.form.transaction_type,
+                      account_code: this.form.account_code,
+                      account_name: this.form.account_name,
+                      transaction_date: this.form.transaction_date,
+                      credit_amount: 0,
+                      debit_amount: this.form.amount
+                    });
+                  this.ledgers.push({ 
+                      id: 1,
+                      transaction_id: this.form.id, 
+                      transaction_no: this.form.transaction_no,
+                      transaction_type: this.form.transaction_type,
+                      account_code: '2105110',
+                      account_name: 'Output Tax',
+                      transaction_date: this.form.transaction_date,
+                      credit_amount: this.form.vat,
+                      debit_amount: 0
+                    }); 
+
+
+                  this.ledgers.push({ 
+                      id: 1,
+                      transaction_id: this.form.id, 
+                      transaction_no: this.form.transaction_no,
+                      transaction_type: this.form.transaction_type,
+                      account_code: '1105120',
+                      account_name: 'Creditable WTax',
+                      transaction_date: this.form.transaction_date,
+                      credit_amount: 0,
+                      debit_amount: this.form.wtax
+                    }); 
+
+
+
+                    
+                      let rawData = {
+                          ledgers: this.ledgers
+                      }
+                      rawData = JSON.stringify(rawData);
+                      let formData = new FormData();
+                          formData.append('ledgers', rawData);
+                      axios.post('api/ledgers', formData, {
+                          headers: {
+                              'Content-Type': 'multipart/form-data'
+                          }
+                      })
+                      .then((response)=>{
+                          
+                          console.log(response);
+                      })
+                      .catch(function (error) {
+                          console.log(error);
+                      });
+
+
+                  //this.$Progress.finish();
+                  //this.$router.go();  
+                                    
+            })
+            .catch(() => {
+                //this.$Progress.fail();
             });
-            ++this.transaction_entry_id;
-            
-            this.transactions.push({ 
-                transaction_entry_id: this.transaction_entry_id,
-                payee_id: this.form.payee_id,
-                branch_id: this.current_branch_id,
-                account_code: '1105110',
-                account_name: 'Input Tax',
-                reference_no: this.form.reference_no,
-                transaction_no: this.form.transaction_no,
-                transaction_type: this.form.transaction_type,
-                transaction_date: this.form.transaction_date,
-                amount: this.form.vat,
-                credit_amount: 0,
-                debit_amount: this.form.vat,
-                total_payment: 0,
-                amount_ex_tax: 0,
-                vat: 0,
-                wtax_code: 0,
-                wtax: 0,
-                user_id: this.form.user_id,
-                status: 'CONFIRMED'
-            });  
 
-
-                // Save Transactions START
-                let rawData = {
-                    transactions: this.transactions
-                }
-                rawData = JSON.stringify(rawData);
-                let formData = new FormData();
-                    formData.append('transactions', rawData);
-                axios.post('api/transactions', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                })
-                .then((response)=>{
-                    
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-                // Save Transactions END
-
-
-
-                // Save Items START
-                let rawItemData = {
-                    items: this.items
-                }
-                rawItemData = JSON.stringify(rawItemData);
-                let formItemData = new FormData();
-                    formItemData.append('items', rawItemData);
-                axios.post('api/items', formItemData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                })
-                .then((response)=>{
-                    
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-                // Save Items END
-
-
-                swal.fire({
-                    title: 'Saved!',
-                    text: "Journal posted",
-                    type: 'info',
-                    showCancelButton: false,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ok'
+            swal.fire({
+                  title: 'Saved!',
+                  text: "Journal posted",
+                  icon: 'info',
+                  showCancelButton: false,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Ok'
                 }).then((result) => {
-                    if (result.value) {
-                      //Reload Current Page
-                      this.dataReset();
-                    }
+                  if (result.value) {
+                    //Reload Current Page
+                    this.$router.go();        
+                  }
                 });
-          },
-          dataReset(){
-                  this.form.reset();
-                  this.form_entry.reset();
-                  this.form_item.reset();
-                  this.transactions = [];
-                  this.items = [];
-                  this.transaction_entry_id = 0;
-                  this.item_no = 0;
-                  this.current_transaction_entry_id = 0;
-                  this.searchText = '';
-                  this.searchPayee = '';
-                  this.searchBranch = '';
-                  this.headerOrDetail = 'header';
-                  this.current_branch_id = '';
-                  this.current_branch_name = '';
-                  this.current_payee_id = '';
-                  this.current_payee_name = '';
-                  this.current_payee_address = '';
-                  this.current_payee_tin = '';
-                  this.active_debit_row = 0;
+
           },
           cancelTransaction(){
             this.transaction_created = false;
-            this.dataReset();
+            this.form.delete('api/cd/cancel/'+this.form.transaction_no);
           },
           searchAccountModal(headerOrDetail = 'header'){
               this.headerOrDetail = headerOrDetail;
@@ -1127,13 +1119,9 @@
           },
           searchPayeeModal(){
               this.searchPayee = this.form.payee_id;
+              //this.searchPayee = '';
               this.loadPayees();
               $('#select-payee').modal('show');
-          },
-          searchBranchModal(){
-              this.searchBranch = this.form.branch_id;
-              this.loadBranch();
-              $('#select-branch').modal('show');
           },
 
           selectAccount(account_code  = null,account_name = null){
@@ -1146,13 +1134,14 @@
                       this.form_entry.account_code = account_code;
                   }
               }
+
               $('#select-account').modal('hide');  
 
           },
 
           selectPayee(id = null,name = null,address = null,tin = null){
               if (id){
-                    
+                    console.log(name);
                       this.current_payee_id = id;
                       this.form.payee_id = id;
                       this.current_payee_name = name;
@@ -1162,22 +1151,10 @@
               $('#select-payee').modal('hide');  
 
           },
-          
-          selectBranch(id = null,name = null){
-              if (id){
-                    
-                      this.current_branch_id = id;
-                      this.form.branch_id = id;
-
-                      this.current_branch_name = name;
-              }
-              $('#select-branch').modal('hide');  
-
-          },
           SearchIt() {
               let query = this.searchText;
               let headerOrDetail = this.headerOrDetail;
-              axios.get('api/searchAccount?q='+query+'&transaction_type='+this.transaction_type+'&headerordetail='+headerOrDetail)
+              axios.get('api/searchAccount?q='+query+'&transaction_type=SALES&headerordetail='+headerOrDetail)
                 .then((data)=>{
                   this.chart_of_accounts = data.data;
                 })
@@ -1195,23 +1172,33 @@
                   //
                 });
           },
-          SearchBranch() {
-              let query = this.searchBranch;
-              axios.get('api/searchBranch?q='+query)
+          loadEntryItems() {
+              let entry_id = this.form_entry.id;
+              axios.get('api/cd/items/list?entry_id='+entry_id)
                 .then((data)=>{
-                  this.branches = data.data;
+                  this.items = data.data;
                 })
                 .catch(()=>{
                   //
                 });
           },
-
+          loadEntries() {
+              let transaction_no = this.form.transaction_no;
+              axios.get('api/cd/entries/list?transaction_no='+transaction_no)
+                .then((data)=>{
+                  this.entries = data.data;
+                })
+                .catch(()=>{
+                  //
+                });
+          },
           createSerialNumber(){
               // Get current date
               var d = new Date();
               // Get pirmative value of date
               var n = d.valueOf();
               // Return concatenated primative value with the user id. 
+              
               return ""+n+this.user_id;
           },
           computeTaxChange(event){
@@ -1233,21 +1220,30 @@
                 }
               }
           },
+          selectDebitRow(active_debit_row_id){
+              this.active_debit_row = active_debit_row_id;
+              this.form_entry.id = active_debit_row_id;
+              VueListen.$emit('RefreshItemTable');
+              //console.log(active_debit_row);
+
+          },
           newEntry(){
               this.editmode = false;
               this.form_entry.reset();
-              ++this.transaction_entry_id;
-
-              // To refresh ITEMS table
-              this.current_transaction_entry_id = this.transaction_entry_id;
-
-              this.form_entry.transaction_id = this.transaction_entry_id;
+              this.form_entry.transaction_id = this.form.id;
               this.form_entry.transaction_no = this.form.transaction_no;
-              this.form_entry.transaction_type = this.transaction_type;
+              this.form_entry.transaction_type = 'SALES';
               this.save_button_entry_enabled = true;
-              
-
-
+              this.form_entry.post('api/cd/entry')
+                .then((data)=>{
+                  this.form_entry.id = data.data.id;
+                  //console.log(data.data.id);
+                  VueListen.$emit('RefreshItemTable');    
+                })
+                .catch(()=>{
+                  //
+                });
+                
               $('#entry-details').modal('show');
 
 
@@ -1259,96 +1255,135 @@
               } else {
                 this.no_entry_account_code = false;
               }
-    
-              if (this.no_entry_account_code){
-                return false;
+              if(this.form_entry.branch_id == 0) {
+                this.no_entry_branch_id = true;
+              } else {
+                this.no_entry_branch_id = false;
               }
 
+              if (this.no_entry_account_code || this.no_entry_branch_id){
+                return false;
+              }
               this.save_button_item_enabled = true;
-
               this.editmode = false;
               this.form_item.reset();
 
               this.no_item = false;
               this.no_price = false;
               this.no_quantity = false;
-              this.form_item.transaction_entry_id = this.transaction_entry_id;
+              this.form_item.transaction_entry_id = this.form_entry.id;
               this.form_item.transaction_no = this.form.transaction_no;
-              this.form_item.transaction_type = this.transaction_type;
+              this.form_item.transaction_type = 'SALES';
               this.form_item.account_code = this.form_entry.account_code;
- 
-              
+
+              this.form_item.post('api/cd/item')
+                .then((data)=>{
+                  this.form_item.id = data.data.id;
+                  //console.log(data.data.id);
+                })
+                .catch(()=>{
+                  //
+                });
+              this.loadEntryItems();
               $('#entry-items').modal('show');
           },
-          cancelEntry(){
+          cancelDebitEntry(){
             //this.$Progress.start();
-            this.items = this.items.filter(function( item ) {
-                return item.transaction_entry_id !== this.transaction_entry_id;
+            this.form_item.delete('api/cd/entry/'+this.form_entry.id)
+            .then(() => {
+                $('#entry-details').modal('hide');
+                /*
+                swal.fire(
+                    'Updated!',
+                    'Payee information has been updated.',
+                    'success'
+                  );
+                */
+                  //this.$Progress.finish();
+                  VueListen.$emit('RefreshEntryTable');
+            })
+            .catch(() => {
+                this.$Progress.fail();
             });
-            $('#entry-details').modal('hide');
- 
           },
-          saveEntry(){
+          saveDebitEntry(){
 
             this.form_entry.credit_amount = this.form_entry.amount
-
-            // ** Temporary data to bypass Column cannot be null ERROR's
             this.save_button_entry_enabled = false;
-
-            this.form.amount += this.form_entry.amount;
-            this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
-            this.form.vat += this.form_entry.vat;  
-
-            // To refresh ITEMS table
-            this.current_transaction_entry_id = this.transaction_entry_id;
-            
-            //this.$Progress.start();
-            this.transactions.push({ 
-                transaction_entry_id: this.transaction_entry_id,
-                payee_id: this.form.payee_id,
-                branch_id: this.current_branch_id,
-                account_code: this.form_entry.account_code,
-                account_name: this.form_entry.account_name,
-                reference_no: this.form.reference_no,
-                transaction_no: this.form.transaction_no,
-                transaction_type: this.form.transaction_type,
-                transaction_date: this.form.transaction_date,
-                amount: this.form_entry.amount_ex_tax,
-                credit_amount: 0,
-                debit_amount: this.form_entry.amount_ex_tax,
-                total_payment: 0,
-                amount_ex_tax: 0,
-                vat: this.form_entry.vat,
-                wtax_code: 0,
-                wtax: 0,
-                user_id: this.form.user_id,
-                status: 'CONFIRMED'
+            this.$Progress.start();
+            this.form_entry.put('api/cd/entry/'+this.form_entry.id)
+            .then(() => {
+                $('#entry-details').modal('hide');
+                /*
+                swal.fire(
+                    'Updated!',
+                    'Payee information has been updated.',
+                    'success'
+                  );
+                */
+                  this.form.amount += this.form_entry.amount;
+                  this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
+                  this.form.vat += this.form_entry.vat;
+                  this.ledgers.push({ 
+                      id: this.form_entry.id,
+                      transaction_id: this.form.id, 
+                      transaction_no: this.form.transaction_no,
+                      transaction_type: this.form.transaction_type,
+                      account_code: this.form_entry.account_code,
+                      account_name: this.form_entry.account_name,
+                      transaction_date: this.form.transaction_date,
+                      credit_amount: this.form_entry.amount_ex_tax,
+                      debit_amount: 0
+                    });
+                  this.$Progress.finish();
+                  VueListen.$emit('RefreshEntryTable');
+            })
+            .catch(() => {
+                this.$Progress.fail();
             });
-            $('#entry-details').modal('hide');
-            //this.$Progress.finish();
-            
-
           },
-          deleteEntry(transaction_entry_id,entry_amount,entry_vat){
+          deleteEntry(entry_id,entry_amount,entry_amount_ex_tax,entry_vat){
+            this.form_item.delete('api/cd/entry/'+entry_id)
+              .then(() => {
+                  //$('#entry-items').modal('hide');
+                  /*
+                  swal.fire(
+                      'Updated!',
+                      'Payee information has been updated.',
+                      'success'
+                    );
+                  */
+                    this.form.amount = parseFloat(this.form.amount - entry_amount).toFixed(2) * 1;
+                    this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
+                    this.form.vat = (this.form.vat - entry_vat).toFixed(2) * 1;
+                    
+                    VueListen.$emit('RefreshItemTable');
+                    VueListen.$emit('RefreshEntryTable');
 
-            this.transactions = this.transactions.filter(function( transaction ) {
-                return transaction.transaction_entry_id !== transaction_entry_id;
-            });
-
-            this.items = this.items.filter(function( item ) {
-                return item.transaction_entry_id !== transaction_entry_id;
-            });
-
-            this.form.amount = parseFloat(this.form.amount - entry_amount - entry_vat).toFixed(2) * 1;
-            this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount).toFixed(2) * 1;
-            this.form.vat = (this.form.vat - entry_vat).toFixed(2) * 1;
-            
-           
+              })
+              .catch(() => {
+                  this.$Progress.fail();
+              });
           },
           cancelItem(){
-            
-            $('#entry-items').modal('hide');
-            
+            //this.$Progress.start();
+            this.form_item.delete('api/cd/item/'+this.form_item.id)
+            .then(() => {
+                $('#entry-items').modal('hide');
+                /*
+                swal.fire(
+                    'Updated!',
+                    'Payee information has been updated.',
+                    'success'
+                  );
+                */
+                  //this.$Progress.finish();
+
+                  VueListen.$emit('RefreshItemTable');
+            })
+            .catch(() => {
+                this.$Progress.fail();
+            });
           },
           saveItem(){
             
@@ -1374,66 +1409,121 @@
               return false;
             } 
 
+            
             this.save_button_item_enabled = false;
-
-
-            // To refresh ITEMS table
-            this.current_transaction_entry_id = this.transaction_entry_id;
-
-            //this.$Progress.start();
-            
-            this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
-            this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
-            this.form_entry.vat += (this.form_item.vat * 1);
-            
-            ++this.item_no;
-            
-            this.items.push({ 
-                item_no: this.item_no,
-                transaction_entry_id: this.transaction_entry_id,
-                transaction_no: this.form.transaction_no,
-                transaction_type: this.form.transaction_type,
-                account_code: this.form_entry.account_code,
-                item: this.form_item.item,
-                quantity: this.form_item.quantity,
-                price: this.form_item.price, 
-                sub_total: this.form_item.sub_total,
-                tax_type: this.form_item.tax_type, 
-                tax_excluded: this.form_item.tax_excluded, 
-                vat: this.form_item.vat, 
-                status: 'CONFIRMED'
-
+            this.$Progress.start();
+            this.form_item.put('api/cd/item/'+this.form_item.id)
+            .then(() => {
+                $('#entry-items').modal('hide');
+                /*
+                swal.fire(
+                    'Updated!',
+                    'Payee information has been updated.',
+                    'success'
+                  );
+                */
+                  this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
+                  this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
+                  this.form_entry.vat += (this.form_item.vat * 1);
+                  
+                  this.$Progress.finish();
+                  VueListen.$emit('RefreshItemTable');
+            })
+            .catch(() => {
+                this.$Progress.fail();
             });
-            $('#entry-items').modal('hide');
-            
           },
-          deleteItem(item_no,item_sub_total,item_tax_excluded,item_vat){
-
-              this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
-              this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
-              this.form_entry.vat = (this.form_entry.vat - item_vat).toFixed(2) * 1;
-
-              this.items = this.items.filter(function( item ) {
-                  return item.item_no !== item_no;
+          deleteItem(item_id,item_sub_total,item_tax_excluded,item_vat){
+              this.form_item.delete('api/cd/item/'+item_id)
+              .then(() => {
+                  //$('#entry-items').modal('hide');
+                  /*
+                  swal.fire(
+                      'Updated!',
+                      'Payee information has been updated.',
+                      'success'
+                    );
+                  */
+                    this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
+                    this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
+                    this.form_entry.vat = (this.form_entry.vat - item_vat).toFixed(2) * 1;
+                    
+                    VueListen.$emit('RefreshItemTable');
+              })
+              .catch(() => {
+                  this.$Progress.fail();
               });
-              
-
           },
           branchChange(){
             this.form_entry.branch_id = this.selected_branch.id ;
             this.form_entry.branch_name = this.selected_branch.name;
           },
-          selectEntryRow(current_transaction_entry_id){
-              this.current_transaction_entry_id = current_transaction_entry_id;
-              
+          loadWTax(){
+            //axios.get("api/taxrate").then(({data}) => (this.wtax = json_decode(data.data) ));
+
+            axios.get('api/taxrate')
+                .then((response)=>{
+                  this.wtax = response.data;
+                })
+                .catch(()=>{
+                  //
+                });
+          },
+          computedWTax(){
+            if(!this.form.wtax_code){
+                this.form.wtax = 0;
+                this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat);
+                return false;
+            }
+            this.form.wtax_code = this.form.wtax_code.toUpperCase();
+            this.wTaxExist = this.wtax.find(tax => tax.atc_code == this.form.wtax_code);
+            if(this.wTaxExist){
+               this.form.wtax = (this.form.amount_ex_tax * (this.wTaxExist.tax_rate/100)).toFixed(2) * 1;
+               this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat) - parseFloat(this.form.wtax);
+            } else {
+                this.form.wtax = 0;
+                this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat);
+            }
+          },
+          showWTaxTable(){
+            
+            $('#show-wtax').modal('show');
+            
           }
+
+          
+
+
         },
 
         created() {
+            
             this.loadPayees();
-            this.loadBranch();
+            this.loadBranches();
             this.initChartAccounts();
+
+            this.loadEntryItems();
+            this.loadEntries();
+            this.loadWTax();
+            //this.SearchIt = _.debounce(this.SearchIt, 1000);
+            
+            VueListen.$on('RefreshItemTable',() => {
+                this.loadEntryItems();
+                this.computedWTax();
+
+            });
+            
+            VueListen.$on('RefreshEntryTable',() => {
+                this.loadEntries();
+                this.computedWTax();
+            });
+            
+
             this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
+            //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
+            //console.log(this.payees);
+
+            //setInterval(() => this.loadUsers(),3000);
 
 
             /* Scrollbar fix
@@ -1442,16 +1532,12 @@
                 $('.modal:visible').length && $(document.body).addClass('modal-open');
             });
 
-
+            
         },
         computed: {
-            currentItems(){
-                return this.items.filter(item  => 
-                    {
-                    return parseInt(item.transaction_entry_id)==parseInt(this.current_transaction_entry_id);
-                  }  
-                )
-            }
+            
+          
+
         },
         components: {
           
@@ -1460,5 +1546,5 @@
     }
 </script>
 <style type="text/css">
-  
+
 </style>
