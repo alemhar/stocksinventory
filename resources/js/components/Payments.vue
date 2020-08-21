@@ -824,32 +824,33 @@
           dataReset(){
                 this.form.reset();
                 this.form_entry.reset();
-                transactions = [];
-                transaction_entry_id = 0;
-                current_transaction_entry_id = 0;
+                this.transactions = [];
+                this.transaction_entry_id = 0;
+                this.current_transaction_entry_id = 0;
 
-                current_balance = 0;
-                current_purchase_id = 0;
-                transaction_created = false;
-                no_payee = false;
-                no_reference_no = false;
-                no_account_code = false;
-                save_button_item_enabled = true;
-                save_button_entry_enabled = true;
-                searchText = '';
-                searchPayee = '';
-                headerOrDetail = 'header';
-                current_payee_id = '';
-                current_payee_name = '';
-                current_payee_address = '';
-                current_payee_tin = '';
-                active_debit_row = 0;
-                payment_history = {};
-                purchases = {};
+                this.current_balance = 0;
+                this.current_purchase_id = 0;
+                this.transaction_created = false;
+                this.no_payee = false;
+                this.no_reference_no = false;
+                this.no_account_code = false;
+                this.save_button_item_enabled = true;
+                this.save_button_entry_enabled = true;
+                this.searchText = '';
+                this.searchPayee = '';
+                this.headerOrDetail = 'header';
+                this.current_payee_id = '';
+                this.current_payee_name = '';
+                this.current_payee_address = '';
+                this.current_payee_tin = '';
+                this.active_debit_row = 0;
+                this.payment_history = {};
+                this.purchases = {};
           },
           cancelTransaction(){
             this.transaction_created = false;
-            this.form.delete('api/cd/cancel/'+this.form.transaction_no);
+            this.dataReset();
+            //this.form.delete('api/cd/cancel/'+this.form.transaction_no);
           },
           searchAccountModal(headerOrDetail = 'header'){
               this.headerOrDetail = headerOrDetail;
