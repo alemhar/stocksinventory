@@ -970,7 +970,8 @@
                 fontSize: user.font_size
               },
               wtax: [],
-              wTaxExist: true
+              wTaxExist: true,
+              wTaxCodeInvalid: false
 
 
           }
@@ -1061,7 +1062,7 @@
           },
           saveTransaction(){
             
-            if(this.form.amount == 0 || this.form.wtax == 0 ) {
+            if(this.form.amount == 0 || this.form.wtax == 0 || this.wTaxCodeInvalid) {
               return false;
             }
 
@@ -1550,23 +1551,32 @@
           computedWTax(){
 
             if(!this.form.wtax_code){
-              return false;
+                this.form.wtax = 0;
+                this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat);
+                this.wTaxExist = false;
+                this.wTaxCodeInvalid = false;
+                return false;
             }
             this.form.wtax_code = this.form.wtax_code.toUpperCase();
             this.wTaxExist = this.wtax.find(tax => tax.atc_code == this.form.wtax_code);
             if(this.wTaxExist){
                this.form.wtax = (this.form.amount_ex_tax * (this.wTaxExist.tax_rate/100)).toFixed(2) * 1;
                this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat) - parseFloat(this.form.wtax);
+               this.wTaxCodeInvalid = false;
             } else {
-
+                this.wTaxCodeInvalid = true; 
+                this.form.wtax = 0;
+                this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat);
             }
           }
+
         },
 
         created() {
             this.loadPayees();
             this.loadBranch();
             this.initChartAccounts();
+            this.loadWTax();
             this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
 
 
