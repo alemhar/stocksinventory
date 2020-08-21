@@ -556,6 +556,7 @@
         data() {
           return {
               transaction_type: 'PAYMENT',
+              transactions: [],
               transaction_entry_id: 0,
               current_transaction_entry_id: 0,
 

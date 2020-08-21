@@ -7636,6 +7636,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       transaction_type: 'PAYMENT',
+      transactions: [],
       transaction_entry_id: 0,
       current_transaction_entry_id: 0,
       ledgers: [],
