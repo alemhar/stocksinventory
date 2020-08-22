@@ -72,6 +72,7 @@ class AccountController extends Controller
                         ->paginate(8);
                     }
                 } else {
+                    // 'LEDGER'
                     $accounts = Account::latest()->where('filter', '<', 99)->paginate(10);
                 }
 
@@ -209,6 +210,7 @@ class AccountController extends Controller
         return ['message' => 'Ledger posted.'];
     }
 
+    // Not in use
     public function load_ledger($account_code)
     {
         

@@ -231,6 +231,13 @@ class CDController extends Controller
         return ['message' => 'Transactions posted.'];
     }
 
+    public function load_ledger($account_code)
+    {
+        
+        $ledger = Transaction::where('account_code',$account_code)->paginate(10);
+        return $ledger;
+    }
+
 }
 
               
