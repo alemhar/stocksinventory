@@ -3494,10 +3494,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CashDisbursement.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CashDisbursement.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CR.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CR.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4271,19 +4271,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//import { ModelSelect } from 'vue-search-select'
-//import { DynamicSelect } from 'vue-dynamic-select'
-//import { BasicSelect } from 'vue-search-select'
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      ledgers: [],
+      transaction_type: 'CR',
+      //ledgers: [],
+      transactions: [],
+      items: [],
+      item_no: 0,
+      transaction_entry_id: 0,
+      current_transaction_entry_id: 0,
       user_id: '',
       editmode: false,
-      cd_created: false,
+      transaction_created: false,
       no_payee: false,
       no_reference_no: false,
       no_account_code: false,
+      no_branch_id: false,
       no_item: false,
       no_price: false,
       no_quantity: false,
@@ -4293,7 +4324,10 @@ __webpack_require__.r(__webpack_exports__);
       save_button_entry_enabled: true,
       searchText: '',
       searchPayee: '',
+      searchBranch: '',
       headerOrDetail: 'header',
+      current_branch_id: '',
+      current_branch_name: '',
       current_payee_id: '',
       current_payee_name: '',
       current_payee_address: '',
@@ -4302,11 +4336,11 @@ __webpack_require__.r(__webpack_exports__);
       selected_branch: {},
       cd: {},
       form: new Form({
-        id: '',
+        //id:'',
         payee_id: '',
         reference_no: '',
         transaction_no: '',
-        transaction_type: 'CD',
+        transaction_type: this.transaction_type,
         // default for Cash Disbursement
         transaction_date: this.getDate(),
         account_code: '',
@@ -4317,17 +4351,17 @@ __webpack_require__.r(__webpack_exports__);
         amount_ex_tax: 0,
         vat: 0,
         canceled: 0,
+        branch_id: '',
         user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
       }),
       form_entry: new Form({
-        id: '',
-        transaction_id: '',
+        //id:'',
+        //transaction_id:'',
         transaction_no: '',
-        transaction_type: '',
+        transaction_entry_id: 0,
+        transaction_type: this.transaction_type,
         account_code: 0,
         account_name: 'NA',
-        //entry_name: '',
-        //entry_description: '',
         branch_id: '',
         branch_name: '',
         amount: 0,
@@ -4341,7 +4375,7 @@ __webpack_require__.r(__webpack_exports__);
         id: '',
         transaction_entry_id: '',
         transaction_no: '',
-        transaction_type: '',
+        transaction_type: this.transaction_type,
         account_code: '',
         item: '',
         quantity: 0,
@@ -4353,8 +4387,6 @@ __webpack_require__.r(__webpack_exports__);
       }),
       payees: {},
       branches: {},
-      items: {},
-      entries: {},
       chart_of_accounts: {},
       chart_of_accounts_header: {},
       chart_of_accounts_detail: {},
@@ -4364,14 +4396,14 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    loadBranches: function loadBranches() {
+    loadBranch: function loadBranch() {
       var _this = this;
 
       if (this.$gate.isAdminOrUser()) {
         axios.get("api/branch").then(function (_ref) {
           var data = _ref.data;
           return _this.branches = data;
-        }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
+        });
       }
     },
     loadPayees: function loadPayees() {
@@ -4392,39 +4424,18 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.chart_of_accounts = this.chart_of_accounts_detail;
       }
-      /*
-      if(headerOrDetail == null){
-        axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
-      } else {
-        //axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
-         axios.get('api/chartaccount?headerordetail='+headerOrDetail+'&transaction=CR')
-        .then((data)=>{
-          this.chart_of_accounts = data.data;
-        })
-        .catch(()=>{
-          //
-        });
-       }
-      */
-
     },
     initChartAccounts: function initChartAccounts() {
       var _this3 = this;
 
-      axios.get('api/chartaccount?headerordetail=header&transaction_type=CD').then(function (data) {
+      axios.get('api/chartaccount?headerordetail=header&transaction_type=' + this.transaction_type).then(function (data) {
         _this3.chart_of_accounts_header = data.data;
       })["catch"](function () {//
       });
-      axios.get('api/chartaccount?headerordetail=detail&transaction_type=CD').then(function (data) {
+      axios.get('api/chartaccount?headerordetail=detail&transaction_type=' + this.transaction_type).then(function (data) {
         _this3.chart_of_accounts_detail = data.data;
       })["catch"](function () {//
       });
-    },
-
-    /* Check if this is still being used.*/
-    eventChild: function eventChild(Obj) {
-      //console.log(Obj.id);
-      this.form.payee_id = Obj.id;
     },
     getDate: function getDate() {
       var toTwoDigits = function toTwoDigits(num) {
@@ -4437,9 +4448,7 @@ __webpack_require__.r(__webpack_exports__);
       var day = toTwoDigits(today.getDate());
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
-    createCD: function createCD() {
-      var _this4 = this;
-
+    createTransaction: function createTransaction() {
       if (this.form.payee_id.length == 0) {
         this.no_payee = true;
       } else {
@@ -4452,87 +4461,117 @@ __webpack_require__.r(__webpack_exports__);
         this.no_account_code = false;
       }
 
+      if (this.form.branch_id.length == 0) {
+        this.no_branch_id = true;
+      } else {
+        this.no_branch_id = false;
+      }
+
       if (this.form.reference_no.length == 0) {
         this.no_reference_no = true;
       } else {
         this.no_reference_no = false;
       }
 
-      if (this.no_account_code || this.no_reference_no || this.no_payee) {
-        this.cd_created = false;
+      if (this.no_account_code || this.no_reference_no || this.no_payee || this.no_branch_id) {
+        this.transaction_created = false;
       } else {
-        this.cd_created = true;
+        this.transaction_created = true;
       }
 
       this.form.transaction_no = this.createSerialNumber();
-      this.form.transaction_type = 'CD';
-      this.form.post('api/cd').then(function (data) {
-        //console.log(data.data.id);
-        _this4.form.id = data.data.id;
-      })["catch"](function () {//
-      });
+      this.form.transaction_type = this.transaction_type;
     },
-    saveCD: function saveCD() {
-      var _this5 = this;
+    saveTransaction: function saveTransaction() {
+      var _this4 = this;
 
       if (this.form.amount == 0) {
         return false;
       }
 
-      this.$Progress.start();
-      this.form_entry.put('api/cd/' + this.form.id).then(function () {
-        _this5.cd_created = false;
-
-        _this5.form.post('api/cd/confirm/' + _this5.form.transaction_no);
-
-        _this5.ledgers.push({
-          id: _this5.form.id,
-          transaction_id: _this5.form.id,
-          transaction_no: _this5.form.transaction_no,
-          transaction_type: _this5.form.transaction_type,
-          account_code: _this5.form.account_code,
-          account_name: _this5.form.account_name,
-          transaction_date: _this5.form.transaction_date,
-          credit_amount: _this5.form.amount,
-          debit_amount: 0
-        });
-
-        _this5.ledgers.push({
-          id: 1,
-          transaction_id: _this5.form.id,
-          transaction_no: _this5.form.transaction_no,
-          transaction_type: _this5.form.transaction_type,
-          account_code: '1105110',
-          account_name: 'Input Tax',
-          transaction_date: _this5.form.transaction_date,
-          credit_amount: 0,
-          debit_amount: _this5.form.vat
-        });
-
-        var rawData = {
-          ledgers: _this5.ledgers
-        };
-        rawData = JSON.stringify(rawData);
-        var formData = new FormData();
-        formData.append('ledgers', rawData);
-        axios.post('api/ledgers', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        }).then(function (response) {
-          console.log(response);
-        })["catch"](function (error) {
-          console.log(error);
-        });
-
-        _this5.$Progress.finish();
-      })["catch"](function () {
-        _this5.$Progress.fail();
+      this.transaction_created = false;
+      ++this.transaction_entry_id;
+      this.transactions.push({
+        transaction_entry_id: this.transaction_entry_id,
+        payee_id: this.form.payee_id,
+        branch_id: this.current_branch_id,
+        account_code: this.form.account_code,
+        account_name: this.form.account_name,
+        reference_no: this.form.reference_no,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        transaction_date: this.form.transaction_date,
+        amount: this.form.amount,
+        credit_amount: 0,
+        debit_amount: this.form.amount,
+        total_payment: 0,
+        amount_ex_tax: this.form.amount_ex_tax,
+        vat: this.form.vat,
+        wtax_code: 0,
+        wtax: 0,
+        user_id: this.form.user_id,
+        status: 'CONFIRMED'
       });
+      ++this.transaction_entry_id;
+      this.transactions.push({
+        transaction_entry_id: this.transaction_entry_id,
+        payee_id: this.form.payee_id,
+        branch_id: this.current_branch_id,
+        account_code: '2105110',
+        account_name: 'Output Tax',
+        reference_no: this.form.reference_no,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        transaction_date: this.form.transaction_date,
+        amount: this.form.vat,
+        credit_amount: this.form.vat,
+        debit_amount: 0,
+        total_payment: 0,
+        amount_ex_tax: 0,
+        vat: 0,
+        wtax_code: 0,
+        wtax: 0,
+        user_id: this.form.user_id,
+        status: 'CONFIRMED'
+      }); // Save Transactions START
+
+      var rawData = {
+        transactions: this.transactions
+      };
+      rawData = JSON.stringify(rawData);
+      var formData = new FormData();
+      formData.append('transactions', rawData);
+      axios.post('api/transactions', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      }); // Save Transactions END
+      // Save Items START
+
+      var rawItemData = {
+        items: this.items
+      };
+      rawItemData = JSON.stringify(rawItemData);
+      var formItemData = new FormData();
+      formItemData.append('items', rawItemData);
+      axios.post('api/items', formItemData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      }); // Save Items END
+
       swal.fire({
         title: 'Saved!',
         text: "Journal posted",
-        icon: 'info',
+        type: 'info',
         showCancelButton: false,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
@@ -4540,13 +4579,34 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.value) {
           //Reload Current Page
-          _this5.$router.go();
+          _this4.dataReset();
         }
       });
     },
-    cancelCD: function cancelCD() {
-      this.cd_created = false;
-      this.form["delete"]('api/cd/cancel/' + this.form.transaction_no);
+    dataReset: function dataReset() {
+      this.form.reset();
+      this.form_entry.reset();
+      this.form_item.reset();
+      this.transactions = [];
+      this.items = [];
+      this.transaction_entry_id = 0;
+      this.item_no = 0;
+      this.current_transaction_entry_id = 0;
+      this.searchText = '';
+      this.searchPayee = '';
+      this.searchBranch = '';
+      this.headerOrDetail = 'header';
+      this.current_branch_id = '';
+      this.current_branch_name = '';
+      this.current_payee_id = '';
+      this.current_payee_name = '';
+      this.current_payee_address = '';
+      this.current_payee_tin = '';
+      this.active_debit_row = 0;
+    },
+    cancelTransaction: function cancelTransaction() {
+      this.transaction_created = false;
+      this.dataReset();
     },
     searchAccountModal: function searchAccountModal() {
       var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'header';
@@ -4557,10 +4617,14 @@ __webpack_require__.r(__webpack_exports__);
       $('#select-account').modal('show');
     },
     searchPayeeModal: function searchPayeeModal() {
-      this.searchPayee = this.form.payee_id; //this.searchPayee = '';
-
+      this.searchPayee = this.form.payee_id;
       this.loadPayees();
       $('#select-payee').modal('show');
+    },
+    searchBranchModal: function searchBranchModal() {
+      this.searchBranch = this.form.branch_id;
+      this.loadBranch();
+      $('#select-branch').modal('show');
     },
     selectAccount: function selectAccount() {
       var account_code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
@@ -4585,7 +4649,6 @@ __webpack_require__.r(__webpack_exports__);
       var tin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
 
       if (id) {
-        console.log(name);
         this.current_payee_id = id;
         this.form.payee_id = id;
         this.current_payee_name = name;
@@ -4595,40 +4658,43 @@ __webpack_require__.r(__webpack_exports__);
 
       $('#select-payee').modal('hide');
     },
+    selectBranch: function selectBranch() {
+      var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+      if (id) {
+        this.current_branch_id = id;
+        this.form.branch_id = id;
+        this.current_branch_name = name;
+      }
+
+      $('#select-branch').modal('hide');
+    },
     SearchIt: function SearchIt() {
-      var _this6 = this;
+      var _this5 = this;
 
       var query = this.searchText;
       var headerOrDetail = this.headerOrDetail;
-      axios.get('api/searchAccount?q=' + query + '&transaction_type=CD&headerordetail=' + headerOrDetail).then(function (data) {
-        _this6.chart_of_accounts = data.data;
+      axios.get('api/searchAccount?q=' + query + '&transaction_type=' + this.transaction_type + '&headerordetail=' + headerOrDetail).then(function (data) {
+        _this5.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
     },
     SearchPayee: function SearchPayee() {
-      var _this7 = this;
+      var _this6 = this;
 
       var query = this.searchPayee;
       axios.get('api/searchPayee?q=' + query).then(function (data) {
-        _this7.payees = data.data;
+        _this6.payees = data.data;
       })["catch"](function () {//
       });
     },
-    loadEntryItems: function loadEntryItems() {
-      var _this8 = this;
+    SearchBranch: function SearchBranch() {
+      var _this7 = this;
 
-      var entry_id = this.form_entry.id;
-      axios.get('api/cd/items/list?entry_id=' + entry_id).then(function (data) {
-        _this8.items = data.data;
-      })["catch"](function () {//
-      });
-    },
-    loadEntries: function loadEntries() {
-      var _this9 = this;
-
-      var transaction_no = this.form.transaction_no;
-      axios.get('api/cd/entries/list?transaction_no=' + transaction_no).then(function (data) {
-        _this9.entries = data.data;
+      var query = this.searchBranch;
+      axios.get('api/searchBranch?q=' + query).then(function (data) {
+        _this7.branches = data.data;
       })["catch"](function () {//
       });
     },
@@ -4655,44 +4721,26 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
     },
-    selectDebitRow: function selectDebitRow(active_debit_row_id) {
-      this.active_debit_row = active_debit_row_id;
-      this.form_entry.id = active_debit_row_id;
-      VueListen.$emit('RefreshItemTable'); //console.log(active_debit_row);
-    },
     newEntry: function newEntry() {
-      var _this10 = this;
-
       this.editmode = false;
       this.form_entry.reset();
-      this.form_entry.transaction_id = this.form.id;
-      this.form_entry.transaction_no = this.form.transaction_no;
-      this.form_entry.transaction_type = 'CD';
-      this.save_button_entry_enabled = true;
-      this.form_entry.post('api/cd/entry').then(function (data) {
-        _this10.form_entry.id = data.data.id; //console.log(data.data.id);
+      ++this.transaction_entry_id; // To refresh ITEMS table
 
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {//
-      });
+      this.current_transaction_entry_id = this.transaction_entry_id;
+      this.form_entry.transaction_id = this.transaction_entry_id;
+      this.form_entry.transaction_no = this.form.transaction_no;
+      this.form_entry.transaction_type = this.transaction_type;
+      this.save_button_entry_enabled = true;
       $('#entry-details').modal('show');
     },
     newItem: function newItem() {
-      var _this11 = this;
-
       if (this.form_entry.account_code == 0) {
         this.no_entry_account_code = true;
       } else {
         this.no_entry_account_code = false;
       }
 
-      if (this.form_entry.branch_id == 0) {
-        this.no_entry_branch_id = true;
-      } else {
-        this.no_entry_branch_id = false;
-      }
-
-      if (this.no_entry_account_code || this.no_entry_branch_id) {
+      if (this.no_entry_account_code) {
         return false;
       }
 
@@ -4702,129 +4750,67 @@ __webpack_require__.r(__webpack_exports__);
       this.no_item = false;
       this.no_price = false;
       this.no_quantity = false;
-      this.form_item.transaction_entry_id = this.form_entry.id;
+      this.form_item.transaction_entry_id = this.transaction_entry_id;
       this.form_item.transaction_no = this.form.transaction_no;
-      this.form_item.transaction_type = 'CD';
+      this.form_item.transaction_type = this.transaction_type;
       this.form_item.account_code = this.form_entry.account_code;
-      this.form_item.post('api/cd/item').then(function (data) {
-        _this11.form_item.id = data.data.id; //console.log(data.data.id);
-      })["catch"](function () {//
-      });
-      this.loadEntryItems();
       $('#entry-items').modal('show');
     },
-    cancelDebitEntry: function cancelDebitEntry() {
-      var _this12 = this;
-
+    cancelEntry: function cancelEntry() {
       //this.$Progress.start();
-      this.form_item["delete"]('api/cd/entry/' + this.form_entry.id).then(function () {
-        $('#entry-details').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        //this.$Progress.finish();
-
-        VueListen.$emit('RefreshEntryTable');
-      })["catch"](function () {
-        _this12.$Progress.fail();
+      this.items = this.items.filter(function (item) {
+        return item.transaction_entry_id !== this.transaction_entry_id;
       });
+      $('#entry-details').modal('hide');
     },
-    saveDebitEntry: function saveDebitEntry() {
-      var _this13 = this;
-
-      //console.log('Edit Payee');
-      // ** Temporary data to bypass Column cannot be null ERROR's
-      //this.form_entry.amount = 0;
-      //this.form_entry.amount_ex_tax = 0;
-      //this.form_entry.vat = 0;
-      this.form_entry.credit_amount = this.form_entry.amount; //this.form_entry.debit_amount = 0;
-      // ** Temporary data to bypass Column cannot be null ERROR's
+    saveEntry: function saveEntry() {
+      this.form_entry.credit_amount = this.form_entry.amount; // ** Temporary data to bypass Column cannot be null ERROR's
 
       this.save_button_entry_enabled = false;
-      this.$Progress.start();
-      this.form_entry.put('api/cd/entry/' + this.form_entry.id).then(function () {
-        $('#entry-details').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
+      this.form.amount += this.form_entry.amount;
+      this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
+      this.form.vat += this.form_entry.vat; // To refresh ITEMS table
 
-        _this13.form.amount += _this13.form_entry.amount;
-        _this13.form.amount_ex_tax += _this13.form_entry.amount_ex_tax;
-        _this13.form.vat += _this13.form_entry.vat;
+      this.current_transaction_entry_id = this.transaction_entry_id; //this.$Progress.start();
 
-        _this13.ledgers.push({
-          id: _this13.form_entry.id,
-          transaction_id: _this13.form.id,
-          transaction_no: _this13.form.transaction_no,
-          transaction_type: _this13.form.transaction_type,
-          account_code: _this13.form_entry.account_code,
-          account_name: _this13.form_entry.account_name,
-          transaction_date: _this13.form.transaction_date,
-          credit_amount: 0,
-          debit_amount: _this13.form_entry.amount_ex_tax
-        }); //console.log(this.ledgers);
-
-
-        _this13.$Progress.finish();
-
-        VueListen.$emit('RefreshEntryTable');
-      })["catch"](function () {
-        _this13.$Progress.fail();
+      this.transactions.push({
+        transaction_entry_id: this.transaction_entry_id,
+        payee_id: this.form.payee_id,
+        branch_id: this.current_branch_id,
+        account_code: this.form_entry.account_code,
+        account_name: this.form_entry.account_name,
+        reference_no: this.form.reference_no,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        transaction_date: this.form.transaction_date,
+        amount: this.form_entry.amount_ex_tax,
+        credit_amount: this.form_entry.amount_ex_tax,
+        debit_amount: 0,
+        total_payment: 0,
+        amount_ex_tax: 0,
+        vat: this.form_entry.vat,
+        wtax_code: 0,
+        wtax: 0,
+        user_id: this.form.user_id,
+        status: 'CONFIRMED'
       });
+      $('#entry-details').modal('hide'); //this.$Progress.finish();
     },
-    deleteEntry: function deleteEntry(entry_id, entry_amount, entry_amount_ex_tax, entry_vat) {
-      var _this14 = this;
-
-      this.form_item["delete"]('api/cd/entry/' + entry_id).then(function () {
-        //$('#entry-items').modal('hide');
-
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        _this14.form.amount = parseFloat(_this14.form.amount - entry_amount).toFixed(2) * 1;
-        _this14.form.amount_ex_tax = (_this14.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
-        _this14.form.vat = (_this14.form.vat - entry_vat).toFixed(2) * 1;
-        VueListen.$emit('RefreshItemTable');
-        VueListen.$emit('RefreshEntryTable');
-      })["catch"](function () {
-        _this14.$Progress.fail();
+    deleteEntry: function deleteEntry(transaction_entry_id, entry_amount, entry_vat) {
+      this.transactions = this.transactions.filter(function (transaction) {
+        return transaction.transaction_entry_id !== transaction_entry_id;
       });
+      this.items = this.items.filter(function (item) {
+        return item.transaction_entry_id !== transaction_entry_id;
+      });
+      this.form.amount = parseFloat(this.form.amount - entry_amount - entry_vat).toFixed(2) * 1;
+      this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount).toFixed(2) * 1;
+      this.form.vat = (this.form.vat - entry_vat).toFixed(2) * 1;
     },
     cancelItem: function cancelItem() {
-      var _this15 = this;
-
-      //this.$Progress.start();
-      this.form_item["delete"]('api/cd/item/' + this.form_item.id).then(function () {
-        $('#entry-items').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        //this.$Progress.finish();
-
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {
-        _this15.$Progress.fail();
-      });
+      $('#entry-items').modal('hide');
     },
     saveItem: function saveItem() {
-      var _this16 = this;
-
       if (this.form_item.item.length == 0) {
         this.no_item = true;
       } else {
@@ -4847,93 +4833,68 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
 
-      this.save_button_item_enabled = false;
-      this.$Progress.start();
-      this.form_item.put('api/cd/item/' + this.form_item.id).then(function () {
-        $('#entry-items').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
+      this.save_button_item_enabled = false; // To refresh ITEMS table
 
-        _this16.form_entry.amount = parseFloat(_this16.form_entry.amount + _this16.form_item.sub_total).toFixed(2) * 1;
-        _this16.form_entry.amount_ex_tax = (_this16.form_entry.amount_ex_tax + _this16.form_item.tax_excluded).toFixed(2) * 1;
-        _this16.form_entry.vat += _this16.form_item.vat * 1;
+      this.current_transaction_entry_id = this.transaction_entry_id; //this.$Progress.start();
 
-        _this16.$Progress.finish();
-
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {
-        _this16.$Progress.fail();
+      this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
+      this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
+      this.form_entry.vat += this.form_item.vat * 1;
+      ++this.item_no;
+      this.items.push({
+        item_no: this.item_no,
+        transaction_entry_id: this.transaction_entry_id,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        account_code: this.form_entry.account_code,
+        item: this.form_item.item,
+        quantity: this.form_item.quantity,
+        price: this.form_item.price,
+        sub_total: this.form_item.sub_total,
+        tax_type: this.form_item.tax_type,
+        tax_excluded: this.form_item.tax_excluded,
+        vat: this.form_item.vat,
+        status: 'CONFIRMED'
       });
+      $('#entry-items').modal('hide');
     },
-    deleteItem: function deleteItem(item_id, item_sub_total, item_tax_excluded, item_vat) {
-      var _this17 = this;
-
-      this.form_item["delete"]('api/cd/item/' + item_id).then(function () {
-        //$('#entry-items').modal('hide');
-
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        _this17.form_entry.amount = parseFloat(_this17.form_entry.amount - item_sub_total).toFixed(2) * 1;
-        _this17.form_entry.amount_ex_tax = (_this17.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
-        _this17.form_entry.vat = (_this17.form_entry.vat - item_vat).toFixed(2) * 1;
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {
-        _this17.$Progress.fail();
+    deleteItem: function deleteItem(item_no, item_sub_total, item_tax_excluded, item_vat) {
+      this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
+      this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
+      this.form_entry.vat = (this.form_entry.vat - item_vat).toFixed(2) * 1;
+      this.items = this.items.filter(function (item) {
+        return item.item_no !== item_no;
       });
     },
     branchChange: function branchChange() {
       this.form_entry.branch_id = this.selected_branch.id;
       this.form_entry.branch_name = this.selected_branch.name;
+    },
+    selectEntryRow: function selectEntryRow(current_transaction_entry_id) {
+      this.current_transaction_entry_id = current_transaction_entry_id;
     }
   },
   created: function created() {
-    var _this18 = this;
-
-    //this.loadUsers();
     this.loadPayees();
-    this.loadBranches();
+    this.loadBranch();
     this.initChartAccounts();
-    this.loadEntryItems();
-    this.loadEntries(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
-
-    VueListen.$on('RefreshItemTable', function () {
-      _this18.loadEntryItems();
-    });
-    VueListen.$on('RefreshEntryTable', function () {
-      _this18.loadEntries();
-    });
-    this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
-    //console.log(this.payees);
-    //setInterval(() => this.loadUsers(),3000);
-
+    this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
     /* Scrollbar fix
        If you have a modal on your page that exceeds the browser height, then you can't scroll in it when closing an second modal. To fix this add: */
 
     $(document).on('hidden.bs.modal', '.modal', function () {
       $('.modal:visible').length && $(document.body).addClass('modal-open');
     });
-    /*Backdrop z-index fix
-      This solution uses a setTimeout because the .modal-backdrop isn't created when the event show.bs.modal is triggered.
-     $(document).on('show.bs.modal', '.modal', function () {
-        var zIndex = 1040 + (10 * $('.modal:visible').length);
-        $(this).css('z-index', zIndex);
-        setTimeout(function() {
-            $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-        }, 0);
-    });
-    */
   },
-  computed: {},
+  computed: {
+    currentItems: function currentItems() {
+      var _this8 = this;
+
+      return this.items.filter(function (item) {
+        return parseInt(item.transaction_entry_id) == parseInt(_this8.current_transaction_entry_id);
+      });
+    }
+  },
   components: {}
 });
 
@@ -6493,1391 +6454,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CashReceipts.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CashReceipts.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      ledgers: [],
-      user_id: '',
-      editmode: false,
-      transaction_created: false,
-      no_payee: false,
-      no_reference_no: false,
-      no_account_code: false,
-      no_item: false,
-      no_price: false,
-      no_quantity: false,
-      no_entry_account_code: false,
-      no_entry_branch_id: false,
-      save_button_item_enabled: true,
-      save_button_entry_enabled: true,
-      searchText: '',
-      searchPayee: '',
-      headerOrDetail: 'header',
-      current_payee_id: '',
-      current_payee_name: '',
-      current_payee_address: '',
-      current_payee_tin: '',
-      active_debit_row: 0,
-      selected_branch: {},
-      cd: {},
-      form: new Form({
-        id: '',
-        payee_id: '',
-        reference_no: '',
-        transaction_no: '',
-        transaction_type: 'CR',
-        // default for Cash Disbursement
-        transaction_date: this.getDate(),
-        account_code: '',
-        account_name: '',
-        amount: 0,
-        credit_amount: 0,
-        debit_amount: 0,
-        amount_ex_tax: 0,
-        vat: 0,
-        canceled: 0,
-        user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
-      }),
-      form_entry: new Form({
-        id: '',
-        transaction_id: '',
-        transaction_no: '',
-        transaction_type: '',
-        account_code: 0,
-        account_name: 'NA',
-        //entry_name: '',
-        //entry_description: '',
-        branch_id: '',
-        branch_name: '',
-        amount: 0,
-        amount_ex_tax: 0,
-        vat: 0,
-        credit_amount: 0,
-        debit_amount: 0,
-        transaction_date: this.getDate()
-      }),
-      form_item: new Form({
-        id: '',
-        transaction_entry_id: '',
-        transaction_no: '',
-        transaction_type: '',
-        account_code: '',
-        item: '',
-        quantity: 0,
-        price: 0,
-        sub_total: 0,
-        tax_type: 'VAT',
-        tax_excluded: 0,
-        vat: 0
-      }),
-      payees: {},
-      branches: {},
-      items: {},
-      entries: {},
-      chart_of_accounts: {},
-      chart_of_accounts_header: {},
-      chart_of_accounts_detail: {}
-    };
-  },
-  methods: {
-    loadBranches: function loadBranches() {
-      var _this = this;
-
-      if (this.$gate.isAdminOrUser()) {
-        axios.get("api/branch").then(function (_ref) {
-          var data = _ref.data;
-          return _this.branches = data;
-        }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
-      }
-    },
-    loadPayees: function loadPayees() {
-      var _this2 = this;
-
-      if (this.$gate.isAdminOrUser()) {
-        axios.get("api/payee").then(function (_ref2) {
-          var data = _ref2.data;
-          return _this2.payees = data;
-        }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
-      }
-    },
-    loadChartAccounts: function loadChartAccounts() {
-      var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-
-      if (headerOrDetail == 'header') {
-        this.chart_of_accounts = this.chart_of_accounts_header;
-      } else {
-        this.chart_of_accounts = this.chart_of_accounts_detail;
-      }
-    },
-    initChartAccounts: function initChartAccounts() {
-      var _this3 = this;
-
-      axios.get('api/chartaccount?headerordetail=header&transaction_type=CR').then(function (data) {
-        _this3.chart_of_accounts_header = data.data;
-      })["catch"](function () {//
-      });
-      axios.get('api/chartaccount?headerordetail=detail&transaction_type=CR').then(function (data) {
-        _this3.chart_of_accounts_detail = data.data;
-      })["catch"](function () {//
-      });
-    },
-    eventChild: function eventChild(Obj) {
-      //console.log(Obj.id);
-      this.form.payee_id = Obj.id;
-    },
-    getDate: function getDate() {
-      var toTwoDigits = function toTwoDigits(num) {
-        return num < 10 ? '0' + num : num;
-      };
-
-      var today = new Date();
-      var year = today.getFullYear();
-      var month = toTwoDigits(today.getMonth() + 1);
-      var day = toTwoDigits(today.getDate());
-      return "".concat(year, "-").concat(month, "-").concat(day);
-    },
-    createTransaction: function createTransaction() {
-      var _this4 = this;
-
-      if (this.form.payee_id.length == 0) {
-        this.no_payee = true;
-      } else {
-        this.no_payee = false;
-      }
-
-      if (this.form.account_code.length == 0) {
-        this.no_account_code = true;
-      } else {
-        this.no_account_code = false;
-      }
-
-      if (this.form.reference_no.length == 0) {
-        this.no_reference_no = true;
-      } else {
-        this.no_reference_no = false;
-      }
-
-      if (this.no_account_code || this.no_reference_no || this.no_payee) {
-        this.transaction_created = false;
-      } else {
-        this.transaction_created = true;
-      }
-
-      this.form.transaction_no = this.createSerialNumber();
-      this.form.transaction_type = 'CR';
-      this.form.post('api/cd').then(function (data) {
-        //console.log(data.data.id);
-        _this4.form.id = data.data.id;
-      })["catch"](function () {//
-      });
-    },
-    saveTransaction: function saveTransaction() {
-      var _this5 = this;
-
-      if (this.form.amount == 0) {
-        return false;
-      }
-
-      this.$Progress.start();
-      this.form.put('api/cd/' + this.form.id).then(function () {
-        /*
-        swal.fire(
-            'Saved!',
-            'Transaction Completed.',
-            'success'
-          );
-          */
-        _this5.transaction_created = false;
-
-        _this5.form.post('api/cd/confirm/' + _this5.form.transaction_no);
-
-        _this5.ledgers.push({
-          id: _this5.form.id,
-          transaction_id: _this5.form.id,
-          transaction_no: _this5.form.transaction_no,
-          transaction_type: _this5.form.transaction_type,
-          account_code: _this5.form.account_code,
-          account_name: _this5.form.account_name,
-          transaction_date: _this5.form.transaction_date,
-          credit_amount: 0,
-          debit_amount: _this5.form.amount
-        });
-
-        _this5.ledgers.push({
-          id: 1,
-          transaction_id: _this5.form.id,
-          transaction_no: _this5.form.transaction_no,
-          transaction_type: _this5.form.transaction_type,
-          account_code: '2105110',
-          account_name: 'Output Tax',
-          transaction_date: _this5.form.transaction_date,
-          credit_amount: _this5.form.vat,
-          debit_amount: 0
-        });
-
-        var rawData = {
-          ledgers: _this5.ledgers
-        };
-        rawData = JSON.stringify(rawData);
-        var formData = new FormData();
-        formData.append('ledgers', rawData);
-        axios.post('api/ledgers', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        }).then(function (response) {
-          console.log(response);
-        })["catch"](function (error) {
-          console.log(error);
-        });
-
-        _this5.$Progress.finish();
-      })["catch"](function () {
-        _this5.$Progress.fail();
-      });
-      swal.fire({
-        title: 'Saved!',
-        text: "Journal posted",
-        icon: 'info',
-        showCancelButton: false,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Ok'
-      }).then(function (result) {
-        if (result.value) {
-          //Reload Current Pages
-          _this5.$router.go();
-        }
-      });
-    },
-    cancelTransaction: function cancelTransaction() {
-      this.transaction_created = false;
-      this.form["delete"]('api/cd/cancel/' + this.form.transaction_no);
-    },
-    searchAccountModal: function searchAccountModal() {
-      var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'header';
-      this.headerOrDetail = headerOrDetail;
-      this.searchText = this.form.account_code; //this.searchText = '';
-
-      this.loadChartAccounts(headerOrDetail);
-      $('#select-account').modal('show');
-    },
-    searchPayeeModal: function searchPayeeModal() {
-      this.searchPayee = this.form.payee_id; //this.searchPayee = '';
-
-      this.loadPayees();
-      $('#select-payee').modal('show');
-    },
-    selectAccount: function selectAccount() {
-      var account_code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-      var account_name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-
-      if (account_code != null && account_name != null) {
-        if (this.headerOrDetail == 'header') {
-          this.form.account_name = account_name;
-          this.form.account_code = account_code;
-        } else {
-          this.form_entry.account_name = account_name;
-          this.form_entry.account_code = account_code;
-        }
-      }
-
-      $('#select-account').modal('hide');
-    },
-    selectPayee: function selectPayee() {
-      var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-      var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-      var address = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-      var tin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
-
-      if (id) {
-        console.log(name);
-        this.current_payee_id = id;
-        this.form.payee_id = id;
-        this.current_payee_name = name;
-        this.current_payee_address = address;
-        this.current_payee_tin = tin;
-      }
-
-      $('#select-payee').modal('hide');
-    },
-    SearchIt: function SearchIt() {
-      var _this6 = this;
-
-      var query = this.searchText;
-      var headerOrDetail = this.headerOrDetail;
-      axios.get('api/searchAccount?q=' + query + '&transaction_type=CD&headerordetail=' + headerOrDetail).then(function (data) {
-        _this6.chart_of_accounts = data.data;
-      })["catch"](function () {//
-      });
-    },
-    SearchPayee: function SearchPayee() {
-      var _this7 = this;
-
-      var query = this.searchPayee;
-      axios.get('api/searchPayee?q=' + query).then(function (data) {
-        _this7.payees = data.data;
-      })["catch"](function () {//
-      });
-    },
-    loadEntryItems: function loadEntryItems() {
-      var _this8 = this;
-
-      var entry_id = this.form_entry.id;
-      axios.get('api/cd/items/list?entry_id=' + entry_id).then(function (data) {
-        _this8.items = data.data;
-      })["catch"](function () {//
-      });
-    },
-    loadEntries: function loadEntries() {
-      var _this9 = this;
-
-      var transaction_no = this.form.transaction_no;
-      axios.get('api/cd/entries/list?transaction_no=' + transaction_no).then(function (data) {
-        _this9.entries = data.data;
-      })["catch"](function () {//
-      });
-    },
-    createSerialNumber: function createSerialNumber() {
-      // Get current date
-      var d = new Date(); // Get pirmative value of date
-
-      var n = d.valueOf(); // Return concatenated primative value with the user id. 
-
-      return "" + n + this.user_id;
-    },
-    computeTaxChange: function computeTaxChange(event) {
-      if (this.form_item.price && this.form_item.quantity) {
-        this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
-
-        if (this.form_item.tax_type == 'VAT') {
-          //this.form_item.amount = event.target.value;
-          this.form_item.tax_excluded = (this.form_item.sub_total / 1.12).toFixed(2) * 1;
-          this.form_item.vat = (this.form_item.tax_excluded * 0.12).toFixed(2) * 1;
-        } else {
-          //this.form_entry.amount = event.target.value;
-          this.form_item.vat = 0;
-          this.form_item.tax_excluded = this.form_item.sub_total * 1;
-        }
-      }
-    },
-    selectDebitRow: function selectDebitRow(active_debit_row_id) {
-      this.active_debit_row = active_debit_row_id;
-      this.form_entry.id = active_debit_row_id;
-      VueListen.$emit('RefreshItemTable'); //console.log(active_debit_row);
-    },
-    newEntry: function newEntry() {
-      var _this10 = this;
-
-      this.editmode = false;
-      this.form_entry.reset();
-      this.form_entry.transaction_id = this.form.id;
-      this.form_entry.transaction_no = this.form.transaction_no;
-      this.form_entry.transaction_type = 'CR';
-      this.save_button_entry_enabled = true;
-      this.form_entry.post('api/cd/entry').then(function (data) {
-        _this10.form_entry.id = data.data.id; //console.log(data.data.id);
-
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {//
-      });
-      $('#entry-details').modal('show');
-    },
-    newItem: function newItem() {
-      var _this11 = this;
-
-      if (this.form_entry.account_code == 0) {
-        this.no_entry_account_code = true;
-      } else {
-        this.no_entry_account_code = false;
-      }
-
-      if (this.form_entry.branch_id == 0) {
-        this.no_entry_branch_id = true;
-      } else {
-        this.no_entry_branch_id = false;
-      }
-
-      if (this.no_entry_account_code || this.no_entry_branch_id) {
-        return false;
-      }
-
-      this.save_button_item_enabled = true;
-      this.editmode = false;
-      this.form_item.reset();
-      this.no_item = false;
-      this.no_price = false;
-      this.no_quantity = false;
-      this.form_item.transaction_entry_id = this.form_entry.id;
-      this.form_item.transaction_no = this.form.transaction_no;
-      this.form_item.transaction_type = 'CR';
-      this.form_item.account_code = this.form_entry.account_code;
-      this.form_item.post('api/cd/item').then(function (data) {
-        _this11.form_item.id = data.data.id; //console.log(data.data.id);
-      })["catch"](function () {//
-      });
-      this.loadEntryItems();
-      $('#entry-items').modal('show');
-    },
-    cancelDebitEntry: function cancelDebitEntry() {
-      var _this12 = this;
-
-      //this.$Progress.start();
-      this.form_item["delete"]('api/cd/entry/' + this.form_entry.id).then(function () {
-        $('#entry-details').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        //this.$Progress.finish();
-
-        VueListen.$emit('RefreshEntryTable');
-      })["catch"](function () {
-        _this12.$Progress.fail();
-      });
-    },
-    saveDebitEntry: function saveDebitEntry() {
-      var _this13 = this;
-
-      //console.log('Edit Payee');
-      // ** Temporary data to bypass Column cannot be null ERROR's
-      //this.form_entry.amount = 0;
-      //this.form_entry.amount_ex_tax = 0;
-      //this.form_entry.vat = 0;
-      this.form_entry.credit_amount = this.form_entry.amount; //this.form_entry.debit_amount = 0;
-      // ** Temporary data to bypass Column cannot be null ERROR's
-
-      this.save_button_entry_enabled = false;
-      this.$Progress.start();
-      this.form_entry.put('api/cd/entry/' + this.form_entry.id).then(function () {
-        $('#entry-details').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-
-        _this13.form.amount += _this13.form_entry.amount;
-        _this13.form.amount_ex_tax += _this13.form_entry.amount_ex_tax;
-        _this13.form.vat += _this13.form_entry.vat;
-
-        _this13.ledgers.push({
-          id: _this13.form_entry.id,
-          transaction_id: _this13.form.id,
-          transaction_no: _this13.form.transaction_no,
-          transaction_type: _this13.form.transaction_type,
-          account_code: _this13.form_entry.account_code,
-          account_name: _this13.form_entry.account_name,
-          transaction_date: _this13.form.transaction_date,
-          credit_amount: _this13.form_entry.amount_ex_tax,
-          debit_amount: 0
-        });
-
-        _this13.$Progress.finish();
-
-        VueListen.$emit('RefreshEntryTable');
-      })["catch"](function () {
-        _this13.$Progress.fail();
-      });
-    },
-    deleteEntry: function deleteEntry(entry_id, entry_amount, entry_amount_ex_tax, entry_vat) {
-      var _this14 = this;
-
-      this.form_item["delete"]('api/cd/entry/' + entry_id).then(function () {
-        //$('#entry-items').modal('hide');
-
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        _this14.form.amount = parseFloat(_this14.form.amount - entry_amount).toFixed(2) * 1;
-        _this14.form.amount_ex_tax = (_this14.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
-        _this14.form.vat = (_this14.form.vat - entry_vat).toFixed(2) * 1;
-        VueListen.$emit('RefreshItemTable');
-        VueListen.$emit('RefreshEntryTable');
-      })["catch"](function () {
-        _this14.$Progress.fail();
-      });
-    },
-    cancelItem: function cancelItem() {
-      var _this15 = this;
-
-      //this.$Progress.start();
-      this.form_item["delete"]('api/cd/item/' + this.form_item.id).then(function () {
-        $('#entry-items').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        //this.$Progress.finish();
-
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {
-        _this15.$Progress.fail();
-      });
-    },
-    saveItem: function saveItem() {
-      var _this16 = this;
-
-      if (this.form_item.item.length == 0) {
-        this.no_item = true;
-      } else {
-        this.no_item = false;
-      }
-
-      if (this.form_item.price == 0) {
-        this.no_price = true;
-      } else {
-        this.no_price = false;
-      }
-
-      if (this.form_item.quantity == 0) {
-        this.no_quantity = true;
-      } else {
-        this.no_quantity = false;
-      }
-
-      if (this.no_item || this.no_price || this.no_quantity) {
-        return false;
-      }
-
-      this.save_button_item_enabled = false;
-      this.$Progress.start();
-      this.form_item.put('api/cd/item/' + this.form_item.id).then(function () {
-        $('#entry-items').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-
-        _this16.form_entry.amount = parseFloat(_this16.form_entry.amount + _this16.form_item.sub_total).toFixed(2) * 1;
-        _this16.form_entry.amount_ex_tax = (_this16.form_entry.amount_ex_tax + _this16.form_item.tax_excluded).toFixed(2) * 1;
-        _this16.form_entry.vat += _this16.form_item.vat * 1;
-
-        _this16.$Progress.finish();
-
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {
-        _this16.$Progress.fail();
-      });
-    },
-    deleteItem: function deleteItem(item_id, item_sub_total, item_tax_excluded, item_vat) {
-      var _this17 = this;
-
-      this.form_item["delete"]('api/cd/item/' + item_id).then(function () {
-        //$('#entry-items').modal('hide');
-
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        _this17.form_entry.amount = parseFloat(_this17.form_entry.amount - item_sub_total).toFixed(2) * 1;
-        _this17.form_entry.amount_ex_tax = (_this17.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
-        _this17.form_entry.vat = (_this17.form_entry.vat - item_vat).toFixed(2) * 1;
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {
-        _this17.$Progress.fail();
-      });
-    },
-    branchChange: function branchChange() {
-      this.form_entry.branch_id = this.selected_branch.id;
-      this.form_entry.branch_name = this.selected_branch.name;
-    }
-  },
-  created: function created() {
-    var _this18 = this;
-
-    this.loadPayees();
-    this.loadBranches();
-    this.initChartAccounts();
-    this.loadEntryItems();
-    this.loadEntries(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
-
-    VueListen.$on('RefreshItemTable', function () {
-      _this18.loadEntryItems();
-    });
-    VueListen.$on('RefreshEntryTable', function () {
-      _this18.loadEntries();
-    });
-    this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
-    //console.log(this.payees);
-    //setInterval(() => this.loadUsers(),3000);
-
-    /* Scrollbar fix
-       If you have a modal on your page that exceeds the browser height, then you can't scroll in it when closing an second modal. To fix this add: */
-
-    $(document).on('hidden.bs.modal', '.modal', function () {
-      $('.modal:visible').length && $(document.body).addClass('modal-open');
-    });
-  },
-  computed: {},
-  components: {}
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dashboard.vue?vue&type=script&lang=js& ***!
@@ -8477,26 +7053,15 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PaymentsPrev.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PaymentsPrev.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Payments.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Payments.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -9052,20 +7617,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      ledgers: [],
+      transaction_type: 'PAYMENT',
+      transactions: [],
+      transaction_entry_id: 0,
+      current_transaction_entry_id: 0,
       current_balance: 0,
       current_purchase_id: 0,
       user_id: '',
-      editmode: false,
-      cd_created: false,
+      transaction_created: false,
       no_payee: false,
       no_reference_no: false,
       no_account_code: false,
-      no_item: false,
-      no_price: false,
-      no_quantity: false,
-      no_entry_account_code: false,
-      no_entry_branch_id: false,
       save_button_item_enabled: true,
       save_button_entry_enabled: true,
       searchText: '',
@@ -9076,14 +7638,12 @@ __webpack_require__.r(__webpack_exports__);
       current_payee_address: '',
       current_payee_tin: '',
       active_debit_row: 0,
-      selected_branch: {},
-      cd: {},
       form: new Form({
         id: '',
         payee_id: '',
         reference_no: '',
         transaction_no: '',
-        transaction_type: 'PAYMENT',
+        transaction_type: this.transaction_type,
         // default for Cash Disbursement
         transaction_date: this.getDate(),
         account_code: '',
@@ -9103,8 +7663,6 @@ __webpack_require__.r(__webpack_exports__);
         transaction_type: '',
         account_code: 0,
         account_name: 'NA',
-        //entry_name: '',
-        //entry_description: '',
         branch_id: '',
         branch_name: '',
         amount: 0,
@@ -9114,24 +7672,8 @@ __webpack_require__.r(__webpack_exports__);
         debit_amount: 0,
         transaction_date: this.getDate()
       }),
-      form_item: new Form({
-        id: '',
-        transaction_entry_id: '',
-        transaction_no: '',
-        transaction_type: '',
-        account_code: '',
-        item: '',
-        quantity: 0,
-        price: 0,
-        sub_total: 0,
-        tax_type: 'VAT',
-        tax_excluded: 0,
-        vat: 0
-      }),
       payees: {},
       branches: {},
-      items: {},
-      entries: {},
       payment_history: {},
       purchases: {},
       chart_of_accounts: {},
@@ -9139,8 +7681,7 @@ __webpack_require__.r(__webpack_exports__);
       chart_of_accounts_detail: {},
       readabilityObject: {
         fontSize: user.font_size
-      },
-      account_code: ''
+      }
     };
   },
   methods: {
@@ -9183,21 +7724,6 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.chart_of_accounts = this.chart_of_accounts_detail;
       }
-      /*
-      if(headerOrDetail == null){
-        axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
-      } else {
-        //axios.get("api/chartaccount").then(({ data }) => (this.chart_of_accounts = data));
-         axios.get('api/chartaccount?headerordetail='+headerOrDetail+'&transaction=CR')
-        .then((data)=>{
-          this.chart_of_accounts = data.data;
-        })
-        .catch(()=>{
-          //
-        });
-       }
-      */
-
     },
     initChartAccounts: function initChartAccounts() {
       var _this4 = this;
@@ -9211,12 +7737,6 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {//
       });
     },
-
-    /* Check if this is still being used.*/
-    eventChild: function eventChild(Obj) {
-      //console.log(Obj.id);
-      this.form.payee_id = Obj.id;
-    },
     getDate: function getDate() {
       var toTwoDigits = function toTwoDigits(num) {
         return num < 10 ? '0' + num : num;
@@ -9228,7 +7748,7 @@ __webpack_require__.r(__webpack_exports__);
       var day = toTwoDigits(today.getDate());
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
-    createCD: function createCD() {
+    createTransaction: function createTransaction() {
       var _this5 = this;
 
       if (this.form.payee_id.length == 0) {
@@ -9250,9 +7770,9 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (this.no_account_code || this.no_reference_no || this.no_payee) {
-        this.cd_created = false;
+        this.transaction_created = false;
       } else {
-        this.cd_created = true;
+        this.transaction_created = true;
       }
 
       this.form.transaction_no = this.createSerialNumber();
@@ -9264,78 +7784,73 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {//
       });
     },
-    saveCD: function saveCD() {
+    saveTransaction: function saveTransaction() {
       var _this6 = this;
 
       if (this.form.amount == 0) {
         return false;
       }
 
-      this.$Progress.start();
-      this.form.put('api/cd/' + this.form.id).then(function () {
-        _this6.cd_created = false;
+      ++this.transaction_entry_id;
+      this.transactions.push({
+        transaction_entry_id: this.transaction_entry_id,
+        payee_id: this.form.payee_id,
+        branch_id: 0,
+        account_code: this.form.account_code,
+        account_name: this.form.account_name,
+        reference_no: this.form.reference_no,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        transaction_date: this.form.transaction_date,
+        amount: this.form.amount,
+        credit_amount: this.form.amount,
+        debit_amount: 0,
+        total_payment: 0,
+        amount_ex_tax: 0,
+        vat: 0,
+        wtax_code: 0,
+        wtax: 0,
+        user_id: this.form.user_id,
+        status: 'CONFIRMED'
+      }); // Save Transactions START
 
-        _this6.form.post('api/cd/confirm/' + _this6.form.transaction_no);
+      var rawData = {
+        transactions: this.transactions
+      };
+      rawData = JSON.stringify(rawData);
+      var formData = new FormData();
+      formData.append('transactions', rawData);
+      axios.post('api/transactions', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      }); // Save Transactions END
+      // Save Payment START
 
-        _this6.ledgers.push({
-          id: _this6.form.id,
-          transaction_id: _this6.form.id,
-          transaction_no: _this6.form.transaction_no,
-          transaction_type: _this6.form.transaction_type,
-          account_code: _this6.form.account_code,
-          account_name: _this6.form.account_name,
-          transaction_date: _this6.form.transaction_date,
-          credit_amount: _this6.form.amount,
-          debit_amount: 0
-        }); // Ledger Posting START ********************
+      var paymentData = {
+        payments: this.purchases.data
+      };
+      paymentData = JSON.stringify(paymentData);
+      var paymentFormData = new FormData();
+      paymentFormData.append('payments', paymentData);
+      axios.post('api/record_payment', paymentFormData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      }); // Save Payment END
 
-
-        var rawData = {
-          ledgers: _this6.ledgers
-        };
-        rawData = JSON.stringify(rawData);
-        var formData = new FormData();
-        formData.append('ledgers', rawData);
-        axios.post('api/ledgers', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        }).then(function (response) {//console.log(response);
-        })["catch"](function (error) {
-          console.log(error);
-        });
-        var paymentData = {
-          payments: _this6.purchases.data
-        };
-        paymentData = JSON.stringify(paymentData);
-        var paymentFormData = new FormData();
-        paymentFormData.append('payments', paymentData);
-        axios.post('api/record_payment', paymentFormData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        }).then(function (response) {
-          console.log(response);
-        })["catch"](function (error) {
-          console.log(error);
-        }); // Ledger Posting END ********************
-        // Update Payee Account START ********************
-
-        axios.post('api/update_payee_account', {
-          payee_id: _this6.form.payee_id,
-          amount: _this6.form.amount,
-          operation: 'sub',
-          account: 'payable'
-        }).then(function (response) {})["catch"](function () {}); // Update Payee Account END ********************
-
-        _this6.$Progress.finish();
-      })["catch"](function () {
-        _this6.$Progress.fail();
-      });
       swal.fire({
         title: 'Saved!',
         text: "Journal posted",
-        icon: 'info',
+        type: 'info',
         showCancelButton: false,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
@@ -9343,13 +7858,38 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.value) {
           //Reload Current Page
-          _this6.$router.go();
+          _this6.dataReset();
         }
       });
     },
-    cancelCD: function cancelCD() {
-      this.cd_created = false;
-      this.form["delete"]('api/cd/cancel/' + this.form.transaction_no);
+    dataReset: function dataReset() {
+      this.form.reset();
+      this.form_entry.reset();
+      this.transactions = [];
+      this.transaction_entry_id = 0;
+      this.current_transaction_entry_id = 0;
+      this.current_balance = 0;
+      this.current_purchase_id = 0;
+      this.transaction_created = false;
+      this.no_payee = false;
+      this.no_reference_no = false;
+      this.no_account_code = false;
+      this.save_button_item_enabled = true;
+      this.save_button_entry_enabled = true;
+      this.searchText = '';
+      this.searchPayee = '';
+      this.headerOrDetail = 'header';
+      this.current_payee_id = '';
+      this.current_payee_name = '';
+      this.current_payee_address = '';
+      this.current_payee_tin = '';
+      this.active_debit_row = 0;
+      this.payment_history = {};
+      this.purchases = {};
+    },
+    cancelTransaction: function cancelTransaction() {
+      this.transaction_created = false;
+      this.dataReset(); //this.form.delete('api/cd/cancel/'+this.form.transaction_no);
     },
     searchAccountModal: function searchAccountModal() {
       var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'header';
@@ -9360,8 +7900,7 @@ __webpack_require__.r(__webpack_exports__);
       $('#select-account').modal('show');
     },
     searchPayeeModal: function searchPayeeModal() {
-      this.searchPayee = this.form.payee_id; //this.searchPayee = '';
-
+      this.searchPayee = this.form.payee_id;
       this.loadPayees();
       $('#select-payee').modal('show');
     },
@@ -9388,7 +7927,6 @@ __webpack_require__.r(__webpack_exports__);
       var tin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
 
       if (id) {
-        //console.log(name);
         this.current_payee_id = id;
         this.form.payee_id = id;
         this.current_payee_name = name;
@@ -9417,27 +7955,6 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {//
       });
     },
-    loadEntryItems: function loadEntryItems() {
-      /*
-      let entry_id = this.form_entry.id;
-      axios.get('api/cd/items/list?entry_id='+entry_id)
-        .then((data)=>{
-          this.items = data.data;
-        })
-        .catch(()=>{
-          //
-        });
-        */
-    },
-    loadEntries: function loadEntries() {
-      var _this9 = this;
-
-      var transaction_no = this.form.transaction_no;
-      axios.get('api/cd/entries/list?transaction_no=' + transaction_no).then(function (data) {
-        _this9.entries = data.data;
-      })["catch"](function () {//
-      });
-    },
     createSerialNumber: function createSerialNumber() {
       // Get current date
       var d = new Date(); // Get pirmative value of date
@@ -9446,244 +7963,23 @@ __webpack_require__.r(__webpack_exports__);
 
       return "" + n + this.user_id;
     },
-    computeTaxChange: function computeTaxChange(event) {
-      /*
-      if(this.form_item.price && this.form_item.quantity){
-        this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
-        if(this.form_item.tax_type == 'VAT'){
-          //this.form_item.amount = event.target.value;
-           
-           this.form_item.tax_excluded = (this.form_item.sub_total/1.12).toFixed(2) * 1;
-           this.form_item.vat = (this.form_item.tax_excluded * 0.12).toFixed(2)  * 1;
-         } else {
-          //this.form_entry.amount = event.target.value;
-          this.form_item.vat = 0;
-          this.form_item.tax_excluded = this.form_item.sub_total  * 1;
-        }
-      }
-      */
-    },
-    selectDebitRow: function selectDebitRow(active_debit_row_id) {
-      /*
-      this.active_debit_row = active_debit_row_id;
-      this.form_entry.id = active_debit_row_id;
-      VueListen.$emit('RefreshItemTable');
-      //console.log(active_debit_row);
-      */
-    },
-    newEntry: function newEntry() {
-      /*
-      this.editmode = false;
-      this.form_entry.reset();
-      this.form_entry.transaction_id = this.form.id;
-      this.form_entry.transaction_no = this.form.transaction_no;
-      this.form_entry.transaction_type = 'CD';
-      this.save_button_entry_enabled = true;
-      this.form_entry.post('api/cd/entry')
-        .then((data)=>{
-          this.form_entry.id = data.data.id;
-          //console.log(data.data.id);
-          VueListen.$emit('RefreshItemTable');    
-        })
-        .catch(()=>{
-          //
-        });
-        
-      $('#entry-details').modal('show');
-      */
-    },
-    newItem: function newItem() {
-      /*
-      if(this.form_entry.account_code == 0) {
-        this.no_entry_account_code = true;
-      } else {
-        this.no_entry_account_code = false;
-      }
-      if(this.form_entry.branch_id == 0) {
-        this.no_entry_branch_id = true;
-      } else {
-        this.no_entry_branch_id = false;
-      }
-       if (this.no_entry_account_code || this.no_entry_branch_id){
-        return false;
-      }
-       this.save_button_item_enabled = true;
-       this.editmode = false;
-      this.form_item.reset();
-       this.no_item = false;
-      this.no_price = false;
-      this.no_quantity = false;
-      this.form_item.transaction_entry_id = this.form_entry.id;
-      this.form_item.transaction_no = this.form.transaction_no;
-      this.form_item.transaction_type = 'CD';
-      this.form_item.account_code = this.form_entry.account_code;
-       this.form_item.post('api/cd/item')
-        .then((data)=>{
-          this.form_item.id = data.data.id;
-          //console.log(data.data.id);
-        })
-        .catch(()=>{
-          //
-        });
-      this.loadEntryItems();
-      $('#entry-items').modal('show');
-      */
-    },
-    cancelDebitEntry: function cancelDebitEntry() {
-      /*
-      //this.$Progress.start();
-      this.form_item.delete('api/cd/entry/'+this.form_entry.id)
-      .then(() => {
-          $('#entry-details').modal('hide');
-         
-            //this.$Progress.finish();
-            VueListen.$emit('RefreshEntryTable');
-      })
-      .catch(() => {
-          this.$Progress.fail();
-      });
-      */
-    },
-    saveDebitEntry: function saveDebitEntry() {
-      /*
-      this.form_entry.credit_amount = this.form_entry.amount
-      this.save_button_entry_enabled = false;
-      this.$Progress.start();
-      this.form_entry.put('api/cd/entry/'+this.form_entry.id)
-      .then(() => {
-          $('#entry-details').modal('hide');
-         
-            this.form.amount += this.form_entry.amount;
-            this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
-            this.form.vat += this.form_entry.vat;
-             
-            //console.log(this.ledgers);
-            this.$Progress.finish();
-            VueListen.$emit('RefreshEntryTable');
-      })
-      .catch(() => {
-          this.$Progress.fail();
-      });
-      */
-    },
-    deleteEntry: function deleteEntry(entry_id, entry_amount, entry_amount_ex_tax, entry_vat) {
-      /*
-      this.form_item.delete('api/cd/entry/'+entry_id)
-        .then(() => {
-            
-              this.form.amount = parseFloat(this.form.amount - entry_amount).toFixed(2) * 1;
-              this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
-              this.form.vat = (this.form.vat - entry_vat).toFixed(2) * 1;
-              VueListen.$emit('RefreshItemTable');
-              VueListen.$emit('RefreshEntryTable');
-         })
-        .catch(() => {
-            this.$Progress.fail();
-        });
-        */
-    },
-    cancelItem: function cancelItem() {
-      /*
-      //this.$Progress.start();
-      this.form_item.delete('api/cd/item/'+this.form_item.id)
-      .then(() => {
-          $('#entry-items').modal('hide');
-          
-            //this.$Progress.finish();
-             VueListen.$emit('RefreshItemTable');
-      })
-      .catch(() => {
-          this.$Progress.fail();
-      });
-      */
-    },
-    saveItem: function saveItem() {
-      /*
-      if(this.form_item.item.length == 0) {
-        this.no_item = true;
-      } else {
-        this.no_item = false;
-      }
-       if(this.form_item.price == 0) {
-        this.no_price = true;
-      } else {
-        this.no_price = false;
-      }
-      
-      if(this.form_item.quantity == 0) {
-        this.no_quantity = true;
-      } else {
-        this.no_quantity = false;
-      }
-      
-      if (this.no_item || this.no_price || this.no_quantity){
-        return false;
-      } 
-       this.save_button_item_enabled = false;
-      
-       this.$Progress.start();
-      this.form_item.put('api/cd/item/'+this.form_item.id)
-      .then(() => {
-          $('#entry-items').modal('hide');
-          
-            this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
-            this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
-            this.form_entry.vat += (this.form_item.vat * 1);
-            
-            this.$Progress.finish();
-            VueListen.$emit('RefreshItemTable');
-      })
-      .catch(() => {
-          this.$Progress.fail();
-      });
-      */
-    },
-    deleteItem: function deleteItem(item_id, item_sub_total, item_tax_excluded, item_vat) {
-      /*
-      this.form_item.delete('api/cd/item/'+item_id)
-      .then(() => {
-          //$('#entry-items').modal('hide');
-          
-            this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
-            this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
-            this.form_entry.vat = (this.form_entry.vat - item_vat).toFixed(2) * 1;
-            
-            VueListen.$emit('RefreshItemTable');
-      })
-      .catch(() => {
-          this.$Progress.fail();
-      });
-      */
-    },
-    branchChange: function branchChange() {
-      /*
-      this.form_entry.branch_id = this.selected_branch.id ;
-      this.form_entry.branch_name = this.selected_branch.name;
-      */
-    },
-    payEntry: function payEntry(purchase_id, account_code, account_name, current_balance) {
-      var _this10 = this;
-
+    pay: function pay(purchase_id, account_code, account_name, current_balance) {
       this.current_balance = current_balance;
       this.current_purchase_id = purchase_id;
-      this.form_entry.reset();
-      this.form_entry.transaction_id = this.form.id;
+      ++this.transaction_entry_id;
+      this.form_entry.reset(); //this.form_entry.transaction_id = this.form.id;
+
+      this.form_entry.transaction_id = this.transaction_entry_id;
       this.form_entry.transaction_no = this.form.transaction_no;
-      this.form_entry.transaction_type = 'PAYMENT';
+      this.form_entry.transaction_type = this.transaction_type;
       this.form_entry.account_code = account_code;
       this.form_entry.account_name = account_name;
-      this.form_entry.branch_id = this.current_payee_id;
-      this.form_entry.branch_name = this.current_payee_name;
+      this.form_entry.payee_id = this.current_payee_id; //this.form_entry.branch_name = this.current_payee_name;
+
       this.save_button_entry_enabled = true;
-      this.form_entry.post('api/cd/entry').then(function (data) {
-        _this10.form_entry.id = data.data.id; //VueListen.$emit('RefreshItemTable');    
-      })["catch"](function () {//
-      });
       $('#entry-payment').modal('show');
     },
     savePayment: function savePayment(account_code, payment_amount) {
-      var _this11 = this;
-
       if (parseFloat(this.form_entry.amount) == 0) {
         swal.fire('Error!', 'Please enter amount!', 'error');
         return false;
@@ -9697,87 +7993,67 @@ __webpack_require__.r(__webpack_exports__);
 
       this.form.amount += parseFloat(this.form_entry.amount);
       this.save_button_entry_enabled = false;
-      this.ledgers.push({
-        id: this.form_entry.id,
-        transaction_id: this.form.id,
-        transaction_no: this.form.transaction_no,
-        transaction_type: this.form.transaction_type,
+      this.transactions.push({
+        transaction_entry_id: this.transaction_entry_id,
+        payee_id: this.form.payee_id,
+        branch_id: 0,
         account_code: this.form_entry.account_code,
         account_name: this.form_entry.account_name,
+        reference_no: this.form.reference_no,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
         transaction_date: this.form.transaction_date,
+        amount: this.form_entry.amount,
         credit_amount: 0,
-        debit_amount: this.form_entry.amount
+        debit_amount: this.form_entry.amount,
+        total_payment: 0,
+        amount_ex_tax: 0,
+        vat: 0,
+        wtax_code: 0,
+        wtax: 0,
+        user_id: this.form.user_id,
+        status: 'CONFIRMED'
       });
-      this.form_entry.put('api/cd/entry/' + this.form_entry.id).then(function () {
-        $('#entry-payment').modal('hide');
+      $('#entry-payment').modal('hide'); //this.loadPayments();
 
-        _this11.loadPayments();
-
-        _this11.loadPaymentHistory(account_code);
-
-        _this11.updatePurchase(parseFloat(payment_amount)); //this.addPaymentToPurchseRecord();
-
-      })["catch"](function () {
-        _this11.$Progress.fail();
-      });
+      this.loadPaymentHistory(account_code);
+      this.updatePurchase(parseFloat(payment_amount));
       this.form_entry.reset();
     },
     cancelPayment: function cancelPayment(account_code) {
-      var _this12 = this;
-
-      this.form_entry["delete"]('api/cd/entry/' + this.form_entry.id).then(function () {
-        $('#entry-payment').modal('hide');
-
-        _this12.loadPayments();
-
-        _this12.loadPaymentHistory(account_code);
-      })["catch"](function () {
-        _this12.$Progress.fail();
-      });
       this.form_entry.reset();
       $('#entry-payment').modal('hide');
     },
     selectPaymentRow: function selectPaymentRow(active_debit_row_id, account_code) {
-      this.active_debit_row = active_debit_row_id;
-      this.form_entry.id = active_debit_row_id;
-      this.account_code = account_code;
-      this.loadPayments();
+      //this.active_debit_row = active_debit_row_id;
+      //this.form_entry.id = active_debit_row_id;
+      //this.loadPayments();
       this.loadPaymentHistory(account_code);
     },
-    loadPayments: function loadPayments() {
-      var _this13 = this;
-
-      axios.get('api/cd/entries/list?transaction_no=' + this.form.transaction_no).then(function (data) {
-        _this13.entries = data.data;
-      })["catch"](function () {//
-      });
-    },
     loadPaymentHistory: function loadPaymentHistory(account_code) {
-      var _this14 = this;
+      var _this9 = this;
 
-      axios.get('api/cd/entries/list?payee_id=' + account_code).then(function (data) {
-        _this14.payment_history = data.data;
+      axios.get('api/cd/entries/list?payee_id=' + this.form.payee_id + '&account_code=' + account_code).then(function (data) {
+        _this9.payment_history = data.data;
       })["catch"](function () {//
       });
     },
     getPaymentHistotyPage: function getPaymentHistotyPage(page) {
-      var _this15 = this;
+      var _this10 = this;
 
       axios.get('api/cd/entries/list?payee_id=' + this.current_payee_id + '&page=' + page).then(function (data) {
-        _this15.payment_history = data.data;
+        _this10.payment_history = data.data;
       })["catch"](function () {});
     },
-    addPaymentToPurchseRecord: function addPaymentToPurchseRecord() {//this.current_purchase_id
-    },
     updatePurchase: function updatePurchase(payment_amount) {
-      var _this16 = this;
+      var _this11 = this;
 
       this.purchases.data.map(function (purchase) {
         if (!purchase.total_payment) {
           purchase.total_payment = 0;
         }
 
-        if (purchase.id == _this16.current_purchase_id) {
+        if (purchase.id == _this11.current_purchase_id) {
           return purchase.total_payment = parseFloat(purchase.total_payment) + parseFloat(payment_amount);
         } else {
           return purchase.total_payment = purchase.total_payment;
@@ -9786,19 +8062,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this17 = this;
-
     this.loadPayees();
     this.loadBranches();
     this.initChartAccounts();
-    this.loadEntryItems();
-    this.loadEntries();
-    VueListen.$on('RefreshItemTable', function () {
-      _this17.loadEntryItems();
-    });
-    VueListen.$on('RefreshEntryTable', function () {
-      _this17.loadEntries();
-    });
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
     //console.log(this.payees);
     //setInterval(() => this.loadUsers(),3000);
@@ -9820,16 +8086,24 @@ __webpack_require__.r(__webpack_exports__);
     });
     */
   },
-  computed: {},
+  computed: {
+    currentTransctions: function currentTransctions() {
+      var _this12 = this;
+
+      return this.transactions.filter(function (transaction) {
+        return parseInt(transaction.transaction_no) == parseInt(_this12.form.transaction_no);
+      });
+    }
+  },
   components: {}
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PurchasePrev.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PurchasePrev.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Purchase.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Purchase.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -10571,17 +8845,81 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      ledgers: [],
+      transaction_type: 'PURCHASE',
+      transactions: [],
+      items: [],
+      item_no: 0,
+      transaction_entry_id: 0,
+      current_transaction_entry_id: 0,
       user_id: '',
-      //isModalVisible: false,
       editmode: false,
       transaction_created: false,
       no_payee: false,
       no_reference_no: false,
       no_account_code: false,
+      no_branch_id: false,
       no_item: false,
       no_price: false,
       no_quantity: false,
@@ -10591,7 +8929,10 @@ __webpack_require__.r(__webpack_exports__);
       save_button_entry_enabled: true,
       searchText: '',
       searchPayee: '',
+      searchBranch: '',
       headerOrDetail: 'header',
+      current_branch_id: '',
+      current_branch_name: '',
       current_payee_id: '',
       current_payee_name: '',
       current_payee_address: '',
@@ -10600,11 +8941,11 @@ __webpack_require__.r(__webpack_exports__);
       selected_branch: {},
       cd: {},
       form: new Form({
-        id: '',
+        //id:'',
         payee_id: '',
         reference_no: '',
         transaction_no: '',
-        transaction_type: 'PURCHASE',
+        transaction_type: this.transaction_type,
         // default for Cash Disbursement
         transaction_date: this.getDate(),
         account_code: '',
@@ -10615,17 +8956,17 @@ __webpack_require__.r(__webpack_exports__);
         amount_ex_tax: 0,
         vat: 0,
         canceled: 0,
+        branch_id: '',
         user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
       }),
       form_entry: new Form({
-        id: '',
-        transaction_id: '',
+        //id:'',
+        //transaction_id:'',
         transaction_no: '',
-        transaction_type: '',
+        transaction_entry_id: 0,
+        transaction_type: this.transaction_type,
         account_code: 0,
         account_name: 'NA',
-        //entry_name: '',
-        //entry_description: '',
         branch_id: '',
         branch_name: '',
         amount: 0,
@@ -10639,7 +8980,7 @@ __webpack_require__.r(__webpack_exports__);
         id: '',
         transaction_entry_id: '',
         transaction_no: '',
-        transaction_type: '',
+        transaction_type: this.transaction_type,
         account_code: '',
         item: '',
         quantity: 0,
@@ -10651,22 +8992,23 @@ __webpack_require__.r(__webpack_exports__);
       }),
       payees: {},
       branches: {},
-      items: {},
-      entries: {},
       chart_of_accounts: {},
       chart_of_accounts_header: {},
-      chart_of_accounts_detail: {}
+      chart_of_accounts_detail: {},
+      readabilityObject: {
+        fontSize: user.font_size
+      }
     };
   },
   methods: {
-    loadBranches: function loadBranches() {
+    loadBranch: function loadBranch() {
       var _this = this;
 
       if (this.$gate.isAdminOrUser()) {
         axios.get("api/branch").then(function (_ref) {
           var data = _ref.data;
           return _this.branches = data;
-        }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
+        });
       }
     },
     loadPayees: function loadPayees() {
@@ -10691,18 +9033,14 @@ __webpack_require__.r(__webpack_exports__);
     initChartAccounts: function initChartAccounts() {
       var _this3 = this;
 
-      axios.get('api/chartaccount?headerordetail=header&transaction_type=PURCHASE').then(function (data) {
+      axios.get('api/chartaccount?headerordetail=header&transaction_type=' + this.transaction_type).then(function (data) {
         _this3.chart_of_accounts_header = data.data;
       })["catch"](function () {//
       });
-      axios.get('api/chartaccount?headerordetail=detail&transaction_type=PURCHASE').then(function (data) {
+      axios.get('api/chartaccount?headerordetail=detail&transaction_type=' + this.transaction_type).then(function (data) {
         _this3.chart_of_accounts_detail = data.data;
       })["catch"](function () {//
       });
-    },
-    eventChild: function eventChild(Obj) {
-      //console.log(Obj.id);
-      this.form.payee_id = Obj.id;
     },
     getDate: function getDate() {
       var toTwoDigits = function toTwoDigits(num) {
@@ -10716,8 +9054,6 @@ __webpack_require__.r(__webpack_exports__);
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
     createTransaction: function createTransaction() {
-      var _this4 = this;
-
       if (this.form.payee_id.length == 0) {
         this.no_payee = true;
       } else {
@@ -10730,96 +9066,117 @@ __webpack_require__.r(__webpack_exports__);
         this.no_account_code = false;
       }
 
+      if (this.form.branch_id.length == 0) {
+        this.no_branch_id = true;
+      } else {
+        this.no_branch_id = false;
+      }
+
       if (this.form.reference_no.length == 0) {
         this.no_reference_no = true;
       } else {
         this.no_reference_no = false;
       }
 
-      if (this.no_account_code || this.no_reference_no || this.no_payee) {
+      if (this.no_account_code || this.no_reference_no || this.no_payee || this.no_branch_id) {
         this.transaction_created = false;
       } else {
         this.transaction_created = true;
       }
 
       this.form.transaction_no = this.createSerialNumber();
-      this.form.transaction_type = 'PURCHASE';
-      this.form.post('api/cd').then(function (data) {
-        //console.log(data.data.id);
-        _this4.form.id = data.data.id;
-      })["catch"](function () {//
-      });
+      this.form.transaction_type = this.transaction_type;
     },
     saveTransaction: function saveTransaction() {
-      var _this5 = this;
+      var _this4 = this;
 
       if (this.form.amount == 0) {
         return false;
       }
 
-      this.$Progress.start();
-      this.form.put('api/cd/' + this.form.id).then(function () {
-        _this5.transaction_created = false;
-
-        _this5.form.post('api/cd/confirm/' + _this5.form.transaction_no);
-
-        _this5.ledgers.push({
-          id: _this5.form.id,
-          transaction_id: _this5.form.id,
-          transaction_no: _this5.form.transaction_no,
-          transaction_type: _this5.form.transaction_type,
-          account_code: _this5.form.account_code,
-          account_name: _this5.form.account_name,
-          transaction_date: _this5.form.transaction_date,
-          credit_amount: _this5.form.amount,
-          debit_amount: 0
-        });
-
-        _this5.ledgers.push({
-          id: 1,
-          transaction_id: _this5.form.id,
-          transaction_no: _this5.form.transaction_no,
-          transaction_type: _this5.form.transaction_type,
-          account_code: '1105110',
-          account_name: 'Input Tax',
-          transaction_date: _this5.form.transaction_date,
-          credit_amount: 0,
-          debit_amount: _this5.form.vat
-        }); // Ledger Posting START ********************
-
-
-        var rawData = {
-          ledgers: _this5.ledgers
-        };
-        rawData = JSON.stringify(rawData);
-        var formData = new FormData();
-        formData.append('ledgers', rawData);
-        axios.post('api/ledgers', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        }).then(function (response) {
-          console.log(response);
-        })["catch"](function (error) {
-          console.log(error);
-        }); // Ledger Posting END ********************
-        // Update Payee Account START ********************
-
-        axios.post('api/update_payee_account', {
-          payee_id: _this5.form.payee_id,
-          amount: _this5.form.amount,
-          operation: 'add',
-          account: 'payable'
-        }).then(function (response) {})["catch"](function () {}); // Update Payee Account END ********************
-
-        _this5.$Progress.finish();
-      })["catch"](function () {
-        _this5.$Progress.fail();
+      this.transaction_created = false;
+      ++this.transaction_entry_id;
+      this.transactions.push({
+        transaction_entry_id: this.transaction_entry_id,
+        payee_id: this.form.payee_id,
+        branch_id: this.current_branch_id,
+        account_code: this.form.account_code,
+        account_name: this.form.account_name,
+        reference_no: this.form.reference_no,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        transaction_date: this.form.transaction_date,
+        amount: this.form.amount,
+        credit_amount: this.form.amount,
+        debit_amount: 0,
+        total_payment: 0,
+        amount_ex_tax: this.form.amount_ex_tax,
+        vat: this.form.vat,
+        wtax_code: 0,
+        wtax: 0,
+        user_id: this.form.user_id,
+        status: 'CONFIRMED'
       });
+      ++this.transaction_entry_id;
+      this.transactions.push({
+        transaction_entry_id: this.transaction_entry_id,
+        payee_id: this.form.payee_id,
+        branch_id: this.current_branch_id,
+        account_code: '1105110',
+        account_name: 'Input Tax',
+        reference_no: this.form.reference_no,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        transaction_date: this.form.transaction_date,
+        amount: this.form.vat,
+        credit_amount: 0,
+        debit_amount: this.form.vat,
+        total_payment: 0,
+        amount_ex_tax: 0,
+        vat: 0,
+        wtax_code: 0,
+        wtax: 0,
+        user_id: this.form.user_id,
+        status: 'CONFIRMED'
+      }); // Save Transactions START
+
+      var rawData = {
+        transactions: this.transactions
+      };
+      rawData = JSON.stringify(rawData);
+      var formData = new FormData();
+      formData.append('transactions', rawData);
+      axios.post('api/transactions', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      }); // Save Transactions END
+      // Save Items START
+
+      var rawItemData = {
+        items: this.items
+      };
+      rawItemData = JSON.stringify(rawItemData);
+      var formItemData = new FormData();
+      formItemData.append('items', rawItemData);
+      axios.post('api/items', formItemData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      }); // Save Items END
+
       swal.fire({
         title: 'Saved!',
         text: "Journal posted",
-        icon: 'info',
+        type: 'info',
         showCancelButton: false,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
@@ -10827,13 +9184,34 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.value) {
           //Reload Current Page
-          _this5.$router.go();
+          _this4.dataReset();
         }
       });
     },
+    dataReset: function dataReset() {
+      this.form.reset();
+      this.form_entry.reset();
+      this.form_item.reset();
+      this.transactions = [];
+      this.items = [];
+      this.transaction_entry_id = 0;
+      this.item_no = 0;
+      this.current_transaction_entry_id = 0;
+      this.searchText = '';
+      this.searchPayee = '';
+      this.searchBranch = '';
+      this.headerOrDetail = 'header';
+      this.current_branch_id = '';
+      this.current_branch_name = '';
+      this.current_payee_id = '';
+      this.current_payee_name = '';
+      this.current_payee_address = '';
+      this.current_payee_tin = '';
+      this.active_debit_row = 0;
+    },
     cancelTransaction: function cancelTransaction() {
       this.transaction_created = false;
-      this.form["delete"]('api/cd/cancel/' + this.form.transaction_no);
+      this.dataReset();
     },
     searchAccountModal: function searchAccountModal() {
       var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'header';
@@ -10844,10 +9222,14 @@ __webpack_require__.r(__webpack_exports__);
       $('#select-account').modal('show');
     },
     searchPayeeModal: function searchPayeeModal() {
-      this.searchPayee = this.form.payee_id; //this.searchPayee = '';
-
+      this.searchPayee = this.form.payee_id;
       this.loadPayees();
       $('#select-payee').modal('show');
+    },
+    searchBranchModal: function searchBranchModal() {
+      this.searchBranch = this.form.branch_id;
+      this.loadBranch();
+      $('#select-branch').modal('show');
     },
     selectAccount: function selectAccount() {
       var account_code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
@@ -10881,40 +9263,43 @@ __webpack_require__.r(__webpack_exports__);
 
       $('#select-payee').modal('hide');
     },
+    selectBranch: function selectBranch() {
+      var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+      if (id) {
+        this.current_branch_id = id;
+        this.form.branch_id = id;
+        this.current_branch_name = name;
+      }
+
+      $('#select-branch').modal('hide');
+    },
     SearchIt: function SearchIt() {
-      var _this6 = this;
+      var _this5 = this;
 
       var query = this.searchText;
       var headerOrDetail = this.headerOrDetail;
-      axios.get('api/searchAccount?q=' + query + '&transaction_type=CD&headerordetail=' + headerOrDetail).then(function (data) {
-        _this6.chart_of_accounts = data.data;
+      axios.get('api/searchAccount?q=' + query + '&transaction_type=' + this.transaction_type + '&headerordetail=' + headerOrDetail).then(function (data) {
+        _this5.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
     },
     SearchPayee: function SearchPayee() {
-      var _this7 = this;
+      var _this6 = this;
 
       var query = this.searchPayee;
       axios.get('api/searchPayee?q=' + query).then(function (data) {
-        _this7.payees = data.data;
+        _this6.payees = data.data;
       })["catch"](function () {//
       });
     },
-    loadEntryItems: function loadEntryItems() {
-      var _this8 = this;
+    SearchBranch: function SearchBranch() {
+      var _this7 = this;
 
-      var entry_id = this.form_entry.id;
-      axios.get('api/cd/items/list?entry_id=' + entry_id).then(function (data) {
-        _this8.items = data.data;
-      })["catch"](function () {//
-      });
-    },
-    loadEntries: function loadEntries() {
-      var _this9 = this;
-
-      var transaction_no = this.form.transaction_no;
-      axios.get('api/cd/entries/list?transaction_no=' + transaction_no).then(function (data) {
-        _this9.entries = data.data;
+      var query = this.searchBranch;
+      axios.get('api/searchBranch?q=' + query).then(function (data) {
+        _this7.branches = data.data;
       })["catch"](function () {//
       });
     },
@@ -10941,44 +9326,26 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
     },
-    selectDebitRow: function selectDebitRow(active_debit_row_id) {
-      this.active_debit_row = active_debit_row_id;
-      this.form_entry.id = active_debit_row_id;
-      VueListen.$emit('RefreshItemTable'); //console.log(active_debit_row);
-    },
     newEntry: function newEntry() {
-      var _this10 = this;
-
       this.editmode = false;
       this.form_entry.reset();
-      this.form_entry.transaction_id = this.form.id;
-      this.form_entry.transaction_no = this.form.transaction_no;
-      this.form_entry.transaction_type = 'PURCHASE';
-      this.save_button_entry_enabled = true;
-      this.form_entry.post('api/cd/entry').then(function (data) {
-        _this10.form_entry.id = data.data.id; //console.log(data.data.id);
+      ++this.transaction_entry_id; // To refresh ITEMS table
 
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {//
-      });
+      this.current_transaction_entry_id = this.transaction_entry_id;
+      this.form_entry.transaction_id = this.transaction_entry_id;
+      this.form_entry.transaction_no = this.form.transaction_no;
+      this.form_entry.transaction_type = this.transaction_type;
+      this.save_button_entry_enabled = true;
       $('#entry-details').modal('show');
     },
     newItem: function newItem() {
-      var _this11 = this;
-
       if (this.form_entry.account_code == 0) {
         this.no_entry_account_code = true;
       } else {
         this.no_entry_account_code = false;
       }
 
-      if (this.form_entry.branch_id == 0) {
-        this.no_entry_branch_id = true;
-      } else {
-        this.no_entry_branch_id = false;
-      }
-
-      if (this.no_entry_account_code || this.no_entry_branch_id) {
+      if (this.no_entry_account_code) {
         return false;
       }
 
@@ -10988,128 +9355,67 @@ __webpack_require__.r(__webpack_exports__);
       this.no_item = false;
       this.no_price = false;
       this.no_quantity = false;
-      this.form_item.transaction_entry_id = this.form_entry.id;
+      this.form_item.transaction_entry_id = this.transaction_entry_id;
       this.form_item.transaction_no = this.form.transaction_no;
-      this.form_item.transaction_type = 'PURCHASE';
+      this.form_item.transaction_type = this.transaction_type;
       this.form_item.account_code = this.form_entry.account_code;
-      this.form_item.post('api/cd/item').then(function (data) {
-        _this11.form_item.id = data.data.id; //console.log(data.data.id);
-      })["catch"](function () {//
-      });
-      this.loadEntryItems();
       $('#entry-items').modal('show');
     },
-    cancelDebitEntry: function cancelDebitEntry() {
-      var _this12 = this;
-
+    cancelEntry: function cancelEntry() {
       //this.$Progress.start();
-      this.form_item["delete"]('api/cd/entry/' + this.form_entry.id).then(function () {
-        $('#entry-details').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        //this.$Progress.finish();
-
-        VueListen.$emit('RefreshEntryTable');
-      })["catch"](function () {
-        _this12.$Progress.fail();
+      this.items = this.items.filter(function (item) {
+        return item.transaction_entry_id !== this.transaction_entry_id;
       });
+      $('#entry-details').modal('hide');
     },
-    saveDebitEntry: function saveDebitEntry() {
-      var _this13 = this;
-
-      //console.log('Edit Payee');
-      // ** Temporary data to bypass Column cannot be null ERROR's
-      //this.form_entry.amount = 0;
-      //this.form_entry.amount_ex_tax = 0;
-      //this.form_entry.vat = 0;
-      this.form_entry.credit_amount = this.form_entry.amount; //this.form_entry.debit_amount = 0;
-      // ** Temporary data to bypass Column cannot be null ERROR's
+    saveEntry: function saveEntry() {
+      this.form_entry.credit_amount = this.form_entry.amount; // ** Temporary data to bypass Column cannot be null ERROR's
 
       this.save_button_entry_enabled = false;
-      this.$Progress.start();
-      this.form_entry.put('api/cd/entry/' + this.form_entry.id).then(function () {
-        $('#entry-details').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
+      this.form.amount += this.form_entry.amount;
+      this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
+      this.form.vat += this.form_entry.vat; // To refresh ITEMS table
 
-        _this13.form.amount += _this13.form_entry.amount;
-        _this13.form.amount_ex_tax += _this13.form_entry.amount_ex_tax;
-        _this13.form.vat += _this13.form_entry.vat;
+      this.current_transaction_entry_id = this.transaction_entry_id; //this.$Progress.start();
 
-        _this13.ledgers.push({
-          id: _this13.form_entry.id,
-          transaction_id: _this13.form.id,
-          transaction_no: _this13.form.transaction_no,
-          transaction_type: _this13.form.transaction_type,
-          account_code: _this13.form_entry.account_code,
-          account_name: _this13.form_entry.account_name,
-          transaction_date: _this13.form.transaction_date,
-          credit_amount: 0,
-          debit_amount: _this13.form_entry.amount_ex_tax
-        });
-
-        _this13.$Progress.finish();
-
-        VueListen.$emit('RefreshEntryTable');
-      })["catch"](function () {
-        _this13.$Progress.fail();
+      this.transactions.push({
+        transaction_entry_id: this.transaction_entry_id,
+        payee_id: this.form.payee_id,
+        branch_id: this.current_branch_id,
+        account_code: this.form_entry.account_code,
+        account_name: this.form_entry.account_name,
+        reference_no: this.form.reference_no,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        transaction_date: this.form.transaction_date,
+        amount: this.form_entry.amount_ex_tax,
+        credit_amount: 0,
+        debit_amount: this.form_entry.amount_ex_tax,
+        total_payment: 0,
+        amount_ex_tax: 0,
+        vat: this.form_entry.vat,
+        wtax_code: 0,
+        wtax: 0,
+        user_id: this.form.user_id,
+        status: 'CONFIRMED'
       });
+      $('#entry-details').modal('hide'); //this.$Progress.finish();
     },
-    deleteEntry: function deleteEntry(entry_id, entry_amount, entry_amount_ex_tax, entry_vat) {
-      var _this14 = this;
-
-      this.form_item["delete"]('api/cd/entry/' + entry_id).then(function () {
-        //$('#entry-items').modal('hide');
-
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        _this14.form.amount = parseFloat(_this14.form.amount - entry_amount).toFixed(2) * 1;
-        _this14.form.amount_ex_tax = (_this14.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
-        _this14.form.vat = (_this14.form.vat - entry_vat).toFixed(2) * 1;
-        VueListen.$emit('RefreshItemTable');
-        VueListen.$emit('RefreshEntryTable');
-      })["catch"](function () {
-        _this14.$Progress.fail();
+    deleteEntry: function deleteEntry(transaction_entry_id, entry_amount, entry_vat) {
+      this.transactions = this.transactions.filter(function (transaction) {
+        return transaction.transaction_entry_id !== transaction_entry_id;
       });
+      this.items = this.items.filter(function (item) {
+        return item.transaction_entry_id !== transaction_entry_id;
+      });
+      this.form.amount = parseFloat(this.form.amount - entry_amount - entry_vat).toFixed(2) * 1;
+      this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount).toFixed(2) * 1;
+      this.form.vat = (this.form.vat - entry_vat).toFixed(2) * 1;
     },
     cancelItem: function cancelItem() {
-      var _this15 = this;
-
-      //this.$Progress.start();
-      this.form_item["delete"]('api/cd/item/' + this.form_item.id).then(function () {
-        $('#entry-items').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        //this.$Progress.finish();
-
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {
-        _this15.$Progress.fail();
-      });
+      $('#entry-items').modal('hide');
     },
     saveItem: function saveItem() {
-      var _this16 = this;
-
       if (this.form_item.item.length == 0) {
         this.no_item = true;
       } else {
@@ -11132,74 +9438,52 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
 
-      this.save_button_item_enabled = false;
-      this.$Progress.start();
-      this.form_item.put('api/cd/item/' + this.form_item.id).then(function () {
-        $('#entry-items').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
+      this.save_button_item_enabled = false; // To refresh ITEMS table
 
-        _this16.form_entry.amount = parseFloat(_this16.form_entry.amount + _this16.form_item.sub_total).toFixed(2) * 1;
-        _this16.form_entry.amount_ex_tax = (_this16.form_entry.amount_ex_tax + _this16.form_item.tax_excluded).toFixed(2) * 1;
-        _this16.form_entry.vat += _this16.form_item.vat * 1;
+      this.current_transaction_entry_id = this.transaction_entry_id; //this.$Progress.start();
 
-        _this16.$Progress.finish();
-
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {
-        _this16.$Progress.fail();
+      this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
+      this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
+      this.form_entry.vat += this.form_item.vat * 1;
+      ++this.item_no;
+      this.items.push({
+        item_no: this.item_no,
+        transaction_entry_id: this.transaction_entry_id,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        account_code: this.form_entry.account_code,
+        item: this.form_item.item,
+        quantity: this.form_item.quantity,
+        price: this.form_item.price,
+        sub_total: this.form_item.sub_total,
+        tax_type: this.form_item.tax_type,
+        tax_excluded: this.form_item.tax_excluded,
+        vat: this.form_item.vat,
+        status: 'CONFIRMED'
       });
+      $('#entry-items').modal('hide');
     },
-    deleteItem: function deleteItem(item_id, item_sub_total, item_tax_excluded, item_vat) {
-      var _this17 = this;
-
-      this.form_item["delete"]('api/cd/item/' + item_id).then(function () {
-        //$('#entry-items').modal('hide');
-
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        _this17.form_entry.amount = parseFloat(_this17.form_entry.amount - item_sub_total).toFixed(2) * 1;
-        _this17.form_entry.amount_ex_tax = (_this17.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
-        _this17.form_entry.vat = (_this17.form_entry.vat - item_vat).toFixed(2) * 1;
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {
-        _this17.$Progress.fail();
+    deleteItem: function deleteItem(item_no, item_sub_total, item_tax_excluded, item_vat) {
+      this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
+      this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
+      this.form_entry.vat = (this.form_entry.vat - item_vat).toFixed(2) * 1;
+      this.items = this.items.filter(function (item) {
+        return item.item_no !== item_no;
       });
     },
     branchChange: function branchChange() {
       this.form_entry.branch_id = this.selected_branch.id;
       this.form_entry.branch_name = this.selected_branch.name;
+    },
+    selectEntryRow: function selectEntryRow(current_transaction_entry_id) {
+      this.current_transaction_entry_id = current_transaction_entry_id;
     }
   },
   created: function created() {
-    var _this18 = this;
-
     this.loadPayees();
-    this.loadBranches();
+    this.loadBranch();
     this.initChartAccounts();
-    this.loadEntryItems();
-    this.loadEntries(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
-
-    VueListen.$on('RefreshItemTable', function () {
-      _this18.loadEntryItems();
-    });
-    VueListen.$on('RefreshEntryTable', function () {
-      _this18.loadEntries();
-    });
-    this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
-    //console.log(this.payees);
-    //setInterval(() => this.loadUsers(),3000);
-
+    this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
     /* Scrollbar fix
        If you have a modal on your page that exceeds the browser height, then you can't scroll in it when closing an second modal. To fix this add: */
 
@@ -11207,16 +9491,24 @@ __webpack_require__.r(__webpack_exports__);
       $('.modal:visible').length && $(document.body).addClass('modal-open');
     });
   },
-  computed: {},
+  computed: {
+    currentItems: function currentItems() {
+      var _this8 = this;
+
+      return this.items.filter(function (item) {
+        return parseInt(item.transaction_entry_id) == parseInt(_this8.current_transaction_entry_id);
+      });
+    }
+  },
   components: {}
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SalesPrev.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SalesPrev.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Sales.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Sales.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -12038,16 +10330,76 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      ledgers: [],
+      transaction_type: 'PURCHASE',
+      //ledgers: [],
+      transactions: [],
+      items: [],
+      item_no: 0,
+      transaction_entry_id: 0,
+      current_transaction_entry_id: 0,
       user_id: '',
       editmode: false,
       transaction_created: false,
       no_payee: false,
       no_reference_no: false,
       no_account_code: false,
+      no_branch_id: false,
       no_item: false,
       no_price: false,
       no_quantity: false,
@@ -12057,7 +10409,10 @@ __webpack_require__.r(__webpack_exports__);
       save_button_entry_enabled: true,
       searchText: '',
       searchPayee: '',
+      searchBranch: '',
       headerOrDetail: 'header',
+      current_branch_id: '',
+      current_branch_name: '',
       current_payee_id: '',
       current_payee_name: '',
       current_payee_address: '',
@@ -12066,12 +10421,12 @@ __webpack_require__.r(__webpack_exports__);
       selected_branch: {},
       cd: {},
       form: new Form({
-        id: '',
+        //id:'',
         payee_id: '',
         reference_no: '',
         transaction_no: '',
-        transaction_type: 'SALES',
-        // default for SALES
+        transaction_type: this.transaction_type,
+        // default for Cash Disbursement
         transaction_date: this.getDate(),
         account_code: '',
         account_name: '',
@@ -12081,19 +10436,19 @@ __webpack_require__.r(__webpack_exports__);
         amount_ex_tax: 0,
         vat: 0,
         canceled: 0,
+        branch_id: '',
         user_id: document.querySelector('meta[name="user-id"]').getAttribute('content'),
         wtax_code: 'NA',
         wtax: 0
       }),
       form_entry: new Form({
-        id: '',
-        transaction_id: '',
+        //id:'',
+        //transaction_id:'',
         transaction_no: '',
-        transaction_type: '',
+        transaction_entry_id: 0,
+        transaction_type: this.transaction_type,
         account_code: 0,
         account_name: 'NA',
-        //entry_name: '',
-        //entry_description: '',
         branch_id: '',
         branch_name: '',
         amount: 0,
@@ -12107,7 +10462,7 @@ __webpack_require__.r(__webpack_exports__);
         id: '',
         transaction_entry_id: '',
         transaction_no: '',
-        transaction_type: '',
+        transaction_type: this.transaction_type,
         account_code: '',
         item: '',
         quantity: 0,
@@ -12119,24 +10474,26 @@ __webpack_require__.r(__webpack_exports__);
       }),
       payees: {},
       branches: {},
-      items: {},
-      entries: {},
       chart_of_accounts: {},
       chart_of_accounts_header: {},
       chart_of_accounts_detail: {},
+      readabilityObject: {
+        fontSize: user.font_size
+      },
       wtax: [],
-      wTaxExist: true
+      wTaxExist: true,
+      wTaxCodeInvalid: false
     };
   },
   methods: {
-    loadBranches: function loadBranches() {
+    loadBranch: function loadBranch() {
       var _this = this;
 
       if (this.$gate.isAdminOrUser()) {
         axios.get("api/branch").then(function (_ref) {
           var data = _ref.data;
           return _this.branches = data;
-        }); //axios.get("api/user").then(({ data }) => (this.users = data.data));
+        });
       }
     },
     loadPayees: function loadPayees() {
@@ -12161,18 +10518,14 @@ __webpack_require__.r(__webpack_exports__);
     initChartAccounts: function initChartAccounts() {
       var _this3 = this;
 
-      axios.get('api/chartaccount?headerordetail=header&transaction_type=SALES').then(function (data) {
+      axios.get('api/chartaccount?headerordetail=header&transaction_type=' + this.transaction_type).then(function (data) {
         _this3.chart_of_accounts_header = data.data;
       })["catch"](function () {//
       });
-      axios.get('api/chartaccount?headerordetail=detail&transaction_type=SALES').then(function (data) {
+      axios.get('api/chartaccount?headerordetail=detail&transaction_type=' + this.transaction_type).then(function (data) {
         _this3.chart_of_accounts_detail = data.data;
       })["catch"](function () {//
       });
-    },
-    eventChild: function eventChild(Obj) {
-      //console.log(Obj.id);
-      this.form.payee_id = Obj.id;
     },
     getDate: function getDate() {
       var toTwoDigits = function toTwoDigits(num) {
@@ -12186,8 +10539,6 @@ __webpack_require__.r(__webpack_exports__);
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
     createTransaction: function createTransaction() {
-      var _this4 = this;
-
       if (this.form.payee_id.length == 0) {
         this.no_payee = true;
       } else {
@@ -12200,104 +10551,139 @@ __webpack_require__.r(__webpack_exports__);
         this.no_account_code = false;
       }
 
+      if (this.form.branch_id.length == 0) {
+        this.no_branch_id = true;
+      } else {
+        this.no_branch_id = false;
+      }
+
       if (this.form.reference_no.length == 0) {
         this.no_reference_no = true;
       } else {
         this.no_reference_no = false;
       }
 
-      if (this.no_account_code || this.no_reference_no || this.no_payee) {
+      if (this.no_account_code || this.no_reference_no || this.no_payee || this.no_branch_id) {
         this.transaction_created = false;
       } else {
         this.transaction_created = true;
       }
 
       this.form.transaction_no = this.createSerialNumber();
-      this.form.transaction_type = 'SALES';
-      this.form.post('api/cd').then(function (data) {
-        //console.log(data.data.id);
-        _this4.form.id = data.data.id;
-      })["catch"](function () {//
-      });
+      this.form.transaction_type = this.transaction_type;
     },
     saveTransaction: function saveTransaction() {
-      var _this5 = this;
+      var _this4 = this;
 
-      if (this.form.amount == 0 || this.form.wtax == 0) {
+      if (this.form.amount == 0 || this.form.wtax == 0 || this.wTaxCodeInvalid) {
         return false;
-      } //this.$Progress.start();
+      }
 
-
-      this.form.put('api/cd/' + this.form.id).then(function () {
-        /*
-        swal.fire(
-          'Saved!',
-          'Transaction Completed.',
-          'success'
-        );
-        */
-        _this5.transaction_created = false;
-
-        _this5.form.post('api/cd/confirm/' + _this5.form.transaction_no);
-
-        _this5.ledgers.push({
-          id: _this5.form.id,
-          transaction_id: _this5.form.id,
-          transaction_no: _this5.form.transaction_no,
-          transaction_type: _this5.form.transaction_type,
-          account_code: _this5.form.account_code,
-          account_name: _this5.form.account_name,
-          transaction_date: _this5.form.transaction_date,
-          credit_amount: 0,
-          debit_amount: _this5.form.amount
-        });
-
-        _this5.ledgers.push({
-          id: 1,
-          transaction_id: _this5.form.id,
-          transaction_no: _this5.form.transaction_no,
-          transaction_type: _this5.form.transaction_type,
-          account_code: '2105110',
-          account_name: 'Output Tax',
-          transaction_date: _this5.form.transaction_date,
-          credit_amount: _this5.form.vat,
-          debit_amount: 0
-        });
-
-        _this5.ledgers.push({
-          id: 1,
-          transaction_id: _this5.form.id,
-          transaction_no: _this5.form.transaction_no,
-          transaction_type: _this5.form.transaction_type,
-          account_code: '1105120',
-          account_name: 'Creditable WTax',
-          transaction_date: _this5.form.transaction_date,
-          credit_amount: 0,
-          debit_amount: _this5.form.wtax
-        });
-
-        var rawData = {
-          ledgers: _this5.ledgers
-        };
-        rawData = JSON.stringify(rawData);
-        var formData = new FormData();
-        formData.append('ledgers', rawData);
-        axios.post('api/ledgers', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        }).then(function (response) {
-          console.log(response);
-        })["catch"](function (error) {
-          console.log(error);
-        }); //this.$Progress.finish();
-        //this.$router.go();  
-      })["catch"](function () {//this.$Progress.fail();
+      this.transaction_created = false;
+      ++this.transaction_entry_id;
+      this.transactions.push({
+        transaction_entry_id: this.transaction_entry_id,
+        payee_id: this.form.payee_id,
+        branch_id: this.current_branch_id,
+        account_code: this.form.account_code,
+        account_name: this.form.account_name,
+        reference_no: this.form.reference_no,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        transaction_date: this.form.transaction_date,
+        amount: this.form.amount,
+        credit_amount: this.form.amount,
+        debit_amount: 0,
+        total_payment: 0,
+        amount_ex_tax: this.form.amount_ex_tax,
+        vat: this.form.vat,
+        wtax_code: this.form.wtax_code,
+        wtax: this.form.wtax,
+        user_id: this.form.user_id,
+        status: 'CONFIRMED'
       });
+      ++this.transaction_entry_id;
+      this.transactions.push({
+        transaction_entry_id: this.transaction_entry_id,
+        payee_id: this.form.payee_id,
+        branch_id: this.current_branch_id,
+        account_code: '1105110',
+        account_name: 'Input Tax',
+        reference_no: this.form.reference_no,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        transaction_date: this.form.transaction_date,
+        amount: this.form.vat,
+        credit_amount: 0,
+        debit_amount: this.form.vat,
+        total_payment: 0,
+        amount_ex_tax: 0,
+        vat: 0,
+        wtax_code: 'NA',
+        wtax: 0,
+        user_id: this.form.user_id,
+        status: 'CONFIRMED'
+      });
+      ++this.transaction_entry_id;
+      this.transactions.push({
+        transaction_entry_id: this.transaction_entry_id,
+        payee_id: this.form.payee_id,
+        branch_id: this.current_branch_id,
+        account_code: '1105120',
+        account_name: 'Creditable WTax',
+        reference_no: this.form.reference_no,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        transaction_date: this.form.transaction_date,
+        amount: this.form.wtax,
+        credit_amount: 0,
+        debit_amount: this.form.wtax,
+        total_payment: 0,
+        amount_ex_tax: 0,
+        vat: 0,
+        wtax_code: this.form.wtax_code,
+        wtax: this.form.wtax,
+        user_id: this.form.user_id,
+        status: 'CONFIRMED'
+      }); // Save Transactions START
+
+      var rawData = {
+        transactions: this.transactions
+      };
+      rawData = JSON.stringify(rawData);
+      var formData = new FormData();
+      formData.append('transactions', rawData);
+      axios.post('api/transactions', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      }); // Save Transactions END
+      // Save Items START
+
+      var rawItemData = {
+        items: this.items
+      };
+      rawItemData = JSON.stringify(rawItemData);
+      var formItemData = new FormData();
+      formItemData.append('items', rawItemData);
+      axios.post('api/items', formItemData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      }); // Save Items END
+
       swal.fire({
         title: 'Saved!',
         text: "Journal posted",
-        icon: 'info',
+        type: 'info',
         showCancelButton: false,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
@@ -12305,13 +10691,34 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.value) {
           //Reload Current Page
-          _this5.$router.go();
+          _this4.dataReset();
         }
       });
     },
+    dataReset: function dataReset() {
+      this.form.reset();
+      this.form_entry.reset();
+      this.form_item.reset();
+      this.transactions = [];
+      this.items = [];
+      this.transaction_entry_id = 0;
+      this.item_no = 0;
+      this.current_transaction_entry_id = 0;
+      this.searchText = '';
+      this.searchPayee = '';
+      this.searchBranch = '';
+      this.headerOrDetail = 'header';
+      this.current_branch_id = '';
+      this.current_branch_name = '';
+      this.current_payee_id = '';
+      this.current_payee_name = '';
+      this.current_payee_address = '';
+      this.current_payee_tin = '';
+      this.active_debit_row = 0;
+    },
     cancelTransaction: function cancelTransaction() {
       this.transaction_created = false;
-      this.form["delete"]('api/cd/cancel/' + this.form.transaction_no);
+      this.dataReset();
     },
     searchAccountModal: function searchAccountModal() {
       var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'header';
@@ -12322,10 +10729,14 @@ __webpack_require__.r(__webpack_exports__);
       $('#select-account').modal('show');
     },
     searchPayeeModal: function searchPayeeModal() {
-      this.searchPayee = this.form.payee_id; //this.searchPayee = '';
-
+      this.searchPayee = this.form.payee_id;
       this.loadPayees();
       $('#select-payee').modal('show');
+    },
+    searchBranchModal: function searchBranchModal() {
+      this.searchBranch = this.form.branch_id;
+      this.loadBranch();
+      $('#select-branch').modal('show');
     },
     selectAccount: function selectAccount() {
       var account_code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
@@ -12350,7 +10761,6 @@ __webpack_require__.r(__webpack_exports__);
       var tin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
 
       if (id) {
-        console.log(name);
         this.current_payee_id = id;
         this.form.payee_id = id;
         this.current_payee_name = name;
@@ -12360,40 +10770,43 @@ __webpack_require__.r(__webpack_exports__);
 
       $('#select-payee').modal('hide');
     },
+    selectBranch: function selectBranch() {
+      var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+      if (id) {
+        this.current_branch_id = id;
+        this.form.branch_id = id;
+        this.current_branch_name = name;
+      }
+
+      $('#select-branch').modal('hide');
+    },
     SearchIt: function SearchIt() {
-      var _this6 = this;
+      var _this5 = this;
 
       var query = this.searchText;
       var headerOrDetail = this.headerOrDetail;
-      axios.get('api/searchAccount?q=' + query + '&transaction_type=SALES&headerordetail=' + headerOrDetail).then(function (data) {
-        _this6.chart_of_accounts = data.data;
+      axios.get('api/searchAccount?q=' + query + '&transaction_type=' + this.transaction_type + '&headerordetail=' + headerOrDetail).then(function (data) {
+        _this5.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
     },
     SearchPayee: function SearchPayee() {
-      var _this7 = this;
+      var _this6 = this;
 
       var query = this.searchPayee;
       axios.get('api/searchPayee?q=' + query).then(function (data) {
-        _this7.payees = data.data;
+        _this6.payees = data.data;
       })["catch"](function () {//
       });
     },
-    loadEntryItems: function loadEntryItems() {
-      var _this8 = this;
+    SearchBranch: function SearchBranch() {
+      var _this7 = this;
 
-      var entry_id = this.form_entry.id;
-      axios.get('api/cd/items/list?entry_id=' + entry_id).then(function (data) {
-        _this8.items = data.data;
-      })["catch"](function () {//
-      });
-    },
-    loadEntries: function loadEntries() {
-      var _this9 = this;
-
-      var transaction_no = this.form.transaction_no;
-      axios.get('api/cd/entries/list?transaction_no=' + transaction_no).then(function (data) {
-        _this9.entries = data.data;
+      var query = this.searchBranch;
+      axios.get('api/searchBranch?q=' + query).then(function (data) {
+        _this7.branches = data.data;
       })["catch"](function () {//
       });
     },
@@ -12420,44 +10833,26 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
     },
-    selectDebitRow: function selectDebitRow(active_debit_row_id) {
-      this.active_debit_row = active_debit_row_id;
-      this.form_entry.id = active_debit_row_id;
-      VueListen.$emit('RefreshItemTable'); //console.log(active_debit_row);
-    },
     newEntry: function newEntry() {
-      var _this10 = this;
-
       this.editmode = false;
       this.form_entry.reset();
-      this.form_entry.transaction_id = this.form.id;
-      this.form_entry.transaction_no = this.form.transaction_no;
-      this.form_entry.transaction_type = 'SALES';
-      this.save_button_entry_enabled = true;
-      this.form_entry.post('api/cd/entry').then(function (data) {
-        _this10.form_entry.id = data.data.id; //console.log(data.data.id);
+      ++this.transaction_entry_id; // To refresh ITEMS table
 
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {//
-      });
+      this.current_transaction_entry_id = this.transaction_entry_id;
+      this.form_entry.transaction_id = this.transaction_entry_id;
+      this.form_entry.transaction_no = this.form.transaction_no;
+      this.form_entry.transaction_type = this.transaction_type;
+      this.save_button_entry_enabled = true;
       $('#entry-details').modal('show');
     },
     newItem: function newItem() {
-      var _this11 = this;
-
       if (this.form_entry.account_code == 0) {
         this.no_entry_account_code = true;
       } else {
         this.no_entry_account_code = false;
       }
 
-      if (this.form_entry.branch_id == 0) {
-        this.no_entry_branch_id = true;
-      } else {
-        this.no_entry_branch_id = false;
-      }
-
-      if (this.no_entry_account_code || this.no_entry_branch_id) {
+      if (this.no_entry_account_code) {
         return false;
       }
 
@@ -12467,121 +10862,67 @@ __webpack_require__.r(__webpack_exports__);
       this.no_item = false;
       this.no_price = false;
       this.no_quantity = false;
-      this.form_item.transaction_entry_id = this.form_entry.id;
+      this.form_item.transaction_entry_id = this.transaction_entry_id;
       this.form_item.transaction_no = this.form.transaction_no;
-      this.form_item.transaction_type = 'SALES';
+      this.form_item.transaction_type = this.transaction_type;
       this.form_item.account_code = this.form_entry.account_code;
-      this.form_item.post('api/cd/item').then(function (data) {
-        _this11.form_item.id = data.data.id; //console.log(data.data.id);
-      })["catch"](function () {//
-      });
-      this.loadEntryItems();
       $('#entry-items').modal('show');
     },
-    cancelDebitEntry: function cancelDebitEntry() {
-      var _this12 = this;
-
+    cancelEntry: function cancelEntry() {
       //this.$Progress.start();
-      this.form_item["delete"]('api/cd/entry/' + this.form_entry.id).then(function () {
-        $('#entry-details').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        //this.$Progress.finish();
-
-        VueListen.$emit('RefreshEntryTable');
-      })["catch"](function () {
-        _this12.$Progress.fail();
+      this.items = this.items.filter(function (item) {
+        return item.transaction_entry_id !== this.transaction_entry_id;
       });
+      $('#entry-details').modal('hide');
     },
-    saveDebitEntry: function saveDebitEntry() {
-      var _this13 = this;
+    saveEntry: function saveEntry() {
+      this.form_entry.credit_amount = this.form_entry.amount; // ** Temporary data to bypass Column cannot be null ERROR's
 
-      this.form_entry.credit_amount = this.form_entry.amount;
       this.save_button_entry_enabled = false;
-      this.$Progress.start();
-      this.form_entry.put('api/cd/entry/' + this.form_entry.id).then(function () {
-        $('#entry-details').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
+      this.form.amount += this.form_entry.amount;
+      this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
+      this.form.vat += this.form_entry.vat; // To refresh ITEMS table
 
-        _this13.form.amount += _this13.form_entry.amount;
-        _this13.form.amount_ex_tax += _this13.form_entry.amount_ex_tax;
-        _this13.form.vat += _this13.form_entry.vat;
+      this.current_transaction_entry_id = this.transaction_entry_id; //this.$Progress.start();
 
-        _this13.ledgers.push({
-          id: _this13.form_entry.id,
-          transaction_id: _this13.form.id,
-          transaction_no: _this13.form.transaction_no,
-          transaction_type: _this13.form.transaction_type,
-          account_code: _this13.form_entry.account_code,
-          account_name: _this13.form_entry.account_name,
-          transaction_date: _this13.form.transaction_date,
-          credit_amount: _this13.form_entry.amount_ex_tax,
-          debit_amount: 0
-        });
-
-        _this13.$Progress.finish();
-
-        VueListen.$emit('RefreshEntryTable');
-      })["catch"](function () {
-        _this13.$Progress.fail();
+      this.transactions.push({
+        transaction_entry_id: this.transaction_entry_id,
+        payee_id: this.form.payee_id,
+        branch_id: this.current_branch_id,
+        account_code: this.form_entry.account_code,
+        account_name: this.form_entry.account_name,
+        reference_no: this.form.reference_no,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        transaction_date: this.form.transaction_date,
+        amount: this.form_entry.amount_ex_tax,
+        credit_amount: 0,
+        debit_amount: this.form_entry.amount_ex_tax,
+        total_payment: 0,
+        amount_ex_tax: 0,
+        vat: this.form_entry.vat,
+        wtax_code: 0,
+        wtax: 0,
+        user_id: this.form.user_id,
+        status: 'CONFIRMED'
       });
+      $('#entry-details').modal('hide'); //this.$Progress.finish();
     },
-    deleteEntry: function deleteEntry(entry_id, entry_amount, entry_amount_ex_tax, entry_vat) {
-      var _this14 = this;
-
-      this.form_item["delete"]('api/cd/entry/' + entry_id).then(function () {
-        //$('#entry-items').modal('hide');
-
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        _this14.form.amount = parseFloat(_this14.form.amount - entry_amount).toFixed(2) * 1;
-        _this14.form.amount_ex_tax = (_this14.form.amount_ex_tax - entry_amount_ex_tax).toFixed(2) * 1;
-        _this14.form.vat = (_this14.form.vat - entry_vat).toFixed(2) * 1;
-        VueListen.$emit('RefreshItemTable');
-        VueListen.$emit('RefreshEntryTable');
-      })["catch"](function () {
-        _this14.$Progress.fail();
+    deleteEntry: function deleteEntry(transaction_entry_id, entry_amount, entry_vat) {
+      this.transactions = this.transactions.filter(function (transaction) {
+        return transaction.transaction_entry_id !== transaction_entry_id;
       });
+      this.items = this.items.filter(function (item) {
+        return item.transaction_entry_id !== transaction_entry_id;
+      });
+      this.form.amount = parseFloat(this.form.amount - entry_amount - entry_vat).toFixed(2) * 1;
+      this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount).toFixed(2) * 1;
+      this.form.vat = (this.form.vat - entry_vat).toFixed(2) * 1;
     },
     cancelItem: function cancelItem() {
-      var _this15 = this;
-
-      //this.$Progress.start();
-      this.form_item["delete"]('api/cd/item/' + this.form_item.id).then(function () {
-        $('#entry-items').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        //this.$Progress.finish();
-
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {
-        _this15.$Progress.fail();
-      });
+      $('#entry-items').modal('hide');
     },
     saveItem: function saveItem() {
-      var _this16 = this;
-
       if (this.form_item.item.length == 0) {
         this.no_item = true;
       } else {
@@ -12604,113 +10945,90 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
 
-      this.save_button_item_enabled = false;
-      this.$Progress.start();
-      this.form_item.put('api/cd/item/' + this.form_item.id).then(function () {
-        $('#entry-items').modal('hide');
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
+      this.save_button_item_enabled = false; // To refresh ITEMS table
 
-        _this16.form_entry.amount = parseFloat(_this16.form_entry.amount + _this16.form_item.sub_total).toFixed(2) * 1;
-        _this16.form_entry.amount_ex_tax = (_this16.form_entry.amount_ex_tax + _this16.form_item.tax_excluded).toFixed(2) * 1;
-        _this16.form_entry.vat += _this16.form_item.vat * 1;
+      this.current_transaction_entry_id = this.transaction_entry_id; //this.$Progress.start();
 
-        _this16.$Progress.finish();
-
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {
-        _this16.$Progress.fail();
+      this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
+      this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
+      this.form_entry.vat += this.form_item.vat * 1;
+      ++this.item_no;
+      this.items.push({
+        item_no: this.item_no,
+        transaction_entry_id: this.transaction_entry_id,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        account_code: this.form_entry.account_code,
+        item: this.form_item.item,
+        quantity: this.form_item.quantity,
+        price: this.form_item.price,
+        sub_total: this.form_item.sub_total,
+        tax_type: this.form_item.tax_type,
+        tax_excluded: this.form_item.tax_excluded,
+        vat: this.form_item.vat,
+        status: 'CONFIRMED'
       });
+      $('#entry-items').modal('hide');
     },
-    deleteItem: function deleteItem(item_id, item_sub_total, item_tax_excluded, item_vat) {
-      var _this17 = this;
-
-      this.form_item["delete"]('api/cd/item/' + item_id).then(function () {
-        //$('#entry-items').modal('hide');
-
-        /*
-        swal.fire(
-            'Updated!',
-            'Payee information has been updated.',
-            'success'
-          );
-        */
-        _this17.form_entry.amount = parseFloat(_this17.form_entry.amount - item_sub_total).toFixed(2) * 1;
-        _this17.form_entry.amount_ex_tax = (_this17.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
-        _this17.form_entry.vat = (_this17.form_entry.vat - item_vat).toFixed(2) * 1;
-        VueListen.$emit('RefreshItemTable');
-      })["catch"](function () {
-        _this17.$Progress.fail();
+    deleteItem: function deleteItem(item_no, item_sub_total, item_tax_excluded, item_vat) {
+      this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
+      this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
+      this.form_entry.vat = (this.form_entry.vat - item_vat).toFixed(2) * 1;
+      this.items = this.items.filter(function (item) {
+        return item.item_no !== item_no;
       });
     },
     branchChange: function branchChange() {
       this.form_entry.branch_id = this.selected_branch.id;
       this.form_entry.branch_name = this.selected_branch.name;
     },
+    selectEntryRow: function selectEntryRow(current_transaction_entry_id) {
+      this.current_transaction_entry_id = current_transaction_entry_id;
+    },
     loadWTax: function loadWTax() {
-      var _this18 = this;
+      var _this8 = this;
 
-      //axios.get("api/taxrate").then(({data}) => (this.wtax = json_decode(data.data) ));
       axios.get('api/taxrate').then(function (response) {
-        _this18.wtax = response.data;
+        _this8.wtax = response.data;
       })["catch"](function () {//
       });
     },
+    showWTaxTable: function showWTaxTable() {
+      $('#show-wtax').modal('show');
+    },
     computedWTax: function computedWTax() {
-      var _this19 = this;
+      var _this9 = this;
 
       if (!this.form.wtax_code) {
         this.form.wtax = 0;
         this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat);
+        this.wTaxExist = false;
+        this.wTaxCodeInvalid = false;
         return false;
       }
 
       this.form.wtax_code = this.form.wtax_code.toUpperCase();
       this.wTaxExist = this.wtax.find(function (tax) {
-        return tax.atc_code == _this19.form.wtax_code;
+        return tax.atc_code == _this9.form.wtax_code;
       });
 
       if (this.wTaxExist) {
         this.form.wtax = (this.form.amount_ex_tax * (this.wTaxExist.tax_rate / 100)).toFixed(2) * 1;
         this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat) - parseFloat(this.form.wtax);
+        this.wTaxCodeInvalid = false;
       } else {
+        this.wTaxCodeInvalid = true;
         this.form.wtax = 0;
         this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat);
       }
-    },
-    showWTaxTable: function showWTaxTable() {
-      $('#show-wtax').modal('show');
     }
   },
   created: function created() {
-    var _this20 = this;
-
     this.loadPayees();
-    this.loadBranches();
+    this.loadBranch();
     this.initChartAccounts();
-    this.loadEntryItems();
-    this.loadEntries();
-    this.loadWTax(); //this.SearchIt = _.debounce(this.SearchIt, 1000);
-
-    VueListen.$on('RefreshItemTable', function () {
-      _this20.loadEntryItems();
-
-      _this20.computedWTax();
-    });
-    VueListen.$on('RefreshEntryTable', function () {
-      _this20.loadEntries();
-
-      _this20.computedWTax();
-    });
-    this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content'); //console.log(document.querySelector('meta[name="user-id"]').getAttribute('content'));
-    //console.log(this.payees);
-    //setInterval(() => this.loadUsers(),3000);
-
+    this.loadWTax();
+    this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
     /* Scrollbar fix
        If you have a modal on your page that exceeds the browser height, then you can't scroll in it when closing an second modal. To fix this add: */
 
@@ -12718,7 +11036,15 @@ __webpack_require__.r(__webpack_exports__);
       $('.modal:visible').length && $(document.body).addClass('modal-open');
     });
   },
-  computed: {},
+  computed: {
+    currentItems: function currentItems() {
+      var _this10 = this;
+
+      return this.items.filter(function (item) {
+        return parseInt(item.transaction_entry_id) == parseInt(_this10.current_transaction_entry_id);
+      });
+    }
+  },
   components: {}
 });
 
@@ -75302,10 +73628,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CashDisbursement.vue?vue&type=template&id=4946dc5f&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CashDisbursement.vue?vue&type=template&id=4946dc5f& ***!
-  \*******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CR.vue?vue&type=template&id=e594870c&":
+/*!*****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CR.vue?vue&type=template&id=e594870c& ***!
+  \*****************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -75330,7 +73656,7 @@ var render = function() {
                     on: {
                       submit: function($event) {
                         $event.preventDefault()
-                        return _vm.createCD()
+                        return _vm.createTransaction()
                       }
                     }
                   },
@@ -75339,7 +73665,7 @@ var render = function() {
                       _c(
                         "h3",
                         { staticClass: "box-title box-title-transaction" },
-                        [_vm._v("Cash Disbursement")]
+                        [_vm._v("Cash Receipt")]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "box-tools" }, [
@@ -75350,8 +73676,8 @@ var render = function() {
                               {
                                 name: "show",
                                 rawName: "v-show",
-                                value: !_vm.cd_created,
-                                expression: "!cd_created"
+                                value: !_vm.transaction_created,
+                                expression: "!transaction_created"
                               }
                             ],
                             staticClass: "btn btn-success",
@@ -75370,13 +73696,13 @@ var render = function() {
                               {
                                 name: "show",
                                 rawName: "v-show",
-                                value: _vm.cd_created,
-                                expression: "cd_created"
+                                value: _vm.transaction_created,
+                                expression: "transaction_created"
                               }
                             ],
                             staticClass: "btn btn-danger",
                             attrs: { type: "button" },
-                            on: { click: _vm.cancelCD }
+                            on: { click: _vm.cancelTransaction }
                           },
                           [
                             _vm._v("Cancel "),
@@ -75393,13 +73719,13 @@ var render = function() {
                               {
                                 name: "show",
                                 rawName: "v-show",
-                                value: _vm.cd_created,
-                                expression: "cd_created"
+                                value: _vm.transaction_created,
+                                expression: "transaction_created"
                               }
                             ],
                             staticClass: "btn btn-success",
                             attrs: { type: "button" },
-                            on: { click: _vm.saveCD }
+                            on: { click: _vm.saveTransaction }
                           },
                           [
                             _vm._v("Save "),
@@ -75436,7 +73762,7 @@ var render = function() {
                             staticClass: "form-control col-12",
                             style: [_vm.readabilityObject],
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "text",
                               id: "inputPayeeName",
                               placeholder: "Payees Name"
@@ -75460,8 +73786,8 @@ var render = function() {
                                   {
                                     name: "show",
                                     rawName: "v-show",
-                                    value: !_vm.cd_created,
-                                    expression: "!cd_created"
+                                    value: !_vm.transaction_created,
+                                    expression: "!transaction_created"
                                   }
                                 ],
                                 staticClass: "btn btn-success",
@@ -75503,7 +73829,7 @@ var render = function() {
                             ],
                             staticClass: "form-control col-12",
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "text",
                               id: "inputPayeesAddress",
                               placeholder: "Address"
@@ -75534,7 +73860,7 @@ var render = function() {
                             ],
                             staticClass: "form-control",
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "text",
                               id: "inputPayeesTIN",
                               placeholder: "TIN"
@@ -75565,7 +73891,7 @@ var render = function() {
                             ],
                             staticClass: "form-control col-2",
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "text",
                               id: "inputAccountCode",
                               placeholder: "Code"
@@ -75624,8 +73950,8 @@ var render = function() {
                                   {
                                     name: "show",
                                     rawName: "v-show",
-                                    value: !_vm.cd_created,
-                                    expression: "!cd_created"
+                                    value: !_vm.transaction_created,
+                                    expression: "!transaction_created"
                                   }
                                 ],
                                 staticClass: "btn btn-success",
@@ -75657,12 +73983,116 @@ var render = function() {
                             },
                             [_vm._v("** Please select account!")]
                           )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "input-group mb-2" }, [
+                          _vm._m(3),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.branch_id,
+                                expression: "form.branch_id"
+                              }
+                            ],
+                            staticClass: "form-control col-2",
+                            attrs: {
+                              readonly: _vm.transaction_created,
+                              type: "text",
+                              id: "inputBranchId",
+                              placeholder: "Code"
+                            },
+                            domProps: { value: _vm.form.branch_id },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.form,
+                                  "branch_id",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.current_branch_name,
+                                expression: "current_branch_name"
+                              }
+                            ],
+                            staticClass: "form-control col-9",
+                            attrs: {
+                              readonly: "true",
+                              type: "text",
+                              id: "inputBranchName",
+                              placeholder: "Branch Name"
+                            },
+                            domProps: { value: _vm.current_branch_name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.current_branch_name = $event.target.value
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "input-group-btn col-1" }, [
+                            _c(
+                              "button",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: !_vm.transaction_created,
+                                    expression: "!transaction_created"
+                                  }
+                                ],
+                                staticClass: "btn btn-success",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.searchBranchModal()
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "fas fa-search fa-fw" })]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "input-group mb-2" }, [
+                          _c(
+                            "p",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.no_branch_id,
+                                  expression: "no_branch_id"
+                                }
+                              ],
+                              staticClass: "empty-field-message"
+                            },
+                            [_vm._v("** Please select branch!")]
+                          )
                         ])
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-4" }, [
                         _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(3),
+                          _vm._m(4),
                           _vm._v(" "),
                           _c("input", {
                             directives: [
@@ -75675,7 +74105,7 @@ var render = function() {
                             ],
                             staticClass: "form-control col-12",
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "text",
                               id: "inputReferenceNo",
                               placeholder: "Reference No"
@@ -75713,7 +74143,7 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(4),
+                          _vm._m(5),
                           _vm._v(" "),
                           _c("input", {
                             directives: [
@@ -75726,7 +74156,7 @@ var render = function() {
                             ],
                             staticClass: "form-control col-12",
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "date",
                               id: "inputDate",
                               placeholder: "Date"
@@ -75748,7 +74178,7 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(5),
+                          _vm._m(6),
                           _vm._v(" "),
                           _c("input", {
                             directives: [
@@ -75764,7 +74194,7 @@ var render = function() {
                               type: "text",
                               readonly: "",
                               id: "inputDCNo",
-                              placeholder: "CD Number"
+                              placeholder: "Transaction Number"
                             },
                             domProps: { value: _vm.form.transaction_no },
                             on: {
@@ -75786,7 +74216,7 @@ var render = function() {
                           "div",
                           { staticClass: "input-group mb-2" },
                           [
-                            _vm._m(6),
+                            _vm._m(7),
                             _vm._v(" "),
                             _c("currency-input", {
                               attrs: {
@@ -75820,8 +74250,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.cd_created,
-                      expression: "cd_created"
+                      value: _vm.transaction_created,
+                      expression: "transaction_created"
                     }
                   ],
                   staticClass: "box box-warning mt-2"
@@ -75833,7 +74263,7 @@ var render = function() {
                         _c(
                           "h3",
                           { staticClass: "box-title box-title-transaction" },
-                          [_vm._v("Debits")]
+                          [_vm._v("Entries")]
                         ),
                         _vm._v(" "),
                         _c("div", { staticClass: "box-tools" }, [
@@ -75844,7 +74274,7 @@ var render = function() {
                               on: { click: _vm.newEntry }
                             },
                             [
-                              _vm._v("Add Items "),
+                              _vm._v("Add Entry "),
                               _c("i", {
                                 staticClass: "fas fa-plus-circle fa-fw"
                               })
@@ -75864,20 +74294,23 @@ var render = function() {
                             _c(
                               "tbody",
                               [
-                                _vm._m(7),
+                                _vm._m(8),
                                 _vm._v(" "),
-                                _vm._l(_vm.entries.data, function(entry) {
+                                _vm._l(_vm.transactions, function(entry) {
                                   return _c(
                                     "tr",
                                     {
-                                      key: entry.id,
+                                      key: entry.transaction_entry_id,
                                       class: {
                                         "table-warning":
-                                          _vm.active_debit_row == entry.id
+                                          _vm.active_debit_row ==
+                                          entry.transaction_entry_id
                                       },
                                       on: {
                                         click: function($event) {
-                                          return _vm.selectDebitRow(entry.id)
+                                          return _vm.selectEntryRow(
+                                            entry.transaction_entry_id
+                                          )
                                         }
                                       }
                                     },
@@ -75890,15 +74323,7 @@ var render = function() {
                                         _vm._v(_vm._s(entry.account_name))
                                       ]),
                                       _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(entry.branch_name))
-                                      ]),
-                                      _vm._v(" "),
                                       _c("td", [_vm._v(_vm._s(entry.amount))]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(entry.amount_ex_tax))
-                                      ]),
                                       _vm._v(" "),
                                       _c("td", [_vm._v(_vm._s(entry.vat))]),
                                       _vm._v(" "),
@@ -75910,9 +74335,8 @@ var render = function() {
                                             on: {
                                               click: function($event) {
                                                 return _vm.deleteEntry(
-                                                  entry.id,
+                                                  entry.transaction_entry_id,
                                                   entry.amount,
-                                                  entry.amount_ex_tax,
                                                   entry.vat
                                                 )
                                               }
@@ -75948,8 +74372,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.cd_created,
-                      expression: "cd_created"
+                      value: _vm.transaction_created,
+                      expression: "transaction_created"
                     }
                   ],
                   staticClass: "box box-warning mt-2"
@@ -75957,7 +74381,7 @@ var render = function() {
                 [
                   _c("div", { staticClass: "col-md-12" }, [
                     _c("div", { staticClass: "box" }, [
-                      _vm._m(8),
+                      _vm._m(9),
                       _vm._v(" "),
                       _c(
                         "div",
@@ -75970,10 +74394,10 @@ var render = function() {
                             _c(
                               "tbody",
                               [
-                                _vm._m(9),
+                                _vm._m(10),
                                 _vm._v(" "),
-                                _vm._l(_vm.items.data, function(item) {
-                                  return _c("tr", { key: item.id }, [
+                                _vm._l(_vm.currentItems, function(item) {
+                                  return _c("tr", { key: item.item_no }, [
                                     _c("td", [
                                       _vm._v(_vm._s(item.account_code))
                                     ]),
@@ -76015,8 +74439,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.cd_created,
-                      expression: "cd_created"
+                      value: _vm.transaction_created,
+                      expression: "transaction_created"
                     }
                   ],
                   staticClass: "box box-warning mt-2"
@@ -76191,8 +74615,8 @@ var render = function() {
           {
             name: "show",
             rawName: "v-show",
-            value: _vm.cd_created,
-            expression: "cd_created"
+            value: _vm.transaction_created,
+            expression: "transaction_created"
           }
         ],
         staticClass: "modal fade",
@@ -76236,7 +74660,7 @@ var render = function() {
                     [_vm._v("Add Entry")]
                   ),
                   _vm._v(" "),
-                  _vm._m(10)
+                  _vm._m(11)
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-body" }, [
@@ -76244,7 +74668,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(11),
+                      _vm._m(12),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -76327,7 +74751,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(12),
+                      _vm._m(13),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -76372,85 +74796,6 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "input-group mb-2" },
-                    [
-                      _vm._m(13),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.selected_branch,
-                              expression: "selected_branch"
-                            }
-                          ],
-                          staticClass: "form-control col-12",
-                          attrs: {
-                            "aria-describedby": "inputGroup-sizing-default"
-                          },
-                          on: {
-                            change: [
-                              function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.selected_branch = $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              },
-                              _vm.branchChange
-                            ]
-                          }
-                        },
-                        _vm._l(_vm.branches.data, function(branch) {
-                          return _c(
-                            "option",
-                            {
-                              domProps: {
-                                value: { id: branch.id, name: branch.name }
-                              }
-                            },
-                            [_vm._v(_vm._s(branch.name))]
-                          )
-                        }),
-                        0
-                      ),
-                      _vm._v(" "),
-                      _c("has-error", {
-                        attrs: { form: _vm.form_entry, field: "branch_id" }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "input-group mb-2" }, [
-                    _c(
-                      "p",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.no_entry_branch_id,
-                            expression: "no_entry_branch_id"
-                          }
-                        ],
-                        staticClass: "empty-field-message"
-                      },
-                      [_vm._v("** Please indicate branch.")]
-                    )
-                  ]),
-                  _vm._v(" "),
                   _c("div", { staticClass: "box-header" }, [
                     _c(
                       "h3",
@@ -76486,8 +74831,8 @@ var render = function() {
                           [
                             _vm._m(14),
                             _vm._v(" "),
-                            _vm._l(_vm.items.data, function(item) {
-                              return _c("tr", { key: item.id }, [
+                            _vm._l(_vm.currentItems, function(item) {
+                              return _c("tr", { key: item.item_no }, [
                                 _c("td", [_vm._v(_vm._s(item.item))]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(item.quantity))]),
@@ -76508,7 +74853,7 @@ var render = function() {
                                       on: {
                                         click: function($event) {
                                           return _vm.deleteItem(
-                                            item.id,
+                                            item.item_no,
                                             item.sub_total,
                                             item.tax_excluded,
                                             item.vat
@@ -76606,7 +74951,7 @@ var render = function() {
                         },
                         attrs: {
                           name: "amount_ex_tax",
-                          id: "amount_ex_tax",
+                          id: "amount_ex_tax2",
                           readonly: "",
                           "aria-describedby": "inputGroup-sizing-default"
                         },
@@ -76658,7 +75003,7 @@ var render = function() {
                         },
                         attrs: {
                           name: "vat",
-                          id: "vat",
+                          id: "vat2",
                           readonly: "",
                           "aria-describedby": "inputGroup-sizing-default"
                         },
@@ -76693,7 +75038,7 @@ var render = function() {
                     {
                       staticClass: "btn btn-danger",
                       attrs: { type: "button" },
-                      on: { click: _vm.cancelDebitEntry }
+                      on: { click: _vm.cancelEntry }
                     },
                     [_vm._v("Cancel")]
                   ),
@@ -76706,7 +75051,7 @@ var render = function() {
                         type: "button",
                         disabled: !_vm.save_button_entry_enabled
                       },
-                      on: { click: _vm.saveDebitEntry }
+                      on: { click: _vm.saveEntry }
                     },
                     [_vm._v("Save")]
                   )
@@ -76725,8 +75070,8 @@ var render = function() {
           {
             name: "show",
             rawName: "v-show",
-            value: _vm.cd_created,
-            expression: "cd_created"
+            value: _vm.transaction_created,
+            expression: "transaction_created"
           }
         ],
         staticClass: "modal fade",
@@ -77425,6 +75770,114 @@ var render = function() {
           ]
         )
       ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "select-branch",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "addNewLabel",
+          "aria-hidden": "true",
+          "data-backdrop": "static",
+          "data-keyboard": "false"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(32),
+              _vm._v(" "),
+              _c("form", { attrs: { onsubmit: "return false;" } }, [
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Search")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.searchBranch,
+                          expression: "searchBranch"
+                        }
+                      ],
+                      staticClass: "float-right col-6",
+                      attrs: { type: "text", name: "search" },
+                      domProps: { value: _vm.searchBranch },
+                      on: {
+                        change: _vm.SearchBranch,
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.searchBranch = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "box-body table-responsive no-padding" },
+                    [
+                      _c("table", { staticClass: "table table-hover" }, [
+                        _c(
+                          "tbody",
+                          [
+                            _vm._m(33),
+                            _vm._v(" "),
+                            _vm._l(_vm.branches.data, function(branch) {
+                              return _c("tr", { key: branch.id }, [
+                                _c("td", [_vm._v(_vm._s(branch.id))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(branch.name))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _c(
+                                    "a",
+                                    {
+                                      attrs: { href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.selectBranch(
+                                            branch.id,
+                                            branch.name
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v("Select\n                  "),
+                                      _c("i", { staticClass: "fa fa-edit" })
+                                    ]
+                                  )
+                                ])
+                              ])
+                            })
+                          ],
+                          2
+                        )
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(34)
+              ])
+            ])
+          ]
+        )
+      ]
     )
   ])
 }
@@ -77479,6 +75932,18 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Branch")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Ref. #")]
       )
     ])
@@ -77503,7 +75968,7 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("CD #")]
+        [_vm._v("Transaction #")]
       )
     ])
   },
@@ -77528,11 +75993,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Name")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Branch")]),
-      _vm._v(" "),
       _c("th", [_vm._v("Amount")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Tax Excluded")]),
       _vm._v(" "),
       _c("th", [_vm._v("Tax")]),
       _vm._v(" "),
@@ -77609,18 +76070,6 @@ var staticRenderFns = [
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Account")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Branch")]
       )
     ])
   },
@@ -77854,6 +76303,52 @@ var staticRenderFns = [
       _c("th", [_vm._v("Code")]),
       _vm._v(" "),
       _c("th", [_vm._v("Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Option")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Code")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Branch")]),
       _vm._v(" "),
       _c("th", [_vm._v("Option")])
     ])
@@ -81516,2547 +80011,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CashReceipts.vue?vue&type=template&id=7180630e&":
-/*!***************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CashReceipts.vue?vue&type=template&id=7180630e& ***!
-  \***************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _vm.$gate.isAdminOrUser()
-      ? _c("div", { staticClass: "row mt-1" }, [
-          _c("div", { staticClass: "col-md-12" }, [
-            _c("div", { staticClass: "box mt-4" }, [
-              _c("div", { staticClass: "box box-warning" }, [
-                _c(
-                  "form",
-                  {
-                    attrs: { role: "form" },
-                    on: {
-                      submit: function($event) {
-                        $event.preventDefault()
-                        return _vm.createTransaction()
-                      }
-                    }
-                  },
-                  [
-                    _c("div", { staticClass: "box-header with-border" }, [
-                      _c(
-                        "h3",
-                        { staticClass: "box-title box-title-transaction" },
-                        [_vm._v("Cash Receipt")]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "box-tools" }, [
-                        _c(
-                          "button",
-                          {
-                            directives: [
-                              {
-                                name: "show",
-                                rawName: "v-show",
-                                value: !_vm.transaction_created,
-                                expression: "!transaction_created"
-                              }
-                            ],
-                            staticClass: "btn btn-success",
-                            attrs: { type: "submit" }
-                          },
-                          [
-                            _vm._v("Create "),
-                            _c("i", { staticClass: "fas fa-plus-circle fa-fw" })
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            directives: [
-                              {
-                                name: "show",
-                                rawName: "v-show",
-                                value: _vm.transaction_created,
-                                expression: "transaction_created"
-                              }
-                            ],
-                            staticClass: "btn btn-danger",
-                            attrs: { type: "button" },
-                            on: { click: _vm.cancelTransaction }
-                          },
-                          [
-                            _vm._v("Cancel "),
-                            _c("i", {
-                              staticClass: "fas fa-window-close fa-fw"
-                            })
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            directives: [
-                              {
-                                name: "show",
-                                rawName: "v-show",
-                                value: _vm.transaction_created,
-                                expression: "transaction_created"
-                              }
-                            ],
-                            staticClass: "btn btn-success",
-                            attrs: { type: "button" },
-                            on: { click: _vm.saveTransaction }
-                          },
-                          [
-                            _vm._v("Save "),
-                            _c("i", { staticClass: "fas fa-save fa-fw" })
-                          ]
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "box-body row" }, [
-                      _c("div", { staticClass: "col-8" }, [
-                        _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(0),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.current_payee_name,
-                                expression: "current_payee_name"
-                              }
-                            ],
-                            staticClass: "form-control col-12",
-                            attrs: {
-                              readonly: _vm.transaction_created,
-                              type: "text",
-                              id: "inputPayeeName",
-                              placeholder: "Payees Name"
-                            },
-                            domProps: { value: _vm.current_payee_name },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.current_payee_name = $event.target.value
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "input-group-btn col-1" }, [
-                            _c(
-                              "button",
-                              {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: !_vm.transaction_created,
-                                    expression: "!transaction_created"
-                                  }
-                                ],
-                                staticClass: "btn btn-success",
-                                attrs: { type: "button" },
-                                on: { click: _vm.searchPayeeModal }
-                              },
-                              [_c("i", { staticClass: "fas fa-search fa-fw" })]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "p",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.no_payee,
-                                  expression: "no_payee"
-                                }
-                              ],
-                              staticClass: "empty-field-message"
-                            },
-                            [_vm._v("** Please select payee!")]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(1),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.current_payee_address,
-                                expression: "current_payee_address"
-                              }
-                            ],
-                            staticClass: "form-control col-12",
-                            attrs: {
-                              readonly: _vm.transaction_created,
-                              type: "text",
-                              id: "inputPayeesAddress",
-                              placeholder: "Address"
-                            },
-                            domProps: { value: _vm.current_payee_address },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.current_payee_address = $event.target.value
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(2),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.current_payee_tin,
-                                expression: "current_payee_tin"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              readonly: _vm.transaction_created,
-                              type: "text",
-                              id: "inputPayeesTIN",
-                              placeholder: "TIN"
-                            },
-                            domProps: { value: _vm.current_payee_tin },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.current_payee_tin = $event.target.value
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(3),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.account_code,
-                                expression: "form.account_code"
-                              }
-                            ],
-                            staticClass: "form-control col-2",
-                            attrs: {
-                              readonly: _vm.transaction_created,
-                              type: "text",
-                              id: "inputAccountCode",
-                              placeholder: "Code"
-                            },
-                            domProps: { value: _vm.form.account_code },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.form,
-                                  "account_code",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.account_name,
-                                expression: "form.account_name"
-                              }
-                            ],
-                            staticClass: "form-control col-9",
-                            attrs: {
-                              readonly: "true",
-                              type: "text",
-                              id: "inputAccountName",
-                              placeholder: "Account Name"
-                            },
-                            domProps: { value: _vm.form.account_name },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.form,
-                                  "account_name",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "input-group-btn col-1" }, [
-                            _c(
-                              "button",
-                              {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: !_vm.transaction_created,
-                                    expression: "!transaction_created"
-                                  }
-                                ],
-                                staticClass: "btn btn-success",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.searchAccountModal("header")
-                                  }
-                                }
-                              },
-                              [_c("i", { staticClass: "fas fa-search fa-fw" })]
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "input-group mb-2" }, [
-                          _c(
-                            "p",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.no_account_code,
-                                  expression: "no_account_code"
-                                }
-                              ],
-                              staticClass: "empty-field-message"
-                            },
-                            [_vm._v("** Please select account!")]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-4" }, [
-                        _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(4),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.reference_no,
-                                expression: "form.reference_no"
-                              }
-                            ],
-                            staticClass: "form-control col-12",
-                            attrs: {
-                              readonly: _vm.transaction_created,
-                              type: "text",
-                              id: "inputReferenceNo",
-                              placeholder: "Reference No"
-                            },
-                            domProps: { value: _vm.form.reference_no },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.form,
-                                  "reference_no",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "p",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.no_reference_no,
-                                  expression: "no_reference_no"
-                                }
-                              ],
-                              staticClass: "empty-field-message"
-                            },
-                            [_vm._v("** Please enter reference number!")]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(5),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.transaction_date,
-                                expression: "form.transaction_date"
-                              }
-                            ],
-                            staticClass: "form-control col-12",
-                            attrs: {
-                              readonly: _vm.transaction_created,
-                              type: "date",
-                              id: "inputDate",
-                              placeholder: "Date"
-                            },
-                            domProps: { value: _vm.form.transaction_date },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.form,
-                                  "transaction_date",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(6),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.transaction_no,
-                                expression: "form.transaction_no"
-                              }
-                            ],
-                            staticClass: "form-control col-12",
-                            attrs: {
-                              type: "text",
-                              readonly: "",
-                              id: "inputDCNo",
-                              placeholder: "CR Number"
-                            },
-                            domProps: { value: _vm.form.transaction_no },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.form,
-                                  "transaction_no",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "input-group mb-2" },
-                          [
-                            _vm._m(7),
-                            _vm._v(" "),
-                            _c("currency-input", {
-                              attrs: {
-                                isReadonly: true,
-                                fc: true,
-                                col: 12,
-                                id: "inputAmount",
-                                placeholder: "Amount"
-                              },
-                              model: {
-                                value: _vm.form.amount,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.form, "amount", $$v)
-                                },
-                                expression: "form.amount"
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ])
-                    ])
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.transaction_created,
-                      expression: "transaction_created"
-                    }
-                  ],
-                  staticClass: "box box-warning mt-2"
-                },
-                [
-                  _c("div", { staticClass: "col-md-12" }, [
-                    _c("div", { staticClass: "box" }, [
-                      _c("div", { staticClass: "box-header" }, [
-                        _c(
-                          "h3",
-                          { staticClass: "box-title box-title-transaction" },
-                          [_vm._v("Credits")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "box-tools" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-success",
-                              on: { click: _vm.newEntry }
-                            },
-                            [
-                              _vm._v("Add Items "),
-                              _c("i", {
-                                staticClass: "fas fa-plus-circle fa-fw"
-                              })
-                            ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "box-body table-responsive no-padding",
-                          attrs: { id: "debits-list" }
-                        },
-                        [
-                          _c("table", { staticClass: "table table-hover" }, [
-                            _c(
-                              "tbody",
-                              [
-                                _vm._m(8),
-                                _vm._v(" "),
-                                _vm._l(_vm.entries.data, function(entry) {
-                                  return _c(
-                                    "tr",
-                                    {
-                                      key: entry.id,
-                                      class: {
-                                        "table-warning":
-                                          _vm.active_debit_row == entry.id
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.selectDebitRow(entry.id)
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c("td", [
-                                        _vm._v(_vm._s(entry.account_code))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(entry.account_name))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(entry.branch_name))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v(_vm._s(entry.amount))]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(entry.amount_ex_tax))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v(_vm._s(entry.vat))]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _c(
-                                          "a",
-                                          {
-                                            attrs: { href: "#" },
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.deleteEntry(
-                                                  entry.id,
-                                                  entry.amount,
-                                                  entry.amount_ex_tax,
-                                                  entry.vat
-                                                )
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fa fa-trash"
-                                            })
-                                          ]
-                                        )
-                                      ])
-                                    ]
-                                  )
-                                })
-                              ],
-                              2
-                            )
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "box-footer" })
-                    ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.transaction_created,
-                      expression: "transaction_created"
-                    }
-                  ],
-                  staticClass: "box box-warning mt-2"
-                },
-                [
-                  _c("div", { staticClass: "col-md-12" }, [
-                    _c("div", { staticClass: "box" }, [
-                      _vm._m(9),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "box-body table-responsive no-padding",
-                          attrs: { id: "item-list" }
-                        },
-                        [
-                          _c("table", { staticClass: "table table-hover" }, [
-                            _c(
-                              "tbody",
-                              [
-                                _vm._m(10),
-                                _vm._v(" "),
-                                _vm._l(_vm.items.data, function(item) {
-                                  return _c("tr", { key: item.id }, [
-                                    _c("td", [
-                                      _vm._v(_vm._s(item.account_code))
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(item.item))]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(item.quantity))]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(item.price))]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(item.tax_type))]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(item.sub_total))]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(item.tax_excluded))
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(item.vat))])
-                                  ])
-                                })
-                              ],
-                              2
-                            )
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "box-footer" })
-                    ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.transaction_created,
-                      expression: "transaction_created"
-                    }
-                  ],
-                  staticClass: "box box-warning mt-2"
-                },
-                [
-                  _c("div", { staticClass: "form-group col-12 float-right" }, [
-                    _c("div", { staticClass: "row mt-2" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "col-sm-9 col-form-label",
-                          staticStyle: { "text-align": "right" },
-                          attrs: { for: "inputAmountExclusiveTax" }
-                        },
-                        [_vm._v("Amount Exclusive of Tax")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-sm-3" },
-                        [
-                          _c("currency-input", {
-                            attrs: {
-                              isReadonly: true,
-                              fc: true,
-                              col: 12,
-                              id: "inputAmountExclusiveTax",
-                              placeholder: "Amount Exclusive of Tax"
-                            },
-                            model: {
-                              value: _vm.form.amount_ex_tax,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "amount_ex_tax", $$v)
-                              },
-                              expression: "form.amount_ex_tax"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-12 float-right" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "col-sm-9 col-form-label",
-                          staticStyle: { "text-align": "right" },
-                          attrs: { for: "inputVAT" }
-                        },
-                        [_vm._v("VAT")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-sm-3" },
-                        [
-                          _c("currency-input", {
-                            attrs: {
-                              isReadonly: true,
-                              fc: true,
-                              col: 12,
-                              id: "inputVAT",
-                              placeholder: "VAT"
-                            },
-                            model: {
-                              value: _vm.form.vat,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "vat", $$v)
-                              },
-                              expression: "form.vat"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-12 float-right" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "col-sm-9 col-form-label",
-                          staticStyle: { "text-align": "right" },
-                          attrs: { for: "inputTotalAmount" }
-                        },
-                        [_vm._v("Total Amount")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-sm-3" },
-                        [
-                          _c("currency-input", {
-                            attrs: {
-                              isReadonly: true,
-                              fc: true,
-                              col: 12,
-                              id: "inputTotalAmount",
-                              placeholder: "Total Amount"
-                            },
-                            model: {
-                              value: _vm.form.amount,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "amount", $$v)
-                              },
-                              expression: "form.amount"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ])
-                  ])
-                ]
-              )
-            ])
-          ])
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    !_vm.$gate.isAdminOrUser()
-      ? _c("div", { staticClass: "row mt-1" }, [_c("not-found")], 1)
-      : _vm._e(),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.transaction_created,
-            expression: "transaction_created"
-          }
-        ],
-        staticClass: "modal fade",
-        attrs: {
-          id: "entry-details",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "addNewLabel",
-          "aria-hidden": "true",
-          "data-backdrop": "static",
-          "data-keyboard": "false"
-        }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "modal-dialog modal-dialog-centered",
-            attrs: { role: "document" }
-          },
-          [
-            _c(
-              "div",
-              { staticClass: "modal-content", staticStyle: { width: "800px" } },
-              [
-                _c("div", { staticClass: "modal-header" }, [
-                  _c(
-                    "h5",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: !_vm.editmode,
-                          expression: "!editmode"
-                        }
-                      ],
-                      staticClass: "modal-title",
-                      attrs: { id: "addNewLabel" }
-                    },
-                    [_vm._v("Add Entry")]
-                  ),
-                  _vm._v(" "),
-                  _vm._m(11)
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "modal-body" }, [
-                  _c(
-                    "div",
-                    { staticClass: "input-group mb-2" },
-                    [
-                      _vm._m(12),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form_entry.account_code,
-                            expression: "form_entry.account_code"
-                          }
-                        ],
-                        staticClass: "form-control col-4",
-                        class: {
-                          "is-invalid": _vm.form_entry.errors.has(
-                            "account_code"
-                          )
-                        },
-                        attrs: {
-                          type: "text",
-                          name: "account_code",
-                          readonly: "",
-                          "aria-describedby": "inputGroup-sizing-default"
-                        },
-                        domProps: { value: _vm.form_entry.account_code },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.form_entry,
-                              "account_code",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("has-error", {
-                        attrs: { form: _vm.form_entry, field: "account_code" }
-                      }),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "input-group-btn col-1" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-success",
-                            attrs: { type: "button" },
-                            on: {
-                              click: function($event) {
-                                return _vm.searchAccountModal("detail")
-                              }
-                            }
-                          },
-                          [_c("i", { staticClass: "fas fa-search fa-fw" })]
-                        )
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "input-group mb-2" }, [
-                    _c(
-                      "p",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.no_entry_account_code,
-                            expression: "no_entry_account_code"
-                          }
-                        ],
-                        staticClass: "empty-field-message"
-                      },
-                      [_vm._v("** Please select account!")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "input-group mb-2" },
-                    [
-                      _vm._m(13),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form_entry.account_name,
-                            expression: "form_entry.account_name"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        class: {
-                          "is-invalid": _vm.form_entry.errors.has(
-                            "account_name"
-                          )
-                        },
-                        attrs: {
-                          type: "text",
-                          name: "account_name",
-                          readonly: "",
-                          "aria-describedby": "inputGroup-sizing-default"
-                        },
-                        domProps: { value: _vm.form_entry.account_name },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.form_entry,
-                              "account_name",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("has-error", {
-                        attrs: { form: _vm.form_entry, field: "account_name" }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "input-group mb-2" },
-                    [
-                      _vm._m(14),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.selected_branch,
-                              expression: "selected_branch"
-                            }
-                          ],
-                          staticClass: "form-control col-12",
-                          attrs: {
-                            "aria-describedby": "inputGroup-sizing-default"
-                          },
-                          on: {
-                            change: [
-                              function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.selected_branch = $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              },
-                              _vm.branchChange
-                            ]
-                          }
-                        },
-                        _vm._l(_vm.branches.data, function(branch) {
-                          return _c(
-                            "option",
-                            {
-                              domProps: {
-                                value: { id: branch.id, name: branch.name }
-                              }
-                            },
-                            [_vm._v(_vm._s(branch.name))]
-                          )
-                        }),
-                        0
-                      ),
-                      _vm._v(" "),
-                      _c("has-error", {
-                        attrs: { form: _vm.form_entry, field: "branch_id" }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "input-group mb-2" }, [
-                    _c(
-                      "p",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.no_entry_branch_id,
-                            expression: "no_entry_branch_id"
-                          }
-                        ],
-                        staticClass: "empty-field-message"
-                      },
-                      [_vm._v("** Please indicate branch.")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "box-header" }, [
-                    _c(
-                      "h3",
-                      { staticClass: "box-title box-title-transaction" },
-                      [_vm._v("Items")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "box-tools" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-success",
-                          on: { click: _vm.newItem }
-                        },
-                        [
-                          _vm._v("Add Items "),
-                          _c("i", { staticClass: "fas fa-plus-circle fa-fw" })
-                        ]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "box-body table-responsive no-padding",
-                      attrs: { id: "item-list" }
-                    },
-                    [
-                      _c("table", { staticClass: "table table-hover" }, [
-                        _c(
-                          "tbody",
-                          [
-                            _vm._m(15),
-                            _vm._v(" "),
-                            _vm._l(_vm.items.data, function(item) {
-                              return _c("tr", { key: item.id }, [
-                                _c("td", [_vm._v(_vm._s(item.item))]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(item.quantity))]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(item.price))]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(item.sub_total))]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(item.tax_excluded))]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(item.vat))]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _c(
-                                    "a",
-                                    {
-                                      attrs: { href: "#" },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.deleteItem(
-                                            item.id,
-                                            item.sub_total,
-                                            item.tax_excluded,
-                                            item.vat
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [_c("i", { staticClass: "fa fa-trash" })]
-                                  )
-                                ])
-                              ])
-                            })
-                          ],
-                          2
-                        )
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "input-group mb-2" },
-                    [
-                      _vm._m(16),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: Number(
-                              _vm.form_entry.amount
-                            ).toLocaleString(),
-                            expression:
-                              "Number(form_entry.amount).toLocaleString()"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        class: {
-                          "is-invalid": _vm.form_entry.errors.has("amount")
-                        },
-                        attrs: {
-                          name: "amount",
-                          id: "amount",
-                          readonly: "",
-                          "aria-describedby": "inputGroup-sizing-default"
-                        },
-                        domProps: {
-                          value: Number(_vm.form_entry.amount).toLocaleString()
-                        },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              Number(_vm.form_entry.amount),
-                              "toLocaleString()",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("has-error", {
-                        attrs: { form: _vm.form_entry, field: "amount" }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "input-group mb-2" },
-                    [
-                      _vm._m(17),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: Number(
-                              _vm.form_entry.amount_ex_tax
-                            ).toLocaleString(),
-                            expression:
-                              "Number(form_entry.amount_ex_tax).toLocaleString()"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        class: {
-                          "is-invalid": _vm.form_entry.errors.has(
-                            "amount_ex_tax"
-                          )
-                        },
-                        attrs: {
-                          name: "amount_ex_tax",
-                          id: "amount_ex_tax",
-                          readonly: "",
-                          "aria-describedby": "inputGroup-sizing-default"
-                        },
-                        domProps: {
-                          value: Number(
-                            _vm.form_entry.amount_ex_tax
-                          ).toLocaleString()
-                        },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              Number(_vm.form_entry.amount_ex_tax),
-                              "toLocaleString()",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("has-error", {
-                        attrs: { form: _vm.form_entry, field: "amount_ex_tax" }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "input-group mb-2" },
-                    [
-                      _vm._m(18),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: Number(_vm.form_entry.vat).toLocaleString(),
-                            expression:
-                              "Number(form_entry.vat).toLocaleString()"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        class: {
-                          "is-invalid": _vm.form_entry.errors.has("vat")
-                        },
-                        attrs: {
-                          name: "vat",
-                          id: "vat",
-                          readonly: "",
-                          "aria-describedby": "inputGroup-sizing-default"
-                        },
-                        domProps: {
-                          value: Number(_vm.form_entry.vat).toLocaleString()
-                        },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              Number(_vm.form_entry.vat),
-                              "toLocaleString()",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("has-error", {
-                        attrs: { form: _vm.form_entry, field: "vat" }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "modal-footer" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-danger",
-                      attrs: { type: "button" },
-                      on: { click: _vm.cancelDebitEntry }
-                    },
-                    [_vm._v("Cancel")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-success",
-                      attrs: {
-                        type: "button",
-                        disabled: !_vm.save_button_entry_enabled
-                      },
-                      on: { click: _vm.saveDebitEntry }
-                    },
-                    [_vm._v("Save")]
-                  )
-                ])
-              ]
-            )
-          ]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.transaction_created,
-            expression: "transaction_created"
-          }
-        ],
-        staticClass: "modal fade",
-        attrs: {
-          id: "entry-items",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "addNewLabel",
-          "aria-hidden": "true",
-          "data-backdrop": "static",
-          "data-keyboard": "false"
-        }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "modal-dialog modal-dialog-centered",
-            attrs: { role: "document" }
-          },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header" }, [
-                _c(
-                  "h5",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: !_vm.editmode,
-                        expression: "!editmode"
-                      }
-                    ],
-                    staticClass: "modal-title",
-                    attrs: { id: "addNewLabel" }
-                  },
-                  [_vm._v("Add Item")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "h5",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.editmode,
-                        expression: "editmode"
-                      }
-                    ],
-                    staticClass: "modal-title",
-                    attrs: { id: "addNewLabel" }
-                  },
-                  [_vm._v("Update Entry")]
-                ),
-                _vm._v(" "),
-                _vm._m(19)
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _c(
-                  "div",
-                  { staticClass: "input-group mb-2" },
-                  [
-                    _vm._m(20),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form_item.item,
-                          expression: "form_item.item"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: { "is-invalid": _vm.form_item.errors.has("item") },
-                      attrs: {
-                        type: "text",
-                        name: "item_name",
-                        "aria-describedby": "inputGroup-sizing-default",
-                        onfocus: "this.select()"
-                      },
-                      domProps: { value: _vm.form_item.item },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form_item, "item", $event.target.value)
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("has-error", {
-                      attrs: { form: _vm.form_item, field: "item_name" }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group mb-2" }, [
-                  _c(
-                    "p",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.no_item,
-                          expression: "no_item"
-                        }
-                      ],
-                      staticClass: "empty-field-message"
-                    },
-                    [_vm._v("** Please enter item.")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "input-group mb-2" },
-                  [
-                    _vm._m(21),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form_item.price,
-                          expression: "form_item.price"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: {
-                        "is-invalid": _vm.form_entry.errors.has("price")
-                      },
-                      attrs: {
-                        name: "price",
-                        id: "price",
-                        "aria-describedby": "inputGroup-sizing-default",
-                        onfocus: "this.select()"
-                      },
-                      domProps: { value: _vm.form_item.price },
-                      on: {
-                        change: _vm.computeTaxChange,
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form_item, "price", $event.target.value)
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("has-error", {
-                      attrs: { form: _vm.form_item, field: "price" }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group mb-2" }, [
-                  _c(
-                    "p",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.no_price,
-                          expression: "no_price"
-                        }
-                      ],
-                      staticClass: "empty-field-message"
-                    },
-                    [_vm._v("** Please enter price.")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "input-group mb-2" },
-                  [
-                    _vm._m(22),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form_item.quantity,
-                          expression: "form_item.quantity"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: {
-                        "is-invalid": _vm.form_item.errors.has("quantity")
-                      },
-                      attrs: {
-                        type: "text",
-                        name: "entry_description",
-                        "aria-describedby": "inputGroup-sizing-default",
-                        onfocus: "this.select()"
-                      },
-                      domProps: { value: _vm.form_item.quantity },
-                      on: {
-                        change: _vm.computeTaxChange,
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.form_item,
-                            "quantity",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("has-error", {
-                      attrs: { form: _vm.form_item, field: "entry_description" }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group mb-2" }, [
-                  _c(
-                    "p",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.no_quantity,
-                          expression: "no_quantity"
-                        }
-                      ],
-                      staticClass: "empty-field-message"
-                    },
-                    [_vm._v("** Please enter quantity.")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "input-group mb-2" },
-                  [
-                    _vm._m(23),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form_item.sub_total,
-                          expression: "form_item.sub_total"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: {
-                        "is-invalid": _vm.form_item.errors.has("sub_total")
-                      },
-                      attrs: {
-                        type: "text",
-                        name: "entry_description",
-                        "aria-describedby": "inputGroup-sizing-default",
-                        readonly: ""
-                      },
-                      domProps: { value: _vm.form_item.sub_total },
-                      on: {
-                        change: _vm.computeTaxChange,
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.form_item,
-                            "sub_total",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("has-error", {
-                      attrs: { form: _vm.form_item, field: "entry_description" }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(24),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form_item.tax_type,
-                          expression: "form_item.tax_type"
-                        }
-                      ],
-                      staticClass: "form-control col-12",
-                      attrs: {
-                        "aria-describedby": "inputGroup-sizing-default"
-                      },
-                      on: {
-                        change: [
-                          function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.form_item,
-                              "tax_type",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          },
-                          _vm.computeTaxChange
-                        ]
-                      }
-                    },
-                    [
-                      _c("option", { attrs: { value: "VAT" } }, [
-                        _vm._v("VAT")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "NON VAT" } }, [
-                        _vm._v("NON VAT")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "VAT EXEMPT" } }, [
-                        _vm._v("VAT EXEMPT")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "ZERO RATED" } }, [
-                        _vm._v("ZERO RATED")
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "input-group mb-2" },
-                  [
-                    _vm._m(25),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form_item.tax_excluded,
-                          expression: "form_item.tax_excluded"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: {
-                        "is-invalid": _vm.form_item.errors.has("tax_excluded")
-                      },
-                      attrs: {
-                        name: "amount_ex_tax",
-                        id: "amount_ex_tax",
-                        readonly: "",
-                        "aria-describedby": "inputGroup-sizing-default"
-                      },
-                      domProps: { value: _vm.form_item.tax_excluded },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.form_item,
-                            "tax_excluded",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("has-error", {
-                      attrs: { form: _vm.form_item, field: "amount_ex_tax" }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "input-group mb-2" },
-                  [
-                    _vm._m(26),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form_item.vat,
-                          expression: "form_item.vat"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: { "is-invalid": _vm.form_item.errors.has("vat") },
-                      attrs: {
-                        name: "vat",
-                        id: "vat",
-                        readonly: "",
-                        "aria-describedby": "inputGroup-sizing-default"
-                      },
-                      domProps: { value: _vm.form_item.vat },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form_item, "vat", $event.target.value)
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("has-error", {
-                      attrs: { form: _vm.form_item, field: "vat" }
-                    })
-                  ],
-                  1
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-footer" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-danger",
-                    attrs: { type: "button" },
-                    on: { click: _vm.cancelItem }
-                  },
-                  [_vm._v("Cancel")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-success",
-                    attrs: {
-                      type: "button",
-                      disabled: !_vm.save_button_item_enabled
-                    },
-                    on: { click: _vm.saveItem }
-                  },
-                  [_vm._v("Save")]
-                )
-              ])
-            ])
-          ]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "select-account",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "addNewLabel",
-          "aria-hidden": "true",
-          "data-backdrop": "static",
-          "data-keyboard": "false"
-        }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "modal-dialog modal-dialog-centered",
-            attrs: { role: "document" }
-          },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _vm._m(27),
-              _vm._v(" "),
-              _c("form", { attrs: { onsubmit: "return false;" } }, [
-                _c("div", { staticClass: "modal-body" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", [_vm._v("Search")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.searchText,
-                          expression: "searchText"
-                        }
-                      ],
-                      staticClass: "float-right col-6",
-                      attrs: { type: "text", name: "search" },
-                      domProps: { value: _vm.searchText },
-                      on: {
-                        change: _vm.SearchIt,
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.searchText = $event.target.value
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "box-body table-responsive no-padding" },
-                    [
-                      _c("table", { staticClass: "table table-hover" }, [
-                        _c(
-                          "tbody",
-                          [
-                            _vm._m(28),
-                            _vm._v(" "),
-                            _vm._l(_vm.chart_of_accounts.data, function(
-                              chart_of_account
-                            ) {
-                              return _c("tr", { key: chart_of_account.id }, [
-                                _c("td", [
-                                  _vm._v(_vm._s(chart_of_account.account_code))
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _vm._v(_vm._s(chart_of_account.account_name))
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _c(
-                                    "a",
-                                    {
-                                      attrs: { href: "#" },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.selectAccount(
-                                            chart_of_account.account_code,
-                                            chart_of_account.account_name
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _vm._v("Select\n                  "),
-                                      _c("i", { staticClass: "fa fa-edit" })
-                                    ]
-                                  )
-                                ])
-                              ])
-                            })
-                          ],
-                          2
-                        )
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _vm._m(29)
-              ])
-            ])
-          ]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "select-payee",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "addNewLabel",
-          "aria-hidden": "true",
-          "data-backdrop": "static",
-          "data-keyboard": "false"
-        }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "modal-dialog modal-dialog-centered",
-            attrs: { role: "document" }
-          },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _vm._m(30),
-              _vm._v(" "),
-              _c("form", { attrs: { onsubmit: "return false;" } }, [
-                _c("div", { staticClass: "modal-body" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", [_vm._v("Search")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.searchPayee,
-                          expression: "searchPayee"
-                        }
-                      ],
-                      staticClass: "float-right col-6",
-                      attrs: { type: "text", name: "search" },
-                      domProps: { value: _vm.searchPayee },
-                      on: {
-                        change: _vm.SearchPayee,
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.searchPayee = $event.target.value
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "box-body table-responsive no-padding" },
-                    [
-                      _c("table", { staticClass: "table table-hover" }, [
-                        _c(
-                          "tbody",
-                          [
-                            _vm._m(31),
-                            _vm._v(" "),
-                            _vm._l(_vm.payees.data, function(payee) {
-                              return _c("tr", { key: payee.id }, [
-                                _c("td", [_vm._v(_vm._s(payee.id))]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(payee.name))]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _c(
-                                    "a",
-                                    {
-                                      attrs: { href: "#" },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.selectPayee(
-                                            payee.id,
-                                            payee.name,
-                                            payee.address,
-                                            payee.tin
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _vm._v("Select\n                  "),
-                                      _c("i", { staticClass: "fa fa-edit" })
-                                    ]
-                                  )
-                                ])
-                              ])
-                            })
-                          ],
-                          2
-                        )
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _vm._m(32)
-              ])
-            ])
-          ]
-        )
-      ]
-    )
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Payee")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        {
-          staticClass: "input-group-text",
-          attrs: { id: "inputGroup-sizing-default" }
-        },
-        [_vm._v("Address")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        {
-          staticClass: "input-group-text",
-          attrs: { id: "inputGroup-sizing-default" }
-        },
-        [_vm._v("TIN")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Account")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Ref. #")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Date")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("CR #")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Amount")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", [_vm._v("Account No.")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Name")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Branch")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Amount")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Tax Excluded")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Tax")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Option")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box-header" }, [
-      _c("h3", { staticClass: "box-title box-title-transaction" }, [
-        _vm._v("Items")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", [_vm._v("Account No.")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Item")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Qty")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Price")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Tax Type")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Sub-Total")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Tax Excluded")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Vat")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: {
-          type: "button",
-          "data-dismiss": "modal",
-          "aria-label": "Close"
-        }
-      },
-      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Code")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Account")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Branch")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", [_vm._v("Item")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Qty")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Price")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Sub-Total")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Tax Excluded")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Vat")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Option")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Amount")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Tax Excluded")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Tax")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: {
-          type: "button",
-          "data-dismiss": "modal",
-          "aria-label": "Close"
-        }
-      },
-      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Name")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Price")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Quantity")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Total")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Tax Type")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Tax Excluded")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Tax")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", [_vm._v("Code")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Name")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Option")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-danger",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Close")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", [_vm._v("Code")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Name")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Option")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-danger",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Close")]
-      )
-    ])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard.vue?vue&type=template&id=040e2ab9&":
 /*!************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dashboard.vue?vue&type=template&id=040e2ab9& ***!
@@ -85317,10 +81271,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PaymentsPrev.vue?vue&type=template&id=7da2baeb&":
-/*!***************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PaymentsPrev.vue?vue&type=template&id=7da2baeb& ***!
-  \***************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Payments.vue?vue&type=template&id=04c873d0&":
+/*!***********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Payments.vue?vue&type=template&id=04c873d0& ***!
+  \***********************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -85345,7 +81299,7 @@ var render = function() {
                     on: {
                       submit: function($event) {
                         $event.preventDefault()
-                        return _vm.createCD()
+                        return _vm.createTransaction()
                       }
                     }
                   },
@@ -85365,8 +81319,8 @@ var render = function() {
                               {
                                 name: "show",
                                 rawName: "v-show",
-                                value: !_vm.cd_created,
-                                expression: "!cd_created"
+                                value: !_vm.transaction_created,
+                                expression: "!transaction_created"
                               }
                             ],
                             staticClass: "btn btn-success",
@@ -85385,13 +81339,13 @@ var render = function() {
                               {
                                 name: "show",
                                 rawName: "v-show",
-                                value: _vm.cd_created,
-                                expression: "cd_created"
+                                value: _vm.transaction_created,
+                                expression: "transaction_created"
                               }
                             ],
                             staticClass: "btn btn-danger",
                             attrs: { type: "button" },
-                            on: { click: _vm.cancelCD }
+                            on: { click: _vm.cancelTransaction }
                           },
                           [
                             _vm._v("Cancel "),
@@ -85408,13 +81362,13 @@ var render = function() {
                               {
                                 name: "show",
                                 rawName: "v-show",
-                                value: _vm.cd_created,
-                                expression: "cd_created"
+                                value: _vm.transaction_created,
+                                expression: "transaction_created"
                               }
                             ],
                             staticClass: "btn btn-success",
                             attrs: { type: "button" },
-                            on: { click: _vm.saveCD }
+                            on: { click: _vm.saveTransaction }
                           },
                           [
                             _vm._v("Save "),
@@ -85451,7 +81405,7 @@ var render = function() {
                             staticClass: "form-control col-12",
                             style: [_vm.readabilityObject],
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "text",
                               id: "inputPayeeName",
                               placeholder: "Payees Name"
@@ -85475,8 +81429,8 @@ var render = function() {
                                   {
                                     name: "show",
                                     rawName: "v-show",
-                                    value: !_vm.cd_created,
-                                    expression: "!cd_created"
+                                    value: !_vm.transaction_created,
+                                    expression: "!transaction_created"
                                   }
                                 ],
                                 staticClass: "btn btn-success",
@@ -85518,7 +81472,7 @@ var render = function() {
                             ],
                             staticClass: "form-control col-12",
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "text",
                               id: "inputPayeesAddress",
                               placeholder: "Address"
@@ -85549,7 +81503,7 @@ var render = function() {
                             ],
                             staticClass: "form-control",
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "text",
                               id: "inputPayeesTIN",
                               placeholder: "TIN"
@@ -85580,7 +81534,7 @@ var render = function() {
                             ],
                             staticClass: "form-control col-2",
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "text",
                               id: "inputAccountCode",
                               placeholder: "Code"
@@ -85639,8 +81593,8 @@ var render = function() {
                                   {
                                     name: "show",
                                     rawName: "v-show",
-                                    value: !_vm.cd_created,
-                                    expression: "!cd_created"
+                                    value: !_vm.transaction_created,
+                                    expression: "!transaction_created"
                                   }
                                 ],
                                 staticClass: "btn btn-success",
@@ -85690,7 +81644,7 @@ var render = function() {
                             ],
                             staticClass: "form-control col-12",
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "text",
                               id: "inputReferenceNo",
                               placeholder: "Reference No"
@@ -85741,7 +81695,7 @@ var render = function() {
                             ],
                             staticClass: "form-control col-12",
                             attrs: {
-                              readonly: _vm.cd_created,
+                              readonly: _vm.transaction_created,
                               type: "date",
                               id: "inputDate",
                               placeholder: "Date"
@@ -85835,8 +81789,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.cd_created,
-                      expression: "cd_created"
+                      value: _vm.transaction_created,
+                      expression: "transaction_created"
                     }
                   ],
                   staticClass: "box box-warning mt-2"
@@ -85916,7 +81870,7 @@ var render = function() {
                                             attrs: { href: "#" },
                                             on: {
                                               click: function($event) {
-                                                _vm.payEntry(
+                                                _vm.pay(
                                                   purchase.id,
                                                   purchase.account_code,
                                                   purchase.account_name,
@@ -85959,8 +81913,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.cd_created,
-                      expression: "cd_created"
+                      value: _vm.transaction_created,
+                      expression: "transaction_created"
                     }
                   ],
                   staticClass: "box box-warning mt-2"
@@ -85983,14 +81937,15 @@ var render = function() {
                               [
                                 _vm._m(10),
                                 _vm._v(" "),
-                                _vm._l(_vm.entries.data, function(entry) {
+                                _vm._l(_vm.transactions, function(entry) {
                                   return _c(
                                     "tr",
                                     {
-                                      key: entry.id,
+                                      key: entry.transaction_entry_id,
                                       class: {
                                         "table-warning":
-                                          _vm.active_debit_row == entry.id
+                                          _vm.active_debit_row ==
+                                          entry.transaction_entry_id
                                       }
                                     },
                                     [
@@ -86030,8 +81985,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.cd_created,
-                      expression: "cd_created"
+                      value: _vm.transaction_created,
+                      expression: "transaction_created"
                     }
                   ],
                   staticClass: "box box-warning mt-2"
@@ -86106,8 +82061,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.cd_created,
-                      expression: "cd_created"
+                      value: _vm.transaction_created,
+                      expression: "transaction_created"
                     }
                   ],
                   staticClass: "box box-warning mt-2"
@@ -86752,7 +82707,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "box-header" }, [
       _c("h3", { staticClass: "box-title box-title-transaction" }, [
-        _vm._v("Payments")
+        _vm._v("New Payments")
       ])
     ])
   },
@@ -86776,7 +82731,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "box-header" }, [
       _c("h3", { staticClass: "box-title box-title-transaction" }, [
-        _vm._v("Payment History")
+        _vm._v("Payments History")
       ])
     ])
   },
@@ -86929,10 +82884,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PurchasePrev.vue?vue&type=template&id=7c089cbf&":
-/*!***************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PurchasePrev.vue?vue&type=template&id=7c089cbf& ***!
-  \***************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Purchase.vue?vue&type=template&id=a7789c28&":
+/*!***********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Purchase.vue?vue&type=template&id=a7789c28& ***!
+  \***********************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -87039,7 +82994,17 @@ var render = function() {
                     _c("div", { staticClass: "box-body row" }, [
                       _c("div", { staticClass: "col-8" }, [
                         _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(0),
+                          _c("div", { staticClass: "input-group-prepend" }, [
+                            _c(
+                              "span",
+                              {
+                                staticClass:
+                                  "input-group-text inputGroup-sizing-default",
+                                style: [_vm.readabilityObject]
+                              },
+                              [_vm._v("Payee")]
+                            )
+                          ]),
                           _vm._v(" "),
                           _c("input", {
                             directives: [
@@ -87051,6 +83016,7 @@ var render = function() {
                               }
                             ],
                             staticClass: "form-control col-12",
+                            style: [_vm.readabilityObject],
                             attrs: {
                               readonly: _vm.transaction_created,
                               type: "text",
@@ -87106,7 +83072,7 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(1),
+                          _vm._m(0),
                           _vm._v(" "),
                           _c("input", {
                             directives: [
@@ -87137,7 +83103,7 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(2),
+                          _vm._m(1),
                           _vm._v(" "),
                           _c("input", {
                             directives: [
@@ -87168,7 +83134,7 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(3),
+                          _vm._m(2),
                           _vm._v(" "),
                           _c("input", {
                             directives: [
@@ -87272,6 +83238,110 @@ var render = function() {
                               staticClass: "empty-field-message"
                             },
                             [_vm._v("** Please select account!")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "input-group mb-2" }, [
+                          _vm._m(3),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.branch_id,
+                                expression: "form.branch_id"
+                              }
+                            ],
+                            staticClass: "form-control col-2",
+                            attrs: {
+                              readonly: _vm.transaction_created,
+                              type: "text",
+                              id: "inputBranchId",
+                              placeholder: "Code"
+                            },
+                            domProps: { value: _vm.form.branch_id },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.form,
+                                  "branch_id",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.current_branch_name,
+                                expression: "current_branch_name"
+                              }
+                            ],
+                            staticClass: "form-control col-9",
+                            attrs: {
+                              readonly: "true",
+                              type: "text",
+                              id: "inputBranchName",
+                              placeholder: "Branch Name"
+                            },
+                            domProps: { value: _vm.current_branch_name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.current_branch_name = $event.target.value
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "input-group-btn col-1" }, [
+                            _c(
+                              "button",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: !_vm.transaction_created,
+                                    expression: "!transaction_created"
+                                  }
+                                ],
+                                staticClass: "btn btn-success",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.searchBranchModal()
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "fas fa-search fa-fw" })]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "input-group mb-2" }, [
+                          _c(
+                            "p",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.no_branch_id,
+                                  expression: "no_branch_id"
+                                }
+                              ],
+                              staticClass: "empty-field-message"
+                            },
+                            [_vm._v("** Please select branch!")]
                           )
                         ])
                       ]),
@@ -87380,7 +83450,7 @@ var render = function() {
                               type: "text",
                               readonly: "",
                               id: "inputDCNo",
-                              placeholder: "PURCHASE Number"
+                              placeholder: "Transaction Number"
                             },
                             domProps: { value: _vm.form.transaction_no },
                             on: {
@@ -87449,7 +83519,7 @@ var render = function() {
                         _c(
                           "h3",
                           { staticClass: "box-title box-title-transaction" },
-                          [_vm._v("Debits")]
+                          [_vm._v("Entries")]
                         ),
                         _vm._v(" "),
                         _c("div", { staticClass: "box-tools" }, [
@@ -87460,7 +83530,7 @@ var render = function() {
                               on: { click: _vm.newEntry }
                             },
                             [
-                              _vm._v("Add Items "),
+                              _vm._v("Add Entry "),
                               _c("i", {
                                 staticClass: "fas fa-plus-circle fa-fw"
                               })
@@ -87482,18 +83552,21 @@ var render = function() {
                               [
                                 _vm._m(8),
                                 _vm._v(" "),
-                                _vm._l(_vm.entries.data, function(entry) {
+                                _vm._l(_vm.transactions, function(entry) {
                                   return _c(
                                     "tr",
                                     {
-                                      key: entry.id,
+                                      key: entry.transaction_entry_id,
                                       class: {
                                         "table-warning":
-                                          _vm.active_debit_row == entry.id
+                                          _vm.active_debit_row ==
+                                          entry.transaction_entry_id
                                       },
                                       on: {
                                         click: function($event) {
-                                          return _vm.selectDebitRow(entry.id)
+                                          return _vm.selectEntryRow(
+                                            entry.transaction_entry_id
+                                          )
                                         }
                                       }
                                     },
@@ -87506,15 +83579,7 @@ var render = function() {
                                         _vm._v(_vm._s(entry.account_name))
                                       ]),
                                       _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(entry.branch_name))
-                                      ]),
-                                      _vm._v(" "),
                                       _c("td", [_vm._v(_vm._s(entry.amount))]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(entry.amount_ex_tax))
-                                      ]),
                                       _vm._v(" "),
                                       _c("td", [_vm._v(_vm._s(entry.vat))]),
                                       _vm._v(" "),
@@ -87526,9 +83591,8 @@ var render = function() {
                                             on: {
                                               click: function($event) {
                                                 return _vm.deleteEntry(
-                                                  entry.id,
+                                                  entry.transaction_entry_id,
                                                   entry.amount,
-                                                  entry.amount_ex_tax,
                                                   entry.vat
                                                 )
                                               }
@@ -87588,8 +83652,8 @@ var render = function() {
                               [
                                 _vm._m(10),
                                 _vm._v(" "),
-                                _vm._l(_vm.items.data, function(item) {
-                                  return _c("tr", { key: item.id }, [
+                                _vm._l(_vm.currentItems, function(item) {
+                                  return _c("tr", { key: item.item_no }, [
                                     _c("td", [
                                       _vm._v(_vm._s(item.account_code))
                                     ]),
@@ -87650,29 +83714,45 @@ var render = function() {
                         [_vm._v("Amount Exclusive of Tax")]
                       ),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-sm-3" },
-                        [
-                          _c("currency-input", {
-                            attrs: {
-                              isReadonly: true,
-                              fc: true,
-                              col: 12,
-                              id: "inputAmountExclusiveTax",
-                              placeholder: "Amount Exclusive of Tax"
-                            },
-                            model: {
-                              value: _vm.form.amount_ex_tax,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "amount_ex_tax", $$v)
-                              },
-                              expression: "form.amount_ex_tax"
+                      _c("div", { staticClass: "col-sm-3" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: Number(
+                                _vm.form.amount_ex_tax
+                              ).toLocaleString(),
+                              expression:
+                                "Number(form.amount_ex_tax).toLocaleString()"
                             }
-                          })
-                        ],
-                        1
-                      )
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            readonly: "",
+                            type: "text",
+                            id: "inputAmountExclusiveTax",
+                            placeholder: "Amount Exclusive of Tax"
+                          },
+                          domProps: {
+                            value: Number(
+                              _vm.form.amount_ex_tax
+                            ).toLocaleString()
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                Number(_vm.form.amount_ex_tax),
+                                "toLocaleString()",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
                     ])
                   ]),
                   _vm._v(" "),
@@ -87688,29 +83768,40 @@ var render = function() {
                         [_vm._v("VAT")]
                       ),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-sm-3" },
-                        [
-                          _c("currency-input", {
-                            attrs: {
-                              isReadonly: true,
-                              fc: true,
-                              col: 12,
-                              id: "inputVAT",
-                              placeholder: "VAT"
-                            },
-                            model: {
-                              value: _vm.form.vat,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "vat", $$v)
-                              },
-                              expression: "form.vat"
+                      _c("div", { staticClass: "col-sm-3" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: Number(_vm.form.vat).toLocaleString(),
+                              expression: "Number(form.vat).toLocaleString()"
                             }
-                          })
-                        ],
-                        1
-                      )
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            readonly: "",
+                            type: "text",
+                            id: "inputVAT",
+                            placeholder: "VAT"
+                          },
+                          domProps: {
+                            value: Number(_vm.form.vat).toLocaleString()
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                Number(_vm.form.vat),
+                                "toLocaleString()",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
                     ])
                   ]),
                   _vm._v(" "),
@@ -87726,29 +83817,40 @@ var render = function() {
                         [_vm._v("Total Amount")]
                       ),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-sm-3" },
-                        [
-                          _c("currency-input", {
-                            attrs: {
-                              isReadonly: true,
-                              fc: true,
-                              col: 12,
-                              id: "inputTotalAmount",
-                              placeholder: "Total Amount"
-                            },
-                            model: {
-                              value: _vm.form.amount,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "amount", $$v)
-                              },
-                              expression: "form.amount"
+                      _c("div", { staticClass: "col-sm-3" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: Number(_vm.form.amount).toLocaleString(),
+                              expression: "Number(form.amount).toLocaleString()"
                             }
-                          })
-                        ],
-                        1
-                      )
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            readonly: "",
+                            type: "text",
+                            id: "inputTotalAmount",
+                            placeholder: "Total Amount"
+                          },
+                          domProps: {
+                            value: Number(_vm.form.amount).toLocaleString()
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                Number(_vm.form.amount),
+                                "toLocaleString()",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
                     ])
                   ])
                 ]
@@ -87950,85 +84052,6 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "input-group mb-2" },
-                    [
-                      _vm._m(14),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.selected_branch,
-                              expression: "selected_branch"
-                            }
-                          ],
-                          staticClass: "form-control col-12",
-                          attrs: {
-                            "aria-describedby": "inputGroup-sizing-default"
-                          },
-                          on: {
-                            change: [
-                              function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.selected_branch = $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              },
-                              _vm.branchChange
-                            ]
-                          }
-                        },
-                        _vm._l(_vm.branches.data, function(branch) {
-                          return _c(
-                            "option",
-                            {
-                              domProps: {
-                                value: { id: branch.id, name: branch.name }
-                              }
-                            },
-                            [_vm._v(_vm._s(branch.name))]
-                          )
-                        }),
-                        0
-                      ),
-                      _vm._v(" "),
-                      _c("has-error", {
-                        attrs: { form: _vm.form_entry, field: "branch_id" }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "input-group mb-2" }, [
-                    _c(
-                      "p",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.no_entry_branch_id,
-                            expression: "no_entry_branch_id"
-                          }
-                        ],
-                        staticClass: "empty-field-message"
-                      },
-                      [_vm._v("** Please indicate branch.")]
-                    )
-                  ]),
-                  _vm._v(" "),
                   _c("div", { staticClass: "box-header" }, [
                     _c(
                       "h3",
@@ -88062,10 +84085,10 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(15),
+                            _vm._m(14),
                             _vm._v(" "),
-                            _vm._l(_vm.items.data, function(item) {
-                              return _c("tr", { key: item.id }, [
+                            _vm._l(_vm.currentItems, function(item) {
+                              return _c("tr", { key: item.item_no }, [
                                 _c("td", [_vm._v(_vm._s(item.item))]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(item.quantity))]),
@@ -88086,7 +84109,7 @@ var render = function() {
                                       on: {
                                         click: function($event) {
                                           return _vm.deleteItem(
-                                            item.id,
+                                            item.item_no,
                                             item.sub_total,
                                             item.tax_excluded,
                                             item.vat
@@ -88110,7 +84133,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(16),
+                      _vm._m(15),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -88162,7 +84185,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(17),
+                      _vm._m(16),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -88184,7 +84207,7 @@ var render = function() {
                         },
                         attrs: {
                           name: "amount_ex_tax",
-                          id: "amount_ex_tax",
+                          id: "amount_ex_tax2",
                           readonly: "",
                           "aria-describedby": "inputGroup-sizing-default"
                         },
@@ -88218,7 +84241,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(18),
+                      _vm._m(17),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -88236,7 +84259,7 @@ var render = function() {
                         },
                         attrs: {
                           name: "vat",
-                          id: "vat",
+                          id: "vat2",
                           readonly: "",
                           "aria-describedby": "inputGroup-sizing-default"
                         },
@@ -88271,7 +84294,7 @@ var render = function() {
                     {
                       staticClass: "btn btn-danger",
                       attrs: { type: "button" },
-                      on: { click: _vm.cancelDebitEntry }
+                      on: { click: _vm.cancelEntry }
                     },
                     [_vm._v("Cancel")]
                   ),
@@ -88284,7 +84307,7 @@ var render = function() {
                         type: "button",
                         disabled: !_vm.save_button_entry_enabled
                       },
-                      on: { click: _vm.saveDebitEntry }
+                      on: { click: _vm.saveEntry }
                     },
                     [_vm._v("Save")]
                   )
@@ -88362,7 +84385,7 @@ var render = function() {
                   [_vm._v("Update Entry")]
                 ),
                 _vm._v(" "),
-                _vm._m(19)
+                _vm._m(18)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -88370,7 +84393,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(20),
+                    _vm._m(19),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -88429,7 +84452,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(21),
+                    _vm._m(20),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -88491,7 +84514,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(22),
+                    _vm._m(21),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -88557,7 +84580,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(23),
+                    _vm._m(22),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -88602,7 +84625,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(24),
+                  _vm._m(23),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -88666,7 +84689,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(25),
+                    _vm._m(24),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -88713,7 +84736,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(26),
+                    _vm._m(25),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -88804,7 +84827,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(27),
+              _vm._m(26),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -88843,7 +84866,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(28),
+                            _vm._m(27),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -88887,7 +84910,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(29)
+                _vm._m(28)
               ])
             ])
           ]
@@ -88918,7 +84941,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(30),
+              _vm._m(29),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -88957,7 +84980,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(31),
+                            _vm._m(30),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -88997,7 +85020,115 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(32)
+                _vm._m(31)
+              ])
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "select-branch",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "addNewLabel",
+          "aria-hidden": "true",
+          "data-backdrop": "static",
+          "data-keyboard": "false"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(32),
+              _vm._v(" "),
+              _c("form", { attrs: { onsubmit: "return false;" } }, [
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Search")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.searchBranch,
+                          expression: "searchBranch"
+                        }
+                      ],
+                      staticClass: "float-right col-6",
+                      attrs: { type: "text", name: "search" },
+                      domProps: { value: _vm.searchBranch },
+                      on: {
+                        change: _vm.SearchBranch,
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.searchBranch = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "box-body table-responsive no-padding" },
+                    [
+                      _c("table", { staticClass: "table table-hover" }, [
+                        _c(
+                          "tbody",
+                          [
+                            _vm._m(33),
+                            _vm._v(" "),
+                            _vm._l(_vm.branches.data, function(branch) {
+                              return _c("tr", { key: branch.id }, [
+                                _c("td", [_vm._v(_vm._s(branch.id))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(branch.name))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _c(
+                                    "a",
+                                    {
+                                      attrs: { href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.selectBranch(
+                                            branch.id,
+                                            branch.name
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v("Select\n                  "),
+                                      _c("i", { staticClass: "fa fa-edit" })
+                                    ]
+                                  )
+                                ])
+                              ])
+                            })
+                          ],
+                          2
+                        )
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(34)
               ])
             ])
           ]
@@ -89007,18 +85138,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Payee")]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -89069,6 +85188,18 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Branch")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Ref. #")]
       )
     ])
@@ -89093,7 +85224,7 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Purchase #")]
+        [_vm._v("Transaction #")]
       )
     ])
   },
@@ -89118,11 +85249,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Name")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Branch")]),
-      _vm._v(" "),
       _c("th", [_vm._v("Amount")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Tax Excluded")]),
       _vm._v(" "),
       _c("th", [_vm._v("Tax")]),
       _vm._v(" "),
@@ -89199,18 +85326,6 @@ var staticRenderFns = [
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Account")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Branch")]
       )
     ])
   },
@@ -89462,6 +85577,52 @@ var staticRenderFns = [
         [_vm._v("Close")]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Code")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Branch")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Option")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -89470,10 +85631,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SalesPrev.vue?vue&type=template&id=7e0447f8&":
-/*!************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SalesPrev.vue?vue&type=template&id=7e0447f8& ***!
-  \************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Sales.vue?vue&type=template&id=6545489e&":
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Sales.vue?vue&type=template&id=6545489e& ***!
+  \********************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -89580,7 +85741,17 @@ var render = function() {
                     _c("div", { staticClass: "box-body row" }, [
                       _c("div", { staticClass: "col-8" }, [
                         _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(0),
+                          _c("div", { staticClass: "input-group-prepend" }, [
+                            _c(
+                              "span",
+                              {
+                                staticClass:
+                                  "input-group-text inputGroup-sizing-default",
+                                style: [_vm.readabilityObject]
+                              },
+                              [_vm._v("Payee")]
+                            )
+                          ]),
                           _vm._v(" "),
                           _c("input", {
                             directives: [
@@ -89592,6 +85763,7 @@ var render = function() {
                               }
                             ],
                             staticClass: "form-control col-12",
+                            style: [_vm.readabilityObject],
                             attrs: {
                               readonly: _vm.transaction_created,
                               type: "text",
@@ -89647,7 +85819,7 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(1),
+                          _vm._m(0),
                           _vm._v(" "),
                           _c("input", {
                             directives: [
@@ -89678,7 +85850,7 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(2),
+                          _vm._m(1),
                           _vm._v(" "),
                           _c("input", {
                             directives: [
@@ -89709,7 +85881,7 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(3),
+                          _vm._m(2),
                           _vm._v(" "),
                           _c("input", {
                             directives: [
@@ -89814,6 +85986,110 @@ var render = function() {
                             },
                             [_vm._v("** Please select account!")]
                           )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "input-group mb-2" }, [
+                          _vm._m(3),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.branch_id,
+                                expression: "form.branch_id"
+                              }
+                            ],
+                            staticClass: "form-control col-2",
+                            attrs: {
+                              readonly: _vm.transaction_created,
+                              type: "text",
+                              id: "inputBranchId",
+                              placeholder: "Code"
+                            },
+                            domProps: { value: _vm.form.branch_id },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.form,
+                                  "branch_id",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.current_branch_name,
+                                expression: "current_branch_name"
+                              }
+                            ],
+                            staticClass: "form-control col-9",
+                            attrs: {
+                              readonly: "true",
+                              type: "text",
+                              id: "inputBranchName",
+                              placeholder: "Branch Name"
+                            },
+                            domProps: { value: _vm.current_branch_name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.current_branch_name = $event.target.value
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "input-group-btn col-1" }, [
+                            _c(
+                              "button",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: !_vm.transaction_created,
+                                    expression: "!transaction_created"
+                                  }
+                                ],
+                                staticClass: "btn btn-success",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.searchBranchModal()
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "fas fa-search fa-fw" })]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "input-group mb-2" }, [
+                          _c(
+                            "p",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.no_branch_id,
+                                  expression: "no_branch_id"
+                                }
+                              ],
+                              staticClass: "empty-field-message"
+                            },
+                            [_vm._v("** Please select branch!")]
+                          )
                         ])
                       ]),
                       _vm._v(" "),
@@ -89839,9 +86115,6 @@ var render = function() {
                             },
                             domProps: { value: _vm.form.reference_no },
                             on: {
-                              focus: function($event) {
-                                return $event.target.select()
-                              },
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
@@ -89924,7 +86197,7 @@ var render = function() {
                               type: "text",
                               readonly: "",
                               id: "inputDCNo",
-                              placeholder: "SALES Number"
+                              placeholder: "Transaction Number"
                             },
                             domProps: { value: _vm.form.transaction_no },
                             on: {
@@ -89993,7 +86266,7 @@ var render = function() {
                         _c(
                           "h3",
                           { staticClass: "box-title box-title-transaction" },
-                          [_vm._v("Credits")]
+                          [_vm._v("Entries")]
                         ),
                         _vm._v(" "),
                         _c("div", { staticClass: "box-tools" }, [
@@ -90004,7 +86277,7 @@ var render = function() {
                               on: { click: _vm.newEntry }
                             },
                             [
-                              _vm._v("Add Items "),
+                              _vm._v("Add Entry "),
                               _c("i", {
                                 staticClass: "fas fa-plus-circle fa-fw"
                               })
@@ -90026,18 +86299,21 @@ var render = function() {
                               [
                                 _vm._m(8),
                                 _vm._v(" "),
-                                _vm._l(_vm.entries.data, function(entry) {
+                                _vm._l(_vm.transactions, function(entry) {
                                   return _c(
                                     "tr",
                                     {
-                                      key: entry.id,
+                                      key: entry.transaction_entry_id,
                                       class: {
                                         "table-warning":
-                                          _vm.active_debit_row == entry.id
+                                          _vm.active_debit_row ==
+                                          entry.transaction_entry_id
                                       },
                                       on: {
                                         click: function($event) {
-                                          return _vm.selectDebitRow(entry.id)
+                                          return _vm.selectEntryRow(
+                                            entry.transaction_entry_id
+                                          )
                                         }
                                       }
                                     },
@@ -90050,15 +86326,7 @@ var render = function() {
                                         _vm._v(_vm._s(entry.account_name))
                                       ]),
                                       _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(entry.branch_name))
-                                      ]),
-                                      _vm._v(" "),
                                       _c("td", [_vm._v(_vm._s(entry.amount))]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(entry.amount_ex_tax))
-                                      ]),
                                       _vm._v(" "),
                                       _c("td", [_vm._v(_vm._s(entry.vat))]),
                                       _vm._v(" "),
@@ -90070,9 +86338,8 @@ var render = function() {
                                             on: {
                                               click: function($event) {
                                                 return _vm.deleteEntry(
-                                                  entry.id,
+                                                  entry.transaction_entry_id,
                                                   entry.amount,
-                                                  entry.amount_ex_tax,
                                                   entry.vat
                                                 )
                                               }
@@ -90132,8 +86399,8 @@ var render = function() {
                               [
                                 _vm._m(10),
                                 _vm._v(" "),
-                                _vm._l(_vm.items.data, function(item) {
-                                  return _c("tr", { key: item.id }, [
+                                _vm._l(_vm.currentItems, function(item) {
+                                  return _c("tr", { key: item.item_no }, [
                                     _c("td", [
                                       _vm._v(_vm._s(item.account_code))
                                     ]),
@@ -90194,29 +86461,45 @@ var render = function() {
                         [_vm._v("Amount Exclusive of Tax")]
                       ),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-sm-3" },
-                        [
-                          _c("currency-input", {
-                            attrs: {
-                              isReadonly: true,
-                              fc: true,
-                              col: 12,
-                              id: "inputAmountExclusiveTax",
-                              placeholder: "Amount Exclusive of Tax"
-                            },
-                            model: {
-                              value: _vm.form.amount_ex_tax,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "amount_ex_tax", $$v)
-                              },
-                              expression: "form.amount_ex_tax"
+                      _c("div", { staticClass: "col-sm-3" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: Number(
+                                _vm.form.amount_ex_tax
+                              ).toLocaleString(),
+                              expression:
+                                "Number(form.amount_ex_tax).toLocaleString()"
                             }
-                          })
-                        ],
-                        1
-                      )
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            readonly: "",
+                            type: "text",
+                            id: "inputAmountExclusiveTax",
+                            placeholder: "Amount Exclusive of Tax"
+                          },
+                          domProps: {
+                            value: Number(
+                              _vm.form.amount_ex_tax
+                            ).toLocaleString()
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                Number(_vm.form.amount_ex_tax),
+                                "toLocaleString()",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
                     ])
                   ]),
                   _vm._v(" "),
@@ -90232,29 +86515,34 @@ var render = function() {
                         [_vm._v("VAT")]
                       ),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-sm-3" },
-                        [
-                          _c("currency-input", {
-                            attrs: {
-                              isReadonly: true,
-                              fc: true,
-                              col: 12,
-                              id: "inputVAT",
-                              placeholder: "VAT"
-                            },
-                            model: {
+                      _c("div", { staticClass: "col-sm-3" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
                               value: _vm.form.vat,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "vat", $$v)
-                              },
                               expression: "form.vat"
                             }
-                          })
-                        ],
-                        1
-                      )
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            readonly: "",
+                            type: "text",
+                            id: "inputVAT",
+                            placeholder: "VAT"
+                          },
+                          domProps: { value: _vm.form.vat },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.form, "vat", $event.target.value)
+                            }
+                          }
+                        })
+                      ])
                     ])
                   ]),
                   _vm._v(" "),
@@ -90363,29 +86651,40 @@ var render = function() {
                         [_vm._v("Total Amount")]
                       ),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-sm-3" },
-                        [
-                          _c("currency-input", {
-                            attrs: {
-                              isReadonly: true,
-                              fc: true,
-                              col: 12,
-                              id: "inputTotalAmount",
-                              placeholder: "Total Amount"
-                            },
-                            model: {
-                              value: _vm.form.amount,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "amount", $$v)
-                              },
-                              expression: "form.amount"
+                      _c("div", { staticClass: "col-sm-3" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: Number(_vm.form.amount).toLocaleString(),
+                              expression: "Number(form.amount).toLocaleString()"
                             }
-                          })
-                        ],
-                        1
-                      )
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            readonly: "",
+                            type: "text",
+                            id: "inputTotalAmount",
+                            placeholder: "Total Amount"
+                          },
+                          domProps: {
+                            value: Number(_vm.form.amount).toLocaleString()
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                Number(_vm.form.amount),
+                                "toLocaleString()",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
                     ])
                   ])
                 ]
@@ -90587,85 +86886,6 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "input-group mb-2" },
-                    [
-                      _vm._m(14),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.selected_branch,
-                              expression: "selected_branch"
-                            }
-                          ],
-                          staticClass: "form-control col-12",
-                          attrs: {
-                            "aria-describedby": "inputGroup-sizing-default"
-                          },
-                          on: {
-                            change: [
-                              function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.selected_branch = $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              },
-                              _vm.branchChange
-                            ]
-                          }
-                        },
-                        _vm._l(_vm.branches.data, function(branch) {
-                          return _c(
-                            "option",
-                            {
-                              domProps: {
-                                value: { id: branch.id, name: branch.name }
-                              }
-                            },
-                            [_vm._v(_vm._s(branch.name))]
-                          )
-                        }),
-                        0
-                      ),
-                      _vm._v(" "),
-                      _c("has-error", {
-                        attrs: { form: _vm.form_entry, field: "branch_id" }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "input-group mb-2" }, [
-                    _c(
-                      "p",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.no_entry_branch_id,
-                            expression: "no_entry_branch_id"
-                          }
-                        ],
-                        staticClass: "empty-field-message"
-                      },
-                      [_vm._v("** Please indicate branch.")]
-                    )
-                  ]),
-                  _vm._v(" "),
                   _c("div", { staticClass: "box-header" }, [
                     _c(
                       "h3",
@@ -90699,10 +86919,10 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(15),
+                            _vm._m(14),
                             _vm._v(" "),
-                            _vm._l(_vm.items.data, function(item) {
-                              return _c("tr", { key: item.id }, [
+                            _vm._l(_vm.currentItems, function(item) {
+                              return _c("tr", { key: item.item_no }, [
                                 _c("td", [_vm._v(_vm._s(item.item))]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(item.quantity))]),
@@ -90723,7 +86943,7 @@ var render = function() {
                                       on: {
                                         click: function($event) {
                                           return _vm.deleteItem(
-                                            item.id,
+                                            item.item_no,
                                             item.sub_total,
                                             item.tax_excluded,
                                             item.vat
@@ -90747,7 +86967,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(16),
+                      _vm._m(15),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -90799,7 +87019,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(17),
+                      _vm._m(16),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -90821,7 +87041,7 @@ var render = function() {
                         },
                         attrs: {
                           name: "amount_ex_tax",
-                          id: "amount_ex_tax",
+                          id: "amount_ex_tax2",
                           readonly: "",
                           "aria-describedby": "inputGroup-sizing-default"
                         },
@@ -90855,7 +87075,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(18),
+                      _vm._m(17),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -90873,7 +87093,7 @@ var render = function() {
                         },
                         attrs: {
                           name: "vat",
-                          id: "vat",
+                          id: "vat2",
                           readonly: "",
                           "aria-describedby": "inputGroup-sizing-default"
                         },
@@ -90908,7 +87128,7 @@ var render = function() {
                     {
                       staticClass: "btn btn-danger",
                       attrs: { type: "button" },
-                      on: { click: _vm.cancelDebitEntry }
+                      on: { click: _vm.cancelEntry }
                     },
                     [_vm._v("Cancel")]
                   ),
@@ -90917,8 +87137,11 @@ var render = function() {
                     "button",
                     {
                       staticClass: "btn btn-success",
-                      attrs: { type: "button" },
-                      on: { click: _vm.saveDebitEntry }
+                      attrs: {
+                        type: "button",
+                        disabled: !_vm.save_button_entry_enabled
+                      },
+                      on: { click: _vm.saveEntry }
                     },
                     [_vm._v("Save")]
                   )
@@ -90996,7 +87219,7 @@ var render = function() {
                   [_vm._v("Update Entry")]
                 ),
                 _vm._v(" "),
-                _vm._m(19)
+                _vm._m(18)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -91004,7 +87227,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(20),
+                    _vm._m(19),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -91063,7 +87286,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(21),
+                    _vm._m(20),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -91125,7 +87348,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(22),
+                    _vm._m(21),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -91191,7 +87414,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(23),
+                    _vm._m(22),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -91236,7 +87459,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(24),
+                  _vm._m(23),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -91300,7 +87523,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(25),
+                    _vm._m(24),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -91347,7 +87570,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(26),
+                    _vm._m(25),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -91400,7 +87623,10 @@ var render = function() {
                   "button",
                   {
                     staticClass: "btn btn-success",
-                    attrs: { type: "button" },
+                    attrs: {
+                      type: "button",
+                      disabled: !_vm.save_button_item_enabled
+                    },
                     on: { click: _vm.saveItem }
                   },
                   [_vm._v("Save")]
@@ -91435,7 +87661,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(27),
+              _vm._m(26),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -91474,7 +87700,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(28),
+                            _vm._m(27),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -91518,7 +87744,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(29)
+                _vm._m(28)
               ])
             ])
           ]
@@ -91549,7 +87775,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(30),
+              _vm._m(29),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -91588,7 +87814,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(31),
+                            _vm._m(30),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -91628,7 +87854,115 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(32)
+                _vm._m(31)
+              ])
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "select-branch",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "addNewLabel",
+          "aria-hidden": "true",
+          "data-backdrop": "static",
+          "data-keyboard": "false"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(32),
+              _vm._v(" "),
+              _c("form", { attrs: { onsubmit: "return false;" } }, [
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Search")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.searchBranch,
+                          expression: "searchBranch"
+                        }
+                      ],
+                      staticClass: "float-right col-6",
+                      attrs: { type: "text", name: "search" },
+                      domProps: { value: _vm.searchBranch },
+                      on: {
+                        change: _vm.SearchBranch,
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.searchBranch = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "box-body table-responsive no-padding" },
+                    [
+                      _c("table", { staticClass: "table table-hover" }, [
+                        _c(
+                          "tbody",
+                          [
+                            _vm._m(33),
+                            _vm._v(" "),
+                            _vm._l(_vm.branches.data, function(branch) {
+                              return _c("tr", { key: branch.id }, [
+                                _c("td", [_vm._v(_vm._s(branch.id))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(branch.name))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _c(
+                                    "a",
+                                    {
+                                      attrs: { href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.selectBranch(
+                                            branch.id,
+                                            branch.name
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v("Select\n                  "),
+                                      _c("i", { staticClass: "fa fa-edit" })
+                                    ]
+                                  )
+                                ])
+                              ])
+                            })
+                          ],
+                          2
+                        )
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(34)
               ])
             ])
           ]
@@ -91659,7 +87993,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(33),
+              _vm._m(35),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -91671,7 +88005,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(34),
+                            _vm._m(36),
                             _vm._v(" "),
                             _vm._l(_vm.wtax, function(tax) {
                               return _c("tr", { key: _vm.wtax.id }, [
@@ -91698,7 +88032,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(35)
+                _vm._m(37)
               ])
             ])
           ]
@@ -91708,18 +88042,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Payee")]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -91770,6 +88092,18 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Branch")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Ref. #")]
       )
     ])
@@ -91794,7 +88128,7 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("CR #")]
+        [_vm._v("Transaction #")]
       )
     ])
   },
@@ -91819,11 +88153,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Name")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Branch")]),
-      _vm._v(" "),
       _c("th", [_vm._v("Amount")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Tax Excluded")]),
       _vm._v(" "),
       _c("th", [_vm._v("Tax")]),
       _vm._v(" "),
@@ -91900,18 +88230,6 @@ var staticRenderFns = [
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Account")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Branch")]
       )
     ])
   },
@@ -92145,6 +88463,52 @@ var staticRenderFns = [
       _c("th", [_vm._v("Code")]),
       _vm._v(" "),
       _c("th", [_vm._v("Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Option")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Code")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Branch")]),
       _vm._v(" "),
       _c("th", [_vm._v("Option")])
     ])
@@ -109227,25 +105591,25 @@ var routes = [{
   component: __webpack_require__(/*! ./components/Users.vue */ "./resources/js/components/Users.vue")["default"]
 }, {
   path: '/cd',
-  component: __webpack_require__(/*! ./components/CashDisbursement.vue */ "./resources/js/components/CashDisbursement.vue")["default"]
+  component: __webpack_require__(/*! ./components/CD.vue */ "./resources/js/components/CD.vue")["default"]
 }, {
   path: '/cd-view',
   component: __webpack_require__(/*! ./components/CashDisbursementLedger.vue */ "./resources/js/components/CashDisbursementLedger.vue")["default"]
 }, {
   path: '/cr',
-  component: __webpack_require__(/*! ./components/CashReceipts.vue */ "./resources/js/components/CashReceipts.vue")["default"]
+  component: __webpack_require__(/*! ./components/CR.vue */ "./resources/js/components/CR.vue")["default"]
 }, {
   path: '/cr-view',
   component: __webpack_require__(/*! ./components/CashReceiptLedger.vue */ "./resources/js/components/CashReceiptLedger.vue")["default"]
 }, {
   path: '/sales',
-  component: __webpack_require__(/*! ./components/SalesPrev.vue */ "./resources/js/components/SalesPrev.vue")["default"]
+  component: __webpack_require__(/*! ./components/Sales.vue */ "./resources/js/components/Sales.vue")["default"]
 }, {
   path: '/purchase',
-  component: __webpack_require__(/*! ./components/PurchasePrev.vue */ "./resources/js/components/PurchasePrev.vue")["default"]
+  component: __webpack_require__(/*! ./components/Purchase.vue */ "./resources/js/components/Purchase.vue")["default"]
 }, {
   path: '/payments',
-  component: __webpack_require__(/*! ./components/PaymentsPrev.vue */ "./resources/js/components/PaymentsPrev.vue")["default"]
+  component: __webpack_require__(/*! ./components/Payments.vue */ "./resources/js/components/Payments.vue")["default"]
 }, {
   path: '/payees',
   component: __webpack_require__(/*! ./components/Payees.vue */ "./resources/js/components/Payees.vue")["default"]
@@ -110039,17 +106403,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/CashDisbursement.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/CashDisbursement.vue ***!
-  \******************************************************/
+/***/ "./resources/js/components/CR.vue":
+/*!****************************************!*\
+  !*** ./resources/js/components/CR.vue ***!
+  \****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _CashDisbursement_vue_vue_type_template_id_4946dc5f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CashDisbursement.vue?vue&type=template&id=4946dc5f& */ "./resources/js/components/CashDisbursement.vue?vue&type=template&id=4946dc5f&");
-/* harmony import */ var _CashDisbursement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CashDisbursement.vue?vue&type=script&lang=js& */ "./resources/js/components/CashDisbursement.vue?vue&type=script&lang=js&");
+/* harmony import */ var _CR_vue_vue_type_template_id_e594870c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CR.vue?vue&type=template&id=e594870c& */ "./resources/js/components/CR.vue?vue&type=template&id=e594870c&");
+/* harmony import */ var _CR_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CR.vue?vue&type=script&lang=js& */ "./resources/js/components/CR.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -110059,9 +106423,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _CashDisbursement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _CashDisbursement_vue_vue_type_template_id_4946dc5f___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _CashDisbursement_vue_vue_type_template_id_4946dc5f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _CR_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CR_vue_vue_type_template_id_e594870c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CR_vue_vue_type_template_id_e594870c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -110071,38 +106435,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/CashDisbursement.vue"
+component.options.__file = "resources/js/components/CR.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/CashDisbursement.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/CashDisbursement.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
+/***/ "./resources/js/components/CR.vue?vue&type=script&lang=js&":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/CR.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CashDisbursement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./CashDisbursement.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CashDisbursement.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CashDisbursement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CR_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./CR.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CR.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CR_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/CashDisbursement.vue?vue&type=template&id=4946dc5f&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/CashDisbursement.vue?vue&type=template&id=4946dc5f& ***!
-  \*************************************************************************************/
+/***/ "./resources/js/components/CR.vue?vue&type=template&id=e594870c&":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/CR.vue?vue&type=template&id=e594870c& ***!
+  \***********************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CashDisbursement_vue_vue_type_template_id_4946dc5f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./CashDisbursement.vue?vue&type=template&id=4946dc5f& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CashDisbursement.vue?vue&type=template&id=4946dc5f&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CashDisbursement_vue_vue_type_template_id_4946dc5f___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CR_vue_vue_type_template_id_e594870c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./CR.vue?vue&type=template&id=e594870c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CR.vue?vue&type=template&id=e594870c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CR_vue_vue_type_template_id_e594870c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CashDisbursement_vue_vue_type_template_id_4946dc5f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CR_vue_vue_type_template_id_e594870c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -110241,75 +106605,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CashReceiptLedger_vue_vue_type_template_id_9740911a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CashReceiptLedger_vue_vue_type_template_id_9740911a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/CashReceipts.vue":
-/*!**************************************************!*\
-  !*** ./resources/js/components/CashReceipts.vue ***!
-  \**************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _CashReceipts_vue_vue_type_template_id_7180630e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CashReceipts.vue?vue&type=template&id=7180630e& */ "./resources/js/components/CashReceipts.vue?vue&type=template&id=7180630e&");
-/* harmony import */ var _CashReceipts_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CashReceipts.vue?vue&type=script&lang=js& */ "./resources/js/components/CashReceipts.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _CashReceipts_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _CashReceipts_vue_vue_type_template_id_7180630e___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _CashReceipts_vue_vue_type_template_id_7180630e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/CashReceipts.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/CashReceipts.vue?vue&type=script&lang=js&":
-/*!***************************************************************************!*\
-  !*** ./resources/js/components/CashReceipts.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CashReceipts_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./CashReceipts.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CashReceipts.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CashReceipts_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/CashReceipts.vue?vue&type=template&id=7180630e&":
-/*!*********************************************************************************!*\
-  !*** ./resources/js/components/CashReceipts.vue?vue&type=template&id=7180630e& ***!
-  \*********************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CashReceipts_vue_vue_type_template_id_7180630e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./CashReceipts.vue?vue&type=template&id=7180630e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CashReceipts.vue?vue&type=template&id=7180630e&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CashReceipts_vue_vue_type_template_id_7180630e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CashReceipts_vue_vue_type_template_id_7180630e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -110729,17 +107024,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/PaymentsPrev.vue":
-/*!**************************************************!*\
-  !*** ./resources/js/components/PaymentsPrev.vue ***!
-  \**************************************************/
+/***/ "./resources/js/components/Payments.vue":
+/*!**********************************************!*\
+  !*** ./resources/js/components/Payments.vue ***!
+  \**********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _PaymentsPrev_vue_vue_type_template_id_7da2baeb___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PaymentsPrev.vue?vue&type=template&id=7da2baeb& */ "./resources/js/components/PaymentsPrev.vue?vue&type=template&id=7da2baeb&");
-/* harmony import */ var _PaymentsPrev_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PaymentsPrev.vue?vue&type=script&lang=js& */ "./resources/js/components/PaymentsPrev.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Payments_vue_vue_type_template_id_04c873d0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Payments.vue?vue&type=template&id=04c873d0& */ "./resources/js/components/Payments.vue?vue&type=template&id=04c873d0&");
+/* harmony import */ var _Payments_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Payments.vue?vue&type=script&lang=js& */ "./resources/js/components/Payments.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -110749,9 +107044,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _PaymentsPrev_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _PaymentsPrev_vue_vue_type_template_id_7da2baeb___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _PaymentsPrev_vue_vue_type_template_id_7da2baeb___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Payments_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Payments_vue_vue_type_template_id_04c873d0___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Payments_vue_vue_type_template_id_04c873d0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -110761,54 +107056,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/PaymentsPrev.vue"
+component.options.__file = "resources/js/components/Payments.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/PaymentsPrev.vue?vue&type=script&lang=js&":
-/*!***************************************************************************!*\
-  !*** ./resources/js/components/PaymentsPrev.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************/
+/***/ "./resources/js/components/Payments.vue?vue&type=script&lang=js&":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/Payments.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentsPrev_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./PaymentsPrev.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PaymentsPrev.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentsPrev_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Payments_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Payments.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Payments.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Payments_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/PaymentsPrev.vue?vue&type=template&id=7da2baeb&":
-/*!*********************************************************************************!*\
-  !*** ./resources/js/components/PaymentsPrev.vue?vue&type=template&id=7da2baeb& ***!
-  \*********************************************************************************/
+/***/ "./resources/js/components/Payments.vue?vue&type=template&id=04c873d0&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/Payments.vue?vue&type=template&id=04c873d0& ***!
+  \*****************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentsPrev_vue_vue_type_template_id_7da2baeb___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./PaymentsPrev.vue?vue&type=template&id=7da2baeb& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PaymentsPrev.vue?vue&type=template&id=7da2baeb&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentsPrev_vue_vue_type_template_id_7da2baeb___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Payments_vue_vue_type_template_id_04c873d0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Payments.vue?vue&type=template&id=04c873d0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Payments.vue?vue&type=template&id=04c873d0&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Payments_vue_vue_type_template_id_04c873d0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentsPrev_vue_vue_type_template_id_7da2baeb___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Payments_vue_vue_type_template_id_04c873d0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/js/components/PurchasePrev.vue":
-/*!**************************************************!*\
-  !*** ./resources/js/components/PurchasePrev.vue ***!
-  \**************************************************/
+/***/ "./resources/js/components/Purchase.vue":
+/*!**********************************************!*\
+  !*** ./resources/js/components/Purchase.vue ***!
+  \**********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _PurchasePrev_vue_vue_type_template_id_7c089cbf___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PurchasePrev.vue?vue&type=template&id=7c089cbf& */ "./resources/js/components/PurchasePrev.vue?vue&type=template&id=7c089cbf&");
-/* harmony import */ var _PurchasePrev_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PurchasePrev.vue?vue&type=script&lang=js& */ "./resources/js/components/PurchasePrev.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Purchase_vue_vue_type_template_id_a7789c28___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Purchase.vue?vue&type=template&id=a7789c28& */ "./resources/js/components/Purchase.vue?vue&type=template&id=a7789c28&");
+/* harmony import */ var _Purchase_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Purchase.vue?vue&type=script&lang=js& */ "./resources/js/components/Purchase.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -110818,9 +107113,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _PurchasePrev_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _PurchasePrev_vue_vue_type_template_id_7c089cbf___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _PurchasePrev_vue_vue_type_template_id_7c089cbf___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Purchase_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Purchase_vue_vue_type_template_id_a7789c28___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Purchase_vue_vue_type_template_id_a7789c28___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -110830,54 +107125,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/PurchasePrev.vue"
+component.options.__file = "resources/js/components/Purchase.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/PurchasePrev.vue?vue&type=script&lang=js&":
-/*!***************************************************************************!*\
-  !*** ./resources/js/components/PurchasePrev.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************/
+/***/ "./resources/js/components/Purchase.vue?vue&type=script&lang=js&":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/Purchase.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PurchasePrev_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./PurchasePrev.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PurchasePrev.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PurchasePrev_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Purchase_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Purchase.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Purchase.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Purchase_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/PurchasePrev.vue?vue&type=template&id=7c089cbf&":
-/*!*********************************************************************************!*\
-  !*** ./resources/js/components/PurchasePrev.vue?vue&type=template&id=7c089cbf& ***!
-  \*********************************************************************************/
+/***/ "./resources/js/components/Purchase.vue?vue&type=template&id=a7789c28&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/Purchase.vue?vue&type=template&id=a7789c28& ***!
+  \*****************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PurchasePrev_vue_vue_type_template_id_7c089cbf___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./PurchasePrev.vue?vue&type=template&id=7c089cbf& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PurchasePrev.vue?vue&type=template&id=7c089cbf&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PurchasePrev_vue_vue_type_template_id_7c089cbf___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Purchase_vue_vue_type_template_id_a7789c28___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Purchase.vue?vue&type=template&id=a7789c28& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Purchase.vue?vue&type=template&id=a7789c28&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Purchase_vue_vue_type_template_id_a7789c28___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PurchasePrev_vue_vue_type_template_id_7c089cbf___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Purchase_vue_vue_type_template_id_a7789c28___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/js/components/SalesPrev.vue":
-/*!***********************************************!*\
-  !*** ./resources/js/components/SalesPrev.vue ***!
-  \***********************************************/
+/***/ "./resources/js/components/Sales.vue":
+/*!*******************************************!*\
+  !*** ./resources/js/components/Sales.vue ***!
+  \*******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _SalesPrev_vue_vue_type_template_id_7e0447f8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SalesPrev.vue?vue&type=template&id=7e0447f8& */ "./resources/js/components/SalesPrev.vue?vue&type=template&id=7e0447f8&");
-/* harmony import */ var _SalesPrev_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SalesPrev.vue?vue&type=script&lang=js& */ "./resources/js/components/SalesPrev.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Sales_vue_vue_type_template_id_6545489e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Sales.vue?vue&type=template&id=6545489e& */ "./resources/js/components/Sales.vue?vue&type=template&id=6545489e&");
+/* harmony import */ var _Sales_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Sales.vue?vue&type=script&lang=js& */ "./resources/js/components/Sales.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -110887,9 +107182,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _SalesPrev_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _SalesPrev_vue_vue_type_template_id_7e0447f8___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _SalesPrev_vue_vue_type_template_id_7e0447f8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Sales_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Sales_vue_vue_type_template_id_6545489e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Sales_vue_vue_type_template_id_6545489e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -110899,38 +107194,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/SalesPrev.vue"
+component.options.__file = "resources/js/components/Sales.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/SalesPrev.vue?vue&type=script&lang=js&":
-/*!************************************************************************!*\
-  !*** ./resources/js/components/SalesPrev.vue?vue&type=script&lang=js& ***!
-  \************************************************************************/
+/***/ "./resources/js/components/Sales.vue?vue&type=script&lang=js&":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/Sales.vue?vue&type=script&lang=js& ***!
+  \********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SalesPrev_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./SalesPrev.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SalesPrev.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SalesPrev_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Sales_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Sales.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Sales.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Sales_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/SalesPrev.vue?vue&type=template&id=7e0447f8&":
-/*!******************************************************************************!*\
-  !*** ./resources/js/components/SalesPrev.vue?vue&type=template&id=7e0447f8& ***!
-  \******************************************************************************/
+/***/ "./resources/js/components/Sales.vue?vue&type=template&id=6545489e&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/Sales.vue?vue&type=template&id=6545489e& ***!
+  \**************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SalesPrev_vue_vue_type_template_id_7e0447f8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./SalesPrev.vue?vue&type=template&id=7e0447f8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SalesPrev.vue?vue&type=template&id=7e0447f8&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SalesPrev_vue_vue_type_template_id_7e0447f8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Sales_vue_vue_type_template_id_6545489e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Sales.vue?vue&type=template&id=6545489e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Sales.vue?vue&type=template&id=6545489e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Sales_vue_vue_type_template_id_6545489e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SalesPrev_vue_vue_type_template_id_7e0447f8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Sales_vue_vue_type_template_id_6545489e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
