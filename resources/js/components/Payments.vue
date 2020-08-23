@@ -854,8 +854,8 @@
           },
           searchAccountModal(headerOrDetail = 'header'){
               this.headerOrDetail = headerOrDetail;
-              this.searchText = this.form.account_code;
-              //this.searchText = '';
+              // = this.form.account_code;
+              this.searchText = '';
               this.loadChartAccounts(headerOrDetail);
               $('#select-account').modal('show');
           },

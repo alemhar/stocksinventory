@@ -3204,9 +3204,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     searchAccountModal: function searchAccountModal() {
       var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'header';
-      this.headerOrDetail = headerOrDetail;
-      this.searchText = this.form.account_code; //this.searchText = '';
+      this.headerOrDetail = headerOrDetail; //this.searchText = this.form.account_code;
 
+      this.searchText = '';
       this.loadChartAccounts(headerOrDetail);
       $('#select-account').modal('show');
     },
@@ -4610,9 +4610,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     searchAccountModal: function searchAccountModal() {
       var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'header';
-      this.headerOrDetail = headerOrDetail;
-      this.searchText = this.form.account_code; //this.searchText = '';
+      this.headerOrDetail = headerOrDetail; //this.searchText = this.form.account_code;
 
+      this.searchText = '';
       this.loadChartAccounts(headerOrDetail);
       $('#select-account').modal('show');
     },
@@ -7893,9 +7893,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     searchAccountModal: function searchAccountModal() {
       var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'header';
-      this.headerOrDetail = headerOrDetail;
-      this.searchText = this.form.account_code; //this.searchText = '';
+      this.headerOrDetail = headerOrDetail; // = this.form.account_code;
 
+      this.searchText = '';
       this.loadChartAccounts(headerOrDetail);
       $('#select-account').modal('show');
     },
@@ -9215,9 +9215,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     searchAccountModal: function searchAccountModal() {
       var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'header';
-      this.headerOrDetail = headerOrDetail;
-      this.searchText = this.form.account_code; //this.searchText = '';
+      this.headerOrDetail = headerOrDetail; //this.searchText = this.form.account_code;
 
+      this.searchText = '';
       this.loadChartAccounts(headerOrDetail);
       $('#select-account').modal('show');
     },
@@ -10722,9 +10722,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     searchAccountModal: function searchAccountModal() {
       var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'header';
-      this.headerOrDetail = headerOrDetail;
-      this.searchText = this.form.account_code; //this.searchText = '';
+      this.headerOrDetail = headerOrDetail; //this.searchText = this.form.account_code;
 
+      this.searchText = '';
       this.loadChartAccounts(headerOrDetail);
       $('#select-account').modal('show');
     },

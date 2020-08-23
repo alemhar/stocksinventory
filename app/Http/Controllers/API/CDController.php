@@ -162,7 +162,7 @@ class CDController extends Controller
                 ->where('payee_id',$payee_id)
                 ->where('status','CONFIRMED');
             })->paginate(10);
-            
+  
         } else{
             $transaction = null;
         }
