@@ -9,6 +9,7 @@ use App\TransactionEntry;
 use App\TransactionItem;
 use App\DailyAccount;
 use App\RunningAccount;
+use DB;
 
 class CDController extends Controller
 {
