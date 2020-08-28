@@ -34,50 +34,88 @@ class AccountController extends Controller
 
                 if($transaction_type == 'CD'){
                     if($headerordetail == 'header'){
-                        $accounts = Account::where('filter', '=', 1)
+                        $accounts = Account::where('cd_list', '=', 1)
+                        ->orWhere('cd_list', '=', 3)
+                        ->orderBy('cd_list_order')
                         ->paginate(8);
                     } else {
-                        $accounts = Account::where('filter', '>', 1)
-                        ->where('filter', '<', 99)
+                        $accounts = Account::where('cd_list', '=', 2)
+                        ->orWhere('cd_list', '=', 3)
+                        ->orderBy('cd_list_order')
                         ->paginate(8);
                     }
                 }
                 elseif($transaction_type == 'CR'){
                     if($headerordetail == 'header'){
-                        $accounts = Account::where('filter', '<=', 2)
+                        $accounts = Account::where('cr_list', '=', 1)
+                        ->orWhere('cr_list', '=', 3)
+                        ->orderBy('cr_list_order')
                         ->paginate(8);
                     } else {
-                        $accounts = Account::where('filter', '>', 2)
-                        ->where('filter', '<', 99)
+                        $accounts = Account::where('cr_list', '=', 2)
+                        ->orWhere('cr_list', '=', 3)
+                        ->orderBy('cr_list_order')
                         ->paginate(8);
                     }
                 }
                 elseif($transaction_type == 'SALES'){
                     if($headerordetail == 'header'){
-                        $accounts = Account::where('filter', '=', 4)
+                        $accounts = Account::where('sales_list', '=', 1)
+                        ->orWhere('sales_list', '=', 3)
+                        ->orderBy('sales_list_order')
                         ->paginate(8);
                     } else {
-                        $accounts = Account::where('filter', '<>', 4)
-                        ->where('filter', '<', 99)
+                        $accounts = Account::where('sales_list', '=', 2)
+                        ->orWhere('sales_list', '=', 3)
+                        ->orderBy('sales_list_order')
                         ->paginate(8);
                     }
                 }
                 elseif($transaction_type == 'PURCHASE'){
                     if($headerordetail == 'header'){
-                        $accounts = Account::where('filter', '=', 5)
+                        $accounts = Account::where('purchase_list', '=', 1)
+                        ->orWhere('purchase_list', '=', 3)
+                        ->orderBy('purchase_list_order')
                         ->paginate(8);
                     } else {
-                        $accounts = Account::where('filter', '<>', 5)
-                        ->where('filter', '<', 99)
+                        $accounts = Account::where('purchase_list', '=', 2)
+                        ->orWhere('purchase_list', '=', 3)
+                        ->orderBy('purchase_list_order')
+                        ->paginate(8);
+                    }
+                }
+                elseif($transaction_type == 'PAYMENT'){
+                    if($headerordetail == 'header'){
+                        $accounts = Account::where('payment_list', '=', 1)
+                        ->orWhere('payment_list', '=', 3)
+                        ->orderBy('payment_list_order')
+                        ->paginate(8);
+                    } else {
+                        $accounts = Account::where('payment_list', '=', 2)
+                        ->orWhere('payment_list', '=', 3)
+                        ->orderBy('payment_list_order')
+                        ->paginate(8);
+                    }
+                }
+                elseif($transaction_type == 'COLLECTION'){
+                    if($headerordetail == 'header'){
+                        $accounts = Account::where('collection_list', '=', 1)
+                        ->orWhere('collection_list', '=', 3)
+                        ->orderBy('collection_list_order')
+                        ->paginate(8);
+                    } else {
+                        $accounts = Account::where('collection_list', '=', 2)
+                        ->orWhere('collection_list', '=', 3)
+                        ->orderBy('collection_list_order')
                         ->paginate(8);
                     }
                 } else {
                     // 'LEDGER'
-                    $accounts = Account::latest()->where('filter', '<', 99)->paginate(10);
+                    $accounts = Account::paginate(10);
                 }
 
             }else{
-                $accounts = Account::latest()->where('filter', '<', 99)->paginate(10);
+                $accounts = Account::latest()->paginate(10);
             }
             return $accounts;
 
@@ -155,27 +193,26 @@ class AccountController extends Controller
                         ->orWhere('account_name','LIKE',"%$search%");
             })->where(function($query) use ($transaction_type,$headerordetail){
             
+
+                // This section should be replace with the same logic of function "index"
                 if($transaction_type == 'CD'){
                     if($headerordetail == 'header'){
                         $query->where('filter', '=', 1);
                     } else {
-                        $query->where('filter', '>', 1)
-                        ->where('filter', '<', 99);
+                        $query->where('filter', '>', 1);
                     }
                 }
                 elseif($transaction_type == 'CR'){
                     if($headerordetail == 'header'){
                         $query->where('filter', '<=', 2);
                     } else {
-                        $query->where('filter', '>', 2)
-                        ->where('filter', '<', 99);
+                        $query->where('filter', '>', 2);
                     }
                 }elseif($transaction_type == 'SALES'){
                     if($headerordetail == 'header'){
                         $query->where('filter', '=', 4);
                     } else {
-                        $query->where('filter', '<>', 4)
-                        ->where('filter', '<', 99);
+                        $query->where('filter', '<>', 4);
                     }
                 } else {
                     $query->where('filter', '<', 99);

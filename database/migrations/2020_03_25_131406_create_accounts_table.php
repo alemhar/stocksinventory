@@ -15,11 +15,27 @@ class CreateAccountsTable extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('main_account_id')->unsigned();
+            $table->string('account_type');// ADD Default on current tables
+            $table->string('sub_account_type');// ADD Default on current tables
+            $table->integer('main_code')->unsigned(); // ADD Default on current tables
+            $table->string('main_account');// ADD Default on current tables
             $table->integer('account_code')->unsigned();
             $table->string('account_name');
-            $table->string('type');
+            $table->string('type'); // GOODS, SERVICE, CAPITAL GOODS
             $table->integer('user_id')->unsigned();
+            $table->integer('cd_list_order')->unsigned()->default(99);// ADD Default on current tables
+            $table->integer('cd_list')->unsigned()->default(3);// ADD Default on current tables
+            $table->integer('cr_list_order')->unsigned()->default(99);// ADD Default on current tables
+            $table->integer('cr_list')->unsigned()->default(3);// ADD Default on current tables
+            $table->integer('sales_list_order')->unsigned()->default(99);// ADD Default on current tables
+            $table->integer('sales_list')->unsigned()->default(3);// ADD Default on current tables
+            $table->integer('purchase_list_order')->unsigned()->default(99);// ADD Default on current tables
+            $table->integer('purchase_list')->unsigned()->default(3);// ADD Default on current tables
+            $table->integer('payment_list_order')->unsigned()->default(99);// ADD Default on current tables
+            $table->integer('payment_list')->unsigned()->default(3);// ADD Default on current tables
+            $table->integer('collection_list_order')->unsigned()->default(99);// ADD Default on current tables
+            $table->integer('collection_list')->unsigned()->default(3);// ADD Default on current tables
+            $table->integer('filter')->unsigned()->default(99);
             $table->timestamps();
         });
     }

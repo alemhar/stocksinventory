@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Transaction;
 use App\TransactionEntry;
 use App\TransactionItem;
+use App\DailyAccount;
+use App\RunningAccount;
 
 class CDController extends Controller
 {
@@ -205,9 +207,14 @@ class CDController extends Controller
     {
         $data = json_decode($request['transactions']);
         foreach ($data->transactions as $transaction) {
+
             Transaction::create([
                 'payee_id' => $transaction->payee_id,
                 'branch_id' => $transaction->branch_id,
+                'account_type' => $transaction->account_type,
+                'sub_account_type' => $transaction->sub_account_type,
+                'main_code' => $transaction->main_code,
+                'main_account' => $transaction->main_account,
                 'account_code' => $transaction->account_code,
                 'account_name' => $transaction->account_name,
                 'reference_no' => $transaction->reference_no,
@@ -223,9 +230,77 @@ class CDController extends Controller
                 'vat' => $transaction->vat,
                 'wtax_code' => $transaction->wtax_code,
                 'wtax' => $transaction->wtax,
+                'type' => $transaction->type,
                 'user_id' => $transaction->user_id,
                 'status' => $transaction->status
             ]);
+
+            
+            $dailyAccount = DailyAccount::firstOrNew([
+                'account_code' => $transaction->account_code,
+                'transaction_date' => $transaction->transaction_date
+            ]); 
+            
+            if ($dailyAccount->exists) {
+                //$dailyAccount->amount = $transaction->amount;
+                $dailyAccount->credit_amount += $transaction->credit_amount;
+                $dailyAccount->debit_amount +=  $transaction->debit_amount;
+                
+            } 
+            else {
+                $dailyAccount->account_type = $transaction->credit_amount;
+                $dailyAccount->sub_account_type = $transaction->credit_amount;
+                $dailyAccount->main_code = $transaction->credit_amount;
+                $dailyAccount->main_account = $transaction->credit_amount;
+                //account_code
+                $dailyAccount->account_name = $transaction->credit_amount;
+                //transaction_date
+                //$dailyAccount->amount = $transaction->credit_amount;
+                $dailyAccount->credit_amount = $transaction->credit_amount;
+                $dailyAccount->debit_amount =  $transaction->debit_amount;
+                $dailyAccount->type = $transaction->credit_amount;
+                $dailyAccount->user_id = $transaction->credit_amount;
+                $dailyAccount->status = $transaction->credit_amount;
+            }    
+            $dailyAccount->save();
+
+            
+            $runningAccount = RunningAccount::firstOrNew([
+                'account_code' => $transaction->account_code,
+                'transaction_date' => $transaction->transaction_date
+            ]); 
+            
+            if ($runningAccount->exists) {
+                //$dailyAccount->amount = $transaction->amount;
+                $runningAccount->credit_amount += $transaction->credit_amount;
+                $runningAccount->debit_amount +=  $transaction->debit_amount;
+                
+            } 
+            else {
+                $runningAccount->account_type = $transaction->account_type;
+                $runningAccount->sub_account_type = $transaction->sub_account_type;
+                $runningAccount->main_code = $transaction->main_code;
+                $runningAccount->main_account = $transaction->main_account;
+                //account_code
+                $runningAccount->account_name = $transaction->account_name;
+                //transaction_date
+                //$dailyAccount->amount = $transaction->credit_amount;
+                $runningAccount->credit_amount = $transaction->credit_amount;
+                $runningAccount->debit_amount =  $transaction->debit_amount;
+                $runningAccount->type = $transaction->type;
+                $runningAccount->user_id = $transaction->user_id;
+                $runningAccount->status = $transaction->status;
+            }    
+            $runningAccount->save();
+
+            RunningAccount::where('account_code', $transaction->account_code)
+            ->where('transaction_date', '>' , $transaction->transaction_date)
+            ->update([
+                'credit_amount' => DB::raw( 'credit_amount +' . $transaction->credit_amount),
+                'debit_amount' => DB::raw( 'debit_amount +' . $transaction->debit_amount)
+            ]);
+
+
         }
 
         return ['message' => 'Transactions posted.'];
