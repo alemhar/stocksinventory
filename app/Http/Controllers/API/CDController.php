@@ -248,19 +248,19 @@ class CDController extends Controller
                 
             } 
             else {
-                $dailyAccount->account_type = $transaction->credit_amount;
-                $dailyAccount->sub_account_type = $transaction->credit_amount;
-                $dailyAccount->main_code = $transaction->credit_amount;
-                $dailyAccount->main_account = $transaction->credit_amount;
+                $dailyAccount->account_type = $transaction->account_type;
+                $dailyAccount->sub_account_type = $transaction->sub_account_type;
+                $dailyAccount->main_code = $transaction->main_code;
+                $dailyAccount->main_account = $transaction->main_account;
                 //account_code
-                $dailyAccount->account_name = $transaction->credit_amount;
+                $dailyAccount->account_name = $transaction->account_name;
                 //transaction_date
                 //$dailyAccount->amount = $transaction->credit_amount;
                 $dailyAccount->credit_amount = $transaction->credit_amount;
                 $dailyAccount->debit_amount =  $transaction->debit_amount;
-                $dailyAccount->type = $transaction->credit_amount;
-                $dailyAccount->user_id = $transaction->credit_amount;
-                $dailyAccount->status = $transaction->credit_amount;
+                $dailyAccount->type = $transaction->type;
+                $dailyAccount->user_id = $transaction->user_id;
+                $dailyAccount->status = $transaction->status;
             }    
             $dailyAccount->save();
 
