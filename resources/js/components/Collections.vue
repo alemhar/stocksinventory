@@ -451,7 +451,7 @@
                     <a href="#" @click="selectAccount(
                     chart_of_account.account_code,
                     chart_of_account.account_name,
-                    chart_of_account.account_code,
+                    chart_of_account.account_type,
                     chart_of_account.sub_account_type,
                     chart_of_account.main_code,
                     chart_of_account.main_account,
@@ -652,7 +652,7 @@
           currentBalance(total_amount,payments){
             return (total_amount - payments).toFixed(2);
           },
-          loadPurchase() {
+          loadSale() {
               axios.get('api/cd/sales/list?payee_id='+this.current_payee_id)
                 .then((data)=>{
                   this.sales = data.data;
@@ -740,7 +740,8 @@
 
             this.form.transaction_no = this.createSerialNumber();
             this.form.transaction_type = 'PAYMENT';
-            this.loadPurchase();
+            this.loadSale();
+            /*
             this.form.post('api/cd')
                 .then((data)=>{
                   //console.log(data.data.id);
@@ -749,6 +750,7 @@
                 .catch(()=>{
                   //
                 });
+            */
             
           },
           saveTransaction(){

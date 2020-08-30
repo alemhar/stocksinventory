@@ -639,7 +639,7 @@
                     <a href="#" @click="selectAccount(
                     chart_of_account.account_code,
                     chart_of_account.account_name,
-                    chart_of_account.account_code,
+                    chart_of_account.account_type,
                     chart_of_account.sub_account_type,
                     chart_of_account.main_code,
                     chart_of_account.main_account,

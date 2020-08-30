@@ -5658,7 +5658,7 @@ __webpack_require__.r(__webpack_exports__);
     currentBalance: function currentBalance(total_amount, payments) {
       return (total_amount - payments).toFixed(2);
     },
-    loadPurchase: function loadPurchase() {
+    loadSale: function loadSale() {
       var _this = this;
 
       axios.get('api/cd/sales/list?payee_id=' + this.current_payee_id).then(function (data) {
@@ -5719,8 +5719,6 @@ __webpack_require__.r(__webpack_exports__);
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
     createTransaction: function createTransaction() {
-      var _this5 = this;
-
       if (this.form.payee_id.length == 0) {
         this.no_payee = true;
       } else {
@@ -5747,15 +5745,20 @@ __webpack_require__.r(__webpack_exports__);
 
       this.form.transaction_no = this.createSerialNumber();
       this.form.transaction_type = 'PAYMENT';
-      this.loadPurchase();
-      this.form.post('api/cd').then(function (data) {
-        //console.log(data.data.id);
-        _this5.form.id = data.data.id;
-      })["catch"](function () {//
-      });
+      this.loadSale();
+      /*
+      this.form.post('api/cd')
+          .then((data)=>{
+            //console.log(data.data.id);
+            this.form.id = data.data.id;
+          })
+          .catch(()=>{
+            //
+          });
+      */
     },
     saveTransaction: function saveTransaction() {
-      var _this6 = this;
+      var _this5 = this;
 
       if (this.form.amount == 0) {
         return false;
@@ -5835,7 +5838,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.value) {
           //Reload Current Page
-          _this6.dataReset();
+          _this5.dataReset();
         }
       });
     },
@@ -5931,21 +5934,21 @@ __webpack_require__.r(__webpack_exports__);
       $('#select-payee').modal('hide');
     },
     SearchIt: function SearchIt() {
-      var _this7 = this;
+      var _this6 = this;
 
       var query = this.searchText;
       var headerOrDetail = this.headerOrDetail;
       axios.get('api/searchAccount?q=' + query + '&transaction_type=CD&headerordetail=' + headerOrDetail).then(function (data) {
-        _this7.chart_of_accounts = data.data;
+        _this6.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
     },
     SearchPayee: function SearchPayee() {
-      var _this8 = this;
+      var _this7 = this;
 
       var query = this.searchPayee;
       axios.get('api/searchPayee?q=' + query).then(function (data) {
-        _this8.payees = data.data;
+        _this7.payees = data.data;
       })["catch"](function () {//
       });
     },
@@ -6032,29 +6035,29 @@ __webpack_require__.r(__webpack_exports__);
       this.loadPaymentHistory(account_code);
     },
     loadPaymentHistory: function loadPaymentHistory(account_code) {
-      var _this9 = this;
+      var _this8 = this;
 
       axios.get('api/cd/entries/list?payee_id=' + this.form.payee_id + '&account_code=' + account_code).then(function (data) {
-        _this9.payment_history = data.data;
+        _this8.payment_history = data.data;
       })["catch"](function () {//
       });
     },
     getPaymentHistotyPage: function getPaymentHistotyPage(page) {
-      var _this10 = this;
+      var _this9 = this;
 
       axios.get('api/cd/entries/list?payee_id=' + this.current_payee_id + '&page=' + page).then(function (data) {
-        _this10.payment_history = data.data;
+        _this9.payment_history = data.data;
       })["catch"](function () {});
     },
     updatePurchase: function updatePurchase(payment_amount) {
-      var _this11 = this;
+      var _this10 = this;
 
       this.sales.data.map(function (purchase) {
         if (!purchase.total_payment) {
           purchase.total_payment = 0;
         }
 
-        if (purchase.id == _this11.current_purchase_id) {
+        if (purchase.id == _this10.current_purchase_id) {
           return purchase.total_payment = parseFloat(purchase.total_payment) + parseFloat(payment_amount);
         } else {
           return purchase.total_payment = purchase.total_payment;
@@ -6089,10 +6092,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     currentTransctions: function currentTransctions() {
-      var _this12 = this;
+      var _this11 = this;
 
       return this.transactions.filter(function (transaction) {
-        return parseInt(transaction.transaction_no) == parseInt(_this12.form.transaction_no);
+        return parseInt(transaction.transaction_no) == parseInt(_this11.form.transaction_no);
       });
     }
   },
@@ -7414,8 +7417,6 @@ __webpack_require__.r(__webpack_exports__);
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
     createTransaction: function createTransaction() {
-      var _this5 = this;
-
       if (this.form.payee_id.length == 0) {
         this.no_payee = true;
       } else {
@@ -7443,14 +7444,19 @@ __webpack_require__.r(__webpack_exports__);
       this.form.transaction_no = this.createSerialNumber();
       this.form.transaction_type = 'PAYMENT';
       this.loadPurchase();
-      this.form.post('api/cd').then(function (data) {
-        //console.log(data.data.id);
-        _this5.form.id = data.data.id;
-      })["catch"](function () {//
-      });
+      /*
+      this.form.post('api/cd')
+          .then((data)=>{
+            //console.log(data.data.id);
+            this.form.id = data.data.id;
+          })
+          .catch(()=>{
+            //
+          });
+      */
     },
     saveTransaction: function saveTransaction() {
-      var _this6 = this;
+      var _this5 = this;
 
       if (this.form.amount == 0) {
         return false;
@@ -7530,7 +7536,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.value) {
           //Reload Current Page
-          _this6.dataReset();
+          _this5.dataReset();
         }
       });
     },
@@ -7626,21 +7632,21 @@ __webpack_require__.r(__webpack_exports__);
       $('#select-payee').modal('hide');
     },
     SearchIt: function SearchIt() {
-      var _this7 = this;
+      var _this6 = this;
 
       var query = this.searchText;
       var headerOrDetail = this.headerOrDetail;
       axios.get('api/searchAccount?q=' + query + '&transaction_type=CD&headerordetail=' + headerOrDetail).then(function (data) {
-        _this7.chart_of_accounts = data.data;
+        _this6.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
     },
     SearchPayee: function SearchPayee() {
-      var _this8 = this;
+      var _this7 = this;
 
       var query = this.searchPayee;
       axios.get('api/searchPayee?q=' + query).then(function (data) {
-        _this8.payees = data.data;
+        _this7.payees = data.data;
       })["catch"](function () {//
       });
     },
@@ -7727,29 +7733,29 @@ __webpack_require__.r(__webpack_exports__);
       this.loadPaymentHistory(account_code);
     },
     loadPaymentHistory: function loadPaymentHistory(account_code) {
-      var _this9 = this;
+      var _this8 = this;
 
       axios.get('api/cd/entries/list?payee_id=' + this.form.payee_id + '&account_code=' + account_code).then(function (data) {
-        _this9.payment_history = data.data;
+        _this8.payment_history = data.data;
       })["catch"](function () {//
       });
     },
     getPaymentHistotyPage: function getPaymentHistotyPage(page) {
-      var _this10 = this;
+      var _this9 = this;
 
       axios.get('api/cd/entries/list?payee_id=' + this.current_payee_id + '&page=' + page).then(function (data) {
-        _this10.payment_history = data.data;
+        _this9.payment_history = data.data;
       })["catch"](function () {});
     },
     updatePurchase: function updatePurchase(payment_amount) {
-      var _this11 = this;
+      var _this10 = this;
 
       this.purchases.data.map(function (purchase) {
         if (!purchase.total_payment) {
           purchase.total_payment = 0;
         }
 
-        if (purchase.id == _this11.current_purchase_id) {
+        if (purchase.id == _this10.current_purchase_id) {
           return purchase.total_payment = parseFloat(purchase.total_payment) + parseFloat(payment_amount);
         } else {
           return purchase.total_payment = purchase.total_payment;
@@ -7784,10 +7790,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     currentTransctions: function currentTransctions() {
-      var _this12 = this;
+      var _this11 = this;
 
       return this.transactions.filter(function (transaction) {
-        return parseInt(transaction.transaction_no) == parseInt(_this12.form.transaction_no);
+        return parseInt(transaction.transaction_no) == parseInt(_this11.form.transaction_no);
       });
     }
   },
@@ -10339,9 +10345,12 @@ __webpack_require__.r(__webpack_exports__);
     saveTransaction: function saveTransaction() {
       var _this4 = this;
 
-      if (this.form.amount == 0 || this.form.wtax == 0 || this.wTaxCodeInvalid) {
+      if (this.form.amount == 0 || this.wTaxCodeInvalid) {
         return false;
-      }
+      } // if(this.form.amount == 0 || this.form.wtax == 0 || this.wTaxCodeInvalid) {
+      //   return false;
+      // }
+
 
       this.transaction_created = false;
       ++this.transaction_entry_id;
@@ -72696,7 +72705,7 @@ var render = function() {
                                           return _vm.selectAccount(
                                             chart_of_account.account_code,
                                             chart_of_account.account_name,
-                                            chart_of_account.account_code,
+                                            chart_of_account.account_type,
                                             chart_of_account.sub_account_type,
                                             chart_of_account.main_code,
                                             chart_of_account.main_account,
@@ -75448,7 +75457,7 @@ var render = function() {
                                           return _vm.selectAccount(
                                             chart_of_account.account_code,
                                             chart_of_account.account_name,
-                                            chart_of_account.account_code,
+                                            chart_of_account.account_type,
                                             chart_of_account.sub_account_type,
                                             chart_of_account.main_code,
                                             chart_of_account.main_account,
@@ -77362,7 +77371,7 @@ var render = function() {
                                           return _vm.selectAccount(
                                             chart_of_account.account_code,
                                             chart_of_account.account_name,
-                                            chart_of_account.account_code,
+                                            chart_of_account.account_type,
                                             chart_of_account.sub_account_type,
                                             chart_of_account.main_code,
                                             chart_of_account.main_account,
@@ -80240,7 +80249,7 @@ var render = function() {
                                           return _vm.selectAccount(
                                             chart_of_account.account_code,
                                             chart_of_account.account_name,
-                                            chart_of_account.account_code,
+                                            chart_of_account.account_type,
                                             chart_of_account.sub_account_type,
                                             chart_of_account.main_code,
                                             chart_of_account.main_account,
@@ -82694,7 +82703,7 @@ var render = function() {
                                           return _vm.selectAccount(
                                             chart_of_account.account_code,
                                             chart_of_account.account_name,
-                                            chart_of_account.account_code,
+                                            chart_of_account.account_type,
                                             chart_of_account.sub_account_type,
                                             chart_of_account.main_code,
                                             chart_of_account.main_account,
@@ -85533,7 +85542,7 @@ var render = function() {
                                           return _vm.selectAccount(
                                             chart_of_account.account_code,
                                             chart_of_account.account_name,
-                                            chart_of_account.account_code,
+                                            chart_of_account.account_type,
                                             chart_of_account.sub_account_type,
                                             chart_of_account.main_code,
                                             chart_of_account.main_account,

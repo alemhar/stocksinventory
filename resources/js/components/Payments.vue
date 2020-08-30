@@ -451,7 +451,7 @@
                     <a href="#" @click="selectAccount(
                     chart_of_account.account_code,
                     chart_of_account.account_name,
-                    chart_of_account.account_code,
+                    chart_of_account.account_type,
                     chart_of_account.sub_account_type,
                     chart_of_account.main_code,
                     chart_of_account.main_account,
@@ -740,6 +740,7 @@
             this.form.transaction_no = this.createSerialNumber();
             this.form.transaction_type = 'PAYMENT';
             this.loadPurchase();
+            /*
             this.form.post('api/cd')
                 .then((data)=>{
                   //console.log(data.data.id);
@@ -748,7 +749,7 @@
                 .catch(()=>{
                   //
                 });
-            
+            */
           },
           saveTransaction(){
             if(this.form.amount == 0) {

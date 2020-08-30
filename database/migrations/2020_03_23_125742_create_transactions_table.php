@@ -30,12 +30,13 @@ class CreateTransactionsTable extends Migration
             $table->decimal('amount', 14, 2);
             $table->decimal('credit_amount', 14, 2)->default(0);
             $table->decimal('debit_amount', 14, 2)->default(0);
-            $table->decimal('total_payment', 14, 2)->default(0);
             $table->decimal('amount_ex_tax', 14, 2)->default(0);
             $table->decimal('vat', 14, 2)->default(0);
             $table->string('wtax_code');
             $table->decimal('wtax', 14, 2)->default(0);
             $table->string('type'); // GOODS, SERVICE, CAPITAL GOODS
+            $table->decimal('total_payment', 14, 2)->default(0);
+            $table->decimal('total_collection', 14, 2)->default(0);
             $table->boolean('canceled')->default(0);
             $table->integer('user_id')->unsigned();
             //$table->tinyInteger('filter');
