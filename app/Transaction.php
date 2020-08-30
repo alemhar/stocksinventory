@@ -24,6 +24,12 @@ class Transaction extends Model
 	} 
 	   
     protected $fillable = [
+
+						'account_type',
+						'sub_account_type',
+						'main_code',
+						'main_account',
+						'type',
 						'payee_id',
 						'account_code',
 						'account_name',

@@ -76312,7 +76312,7 @@ var render = function() {
                                   "input-group-text inputGroup-sizing-default",
                                 style: [_vm.readabilityObject]
                               },
-                              [_vm._v("Payee")]
+                              [_vm._v("Payor")]
                             )
                           ]),
                           _vm._v(" "),
@@ -76377,7 +76377,7 @@ var render = function() {
                               ],
                               staticClass: "empty-field-message"
                             },
-                            [_vm._v("** Please select payee!")]
+                            [_vm._v("** Please select payor!")]
                           )
                         ]),
                         _vm._v(" "),
