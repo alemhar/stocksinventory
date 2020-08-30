@@ -1344,7 +1344,7 @@
               if(this.depreciates && this.items.length > 0){
                 swal.fire({
                     title: 'Warning!',
-                    text: "Can only add one(1) item for "+ this.form_entry.account_name+ ".<br>Add another "+ this.form_entry.account_name+ " to enter another item.",
+                    text: "Can only add one(1) item for "+ this.form_entry.account_name+ ". \nAdd another "+ this.form_entry.account_name+ " to enter another item.",
                     type: 'info',
                     showCancelButton: false,
                     confirmButtonColor: '#3085d6',
@@ -1391,6 +1391,22 @@
  
           },
           saveEntry(){
+
+            if(!this.form_entry.useful_life){
+                swal.fire({
+                    title: 'Warning!',
+                    text: "USEFUL LIFE input required for this entry.",
+                    type: 'info',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ok'
+                }).then((result) => {
+                    
+                });
+
+                return false;
+              }
 
             this.form_entry.credit_amount = this.form_entry.amount
 
