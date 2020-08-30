@@ -401,6 +401,27 @@
                 </div>
                 <!-- /.box-body -->
 
+              <div v-if="depreciates">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text inputGroup-sizing-default">Useful Life</span>
+                </div>
+
+                  <input v-model="form_entry.useful_life" name="useful_life" id="useful_life"
+                  class="form-control" aria-describedby="inputGroup-sizing-default">
+                  
+              </div>
+
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text inputGroup-sizing-default">Salage Value</span>
+                </div>
+
+                  <input v-model="form_entry.salvage_value" name="salvage_value" id="salvage_value"
+                  class="form-control" aria-describedby="inputGroup-sizing-default">
+                  
+              </div>
+              </div>
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Amount</span>
@@ -904,6 +925,7 @@
               chart_of_accounts: {},
               chart_of_accounts_header: {},
               chart_of_accounts_detail: {},
+              depreciates: false,
               readabilityObject: {
                 fontSize: user.font_size
               }
@@ -1188,6 +1210,11 @@
                       this.form.main_account = main_account;
                       this.form.type = type;
                   } else {
+                      if(account_code >= 15011200  && account_code < 15011550 ){
+                        this.depreciates = true;
+                      } else {
+                        this.depreciates = false;
+                      }
                       this.form_entry.account_name = account_name;
                       this.form_entry.account_code = account_code;
                       this.form_entry.account_type = account_type;
