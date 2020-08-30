@@ -5791,6 +5791,7 @@ __webpack_require__.r(__webpack_exports__);
         credit_amount: this.form.amount,
         debit_amount: 0,
         total_payment: 0,
+        total_collection: 0,
         amount_ex_tax: 0,
         vat: 0,
         wtax_code: 0,
@@ -6020,6 +6021,7 @@ __webpack_require__.r(__webpack_exports__);
         amount: this.form_entry.amount,
         credit_amount: 0,
         debit_amount: this.form_entry.amount,
+        total_collection: 0,
         total_payment: 0,
         amount_ex_tax: 0,
         vat: 0,
@@ -6063,14 +6065,14 @@ __webpack_require__.r(__webpack_exports__);
       var _this10 = this;
 
       this.sales.data.map(function (sale) {
-        if (!sale.total_payment) {
-          sale.total_payment = 0;
+        if (!sale.total_collection) {
+          sale.total_collection = 0;
         }
 
         if (sale.id == _this10.current_sale_id) {
-          return sale.total_payment = parseFloat(sale.total_payment) + parseFloat(payment_amount);
+          return sale.total_collection = parseFloat(sale.total_collection) + parseFloat(payment_amount);
         } else {
-          return sale.total_payment = sale.total_payment;
+          return sale.total_collection = sale.total_collection;
         }
       });
     }
@@ -76803,7 +76805,7 @@ var render = function() {
                                       _c("td", [_vm._v(_vm._s(sale.amount))]),
                                       _vm._v(" "),
                                       _c("td", [
-                                        _vm._v(_vm._s(sale.total_payment))
+                                        _vm._v(_vm._s(sale.total_collection))
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [
@@ -76811,7 +76813,7 @@ var render = function() {
                                           _vm._s(
                                             _vm.currentBalance(
                                               sale.amount,
-                                              sale.total_payment
+                                              sale.total_collection
                                             )
                                           )
                                         )
@@ -76830,7 +76832,7 @@ var render = function() {
                                                   sale.account_name,
                                                   _vm.currentBalance(
                                                     sale.amount,
-                                                    sale.total_payment
+                                                    sale.total_collection
                                                   ),
                                                   sale.account_type,
                                                   sale.sub_account_type,

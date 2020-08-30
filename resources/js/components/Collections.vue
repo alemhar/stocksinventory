@@ -154,10 +154,10 @@
                     <td>{{ sale.account_code }}</td>
                     <td>{{ sale.account_name }}</td>
                     <td>{{ sale.amount }}</td>
-                    <td>{{ sale.total_payment }}</td>
-                    <td>{{ currentBalance(sale.amount,sale.total_payment) }}</td> 
+                    <td>{{ sale.total_collection }}</td>
+                    <td>{{ currentBalance(sale.amount,sale.total_collection) }}</td> 
                     <td>
-                      <a href="#" @click="pay(sale.id,sale.account_code,sale.account_name,currentBalance(sale.amount,sale.total_payment),
+                      <a href="#" @click="pay(sale.id,sale.account_code,sale.account_name,currentBalance(sale.amount,sale.total_collection),
                     sale.account_type,
                     sale.sub_account_type,
                     sale.main_code,
@@ -786,6 +786,7 @@
                 credit_amount: this.form.amount,
                 debit_amount: 0,
                 total_payment: 0,
+                total_collection: 0,
                 amount_ex_tax: 0,
                 vat: 0,
                 wtax_code: 0,
@@ -1072,6 +1073,7 @@
                 amount: this.form_entry.amount,
                 credit_amount: 0,
                 debit_amount: this.form_entry.amount,
+                total_collection: 0,
                 total_payment: 0,
                 amount_ex_tax: 0,
                 vat: 0,
@@ -1140,13 +1142,13 @@
             
 
             this.sales.data.map((sale) => {
-              if(!sale.total_payment){
-                sale.total_payment = 0;
+              if(!sale.total_collection){
+                sale.total_collection = 0;
               }
               if(sale.id == this.current_sale_id){
-                return sale.total_payment = parseFloat(sale.total_payment) + parseFloat(payment_amount);
+                return sale.total_collection = parseFloat(sale.total_collection) + parseFloat(payment_amount);
               } else {
-                return sale.total_payment = sale.total_payment;
+                return sale.total_collection = sale.total_collection;
               }
             })
             
