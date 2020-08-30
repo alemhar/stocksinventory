@@ -929,7 +929,6 @@
               readabilityObject: {
                 fontSize: user.font_size
               }
-
           }
         },
         methods: {
