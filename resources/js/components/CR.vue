@@ -1342,6 +1342,20 @@
  
           },
           saveEntry(){
+            if(!this.form_entry.amount){
+                swal.fire({
+                    title: 'Warning!',
+                    text: "Can not save ZERO amount entry.",
+                    type: 'info',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ok'
+                }).then((result) => {
+                    
+                });
+                return false;
+            }  
 
             this.form_entry.credit_amount = this.form_entry.amount
 
