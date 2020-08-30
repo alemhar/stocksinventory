@@ -880,7 +880,7 @@
     export default {
         data() {
           return {
-              transaction_type: 'PURCHASE',
+              transaction_type: 'SALES',
               //ledgers: [],
               transactions: [],
               items: [],
@@ -1131,7 +1131,7 @@
                 transaction_entry_id: this.transaction_entry_id,
                 payee_id: this.form.payee_id,
                 branch_id: this.current_branch_id,
-                account_code: '1105110',
+                account_code: '11051100',
                 account_name: 'Input Tax',
                 reference_no: this.form.reference_no,
                 transaction_no: this.form.transaction_no,
@@ -1152,10 +1152,19 @@
             ++this.transaction_entry_id;
             
             this.transactions.push({ 
+
+                // *************************
+                account_type: 'ASSETS',
+                sub_account_type: 'CURRENT ASSETS',
+                main_code: 0,
+                main_account: 'NA',
+                type: 'NA',
+                //
+
                 transaction_entry_id: this.transaction_entry_id,
                 payee_id: this.form.payee_id,
                 branch_id: this.current_branch_id,
-                account_code: '1105120',
+                account_code: '11051200',
                 account_name: 'Creditable WTax',
                 reference_no: this.form.reference_no,
                 transaction_no: this.form.transaction_no,

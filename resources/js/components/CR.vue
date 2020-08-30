@@ -1047,7 +1047,7 @@
                 transaction_entry_id: this.transaction_entry_id,
                 payee_id: this.form.payee_id,
                 branch_id: this.current_branch_id,
-                account_code: '2105110',
+                account_code: '21051100',
                 account_name: 'Output Tax',
                 reference_no: this.form.reference_no,
                 transaction_no: this.form.transaction_no,

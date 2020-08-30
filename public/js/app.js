@@ -3140,7 +3140,7 @@ __webpack_require__.r(__webpack_exports__);
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
         branch_id: this.current_branch_id,
-        account_code: '1105110',
+        account_code: '11051100',
         account_name: 'Input Tax',
         reference_no: this.form.reference_no,
         transaction_no: this.form.transaction_no,
@@ -4598,7 +4598,7 @@ __webpack_require__.r(__webpack_exports__);
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
         branch_id: this.current_branch_id,
-        account_code: '2105110',
+        account_code: '21051100',
         account_name: 'Output Tax',
         reference_no: this.form.reference_no,
         transaction_no: this.form.transaction_no,
@@ -5661,7 +5661,7 @@ __webpack_require__.r(__webpack_exports__);
     loadPurchase: function loadPurchase() {
       var _this = this;
 
-      axios.get('api/cd/purchase/list?payee_id=' + this.current_payee_id).then(function (data) {
+      axios.get('api/cd/sales/list?payee_id=' + this.current_payee_id).then(function (data) {
         _this.sales = data.data; //console.log(this.sales);
       })["catch"](function () {//
       });
@@ -8847,7 +8847,7 @@ __webpack_require__.r(__webpack_exports__);
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
         branch_id: this.current_branch_id,
-        account_code: '1105110',
+        account_code: '11051100',
         account_name: 'Input Tax',
         reference_no: this.form.reference_no,
         transaction_no: this.form.transaction_no,
@@ -10143,7 +10143,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      transaction_type: 'PURCHASE',
+      transaction_type: 'SALES',
       //ledgers: [],
       transactions: [],
       items: [],
@@ -10385,7 +10385,7 @@ __webpack_require__.r(__webpack_exports__);
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
         branch_id: this.current_branch_id,
-        account_code: '1105110',
+        account_code: '11051100',
         account_name: 'Input Tax',
         reference_no: this.form.reference_no,
         transaction_no: this.form.transaction_no,
@@ -10404,10 +10404,17 @@ __webpack_require__.r(__webpack_exports__);
       });
       ++this.transaction_entry_id;
       this.transactions.push({
+        // *************************
+        account_type: 'ASSETS',
+        sub_account_type: 'CURRENT ASSETS',
+        main_code: 0,
+        main_account: 'NA',
+        type: 'NA',
+        //
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
         branch_id: this.current_branch_id,
-        account_code: '1105120',
+        account_code: '11051200',
         account_name: 'Creditable WTax',
         reference_no: this.form.reference_no,
         transaction_no: this.form.transaction_no,
@@ -76224,7 +76231,7 @@ var render = function() {
                       _c(
                         "h3",
                         { staticClass: "box-title box-title-transaction" },
-                        [_vm._v("Payment")]
+                        [_vm._v("Collection")]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "box-tools" }, [
@@ -76733,11 +76740,10 @@ var render = function() {
                                   return _c(
                                     "tr",
                                     {
-                                      key: _vm.purchase.id,
+                                      key: sale.id,
                                       class: {
                                         "table-warning":
-                                          _vm.active_debit_row ==
-                                          _vm.purchase.id
+                                          _vm.active_debit_row == sale.id
                                       },
                                       on: {
                                         click: function($event) {

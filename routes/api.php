@@ -67,6 +67,7 @@ Route::post('cd/confirm/{transaction_no}', 'API\CDController@confirmTransaction'
 Route::get('cd/items/list', 'API\CDItemController@list');
 Route::get('cd/entries/list', 'API\CDController@paymentList');
 Route::get('cd/purchase/list', 'API\CDController@list');
+Route::get('cd/sales/list', 'API\CDController@listSales');
 
 Route::post('ledgers', 'API\AccountController@store_ledger');
 Route::post('transactions', 'API\CDController@store_transactions');

@@ -12,7 +12,7 @@
             <!-- form start -->
             <form role="form" @submit.prevent="createTransaction()">
               <div class="box-header with-border">
-                <h3 class="box-title box-title-transaction">Payment</h3>
+                <h3 class="box-title box-title-transaction">Collection</h3>
                 <div class="box-tools">
                   <button type="submit" v-show="!transaction_created" class="btn btn-success">Create <i class="fas fa-plus-circle fa-fw"></i></button>
                   <!-- @click="createTransaction()"  -->
@@ -149,7 +149,7 @@
                     <th>Option</th>
                     
                   </tr>
-                  <tr v-for="sale in sales.data" :key="purchase.id" @click="selectPaymentRow(sale.id,sale.account_code)" :class="{ 'table-warning' : active_debit_row == purchase.id }" >
+                  <tr v-for="sale in sales.data" :key="sale.id" @click="selectPaymentRow(sale.id,sale.account_code)" :class="{ 'table-warning' : active_debit_row == sale.id }" >
                     <td>{{ sale.transaction_no }}</td>
                     <td>{{ sale.account_code }}</td>
                     <td>{{ sale.account_name }}</td>
@@ -653,7 +653,7 @@
             return (total_amount - payments).toFixed(2);
           },
           loadPurchase() {
-              axios.get('api/cd/purchase/list?payee_id='+this.current_payee_id)
+              axios.get('api/cd/sales/list?payee_id='+this.current_payee_id)
                 .then((data)=>{
                   this.sales = data.data;
                   //console.log(this.sales);
@@ -662,6 +662,7 @@
                   //
                 });
           },
+
           loadBranches(){
 
             if(this.$gate.isAdminOrUser()){

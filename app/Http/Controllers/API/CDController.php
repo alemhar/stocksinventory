@@ -172,6 +172,21 @@ class CDController extends Controller
         return $transaction;
     }
 
+    public function listSales(){
+        if($payee_id = \Request::get('payee_id')) {
+            $transaction = Transaction::where(function($query) use ($payee_id){
+                $query->where('amount','>','total_payment')
+                ->where('transaction_type','SALES')
+                ->where('payee_id',$payee_id)
+                ->where('status','CONFIRMED');
+            })->paginate(10);
+  
+        } else{
+            $transaction = null;
+        }
+        return $transaction;
+    }
+
 
     public function paymentList(){
         $account_code = \Request::get('account_code');
