@@ -76340,7 +76340,7 @@ var render = function() {
                               readonly: _vm.transaction_created,
                               type: "text",
                               id: "inputPayeeName",
-                              placeholder: "Payees Name"
+                              placeholder: "Payor Name"
                             },
                             domProps: { value: _vm.current_payee_name },
                             on: {
@@ -76665,7 +76665,7 @@ var render = function() {
                               type: "text",
                               readonly: "",
                               id: "inputDCNo",
-                              placeholder: "Payment Number"
+                              placeholder: "Transaction Number"
                             },
                             domProps: { value: _vm.form.transaction_no },
                             on: {
@@ -77590,7 +77590,7 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Payment #")]
+        [_vm._v("Transaction #")]
       )
     ])
   },

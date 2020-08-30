@@ -178,9 +178,8 @@ class CDController extends Controller
             $transaction = Transaction::where(function($query) use ($payee_id){
                 $query->where('amount','>','total_collection')
                 ->where('transaction_type','SALES')
-                ->where('transaction_type','SALES')
-                ->whereBetween('account_code', [11020000, 11039999])
                 ->where('payee_id',$payee_id)
+                ->whereBetween('account_code', [11020000, 11039999])
                 ->where('status','CONFIRMED');
             })->paginate(10);
   
