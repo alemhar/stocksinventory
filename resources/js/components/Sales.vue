@@ -1153,99 +1153,100 @@
                 status: 'CONFIRMED'
             });  
             
-            ++this.transaction_entry_id;
-            
-            this.transactions.push({ 
 
-                // *************************
-                account_type: 'ASSETS',
-                sub_account_type: 'CURRENT ASSETS',
-                main_code: 0,
-                main_account: 'NA',
-                type: 'NA',
-                //
+            if(this.form.wtax > 0){
+                ++this.transaction_entry_id;
+                this.transactions.push({ 
 
-                transaction_entry_id: this.transaction_entry_id,
-                payee_id: this.form.payee_id,
-                branch_id: this.current_branch_id,
-                account_code: '11051200',
-                account_name: 'Creditable WTax',
-                reference_no: this.form.reference_no,
-                transaction_no: this.form.transaction_no,
-                transaction_type: this.form.transaction_type,
-                transaction_date: this.form.transaction_date,
-                amount: this.form.wtax,
-                credit_amount: 0,
-                debit_amount: this.form.wtax,
-                total_payment: 0,
-                amount_ex_tax: 0,
-                vat: 0,
-                wtax_code: this.form.wtax_code,
-                wtax: this.form.wtax,
-                user_id: this.form.user_id,
-                status: 'CONFIRMED'
-            });  
+                    // *************************
+                    account_type: 'ASSETS',
+                    sub_account_type: 'CURRENT ASSETS',
+                    main_code: 0,
+                    main_account: 'NA',
+                    type: 'NA',
+                    //
 
+                    transaction_entry_id: this.transaction_entry_id,
+                    payee_id: this.form.payee_id,
+                    branch_id: this.current_branch_id,
+                    account_code: '11051200',
+                    account_name: 'Creditable WTax',
+                    reference_no: this.form.reference_no,
+                    transaction_no: this.form.transaction_no,
+                    transaction_type: this.form.transaction_type,
+                    transaction_date: this.form.transaction_date,
+                    amount: this.form.wtax,
+                    credit_amount: 0,
+                    debit_amount: this.form.wtax,
+                    total_payment: 0,
+                    amount_ex_tax: 0,
+                    vat: 0,
+                    wtax_code: this.form.wtax_code,
+                    wtax: this.form.wtax,
+                    user_id: this.form.user_id,
+                    status: 'CONFIRMED'
+                });  
+            }
 
-                // Save Transactions START
-                let rawData = {
-                    transactions: this.transactions
+            // Save Transactions START
+            let rawData = {
+                transactions: this.transactions
+            }
+            rawData = JSON.stringify(rawData);
+            let formData = new FormData();
+                formData.append('transactions', rawData);
+            axios.post('api/transactions', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
                 }
-                rawData = JSON.stringify(rawData);
-                let formData = new FormData();
-                    formData.append('transactions', rawData);
-                axios.post('api/transactions', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                })
-                .then((response)=>{
-                    
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-                // Save Transactions END
+            })
+            .then((response)=>{
+                
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+            // Save Transactions END
 
 
 
-                // Save Items START
-                let rawItemData = {
-                    items: this.items
+            // Save Items START
+            let rawItemData = {
+                items: this.items
+            }
+            rawItemData = JSON.stringify(rawItemData);
+            let formItemData = new FormData();
+                formItemData.append('items', rawItemData);
+            axios.post('api/items', formItemData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
                 }
-                rawItemData = JSON.stringify(rawItemData);
-                let formItemData = new FormData();
-                    formItemData.append('items', rawItemData);
-                axios.post('api/items', formItemData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                })
-                .then((response)=>{
-                    
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-                // Save Items END
+            })
+            .then((response)=>{
+                
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+            // Save Items END
 
 
-                swal.fire({
-                    title: 'Saved!',
-                    text: "Journal posted",
-                    type: 'info',
-                    showCancelButton: false,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ok'
-                }).then((result) => {
-                    if (result.value) {
-                      //Reload Current Page
-                      this.dataReset();
-                    }
-                });
+            swal.fire({
+                title: 'Saved!',
+                text: "Journal posted",
+                type: 'info',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ok'
+            }).then((result) => {
+                if (result.value) {
+                  //Reload Current Page
+                  this.dataReset();
+                }
+            });
           },
           dataReset(){
                   this.form.reset();

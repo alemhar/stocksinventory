@@ -5744,7 +5744,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.form.transaction_no = this.createSerialNumber();
-      this.form.transaction_type = 'PAYMENT';
+      this.form.transaction_type = 'COLLECTION';
       this.loadSale();
       /*
       this.form.post('api/cd')
@@ -10411,35 +10411,39 @@ __webpack_require__.r(__webpack_exports__);
         user_id: this.form.user_id,
         status: 'CONFIRMED'
       });
-      ++this.transaction_entry_id;
-      this.transactions.push({
-        // *************************
-        account_type: 'ASSETS',
-        sub_account_type: 'CURRENT ASSETS',
-        main_code: 0,
-        main_account: 'NA',
-        type: 'NA',
-        //
-        transaction_entry_id: this.transaction_entry_id,
-        payee_id: this.form.payee_id,
-        branch_id: this.current_branch_id,
-        account_code: '11051200',
-        account_name: 'Creditable WTax',
-        reference_no: this.form.reference_no,
-        transaction_no: this.form.transaction_no,
-        transaction_type: this.form.transaction_type,
-        transaction_date: this.form.transaction_date,
-        amount: this.form.wtax,
-        credit_amount: 0,
-        debit_amount: this.form.wtax,
-        total_payment: 0,
-        amount_ex_tax: 0,
-        vat: 0,
-        wtax_code: this.form.wtax_code,
-        wtax: this.form.wtax,
-        user_id: this.form.user_id,
-        status: 'CONFIRMED'
-      }); // Save Transactions START
+
+      if (this.form.wtax > 0) {
+        ++this.transaction_entry_id;
+        this.transactions.push({
+          // *************************
+          account_type: 'ASSETS',
+          sub_account_type: 'CURRENT ASSETS',
+          main_code: 0,
+          main_account: 'NA',
+          type: 'NA',
+          //
+          transaction_entry_id: this.transaction_entry_id,
+          payee_id: this.form.payee_id,
+          branch_id: this.current_branch_id,
+          account_code: '11051200',
+          account_name: 'Creditable WTax',
+          reference_no: this.form.reference_no,
+          transaction_no: this.form.transaction_no,
+          transaction_type: this.form.transaction_type,
+          transaction_date: this.form.transaction_date,
+          amount: this.form.wtax,
+          credit_amount: 0,
+          debit_amount: this.form.wtax,
+          total_payment: 0,
+          amount_ex_tax: 0,
+          vat: 0,
+          wtax_code: this.form.wtax_code,
+          wtax: this.form.wtax,
+          user_id: this.form.user_id,
+          status: 'CONFIRMED'
+        });
+      } // Save Transactions START
+
 
       var rawData = {
         transactions: this.transactions

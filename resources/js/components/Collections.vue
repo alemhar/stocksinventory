@@ -739,7 +739,7 @@
 
 
             this.form.transaction_no = this.createSerialNumber();
-            this.form.transaction_type = 'PAYMENT';
+            this.form.transaction_type = 'COLLECTION';
             this.loadSale();
             /*
             this.form.post('api/cd')
