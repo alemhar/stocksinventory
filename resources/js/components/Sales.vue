@@ -652,7 +652,15 @@
                   <td>{{ chart_of_account.account_code }}</td>
                   <td>{{ chart_of_account.account_name }}</td>
                   <td>
-                    <a href="#" @click="selectAccount(chart_of_account.account_code,chart_of_account.account_name)">Select
+                    <a href="#" @click="selectAccount(
+                    chart_of_account.account_code,
+                    chart_of_account.account_name,
+                    chart_of_account.account_code,
+                    chart_of_account.sub_account_type,
+                    chart_of_account.main_code,
+                    chart_of_account.main_account,
+                    chart_of_account.type
+                    )">Select
                       <i class="fa fa-edit"></i>
                     </a>
                   </td>
@@ -907,7 +915,11 @@
               selected_branch: {},
               cd : {},
               form: new Form({
-                  //id:'',
+                  account_type:'',
+                  sub_account_type:'',
+                  main_code:0,
+                  main_account:'',
+                  type: '',
                   payee_id: '',
                   reference_no: '',
                   transaction_no: '',
@@ -928,8 +940,11 @@
               }),
               form_entry: new Form({
 
-                  //id:'',
-                  //transaction_id:'',
+                  account_type:'',
+                  sub_account_type:'',
+                  main_code:0,
+                  main_account:'',
+                  type: '',
                   transaction_no:'',
                   transaction_entry_id: 0,
                   transaction_type: this.transaction_type,
@@ -1069,6 +1084,15 @@
             this.transaction_created = false; 
             ++this.transaction_entry_id;
             this.transactions.push({ 
+
+                // *************************
+                account_type: this.form.account_type,
+                sub_account_type: this.form.sub_account_type,
+                main_code: this.form.main_code,
+                main_account: this.form.main_account,
+                type: this.form.type,
+                // *************************
+
                 transaction_entry_id: this.transaction_entry_id,
                 payee_id: this.form.payee_id,
                 branch_id: this.current_branch_id,
@@ -1094,6 +1118,16 @@
             ++this.transaction_entry_id;
             
             this.transactions.push({ 
+
+                // *************************
+                account_type: 'ASSETS',
+                sub_account_type: 'CURRENT ASSETS',
+                main_code: 0,
+                main_account: 'NA',
+                type: 'NA',
+                //
+
+
                 transaction_entry_id: this.transaction_entry_id,
                 payee_id: this.form.payee_id,
                 branch_id: this.current_branch_id,
@@ -1243,19 +1277,39 @@
               $('#select-branch').modal('show');
           },
 
-          selectAccount(account_code  = null,account_name = null){
+          // *************************************************
+          selectAccount(
+                        account_code  = null,
+                        account_name = null, 
+                        account_type,
+                        sub_account_type,
+                        main_code,
+                        main_account,
+                        type
+                      ){
               if (account_code != null && account_name != null){
                   if(this.headerOrDetail == 'header'){
                       this.form.account_name = account_name;
                       this.form.account_code = account_code;
+                      this.form.account_type = account_type;
+                      this.form.sub_account_type = sub_account_type;
+                      this.form.main_code = main_code;
+                      this.form.main_account = main_account;
+                      this.form.type = type;
                   } else {
                       this.form_entry.account_name = account_name;
                       this.form_entry.account_code = account_code;
+                      this.form_entry.account_type = account_type;
+                      this.form_entry.sub_account_type = sub_account_type;
+                      this.form_entry.main_code = main_code;
+                      this.form_entry.main_account = main_account;
+                      this.form_entry.type = type;
                   }
               }
               $('#select-account').modal('hide');  
 
           },
+          // *************************************************
 
           selectPayee(id = null,name = null,address = null,tin = null){
               if (id){
@@ -1411,6 +1465,15 @@
             
             //this.$Progress.start();
             this.transactions.push({ 
+
+                // *************************
+                account_type: this.form_entry.account_type,
+                sub_account_type: this.form_entry.sub_account_type,
+                main_code: this.form_entry.main_code,
+                main_account: this.form_entry.main_account,
+                type: this.form_entry.type,
+                // *************************
+                
                 transaction_entry_id: this.transaction_entry_id,
                 payee_id: this.form.payee_id,
                 branch_id: this.current_branch_id,

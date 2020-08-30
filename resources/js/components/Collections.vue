@@ -132,7 +132,7 @@
         <div class="col-md-12">
           <div class="">
             <div class="box-header">
-              <h3 class="box-title box-title-transaction">Purchases</h3>
+              <h3 class="box-title box-title-transaction">Sales</h3>
               
             </div>
             <!-- /.box-header -->
@@ -140,7 +140,7 @@
               <table class="table table-hover">
                 <tbody>
                   <tr>
-                    <th>Purchase#</th>
+                    <th>Sales#</th>
                     <th>Account No.</th>
                     <th>Name</th>
                     <th>Amount</th>
@@ -149,15 +149,15 @@
                     <th>Option</th>
                     
                   </tr>
-                  <tr v-for="purchase in purchases.data" :key="purchase.id" @click="selectPaymentRow(purchase.id,purchase.account_code)" :class="{ 'table-warning' : active_debit_row == purchase.id }" >
-                    <td>{{ purchase.transaction_no }}</td>
-                    <td>{{ purchase.account_code }}</td>
-                    <td>{{ purchase.account_name }}</td>
-                    <td>{{ purchase.amount }}</td>
-                    <td>{{ purchase.total_payment }}</td>
-                    <td>{{ currentBalance(purchase.amount,purchase.total_payment) }}</td> 
+                  <tr v-for="sale in sales.data" :key="purchase.id" @click="selectPaymentRow(sale.id,sale.account_code)" :class="{ 'table-warning' : active_debit_row == purchase.id }" >
+                    <td>{{ sale.transaction_no }}</td>
+                    <td>{{ sale.account_code }}</td>
+                    <td>{{ sale.account_name }}</td>
+                    <td>{{ sale.amount }}</td>
+                    <td>{{ sale.total_payment }}</td>
+                    <td>{{ currentBalance(sale.amount,sale.total_payment) }}</td> 
                     <td>
-                      <a href="#" @click="pay(purchase.id,purchase.account_code,purchase.account_name,currentBalance(purchase.amount,purchase.total_payment))">
+                      <a href="#" @click="pay(sale.id,sale.account_code,sale.account_name,currentBalance(sale.amount,sale.total_payment))">
                         <i class="fas fa-money-bill"></i>
                         Pay
                         <!-- i class="fa fa-money-bill"></i -->
@@ -211,7 +211,7 @@
                   <table class="table table-hover">
                     <tbody>
                       <tr>
-                        <th>Payment#</th>
+                        <th>Collection#</th>
                         <th>Account No.</th>
                         <th>Name</th>
                         <th>Amount</th>
@@ -269,7 +269,7 @@
               <table class="table table-hover">
                 <tbody>
                   <tr>
-                    <th>Payment#</th>
+                    <th>Collection#</th>
                     <th>Account No.</th>
                     <th>Name</th>
                     <th>Amount</th>
@@ -637,7 +637,7 @@
               payees: {},
               branches: {},
               payment_history: {},
-              purchases:{},
+              sales:{},
               chart_of_accounts: {},
               chart_of_accounts_header: {},
               chart_of_accounts_detail: {},
@@ -655,8 +655,8 @@
           loadPurchase() {
               axios.get('api/cd/purchase/list?payee_id='+this.current_payee_id)
                 .then((data)=>{
-                  this.purchases = data.data;
-                  //console.log(this.purchases);
+                  this.sales = data.data;
+                  //console.log(this.sales);
                 })
                 .catch(()=>{
                   //
@@ -810,7 +810,7 @@
 
                 // Save Payment START
                 let paymentData = {
-                    payments: this.purchases.data
+                    payments: this.sales.data
                 }
 
                 paymentData = JSON.stringify(paymentData);
@@ -870,7 +870,7 @@
                 this.current_payee_tin = '';
                 this.active_debit_row = 0;
                 this.payment_history = {};
-                this.purchases = {};
+                this.sales = {};
           },
           cancelTransaction(){
             this.transaction_created = false;
@@ -1118,7 +1118,7 @@
           updatePurchase(payment_amount){
             
 
-            this.purchases.data.map((purchase) => {
+            this.sales.data.map((purchase) => {
               if(!purchase.total_payment){
                 purchase.total_payment = 0;
               }

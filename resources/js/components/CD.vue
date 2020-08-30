@@ -844,8 +844,9 @@
                   account_type:'',
                   sub_account_type:'',
                   main_code:0,
-                  main_account:'',payee_id: '',
+                  main_account:'',
                   type: '',
+                  payee_id: '',
                   reference_no: '',
                   transaction_no: '',
                   transaction_type: this.transaction_type, // default for Cash Disbursement
@@ -1200,6 +1201,7 @@
 
           },
           // *************************************************
+          
           selectPayee(id = null,name = null,address = null,tin = null){
               if (id){
                     
