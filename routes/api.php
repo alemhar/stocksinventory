@@ -66,6 +66,7 @@ Route::delete('cd/cancel/{transaction_no}', 'API\CDController@cancelTransaction'
 Route::post('cd/confirm/{transaction_no}', 'API\CDController@confirmTransaction');
 Route::get('cd/items/list', 'API\CDItemController@list');
 Route::get('cd/entries/list', 'API\CDController@paymentList');
+Route::get('cd/entries/collectionList', 'API\CDController@collectionList');
 Route::get('cd/purchase/list', 'API\CDController@list');
 Route::get('cd/sales/list', 'API\CDController@listSales');
 
@@ -74,6 +75,7 @@ Route::post('transactions', 'API\CDController@store_transactions');
 Route::post('items', 'API\CDItemController@store_items');
 
 Route::post('record_payment', 'API\CDController@record_payment');
+Route::post('record_collection', 'API\CDController@record_collection');
 Route::post('update_payee_account', 'API\PayeeController@updateAccount');
 
 Route::get('ledgers/{account_code}', 'API\CDController@load_ledger');

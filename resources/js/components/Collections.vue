@@ -199,7 +199,7 @@
             <div class="col-md-12">
               <div class="">
                 <div class="box-header">
-                  <h3 class="box-title box-title-transaction">New Payments</h3>
+                  <h3 class="box-title box-title-transaction">New Collections</h3>
                   <!-- div class="box-tools">
                     <button class="btn btn-success" @click="newEntry">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div -->
@@ -257,7 +257,7 @@
         <div class="col-md-12">
           <div class="">
             <div class="box-header">
-              <h3 class="box-title box-title-transaction">Payments History</h3>
+              <h3 class="box-title box-title-transaction">Collection History</h3>
               <!-- div class="box-tools">
                 <button class="btn btn-success" @click="newEntry">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
               </div -->
@@ -563,13 +563,13 @@
     export default {
         data() {
           return {
-              transaction_type: 'PAYMENT',
+              transaction_type: 'COLLECTION',
               transactions: [],
               transaction_entry_id: 0,
               current_transaction_entry_id: 0,
 
               current_balance: 0,
-              current_purchase_id: 0,
+              current_sale_id: 0,
               user_id: '',
               transaction_created: false,
               no_payee: false,
@@ -812,14 +812,14 @@
 
 
                 // Save Payment START
-                let paymentData = {
-                    payments: this.sales.data
+                let saleData = {
+                    sales: this.sales.data
                 }
 
-                paymentData = JSON.stringify(paymentData);
-                let paymentFormData = new FormData();
-                    paymentFormData.append('payments', paymentData);
-                axios.post('api/record_payment', paymentFormData, {
+                saleData = JSON.stringify(saleData);
+                let saleFormData = new FormData();
+                saleFormData.append('sales', saleData);
+                axios.post('api/record_collection', saleFormData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -857,7 +857,7 @@
                 this.current_transaction_entry_id = 0;
 
                 this.current_balance = 0;
-                this.current_purchase_id = 0;
+                this.current_sale_id = 0;
                 this.transaction_created = false;
                 this.no_payee = false;
                 this.no_reference_no = false;
@@ -974,10 +974,10 @@
           
           
           
-          pay(purchase_id,account_code,account_name,current_balance)
+          pay(sale_id,account_code,account_name,current_balance)
           {
                 this.current_balance = current_balance;
-                this.current_purchase_id = purchase_id;
+                this.current_sale_id = sale_id;
 
                 ++this.transaction_entry_id;
 
@@ -1097,7 +1097,7 @@
               this.loadPaymentHistory(account_code);
           },
           loadPaymentHistory(account_code) {
-                axios.get('api/cd/entries/list?payee_id='+this.form.payee_id+'&account_code='+account_code)
+                axios.get('api/cd/entries/collectionList?payee_id='+this.form.payee_id+'&account_code='+account_code)
                 .then((data)=>{
                   this.payment_history = data.data;
                 })
@@ -1110,7 +1110,7 @@
           getPaymentHistotyPage(page){
               
               
-              axios.get('api/cd/entries/list?payee_id='+this.current_payee_id+'&page='+ page)
+              axios.get('api/cd/entries/collectionList?payee_id='+this.current_payee_id+'&page='+ page)
                 .then((data)=>{
                   this.payment_history = data.data;
                 })
@@ -1121,14 +1121,14 @@
           updatePurchase(payment_amount){
             
 
-            this.sales.data.map((purchase) => {
-              if(!purchase.total_payment){
-                purchase.total_payment = 0;
+            this.sales.data.map((sale) => {
+              if(!sale.total_payment){
+                sale.total_payment = 0;
               }
-              if(purchase.id == this.current_purchase_id){
-                return purchase.total_payment = parseFloat(purchase.total_payment) + parseFloat(payment_amount);
+              if(sale.id == this.current_sale_id){
+                return sale.total_payment = parseFloat(sale.total_payment) + parseFloat(payment_amount);
               } else {
-                return purchase.total_payment = purchase.total_payment;
+                return sale.total_payment = sale.total_payment;
               }
             })
             

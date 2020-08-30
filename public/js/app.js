@@ -5577,12 +5577,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      transaction_type: 'PAYMENT',
+      transaction_type: 'COLLECTION',
       transactions: [],
       transaction_entry_id: 0,
       current_transaction_entry_id: 0,
       current_balance: 0,
-      current_purchase_id: 0,
+      current_sale_id: 0,
       user_id: '',
       transaction_created: false,
       no_payee: false,
@@ -5811,13 +5811,13 @@ __webpack_require__.r(__webpack_exports__);
       }); // Save Transactions END
       // Save Payment START
 
-      var paymentData = {
-        payments: this.sales.data
+      var saleData = {
+        sales: this.sales.data
       };
-      paymentData = JSON.stringify(paymentData);
-      var paymentFormData = new FormData();
-      paymentFormData.append('payments', paymentData);
-      axios.post('api/record_payment', paymentFormData, {
+      saleData = JSON.stringify(saleData);
+      var saleFormData = new FormData();
+      saleFormData.append('sales', saleData);
+      axios.post('api/record_collection', saleFormData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -5849,7 +5849,7 @@ __webpack_require__.r(__webpack_exports__);
       this.transaction_entry_id = 0;
       this.current_transaction_entry_id = 0;
       this.current_balance = 0;
-      this.current_purchase_id = 0;
+      this.current_sale_id = 0;
       this.transaction_created = false;
       this.no_payee = false;
       this.no_reference_no = false;
@@ -5960,9 +5960,9 @@ __webpack_require__.r(__webpack_exports__);
 
       return "" + n + this.user_id;
     },
-    pay: function pay(purchase_id, account_code, account_name, current_balance) {
+    pay: function pay(sale_id, account_code, account_name, current_balance) {
       this.current_balance = current_balance;
-      this.current_purchase_id = purchase_id;
+      this.current_sale_id = sale_id;
       ++this.transaction_entry_id;
       this.form_entry.reset(); //this.form_entry.transaction_id = this.form.id;
 
@@ -6037,7 +6037,7 @@ __webpack_require__.r(__webpack_exports__);
     loadPaymentHistory: function loadPaymentHistory(account_code) {
       var _this8 = this;
 
-      axios.get('api/cd/entries/list?payee_id=' + this.form.payee_id + '&account_code=' + account_code).then(function (data) {
+      axios.get('api/cd/entries/collectionList?payee_id=' + this.form.payee_id + '&account_code=' + account_code).then(function (data) {
         _this8.payment_history = data.data;
       })["catch"](function () {//
       });
@@ -6045,22 +6045,22 @@ __webpack_require__.r(__webpack_exports__);
     getPaymentHistotyPage: function getPaymentHistotyPage(page) {
       var _this9 = this;
 
-      axios.get('api/cd/entries/list?payee_id=' + this.current_payee_id + '&page=' + page).then(function (data) {
+      axios.get('api/cd/entries/collectionList?payee_id=' + this.current_payee_id + '&page=' + page).then(function (data) {
         _this9.payment_history = data.data;
       })["catch"](function () {});
     },
     updatePurchase: function updatePurchase(payment_amount) {
       var _this10 = this;
 
-      this.sales.data.map(function (purchase) {
-        if (!purchase.total_payment) {
-          purchase.total_payment = 0;
+      this.sales.data.map(function (sale) {
+        if (!sale.total_payment) {
+          sale.total_payment = 0;
         }
 
-        if (purchase.id == _this10.current_purchase_id) {
-          return purchase.total_payment = parseFloat(purchase.total_payment) + parseFloat(payment_amount);
+        if (sale.id == _this10.current_sale_id) {
+          return sale.total_payment = parseFloat(sale.total_payment) + parseFloat(payment_amount);
         } else {
-          return purchase.total_payment = purchase.total_payment;
+          return sale.total_payment = sale.total_payment;
         }
       });
     }
@@ -77642,7 +77642,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "box-header" }, [
       _c("h3", { staticClass: "box-title box-title-transaction" }, [
-        _vm._v("New Payments")
+        _vm._v("New Collections")
       ])
     ])
   },
@@ -77666,7 +77666,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "box-header" }, [
       _c("h3", { staticClass: "box-title box-title-transaction" }, [
-        _vm._v("Payments History")
+        _vm._v("Collection History")
       ])
     ])
   },

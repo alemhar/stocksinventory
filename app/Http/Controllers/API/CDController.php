@@ -207,6 +207,24 @@ class CDController extends Controller
         return $transactions;
     }
 
+
+    public function collectionList(){
+        $account_code = \Request::get('account_code');
+        $payee_id = \Request::get('payee_id');
+
+        if($payee_id) {
+            $transactions = Transaction::where(function($query) use ($payee_id, $account_code){
+                $query->where('payee_id',$payee_id)
+                ->where('status','CONFIRMED')
+                ->where('account_code',$account_code)
+                ->where('transaction_type','COLLECTION');
+            })->paginate(10);
+        } else{
+            $transactions = null;
+        }
+        return $transactions;
+    }
+
     public function record_payment(Request $request)
     {
         
@@ -219,6 +237,20 @@ class CDController extends Controller
         }
 
         return ['message' => 'Payment posted.'];
+    }
+
+    public function record_collection(Request $request)
+    {
+        
+        $data = json_decode($request['sales']);
+        
+        foreach ($data->sales as $sale) {
+            $transaction = Transaction::find($sale->id);
+            $transaction->total_collection = $sale->total_collection;
+            $transaction->save();
+        }
+
+        return ['message' => 'Collection posted.'];
     }
 
     public function store_transactions(Request $request)
