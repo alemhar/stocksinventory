@@ -39,7 +39,8 @@ class CreateTransactionsTable extends Migration
             $table->decimal('total_collection', 14, 2)->default(0);
             $table->boolean('canceled')->default(0);
             $table->integer('user_id')->unsigned();
-            //$table->tinyInteger('filter');
+            $table->integer('useful_life')->default(0);
+            $table->decimal('salvage_value', 14, 2)->default(0);
             $table->string('status', 20)->default('UNCONFIRMED');
             $table->integer('branch_id')->unsigned()->default(0);
             $table->timestamps();

@@ -880,6 +880,8 @@
                   vat: 0,
                   canceled: 0,
                   branch_id: '',
+                  useful_life: 0,
+                  salvage_value: 0,
                   user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
               }),
               form_entry: new Form({
@@ -901,6 +903,8 @@
                   vat: 0,
                   credit_amount: 0,
                   debit_amount: 0,
+                  useful_life: 0,
+                  salvage_value: 0,
                   transaction_date: this.getDate(),
               }),
               form_item: new Form({
@@ -1045,12 +1049,14 @@
                 amount: this.form.amount,
                 credit_amount: this.form.amount,
                 debit_amount: 0,
-                total_payment: 0,
                 amount_ex_tax: this.form.amount_ex_tax,
                 vat: this.form.vat,
                 wtax_code: 0,
                 wtax: 0,
                 user_id: this.form.user_id,
+                useful_life: 0,
+                salvage_value: 0,
+                total_payment: 0,
                 status: 'CONFIRMED'
             });
             ++this.transaction_entry_id;
@@ -1076,12 +1082,14 @@
                 amount: this.form.vat,
                 credit_amount: 0,
                 debit_amount: this.form.vat,
-                total_payment: 0,
                 amount_ex_tax: 0,
                 vat: 0,
                 wtax_code: 0,
                 wtax: 0,
                 user_id: this.form.user_id,
+                useful_life: 0,
+                salvage_value: 0,
+                total_payment: 0,
                 status: 'CONFIRMED'
             });  
 
@@ -1333,6 +1341,21 @@
           },
           newItem(){
 
+              if(this.depreciates && this.items.length > 0){
+                swal.fire({
+                    title: 'Warning!',
+                    text: "Can only add one(1) item for "+ this.form_entry.account_name+ ".<br>Add another "+ this.form_entry.account_name+ " to enter another item.",
+                    type: 'info',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ok'
+                }).then((result) => {
+                    
+                });
+
+                return false;
+              }
               if(this.form_entry.account_code == 0) {
                 this.no_entry_account_code = true;
               } else {
@@ -1373,7 +1396,7 @@
 
             // ** Temporary data to bypass Column cannot be null ERROR's
             this.save_button_entry_enabled = false;
-
+            this.depreciates = false;
             this.form.amount += this.form_entry.amount;
             this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
             this.form.vat += this.form_entry.vat;  
@@ -1404,12 +1427,14 @@
                 amount: this.form_entry.amount_ex_tax,
                 credit_amount: 0,
                 debit_amount: this.form_entry.amount_ex_tax,
-                total_payment: 0,
                 amount_ex_tax: 0,
                 vat: this.form_entry.vat,
                 wtax_code: 0,
                 wtax: 0,
                 user_id: this.form.user_id,
+                useful_life: this.form_entry.useful_life,
+                salvage_value: this.form_entry.salvage_value,
+                total_payment: 0,
                 status: 'CONFIRMED'
             });
 
