@@ -250,7 +250,8 @@ class CDController extends Controller
             $transaction->save();
         }
 
-        return ['message' => 'Collection posted.'];
+        //return ['message' => 'Collection posted.'];
+        return $request;
     }
 
     public function store_transactions(Request $request)

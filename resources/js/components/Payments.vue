@@ -157,7 +157,12 @@
                     <td>{{ purchase.total_payment }}</td>
                     <td>{{ currentBalance(purchase.amount,purchase.total_payment) }}</td> 
                     <td>
-                      <a href="#" @click="pay(purchase.id,purchase.account_code,purchase.account_name,currentBalance(purchase.amount,purchase.total_payment))">
+                      <a href="#" @click="pay(purchase.id,purchase.account_code,purchase.account_name,currentBalance(purchase.amount,purchase.total_payment),
+                    purchase.account_type,
+                    purchase.sub_account_type,
+                    purchase.main_code,
+                    purchase.main_account,
+                    purchase.type)">
                         <i class="fas fa-money-bill"></i>
                         Pay
                         <!-- i class="fa fa-money-bill"></i -->
@@ -972,7 +977,12 @@
           
           
           
-          pay(purchase_id,account_code,account_name,current_balance)
+          pay(purchase_id,account_code,account_name,current_balance, 
+                        account_type,
+                        sub_account_type,
+                        main_code,
+                        main_account,
+                        type)
           {
                 this.current_balance = current_balance;
                 this.current_purchase_id = purchase_id;
@@ -987,6 +997,13 @@
                 this.form_entry.transaction_type = this.transaction_type;
                 this.form_entry.account_code = account_code;
                 this.form_entry.account_name = account_name;
+
+                this.form_entry.account_type = account_type;
+                this.form_entry.sub_account_type = sub_account_type;
+                this.form_entry.main_code = main_code;
+                this.form_entry.main_account = main_account;
+                this.form_entry.type = type;
+                
                 this.form_entry.payee_id = this.current_payee_id;
                 //this.form_entry.branch_name = this.current_payee_name;
                 this.save_button_entry_enabled = true;

@@ -5571,6 +5571,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -5960,7 +5965,7 @@ __webpack_require__.r(__webpack_exports__);
 
       return "" + n + this.user_id;
     },
-    pay: function pay(sale_id, account_code, account_name, current_balance) {
+    pay: function pay(sale_id, account_code, account_name, current_balance, account_type, sub_account_type, main_code, main_account, type) {
       this.current_balance = current_balance;
       this.current_sale_id = sale_id;
       ++this.transaction_entry_id;
@@ -5971,6 +5976,11 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.transaction_type = this.transaction_type;
       this.form_entry.account_code = account_code;
       this.form_entry.account_name = account_name;
+      this.form_entry.account_type = account_type;
+      this.form_entry.sub_account_type = sub_account_type;
+      this.form_entry.main_code = main_code;
+      this.form_entry.main_account = main_account;
+      this.form_entry.type = type;
       this.form_entry.payee_id = this.current_payee_id; //this.form_entry.branch_name = this.current_payee_name;
 
       this.save_button_entry_enabled = true;
@@ -7269,6 +7279,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 //import { ModelSelect } from 'vue-search-select'
 //import { DynamicSelect } from 'vue-dynamic-select'
 //import { BasicSelect } from 'vue-search-select'
@@ -7658,7 +7673,7 @@ __webpack_require__.r(__webpack_exports__);
 
       return "" + n + this.user_id;
     },
-    pay: function pay(purchase_id, account_code, account_name, current_balance) {
+    pay: function pay(purchase_id, account_code, account_name, current_balance, account_type, sub_account_type, main_code, main_account, type) {
       this.current_balance = current_balance;
       this.current_purchase_id = purchase_id;
       ++this.transaction_entry_id;
@@ -7669,6 +7684,11 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.transaction_type = this.transaction_type;
       this.form_entry.account_code = account_code;
       this.form_entry.account_name = account_name;
+      this.form_entry.account_type = account_type;
+      this.form_entry.sub_account_type = sub_account_type;
+      this.form_entry.main_code = main_code;
+      this.form_entry.main_account = main_account;
+      this.form_entry.type = type;
       this.form_entry.payee_id = this.current_payee_id; //this.form_entry.branch_name = this.current_payee_name;
 
       this.save_button_entry_enabled = true;
@@ -76811,7 +76831,12 @@ var render = function() {
                                                   _vm.currentBalance(
                                                     sale.amount,
                                                     sale.total_payment
-                                                  )
+                                                  ),
+                                                  sale.account_type,
+                                                  sale.sub_account_type,
+                                                  sale.main_code,
+                                                  sale.main_account,
+                                                  sale.type
                                                 )
                                               }
                                             }
@@ -79689,7 +79714,12 @@ var render = function() {
                                                   _vm.currentBalance(
                                                     purchase.amount,
                                                     purchase.total_payment
-                                                  )
+                                                  ),
+                                                  purchase.account_type,
+                                                  purchase.sub_account_type,
+                                                  purchase.main_code,
+                                                  purchase.main_account,
+                                                  purchase.type
                                                 )
                                               }
                                             }
