@@ -1407,9 +1407,7 @@
 
                 return false;
               }
-
             this.form_entry.credit_amount = this.form_entry.amount
-
             // ** Temporary data to bypass Column cannot be null ERROR's
             this.save_button_entry_enabled = false;
             this.depreciates = false;
@@ -1419,7 +1417,6 @@
 
             // To refresh ITEMS table
             this.current_transaction_entry_id = this.transaction_entry_id;
-            
             //this.$Progress.start();
             this.transactions.push({ 
 
