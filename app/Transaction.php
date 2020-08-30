@@ -48,6 +48,8 @@ class Transaction extends Model
 						'canceled',
 						'user_id',
 						'branch_id',
-						'status'
+						'status',
+						'useful_life',
+						'salvage_value'
     					];
 }

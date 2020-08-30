@@ -414,7 +414,7 @@
 
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Salage Value</span>
+                  <span class="input-group-text inputGroup-sizing-default">Salvage Value</span>
                 </div>
 
                   <input v-model="form_entry.salvage_value" name="salvage_value" id="salvage_value"

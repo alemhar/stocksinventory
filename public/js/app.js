@@ -83360,7 +83360,7 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Salage Value")]
+        [_vm._v("Salvage Value")]
       )
     ])
   },
