@@ -283,7 +283,9 @@ class CDController extends Controller
                 'wtax' => $transaction->wtax,
                 'type' => $transaction->type,
                 'user_id' => $transaction->user_id,
-                'status' => $transaction->status
+                'status' => $transaction->status,
+                'useful_life' => $transaction->useful_life,
+                'salvage_value' => $transaction->salvage_value
             ]);
 
             
