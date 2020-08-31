@@ -27,13 +27,13 @@ Route::get('/test', function () {
         
         $depreciation = $depreciatiable->amount/$depreciatiable->useful_life;
 
-        $remainingBalance = $depreciatiable->amount - $depreciatiable->total_collection - $depreciatiable->salvage_value;
+        $remainingBalance = $depreciatiable->amount - $depreciatiable->total_deduction - $depreciatiable->salvage_value;
         
         if($depreciation > $remainingBalance){
             $depreciation = $remainingBalance;
         }
 
-        $depreciations[$depreciatiable->id] = number_format($remainingBalance,2);
+        $depreciations[$depreciatiable->id] = number_format($depreciation,2);
         //array_push($depreciations,number_format($depreciation,2));
     }
     return $depreciations;
