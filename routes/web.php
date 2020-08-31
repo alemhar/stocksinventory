@@ -16,8 +16,8 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    $depreciatiables = Transaction::whereBetween('account_code', [15011200, 15011550]);-get();
-    
+    $depreciatiables = Transaction::whereBetween('account_code', [15011200, 15011550])->get();
+    return $depreciatiables;
 });
 
 Auth::routes();
