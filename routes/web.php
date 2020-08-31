@@ -35,7 +35,7 @@ Route::get('/test', function () {
             $depreciation = $remainingBalance;
         }
         */
-        array_push($depreciations,round($remainingBalance,2));
+        array_push($depreciations,$remainingBalance);
     }
     return $depreciations;
 });
