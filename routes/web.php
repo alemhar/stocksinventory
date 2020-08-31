@@ -20,7 +20,16 @@ Route::get('/test', function () {
     ->where('amount', '>', DB::raw('total_deduction + salvage_value'))
     //->where(DB::raw('total_deduction + salvage_value'),'<','amount')
     ->get();
-    return $depreciatiables;
+    $depreciations = [];
+    foreach($depreciatiables as $depreciatiable){
+        $depreciation = $depreciatiable->amount/$depreciatiable->useful_life;
+        $remainingBalance = $depreciatiable->amount - ($depreciatiable->total_collection + $depreciatiable->salvage_value);
+        if($depreciation > $remainingBalance){
+            $depreciation = $remainingBalance;
+        }
+        array_push($depreciations,$depreciation);
+    }
+    return $depreciations;
 });
 
 Auth::routes();
