@@ -29,7 +29,7 @@ Route::get('/test', function () {
         
         $depreciation = round($amount/$depreciatiable->useful_life,2);
 
-        $remainingBalance = $amount - 200 - 200;
+        $remainingBalance = 1000 - 200 - 200;
         /*
         if($depreciation > $remainingBalance){
             $depreciation = $remainingBalance;
