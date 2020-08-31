@@ -402,26 +402,28 @@
                 <!-- /.box-body -->
 
               <div v-if="depreciates">
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Useful Life</span>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text inputGroup-sizing-default">Useful Life</span>
+                  </div>
+
+                    <input v-model="form_entry.useful_life" name="useful_life" id="useful_life"
+                    class="form-control" aria-describedby="inputGroup-sizing-default">
+                    
                 </div>
 
-                  <input v-model="form_entry.useful_life" name="useful_life" id="useful_life"
-                  class="form-control" aria-describedby="inputGroup-sizing-default">
-                  
-              </div>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text inputGroup-sizing-default">Salvage Value</span>
+                  </div>
 
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Salvage Value</span>
+                    <input v-model="form_entry.salvage_value" name="salvage_value" id="salvage_value"
+                    class="form-control" aria-describedby="inputGroup-sizing-default">
+                    
                 </div>
+              </div>
 
-                  <input v-model="form_entry.salvage_value" name="salvage_value" id="salvage_value"
-                  class="form-control" aria-describedby="inputGroup-sizing-default">
-                  
-              </div>
-              </div>
+
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Amount</span>
@@ -1356,6 +1358,7 @@
 
                 return false;
               }
+              
               if(this.form_entry.account_code == 0) {
                 this.no_entry_account_code = true;
               } else {

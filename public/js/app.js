@@ -2900,6 +2900,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2958,6 +2981,8 @@ __webpack_require__.r(__webpack_exports__);
         vat: 0,
         canceled: 0,
         branch_id: '',
+        useful_life: 0,
+        salvage_value: 0,
         user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
       }),
       form_entry: new Form({
@@ -2978,6 +3003,8 @@ __webpack_require__.r(__webpack_exports__);
         vat: 0,
         credit_amount: 0,
         debit_amount: 0,
+        useful_life: 0,
+        salvage_value: 0,
         transaction_date: this.getDate()
       }),
       form_item: new Form({
@@ -2999,6 +3026,7 @@ __webpack_require__.r(__webpack_exports__);
       chart_of_accounts: {},
       chart_of_accounts_header: {},
       chart_of_accounts_detail: {},
+      depreciates: false,
       readabilityObject: {
         fontSize: user.font_size
       }
@@ -3269,6 +3297,12 @@ __webpack_require__.r(__webpack_exports__);
           this.form.main_account = main_account;
           this.form.type = type;
         } else {
+          if (account_code >= 15011200 && account_code < 15011550) {
+            this.depreciates = true;
+          } else {
+            this.depreciates = false;
+          }
+
           this.form_entry.account_name = account_name;
           this.form_entry.account_code = account_code;
           this.form_entry.account_type = account_type;
@@ -3374,6 +3408,19 @@ __webpack_require__.r(__webpack_exports__);
       $('#entry-details').modal('show');
     },
     newItem: function newItem() {
+      if (this.depreciates && this.items.length > 0) {
+        swal.fire({
+          title: 'Warning!',
+          text: "Can only add one(1) item for " + this.form_entry.account_name + ". \nAdd another " + this.form_entry.account_name + " to enter another item.",
+          type: 'info',
+          showCancelButton: false,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ok'
+        }).then(function (result) {});
+        return false;
+      }
+
       if (this.form_entry.account_code == 0) {
         this.no_entry_account_code = true;
       } else {
@@ -3404,6 +3451,19 @@ __webpack_require__.r(__webpack_exports__);
       $('#entry-details').modal('hide');
     },
     saveEntry: function saveEntry() {
+      if (!this.form_entry.useful_life) {
+        swal.fire({
+          title: 'Warning!',
+          text: "USEFUL LIFE input required for this entry.",
+          type: 'info',
+          showCancelButton: false,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ok'
+        }).then(function (result) {});
+        return false;
+      }
+
       if (!this.form_entry.amount) {
         swal.fire({
           title: 'Warning!',
@@ -3420,6 +3480,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form_entry.credit_amount = this.form_entry.amount; // ** Temporary data to bypass Column cannot be null ERROR's
 
       this.save_button_entry_enabled = false;
+      this.depreciates = false;
       this.form.amount += this.form_entry.amount;
       this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
       this.form.vat += this.form_entry.vat; // To refresh ITEMS table
@@ -3452,6 +3513,8 @@ __webpack_require__.r(__webpack_exports__);
         wtax_code: 0,
         wtax: 0,
         user_id: this.form.user_id,
+        useful_life: this.form_entry.useful_life,
+        salvage_value: this.form_entry.salvage_value,
         status: 'CONFIRMED'
       });
       $('#entry-details').modal('hide'); //this.$Progress.finish();
@@ -7859,6 +7922,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -72087,11 +72152,83 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
+                  _vm.depreciates
+                    ? _c("div", [
+                        _c("div", { staticClass: "input-group mb-2" }, [
+                          _vm._m(15),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form_entry.useful_life,
+                                expression: "form_entry.useful_life"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              name: "useful_life",
+                              id: "useful_life",
+                              "aria-describedby": "inputGroup-sizing-default"
+                            },
+                            domProps: { value: _vm.form_entry.useful_life },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.form_entry,
+                                  "useful_life",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "input-group mb-2" }, [
+                          _vm._m(16),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form_entry.salvage_value,
+                                expression: "form_entry.salvage_value"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              name: "salvage_value",
+                              id: "salvage_value",
+                              "aria-describedby": "inputGroup-sizing-default"
+                            },
+                            domProps: { value: _vm.form_entry.salvage_value },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.form_entry,
+                                  "salvage_value",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
                   _c(
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(15),
+                      _vm._m(17),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -72143,7 +72280,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(16),
+                      _vm._m(18),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -72199,7 +72336,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(17),
+                      _vm._m(19),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -72343,7 +72480,7 @@ var render = function() {
                   [_vm._v("Update Entry")]
                 ),
                 _vm._v(" "),
-                _vm._m(18)
+                _vm._m(20)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -72351,7 +72488,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(19),
+                    _vm._m(21),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -72410,7 +72547,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(20),
+                    _vm._m(22),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -72472,7 +72609,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(21),
+                    _vm._m(23),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -72538,7 +72675,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(22),
+                    _vm._m(24),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -72583,7 +72720,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(23),
+                  _vm._m(25),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -72647,7 +72784,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(24),
+                    _vm._m(26),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -72694,7 +72831,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(25),
+                    _vm._m(27),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -72785,7 +72922,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(26),
+              _vm._m(28),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -72824,7 +72961,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(27),
+                            _vm._m(29),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -72873,7 +73010,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(28)
+                _vm._m(30)
               ])
             ])
           ]
@@ -72904,7 +73041,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(29),
+              _vm._m(31),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -72943,7 +73080,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(30),
+                            _vm._m(32),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -72983,7 +73120,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(31)
+                _vm._m(33)
               ])
             ])
           ]
@@ -73014,7 +73151,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(32),
+              _vm._m(34),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -73053,7 +73190,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(33),
+                            _vm._m(35),
                             _vm._v(" "),
                             _vm._l(_vm.branches.data, function(branch) {
                               return _c("tr", { key: branch.id }, [
@@ -73091,7 +73228,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(34)
+                _vm._m(36)
               ])
             ])
           ]
@@ -73310,6 +73447,30 @@ var staticRenderFns = [
       _c("th", [_vm._v("Vat")]),
       _vm._v(" "),
       _c("th", [_vm._v("Option")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Useful Life")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Salvage Value")]
+      )
     ])
   },
   function() {

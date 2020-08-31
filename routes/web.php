@@ -1,5 +1,5 @@
 <?php
-
+use App\Transaction;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,9 +16,8 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-
-    $transaction = App\Transaction::with('payee')->find(82);
-    dd($transaction->payee->name);
+    $depreciatiables = Transaction::whereBetween('account_code', [15011200, 15011550]);-get();
+    
 });
 
 Auth::routes();
@@ -27,3 +26,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('{path}','HomeController@index')->where( 'path', '([A-z\d-/_.]+)?' );
+

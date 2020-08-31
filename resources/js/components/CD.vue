@@ -401,6 +401,29 @@
                 </div>
                 <!-- /.box-body -->
 
+              <div v-if="depreciates">
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text inputGroup-sizing-default">Useful Life</span>
+                  </div>
+
+                    <input v-model="form_entry.useful_life" name="useful_life" id="useful_life"
+                    class="form-control" aria-describedby="inputGroup-sizing-default">
+                    
+                </div>
+
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text inputGroup-sizing-default">Salvage Value</span>
+                  </div>
+
+                    <input v-model="form_entry.salvage_value" name="salvage_value" id="salvage_value"
+                    class="form-control" aria-describedby="inputGroup-sizing-default">
+                    
+                </div>
+              </div>
+
+
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Amount</span>
@@ -860,6 +883,8 @@
                   vat: 0,
                   canceled: 0,
                   branch_id: '',
+                  useful_life: 0,
+                  salvage_value: 0,
                   user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
               }),
               form_entry: new Form({
@@ -881,6 +906,8 @@
                   vat: 0,
                   credit_amount: 0,
                   debit_amount: 0,
+                  useful_life: 0,
+                  salvage_value: 0,
                   transaction_date: this.getDate(),
               }),
               form_item: new Form({
@@ -905,6 +932,7 @@
               chart_of_accounts: {},
               chart_of_accounts_header: {},
               chart_of_accounts_detail: {},
+              depreciates: false,
               readabilityObject: {
                 fontSize: user.font_size
               }
@@ -1188,6 +1216,11 @@
                       this.form.main_account = main_account;
                       this.form.type = type;
                   } else {
+                      if(account_code >= 15011200  && account_code < 15011550 ){
+                        this.depreciates = true;
+                      } else {
+                        this.depreciates = false;
+                      }
                       this.form_entry.account_name = account_name;
                       this.form_entry.account_code = account_code;
                       this.form_entry.account_type = account_type;
@@ -1306,6 +1339,22 @@
           },
           newItem(){
 
+              if(this.depreciates && this.items.length > 0){
+                swal.fire({
+                    title: 'Warning!',
+                    text: "Can only add one(1) item for "+ this.form_entry.account_name+ ". \nAdd another "+ this.form_entry.account_name+ " to enter another item.",
+                    type: 'info',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ok'
+                }).then((result) => {
+                    
+                });
+
+                return false;
+              }
+
               if(this.form_entry.account_code == 0) {
                 this.no_entry_account_code = true;
               } else {
@@ -1341,6 +1390,21 @@
  
           },
           saveEntry(){
+            if(!this.form_entry.useful_life){
+                swal.fire({
+                    title: 'Warning!',
+                    text: "USEFUL LIFE input required for this entry.",
+                    type: 'info',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ok'
+                }).then((result) => {
+                    
+                });
+                return false;
+            }
+
             if(!this.form_entry.amount){
                 swal.fire({
                     title: 'Warning!',
@@ -1360,7 +1424,7 @@
 
             // ** Temporary data to bypass Column cannot be null ERROR's
             this.save_button_entry_enabled = false;
-
+            this.depreciates = false;
             this.form.amount += this.form_entry.amount;
             this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
             this.form.vat += this.form_entry.vat;  
@@ -1397,6 +1461,8 @@
                 wtax_code: 0,
                 wtax: 0,
                 user_id: this.form.user_id,
+                useful_life: this.form_entry.useful_life,
+                salvage_value: this.form_entry.salvage_value,
                 status: 'CONFIRMED'
             });
             $('#entry-details').modal('hide');
