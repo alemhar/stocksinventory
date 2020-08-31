@@ -16,6 +16,8 @@ Route::get('/', function () {
 });
 
 
+// firstOrNew where date = last day and depreciatiable->id = depreciatiable_id(column) if exists skip else insert entry.
+// check if depreciatiable->id = depreciatiable_id(column) is also applicable to payment and collection.
 Route::get('/test', function () {
     $depreciatiables = Transaction::whereBetween('account_code', [15011200, 15011550])
     ->where('amount', '>', DB::raw('total_deduction + salvage_value'))
