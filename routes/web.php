@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::get('/test', function () {
     $depreciatiables = Transaction::whereBetween('account_code', [15011200, 15011550])
-    ->where('total_deduction + salvage_value','<','amount')
+    ->where(0,'<','amount')
     //->where(DB::raw('total_deduction + salvage_value'),'<','amount')
     ->get();
     return $depreciatiables;
