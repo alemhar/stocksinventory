@@ -32,7 +32,7 @@ Route::get('/test', function () {
         if($depreciation > $remainingBalance){
             $depreciation = $remainingBalance;
         }
-        array_push($depreciations,number_format($depreciation,2)*1);
+        array_push($depreciations,number_format($depreciation,2));
     }
     return $depreciations;
 });
