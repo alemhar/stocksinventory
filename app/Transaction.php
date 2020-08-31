@@ -13,7 +13,7 @@ class Transaction extends Model
 		if(isset(Auth::user()->company_id)){
 			$company_id = Auth::user()->company_id;
 		} else {
-			$company_id = '99';
+			$company_id = '1';
 		}
 		
 	    return 'transactions_'.$company_id;
