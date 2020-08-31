@@ -23,19 +23,16 @@ Route::get('/test', function () {
     ->get();
     $depreciations = [];
     foreach($depreciatiables as $depreciatiable){
-        $total_collection = round($depreciatiable->total_collection,2);
-        $salvage_value = round($depreciatiable->salvage_value,2);
-        $amount = $depreciatiable->amount;
         
-        $depreciation = round($amount/$depreciatiable->useful_life,2);
+        
+        $depreciation = $depreciatiable->amount/$depreciatiable->useful_life;
 
-        $remainingBalance = $depreciatiable->amount - 200;
-        /*
+        $remainingBalance = $depreciatiable->amount - ($depreciatiable->total_collection + $depreciatiable->salvage_value;
+        
         if($depreciation > $remainingBalance){
             $depreciation = $remainingBalance;
         }
-        */
-        array_push($depreciations,$remainingBalance);
+        array_push($depreciations,number_format($depreciation,2)*1);
     }
     return $depreciations;
 });
