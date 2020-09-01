@@ -25,20 +25,22 @@ Route::get('/test', function () {
     ->get();
     $depreciations = [];
     foreach($depreciatiables as $depreciatiable){
-        
-        
         $depreciation = $depreciatiable->amount/$depreciatiable->useful_life;
-
         $remainingBalance = $depreciatiable->amount - $depreciatiable->total_deduction - $depreciatiable->salvage_value;
-        
         if($depreciation > $remainingBalance){
             $depreciation = $remainingBalance;
         }
-
         $depreciations[$depreciatiable->id] = number_format($depreciation,2);
         //array_push($depreciations,number_format($depreciation,2));
     }
     return $depreciations;
+});
+
+
+Route::get('/lastdate/{month}', function ($month) {
+    
+    $last_day = Carbon::create(2018, $month, 1);
+    return $last_day;
 });
 
 Auth::routes();
