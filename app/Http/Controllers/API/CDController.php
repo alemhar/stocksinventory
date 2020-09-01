@@ -258,7 +258,8 @@ class CDController extends Controller
     {
         $data = json_decode($request['transactions']);
         foreach ($data->transactions as $transaction) {
-
+               
+               
             Transaction::create([
                 'payee_id' => $transaction->payee_id,
                 'branch_id' => $transaction->branch_id,
@@ -285,7 +286,9 @@ class CDController extends Controller
                 'user_id' => $transaction->user_id,
                 'status' => $transaction->status,
                 'useful_life' => $transaction->useful_life,
-                'salvage_value' => $transaction->salvage_value
+                'salvage_value' => $transaction->salvage_value,
+                'depreciation_date' => $transaction->depreciation_date,
+                'depreciated_id' => $transaction->depreciated_id
             ]);
 
             

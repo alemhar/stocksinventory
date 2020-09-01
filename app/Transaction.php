@@ -50,6 +50,8 @@ class Transaction extends Model
 						'branch_id',
 						'status',
 						'useful_life',
-						'salvage_value'
+						'salvage_value',
+						'depreciation_date',
+						'depreciated_id'
     					];
 }

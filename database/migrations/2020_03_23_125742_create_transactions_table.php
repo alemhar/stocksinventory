@@ -37,6 +37,9 @@ class CreateTransactionsTable extends Migration
             $table->string('type'); // GOODS, SERVICE, CAPITAL GOODS
             $table->decimal('total_payment', 14, 2)->default(0);
             $table->decimal('total_collection', 14, 2)->default(0);
+            $table->decimal('total_deduction', 14, 2)->default(0);
+            $table->date('depreciation_date');
+            $table->integer('depreciated_id')->unsigned()->default(0);
             $table->boolean('canceled')->default(0);
             $table->integer('user_id')->unsigned();
             $table->integer('useful_life')->default(0);
