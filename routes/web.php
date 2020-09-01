@@ -40,7 +40,7 @@ Route::get('/test', function () {
 
 Route::get('/lastdate/{month}', function ($month) {
     
-    $last_day = Carbon::create(2018, $month, 1);
+    $last_day = Carbon::create(2018, $month, 1)->daysInMonth;
     return $last_day;
 });
 
