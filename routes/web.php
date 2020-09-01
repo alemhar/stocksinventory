@@ -43,14 +43,17 @@ Route::get('/test', function () {
 });
 
 
-Route::get('/lastdate/{year}/{month}', function ($year,$current_month) {
+Route::get('/lastdate/{year}/{month}', function ($current_year,$current_month) {
     //$current_month = date('m');
+    //$current_year = date('Y');
     
-    $date = Carbon::create($year, $current_month, 1);
+    $date = Carbon::create($current_year, $current_month, 1);
 
     //$date = \Carbon\Carbon::now();
-    $month = $date->subMonth()->format('Y-m'); 
-    $year = $date->subMonth()->format('Y');
+    
+    //$year_month = $date->subMonth()->format('Y-m'); 
+    $year_month = $date->subMonth()->daysInMonth; 
+    
     return $month.' '.$year;
     //$last_day = Carbon::create(2018, $month - 1, 1)->daysInMonth;
     //return $last_day;
