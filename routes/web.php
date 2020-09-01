@@ -52,7 +52,7 @@ Route::get('/lastdate/{year}/{month}', function ($current_year,$current_month) {
     //$date = \Carbon\Carbon::now();
     
     $year_month = $date->subMonth()->format('Y-m'); 
-    $daysInMonth = $date->subMonth()->daysInMonth; 
+    $daysInMonth = $date->daysInMonth; 
     
     return $year_month.'-'.$daysInMonth;
     //return $month.' '.$year;
