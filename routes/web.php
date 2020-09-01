@@ -25,10 +25,12 @@ Route::get('/test', function () {
     //->where(DB::raw('total_deduction + salvage_value'),'<','amount')
     ->get();
     $depreciations = [];
-    $last_day = Carbon::create(2018, $month, 1)->daysInMonth;
+
+    $month = date('m');
+    $last_day = Carbon::create(2018, $month - 1, 1)->daysInMonth;
 
     foreach($depreciatiables as $depreciatiable){
-        //select where depreciated_id = $depreciatiable->id and transaction_type = 'DEPRECIATION' and depreciation_date =  
+        //select where depreciated_id = $depreciatiable->id and transaction_type = 'DEPRECIATION' and depreciation_date = $last_day
         $depreciation = $depreciatiable->amount/$depreciatiable->useful_life;
         $remainingBalance = $depreciatiable->amount - $depreciatiable->total_deduction - $depreciatiable->salvage_value;
         if($depreciation > $remainingBalance){
@@ -41,10 +43,16 @@ Route::get('/test', function () {
 });
 
 
-Route::get('/lastdate/{month}', function ($month) {
-    $month = date('m');
-    $last_day = Carbon::create(2018, $month - 1, 1)->daysInMonth;
-    return $last_day;
+Route::get('/lastdate/{year}', function ($year) {
+    $current_month = date('m');
+    
+    $date = Carbon::create($year, $current_month, 1);
+    //$date = \Carbon\Carbon::now();
+    $month = $date->subMonth()->format('m'); 
+    $year = $date->subMonth()->format('y');
+    return $month.' '.$year;
+    //$last_day = Carbon::create(2018, $month - 1, 1)->daysInMonth;
+    //return $last_day;
 });
 
 Auth::routes();
