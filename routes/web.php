@@ -49,7 +49,7 @@ Route::get('/lastdate/{year}/{month}', function ($year,$current_month) {
     $date = Carbon::create($year, $current_month, 1);
     //$date = \Carbon\Carbon::now();
     $month = $date->subMonth()->format('m'); 
-    $year = $date->subMonth()->format('y');
+    $year = $date->subMonth()->format('Y');
     return $month.' '.$year;
     //$last_day = Carbon::create(2018, $month - 1, 1)->daysInMonth;
     //return $last_day;
