@@ -43,7 +43,7 @@ Route::get('/test', function () {
 });
 
 
-Route::get('/lastdate/{year}/{$month}', function ($year,$current_month) {
+Route::get('/lastdate/{year}/{month}', function ($year,$current_month) {
     //$current_month = date('m');
     
     $date = Carbon::create($year, $current_month, 1);
