@@ -67,15 +67,23 @@ Route::get('/test2', function () {
 
     foreach($depreciatiables as $depreciatiable){
         //select where depreciated_id = $depreciatiable->id and transaction_type = 'DEPRECIATION' and depreciation_date = $last_day 
+        
         $depreciation_entry = Transaction::firstOrNew([
             'depreciated_id' => $depreciatiable->id,
             'transaction_type' => 'DEPRECIATION',
             'depreciation_date' => $previous_month_last_date
         ]);
         
+
         if ($depreciation_entry->exists) {
             continue;
         }    
+
+        //get $depreciatiable->id info from depreciation_accounts
+        // INSERT counterpart1 code of above as debit 
+
+        //get counterpart_code2 of the $depreciatiable->counterpart_code1 above info from depreciation_accounts
+        // INSERT counterpart2 code of above as debit 
 
 
         $depreciation = $depreciatiable->amount/$depreciatiable->useful_life;
