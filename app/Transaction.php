@@ -52,6 +52,8 @@ class Transaction extends Model
 						'useful_life',
 						'salvage_value',
 						'depreciation_date',
-						'depreciated_id'
+						'depreciated_id',
+						'counterpart_code',
+            			'counterpart_name'
     					];
 }

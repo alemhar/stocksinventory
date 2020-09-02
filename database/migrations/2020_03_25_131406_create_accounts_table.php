@@ -21,7 +21,9 @@ class CreateAccountsTable extends Migration
             $table->string('main_account');// ADD Default on current tables
             $table->integer('account_code')->unsigned();
             $table->string('account_name');
-            $table->string('type'); // GOODS, SERVICE, CAPITAL GOODS
+            $table->integer('counterpart_code')->unsigned()->default(0);
+            $table->string('counterpart_name')->default('NA');
+            $table->string('type')->default('NA'); // GOODS, SERVICE, CAPITAL GOODS
             $table->integer('user_id')->unsigned();
             $table->integer('cd_list_order')->unsigned()->default(99);// ADD Default on current tables
             $table->integer('cd_list')->unsigned()->default(3);// ADD Default on current tables

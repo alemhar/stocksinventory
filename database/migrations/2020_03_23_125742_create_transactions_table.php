@@ -23,6 +23,8 @@ class CreateTransactionsTable extends Migration
             $table->string('main_account'); // ** New
             $table->integer('account_code')->unsigned();
             $table->string('account_name');
+            $table->integer('counterpart_code')->unsigned()->default(0);
+            $table->string('counterpart_name')->default('NA');
             $table->string('reference_no');
             $table->bigInteger('transaction_no')->unsigned();
             $table->string('transaction_type');

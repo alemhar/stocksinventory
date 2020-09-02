@@ -771,6 +771,8 @@
                 main_code: this.form.main_code,
                 main_account: this.form.main_account,
                 type: this.form.type,
+                counterpart_code: 0,
+                counterpart_name: 'NA',
                 // *************************
 
                 transaction_entry_id: this.transaction_entry_id,
@@ -1059,6 +1061,8 @@
                 main_code: this.form_entry.main_code,
                 main_account: this.form_entry.main_account,
                 type: this.form_entry.type,
+                counterpart_code: 0,
+                counterpart_name: 'NA',
                 // *************************
 
                 transaction_entry_id: this.transaction_entry_id,
