@@ -22,9 +22,20 @@ Route::get('/test', function () {
     $accounts = Account::whereBetween('account_code', [15011200, 15011550])
                 ->get();
     foreach($accounts as $account){
-        array_push($depreciation_accounts, 
+        $depreciation_accounts[$account->account_code] = 
         ['account_type' => $account->account_type,
-        'sub_account_type' => $account->sub_account_type]);            
+        'sub_account_type' => $account->sub_account_type,
+        'main_code' => $account->main_code,
+        'main_account' => $account->main_account,
+        'account_code' => $account->account_code,
+        'account_name' => $account->account_name,
+        'type' => $account->type,
+        'counterpart_code' => $account->counterpart_code,
+        'counterpart_name' => $account->counterpart_name
+        ];
+        // array_push($depreciation_accounts, 
+        // ['account_type' => $account->account_type,
+        // 'sub_account_type' => $account->sub_account_type]);            
     }
     dd($depreciation_accounts);            
 });
