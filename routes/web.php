@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::get('/test', function () {
     $accounts = Account::whereBetween('account_code', [15011200, 15011550])
                 ->get();
+    dd($accounts);            
 });
 
 // firstOrNew where date = last day and depreciatiable->id = depreciatiable_id(column) if exists skip else insert entry.
