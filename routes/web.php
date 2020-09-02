@@ -22,7 +22,9 @@ Route::get('/test', function () {
     $ranges = [];
     array_push($ranges, [15011200, 15011550]);
     array_push($ranges, [15015000, 15020000]);
-    dd($ranges);
+    array_push($ranges, [62200000, 62201400]);
+    
+    //dd($ranges);
     foreach($ranges as $range){
         $accounts = Account::whereBetween('account_code', $range)
                 ->get();
