@@ -1,5 +1,6 @@
 <?php
 use App\Transaction;
+use App\Account;
 use Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', function () {
+    $accounts = Account::whereBetween('account_code', [15011200, 15011550])
+                ->get();
+});
 
 // firstOrNew where date = last day and depreciatiable->id = depreciatiable_id(column) if exists skip else insert entry.
 // check if depreciatiable->id = depreciatiable_id(column) is also applicable to payment and collection.
-Route::get('/test', function () {
+Route::get('/test2', function () {
     $depreciatiables = Transaction::whereBetween('account_code', [15011200, 15011550])
     ->where('amount', '>', DB::raw('total_deduction + salvage_value'))
     //->where(DB::raw('total_deduction + salvage_value'),'<','amount')
@@ -36,13 +41,13 @@ Route::get('/test', function () {
 
     foreach($depreciatiables as $depreciatiable){
         //select where depreciated_id = $depreciatiable->id and transaction_type = 'DEPRECIATION' and depreciation_date = $last_day 
-        $check_depreciation_entry = Transaction::firstOrNew([
+        $depreciation_entry = Transaction::firstOrNew([
             'depreciated_id' => $depreciatiable->id,
             'transaction_type' => 'DEPRECIATION',
             'depreciation_date' => $previous_month_last_date
         ]);
         
-        if ($check_depreciation_entry->exists) {
+        if ($depreciation_entry->exists) {
             continue;
         }    
 
@@ -53,6 +58,39 @@ Route::get('/test', function () {
             $depreciation = $remainingBalance;
         }
         
+        // *************************
+        $depreciation_entry->account_type= $depreciatiable->account_type;
+        $depreciation_entry->sub_account_type= $depreciatiable->sub_account_type;
+        $depreciation_entry->main_code= $depreciatiable->main_code;
+        $depreciation_entry->main_account= $depreciatiable->main_account;
+        $depreciation_entry->type= $depreciatiable->type;
+        $depreciation_entry->counterpart_code= $depreciatiable->counterpart_code;
+        $depreciation_entry->counterpart_name= $depreciatiable->counterpart_name;
+        // *************************
+
+        $depreciation_entry->transaction_entry_id= $depreciatiable->transaction_entry_id;
+        $depreciation_entry->payee_id= $depreciatiable->payee_id;
+        $depreciation_entry->branch_id= $depreciatiable->current_branch_id;
+        $depreciation_entry->account_code= $depreciatiable->account_code;
+        $depreciation_entry->account_name= $depreciatiable->account_name;
+        $depreciation_entry->reference_no= $depreciatiable->reference_no;
+        $depreciation_entry->transaction_no= $depreciatiable->transaction_no;
+        $depreciation_entry->transaction_type= $depreciatiable->transaction_type;
+        $depreciation_entry->transaction_date= $depreciatiable->transaction_date;
+        $depreciation_entry->amount= number_format($depreciation,2);
+        $depreciation_entry->credit_amount= 0;
+        $depreciation_entry->debit_amount= number_format($depreciation,2);
+        $depreciation_entry->total_payment= 0;
+        $depreciation_entry->amount_ex_tax= 0;
+        $depreciation_entry->vat= 0;
+        $depreciation_entry->wtax_code= 0;
+        $depreciation_entry->wtax= 0;
+        $depreciation_entry->user_id = 999;
+        $depreciation_entry->useful_life= 0;
+        $depreciation_entry->salvage_value= 0;
+        $depreciation_entry->status= 'CONFIRMED';
+
+
         // Check code counter part account_code 
         // Debit depreciation expenss Credit accu. Dep.
         // make sure to add counter part account code column in transactions table and fill it one journal entry.
