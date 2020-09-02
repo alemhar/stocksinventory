@@ -19,7 +19,8 @@ Route::get('/', function () {
 
 Route::get('/test', function () {
     $depreciation_accounts = [];
-    $ranges = [15011200, 15011550];
+    $ranges = [];
+    array_push($ranges, [15011200, 15011550]);
     array_push($ranges, [15015000, 15020000]);
     dd($ranges);
     foreach($ranges as $range){
