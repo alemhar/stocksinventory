@@ -18,9 +18,15 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
+    $depreciation_accounts = [];
     $accounts = Account::whereBetween('account_code', [15011200, 15011550])
                 ->get();
-    dd($accounts);            
+    foreach($accounts as $account){
+        array_push($depreciation_accounts, 
+        ['account_type' => $account->account_type,
+        'sub_account_type' => $account->sub_account_type]);            
+    }
+    dd($depreciation_accounts);            
 });
 
 // firstOrNew where date = last day and depreciatiable->id = depreciatiable_id(column) if exists skip else insert entry.
