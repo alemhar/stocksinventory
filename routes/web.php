@@ -31,7 +31,7 @@ Route::get('/test', function () {
         'depreciation_date' => $previous_month_last_date
     ])->get();
 
-    return $depreciation_entry;
+    return count($depreciation_entry);
 });
 
 Route::get('/test1', function () {
@@ -84,13 +84,19 @@ Route::get('/test2', function () {
 
     foreach($depreciatiables as $depreciatiable){
         //select where depreciated_id = $depreciatiable->id and transaction_type = 'DEPRECIATION' and depreciation_date = $last_day 
-        
+        /*
         $depreciation_entry = Transaction::firstOrNew([
             'depreciated_id' => $depreciatiable->id,
             'transaction_type' => 'DEPRECIATION',
             'depreciation_date' => $previous_month_last_date
         ]);
-        
+        */
+        $depreciation_entry = Transaction::where([
+            'depreciated_id' => $depreciatiable->id,
+            'transaction_type' => 'DEPRECIATION',
+            'depreciation_date' => $previous_month_last_date
+        ])->get();
+
 
         if ($depreciation_entry->exists) {
             continue;
