@@ -26,9 +26,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       margin-left: 20px;
       color: antiquewhite;
     }
-    .nav-treeview .nav-icon p{
-      color: antiquewhite;
-    }
+    
   </style>
 </head>
 <body class="hold-transition sidebar-mini">
