@@ -77,7 +77,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!--  menu-transaction-->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link" style="color:darkkhaki;">
-              <i class="nav-icon fas fa-cogs"></i>
+              <i class="nav-icon fas fa-exchange-alt"></i>
               <p v-bind:style="[readabilityObject]">
                 Transactions
                 <i class="right fas fa-angle-left"></i>
@@ -141,7 +141,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!--  menu-transaction-->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link" style="color:darkkhaki;">
-              <i class="nav-icon fas fa-cogs"></i>
+              <i class="nav-icon fas fa-newspaper"></i>
               <p v-bind:style="[readabilityObject]">
                 Reports
                 <i class="right fas fa-angle-left"></i>
