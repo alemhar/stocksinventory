@@ -666,9 +666,7 @@
                     chart_of_account.sub_account_type,
                     chart_of_account.main_code,
                     chart_of_account.main_account,
-                    chart_of_account.type,
-                    chart_of_account.counterpart_code,
-                    chart_of_account.counterpart_name
+                    chart_of_account.type
                     )">Select
                       <i class="fa fa-edit"></i>
                     </a>
@@ -887,8 +885,7 @@
                   branch_id: '',
                   useful_life: 0,
                   salvage_value: 0,
-                  counterpart_code: 0,
-                  counterpart_name: 'NA',
+                  
                   user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
               }),
               form_entry: new Form({
@@ -912,8 +909,7 @@
                   debit_amount: 0,
                   useful_life: 0,
                   salvage_value: 0,
-                  counterpart_code: 0,
-                  counterpart_name: 'NA',
+                  
                   transaction_date: this.getDate(),
               }),
               form_item: new Form({
@@ -1044,8 +1040,7 @@
                 main_code: this.form.main_code,
                 main_account: this.form.main_account,
                 type: this.form.type,
-                counterpart_code: 0,
-                counterpart_name: 'NA',
+                
                 
                 // *************************
 
@@ -1084,8 +1079,7 @@
                 main_code: 0,
                 main_account: 'NA',
                 type: 'NA',
-                counterpart_code: 0,
-                counterpart_name: 'NA',
+                
                 
                 // 
 
@@ -1225,9 +1219,7 @@
                         sub_account_type,
                         main_code,
                         main_account,
-                        type,
-                        counterpart_code,
-                        counterpart_name
+                        type
                       ){
               if (account_code != null && account_name != null){
                   if(this.headerOrDetail == 'header'){
@@ -1238,8 +1230,7 @@
                       this.form.main_code = main_code;
                       this.form.main_account = main_account;
                       this.form.type = type;
-                      this.form.counterpart_code = 0;
-                      this.form.counterpart_name = 'NA';
+                      
                   } else {
                       if(account_code >= 15011200  && account_code < 15011550 ){
                         this.depreciates = true;
@@ -1253,8 +1244,7 @@
                       this.form_entry.main_code = main_code;
                       this.form_entry.main_account = main_account;
                       this.form_entry.type = type;
-                      this.form_entry.counterpart_code = counterpart_code;
-                      this.form_entry.counterpart_name = counterpart_name;
+                      
                   }
               }
               $('#select-account').modal('hide');  
@@ -1466,8 +1456,6 @@
                 main_code: this.form_entry.main_code,
                 main_account: this.form_entry.main_account,
                 type: this.form_entry.type,
-                counterpart_code: this.form_entry.counterpart_code,
-                counterpart_name: this.form_entry.counterpart_name,
                 // *************************
 
                 transaction_entry_id: this.transaction_entry_id,
@@ -1496,10 +1484,8 @@
             });
             $('#entry-details').modal('hide');
             //this.$Progress.finish();
-
           },
           deleteEntry(transaction_entry_id,entry_amount,entry_vat){
-
             this.transactions = this.transactions.filter(function( transaction ) {
                 return transaction.transaction_entry_id !== transaction_entry_id;
             });

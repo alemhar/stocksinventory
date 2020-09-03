@@ -884,8 +884,6 @@
                   branch_id: '',
                   useful_life: 0,
                   salvage_value: 0,
-                  counterpart_code: 0,
-                  counterpart_name: 'NA',
                   user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
               }),
               form_entry: new Form({
@@ -909,8 +907,6 @@
                   debit_amount: 0,
                   useful_life: 0,
                   salvage_value: 0,
-                  counterpart_code: 0,
-                  counterpart_name: 'NA',
                   transaction_date: this.getDate(),
               }),
               form_item: new Form({
@@ -1041,8 +1037,7 @@
                 main_code: this.form.main_code,
                 main_account: this.form.main_account,
                 type: this.form.type,
-                counterpart_code: 0,
-                counterpart_name: 'NA',
+
                 // *************************
 
                 transaction_entry_id: this.transaction_entry_id,
@@ -1081,8 +1076,7 @@
                 main_code: 0,
                 main_account: 'NA',
                 type: 'NA',
-                counterpart_code: 0,
-                counterpart_name: 'NA',
+
                 // 
                 transaction_entry_id: this.transaction_entry_id,
                 payee_id: this.form.payee_id,
@@ -1212,7 +1206,6 @@
               this.loadBranch();
               $('#select-branch').modal('show');
           },
-
           // *************************************************
           selectAccount(
                         account_code  = null,
@@ -1221,9 +1214,8 @@
                         sub_account_type,
                         main_code,
                         main_account,
-                        type,
-                        counterpart_code,
-                        counterpart_name
+                        type
+                        
                       ){
               if (account_code != null && account_name != null){
                   if(this.headerOrDetail == 'header'){
@@ -1234,8 +1226,7 @@
                       this.form.main_code = main_code;
                       this.form.main_account = main_account;
                       this.form.type = type;
-                      counterpart_code = 0;
-                      counterpart_name = 'NA';
+                      
                   } else {
                       if(account_code >= 15011200  && account_code < 15011550 ){
                         this.depreciates = true;
@@ -1249,8 +1240,7 @@
                       this.form_entry.main_code = main_code;
                       this.form_entry.main_account = main_account;
                       this.form_entry.type = type;
-                      this.form_entry.counterpart_code = counterpart_code;
-                      this.form_entry.counterpart_name = counterpart_name;
+                      
                   }
               }
               $('#select-account').modal('hide');  
@@ -1463,8 +1453,7 @@
                 main_code: this.form_entry.main_code,
                 main_account: this.form_entry.main_account,
                 type: this.form_entry.type,
-                counterpart_code: this.form_entry.counterpart_code,
-                counterpart_name: this.form_entry.counterpart_name,
+                
                 // *************************
                 
                 transaction_entry_id: this.transaction_entry_id,

@@ -128,6 +128,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </router-link>
               </li>
               @endcan
+              @can('isAdmin')
+              <li class="nav-item">
+                <router-link to="/collections" class="nav-link">
+                
+                  <i class="nav-icon fas fa-money-bill-wave"></i>
+                  <p v-bind:style="[readabilityObject]">Collections</p>
+                </router-link>
+              </li>
+              @endcan
             </ul>
           </li>
           <!--  menu-transaction-->
@@ -148,7 +157,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </router-link>
               </li>
               @endcan
-              
             </ul>
           </li>
 
@@ -182,14 +190,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </router-link>
           </li>
 
-          <li class="nav-item">
+          <!-- li class="nav-item">
             <router-link to="/testing" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p v-bind:style="[readabilityObject]">
                 Test  
               </p>
             </router-link>
-          </li>
+          </li -->
           
 
           @endcan

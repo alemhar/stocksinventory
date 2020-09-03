@@ -2923,8 +2923,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2985,8 +2983,6 @@ __webpack_require__.r(__webpack_exports__);
         branch_id: '',
         useful_life: 0,
         salvage_value: 0,
-        counterpart_code: 0,
-        counterpart_name: 'NA',
         user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
       }),
       form_entry: new Form({
@@ -3009,8 +3005,6 @@ __webpack_require__.r(__webpack_exports__);
         debit_amount: 0,
         useful_life: 0,
         salvage_value: 0,
-        counterpart_code: 0,
-        counterpart_name: 'NA',
         transaction_date: this.getDate()
       }),
       form_item: new Form({
@@ -3141,8 +3135,6 @@ __webpack_require__.r(__webpack_exports__);
         main_code: this.form.main_code,
         main_account: this.form.main_account,
         type: this.form.type,
-        counterpart_code: 0,
-        counterpart_name: 'NA',
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -3176,8 +3168,6 @@ __webpack_require__.r(__webpack_exports__);
         main_code: 0,
         main_account: 'NA',
         type: 'NA',
-        counterpart_code: 0,
-        counterpart_name: 'NA',
         // 
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -3304,8 +3294,6 @@ __webpack_require__.r(__webpack_exports__);
       var main_code = arguments.length > 4 ? arguments[4] : undefined;
       var main_account = arguments.length > 5 ? arguments[5] : undefined;
       var type = arguments.length > 6 ? arguments[6] : undefined;
-      var counterpart_code = arguments.length > 7 ? arguments[7] : undefined;
-      var counterpart_name = arguments.length > 8 ? arguments[8] : undefined;
 
       if (account_code != null && account_name != null) {
         if (this.headerOrDetail == 'header') {
@@ -3316,8 +3304,6 @@ __webpack_require__.r(__webpack_exports__);
           this.form.main_code = main_code;
           this.form.main_account = main_account;
           this.form.type = type;
-          this.form.counterpart_code = 0;
-          this.form.counterpart_name = 'NA';
         } else {
           if (account_code >= 15011200 && account_code < 15011550) {
             this.depreciates = true;
@@ -3332,8 +3318,6 @@ __webpack_require__.r(__webpack_exports__);
           this.form_entry.main_code = main_code;
           this.form_entry.main_account = main_account;
           this.form_entry.type = type;
-          this.form_entry.counterpart_code = counterpart_code;
-          this.form_entry.counterpart_name = counterpart_name;
         }
       }
 
@@ -3520,8 +3504,6 @@ __webpack_require__.r(__webpack_exports__);
         main_code: this.form_entry.main_code,
         main_account: this.form_entry.main_account,
         type: this.form_entry.type,
-        counterpart_code: this.form_entry.counterpart_code,
-        counterpart_name: this.form_entry.counterpart_name,
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -4671,8 +4653,6 @@ __webpack_require__.r(__webpack_exports__);
         main_code: this.form.main_code,
         main_account: this.form.main_account,
         type: this.form.type,
-        counterpart_code: 0,
-        counterpart_name: 'NA',
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -4706,8 +4686,6 @@ __webpack_require__.r(__webpack_exports__);
         main_code: 0,
         main_account: 'NA',
         type: 'NA',
-        counterpart_code: 0,
-        counterpart_name: 'NA',
         // 
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -5011,8 +4989,6 @@ __webpack_require__.r(__webpack_exports__);
         main_code: this.form_entry.main_code,
         main_account: this.form_entry.main_account,
         type: this.form_entry.type,
-        counterpart_code: 0,
-        counterpart_name: 'NA',
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -5916,8 +5892,6 @@ __webpack_require__.r(__webpack_exports__);
         main_code: this.form.main_code,
         main_account: this.form.main_account,
         type: this.form.type,
-        counterpart_code: 0,
-        counterpart_name: 'NA',
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -6153,8 +6127,6 @@ __webpack_require__.r(__webpack_exports__);
         main_code: this.form_entry.main_code,
         main_account: this.form_entry.main_account,
         type: this.form_entry.type,
-        counterpart_code: 0,
-        counterpart_name: 'NA',
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -7638,8 +7610,6 @@ __webpack_require__.r(__webpack_exports__);
         main_code: this.form.main_code,
         main_account: this.form.main_account,
         type: this.form.type,
-        counterpart_code: 0,
-        counterpart_name: 'NA',
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -7874,8 +7844,6 @@ __webpack_require__.r(__webpack_exports__);
         main_code: this.form_entry.main_code,
         main_account: this.form_entry.main_account,
         type: this.form_entry.type,
-        counterpart_code: 0,
-        counterpart_name: 'NA',
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -8883,8 +8851,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         branch_id: '',
         useful_life: 0,
         salvage_value: 0,
-        counterpart_code: 0,
-        counterpart_name: 'NA',
         user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
       }),
       form_entry: new Form({
@@ -8907,8 +8873,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         debit_amount: 0,
         useful_life: 0,
         salvage_value: 0,
-        counterpart_code: 0,
-        counterpart_name: 'NA',
         transaction_date: this.getDate()
       }),
       form_item: new Form({
@@ -9040,8 +9004,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         main_code: this.form.main_code,
         main_account: this.form.main_account,
         type: this.form.type,
-        counterpart_code: 0,
-        counterpart_name: 'NA',
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -9075,8 +9037,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         main_code: 0,
         main_account: 'NA',
         type: 'NA',
-        counterpart_code: 0,
-        counterpart_name: 'NA',
         // 
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -9203,8 +9163,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var main_code = arguments.length > 4 ? arguments[4] : undefined;
       var main_account = arguments.length > 5 ? arguments[5] : undefined;
       var type = arguments.length > 6 ? arguments[6] : undefined;
-      var counterpart_code = arguments.length > 7 ? arguments[7] : undefined;
-      var counterpart_name = arguments.length > 8 ? arguments[8] : undefined;
 
       if (account_code != null && account_name != null) {
         if (this.headerOrDetail == 'header') {
@@ -9215,8 +9173,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           this.form.main_code = main_code;
           this.form.main_account = main_account;
           this.form.type = type;
-          counterpart_code = 0;
-          counterpart_name = 'NA';
         } else {
           if (account_code >= 15011200 && account_code < 15011550) {
             this.depreciates = true;
@@ -9231,8 +9187,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           this.form_entry.main_code = main_code;
           this.form_entry.main_account = main_account;
           this.form_entry.type = type;
-          this.form_entry.counterpart_code = counterpart_code;
-          this.form_entry.counterpart_name = counterpart_name;
         }
       }
 
@@ -9419,8 +9373,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         main_code: this.form_entry.main_code,
         main_account: this.form_entry.main_account,
         type: this.form_entry.type,
-        counterpart_code: this.form_entry.counterpart_code,
-        counterpart_name: this.form_entry.counterpart_name,
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -10653,8 +10605,6 @@ __webpack_require__.r(__webpack_exports__);
         main_code: this.form.main_code,
         main_account: this.form.main_account,
         type: this.form.type,
-        counterpart_code: 0,
-        counterpart_name: 'NA',
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -10688,8 +10638,6 @@ __webpack_require__.r(__webpack_exports__);
         main_code: 0,
         main_account: 'NA',
         type: 'NA',
-        counterpart_code: 0,
-        counterpart_name: 'NA',
         //
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -11026,8 +10974,6 @@ __webpack_require__.r(__webpack_exports__);
         main_code: this.form_entry.main_code,
         main_account: this.form_entry.main_account,
         type: this.form_entry.type,
-        counterpart_code: 0,
-        counterpart_name: 'NA',
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -73110,9 +73056,7 @@ var render = function() {
                                             chart_of_account.sub_account_type,
                                             chart_of_account.main_code,
                                             chart_of_account.main_account,
-                                            chart_of_account.type,
-                                            chart_of_account.counterpart_code,
-                                            chart_of_account.counterpart_name
+                                            chart_of_account.type
                                           )
                                         }
                                       }
@@ -103967,7 +103911,7 @@ var routes = [{
   path: '/ledger',
   component: __webpack_require__(/*! ./components/Ledger.vue */ "./resources/js/components/Ledger.vue")["default"]
 }, {
-  path: '/testing',
+  path: '/collections',
   component: __webpack_require__(/*! ./components/Collections.vue */ "./resources/js/components/Collections.vue")["default"]
 }, {
   path: '*',

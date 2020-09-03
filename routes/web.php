@@ -109,14 +109,9 @@ Route::get('/test2', function () {
 
 
     foreach($depreciatiables as $depreciatiable){
-        //select where depreciated_id = $depreciatiable->id and transaction_type = 'DEPRECIATION' and depreciation_date = $last_day 
-        /*
-        $depreciation_entry = Transaction::firstOrNew([
-            'depreciated_id' => $depreciatiable->id,
-            'transaction_type' => 'DEPRECIATION',
-            'depreciation_date' => $previous_month_last_date
-        ]);
-        */
+        sleep(1);
+        $transaction_no = time().'999';
+        
         $depreciation_entry = Transaction::where([
             'depreciated_id' => $depreciatiable->id,
             'transaction_type' => 'DEPRECIATION',
@@ -128,100 +123,84 @@ Route::get('/test2', function () {
             continue;
         }    
 
-        //get $depreciatiable->id info from depreciation_accounts
-        // INSERT counterpart1 code of above as debit 
-
-        //get counterpart_code2 of the $depreciatiable->counterpart_code1 above info from depreciation_accounts
-        // INSERT counterpart2 code of above as debit 
-
-
+        
         $depreciation = $depreciatiable->amount/$depreciatiable->useful_life;
         $remainingBalance = $depreciatiable->amount - $depreciatiable->total_deduction - $depreciatiable->salvage_value;
         if($depreciation > $remainingBalance){
             $depreciation = $remainingBalance;
         }
         
-        /*
+        
+        
+
+
         $transactions = [];
-        $transaction = new stdClass();
-        $transaction->
-        
-        $transaction->account_type: $account_type,
-        $transaction->sub_account_type: this.form.sub_account_type,
-        $transaction->main_code: this.form.main_code,
-        $transaction->main_account: this.form.main_account,
-        $transaction->type: this.form.type,
-        $transaction->counterpart_code: 0,
-        $transaction->counterpart_name: 'NA',
-        
-        // *************************
+        $account_code = $depreciatiable->account_code;
+        $credit = true;
+        $amount = 0;
+        $credit_amount = 0;
+        $debit_amount = 0;
 
-        $transaction->transaction_entry_id: this.transaction_entry_id,
-        $transaction->payee_id: this.form.payee_id,
-        $transaction->branch_id: this.current_branch_id,
-        $transaction->account_code: this.form.account_code,
-        $transaction->account_name: this.form.account_name,
-        $transaction->reference_no: this.form.reference_no,
-        $transaction->transaction_no: this.form.transaction_no,
-        $transaction->transaction_type: this.form.transaction_type,
-        $transaction->transaction_date: this.form.transaction_date,
-        $transaction->amount: this.form.amount,
-        $transaction->credit_amount: this.form.amount,
-        $transaction->debit_amount: 0,
-        $transaction->total_payment: 0,
-        $transaction->amount_ex_tax: this.form.amount_ex_tax,
-        $transaction->vat: this.form.vat,
-        $transaction->wtax_code: 0,
-        $transaction->wtax: 0,
-        $transaction->user_id: this.form.user_id,
-        $transaction->status: 'CONFIRMED',
-        $transaction->depreciation_date: this.form.transaction_date,
-        $transaction->depreciated_id: 0,
-        $transaction->useful_life: 0,
-        $transaction->salvage_value: 0
-        */
+        do{
+                $amount = number_format($depreciation,2);
+            if($credit){
+                $credit = false;
+                $credit_amount = number_format($depreciation,2);
+                $debit_amount = 0;
+            } else {
+                $credit = true;
+                $credit_amount = 0;
+                $debit_amount = number_format($depreciation,2);
+            }
+            $account_code = $depreciation_accounts[$account_code]['counterpart_code'];
+            $account_name = $depreciation_accounts[$account_code]['account_name'];
+            $account_type = $depreciation_accounts[$account_code]['account_type'];
+            $sub_account_type = $depreciation_accounts[$account_code]['sub_account_type'];
+            $main_code = $depreciation_accounts[$account_code]['main_code'];
+            $main_account = $depreciation_accounts[$account_code]['main_account'];
+            $type = $depreciation_accounts[$account_code]['type'];
+            $counterpart_code = $depreciation_accounts[$account_code]['counterpart_code'];
+            $counterpart_name = $depreciation_accounts[$account_code]['counterpart_name'];
+            
 
+            $transaction = new stdClass();
+            $transaction->account_type = $account_type;
+            $transaction->sub_account_type = $sub_account_type;
+            $transaction->main_code = $main_code;
+            $transaction->main_account = $main_account;
+            $transaction->type = $type;
+            $transaction->counterpart_code = $counterpart_code;
+            $transaction->counterpart_name = $counterpart_name;
+            $transaction->transaction_entry_id = 0;
+            $transaction->payee_id = 0;
+            $transaction->branch_id = 0;
+            $transaction->account_code = $account_code;
+            $transaction->account_name = $account_name;
+            $transaction->reference_no = 0;
+            $transaction->transaction_no = $transaction_no;
+            $transaction->transaction_type = 'DEPRECIATION';
+            $transaction->transaction_date = $previous_month_last_date;
+            $transaction->amount = $amount;
+            $transaction->credit_amount = $credit_amount;
+            $transaction->debit_amount = $debit_amount;
+            $transaction->total_payment = 0;
+            $transaction->amount_ex_tax = 0;
+            $transaction->vat = 0;
+            $transaction->wtax_code = 0;
+            $transaction->wtax = 0;
+            $transaction->user_id = 999;
+            $transaction->status = 'CONFIRMED';
+            $transaction->depreciation_date = $previous_month_last_date;
+            $transaction->depreciated_id = 0;
+            $transaction->useful_life = 0;
+            $transaction->salvage_value = 0;
+            array_push($transactions,$transaction);
 
-        // *************************
-        $depreciation_entry->account_type= $depreciatiable->account_type;
-        $depreciation_entry->sub_account_type= $depreciatiable->sub_account_type;
-        $depreciation_entry->main_code= $depreciatiable->main_code;
-        $depreciation_entry->main_account= $depreciatiable->main_account;
-        $depreciation_entry->type= $depreciatiable->type;
-        $depreciation_entry->counterpart_code= $depreciatiable->counterpart_code;
-        $depreciation_entry->counterpart_name= $depreciatiable->counterpart_name;
-        // *************************
+            $account_code = $counterpart_code;
 
-        $depreciation_entry->transaction_entry_id= $depreciatiable->transaction_entry_id;
-        $depreciation_entry->payee_id= $depreciatiable->payee_id;
-        $depreciation_entry->branch_id= $depreciatiable->current_branch_id;
-        $depreciation_entry->account_code= $depreciatiable->account_code;
-        $depreciation_entry->account_name= $depreciatiable->account_name;
-        $depreciation_entry->reference_no= $depreciatiable->reference_no;
-        $depreciation_entry->transaction_no= $depreciatiable->transaction_no;
-        $depreciation_entry->transaction_type= $depreciatiable->transaction_type;
-        $depreciation_entry->transaction_date= $depreciatiable->transaction_date;
-        $depreciation_entry->amount= number_format($depreciation,2);
-        $depreciation_entry->credit_amount= 0;
-        $depreciation_entry->debit_amount= number_format($depreciation,2);
-        $depreciation_entry->total_payment= 0;
-        $depreciation_entry->amount_ex_tax= 0;
-        $depreciation_entry->vat= 0;
-        $depreciation_entry->wtax_code= 0;
-        $depreciation_entry->wtax= 0;
-        $depreciation_entry->user_id = 999;
-        $depreciation_entry->useful_life= 0;
-        $depreciation_entry->salvage_value= 0;
-        $depreciation_entry->status= 'CONFIRMED';
-
-
-        // Check code counter part account_code 
-        // Debit depreciation expenss Credit accu. Dep.
-        // make sure to add counter part account code column in transactions table and fill it one journal entry.
-        $depreciations[$depreciatiable->id] = number_format($depreciation,2);
-
-        //array_push($depreciations,number_format($depreciation,2));
+        } while(!$credit);     
     }
+
     return $depreciations;
 });
 
