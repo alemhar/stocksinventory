@@ -3163,7 +3163,7 @@ __webpack_require__.r(__webpack_exports__);
         wtax: 0,
         user_id: this.form.user_id,
         status: 'CONFIRMED',
-        depreciation_date: '',
+        depreciation_date: this.form.transaction_date,
         depreciated_id: 0
       });
       ++this.transaction_entry_id;
@@ -3196,7 +3196,7 @@ __webpack_require__.r(__webpack_exports__);
         wtax: 0,
         user_id: this.form.user_id,
         status: 'CONFIRMED',
-        depreciation_date: '',
+        depreciation_date: this.form.transaction_date,
         depreciated_id: 0
       }); // Save Transactions START
 
@@ -3540,7 +3540,7 @@ __webpack_require__.r(__webpack_exports__);
         useful_life: this.form_entry.useful_life,
         salvage_value: this.form_entry.salvage_value,
         status: 'CONFIRMED',
-        depreciation_date: '',
+        depreciation_date: this.form.transaction_date,
         depreciated_id: 0
       });
       $('#entry-details').modal('hide'); //this.$Progress.finish();
@@ -4689,7 +4689,7 @@ __webpack_require__.r(__webpack_exports__);
         wtax: 0,
         user_id: this.form.user_id,
         status: 'CONFIRMED',
-        depreciation_date: '',
+        depreciation_date: this.form.transaction_date,
         depreciated_id: 0
       });
       ++this.transaction_entry_id;
@@ -4722,7 +4722,7 @@ __webpack_require__.r(__webpack_exports__);
         wtax: 0,
         user_id: this.form.user_id,
         status: 'CONFIRMED',
-        depreciation_date: '',
+        depreciation_date: this.form.transaction_date,
         depreciated_id: 0
       }); // Save Transactions START
 
@@ -5025,7 +5025,7 @@ __webpack_require__.r(__webpack_exports__);
         wtax: 0,
         user_id: this.form.user_id,
         status: 'CONFIRMED',
-        depreciation_date: '',
+        depreciation_date: this.form.transaction_date,
         depreciated_id: 0
       });
       $('#entry-details').modal('hide'); //this.$Progress.finish();
@@ -5929,7 +5929,7 @@ __webpack_require__.r(__webpack_exports__);
         wtax: 0,
         user_id: this.form.user_id,
         status: 'CONFIRMED',
-        depreciation_date: '',
+        depreciation_date: this.form.transaction_date,
         depreciated_id: 0
       }); // Save Transactions START
 
@@ -6164,7 +6164,7 @@ __webpack_require__.r(__webpack_exports__);
         wtax: 0,
         user_id: this.form.user_id,
         status: 'CONFIRMED',
-        depreciation_date: '',
+        depreciation_date: this.form.transaction_date,
         depreciated_id: 0
       });
       $('#entry-payment').modal('hide'); //this.loadPayments();
@@ -7646,7 +7646,7 @@ __webpack_require__.r(__webpack_exports__);
         wtax: 0,
         user_id: this.form.user_id,
         status: 'CONFIRMED',
-        depreciation_date: '',
+        depreciation_date: this.form.transaction_date,
         depreciated_id: 0
       }); // Save Transactions START
 
@@ -7880,7 +7880,7 @@ __webpack_require__.r(__webpack_exports__);
         wtax: 0,
         user_id: this.form.user_id,
         status: 'CONFIRMED',
-        depreciation_date: '',
+        depreciation_date: this.form.transaction_date,
         depreciated_id: 0
       });
       $('#entry-payment').modal('hide'); //this.loadPayments();
@@ -9043,7 +9043,7 @@ __webpack_require__.r(__webpack_exports__);
         salvage_value: 0,
         total_payment: 0,
         status: 'CONFIRMED',
-        depreciation_date: '',
+        depreciation_date: this.form.transaction_date,
         depreciated_id: 0
       });
       ++this.transaction_entry_id;
@@ -9078,7 +9078,7 @@ __webpack_require__.r(__webpack_exports__);
         salvage_value: 0,
         total_payment: 0,
         status: 'CONFIRMED',
-        depreciation_date: '',
+        depreciation_date: this.form.transaction_date,
         depreciated_id: 0
       }); // Save Transactions START
 
@@ -9422,7 +9422,7 @@ __webpack_require__.r(__webpack_exports__);
         salvage_value: this.form_entry.salvage_value,
         total_payment: 0,
         status: 'CONFIRMED',
-        depreciation_date: '',
+        depreciation_date: this.form.transaction_date,
         depreciated_id: 0
       });
       $('#entry-details').modal('hide'); //this.$Progress.finish();
@@ -10654,7 +10654,7 @@ __webpack_require__.r(__webpack_exports__);
         wtax: this.form.wtax,
         user_id: this.form.user_id,
         status: 'CONFIRMED',
-        depreciation_date: '',
+        depreciation_date: this.form.transaction_date,
         depreciated_id: 0
       });
       ++this.transaction_entry_id;
@@ -10718,7 +10718,7 @@ __webpack_require__.r(__webpack_exports__);
           wtax: this.form.wtax,
           user_id: this.form.user_id,
           status: 'CONFIRMED',
-          depreciation_date: '',
+          depreciation_date: this.form.transaction_date,
           depreciated_id: 0
         });
       } // Save Transactions START
@@ -11023,7 +11023,7 @@ __webpack_require__.r(__webpack_exports__);
         wtax: 0,
         user_id: this.form.user_id,
         status: 'CONFIRMED',
-        depreciation_date: '',
+        depreciation_date: this.form.transaction_date,
         depreciated_id: 0
       });
       $('#entry-details').modal('hide'); //this.$Progress.finish();

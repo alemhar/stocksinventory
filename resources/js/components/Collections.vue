@@ -795,7 +795,7 @@
                 wtax: 0,
                 user_id: this.form.user_id,
                 status: 'CONFIRMED',
-                depreciation_date: '',
+                depreciation_date: this.form.transaction_date,
                 depreciated_id: 0
             });
 
@@ -1087,7 +1087,7 @@
                 wtax: 0,
                 user_id: this.form.user_id,
                 status: 'CONFIRMED',
-                depreciation_date: '',
+                depreciation_date: this.form.transaction_date,
                 depreciated_id: 0
             });
 

@@ -1066,7 +1066,7 @@
                 salvage_value: 0,
                 total_payment: 0,
                 status: 'CONFIRMED',
-                depreciation_date: '',
+                depreciation_date: this.form.transaction_date,
                 depreciated_id: 0
             });
             ++this.transaction_entry_id;
@@ -1103,7 +1103,7 @@
                 salvage_value: 0,
                 total_payment: 0,
                 status: 'CONFIRMED',
-                depreciation_date: '',
+                depreciation_date: this.form.transaction_date,
                 depreciated_id: 0
             });  
 
@@ -1486,7 +1486,7 @@
                 salvage_value: this.form_entry.salvage_value,
                 total_payment: 0,
                 status: 'CONFIRMED',
-                depreciation_date: '',
+                depreciation_date: this.form.transaction_date,
                 depreciated_id: 0
             });
 
