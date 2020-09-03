@@ -98,7 +98,7 @@ Route::get('/test2', function () {
         ])->get();
 
 
-        if ($depreciation_entry->exists) {
+        if (count($depreciation_entry) > 0) {
             continue;
         }    
 
