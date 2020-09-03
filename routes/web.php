@@ -18,8 +18,15 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
+    $current_month = date('m');
+    $current_year = date('Y');
+    $date = Carbon::create($current_year, $current_month, 1);
+    $year_month = $date->subMonth()->format('Y-m'); 
+    $daysInMonth = $date->daysInMonth; 
+    $previous_month_last_date = $year_month.'-'.$daysInMonth;
+    
     $depreciation_entry = Transaction::where([
-        'depreciated_id' => $depreciatiable->id,
+        'depreciated_id' => 36,
         'transaction_type' => 'DEPRECIATION',
         'depreciation_date' => $previous_month_last_date
     ]);
