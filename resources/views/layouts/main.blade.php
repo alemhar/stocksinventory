@@ -84,7 +84,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview text-warning">
               @can('isAdminOrUser')
               <li class="nav-item">
                 <router-link to="/cd" class="nav-link">
@@ -148,7 +148,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview text-warning">
               @can('isAdmin')
               <li class="nav-item">
                 <router-link to="/ledger" class="nav-link">
@@ -169,7 +169,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview text-warning">
                 @can('isAdminOrUser')
                 <li class="nav-item">
                   <router-link to="/payees" class="nav-link">
