@@ -18,6 +18,16 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
+    $depreciation_entry = Transaction::where([
+        'depreciated_id' => $depreciatiable->id,
+        'transaction_type' => 'DEPRECIATION',
+        'depreciation_date' => $previous_month_last_date
+    ]);
+
+    return $depreciation_entry;
+});
+
+Route::get('/test1', function () {
     $depreciation_accounts = [];
     $ranges = [];
     array_push($ranges, [15011200, 15011550]);
@@ -51,11 +61,11 @@ Route::get('/test', function () {
 // firstOrNew where date = last day and depreciatiable->id = depreciatiable_id(column) if exists skip else insert entry.
 // check if depreciatiable->id = depreciatiable_id(column) is also applicable to payment and collection.
 Route::get('/test2', function () {
+    $depreciations = [];
     $depreciatiables = Transaction::whereBetween('account_code', [15011200, 15011550])
     ->where('amount', '>', DB::raw('total_deduction + salvage_value'))
-    //->where(DB::raw('total_deduction + salvage_value'),'<','amount')
     ->get();
-    $depreciations = [];
+    
 
     $current_month = date('m');
     $current_year = date('Y');
@@ -92,6 +102,8 @@ Route::get('/test2', function () {
             $depreciation = $remainingBalance;
         }
         
+
+
         // *************************
         $depreciation_entry->account_type= $depreciatiable->account_type;
         $depreciation_entry->sub_account_type= $depreciatiable->sub_account_type;
