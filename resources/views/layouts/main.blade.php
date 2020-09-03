@@ -24,7 +24,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <style>
     .nav-treeview .nav-icon{
       margin-left: 20px;
-      color: orange;
+      color: antiquewhite;
     }
   </style>
 </head>
