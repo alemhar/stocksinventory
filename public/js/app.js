@@ -3164,7 +3164,9 @@ __webpack_require__.r(__webpack_exports__);
         user_id: this.form.user_id,
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
-        depreciated_id: 0
+        depreciated_id: 0,
+        useful_life: 0,
+        salvage_value: 0
       });
       ++this.transaction_entry_id;
       this.transactions.push({
@@ -3197,7 +3199,9 @@ __webpack_require__.r(__webpack_exports__);
         user_id: this.form.user_id,
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
-        depreciated_id: 0
+        depreciated_id: 0,
+        useful_life: 0,
+        salvage_value: 0
       }); // Save Transactions START
 
       var rawData = {
@@ -4690,7 +4694,9 @@ __webpack_require__.r(__webpack_exports__);
         user_id: this.form.user_id,
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
-        depreciated_id: 0
+        depreciated_id: 0,
+        useful_life: 0,
+        salvage_value: 0
       });
       ++this.transaction_entry_id;
       this.transactions.push({
@@ -4723,7 +4729,9 @@ __webpack_require__.r(__webpack_exports__);
         user_id: this.form.user_id,
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
-        depreciated_id: 0
+        depreciated_id: 0,
+        useful_life: 0,
+        salvage_value: 0
       }); // Save Transactions START
 
       var rawData = {
@@ -5026,7 +5034,9 @@ __webpack_require__.r(__webpack_exports__);
         user_id: this.form.user_id,
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
-        depreciated_id: 0
+        depreciated_id: 0,
+        useful_life: 0,
+        salvage_value: 0
       });
       $('#entry-details').modal('hide'); //this.$Progress.finish();
     },
@@ -5930,7 +5940,9 @@ __webpack_require__.r(__webpack_exports__);
         user_id: this.form.user_id,
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
-        depreciated_id: 0
+        depreciated_id: 0,
+        useful_life: 0,
+        salvage_value: 0
       }); // Save Transactions START
 
       var rawData = {
@@ -6165,7 +6177,9 @@ __webpack_require__.r(__webpack_exports__);
         user_id: this.form.user_id,
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
-        depreciated_id: 0
+        depreciated_id: 0,
+        useful_life: 0,
+        salvage_value: 0
       });
       $('#entry-payment').modal('hide'); //this.loadPayments();
 
@@ -7647,7 +7661,9 @@ __webpack_require__.r(__webpack_exports__);
         user_id: this.form.user_id,
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
-        depreciated_id: 0
+        depreciated_id: 0,
+        useful_life: 0,
+        salvage_value: 0
       }); // Save Transactions START
 
       var rawData = {
@@ -7881,7 +7897,9 @@ __webpack_require__.r(__webpack_exports__);
         user_id: this.form.user_id,
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
-        depreciated_id: 0
+        depreciated_id: 0,
+        useful_life: 0,
+        salvage_value: 0
       });
       $('#entry-payment').modal('hide'); //this.loadPayments();
 
@@ -7978,6 +7996,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -9004,7 +9024,8 @@ __webpack_require__.r(__webpack_exports__);
       this.form.transaction_type = this.transaction_type;
     },
     saveTransaction: function saveTransaction() {
-      var _this4 = this;
+      var _this$transactions$pu,
+          _this4 = this;
 
       if (this.form.amount == 0) {
         return false;
@@ -9012,7 +9033,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.transaction_created = false;
       ++this.transaction_entry_id;
-      this.transactions.push({
+      this.transactions.push((_this$transactions$pu = {
         // *************************
         account_type: this.form.account_type,
         sub_account_type: this.form.sub_account_type,
@@ -9045,7 +9066,7 @@ __webpack_require__.r(__webpack_exports__);
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
         depreciated_id: 0
-      });
+      }, _defineProperty(_this$transactions$pu, "useful_life", 0), _defineProperty(_this$transactions$pu, "salvage_value", 0), _this$transactions$pu));
       ++this.transaction_entry_id;
       this.transactions.push({
         // *************************
@@ -10655,7 +10676,9 @@ __webpack_require__.r(__webpack_exports__);
         user_id: this.form.user_id,
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
-        depreciated_id: 0
+        depreciated_id: 0,
+        useful_life: 0,
+        salvage_value: 0
       });
       ++this.transaction_entry_id;
       this.transactions.push({
@@ -10719,7 +10742,9 @@ __webpack_require__.r(__webpack_exports__);
           user_id: this.form.user_id,
           status: 'CONFIRMED',
           depreciation_date: this.form.transaction_date,
-          depreciated_id: 0
+          depreciated_id: 0,
+          useful_life: 0,
+          salvage_value: 0
         });
       } // Save Transactions START
 
@@ -11024,7 +11049,9 @@ __webpack_require__.r(__webpack_exports__);
         user_id: this.form.user_id,
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
-        depreciated_id: 0
+        depreciated_id: 0,
+        useful_life: 0,
+        salvage_value: 0
       });
       $('#entry-details').modal('hide'); //this.$Progress.finish();
     },

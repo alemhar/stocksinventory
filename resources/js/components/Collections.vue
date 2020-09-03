@@ -796,7 +796,9 @@
                 user_id: this.form.user_id,
                 status: 'CONFIRMED',
                 depreciation_date: this.form.transaction_date,
-                depreciated_id: 0
+                depreciated_id: 0,
+                useful_life: 0,
+                salvage_value: 0
             });
 
                 // Save Transactions START
@@ -1088,7 +1090,9 @@
                 user_id: this.form.user_id,
                 status: 'CONFIRMED',
                 depreciation_date: this.form.transaction_date,
-                depreciated_id: 0
+                depreciated_id: 0,
+                useful_life: 0,
+                salvage_value: 0
             });
 
 

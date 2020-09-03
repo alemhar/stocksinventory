@@ -1067,7 +1067,9 @@
                 total_payment: 0,
                 status: 'CONFIRMED',
                 depreciation_date: this.form.transaction_date,
-                depreciated_id: 0
+                depreciated_id: 0,
+                useful_life: 0,
+                salvage_value: 0
             });
             ++this.transaction_entry_id;
             
