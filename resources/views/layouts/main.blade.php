@@ -77,7 +77,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           
           <!--  menu-transaction-->
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link" style="color:darkorange;">
+            <a href="#" class="nav-link" style="color:darkkhaki;">
               <i class="nav-icon fas fa-cogs"></i>
               <p v-bind:style="[readabilityObject]">
                 Transactions
@@ -141,7 +141,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <!--  menu-transaction-->
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link" style="color:darkorange;">
+            <a href="#" class="nav-link" style="color:darkkhaki;">
               <i class="nav-icon fas fa-cogs"></i>
               <p v-bind:style="[readabilityObject]">
                 Reports
@@ -162,7 +162,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link" style="color:darkorange;">
+            <a href="#" class="nav-link" style="color:darkkhaki;">
               <i class="nav-icon fas fa-cogs"></i>
               <p v-bind:style="[readabilityObject]">
                 Settings
@@ -193,7 +193,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
           <li class="nav-item">
-            <router-link to="/account" class="nav-link" style="color:darkorange;">
+            <router-link to="/account" class="nav-link" style="color:darkkhaki;">
               <i class="nav-icon fas fa-user"></i>
               <p v-bind:style="[readabilityObject]">
                 User Settings 
