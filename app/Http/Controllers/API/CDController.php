@@ -258,7 +258,7 @@ class CDController extends Controller
     {
         $data = json_decode($request['transactions']);
 
-        this.insert_transactions($data->transactions);
+        $this->insert_transactions($data->transactions);
 
         /*
         foreach ($data->transactions as $transaction) {

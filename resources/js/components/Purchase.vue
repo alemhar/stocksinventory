@@ -1401,7 +1401,7 @@
           },
           cancelEntry(){
             //this.$Progress.start();
-            this.items = this.items.filter(function( item ) {
+            this.items = this.items.filter(( item ) => {
                 return item.transaction_entry_id !== this.transaction_entry_id;
             });
             $('#entry-details').modal('hide');

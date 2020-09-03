@@ -4955,9 +4955,11 @@ __webpack_require__.r(__webpack_exports__);
       $('#entry-items').modal('show');
     },
     cancelEntry: function cancelEntry() {
+      var _this8 = this;
+
       //this.$Progress.start();
       this.items = this.items.filter(function (item) {
-        return item.transaction_entry_id !== this.transaction_entry_id;
+        return item.transaction_entry_id !== _this8.transaction_entry_id;
       });
       $('#entry-details').modal('hide');
     },
@@ -5108,10 +5110,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     currentItems: function currentItems() {
-      var _this8 = this;
+      var _this9 = this;
 
       return this.items.filter(function (item) {
-        return parseInt(item.transaction_entry_id) == parseInt(_this8.current_transaction_entry_id);
+        return parseInt(item.transaction_entry_id) == parseInt(_this9.current_transaction_entry_id);
       });
     }
   },
@@ -9320,9 +9322,11 @@ __webpack_require__.r(__webpack_exports__);
       $('#entry-items').modal('show');
     },
     cancelEntry: function cancelEntry() {
+      var _this8 = this;
+
       //this.$Progress.start();
       this.items = this.items.filter(function (item) {
-        return item.transaction_entry_id !== this.transaction_entry_id;
+        return item.transaction_entry_id !== _this8.transaction_entry_id;
       });
       $('#entry-details').modal('hide');
     },
@@ -9489,10 +9493,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     currentItems: function currentItems() {
-      var _this8 = this;
+      var _this9 = this;
 
       return this.items.filter(function (item) {
-        return parseInt(item.transaction_entry_id) == parseInt(_this8.current_transaction_entry_id);
+        return parseInt(item.transaction_entry_id) == parseInt(_this9.current_transaction_entry_id);
       });
     }
   },
@@ -10929,9 +10933,11 @@ __webpack_require__.r(__webpack_exports__);
       $('#entry-items').modal('show');
     },
     cancelEntry: function cancelEntry() {
+      var _this8 = this;
+
       //this.$Progress.start();
       this.items = this.items.filter(function (item) {
-        return item.transaction_entry_id !== this.transaction_entry_id;
+        return item.transaction_entry_id !== _this8.transaction_entry_id;
       });
       $('#entry-details').modal('hide');
     },
@@ -11068,10 +11074,10 @@ __webpack_require__.r(__webpack_exports__);
       this.current_transaction_entry_id = current_transaction_entry_id;
     },
     loadWTax: function loadWTax() {
-      var _this8 = this;
+      var _this9 = this;
 
       axios.get('api/taxrate').then(function (response) {
-        _this8.wtax = response.data;
+        _this9.wtax = response.data;
       })["catch"](function () {//
       });
     },
@@ -11079,7 +11085,7 @@ __webpack_require__.r(__webpack_exports__);
       $('#show-wtax').modal('show');
     },
     computedWTax: function computedWTax() {
-      var _this9 = this;
+      var _this10 = this;
 
       if (!this.form.wtax_code) {
         this.form.wtax = 0;
@@ -11091,7 +11097,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.form.wtax_code = this.form.wtax_code.toUpperCase();
       this.wTaxExist = this.wtax.find(function (tax) {
-        return tax.atc_code == _this9.form.wtax_code;
+        return tax.atc_code == _this10.form.wtax_code;
       });
 
       if (this.wTaxExist) {
@@ -11120,10 +11126,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     currentItems: function currentItems() {
-      var _this10 = this;
+      var _this11 = this;
 
       return this.items.filter(function (item) {
-        return parseInt(item.transaction_entry_id) == parseInt(_this10.current_transaction_entry_id);
+        return parseInt(item.transaction_entry_id) == parseInt(_this11.current_transaction_entry_id);
       });
     }
   },
