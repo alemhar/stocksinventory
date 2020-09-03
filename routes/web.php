@@ -41,7 +41,6 @@ Route::get('/test1', function () {
     array_push($ranges, [15015000, 15020000]);
     array_push($ranges, [62200000, 62201400]);
     
-    //dd($ranges);
     foreach($ranges as $range){
         $accounts = Account::whereBetween('account_code', $range)
                 ->get();
@@ -62,12 +61,39 @@ Route::get('/test1', function () {
             // 'sub_account_type' => $account->sub_account_type]);            
         }
     }    
-    dd($depreciation_accounts);            
+
+    dd($depreciation_accounts[15011300]->account_name);            
 });
 
 // firstOrNew where date = last day and depreciatiable->id = depreciatiable_id(column) if exists skip else insert entry.
 // check if depreciatiable->id = depreciatiable_id(column) is also applicable to payment and collection.
 Route::get('/test2', function () {
+
+    $depreciation_accounts = [];
+    $ranges = [];
+    array_push($ranges, [15011200, 15011550]);
+    array_push($ranges, [15015000, 15020000]);
+    array_push($ranges, [62200000, 62201400]);
+    
+    foreach($ranges as $range){
+        $accounts = Account::whereBetween('account_code', $range)
+                ->get();
+        foreach($accounts as $account){
+            $depreciation_accounts[$account->account_code] = 
+            ['account_type' => $account->account_type,
+            'sub_account_type' => $account->sub_account_type,
+            'main_code' => $account->main_code,
+            'main_account' => $account->main_account,
+            'account_code' => $account->account_code,
+            'account_name' => $account->account_name,
+            'type' => $account->type,
+            'counterpart_code' => $account->counterpart_code,
+            'counterpart_name' => $account->counterpart_name
+            ];
+        }
+    }    
+    
+
     $depreciations = [];
     $depreciatiables = Transaction::whereBetween('account_code', [15011200, 15011550])
     ->where('amount', '>', DB::raw('total_deduction + salvage_value'))
@@ -115,6 +141,44 @@ Route::get('/test2', function () {
             $depreciation = $remainingBalance;
         }
         
+        $transactions = [];
+        $transaction = new stdClass();
+        $transaction->
+        
+        $transaction->account_type: $account_type,
+        $transaction->sub_account_type: this.form.sub_account_type,
+        $transaction->main_code: this.form.main_code,
+        $transaction->main_account: this.form.main_account,
+        $transaction->type: this.form.type,
+        $transaction->counterpart_code: 0,
+        $transaction->counterpart_name: 'NA',
+        
+        // *************************
+
+        $transaction->transaction_entry_id: this.transaction_entry_id,
+        $transaction->payee_id: this.form.payee_id,
+        $transaction->branch_id: this.current_branch_id,
+        $transaction->account_code: this.form.account_code,
+        $transaction->account_name: this.form.account_name,
+        $transaction->reference_no: this.form.reference_no,
+        $transaction->transaction_no: this.form.transaction_no,
+        $transaction->transaction_type: this.form.transaction_type,
+        $transaction->transaction_date: this.form.transaction_date,
+        $transaction->amount: this.form.amount,
+        $transaction->credit_amount: this.form.amount,
+        $transaction->debit_amount: 0,
+        $transaction->total_payment: 0,
+        $transaction->amount_ex_tax: this.form.amount_ex_tax,
+        $transaction->vat: this.form.vat,
+        $transaction->wtax_code: 0,
+        $transaction->wtax: 0,
+        $transaction->user_id: this.form.user_id,
+        $transaction->status: 'CONFIRMED',
+        $transaction->depreciation_date: this.form.transaction_date,
+        $transaction->depreciated_id: 0,
+        $transaction->useful_life: 0,
+        $transaction->salvage_value: 0
+
 
 
         // *************************
