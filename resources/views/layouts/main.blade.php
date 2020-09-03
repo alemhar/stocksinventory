@@ -77,14 +77,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
           
           <!--  menu-transaction-->
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" style="color:#ffed4a;">
               <i class="nav-icon fas fa-cogs"></i>
               <p v-bind:style="[readabilityObject]">
                 Transactions
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview" style="color:#ffed4a;">
+            <ul class="nav nav-treeview">
               @can('isAdminOrUser')
               <li class="nav-item">
                 <router-link to="/cd" class="nav-link">
