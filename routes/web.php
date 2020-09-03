@@ -62,7 +62,7 @@ Route::get('/test1', function () {
         }
     }    
 
-    dd($depreciation_accounts[15011300]->account_name);            
+    dd($depreciation_accounts[15011300][account_name]);            
 });
 
 // firstOrNew where date = last day and depreciatiable->id = depreciatiable_id(column) if exists skip else insert entry.
