@@ -24,12 +24,12 @@ Route::get('/test', function () {
     $year_month = $date->subMonth()->format('Y-m'); 
     $daysInMonth = $date->daysInMonth; 
     $previous_month_last_date = $year_month.'-'.$daysInMonth;
-    
+
     $depreciation_entry = Transaction::where([
         'depreciated_id' => 36,
         'transaction_type' => 'DEPRECIATION',
         'depreciation_date' => $previous_month_last_date
-    ]);
+    ])->get();
 
     return $depreciation_entry;
 });
