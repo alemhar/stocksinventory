@@ -21,6 +21,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   @if (Auth::check())
     <meta name="user-id" content="{{ Auth::user()->id }}" />
   @endif
+  <style>
+    .nav-treeview.nav-icon{
+      margin-left: 20px;
+    }
+  </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper" id="app">
