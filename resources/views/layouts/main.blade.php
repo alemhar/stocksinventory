@@ -22,7 +22,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta name="user-id" content="{{ Auth::user()->id }}" />
   @endif
   <style>
-    .nav-treeview.nav-icon{
+    .nav-treeview .nav-icon{
       margin-left: 20px;
     }
   </style>
