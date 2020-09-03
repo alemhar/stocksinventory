@@ -1065,7 +1065,9 @@
                 useful_life: 0,
                 salvage_value: 0,
                 total_payment: 0,
-                status: 'CONFIRMED'
+                status: 'CONFIRMED',
+                depreciation_date: '',
+                depreciated_id: 0
             });
             ++this.transaction_entry_id;
             
@@ -1100,7 +1102,9 @@
                 useful_life: 0,
                 salvage_value: 0,
                 total_payment: 0,
-                status: 'CONFIRMED'
+                status: 'CONFIRMED',
+                depreciation_date: '',
+                depreciated_id: 0
             });  
 
 
@@ -1481,7 +1485,9 @@
                 useful_life: this.form_entry.useful_life,
                 salvage_value: this.form_entry.salvage_value,
                 total_payment: 0,
-                status: 'CONFIRMED'
+                status: 'CONFIRMED',
+                depreciation_date: '',
+                depreciated_id: 0
             });
 
 

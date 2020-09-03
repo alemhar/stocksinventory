@@ -1031,7 +1031,9 @@
                 wtax_code: 0,
                 wtax: 0,
                 user_id: this.form.user_id,
-                status: 'CONFIRMED'
+                status: 'CONFIRMED',
+                depreciation_date: '',
+                depreciated_id: 0
             });
             ++this.transaction_entry_id;
             
@@ -1066,7 +1068,9 @@
                 wtax_code: 0,
                 wtax: 0,
                 user_id: this.form.user_id,
-                status: 'CONFIRMED'
+                status: 'CONFIRMED',
+                depreciation_date: '',
+                depreciated_id: 0
             });  
 
 
@@ -1404,7 +1408,9 @@
                 wtax_code: 0,
                 wtax: 0,
                 user_id: this.form.user_id,
-                status: 'CONFIRMED'
+                status: 'CONFIRMED',
+                depreciation_date: '',
+                depreciated_id: 0
             });
             $('#entry-details').modal('hide');
             //this.$Progress.finish();

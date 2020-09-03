@@ -794,7 +794,9 @@
                 wtax_code: 0,
                 wtax: 0,
                 user_id: this.form.user_id,
-                status: 'CONFIRMED'
+                status: 'CONFIRMED',
+                depreciation_date: '',
+                depreciated_id: 0
             });
 
                 // Save Transactions START
@@ -1084,7 +1086,9 @@
                 wtax_code: 0,
                 wtax: 0,
                 user_id: this.form.user_id,
-                status: 'CONFIRMED'
+                status: 'CONFIRMED',
+                depreciation_date: '',
+                depreciated_id: 0
             });
 
 
