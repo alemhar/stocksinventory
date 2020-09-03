@@ -3467,7 +3467,7 @@ __webpack_require__.r(__webpack_exports__);
       $('#entry-details').modal('hide');
     },
     saveEntry: function saveEntry() {
-      if (!this.form_entry.useful_life) {
+      if (!this.form_entry.useful_life && this.depreciates) {
         swal.fire({
           title: 'Warning!',
           text: "USEFUL LIFE input required for this entry.",
@@ -9325,7 +9325,7 @@ __webpack_require__.r(__webpack_exports__);
       $('#entry-details').modal('hide');
     },
     saveEntry: function saveEntry() {
-      if (!this.form_entry.useful_life) {
+      if (!this.form_entry.useful_life && this.depreciates) {
         swal.fire({
           title: 'Warning!',
           text: "USEFUL LIFE input required for this entry.",

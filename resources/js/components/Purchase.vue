@@ -1409,7 +1409,7 @@
           },
           saveEntry(){
 
-            if(!this.form_entry.useful_life){
+            if(!this.form_entry.useful_life && this.depreciates){
                 swal.fire({
                     title: 'Warning!',
                     text: "USEFUL LIFE input required for this entry.",
