@@ -1395,8 +1395,6 @@
               this.form_item.transaction_no = this.form.transaction_no;
               this.form_item.transaction_type = this.transaction_type;
               this.form_item.account_code = this.form_entry.account_code;
- 
-              
               $('#entry-items').modal('show');
           },
           cancelEntry(){
