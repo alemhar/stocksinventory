@@ -55,7 +55,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div -->
         <div class="info" style="/*margin: auto;*/">
           <a href="#" class="d-block">Hi {{ isset(Auth::user()->name) ? ucwords(Auth::user()->name) : '' }}!</a>
-          <p>{{ isset(Auth::user()->company_id) ? Auth::user()->company_id : '' }}</p>
         </div>
       </div>
 
@@ -65,7 +64,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <router-link to="/dashboard" class="nav-link">
+            <router-link to="/dashboard" class="nav-link" style="color:darkkhaki;">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p v-bind:style="[readabilityObject]">
                 Dashboard
