@@ -141,6 +141,7 @@ Route::get('/test2', function () {
             $depreciation = $remainingBalance;
         }
         
+        /*
         $transactions = [];
         $transaction = new stdClass();
         $transaction->
@@ -178,7 +179,7 @@ Route::get('/test2', function () {
         $transaction->depreciated_id: 0,
         $transaction->useful_life: 0,
         $transaction->salvage_value: 0
-
+        */
 
 
         // *************************
