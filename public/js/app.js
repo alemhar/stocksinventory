@@ -3460,9 +3460,11 @@ __webpack_require__.r(__webpack_exports__);
       $('#entry-items').modal('show');
     },
     cancelEntry: function cancelEntry() {
+      var _this8 = this;
+
       //this.$Progress.start();
       this.items = this.items.filter(function (item) {
-        return item.transaction_entry_id !== this.transaction_entry_id;
+        return item.transaction_entry_id !== _this8.transaction_entry_id;
       });
       $('#entry-details').modal('hide');
     },
@@ -3629,10 +3631,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     currentItems: function currentItems() {
-      var _this8 = this;
+      var _this9 = this;
 
       return this.items.filter(function (item) {
-        return parseInt(item.transaction_entry_id) == parseInt(_this8.current_transaction_entry_id);
+        return parseInt(item.transaction_entry_id) == parseInt(_this9.current_transaction_entry_id);
       });
     }
   },
