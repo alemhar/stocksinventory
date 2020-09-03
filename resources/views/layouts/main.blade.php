@@ -24,6 +24,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <style>
     .nav-treeview .nav-icon{
       margin-left: 20px;
+      color: orange;
     }
   </style>
 </head>
@@ -69,7 +70,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <router-link to="/dashboard" class="nav-link" style="color:darkkhaki;">
+            <router-link to="/dashboard" class="nav-link" style="color:orange;">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p v-bind:style="[readabilityObject]">
                 Dashboard
@@ -81,7 +82,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           
           <!--  menu-transaction-->
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link" style="color:darkkhaki;">
+            <a href="#" class="nav-link" style="color:orange;">
               <i class="nav-icon fas fa-exchange-alt"></i>
               <p v-bind:style="[readabilityObject]">
                 Transactions
@@ -145,7 +146,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <!--  menu-transaction-->
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link" style="color:darkkhaki;">
+            <a href="#" class="nav-link" style="color:orange;">
               <i class="nav-icon fas fa-newspaper"></i>
               <p v-bind:style="[readabilityObject]">
                 Reports
@@ -166,7 +167,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link" style="color:darkkhaki;">
+            <a href="#" class="nav-link" style="color:orange;">
               <i class="nav-icon fas fa-cogs"></i>
               <p v-bind:style="[readabilityObject]">
                 Settings
@@ -197,7 +198,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
           <li class="nav-item">
-            <router-link to="/account" class="nav-link" style="color:darkkhaki;">
+            <router-link to="/account" class="nav-link" style="color:orange;">
               <i class="nav-icon fas fa-user"></i>
               <p v-bind:style="[readabilityObject]">
                 User Settings 
