@@ -132,7 +132,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <router-link to="/collections" class="nav-link">
                 
-                  <i class="nav-icon fas fa-money-bill-wave"></i>
+                  <i class="nav-icon fas fa-download"></i>
                   <p v-bind:style="[readabilityObject]">Collections</p>
                 </router-link>
               </li>
@@ -152,7 +152,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               @can('isAdmin')
               <li class="nav-item">
                 <router-link to="/ledger" class="nav-link">
-                  <i class="nav-icon fas fa-folder-minus"></i>
+                  <i class="nav-icon fas fa-info-circle"></i>
                   <p v-bind:style="[readabilityObject]">Ledger</p>
                 </router-link>
               </li>
@@ -161,17 +161,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
 
 
-          @can('isAdminOrUser')
-          <li class="nav-item">
-            <router-link to="/payees" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-cogs"></i>
               <p v-bind:style="[readabilityObject]">
-                Payees
+                Settings
+                <i class="right fas fa-angle-left"></i>
               </p>
-            </router-link>
+            </a>
+            <ul class="nav nav-treeview">
+                @can('isAdminOrUser')
+                <li class="nav-item">
+                  <router-link to="/payees" class="nav-link">
+                    <i class="nav-icon fas fa-users"></i>
+                    <p v-bind:style="[readabilityObject]">
+                      Payees
+                    </p>
+                  </router-link>
+                </li>
+                @endcan
+                @can('isAdmin')
+                <li class="nav-item">
+                  <router-link to="/users" class="nav-link">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p v-bind:style="[readabilityObject]">
+                      Users
+                    </p>
+                  </router-link>
+                </li>
+                @endcan
+            </ul>
           </li>
-          @endcan
-          @can('isAdmin')
           <li class="nav-item">
             <router-link to="/account" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
@@ -181,26 +201,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </router-link>
           </li>
 
-          <li class="nav-item">
-            <router-link to="/users" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p v-bind:style="[readabilityObject]">
-                Users
-              </p>
-            </router-link>
-          </li>
-
-          <!-- li class="nav-item">
-            <router-link to="/testing" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p v-bind:style="[readabilityObject]">
-                Test  
-              </p>
-            </router-link>
-          </li -->
-          
-
-          @endcan
           <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}"
                onclick="event.preventDefault();
