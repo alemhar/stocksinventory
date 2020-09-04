@@ -720,6 +720,20 @@
             return `${year}-${month}-${day}`;
           },
           createTransaction(){
+            if(this.current_date < this.form.transaction_date){
+              swal.fire({
+                    title: 'Invalid date!',
+                    text: "Future/Advance date not accepted.",
+                    type: 'info',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ok'
+                }).then((result) => {
+                    
+                });
+                return false;
+            }
             if(this.form.payee_id.length == 0) {
               this.no_payee = true;
             } else {
