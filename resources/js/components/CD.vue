@@ -408,7 +408,7 @@
                   </div>
 
                     <input v-model="form_entry.useful_life" name="useful_life" id="useful_life"
-                    class="form-control" aria-describedby="inputGroup-sizing-default" @change="computeDepreciation">
+                    class="form-control" aria-describedby="inputGroup-sizing-default" @blur="computeDepreciation">
                     
                 </div>
 
@@ -418,7 +418,7 @@
                   </div>
 
                     <input v-model="form_entry.salvage_value" name="salvage_value" id="salvage_value"
-                    class="form-control" aria-describedby="inputGroup-sizing-default">
+                    class="form-control" aria-describedby="inputGroup-sizing-default" @blur="computeDepreciation">
                     
                 </div>
                 
@@ -1576,6 +1576,7 @@
                 status: 'CONFIRMED'
 
             });
+            this.computeDepreciation();
             $('#entry-items').modal('hide');
             
           },

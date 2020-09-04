@@ -3612,6 +3612,7 @@ __webpack_require__.r(__webpack_exports__);
         vat: this.form_item.vat,
         status: 'CONFIRMED'
       });
+      this.computeDepreciation();
       $('#entry-items').modal('hide');
     },
     deleteItem: function deleteItem(item_no, item_sub_total, item_tax_excluded, item_vat) {
@@ -9544,6 +9545,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         vat: this.form_item.vat,
         status: 'CONFIRMED'
       });
+      this.computeDepreciation();
       $('#entry-items').modal('hide');
     },
     deleteItem: function deleteItem(item_no, item_sub_total, item_tax_excluded, item_vat) {
@@ -72341,7 +72343,7 @@ var render = function() {
                             },
                             domProps: { value: _vm.form_entry.useful_life },
                             on: {
-                              change: _vm.computeDepreciation,
+                              blur: _vm.computeDepreciation,
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
@@ -72376,6 +72378,7 @@ var render = function() {
                             },
                             domProps: { value: _vm.form_entry.salvage_value },
                             on: {
+                              blur: _vm.computeDepreciation,
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
@@ -82499,7 +82502,7 @@ var render = function() {
                             },
                             domProps: { value: _vm.form_entry.useful_life },
                             on: {
-                              change: _vm.computeDepreciation,
+                              blur: _vm.computeDepreciation,
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
@@ -82534,6 +82537,7 @@ var render = function() {
                             },
                             domProps: { value: _vm.form_entry.salvage_value },
                             on: {
+                              blur: _vm.computeDepreciation,
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
