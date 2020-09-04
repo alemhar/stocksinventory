@@ -946,6 +946,7 @@
               chart_of_accounts_header: {},
               chart_of_accounts_detail: {},
               depreciates: false,
+              current_date: this.getDate(),
               readabilityObject: {
                 fontSize: user.font_size
               }
@@ -1001,6 +1002,19 @@
             return `${year}-${month}-${day}`;
           },
           createTransaction(){
+            if(this.current_date < this.form.transaction_date){
+              swal.fire({
+                    title: 'Invalid date!',
+                    text: "Future date not accepted ",
+                    type: 'info',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ok'
+                }).then((result) => {
+                    return false;
+                });
+            } 
             if(this.form.payee_id.length == 0) {
               this.no_payee = true;
             } else {

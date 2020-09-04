@@ -3039,6 +3039,7 @@ __webpack_require__.r(__webpack_exports__);
       chart_of_accounts_header: {},
       chart_of_accounts_detail: {},
       depreciates: false,
+      current_date: this.getDate(),
       readabilityObject: {
         fontSize: user.font_size
       }
@@ -3098,6 +3099,20 @@ __webpack_require__.r(__webpack_exports__);
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
     createTransaction: function createTransaction() {
+      if (this.current_date < this.form.transaction_date) {
+        swal.fire({
+          title: 'Invalid date!',
+          text: "Future date not accepted ",
+          type: 'info',
+          showCancelButton: false,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ok'
+        }).then(function (result) {
+          return false;
+        });
+      }
+
       if (this.form.payee_id.length == 0) {
         this.no_payee = true;
       } else {
@@ -4568,6 +4583,7 @@ __webpack_require__.r(__webpack_exports__);
       chart_of_accounts: {},
       chart_of_accounts_header: {},
       chart_of_accounts_detail: {},
+      current_date: this.getDate(),
       readabilityObject: {
         fontSize: user.font_size
       }
@@ -5799,6 +5815,7 @@ __webpack_require__.r(__webpack_exports__);
       chart_of_accounts: {},
       chart_of_accounts_header: {},
       chart_of_accounts_detail: {},
+      current_date: this.getDate(),
       readabilityObject: {
         fontSize: user.font_size
       }
@@ -7531,6 +7548,7 @@ __webpack_require__.r(__webpack_exports__);
       chart_of_accounts: {},
       chart_of_accounts_header: {},
       chart_of_accounts_detail: {},
+      current_date: this.getDate(),
       readabilityObject: {
         fontSize: user.font_size
       }
@@ -8963,6 +8981,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       chart_of_accounts_header: {},
       chart_of_accounts_detail: {},
       depreciates: false,
+      current_date: this.getDate(),
       readabilityObject: {
         fontSize: user.font_size
       }
@@ -10578,6 +10597,7 @@ __webpack_require__.r(__webpack_exports__);
       chart_of_accounts: {},
       chart_of_accounts_header: {},
       chart_of_accounts_detail: {},
+      current_date: this.getDate(),
       readabilityObject: {
         fontSize: user.font_size
       },

@@ -647,6 +647,7 @@
               chart_of_accounts: {},
               chart_of_accounts_header: {},
               chart_of_accounts_detail: {},
+              current_date: this.getDate(),
               readabilityObject: {
                 fontSize: user.font_size
               },

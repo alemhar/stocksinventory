@@ -943,6 +943,7 @@
               chart_of_accounts_header: {},
               chart_of_accounts_detail: {},
               depreciates: false,
+              current_date: this.getDate(),
               readabilityObject: {
                 fontSize: user.font_size
               }
