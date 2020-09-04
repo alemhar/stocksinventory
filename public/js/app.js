@@ -3108,9 +3108,8 @@ __webpack_require__.r(__webpack_exports__);
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
           confirmButtonText: 'Ok'
-        }).then(function (result) {
-          return false;
-        });
+        }).then(function (result) {});
+        return false;
       }
 
       if (this.form.payee_id.length == 0) {

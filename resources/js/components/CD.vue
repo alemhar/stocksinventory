@@ -1012,8 +1012,9 @@
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Ok'
                 }).then((result) => {
-                    return false;
+                    
                 });
+                return false;
             } 
             if(this.form.payee_id.length == 0) {
               this.no_payee = true;
