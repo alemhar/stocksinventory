@@ -404,11 +404,11 @@
               <div v-if="depreciates">
                 <div class="input-group mb-2">
                   <div class="input-group-prepend">
-                    <span class="input-group-text inputGroup-sizing-default">Useful Life</span>
+                    <span class="input-group-text inputGroup-sizing-default">Useful Life (in Months)</span>
                   </div>
 
                     <input v-model="form_entry.useful_life" name="useful_life" id="useful_life"
-                    class="form-control" aria-describedby="inputGroup-sizing-default">
+                    class="form-control" aria-describedby="inputGroup-sizing-default" @change="computeDepreciation">
                     
                 </div>
 
@@ -421,6 +421,15 @@
                     class="form-control" aria-describedby="inputGroup-sizing-default">
                     
                 </div>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text inputGroup-sizing-default">Depreciation</span>
+                  </div>
+
+                    <input v-model="form_entry.depreciation_value" name="depreciation_value" id="depreciation_value"
+                    class="form-control" aria-describedby="inputGroup-sizing-default" readonly>
+                </div>
+
               </div>
 
 
@@ -734,7 +743,7 @@
                   <td>{{ payee.id }}</td>
                   <td>{{ payee.name }}</td> 
                   <td>
-                    <a href="#" @click="selectPayee(payee.id,payee.name,payee.address,payee.tin)">Select
+                    <a href="#" @click="selectPayee(payee.id,payee.name,payee.address,payee.tin,payee.entity_type)">Select
                       <i class="fa fa-edit"></i>
                     </a>
                   </td>
@@ -859,6 +868,7 @@
               current_payee_name: '',
               current_payee_address: '',
               current_payee_tin: '',
+              current_entity_type: '',
               active_debit_row: 0,
               selected_branch: {},
               cd : {},
@@ -907,6 +917,7 @@
                   debit_amount: 0,
                   useful_life: 0,
                   salvage_value: 0,
+                  depreciation_value: 0,
                   transaction_date: this.getDate(),
               }),
               form_item: new Form({
@@ -1037,7 +1048,7 @@
                 main_code: this.form.main_code,
                 main_account: this.form.main_account,
                 type: this.form.type,
-
+                entity_type: this.current_entity_type,
                 // *************************
 
                 transaction_entry_id: this.transaction_entry_id,
@@ -1076,7 +1087,7 @@
                 main_code: 0,
                 main_account: 'NA',
                 type: 'NA',
-
+                entity_type: this.current_entity_type,
                 // 
                 transaction_entry_id: this.transaction_entry_id,
                 payee_id: this.form.payee_id,
@@ -1148,6 +1159,20 @@
                 });
                 // Save Items END
 
+                // Update Payee Account START ********************
+                axios.post('api/update_payee_account', {
+                    payee_id: this.form.payee_id,
+                    amount: this.form.amount,
+                    operation: 'add',
+                    account: 'payable',
+                })
+                .then((response)=>{
+
+                })
+                .catch(()=>{
+                    
+                });
+                // Update Payee Account END ********************
 
                 swal.fire({
                     title: 'Saved!',
@@ -1184,6 +1209,7 @@
                   this.current_payee_address = '';
                   this.current_payee_tin = '';
                   this.active_debit_row = 0;
+                  this.current_entity_type = '';
           },
           cancelTransaction(){
             this.transaction_created = false;
@@ -1248,7 +1274,7 @@
           },
           // *************************************************
 
-          selectPayee(id = null,name = null,address = null,tin = null){
+          selectPayee(id = null,name = null,address = null,tin = null, entity_type = null){
               if (id){
                     
                       this.current_payee_id = id;
@@ -1256,6 +1282,8 @@
                       this.current_payee_name = name;
                       this.current_payee_address = address;
                       this.current_payee_tin = tin;
+                      this.current_entity_type = entity_type;
+                      
               }
               $('#select-payee').modal('hide');  
 
@@ -1330,6 +1358,9 @@
                   this.form_item.tax_excluded = this.form_item.sub_total  * 1;
                 }
               }
+          },
+          computeDepreciation(){
+            this.form_entry.depreciation_value = (this.form_entry.amount_ex_tax / this.form_entry.useful_life).toFixed(2)  * 1;
           },
           newEntry(){
               this.editmode = false;
@@ -1453,7 +1484,7 @@
                 main_code: this.form_entry.main_code,
                 main_account: this.form_entry.main_account,
                 type: this.form_entry.type,
-                
+                entity_type: this.current_entity_type,
                 // *************************
                 
                 transaction_entry_id: this.transaction_entry_id,

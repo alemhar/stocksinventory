@@ -19,14 +19,15 @@ class CreatePayeesTable extends Migration
             $table->string('address');
             $table->string('city');
             $table->string('tin');
-            
             $table->string('mailing');
             $table->string('phone');
             $table->string('contactname');
             $table->string('contactno');
             $table->string('contactemail');
             $table->string('website');
-            
+            $table->decimal('payable', 14, 2)->default(0);
+            $table->decimal('receivable', 14, 2)->default(0);
+            $table->string('entity_type')->default('PRIVATE');
             $table->timestamps();
         });
     }

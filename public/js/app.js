@@ -2923,6 +2923,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2957,6 +2967,7 @@ __webpack_require__.r(__webpack_exports__);
       current_payee_name: '',
       current_payee_address: '',
       current_payee_tin: '',
+      current_entity_type: '',
       active_debit_row: 0,
       selected_branch: {},
       cd: {},
@@ -3005,6 +3016,7 @@ __webpack_require__.r(__webpack_exports__);
         debit_amount: 0,
         useful_life: 0,
         salvage_value: 0,
+        depreciation_value: 0,
         transaction_date: this.getDate()
       }),
       form_item: new Form({
@@ -3135,6 +3147,7 @@ __webpack_require__.r(__webpack_exports__);
         main_code: this.form.main_code,
         main_account: this.form.main_account,
         type: this.form.type,
+        entity_type: this.current_entity_type,
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -3168,6 +3181,7 @@ __webpack_require__.r(__webpack_exports__);
         main_code: 0,
         main_account: 'NA',
         type: 'NA',
+        entity_type: this.current_entity_type,
         // 
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -3262,6 +3276,7 @@ __webpack_require__.r(__webpack_exports__);
       this.current_payee_address = '';
       this.current_payee_tin = '';
       this.active_debit_row = 0;
+      this.current_entity_type = '';
     },
     cancelTransaction: function cancelTransaction() {
       this.transaction_created = false;
@@ -3329,6 +3344,7 @@ __webpack_require__.r(__webpack_exports__);
       var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
       var address = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var tin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+      var entity_type = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
 
       if (id) {
         this.current_payee_id = id;
@@ -3336,6 +3352,7 @@ __webpack_require__.r(__webpack_exports__);
         this.current_payee_name = name;
         this.current_payee_address = address;
         this.current_payee_tin = tin;
+        this.current_entity_type = entity_type;
       }
 
       $('#select-payee').modal('hide');
@@ -3402,6 +3419,9 @@ __webpack_require__.r(__webpack_exports__);
           this.form_item.tax_excluded = this.form_item.sub_total * 1;
         }
       }
+    },
+    computeDepreciation: function computeDepreciation() {
+      this.form_entry.depreciation_value = (this.form_entry.amount_ex_tax / this.form_entry.useful_life).toFixed(2) * 1;
     },
     newEntry: function newEntry() {
       this.editmode = false;
@@ -3504,6 +3524,7 @@ __webpack_require__.r(__webpack_exports__);
         main_code: this.form_entry.main_code,
         main_account: this.form_entry.main_account,
         type: this.form_entry.type,
+        entity_type: this.current_entity_type,
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -4481,6 +4502,7 @@ __webpack_require__.r(__webpack_exports__);
       current_payee_name: '',
       current_payee_address: '',
       current_payee_tin: '',
+      current_entity_type: '',
       active_debit_row: 0,
       selected_branch: {},
       cd: {},
@@ -4653,6 +4675,7 @@ __webpack_require__.r(__webpack_exports__);
         main_code: this.form.main_code,
         main_account: this.form.main_account,
         type: this.form.type,
+        entity_type: this.current_entity_type,
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -4686,6 +4709,7 @@ __webpack_require__.r(__webpack_exports__);
         main_code: 0,
         main_account: 'NA',
         type: 'NA',
+        entity_type: this.current_entity_type,
         // 
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -4780,6 +4804,7 @@ __webpack_require__.r(__webpack_exports__);
       this.current_payee_address = '';
       this.current_payee_tin = '';
       this.active_debit_row = 0;
+      this.current_entity_type = '';
     },
     cancelTransaction: function cancelTransaction() {
       this.transaction_created = false;
@@ -4841,6 +4866,7 @@ __webpack_require__.r(__webpack_exports__);
       var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
       var address = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var tin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+      var entity_type = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
 
       if (id) {
         this.current_payee_id = id;
@@ -4848,6 +4874,7 @@ __webpack_require__.r(__webpack_exports__);
         this.current_payee_name = name;
         this.current_payee_address = address;
         this.current_payee_tin = tin;
+        this.current_entity_type = entity_type;
       }
 
       $('#select-payee').modal('hide');
@@ -4989,6 +5016,7 @@ __webpack_require__.r(__webpack_exports__);
         main_code: this.form_entry.main_code,
         main_account: this.form_entry.main_account,
         type: this.form_entry.type,
+        entity_type: this.current_entity_type,
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -5717,6 +5745,7 @@ __webpack_require__.r(__webpack_exports__);
       current_payee_name: '',
       current_payee_address: '',
       current_payee_tin: '',
+      current_entity_type: '',
       active_debit_row: 0,
       form: new Form({
         account_type: '',
@@ -5892,6 +5921,7 @@ __webpack_require__.r(__webpack_exports__);
         main_code: this.form.main_code,
         main_account: this.form.main_account,
         type: this.form.type,
+        entity_type: this.current_entity_type,
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -5950,7 +5980,15 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response);
       })["catch"](function (error) {
         console.log(error);
-      }); // Save Payment END
+      }); // Update Payee Account START ********************
+
+      axios.post('api/update_payee_account', {
+        payee_id: this.form.payee_id,
+        amount: this.form.amount,
+        operation: 'sub',
+        account: 'receivable'
+      }).then(function (response) {})["catch"](function () {}); // Update Payee Account END ********************
+      // Save Payment END
 
       swal.fire({
         title: 'Saved!',
@@ -5991,6 +6029,7 @@ __webpack_require__.r(__webpack_exports__);
       this.active_debit_row = 0;
       this.payment_history = {};
       this.sales = {};
+      this.current_entity_type = '';
     },
     cancelTransaction: function cancelTransaction() {
       this.transaction_created = false;
@@ -6047,6 +6086,7 @@ __webpack_require__.r(__webpack_exports__);
       var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
       var address = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var tin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+      var entity_type = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
 
       if (id) {
         this.current_payee_id = id;
@@ -6054,6 +6094,7 @@ __webpack_require__.r(__webpack_exports__);
         this.current_payee_name = name;
         this.current_payee_address = address;
         this.current_payee_tin = tin;
+        this.current_entity_type = entity_type;
       }
 
       $('#select-payee').modal('hide');
@@ -6127,6 +6168,7 @@ __webpack_require__.r(__webpack_exports__);
         main_code: this.form_entry.main_code,
         main_account: this.form_entry.main_account,
         type: this.form_entry.type,
+        entity_type: this.current_entity_type,
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -7435,6 +7477,7 @@ __webpack_require__.r(__webpack_exports__);
       current_payee_name: '',
       current_payee_address: '',
       current_payee_tin: '',
+      current_entity_type: '',
       active_debit_row: 0,
       form: new Form({
         account_type: '',
@@ -7610,6 +7653,7 @@ __webpack_require__.r(__webpack_exports__);
         main_code: this.form.main_code,
         main_account: this.form.main_account,
         type: this.form.type,
+        entity_type: this.current_entity_type,
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -7667,7 +7711,15 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response);
       })["catch"](function (error) {
         console.log(error);
-      }); // Save Payment END
+      }); // Update Payee Account START ********************
+
+      axios.post('api/update_payee_account', {
+        payee_id: this.form.payee_id,
+        amount: this.form.amount,
+        operation: 'sub',
+        account: 'payable'
+      }).then(function (response) {})["catch"](function () {}); // Update Payee Account END ********************
+      // Save Payment END
 
       swal.fire({
         title: 'Saved!',
@@ -7708,6 +7760,7 @@ __webpack_require__.r(__webpack_exports__);
       this.active_debit_row = 0;
       this.payment_history = {};
       this.purchases = {};
+      this.current_entity_type = '';
     },
     cancelTransaction: function cancelTransaction() {
       this.transaction_created = false;
@@ -7764,6 +7817,7 @@ __webpack_require__.r(__webpack_exports__);
       var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
       var address = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var tin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+      var entity_type = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
 
       if (id) {
         this.current_payee_id = id;
@@ -7771,6 +7825,7 @@ __webpack_require__.r(__webpack_exports__);
         this.current_payee_name = name;
         this.current_payee_address = address;
         this.current_payee_tin = tin;
+        this.current_entity_type = entity_type;
       }
 
       $('#select-payee').modal('hide');
@@ -7844,6 +7899,7 @@ __webpack_require__.r(__webpack_exports__);
         main_code: this.form_entry.main_code,
         main_account: this.form_entry.main_account,
         type: this.form_entry.type,
+        entity_type: this.current_entity_type,
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -8792,6 +8848,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -8825,6 +8890,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       current_payee_name: '',
       current_payee_address: '',
       current_payee_tin: '',
+      current_entity_type: '',
       active_debit_row: 0,
       selected_branch: {},
       cd: {},
@@ -8873,6 +8939,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         debit_amount: 0,
         useful_life: 0,
         salvage_value: 0,
+        depreciation_value: 0,
         transaction_date: this.getDate()
       }),
       form_item: new Form({
@@ -9004,6 +9071,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         main_code: this.form.main_code,
         main_account: this.form.main_account,
         type: this.form.type,
+        entity_type: this.current_entity_type,
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -9037,6 +9105,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         main_code: 0,
         main_account: 'NA',
         type: 'NA',
+        entity_type: this.current_entity_type,
         // 
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -9095,6 +9164,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })["catch"](function (error) {
         console.log(error);
       }); // Save Items END
+      // Update Payee Account START ********************
+
+      axios.post('api/update_payee_account', {
+        payee_id: this.form.payee_id,
+        amount: this.form.amount,
+        operation: 'add',
+        account: 'payable'
+      }).then(function (response) {})["catch"](function () {}); // Update Payee Account END ********************
 
       swal.fire({
         title: 'Saved!',
@@ -9131,6 +9208,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.current_payee_address = '';
       this.current_payee_tin = '';
       this.active_debit_row = 0;
+      this.current_entity_type = '';
     },
     cancelTransaction: function cancelTransaction() {
       this.transaction_created = false;
@@ -9198,6 +9276,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
       var address = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var tin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+      var entity_type = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
 
       if (id) {
         this.current_payee_id = id;
@@ -9205,6 +9284,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.current_payee_name = name;
         this.current_payee_address = address;
         this.current_payee_tin = tin;
+        this.current_entity_type = entity_type;
       }
 
       $('#select-payee').modal('hide');
@@ -9271,6 +9351,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           this.form_item.tax_excluded = this.form_item.sub_total * 1;
         }
       }
+    },
+    computeDepreciation: function computeDepreciation() {
+      this.form_entry.depreciation_value = (this.form_entry.amount_ex_tax / this.form_entry.useful_life).toFixed(2) * 1;
     },
     newEntry: function newEntry() {
       this.editmode = false;
@@ -9373,6 +9456,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         main_code: this.form_entry.main_code,
         main_account: this.form_entry.main_account,
         type: this.form_entry.type,
+        entity_type: this.current_entity_type,
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -10424,6 +10508,7 @@ __webpack_require__.r(__webpack_exports__);
       current_payee_name: '',
       current_payee_address: '',
       current_payee_tin: '',
+      current_entity_type: '',
       active_debit_row: 0,
       selected_branch: {},
       cd: {},
@@ -10605,6 +10690,7 @@ __webpack_require__.r(__webpack_exports__);
         main_code: this.form.main_code,
         main_account: this.form.main_account,
         type: this.form.type,
+        entity_type: this.current_entity_type,
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -10638,6 +10724,7 @@ __webpack_require__.r(__webpack_exports__);
         main_code: 0,
         main_account: 'NA',
         type: 'NA',
+        entity_type: this.current_entity_type,
         //
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -10669,6 +10756,7 @@ __webpack_require__.r(__webpack_exports__);
           main_code: 0,
           main_account: 'NA',
           type: 'NA',
+          entity_type: this.current_entity_type,
           //
           transaction_entry_id: this.transaction_entry_id,
           payee_id: this.form.payee_id,
@@ -10729,6 +10817,14 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       }); // Save Items END
+      // Update Payee Account START ********************
+
+      axios.post('api/update_payee_account', {
+        payee_id: this.form.payee_id,
+        amount: this.form.amount,
+        operation: 'add',
+        account: 'receivable'
+      }).then(function (response) {})["catch"](function () {}); // Update Payee Account END ********************
 
       swal.fire({
         title: 'Saved!',
@@ -10765,6 +10861,7 @@ __webpack_require__.r(__webpack_exports__);
       this.current_payee_address = '';
       this.current_payee_tin = '';
       this.active_debit_row = 0;
+      this.current_entity_type = '';
     },
     cancelTransaction: function cancelTransaction() {
       this.transaction_created = false;
@@ -10826,6 +10923,7 @@ __webpack_require__.r(__webpack_exports__);
       var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
       var address = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var tin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+      var entity_type = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
 
       if (id) {
         this.current_payee_id = id;
@@ -10833,6 +10931,7 @@ __webpack_require__.r(__webpack_exports__);
         this.current_payee_name = name;
         this.current_payee_address = address;
         this.current_payee_tin = tin;
+        this.current_entity_type = entity_type;
       }
 
       $('#select-payee').modal('hide');
@@ -10974,6 +11073,7 @@ __webpack_require__.r(__webpack_exports__);
         main_code: this.form_entry.main_code,
         main_account: this.form_entry.main_account,
         type: this.form_entry.type,
+        entity_type: this.current_entity_type,
         // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
@@ -72241,6 +72341,7 @@ var render = function() {
                             },
                             domProps: { value: _vm.form_entry.useful_life },
                             on: {
+                              change: _vm.computeDepreciation,
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
@@ -72287,6 +72388,43 @@ var render = function() {
                               }
                             }
                           })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "input-group mb-2" }, [
+                          _vm._m(17),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form_entry.depreciation_value,
+                                expression: "form_entry.depreciation_value"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              name: "depreciation_value",
+                              id: "depreciation_value",
+                              "aria-describedby": "inputGroup-sizing-default",
+                              readonly: ""
+                            },
+                            domProps: {
+                              value: _vm.form_entry.depreciation_value
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.form_entry,
+                                  "depreciation_value",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
                         ])
                       ])
                     : _vm._e(),
@@ -72295,7 +72433,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(17),
+                      _vm._m(18),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -72347,7 +72485,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(18),
+                      _vm._m(19),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -72403,7 +72541,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(19),
+                      _vm._m(20),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -72547,7 +72685,7 @@ var render = function() {
                   [_vm._v("Update Entry")]
                 ),
                 _vm._v(" "),
-                _vm._m(20)
+                _vm._m(21)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -72555,7 +72693,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(21),
+                    _vm._m(22),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -72614,7 +72752,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(22),
+                    _vm._m(23),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -72676,7 +72814,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(23),
+                    _vm._m(24),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -72742,7 +72880,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(24),
+                    _vm._m(25),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -72787,7 +72925,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(25),
+                  _vm._m(26),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -72851,7 +72989,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(26),
+                    _vm._m(27),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -72898,7 +73036,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(27),
+                    _vm._m(28),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -72989,7 +73127,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(28),
+              _vm._m(29),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -73028,7 +73166,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(29),
+                            _vm._m(30),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -73077,7 +73215,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(30)
+                _vm._m(31)
               ])
             ])
           ]
@@ -73108,7 +73246,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(31),
+              _vm._m(32),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -73147,7 +73285,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(32),
+                            _vm._m(33),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -73166,7 +73304,8 @@ var render = function() {
                                             payee.id,
                                             payee.name,
                                             payee.address,
-                                            payee.tin
+                                            payee.tin,
+                                            payee.entity_type
                                           )
                                         }
                                       }
@@ -73187,7 +73326,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(33)
+                _vm._m(34)
               ])
             ])
           ]
@@ -73218,7 +73357,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(34),
+              _vm._m(35),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -73257,7 +73396,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(35),
+                            _vm._m(36),
                             _vm._v(" "),
                             _vm._l(_vm.branches.data, function(branch) {
                               return _c("tr", { key: branch.id }, [
@@ -73295,7 +73434,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(36)
+                _vm._m(37)
               ])
             ])
           ]
@@ -73524,7 +73663,7 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Useful Life")]
+        [_vm._v("Useful Life (in Months)")]
       )
     ])
   },
@@ -73537,6 +73676,18 @@ var staticRenderFns = [
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Salvage Value")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Depreciation")]
       )
     ])
   },
@@ -75942,7 +76093,8 @@ var render = function() {
                                             payee.id,
                                             payee.name,
                                             payee.address,
-                                            payee.tin
+                                            payee.tin,
+                                            payee.entity_type
                                           )
                                         }
                                       }
@@ -77861,7 +78013,8 @@ var render = function() {
                                             payee.id,
                                             payee.name,
                                             payee.address,
-                                            payee.tin
+                                            payee.tin,
+                                            payee.entity_type
                                           )
                                         }
                                       }
@@ -80744,7 +80897,8 @@ var render = function() {
                                             payee.id,
                                             payee.name,
                                             payee.address,
-                                            payee.tin
+                                            payee.tin,
+                                            payee.entity_type
                                           )
                                         }
                                       }
@@ -82345,6 +82499,7 @@ var render = function() {
                             },
                             domProps: { value: _vm.form_entry.useful_life },
                             on: {
+                              change: _vm.computeDepreciation,
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
@@ -82391,6 +82546,43 @@ var render = function() {
                               }
                             }
                           })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "input-group mb-2" }, [
+                          _vm._m(17),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form_entry.depreciation_value,
+                                expression: "form_entry.depreciation_value"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              name: "depreciation_value",
+                              id: "depreciation_value",
+                              "aria-describedby": "inputGroup-sizing-default",
+                              readonly: ""
+                            },
+                            domProps: {
+                              value: _vm.form_entry.depreciation_value
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.form_entry,
+                                  "depreciation_value",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
                         ])
                       ])
                     : _vm._e(),
@@ -82399,7 +82591,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(17),
+                      _vm._m(18),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -82451,7 +82643,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(18),
+                      _vm._m(19),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -82507,7 +82699,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(19),
+                      _vm._m(20),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -82651,7 +82843,7 @@ var render = function() {
                   [_vm._v("Update Entry")]
                 ),
                 _vm._v(" "),
-                _vm._m(20)
+                _vm._m(21)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -82659,7 +82851,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(21),
+                    _vm._m(22),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -82718,7 +82910,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(22),
+                    _vm._m(23),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -82780,7 +82972,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(23),
+                    _vm._m(24),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -82846,7 +83038,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(24),
+                    _vm._m(25),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -82891,7 +83083,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(25),
+                  _vm._m(26),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -82955,7 +83147,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(26),
+                    _vm._m(27),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -83002,7 +83194,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(27),
+                    _vm._m(28),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -83093,7 +83285,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(28),
+              _vm._m(29),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -83132,7 +83324,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(29),
+                            _vm._m(30),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -83181,7 +83373,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(30)
+                _vm._m(31)
               ])
             ])
           ]
@@ -83212,7 +83404,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(31),
+              _vm._m(32),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -83251,7 +83443,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(32),
+                            _vm._m(33),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -83270,7 +83462,8 @@ var render = function() {
                                             payee.id,
                                             payee.name,
                                             payee.address,
-                                            payee.tin
+                                            payee.tin,
+                                            payee.entity_type
                                           )
                                         }
                                       }
@@ -83291,7 +83484,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(33)
+                _vm._m(34)
               ])
             ])
           ]
@@ -83322,7 +83515,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(34),
+              _vm._m(35),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -83361,7 +83554,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(35),
+                            _vm._m(36),
                             _vm._v(" "),
                             _vm._l(_vm.branches.data, function(branch) {
                               return _c("tr", { key: branch.id }, [
@@ -83399,7 +83592,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(36)
+                _vm._m(37)
               ])
             ])
           ]
@@ -83628,7 +83821,7 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Useful Life")]
+        [_vm._v("Useful Life (in Months)")]
       )
     ])
   },
@@ -83641,6 +83834,18 @@ var staticRenderFns = [
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Salvage Value")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Depreciation")]
       )
     ])
   },
@@ -86133,7 +86338,8 @@ var render = function() {
                                             payee.id,
                                             payee.name,
                                             payee.address,
-                                            payee.tin
+                                            payee.tin,
+                                            payee.entity_type
                                           )
                                         }
                                       }
@@ -105391,14 +105597,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************************!*\
   !*** ./resources/js/components/Sales.vue ***!
   \*******************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Sales_vue_vue_type_template_id_6545489e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Sales.vue?vue&type=template&id=6545489e& */ "./resources/js/components/Sales.vue?vue&type=template&id=6545489e&");
 /* harmony import */ var _Sales_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Sales.vue?vue&type=script&lang=js& */ "./resources/js/components/Sales.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Sales_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Sales_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -105428,7 +105635,7 @@ component.options.__file = "resources/js/components/Sales.vue"
 /*!********************************************************************!*\
   !*** ./resources/js/components/Sales.vue?vue&type=script&lang=js& ***!
   \********************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

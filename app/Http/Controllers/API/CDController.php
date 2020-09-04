@@ -377,6 +377,7 @@ class CDController extends Controller
                
             Transaction::create([
                 'payee_id' => $transaction->payee_id,
+                'entity_type' => $transaction->entity_type,
                 'branch_id' => $transaction->branch_id,
                 'account_type' => $transaction->account_type,
                 'sub_account_type' => $transaction->sub_account_type,
@@ -409,7 +410,9 @@ class CDController extends Controller
             
             $dailyAccount = DailyAccount::firstOrNew([
                 'account_code' => $transaction->account_code,
-                'transaction_date' => $transaction->transaction_date
+                'transaction_date' => $transaction->transaction_date,
+                'entity_type' => $transaction->entity_type,
+                'type' => $transaction->type
             ]); 
             
             if ($dailyAccount->exists) {
@@ -436,9 +439,12 @@ class CDController extends Controller
             $dailyAccount->save();
 
             
+            // Update record equal transaction date.
             $runningAccount = RunningAccount::firstOrNew([
                 'account_code' => $transaction->account_code,
-                'transaction_date' => $transaction->transaction_date
+                'transaction_date' => $transaction->transaction_date,
+                'entity_type' => $transaction->entity_type,
+                'type' => $transaction->type
             ]); 
             
             if ($runningAccount->exists) {
@@ -459,12 +465,18 @@ class CDController extends Controller
                 $runningAccount->status = $transaction->status;
             }    
             $runningAccount->save();
+
+
+            // Update all records later than transaction date.
             RunningAccount::where('account_code', $transaction->account_code)
             ->where('transaction_date', '>' , $transaction->transaction_date)
+            ->where('entity_type', '=' , $transaction->entity_type)
+            ->where('type', '=' , $transaction->type)
             ->update([
                 'credit_amount' => DB::raw( 'credit_amount +' . $transaction->credit_amount),
                 'debit_amount' => DB::raw( 'debit_amount +' . $transaction->debit_amount)
             ]);
+            
         }
     }
 
@@ -603,8 +615,10 @@ class CDController extends Controller
                 $transaction = null;
     
             } while(!$credit);
-            
-            $this->insert_transactions($transactions);     
+
+            $this->insert_transactions($transactions); 
+            // total_deduction ******************* reflect deduction on the depreciatable account.. 
+
         }
 
     }

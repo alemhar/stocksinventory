@@ -727,7 +727,7 @@
                   <td>{{ payee.id }}</td>
                   <td>{{ payee.name }}</td> 
                   <td>
-                    <a href="#" @click="selectPayee(payee.id,payee.name,payee.address,payee.tin)">Select
+                    <a href="#" @click="selectPayee(payee.id,payee.name,payee.address,payee.tin,payee.entity_type)">Select
                       <i class="fa fa-edit"></i>
                     </a>
                   </td>
@@ -911,6 +911,7 @@
               current_payee_name: '',
               current_payee_address: '',
               current_payee_tin: '',
+              current_entity_type: '',
               active_debit_row: 0,
               selected_branch: {},
               cd : {},
@@ -1095,7 +1096,7 @@
                 main_code: this.form.main_code,
                 main_account: this.form.main_account,
                 type: this.form.type,
-                
+                entity_type: this.current_entity_type,
                 // *************************
 
                 transaction_entry_id: this.transaction_entry_id,
@@ -1134,7 +1135,7 @@
                 main_code: 0,
                 main_account: 'NA',
                 type: 'NA',
-                
+                entity_type: this.current_entity_type,
                 //
 
 
@@ -1170,6 +1171,7 @@
                     main_code: 0,
                     main_account: 'NA',
                     type: 'NA',
+                    entity_type: this.current_entity_type,
                     //
 
                     transaction_entry_id: this.transaction_entry_id,
@@ -1243,6 +1245,21 @@
             // Save Items END
 
 
+            // Update Payee Account START ********************
+            axios.post('api/update_payee_account', {
+                payee_id: this.form.payee_id,
+                amount: this.form.amount,
+                operation: 'add',
+                account: 'receivable',
+            })
+            .then((response)=>{
+
+            })
+            .catch(()=>{
+                
+            });
+            // Update Payee Account END ********************
+
             swal.fire({
                 title: 'Saved!',
                 text: "Journal posted",
@@ -1278,6 +1295,7 @@
                   this.current_payee_address = '';
                   this.current_payee_tin = '';
                   this.active_debit_row = 0;
+                  this.current_entity_type = '';
           },
           cancelTransaction(){
             this.transaction_created = false;
@@ -1335,7 +1353,7 @@
           },
           // *************************************************
 
-          selectPayee(id = null,name = null,address = null,tin = null){
+          selectPayee(id = null,name = null,address = null,tin = null, entity_type = null){
               if (id){
                     
                       this.current_payee_id = id;
@@ -1343,6 +1361,8 @@
                       this.current_payee_name = name;
                       this.current_payee_address = address;
                       this.current_payee_tin = tin;
+                      this.current_entity_type = entity_type;
+                      
               }
               $('#select-payee').modal('hide');  
 
@@ -1510,7 +1530,7 @@
                 main_code: this.form_entry.main_code,
                 main_account: this.form_entry.main_account,
                 type: this.form_entry.type,
-                
+                entity_type: this.current_entity_type,
                 // *************************
                 
                 transaction_entry_id: this.transaction_entry_id,
