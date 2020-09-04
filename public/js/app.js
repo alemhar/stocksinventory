@@ -3102,7 +3102,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.current_date < this.form.transaction_date) {
         swal.fire({
           title: 'Invalid date!',
-          text: "Future date not accepted ",
+          text: "Future/Advance date not accepted.",
           type: 'info',
           showCancelButton: false,
           confirmButtonColor: '#3085d6',
@@ -9040,6 +9040,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
     createTransaction: function createTransaction() {
+      if (this.current_date < this.form.transaction_date) {
+        swal.fire({
+          title: 'Invalid date!',
+          text: "Future/Advance date not accepted.",
+          type: 'info',
+          showCancelButton: false,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ok'
+        }).then(function (result) {});
+        return false;
+      }
+
       if (this.form.payee_id.length == 0) {
         this.no_payee = true;
       } else {

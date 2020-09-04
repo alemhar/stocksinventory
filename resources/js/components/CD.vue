@@ -1005,7 +1005,7 @@
             if(this.current_date < this.form.transaction_date){
               swal.fire({
                     title: 'Invalid date!',
-                    text: "Future date not accepted ",
+                    text: "Future/Advance date not accepted.",
                     type: 'info',
                     showCancelButton: false,
                     confirmButtonColor: '#3085d6',
