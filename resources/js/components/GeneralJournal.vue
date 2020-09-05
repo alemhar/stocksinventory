@@ -1065,7 +1065,7 @@
             } else {
               this.no_branch_id = false;
             }
-            this.no_branch_id = true; // ** Temp
+            this.no_branch_id = false; // ** Temp
             
             /*
             if(this.form.reference_no.length == 0) {
