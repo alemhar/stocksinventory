@@ -1444,7 +1444,53 @@
                 status: 'CONFIRMED',
                 depreciation_date: this.form.transaction_date,
                 depreciated_id: 0,
-                description: 'Tax'
+                description: 'Input Tax'
+            });  
+  
+                this.amount= 0;
+                this.vat= 0;    
+          },
+          computeOutputTax(debit_amount,credit_amount,entity_type,payee_id,payee_name,branch_id){
+                  //this.amount = (tax_excluded / 1.88).toFixed(2) * 1;
+                  //console.log(tax_excluded);
+                  this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
+                  ++this.transaction_entry_id;
+            
+            this.transactions.push({ 
+
+                // *************************
+                account_type: 'LIABILITIES',
+                sub_account_type: 'CURRENT LIABILITIES',
+                main_code: 0,
+                main_account: 'NA',
+                type: 'NA',
+                entity_type: this.current_entity_type,
+
+                transaction_entry_id: this.transaction_entry_id,
+                payee_id: payee_id,
+                payee_name: payee_name,
+                branch_id: this.current_branch_id,
+                account_code: '21051100',
+                account_name: 'Output Tax',
+                reference_no: 0,
+                transaction_no: this.form.transaction_no,
+                transaction_type: this.form.transaction_type,
+                transaction_date: this.form.transaction_date,
+                amount: this.vat,
+                credit_amount: this.vat,
+                debit_amount: 0,
+                amount_ex_tax: 0,
+                vat: 0,
+                wtax_code: 0,
+                wtax: 0,
+                user_id: this.form.user_id,
+                useful_life: 0,
+                salvage_value: 0,
+                total_payment: 0,
+                status: 'CONFIRMED',
+                depreciation_date: this.form.transaction_date,
+                depreciated_id: 0,
+                description: 'Output Tax'
             });  
   
                 this.amount= 0;
