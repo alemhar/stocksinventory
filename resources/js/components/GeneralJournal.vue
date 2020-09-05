@@ -1445,8 +1445,8 @@
                 description: 'Tax'
             });  
   
-                this.amount= 0;
-                this.vat= 0;    
+                //this.amount= 0;
+                //this.vat= 0;    
           },  
           computeDepreciation(){
             this.form_entry.depreciation_value = (this.form_entry.amount_ex_tax / this.form_entry.useful_life).toFixed(2)  * 1;
