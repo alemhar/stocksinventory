@@ -7433,6 +7433,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       chart_of_accounts_detail: {},
       depreciates: false,
       current_date: this.getDate(),
+      amount: 0,
+      vat: 0,
       readabilityObject: {
         fontSize: user.font_size
       }
@@ -7805,7 +7807,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       }
     },
-    computeInputTax: function computeInputTax(entity_type, payee_id, branch_id) {
+    computeInputTax: function computeInputTax(tax_excluded, entity_type, payee_id, branch_id) {
       this.amount = (tax_excluded / (1 - 0.12)).toFixed(2) * 1;
       this.vat = (this.form_item.amount * 0.12).toFixed(2) * 1;
       ++this.transaction_entry_id;
@@ -7842,6 +7844,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         depreciated_id: 0,
         description: 'Tax'
       });
+      this.amount = 0;
+      this.vat = 0;
     },
     computeDepreciation: function computeDepreciation() {
       this.form_entry.depreciation_value = (this.form_entry.amount_ex_tax / this.form_entry.useful_life).toFixed(2) * 1;
@@ -80650,7 +80654,9 @@ var render = function() {
                                             attrs: { href: "#" },
                                             on: {
                                               click: function($event) {
-                                                return _vm.computeInputTax(
+                                                _vm.computeInputTax(
+                                                  entry.debit_amount +
+                                                    entry.credit_amount,
                                                   entry.entity_type,
                                                   entry.payee_id,
                                                   entry.branch_id
