@@ -7809,6 +7809,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     computeInputTax: function computeInputTax(tax_excluded, entity_type, payee_id, branch_id) {
       //this.amount = (tax_excluded / 1.88).toFixed(2) * 1;
+      console.log(tax_excluded);
       this.vat = (tax_excluded * 0.12).toFixed(2) * 1;
       ++this.transaction_entry_id;
       this.transactions.push({
