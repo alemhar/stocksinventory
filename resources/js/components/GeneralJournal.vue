@@ -185,9 +185,9 @@
                         <td>{{ entry.description }}</td>
                         <td>{{ entry.payee_name }}</td>
                         <td>
-                          <a href="#" @click="computeInputTax(entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id)" :disabled="entry.tax_entry">
+                          <button href="#" @click="computeInputTax(entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id)" :disabled="entry.tax_entry">
                             <i class="fa fa-plus">Add</i>
-                          </a>
+                          </button>
                         </td>
                         <td>
                           <a href="#" @click="computeOutputTax(entry.transaction_entry_id,entry.amount,entry.vat)">
