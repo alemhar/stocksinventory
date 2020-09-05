@@ -472,7 +472,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Payee/Payor</span>
                     </div>  
-                    <input v-model="form_entry.payee_name" type="text" class="form-control col-11" id="inputPayeeName" placeholder="Payees/Payors Name">
+                    <input v-model="form_entry.payee_name" type="text" class="form-control col-11" id="inputPayeeName"  placeholder="Payees/Payors Name">
                       
                     <span class="input-group-btn col-1">
                         <button type="button" class="btn btn-success" @click="searchPayeeModal"><i class="fas fa-search fa-fw" style="margin:-15PX;margin-top:-2px;"></i></button>
@@ -1572,8 +1572,8 @@
                 // *************************
                 
                 transaction_entry_id: this.transaction_entry_id,
-                payee_id: this.entry_form.payee_id,
-                payee_name: this.entry_form.payee_name,
+                payee_id: this.form_entry.payee_id,
+                payee_name: this.form_entry.payee_name,
                 
                 branch_id: this.current_branch_id,
                 account_code: this.form_entry.account_code,
