@@ -7300,6 +7300,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -81149,36 +81152,67 @@ var render = function() {
                   _c("div", { staticClass: "input-group mb-2" }, [
                     _vm._m(10),
                     _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form_entry.salvage_value,
-                          expression: "form_entry.salvage_value"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        name: "salvage_value",
-                        id: "salvage_value",
-                        "aria-describedby": "inputGroup-sizing-default"
-                      },
-                      domProps: { value: _vm.form_entry.salvage_value },
-                      on: {
-                        blur: _vm.computeDepreciation,
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                    _c("div", { staticClass: "row" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form_entry.debit_amount,
+                            expression: "form_entry.debit_amount"
                           }
-                          _vm.$set(
-                            _vm.form_entry,
-                            "salvage_value",
-                            $event.target.value
-                          )
+                        ],
+                        staticClass: "form-control col-6",
+                        attrs: {
+                          name: "debit_amount",
+                          id: "debit_amount",
+                          "aria-describedby": "inputGroup-sizing-default"
+                        },
+                        domProps: { value: _vm.form_entry.debit_amount },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form_entry,
+                              "debit_amount",
+                              $event.target.value
+                            )
+                          }
                         }
-                      }
-                    })
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form_entry.credit_amount,
+                            expression: "form_entry.credit_amount"
+                          }
+                        ],
+                        staticClass: "form-control col-6",
+                        attrs: {
+                          name: "credit_amount",
+                          id: "credit_amount",
+                          "aria-describedby": "inputGroup-sizing-default"
+                        },
+                        domProps: { value: _vm.form_entry.credit_amount },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form_entry,
+                              "credit_amount",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
                   ]),
                   _vm._v(" "),
                   _c(

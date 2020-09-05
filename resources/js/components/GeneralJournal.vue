@@ -456,10 +456,13 @@
                     <label class="col-6" for="debit_amount">Debit</label>
                     <label class="col-6" for="debit_amount">Credit</label>
                   </div>
-
-                    <input v-model="form_entry.salvage_value" name="salvage_value" id="salvage_value"
-                    class="form-control" aria-describedby="inputGroup-sizing-default" @blur="computeDepreciation">
-                    
+                  <div class="row">
+                        
+                    <input v-model="form_entry.debit_amount" name="debit_amount" id="debit_amount"
+                    class="form-control col-6" aria-describedby="inputGroup-sizing-default">
+                    <input v-model="form_entry.credit_amount" name="credit_amount" id="credit_amount"
+                    class="form-control col-6" aria-describedby="inputGroup-sizing-default">
+                  </div>  
                 </div>
 
               <!-- div class="input-group mb-2">
