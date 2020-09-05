@@ -459,14 +459,39 @@
                   <div class="row" style="margin: 0 5px">
                     <div class="col-6 pl-1 pr-1">
                         <input v-model="form_entry.debit_amount" name="debit_amount" id="debit_amount"
-                        class="form-control" aria-describedby="inputGroup-sizing-default">
+                        class="form-control" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
                     
                     </div>    
                     <div class="col-6 pl-1 pr-1">
                         <input v-model="form_entry.credit_amount" name="credit_amount" id="credit_amount"
-                        class="form-control" aria-describedby="inputGroup-sizing-default">
+                        class="form-control" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
                     </div>
                   </div>  
+                </div>
+
+                <div class="input-group mb-2">
+
+                    <div class="input-group-prepend">
+                      <span class="input-group-text inputGroup-sizing-default"  v-bind:style="[readabilityObject]">Payee/Payor</span>
+                    </div>  
+                    <input v-model="current_payee_name" v-bind:readonly="transaction_created" type="text" class="form-control col-12" id="inputPayeeName" placeholder="Payees/Payors Name" v-bind:style="[readabilityObject]">
+                      
+                    <span class="input-group-btn col-1">
+                        <button type="button" class="btn btn-success" @click="searchPayeeModal"><i class="fas fa-search fa-fw"></i></button>
+                    </span>  
+
+                    <p v-show="no_payee" class="empty-field-message">** Please select payee!</p>  
+                  
+
+                </div>
+
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text inputGroup-sizing-default">Description</span>
+                  </div>
+
+                    <input v-model="form_entry.description" name="description" id="description"
+                    class="form-control" aria-describedby="inputGroup-sizing-default">
                 </div>
 
               <!-- div class="input-group mb-2">

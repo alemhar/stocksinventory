@@ -7307,6 +7307,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -81176,7 +81201,8 @@ var render = function() {
                             attrs: {
                               name: "debit_amount",
                               id: "debit_amount",
-                              "aria-describedby": "inputGroup-sizing-default"
+                              "aria-describedby": "inputGroup-sizing-default",
+                              onfocus: "this.select()"
                             },
                             domProps: { value: _vm.form_entry.debit_amount },
                             on: {
@@ -81208,7 +81234,8 @@ var render = function() {
                             attrs: {
                               name: "credit_amount",
                               id: "credit_amount",
-                              "aria-describedby": "inputGroup-sizing-default"
+                              "aria-describedby": "inputGroup-sizing-default",
+                              onfocus: "this.select()"
                             },
                             domProps: { value: _vm.form_entry.credit_amount },
                             on: {
@@ -81227,6 +81254,110 @@ var render = function() {
                         ])
                       ]
                     )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group mb-2" }, [
+                    _c("div", { staticClass: "input-group-prepend" }, [
+                      _c(
+                        "span",
+                        {
+                          staticClass:
+                            "input-group-text inputGroup-sizing-default",
+                          style: [_vm.readabilityObject]
+                        },
+                        [_vm._v("Payee/Payor")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.current_payee_name,
+                          expression: "current_payee_name"
+                        }
+                      ],
+                      staticClass: "form-control col-12",
+                      style: [_vm.readabilityObject],
+                      attrs: {
+                        readonly: _vm.transaction_created,
+                        type: "text",
+                        id: "inputPayeeName",
+                        placeholder: "Payees/Payors Name"
+                      },
+                      domProps: { value: _vm.current_payee_name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.current_payee_name = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "input-group-btn col-1" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success",
+                          attrs: { type: "button" },
+                          on: { click: _vm.searchPayeeModal }
+                        },
+                        [_c("i", { staticClass: "fas fa-search fa-fw" })]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "p",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.no_payee,
+                            expression: "no_payee"
+                          }
+                        ],
+                        staticClass: "empty-field-message"
+                      },
+                      [_vm._v("** Please select payee!")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group mb-2" }, [
+                    _vm._m(11),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form_entry.description,
+                          expression: "form_entry.description"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        name: "description",
+                        id: "description",
+                        "aria-describedby": "inputGroup-sizing-default"
+                      },
+                      domProps: { value: _vm.form_entry.description },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form_entry,
+                            "description",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
                   ])
                 ]),
                 _vm._v(" "),
@@ -81327,7 +81458,7 @@ var render = function() {
                   [_vm._v("Update Entry")]
                 ),
                 _vm._v(" "),
-                _vm._m(11)
+                _vm._m(12)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -81335,7 +81466,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(12),
+                    _vm._m(13),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -81394,7 +81525,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(13),
+                    _vm._m(14),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -81456,7 +81587,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(14),
+                    _vm._m(15),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -81522,7 +81653,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(15),
+                    _vm._m(16),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -81567,7 +81698,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(16),
+                  _vm._m(17),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -81631,7 +81762,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(17),
+                    _vm._m(18),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -81678,7 +81809,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(18),
+                    _vm._m(19),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -81769,7 +81900,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(19),
+              _vm._m(20),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -81808,7 +81939,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(20),
+                            _vm._m(21),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -81857,7 +81988,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(21)
+                _vm._m(22)
               ])
             ])
           ]
@@ -81888,7 +82019,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(22),
+              _vm._m(23),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -81927,7 +82058,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(23),
+                            _vm._m(24),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -81968,7 +82099,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(24)
+                _vm._m(25)
               ])
             ])
           ]
@@ -81999,7 +82130,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(25),
+              _vm._m(26),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -82038,7 +82169,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(26),
+                            _vm._m(27),
                             _vm._v(" "),
                             _vm._l(_vm.branches.data, function(branch) {
                               return _c("tr", { key: branch.id }, [
@@ -82076,7 +82207,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(27)
+                _vm._m(28)
               ])
             ])
           ]
@@ -82248,6 +82379,18 @@ var staticRenderFns = [
         "label",
         { staticClass: "col-6 text-center", attrs: { for: "debit_amount" } },
         [_vm._v("Credit")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Description")]
       )
     ])
   },

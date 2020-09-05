@@ -147,7 +147,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <router-link to="/generaljournal" class="nav-link">
                 
-                  <i class="nav-icon fas fa-download"></i>
+                  <i class="nav-icon fas fa-file-invoice"></i>
                   <p v-bind:style="[readabilityObject]">General Journal</p>
                 </router-link>
               </li>
