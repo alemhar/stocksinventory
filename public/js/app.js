@@ -7808,8 +7808,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     computeInputTax: function computeInputTax(tax_excluded, entity_type, payee_id, branch_id) {
-      this.amount = (tax_excluded / 1.88).toFixed(2) * 1;
-      this.vat = (this.amount * 0.12).toFixed(2) * 1;
+      //this.amount = (tax_excluded / 1.88).toFixed(2) * 1;
+      this.vat = (this.tax_excluded * 0.12).toFixed(2) * 1;
       ++this.transaction_entry_id;
       this.transactions.push({
         // *************************
@@ -7843,8 +7843,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         depreciation_date: this.form.transaction_date,
         depreciated_id: 0,
         description: 'Tax'
-      }); //this.amount= 0;
-      //this.vat= 0;    
+      });
+      this.amount = 0;
+      this.vat = 0;
     },
     computeDepreciation: function computeDepreciation() {
       this.form_entry.depreciation_value = (this.form_entry.amount_ex_tax / this.form_entry.useful_life).toFixed(2) * 1;
