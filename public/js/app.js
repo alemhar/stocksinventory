@@ -7326,7 +7326,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -80563,33 +80562,7 @@ var render = function() {
                               }
                             }
                           })
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "input-group mb-2" },
-                          [
-                            _vm._m(3),
-                            _vm._v(" "),
-                            _c("currency-input", {
-                              attrs: {
-                                isReadonly: true,
-                                fc: true,
-                                col: 12,
-                                id: "inputAmount",
-                                placeholder: "Amount"
-                              },
-                              model: {
-                                value: _vm.form.amount,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.form, "amount", $$v)
-                                },
-                                expression: "form.amount"
-                              }
-                            })
-                          ],
-                          1
-                        )
+                        ])
                       ])
                     ])
                   ]
@@ -80647,7 +80620,7 @@ var render = function() {
                             _c(
                               "tbody",
                               [
-                                _vm._m(4),
+                                _vm._m(3),
                                 _vm._v(" "),
                                 _vm._l(_vm.transactions, function(entry) {
                                   return _c(
@@ -80696,6 +80669,7 @@ var render = function() {
                                         _c(
                                           "button",
                                           {
+                                            staticClass: "btn btn-default",
                                             attrs: {
                                               href: "#",
                                               disabled: entry.tax_entry
@@ -80727,6 +80701,7 @@ var render = function() {
                                         _c(
                                           "button",
                                           {
+                                            staticClass: "btn btn-default",
                                             attrs: {
                                               href: "#",
                                               disabled: entry.tax_entry
@@ -80758,6 +80733,7 @@ var render = function() {
                                         _c(
                                           "button",
                                           {
+                                            staticClass: "btn btn-default",
                                             attrs: {
                                               href: "#",
                                               disabled: entry.tax_entry
@@ -80838,7 +80814,7 @@ var render = function() {
                 [
                   _c("div", { staticClass: "col-md-12" }, [
                     _c("div", { staticClass: "box" }, [
-                      _vm._m(5),
+                      _vm._m(4),
                       _vm._v(" "),
                       _c(
                         "div",
@@ -80851,7 +80827,7 @@ var render = function() {
                             _c(
                               "tbody",
                               [
-                                _vm._m(6),
+                                _vm._m(5),
                                 _vm._v(" "),
                                 _vm._l(_vm.currentItems, function(item) {
                                   return _c("tr", { key: item.item_no }, [
@@ -81117,7 +81093,7 @@ var render = function() {
                     [_vm._v("Add Entry")]
                   ),
                   _vm._v(" "),
-                  _vm._m(7)
+                  _vm._m(6)
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-body" }, [
@@ -81125,7 +81101,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(8),
+                      _vm._m(7),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -81208,7 +81184,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(9),
+                      _vm._m(8),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -81254,7 +81230,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "mb-4" }, [
-                    _vm._m(10),
+                    _vm._m(9),
                     _vm._v(" "),
                     _c(
                       "div",
@@ -81330,7 +81306,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "input-group mb-2" }, [
-                    _vm._m(11),
+                    _vm._m(10),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -81396,7 +81372,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "input-group mb-2" }, [
-                    _vm._m(12),
+                    _vm._m(11),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -81510,7 +81486,7 @@ var render = function() {
                   [_vm._v("Add Input Tax")]
                 ),
                 _vm._v(" "),
-                _vm._m(13)
+                _vm._m(12)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -81518,7 +81494,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(14),
+                    _vm._m(13),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -81577,7 +81553,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(15),
+                    _vm._m(14),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -81639,7 +81615,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(16),
+                    _vm._m(15),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -81705,7 +81681,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(17),
+                    _vm._m(16),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -81750,7 +81726,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(18),
+                  _vm._m(17),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -81814,7 +81790,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(19),
+                    _vm._m(18),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -81861,7 +81837,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(20),
+                    _vm._m(19),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -81952,7 +81928,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(21),
+              _vm._m(20),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -81991,7 +81967,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(22),
+                            _vm._m(21),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -82040,7 +82016,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(23)
+                _vm._m(22)
               ])
             ])
           ]
@@ -82071,7 +82047,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(24),
+              _vm._m(23),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -82110,7 +82086,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(25),
+                            _vm._m(24),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -82149,7 +82125,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(26)
+                _vm._m(25)
               ])
             ])
           ]
@@ -82180,7 +82156,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(27),
+              _vm._m(26),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -82219,7 +82195,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(28),
+                            _vm._m(27),
                             _vm._v(" "),
                             _vm._l(_vm.branches.data, function(branch) {
                               return _c("tr", { key: branch.id }, [
@@ -82257,7 +82233,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(29)
+                _vm._m(28)
               ])
             ])
           ]
@@ -82300,18 +82276,6 @@ var staticRenderFns = [
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Transaction #")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Amount")]
       )
     ])
   },

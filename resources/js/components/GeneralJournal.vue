@@ -115,14 +115,13 @@
                     </div>
                     <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="Transaction Number">
                   </div>
-                  <div class="input-group mb-2">
+                  <!-- div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Amount</span>
                     </div>
                     
-                    <!--input type="text"  v-model="Number(form.amount).toLocaleString()" readonly class="form-control col-12" id="inputAmount" placeholder="Amount" -->
                     <currency-input v-model="form.amount" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputAmount" placeholder="Amount"></currency-input>
-                  </div>
+                  </div -->
 
                 </div>
               </div>
@@ -185,17 +184,17 @@
                         <td>{{ entry.description }}</td>
                         <td>{{ entry.payee_name }}</td>
                         <td>
-                          <button href="#" @click="computeInputTax(entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id)" :disabled="entry.tax_entry">
+                          <button href="#" class="btn btn-default" @click="computeInputTax(entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id)" :disabled="entry.tax_entry">
                             <i class="fa fa-plus">Add</i>
                           </button>
                         </td>
                         <td>
-                          <button href="#" @click="computeOutputTax(entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id)" :disabled="entry.tax_entry">
+                          <button href="#" class="btn btn-default" @click="computeOutputTax(entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id)" :disabled="entry.tax_entry">
                             <i class="fa fa-plus">Add</i>
                           </button>
                         </td>
                         <td>
-                          <button href="#" @click="deleteEntry(entry.transaction_entry_id,entry.amount,entry.vat)" :disabled="entry.tax_entry">
+                          <button href="#" class="btn btn-default" @click="deleteEntry(entry.transaction_entry_id,entry.amount,entry.vat)" :disabled="entry.tax_entry">
                             <i class="fa fa-plus">Add</i>
                           </button>
                         </td>
