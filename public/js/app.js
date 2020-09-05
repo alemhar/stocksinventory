@@ -81155,15 +81155,12 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "mb-2" }, [
+                  _c("div", { staticClass: "mb-4" }, [
                     _vm._m(10),
                     _vm._v(" "),
                     _c(
                       "div",
-                      {
-                        staticClass: "row",
-                        staticStyle: { margin: "0 15px 0 15px" }
-                      },
+                      { staticClass: "row", staticStyle: { margin: "0 5px" } },
                       [
                         _c("div", { staticClass: "col-6 pl-1 pr-1" }, [
                           _c("input", {

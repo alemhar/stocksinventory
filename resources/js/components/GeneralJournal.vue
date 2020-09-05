@@ -451,12 +451,12 @@
               </div -->
 
 
-                <div class="mb-2">
+                <div class="mb-4">
                   <div class="row">
                     <label class="col-6 text-center" for="debit_amount">Debit</label>
                     <label class="col-6 text-center" for="debit_amount">Credit</label>
                   </div>
-                  <div class="row" style="margin: 0 15px 0 15px">
+                  <div class="row" style="margin: 0 5px">
                     <div class="col-6 pl-1 pr-1">
                         <input v-model="form_entry.debit_amount" name="debit_amount" id="debit_amount"
                         class="form-control" aria-describedby="inputGroup-sizing-default">
