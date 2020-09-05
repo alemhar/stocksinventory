@@ -457,11 +457,15 @@
                     <label class="col-6 text-center" for="debit_amount">Credit</label>
                   </div>
                   <div class="row" style="margin: 0 15px 0 15px">
-                        
-                    <input v-model="form_entry.debit_amount" name="debit_amount" id="debit_amount"
-                    class="form-control col-6" aria-describedby="inputGroup-sizing-default">
-                    <input v-model="form_entry.credit_amount" name="credit_amount" id="credit_amount"
-                    class="form-control col-6" aria-describedby="inputGroup-sizing-default">
+                    <div class="col-6 pl-1 pr-1">
+                        <input v-model="form_entry.debit_amount" name="debit_amount" id="debit_amount"
+                        class="form-control" aria-describedby="inputGroup-sizing-default">
+                    
+                    </div>    
+                    <div class="col-6 pl-1 pr-1">
+                        <input v-model="form_entry.credit_amount" name="credit_amount" id="credit_amount"
+                        class="form-control" aria-describedby="inputGroup-sizing-default">
+                    </div>
                   </div>  
                 </div>
 
