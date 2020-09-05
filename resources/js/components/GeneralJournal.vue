@@ -165,14 +165,14 @@
                   <table class="table table-hover">
                     <tbody>
                       <tr>
-                        <th>Account No.</th>
+                        <th>Account</th>
                         <th>Name</th>
                         <th>Debit</th> 
                         <th>Credit</th> 
                         <th>Description</th>
                         <th>Payee/Payor</th>
-                        <th>Input Tax</th>
-                        <th>Output Tax</th>
+                        <th>InTax</th>
+                        <th>OutTax</th>
                         <th>WTax</th>
                         <th>Option</th>
                         
@@ -380,15 +380,15 @@
               </div>
 
               
-              <div class="box-header">
+              <!-- div class="box-header">
                   <h3 class="box-title box-title-transaction">Items</h3>
                   <div class="box-tools">
                     <button class="btn btn-success" @click="newItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
                   </div>
-                </div>
+                </div -->
 
                 <!-- /.box-header -->
-                <div id="item-list" class="box-body table-responsive no-padding">
+                <!-- div id="item-list" class="box-body table-responsive no-padding">
                   <table class="table table-hover">
                     <tbody>
                       <tr>
@@ -413,14 +413,13 @@
                           </a>
                         </td>
                       </tr>  
-
-
                   </tbody>
                 </table>
-                </div>
+                </div -->
                 <!-- /.box-body -->
 
-              <div v-if="depreciates">
+              <!-- div v-if="depreciates">
+
                 <div class="input-group mb-2">
                   <div class="input-group-prepend">
                     <span class="input-group-text inputGroup-sizing-default">Useful Life (in Months)</span>
@@ -449,10 +448,21 @@
                     class="form-control" aria-describedby="inputGroup-sizing-default" readonly>
                 </div>
 
-              </div>
+              </div -->
 
 
-              <div class="input-group mb-2">
+                <div class="input-group mb-2">
+                  <div class="row">
+                    <label class="col-6" for="debit_amount">Debit</label>
+                    <label class="col-6" for="debit_amount">Credit</label>
+                  </div>
+
+                    <input v-model="form_entry.salvage_value" name="salvage_value" id="salvage_value"
+                    class="form-control" aria-describedby="inputGroup-sizing-default" @blur="computeDepreciation">
+                    
+                </div>
+
+              <!-- div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Amount</span>
                 </div>
@@ -461,7 +471,7 @@
                   readonly
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount') }" aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_entry" field="amount"></has-error>
-              </div>
+              </div -->
 
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
