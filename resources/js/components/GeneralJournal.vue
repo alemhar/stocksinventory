@@ -799,7 +799,7 @@
                   <td>{{ payee.id }}</td>
                   <td>{{ payee.name }}</td> 
                   <td>
-                    <a href="#" @click="selectPayee(payee.id,payee.payee_name,payee.address,payee.tin,payee.entity_type)">Select
+                    <a href="#" @click="selectPayee(payee.id,payee.name,payee.entity_type)">Select
                       <i class="fa fa-edit"></i>
                     </a>
                   </td>
@@ -1319,7 +1319,7 @@
           },
           // *************************************************
 
-          selectPayee(id = null,payee_name = null,address = null,tin = null, entity_type = null){
+          selectPayee(id,payee_name,entity_type){
               if (id){
                     
                       this.form_entry.payee_name = payee_name;
