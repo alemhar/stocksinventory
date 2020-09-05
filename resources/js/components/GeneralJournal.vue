@@ -185,12 +185,12 @@
                         <td>{{ entry.description }}</td>
                         <td>{{ entry.payee_name }}</td>
                         <td>
-                          <a href="#" @click=" computeInputTax(entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id)">
+                          <a href="#" @click="computeInputTax(entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id)" :disabled="entry.tax_entry">
                             <i class="fa fa-plus">Add</i>
                           </a>
                         </td>
                         <td>
-                          <a href="#" @click="deleteEntry(entry.transaction_entry_id,entry.amount,entry.vat)">
+                          <a href="#" @click="computeOutputTax(entry.transaction_entry_id,entry.amount,entry.vat)">
                             <i class="fa fa-plus">Add</i>
                           </a>
                         </td>
@@ -1446,7 +1446,8 @@
                 status: 'CONFIRMED',
                 depreciation_date: this.form.transaction_date,
                 depreciated_id: 0,
-                description: 'Input Tax'
+                description: 'Input Tax',
+                tax_entry: true
             });  
   
                 this.amount= 0;
@@ -1493,7 +1494,8 @@
                 status: 'CONFIRMED',
                 depreciation_date: this.form.transaction_date,
                 depreciated_id: 0,
-                description: 'Output Tax'
+                description: 'Output Tax',
+                tax_entry: true
             });  
   
                 this.amount= 0;
@@ -1660,7 +1662,8 @@
                 status: 'CONFIRMED',
                 depreciation_date: this.form.transaction_date,
                 depreciated_id: 0,
-                description: this.form_entry.description
+                description: this.form_entry.description,
+                tax_entry: false
             });
 
 

@@ -7840,7 +7840,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
         depreciated_id: 0,
-        description: 'Input Tax'
+        description: 'Input Tax',
+        tax_entry: true
       });
       this.amount = 0;
       this.vat = 0;
@@ -7883,7 +7884,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
         depreciated_id: 0,
-        description: 'Output Tax'
+        description: 'Output Tax',
+        tax_entry: true
       });
       this.amount = 0;
       this.vat = 0;
@@ -8027,7 +8029,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
         depreciated_id: 0,
-        description: this.form_entry.description
+        description: this.form_entry.description,
+        tax_entry: false
       });
       $('#entry-details').modal('hide'); //this.$Progress.finish();
     },
@@ -80693,7 +80696,10 @@ var render = function() {
                                         _c(
                                           "a",
                                           {
-                                            attrs: { href: "#" },
+                                            attrs: {
+                                              href: "#",
+                                              disabled: entry.tax_entry
+                                            },
                                             on: {
                                               click: function($event) {
                                                 return _vm.computeInputTax(
@@ -80724,7 +80730,7 @@ var render = function() {
                                             attrs: { href: "#" },
                                             on: {
                                               click: function($event) {
-                                                return _vm.deleteEntry(
+                                                return _vm.computeOutputTax(
                                                   entry.transaction_entry_id,
                                                   entry.amount,
                                                   entry.vat
