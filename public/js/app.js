@@ -7730,13 +7730,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     // *************************************************
     selectPayee: function selectPayee() {
       var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-      var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      var payee_name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
       var address = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var tin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
       var entity_type = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
 
       if (id) {
-        this.form_entry.payee_name = name;
+        this.form_entry.payee_name = payee_name;
         this.form_entry.payee_id = id;
         this.form_entry.entity_type = entity_type;
         this.current_payee_id = id;
@@ -82074,7 +82074,7 @@ var render = function() {
                                         click: function($event) {
                                           return _vm.selectPayee(
                                             payee.id,
-                                            payee.name,
+                                            payee.payee_name,
                                             payee.address,
                                             payee.tin,
                                             payee.entity_type
