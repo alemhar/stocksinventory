@@ -472,7 +472,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Payee/Payor</span>
                     </div>  
-                    <input v-model="form_entry.payee_name" v-bind:readonly="transaction_created" type="text" class="form-control col-11" id="inputPayeeName" placeholder="Payees/Payors Name">
+                    <input v-model="form_entry.payee_name" type="text" class="form-control col-11" id="inputPayeeName" placeholder="Payees/Payors Name">
                       
                     <span class="input-group-btn col-1">
                         <button type="button" class="btn btn-success" @click="searchPayeeModal"><i class="fas fa-search fa-fw" style="margin:-15PX;margin-top:-2px;"></i></button>

@@ -81276,7 +81276,6 @@ var render = function() {
                       ],
                       staticClass: "form-control col-11",
                       attrs: {
-                        readonly: _vm.transaction_created,
                         type: "text",
                         id: "inputPayeeName",
                         placeholder: "Payees/Payors Name"
