@@ -80669,7 +80669,7 @@ var render = function() {
                                         _c(
                                           "button",
                                           {
-                                            staticClass: "btn btn-default",
+                                            staticClass: "btn btn-primary",
                                             attrs: {
                                               href: "#",
                                               disabled: entry.tax_entry
@@ -80701,7 +80701,7 @@ var render = function() {
                                         _c(
                                           "button",
                                           {
-                                            staticClass: "btn btn-default",
+                                            staticClass: "btn btn-primary",
                                             attrs: {
                                               href: "#",
                                               disabled: entry.tax_entry
@@ -80733,7 +80733,7 @@ var render = function() {
                                         _c(
                                           "button",
                                           {
-                                            staticClass: "btn btn-default",
+                                            staticClass: "btn btn-primary",
                                             attrs: {
                                               href: "#",
                                               disabled: entry.tax_entry

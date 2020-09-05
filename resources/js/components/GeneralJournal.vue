@@ -184,17 +184,17 @@
                         <td>{{ entry.description }}</td>
                         <td>{{ entry.payee_name }}</td>
                         <td>
-                          <button href="#" class="btn btn-default" @click="computeInputTax(entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id)" :disabled="entry.tax_entry">
+                          <button href="#" class="btn btn-primary" @click="computeInputTax(entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id)" :disabled="entry.tax_entry">
                             <i class="fa fa-plus">Add</i>
                           </button>
                         </td>
                         <td>
-                          <button href="#" class="btn btn-default" @click="computeOutputTax(entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id)" :disabled="entry.tax_entry">
+                          <button href="#" class="btn btn-primary" @click="computeOutputTax(entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id)" :disabled="entry.tax_entry">
                             <i class="fa fa-plus">Add</i>
                           </button>
                         </td>
                         <td>
-                          <button href="#" class="btn btn-default" @click="deleteEntry(entry.transaction_entry_id,entry.amount,entry.vat)" :disabled="entry.tax_entry">
+                          <button href="#" class="btn btn-primary" @click="deleteEntry(entry.transaction_entry_id,entry.amount,entry.vat)" :disabled="entry.tax_entry">
                             <i class="fa fa-plus">Add</i>
                           </button>
                         </td>
