@@ -352,7 +352,6 @@
             </div>
             <!-- form onsubmit="return false;" -->
             <div class="modal-body">
-              
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Code</span>
@@ -470,7 +469,6 @@
                 </div>
 
                 <div class="input-group mb-2">
-
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default"  v-bind:style="[readabilityObject]">Payee/Payor</span>
                     </div>  
@@ -479,9 +477,7 @@
                     <span class="input-group-btn col-1">
                         <button type="button" class="btn btn-success" @click="searchPayeeModal"><i class="fas fa-search fa-fw"></i></button>
                     </span>  
-
                     <p v-show="no_payee" class="empty-field-message">** Please select payee!</p>  
-
                 </div>
 
                 <div class="input-group mb-2">
