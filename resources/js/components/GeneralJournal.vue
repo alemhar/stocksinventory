@@ -481,7 +481,6 @@
                     </span>  
 
                     <p v-show="no_payee" class="empty-field-message">** Please select payee!</p>  
-                  
 
                 </div>
 
