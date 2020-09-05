@@ -472,7 +472,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Payee/Payor</span>
                     </div>  
-                    <input v-model="form_entry.payee_name" type="text" class="form-control col-11" id="inputPayeeName"  placeholder="Payees/Payors Name">
+                    <input v-model="payee_name" type="text" class="form-control col-11" id="inputPayeeName"  placeholder="Payees/Payors Name">
                       
                     <span class="input-group-btn col-1">
                         <button type="button" class="btn btn-success" @click="searchPayeeModal"><i class="fas fa-search fa-fw" style="margin:-15PX;margin-top:-2px;"></i></button>
@@ -1002,6 +1002,7 @@
               current_date: this.getDate(),
               amount: 0,
               vat:0,
+              payee_name: '',
               readabilityObject: {
                 fontSize: user.font_size
               }
@@ -1326,6 +1327,7 @@
                       this.form_entry.payee_id = id;
                       this.form_entry.entity_type = entity_type;
                       this.current_payee_id = id;
+                      this.payee_name = payee_name;
                       
               }
               $('#select-payee').modal('hide');  
@@ -1422,7 +1424,7 @@
 
                 transaction_entry_id: this.transaction_entry_id,
                 payee_id: payee_id,
-                payee_name: payee_name,
+                payee_name: this.payee_name,
                 branch_id: this.current_branch_id,
                 account_code: '11051100',
                 account_name: 'Input Tax',
@@ -1449,6 +1451,7 @@
   
                 this.amount= 0;
                 this.vat= 0;    
+                this.payee_name = '';
           },
           computeOutputTax(debit_amount,credit_amount,entity_type,payee_id,payee_name,branch_id){
                   //this.amount = (tax_excluded / 1.88).toFixed(2) * 1;
@@ -1468,7 +1471,7 @@
 
                 transaction_entry_id: this.transaction_entry_id,
                 payee_id: payee_id,
-                payee_name: payee_name,
+                payee_name: this.payee_name,
                 branch_id: this.current_branch_id,
                 account_code: '21051100',
                 account_name: 'Output Tax',
@@ -1494,7 +1497,8 @@
             });  
   
                 this.amount= 0;
-                this.vat= 0;    
+                this.vat= 0;   
+                this.payee_name = ''; 
           },  
           computeDepreciation(){
             this.form_entry.depreciation_value = (this.form_entry.amount_ex_tax / this.form_entry.useful_life).toFixed(2)  * 1;

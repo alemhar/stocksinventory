@@ -7435,6 +7435,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       current_date: this.getDate(),
       amount: 0,
       vat: 0,
+      payee_name: '',
       readabilityObject: {
         fontSize: user.font_size
       }
@@ -7734,6 +7735,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.form_entry.payee_id = id;
         this.form_entry.entity_type = entity_type;
         this.current_payee_id = id;
+        this.payee_name = payee_name;
       }
 
       $('#select-payee').modal('hide');
@@ -7816,7 +7818,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         entity_type: this.current_entity_type,
         transaction_entry_id: this.transaction_entry_id,
         payee_id: payee_id,
-        payee_name: payee_name,
+        payee_name: this.payee_name,
         branch_id: this.current_branch_id,
         account_code: '11051100',
         account_name: 'Input Tax',
@@ -7842,6 +7844,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
       this.amount = 0;
       this.vat = 0;
+      this.payee_name = '';
     },
     computeOutputTax: function computeOutputTax(debit_amount, credit_amount, entity_type, payee_id, payee_name, branch_id) {
       //this.amount = (tax_excluded / 1.88).toFixed(2) * 1;
@@ -7858,7 +7861,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         entity_type: this.current_entity_type,
         transaction_entry_id: this.transaction_entry_id,
         payee_id: payee_id,
-        payee_name: payee_name,
+        payee_name: this.payee_name,
         branch_id: this.current_branch_id,
         account_code: '21051100',
         account_name: 'Output Tax',
@@ -7884,6 +7887,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
       this.amount = 0;
       this.vat = 0;
+      this.payee_name = '';
     },
     computeDepreciation: function computeDepreciation() {
       this.form_entry.depreciation_value = (this.form_entry.amount_ex_tax / this.form_entry.useful_life).toFixed(2) * 1;
@@ -81318,8 +81322,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form_entry.payee_name,
-                          expression: "form_entry.payee_name"
+                          value: _vm.payee_name,
+                          expression: "payee_name"
                         }
                       ],
                       staticClass: "form-control col-11",
@@ -81328,17 +81332,13 @@ var render = function() {
                         id: "inputPayeeName",
                         placeholder: "Payees/Payors Name"
                       },
-                      domProps: { value: _vm.form_entry.payee_name },
+                      domProps: { value: _vm.payee_name },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(
-                            _vm.form_entry,
-                            "payee_name",
-                            $event.target.value
-                          )
+                          _vm.payee_name = $event.target.value
                         }
                       }
                     }),
