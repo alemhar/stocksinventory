@@ -185,7 +185,7 @@
                         <td>{{ entry.description }}</td>
                         <td>{{ entry.payee_name }}</td>
                         <td>
-                          <a href="#" @click="deleteEntry(entry.transaction_entry_id,entry.amount,entry.vat)">
+                          <a href="#" @click=" computeInputTax(entry.entity_type,entry.payee_id,entry.branch_id)">
                             <i class="fa fa-plus">Add</i>
                           </a>
                         </td>
@@ -554,12 +554,11 @@
       -->
 
 
-      <!-- div class="modal fade"  v-show="transaction_created"  id="entry-items" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+      <div class="modal fade"  v-show="transaction_created"  id="entry-items" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add Item</h5>
-              <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update Entry</h5>
+              <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add Input Tax</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -631,7 +630,8 @@
                   <span class="input-group-text inputGroup-sizing-default">Tax Type</span>
                 </div>
 
-              
+             
+               
 
                 <select v-model="form_item.tax_type" @change="computeTaxChange" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
                   <option value="VAT">VAT</option>
@@ -639,6 +639,7 @@
                   <option value="VAT EXEMPT">VAT EXEMPT</option>
                   <option value="ZERO RATED">ZERO RATED</option>
                 </select>
+
               </div>
 
               <div class="input-group mb-2">
@@ -674,7 +675,7 @@
 
           </div>
         </div>
-      </div -->
+      </div>
       <!-- Item Modal -->
 
 
@@ -1154,42 +1155,7 @@
                 useful_life: 0,
                 salvage_value: 0
             });
-            ++this.transaction_entry_id;
             
-            this.transactions.push({ 
-
-                // *************************
-                account_type: 'ASSETS',
-                sub_account_type: 'CURRENT ASSETS',
-                main_code: 0,
-                main_account: 'NA',
-                type: 'NA',
-                entity_type: this.current_entity_type,
-                // 
-                transaction_entry_id: this.transaction_entry_id,
-                payee_id: this.form.payee_id,
-                branch_id: this.current_branch_id,
-                account_code: '11051100',
-                account_name: 'Input Tax',
-                reference_no: this.form.reference_no,
-                transaction_no: this.form.transaction_no,
-                transaction_type: this.form.transaction_type,
-                transaction_date: this.form.transaction_date,
-                amount: this.form.vat,
-                credit_amount: 0,
-                debit_amount: this.form.vat,
-                amount_ex_tax: 0,
-                vat: 0,
-                wtax_code: 0,
-                wtax: 0,
-                user_id: this.form.user_id,
-                useful_life: 0,
-                salvage_value: 0,
-                total_payment: 0,
-                status: 'CONFIRMED',
-                depreciation_date: this.form.transaction_date,
-                depreciated_id: 0
-            });  
 
 
                 // Save Transactions START
@@ -1417,11 +1383,12 @@
           },
           computeTaxChange(event){
               if(this.form_item.price && this.form_item.quantity){
+                
                 this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
                 if(this.form_item.tax_type == 'VAT'){
                   //this.form_item.amount = event.target.value;
 
-                  
+
 
                   this.form_item.tax_excluded = (this.form_item.sub_total/1.12).toFixed(2) * 1;
 
@@ -1432,8 +1399,52 @@
                   this.form_item.vat = 0;
                   this.form_item.tax_excluded = this.form_item.sub_total  * 1;
                 }
+
               }
           },
+          computeInputTax(entity_type,payee_id,branch_id){
+                  this.amount = (tax_excluded / (1 - 0.12)).toFixed(2) * 1;
+                  this.vat = (this.form_item.amount * 0.12).toFixed(2)  * 1;
+                  ++this.transaction_entry_id;
+            
+            this.transactions.push({ 
+
+                // *************************
+                account_type: 'ASSETS',
+                sub_account_type: 'CURRENT ASSETS',
+                main_code: 0,
+                main_account: 'NA',
+                type: 'NA',
+                entity_type: this.current_entity_type,
+
+                transaction_entry_id: this.transaction_entry_id,
+                payee_id: this.form.payee_id,
+                branch_id: this.current_branch_id,
+                account_code: '11051100',
+                account_name: 'Input Tax',
+                reference_no: 0,
+                transaction_no: this.form.transaction_no,
+                transaction_type: this.form.transaction_type,
+                transaction_date: this.form.transaction_date,
+                amount: this.vat,
+                credit_amount: 0,
+                debit_amount: this.vat,
+                amount_ex_tax: 0,
+                vat: 0,
+                wtax_code: 0,
+                wtax: 0,
+                user_id: this.form.user_id,
+                useful_life: 0,
+                salvage_value: 0,
+                total_payment: 0,
+                status: 'CONFIRMED',
+                depreciation_date: this.form.transaction_date,
+                depreciated_id: 0,
+                description: 'Tax'
+            });  
+  
+
+          },  
           computeDepreciation(){
             this.form_entry.depreciation_value = (this.form_entry.amount_ex_tax / this.form_entry.useful_life).toFixed(2)  * 1;
           },
