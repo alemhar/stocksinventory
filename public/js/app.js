@@ -7499,6 +7499,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       } else {
         this.no_branch_id = false;
       }
+
+      this.no_branch_id = true; // ** Temp
+
       /*
       if(this.form.reference_no.length == 0) {
         this.no_reference_no = true;
@@ -7506,7 +7509,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.no_reference_no = false;
       }
       */
-
 
       if (this.no_branch_id) {
         this.transaction_created = false;
@@ -81149,70 +81151,77 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "input-group mb-2" }, [
+                  _c("div", { staticClass: "mb-2" }, [
                     _vm._m(10),
                     _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form_entry.debit_amount,
-                            expression: "form_entry.debit_amount"
-                          }
-                        ],
-                        staticClass: "form-control col-6",
-                        attrs: {
-                          name: "debit_amount",
-                          id: "debit_amount",
-                          "aria-describedby": "inputGroup-sizing-default"
-                        },
-                        domProps: { value: _vm.form_entry.debit_amount },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                    _c(
+                      "div",
+                      {
+                        staticClass: "row",
+                        staticStyle: { margin: "0 15px 0 15px" }
+                      },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form_entry.debit_amount,
+                              expression: "form_entry.debit_amount"
                             }
-                            _vm.$set(
-                              _vm.form_entry,
-                              "debit_amount",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form_entry.credit_amount,
-                            expression: "form_entry.credit_amount"
-                          }
-                        ],
-                        staticClass: "form-control col-6",
-                        attrs: {
-                          name: "credit_amount",
-                          id: "credit_amount",
-                          "aria-describedby": "inputGroup-sizing-default"
-                        },
-                        domProps: { value: _vm.form_entry.credit_amount },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                          ],
+                          staticClass: "form-control col-6",
+                          attrs: {
+                            name: "debit_amount",
+                            id: "debit_amount",
+                            "aria-describedby": "inputGroup-sizing-default"
+                          },
+                          domProps: { value: _vm.form_entry.debit_amount },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form_entry,
+                                "debit_amount",
+                                $event.target.value
+                              )
                             }
-                            _vm.$set(
-                              _vm.form_entry,
-                              "credit_amount",
-                              $event.target.value
-                            )
                           }
-                        }
-                      })
-                    ])
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form_entry.credit_amount,
+                              expression: "form_entry.credit_amount"
+                            }
+                          ],
+                          staticClass: "form-control col-6",
+                          attrs: {
+                            name: "credit_amount",
+                            id: "credit_amount",
+                            "aria-describedby": "inputGroup-sizing-default"
+                          },
+                          domProps: { value: _vm.form_entry.credit_amount },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form_entry,
+                                "credit_amount",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]
+                    )
                   ]),
                   _vm._v(" "),
                   _c(
@@ -82330,13 +82339,17 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
-      _c("label", { staticClass: "col-6", attrs: { for: "debit_amount" } }, [
-        _vm._v("Debit")
-      ]),
+      _c(
+        "label",
+        { staticClass: "col-6 text-center", attrs: { for: "debit_amount" } },
+        [_vm._v("Debit")]
+      ),
       _vm._v(" "),
-      _c("label", { staticClass: "col-6", attrs: { for: "debit_amount" } }, [
-        _vm._v("Credit")
-      ])
+      _c(
+        "label",
+        { staticClass: "col-6 text-center", attrs: { for: "debit_amount" } },
+        [_vm._v("Credit")]
+      )
     ])
   },
   function() {
