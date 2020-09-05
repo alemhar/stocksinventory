@@ -480,7 +480,7 @@
                   <has-error :form="form_entry" field="amount"></has-error>
               </div -->
 
-              <div class="input-group mb-2">
+              <!-- div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Tax Excluded</span>
                 </div>
@@ -490,10 +490,10 @@
                   
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount_ex_tax') }" readonly aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_entry" field="amount_ex_tax"></has-error>
-              </div>
+              </div -->
 
 
-              <div class="input-group mb-2">
+              <!-- div class="input-group mb-2">
                 
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Tax</span>
@@ -503,7 +503,7 @@
                   
                   class="form-control" :class="{ 'is-invalid': form_entry.errors.has('vat') }" readonly aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_entry" field="vat"></has-error>
-              </div>
+              </div -->
 
             </div>
             <div class="modal-footer">
