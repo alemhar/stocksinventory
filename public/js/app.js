@@ -7767,12 +7767,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var entity_type = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
 
       if (id) {
-        this.current_payee_id = id;
+        this.form_entry.payee_name = name;
         this.form_entry.payee_id = id;
-        this.form_entry.payee_name = name; //this.current_payee_address = address;
-        //this.current_payee_tin = tin;
-
         this.form_entry.entity_type = entity_type;
+        this.current_payee_id = id;
       }
 
       $('#select-payee').modal('hide');
