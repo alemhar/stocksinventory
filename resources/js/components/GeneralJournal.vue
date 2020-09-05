@@ -183,7 +183,7 @@
                         <td>{{ entry.debit_amount }}</td>
                         <td>{{ entry.credit_amount }}</td>
                         <td>{{ entry.description }}</td>
-                        <td>{{ entry.payee }}</td>
+                        <td>{{ entry.payee_name }}</td>
                         <td>
                           <a href="#" @click="deleteEntry(entry.transaction_entry_id,entry.amount,entry.vat)">
                             <i class="fa fa-plus">Add</i>
@@ -475,7 +475,7 @@
                     <input v-model="current_payee_name" v-bind:readonly="transaction_created" type="text" class="form-control col-11" id="inputPayeeName" placeholder="Payees/Payors Name">
                       
                     <span class="input-group-btn col-1">
-                        <button type="button" class="btn btn-success" @click="searchPayeeModal"><i class="fas fa-search fa-fw"></i></button>
+                        <button type="button" class="btn btn-success" @click="searchPayeeModal"><i class="fas fa-search fa-fw" style="margin:-15PX;margin-top:-2px;"></i></button>
                     </span>  
                     <p v-show="no_payee" class="empty-field-message">** Please select payee!</p>  
                 </div>
@@ -554,7 +554,7 @@
       -->
 
 
-      <div class="modal fade"  v-show="transaction_created"  id="entry-items" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+      <!-- div class="modal fade"  v-show="transaction_created"  id="entry-items" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -564,7 +564,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <!-- form onsubmit="return false;" -->
+            
             <div class="modal-body">
               
               
@@ -672,10 +672,9 @@
               <button type="button" :disabled="!save_button_item_enabled" @click="saveItem" class="btn btn-success">Save</button>
             </div>
 
-            <!-- /form -->
           </div>
         </div>
-      </div>
+      </div -->
       <!-- Item Modal -->
 
 
@@ -1356,11 +1355,11 @@
               if (id){
                     
                       this.current_payee_id = id;
-                      this.form.payee_id = id;
-                      this.current_payee_name = name;
-                      this.current_payee_address = address;
-                      this.current_payee_tin = tin;
-                      this.current_entity_type = entity_type;
+                      this.form_entry.payee_id = id;
+                      this.form_entry.payee_name = name;
+                      //this.current_payee_address = address;
+                      //this.current_payee_tin = tin;
+                      this.form_entry.entity_type = entity_type;
                       
               }
               $('#select-payee').modal('hide');  
@@ -1513,7 +1512,7 @@
  
           },
           saveEntry(){
-
+            /*  
             if(!this.form_entry.useful_life && this.depreciates){
                 swal.fire({
                     title: 'Warning!',
@@ -1528,6 +1527,8 @@
                 });
                 return false;
             }
+            */
+           /*
             if(!this.form_entry.amount){
                 swal.fire({
                     title: 'Warning!',
@@ -1542,14 +1543,19 @@
                 });
                 return false;
             }  
+            */
 
-            this.form_entry.credit_amount = this.form_entry.amount
+
+            //this.form_entry.credit_amount = this.form_entry.amount
             // ** Temporary data to bypass Column cannot be null ERROR's
+            
             this.save_button_entry_enabled = false;
-            this.depreciates = false;
-            this.form.amount += this.form_entry.amount;
-            this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
-            this.form.vat += this.form_entry.vat;  
+            //this.depreciates = false;
+            this.form.credit_amount += this.form_entry.credit_amount;
+            this.form.debit_amount += this.form_entry.debit_amount;
+            
+            //this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
+            //this.form.vat += this.form_entry.vat;  
 
             // To refresh ITEMS table
             this.current_transaction_entry_id = this.transaction_entry_id;
@@ -1562,32 +1568,35 @@
                 main_code: this.form_entry.main_code,
                 main_account: this.form_entry.main_account,
                 type: this.form_entry.type,
-                entity_type: this.current_entity_type,
+                entity_type: this.form_entry.entity_type,
                 // *************************
                 
                 transaction_entry_id: this.transaction_entry_id,
-                payee_id: this.form.payee_id,
+                payee_id: this.entry_form.payee_id,
+                payee_name: this.entry_form.payee_name,
+                
                 branch_id: this.current_branch_id,
                 account_code: this.form_entry.account_code,
                 account_name: this.form_entry.account_name,
-                reference_no: this.form.reference_no,
+                reference_no: 'NA',
                 transaction_no: this.form.transaction_no,
                 transaction_type: this.form.transaction_type,
                 transaction_date: this.form.transaction_date,
-                amount: this.form_entry.amount_ex_tax,
-                credit_amount: 0,
-                debit_amount: this.form_entry.amount_ex_tax,
+                amount: this.form_entry.credit_amount + this.form_entry.debit_amount,
+                credit_amount: this.form_entry.credit_amount,
+                debit_amount: this.form_entry.debit_amount,
                 amount_ex_tax: 0,
-                vat: this.form_entry.vat,
+                vat: 0,
                 wtax_code: 0,
                 wtax: 0,
                 user_id: this.form.user_id,
-                useful_life: this.form_entry.useful_life,
-                salvage_value: this.form_entry.salvage_value,
+                useful_life: 0,
+                salvage_value: 0,
                 total_payment: 0,
                 status: 'CONFIRMED',
                 depreciation_date: this.form.transaction_date,
-                depreciated_id: 0
+                depreciated_id: 0,
+                description: this.form_entry.description
             });
 
 
