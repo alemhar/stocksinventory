@@ -185,7 +185,7 @@
                         <td>{{ entry.description }}</td>
                         <td>{{ entry.payee_name }}</td>
                         <td>
-                          <a href="#" @click=" computeInputTax((entry.debit_amount + entry.credit_amount),entry.entity_type,entry.payee_id,entry.branch_id)">
+                          <a href="#" @click=" computeInputTax(entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.branch_id)">
                             <i class="fa fa-plus">Add</i>
                           </a>
                         </td>
@@ -1404,10 +1404,10 @@
 
               }
           },
-          computeInputTax(tax_excluded,entity_type,payee_id,branch_id){
+          computeInputTax(debit_amount,credit_amount,entity_type,payee_id,branch_id){
                   //this.amount = (tax_excluded / 1.88).toFixed(2) * 1;
-                  console.log(tax_excluded);
-                  this.vat = (tax_excluded * 0.12).toFixed(2)  * 1;
+                  //console.log(tax_excluded);
+                  this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
                   ++this.transaction_entry_id;
             
             this.transactions.push({ 
@@ -1446,8 +1446,8 @@
                 description: 'Tax'
             });  
   
-                //this.amount= 0;
-                //this.vat= 0;    
+                this.amount= 0;
+                this.vat= 0;    
           },  
           computeDepreciation(){
             this.form_entry.depreciation_value = (this.form_entry.amount_ex_tax / this.form_entry.useful_life).toFixed(2)  * 1;
