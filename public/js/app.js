@@ -81270,8 +81270,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.current_payee_name,
-                          expression: "current_payee_name"
+                          value: _vm.form_entry.payee_name,
+                          expression: "form_entry.payee_name"
                         }
                       ],
                       staticClass: "form-control col-11",
@@ -81281,13 +81281,17 @@ var render = function() {
                         id: "inputPayeeName",
                         placeholder: "Payees/Payors Name"
                       },
-                      domProps: { value: _vm.current_payee_name },
+                      domProps: { value: _vm.form_entry.payee_name },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.current_payee_name = $event.target.value
+                          _vm.$set(
+                            _vm.form_entry,
+                            "payee_name",
+                            $event.target.value
+                          )
                         }
                       }
                     }),
