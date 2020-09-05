@@ -1406,7 +1406,7 @@
           },
           computeInputTax(tax_excluded,entity_type,payee_id,branch_id){
                   //this.amount = (tax_excluded / 1.88).toFixed(2) * 1;
-                  this.vat = (this.tax_excluded * 0.12).toFixed(2)  * 1;
+                  this.vat = (tax_excluded * 0.12).toFixed(2)  * 1;
                   ++this.transaction_entry_id;
             
             this.transactions.push({ 
