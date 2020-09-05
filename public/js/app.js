@@ -7270,10 +7270,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      transaction_type: 'PURCHASE',
+      transaction_type: 'GENERAL',
       transactions: [],
       items: [],
       item_no: 0,
@@ -7447,32 +7467,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }).then(function (result) {});
         return false;
       }
-
-      if (this.form.payee_id.length == 0) {
+      /*
+      if(this.form.payee_id.length == 0) {
         this.no_payee = true;
       } else {
         this.no_payee = false;
       }
-
-      if (this.form.account_code.length == 0) {
+        if(this.form.account_code.length == 0) {
         this.no_account_code = true;
       } else {
         this.no_account_code = false;
       }
+      */
+
 
       if (this.form.branch_id.length == 0) {
         this.no_branch_id = true;
       } else {
         this.no_branch_id = false;
       }
-
-      if (this.form.reference_no.length == 0) {
+      /*
+      if(this.form.reference_no.length == 0) {
         this.no_reference_no = true;
       } else {
         this.no_reference_no = false;
       }
+      */
 
-      if (this.no_account_code || this.no_reference_no || this.no_payee || this.no_branch_id) {
+
+      if (this.no_branch_id) {
         this.transaction_created = false;
       } else {
         this.transaction_created = true;
@@ -80553,9 +80576,19 @@ var render = function() {
                                         _vm._v(_vm._s(entry.account_name))
                                       ]),
                                       _vm._v(" "),
-                                      _c("td", [_vm._v(_vm._s(entry.amount))]),
+                                      _c("td", [
+                                        _vm._v(_vm._s(entry.debit_amount))
+                                      ]),
                                       _vm._v(" "),
-                                      _c("td", [_vm._v(_vm._s(entry.vat))]),
+                                      _c("td", [
+                                        _vm._v(_vm._s(entry.credit_amount))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(entry.description))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v(_vm._s(entry.payee))]),
                                       _vm._v(" "),
                                       _c("td", [
                                         _c(
@@ -80573,9 +80606,86 @@ var render = function() {
                                             }
                                           },
                                           [
-                                            _c("i", {
-                                              staticClass: "fa fa-trash"
-                                            })
+                                            _c(
+                                              "i",
+                                              { staticClass: "fa fa-plus" },
+                                              [_vm._v("Add")]
+                                            )
+                                          ]
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _c(
+                                          "a",
+                                          {
+                                            attrs: { href: "#" },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.deleteEntry(
+                                                  entry.transaction_entry_id,
+                                                  entry.amount,
+                                                  entry.vat
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "i",
+                                              { staticClass: "fa fa-plus" },
+                                              [_vm._v("Add")]
+                                            )
+                                          ]
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _c(
+                                          "a",
+                                          {
+                                            attrs: { href: "#" },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.deleteEntry(
+                                                  entry.transaction_entry_id,
+                                                  entry.amount,
+                                                  entry.vat
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "i",
+                                              { staticClass: "fa fa-plus" },
+                                              [_vm._v("Add")]
+                                            )
+                                          ]
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _c(
+                                          "a",
+                                          {
+                                            attrs: { href: "#" },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.deleteEntry(
+                                                  entry.transaction_entry_id,
+                                                  entry.amount,
+                                                  entry.vat
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "i",
+                                              { staticClass: "fa fa-trash" },
+                                              [_vm._v("Delete")]
+                                            )
                                           ]
                                         )
                                       ])
@@ -82286,9 +82396,19 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Name")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Amount")]),
+      _c("th", [_vm._v("Debit")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Tax")]),
+      _c("th", [_vm._v("Credit")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Description")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Payee/Payor")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Input Tax")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Output Tax")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("WTax")]),
       _vm._v(" "),
       _c("th", [_vm._v("Option")])
     ])

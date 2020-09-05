@@ -167,21 +167,41 @@
                       <tr>
                         <th>Account No.</th>
                         <th>Name</th>
-                        <th>Amount</th>
-                        <!-- th>Tax Excluded</th -->
-                        <th>Tax</th>
+                        <th>Debit</th> 
+                        <th>Credit</th> 
+                        <th>Description</th>
+                        <th>Payee/Payor</th>
+                        <th>Input Tax</th>
+                        <th>Output Tax</th>
+                        <th>WTax</th>
                         <th>Option</th>
                         
                       </tr>
                       <tr v-for="entry in transactions" :key="entry.transaction_entry_id" @click="selectEntryRow(entry.transaction_entry_id)" :class="{ 'table-warning' : active_debit_row == entry.transaction_entry_id }" >
                         <td>{{ entry.account_code }}</td>
                         <td>{{ entry.account_name }}</td>
-                        <td>{{ entry.amount }}</td>
-                        <!-- td>{{ entry.amount_ex_tax }}</td -->
-                        <td>{{ entry.vat }}</td>
+                        <td>{{ entry.debit_amount }}</td>
+                        <td>{{ entry.credit_amount }}</td>
+                        <td>{{ entry.description }}</td>
+                        <td>{{ entry.payee }}</td>
                         <td>
                           <a href="#" @click="deleteEntry(entry.transaction_entry_id,entry.amount,entry.vat)">
-                            <i class="fa fa-trash"></i>
+                            <i class="fa fa-plus">Add</i>
+                          </a>
+                        </td>
+                        <td>
+                          <a href="#" @click="deleteEntry(entry.transaction_entry_id,entry.amount,entry.vat)">
+                            <i class="fa fa-plus">Add</i>
+                          </a>
+                        </td>
+                        <td>
+                          <a href="#" @click="deleteEntry(entry.transaction_entry_id,entry.amount,entry.vat)">
+                            <i class="fa fa-plus">Add</i>
+                          </a>
+                        </td>
+                        <td>
+                          <a href="#" @click="deleteEntry(entry.transaction_entry_id,entry.amount,entry.vat)">
+                            <i class="fa fa-trash">Delete</i>
                           </a>
                         </td>
                       </tr>
@@ -837,7 +857,7 @@
     export default {
         data() {
           return {
-              transaction_type: 'PURCHASE',
+              transaction_type: 'GENERAL',
               transactions: [],
               items: [],
               item_no: 0,
@@ -1012,17 +1032,20 @@
                 return false;
             } 
             
+            /*
             if(this.form.payee_id.length == 0) {
               this.no_payee = true;
             } else {
               this.no_payee = false;
             }
 
+
             if(this.form.account_code.length == 0) {
               this.no_account_code = true;
             } else {
               this.no_account_code = false;
             }
+            */
 
             if(this.form.branch_id.length == 0) {
               this.no_branch_id = true;
@@ -1030,13 +1053,15 @@
               this.no_branch_id = false;
             }
             
+            /*
             if(this.form.reference_no.length == 0) {
               this.no_reference_no = true;
             } else {
               this.no_reference_no = false;
             }
+            */
 
-            if (this.no_account_code || this.no_reference_no || this.no_payee || this.no_branch_id){
+            if (this.no_branch_id){
               this.transaction_created = false;
             } else {
               this.transaction_created = true;
