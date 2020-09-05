@@ -7802,13 +7802,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     computeInputTax: function computeInputTax(debit_amount, credit_amount, entity_type, payee_id, payee_name, branch_id) {
-      var _this$transactions$pu2;
-
       //this.amount = (tax_excluded / 1.88).toFixed(2) * 1;
       //console.log(tax_excluded);
       this.vat = ((debit_amount * 1 + credit_amount * 1) * 0.12).toFixed(2) * 1;
       ++this.transaction_entry_id;
-      this.transactions.push((_this$transactions$pu2 = {
+      this.transactions.push({
         // *************************
         account_type: 'ASSETS',
         sub_account_type: 'CURRENT ASSETS',
@@ -7817,8 +7815,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         type: 'NA',
         entity_type: this.current_entity_type,
         transaction_entry_id: this.transaction_entry_id,
-        payee_id: payee_id
-      }, _defineProperty(_this$transactions$pu2, "payee_id", payee_id), _defineProperty(_this$transactions$pu2, "branch_id", this.current_branch_id), _defineProperty(_this$transactions$pu2, "account_code", '11051100'), _defineProperty(_this$transactions$pu2, "account_name", 'Input Tax'), _defineProperty(_this$transactions$pu2, "reference_no", 0), _defineProperty(_this$transactions$pu2, "transaction_no", this.form.transaction_no), _defineProperty(_this$transactions$pu2, "transaction_type", this.form.transaction_type), _defineProperty(_this$transactions$pu2, "transaction_date", this.form.transaction_date), _defineProperty(_this$transactions$pu2, "amount", this.vat), _defineProperty(_this$transactions$pu2, "credit_amount", 0), _defineProperty(_this$transactions$pu2, "debit_amount", this.vat), _defineProperty(_this$transactions$pu2, "amount_ex_tax", 0), _defineProperty(_this$transactions$pu2, "vat", 0), _defineProperty(_this$transactions$pu2, "wtax_code", 0), _defineProperty(_this$transactions$pu2, "wtax", 0), _defineProperty(_this$transactions$pu2, "user_id", this.form.user_id), _defineProperty(_this$transactions$pu2, "useful_life", 0), _defineProperty(_this$transactions$pu2, "salvage_value", 0), _defineProperty(_this$transactions$pu2, "total_payment", 0), _defineProperty(_this$transactions$pu2, "status", 'CONFIRMED'), _defineProperty(_this$transactions$pu2, "depreciation_date", this.form.transaction_date), _defineProperty(_this$transactions$pu2, "depreciated_id", 0), _defineProperty(_this$transactions$pu2, "description", 'Tax'), _this$transactions$pu2));
+        payee_id: payee_id,
+        payee_name: payee_name,
+        branch_id: this.current_branch_id,
+        account_code: '11051100',
+        account_name: 'Input Tax',
+        reference_no: 0,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        transaction_date: this.form.transaction_date,
+        amount: this.vat,
+        credit_amount: 0,
+        debit_amount: this.vat,
+        amount_ex_tax: 0,
+        vat: 0,
+        wtax_code: 0,
+        wtax: 0,
+        user_id: this.form.user_id,
+        useful_life: 0,
+        salvage_value: 0,
+        total_payment: 0,
+        status: 'CONFIRMED',
+        depreciation_date: this.form.transaction_date,
+        depreciated_id: 0,
+        description: 'Tax'
+      });
       this.amount = 0;
       this.vat = 0;
     },

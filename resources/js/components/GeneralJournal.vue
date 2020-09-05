@@ -1422,7 +1422,7 @@
 
                 transaction_entry_id: this.transaction_entry_id,
                 payee_id: payee_id,
-                payee_id: payee_id,
+                payee_name: payee_name,
                 branch_id: this.current_branch_id,
                 account_code: '11051100',
                 account_name: 'Input Tax',
