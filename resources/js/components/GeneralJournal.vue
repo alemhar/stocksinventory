@@ -470,9 +470,9 @@
 
                 <div class="input-group mb-2">
                     <div class="input-group-prepend">
-                      <span class="input-group-text inputGroup-sizing-default"  v-bind:style="[readabilityObject]">Payee/Payor</span>
+                      <span class="input-group-text inputGroup-sizing-default">Payee/Payor</span>
                     </div>  
-                    <input v-model="current_payee_name" v-bind:readonly="transaction_created" type="text" class="form-control col-12" id="inputPayeeName" placeholder="Payees/Payors Name" v-bind:style="[readabilityObject]">
+                    <input v-model="current_payee_name" v-bind:readonly="transaction_created" type="text" class="form-control col-11" id="inputPayeeName" placeholder="Payees/Payors Name">
                       
                     <span class="input-group-btn col-1">
                         <button type="button" class="btn btn-success" @click="searchPayeeModal"><i class="fas fa-search fa-fw"></i></button>
