@@ -185,7 +185,7 @@
                         <td>{{ entry.description }}</td>
                         <td>{{ entry.payee_name }}</td>
                         <td>
-                          <a href="#" @click=" computeInputTax(entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.branch_id)">
+                          <a href="#" @click=" computeInputTax(entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id)">
                             <i class="fa fa-plus">Add</i>
                           </a>
                         </td>
@@ -1404,7 +1404,7 @@
 
               }
           },
-          computeInputTax(debit_amount,credit_amount,entity_type,payee_id,branch_id){
+          computeInputTax(debit_amount,credit_amount,entity_type,payee_id,payee_name,branch_id){
                   //this.amount = (tax_excluded / 1.88).toFixed(2) * 1;
                   //console.log(tax_excluded);
                   this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
@@ -1421,7 +1421,8 @@
                 entity_type: this.current_entity_type,
 
                 transaction_entry_id: this.transaction_entry_id,
-                payee_id: this.form.payee_id,
+                payee_id: payee_id,
+                payee_id: payee_id,
                 branch_id: this.current_branch_id,
                 account_code: '11051100',
                 account_name: 'Input Tax',
