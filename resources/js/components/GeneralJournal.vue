@@ -190,14 +190,14 @@
                           </button>
                         </td>
                         <td>
-                          <a href="#" @click="computeOutputTax(entry.transaction_entry_id,entry.amount,entry.vat)">
+                          <button href="#" @click="computeOutputTax(entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id)" :disabled="entry.tax_entry">
                             <i class="fa fa-plus">Add</i>
-                          </a>
+                          </button>
                         </td>
                         <td>
-                          <a href="#" @click="deleteEntry(entry.transaction_entry_id,entry.amount,entry.vat)">
+                          <button href="#" @click="deleteEntry(entry.transaction_entry_id,entry.amount,entry.vat)" :disabled="entry.tax_entry">
                             <i class="fa fa-plus">Add</i>
-                          </a>
+                          </button>
                         </td>
                         <td>
                           <a href="#" @click="deleteEntry(entry.transaction_entry_id,entry.amount,entry.vat)">

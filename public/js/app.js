@@ -80725,15 +80725,21 @@ var render = function() {
                                       _vm._v(" "),
                                       _c("td", [
                                         _c(
-                                          "a",
+                                          "button",
                                           {
-                                            attrs: { href: "#" },
+                                            attrs: {
+                                              href: "#",
+                                              disabled: entry.tax_entry
+                                            },
                                             on: {
                                               click: function($event) {
                                                 return _vm.computeOutputTax(
-                                                  entry.transaction_entry_id,
-                                                  entry.amount,
-                                                  entry.vat
+                                                  entry.debit_amount,
+                                                  entry.credit_amount,
+                                                  entry.entity_type,
+                                                  entry.payee_id,
+                                                  entry.payee_name,
+                                                  entry.branch_id
                                                 )
                                               }
                                             }
@@ -80750,9 +80756,12 @@ var render = function() {
                                       _vm._v(" "),
                                       _c("td", [
                                         _c(
-                                          "a",
+                                          "button",
                                           {
-                                            attrs: { href: "#" },
+                                            attrs: {
+                                              href: "#",
+                                              disabled: entry.tax_entry
+                                            },
                                             on: {
                                               click: function($event) {
                                                 return _vm.deleteEntry(
