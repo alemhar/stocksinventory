@@ -8201,7 +8201,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     totalCredit: function totalCredit() {
       //var total_credit = 0;
-      total_credit = this.transactions.reduce(function (total, transaction) {
+      return this.transactions.reduce(function (total, transaction) {
         return total + transaction.credit_amount * 1;
       }, 0); //return this.formatCurrencyNumber(total_credit);
     }
