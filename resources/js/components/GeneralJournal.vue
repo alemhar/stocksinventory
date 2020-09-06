@@ -234,12 +234,12 @@
                     <label for="inputTotalAmount" class="col-6 pl-1 pr-1 col-form-label" style="text-align: right;">Total Amount</label>  
                     <div class="col-3 pl-1 pr-1">
                         <input v-bind:value="totalDebit | formatCurrencyNumber" name="debit_amount" id="debit_amount"
-                        class="form-control" aria-describedby="inputGroup-sizing-default" readonly>
+                        class="form-control input-currency" aria-describedby="inputGroup-sizing-default" readonly>
                     
                     </div>    
                     <div class="col-3 pl-1 pr-1">
                         <input v-bind:value="totalCredit | formatCurrencyNumber" name="credit_amount" id="credit_amount"
-                        class="form-control" aria-describedby="inputGroup-sizing-default" readonly>
+                        class="form-control input-currency" aria-describedby="inputGroup-sizing-default" readonly>
                     </div>
                   </div>  
                 </div>
@@ -924,6 +924,13 @@
 
     </div>
 </template>
+
+<style>
+    .input-currency{
+        float: right;
+        clear: both;
+    }
+</style>
 <script>
 
     export default {
