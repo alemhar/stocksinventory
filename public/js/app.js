@@ -7352,6 +7352,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -80839,7 +80840,7 @@ var render = function() {
                 },
                 [
                   _c("div", { staticClass: "form-group col-12 float-right" }, [
-                    _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "row float-right" }, [
                       _c("div", { staticClass: "mb-4" }, [
                         _vm._m(4),
                         _vm._v(" "),
@@ -82216,15 +82217,20 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
+      _c("label", {
+        staticClass: "col-4 text-center",
+        attrs: { for: "debit_amount" }
+      }),
+      _vm._v(" "),
       _c(
         "label",
-        { staticClass: "col-6 text-center", attrs: { for: "debit_amount" } },
+        { staticClass: "col-4 text-center", attrs: { for: "debit_amount" } },
         [_vm._v("Debit")]
       ),
       _vm._v(" "),
       _c(
         "label",
-        { staticClass: "col-6 text-center", attrs: { for: "debit_amount" } },
+        { staticClass: "col-4 text-center", attrs: { for: "debit_amount" } },
         [_vm._v("Credit")]
       )
     ])

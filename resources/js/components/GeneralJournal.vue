@@ -219,15 +219,16 @@
           </div>  
           <div v-show="transaction_created" class="box box-warning mt-2">  
             <div class="form-group col-12 float-right">
-                <div class="row">
+                <div class="row float-right">
                 
                     
                     
 
-                    <div class="mb-4">
+                <div class="mb-4">
                   <div class="row">
-                    <label class="col-6 text-center" for="debit_amount">Debit</label>
-                    <label class="col-6 text-center" for="debit_amount">Credit</label>
+                    <label class="col-4 text-center" for="debit_amount"></label>
+                    <label class="col-4 text-center" for="debit_amount">Debit</label>
+                    <label class="col-4 text-center" for="debit_amount">Credit</label>
                   </div>
                   <div class="row" style="margin: 0 5px">
                     <label for="inputTotalAmount" class="col-4 pl-1 pr-1 col-form-label" style="text-align: right;">Total Amount</label>  
