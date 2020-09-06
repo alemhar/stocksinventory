@@ -218,7 +218,7 @@
 
           </div>  
           <div v-show="transaction_created" class="box box-warning mt-2">  
-            <div class="form-group col-12 float-right">
+            <div class="form-group col-12 float-right mt-3">
                 <div class="row float-right">
                 
                     

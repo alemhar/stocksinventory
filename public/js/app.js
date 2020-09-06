@@ -80839,104 +80839,108 @@ var render = function() {
                   staticClass: "box box-warning mt-2"
                 },
                 [
-                  _c("div", { staticClass: "form-group col-12 float-right" }, [
-                    _c("div", { staticClass: "row float-right" }, [
-                      _c("div", { staticClass: "mb-4" }, [
-                        _vm._m(4),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "row",
-                            staticStyle: { margin: "0 5px" }
-                          },
-                          [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "col-4 pl-1 pr-1 col-form-label",
-                                staticStyle: { "text-align": "right" },
-                                attrs: { for: "inputTotalAmount" }
-                              },
-                              [_vm._v("Total Amount")]
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-4 pl-1 pr-1" }, [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form_entry.debit_amount,
-                                    expression: "form_entry.debit_amount"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  name: "debit_amount",
-                                  id: "debit_amount",
-                                  "aria-describedby":
-                                    "inputGroup-sizing-default",
-                                  onfocus: "this.select()"
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-12 float-right mt-3" },
+                    [
+                      _c("div", { staticClass: "row float-right" }, [
+                        _c("div", { staticClass: "mb-4" }, [
+                          _vm._m(4),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "row",
+                              staticStyle: { margin: "0 5px" }
+                            },
+                            [
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "col-4 pl-1 pr-1 col-form-label",
+                                  staticStyle: { "text-align": "right" },
+                                  attrs: { for: "inputTotalAmount" }
                                 },
-                                domProps: {
-                                  value: _vm.form_entry.debit_amount
-                                },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
+                                [_vm._v("Total Amount")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-4 pl-1 pr-1" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form_entry.debit_amount,
+                                      expression: "form_entry.debit_amount"
                                     }
-                                    _vm.$set(
-                                      _vm.form_entry,
-                                      "debit_amount",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-4 pl-1 pr-1" }, [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form_entry.credit_amount,
-                                    expression: "form_entry.credit_amount"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  name: "credit_amount",
-                                  id: "credit_amount",
-                                  "aria-describedby":
-                                    "inputGroup-sizing-default",
-                                  onfocus: "this.select()"
-                                },
-                                domProps: {
-                                  value: _vm.form_entry.credit_amount
-                                },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    name: "debit_amount",
+                                    id: "debit_amount",
+                                    "aria-describedby":
+                                      "inputGroup-sizing-default",
+                                    onfocus: "this.select()"
+                                  },
+                                  domProps: {
+                                    value: _vm.form_entry.debit_amount
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form_entry,
+                                        "debit_amount",
+                                        $event.target.value
+                                      )
                                     }
-                                    _vm.$set(
-                                      _vm.form_entry,
-                                      "credit_amount",
-                                      $event.target.value
-                                    )
                                   }
-                                }
-                              })
-                            ])
-                          ]
-                        )
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-4 pl-1 pr-1" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form_entry.credit_amount,
+                                      expression: "form_entry.credit_amount"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    name: "credit_amount",
+                                    id: "credit_amount",
+                                    "aria-describedby":
+                                      "inputGroup-sizing-default",
+                                    onfocus: "this.select()"
+                                  },
+                                  domProps: {
+                                    value: _vm.form_entry.credit_amount
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form_entry,
+                                        "credit_amount",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ])
+                            ]
+                          )
+                        ])
                       ])
-                    ])
-                  ])
+                    ]
+                  )
                 ]
               )
             ])
