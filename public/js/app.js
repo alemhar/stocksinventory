@@ -8175,8 +8175,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     totalDebit: function totalDebit() {
-      return this.transactions.reduce(function (total, cur) {
-        return prev + cur.debit;
+      return this.transactions.reduce(function (total, transaction) {
+        return total + transaction.debit_amount;
       }, 0);
     }
   },
