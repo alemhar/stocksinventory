@@ -7932,7 +7932,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     newEntry: function newEntry() {
       this.editmode = false;
       this.form_entry.reset();
-      ++this.transaction_entry_id; // To refresh ITEMS table
+      ++this.transaction_entry_id;
+      this.payee_name = ''; // To refresh ITEMS table
 
       this.current_transaction_entry_id = this.transaction_entry_id;
       this.form_entry.transaction_id = this.transaction_entry_id;

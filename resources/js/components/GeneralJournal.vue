@@ -1554,7 +1554,7 @@
               this.form_entry.reset();
 
               ++this.transaction_entry_id;
-
+              this.payee_name = '';  
               // To refresh ITEMS table
               this.current_transaction_entry_id = this.transaction_entry_id;
 
