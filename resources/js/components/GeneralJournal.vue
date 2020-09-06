@@ -219,27 +219,27 @@
           </div>  
           <div v-show="transaction_created" class="box box-warning mt-2">  
             <div class="form-group col-12 float-right mt-3">
-                <div class="row float-right">
-                
+                <div>
+                <!-- class="row float-right" -->
                     
                     
 
                 <div class="mb-4">
                   <div class="row">
-                    <label class="col-4 text-center" for="debit_amount"></label>
-                    <label class="col-4 text-center" for="debit_amount">Debit</label>
-                    <label class="col-4 text-center" for="debit_amount">Credit</label>
+                    <label class="col-6 text-center" for="debit_amount"></label>
+                    <label class="col-3 text-center" for="debit_amount">Debit</label>
+                    <label class="col-3 text-center" for="debit_amount">Credit</label>
                   </div>
                   <div class="row" style="margin: 0 5px">
-                    <label for="inputTotalAmount" class="col-4 pl-1 pr-1 col-form-label" style="text-align: right;">Total Amount</label>  
-                    <div class="col-4 pl-1 pr-1">
+                    <label for="inputTotalAmount" class="col-6 pl-1 pr-1 col-form-label" style="text-align: right;">Total Amount</label>  
+                    <div class="col-3 pl-1 pr-1">
                         <input v-bind:value="totalDebit | formatCurrencyNumber" name="debit_amount" id="debit_amount"
                         class="form-control" aria-describedby="inputGroup-sizing-default" readonly>
                     
                     </div>    
-                    <div class="col-4 pl-1 pr-1">
-                        <!-- input v-model="totalCredit" name="credit_amount" id="credit_amount"
-                        class="form-control" aria-describedby="inputGroup-sizing-default" readonly -->
+                    <div class="col-3 pl-1 pr-1">
+                        <input v-bind:value="totalCredit | formatCurrencyNumber" name="credit_amount" id="credit_amount"
+                        class="form-control" aria-describedby="inputGroup-sizing-default" readonly>
                     </div>
                   </div>  
                 </div>

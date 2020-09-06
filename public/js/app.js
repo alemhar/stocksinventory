@@ -80892,7 +80892,7 @@ var render = function() {
                     "div",
                     { staticClass: "form-group col-12 float-right mt-3" },
                     [
-                      _c("div", { staticClass: "row float-right" }, [
+                      _c("div", [
                         _c("div", { staticClass: "mb-4" }, [
                           _vm._m(4),
                           _vm._v(" "),
@@ -80906,14 +80906,14 @@ var render = function() {
                               _c(
                                 "label",
                                 {
-                                  staticClass: "col-4 pl-1 pr-1 col-form-label",
+                                  staticClass: "col-6 pl-1 pr-1 col-form-label",
                                   staticStyle: { "text-align": "right" },
                                   attrs: { for: "inputTotalAmount" }
                                 },
                                 [_vm._v("Total Amount")]
                               ),
                               _vm._v(" "),
-                              _c("div", { staticClass: "col-4 pl-1 pr-1" }, [
+                              _c("div", { staticClass: "col-3 pl-1 pr-1" }, [
                                 _c("input", {
                                   staticClass: "form-control",
                                   attrs: {
@@ -80931,7 +80931,23 @@ var render = function() {
                                 })
                               ]),
                               _vm._v(" "),
-                              _c("div", { staticClass: "col-4 pl-1 pr-1" })
+                              _c("div", { staticClass: "col-3 pl-1 pr-1" }, [
+                                _c("input", {
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    name: "credit_amount",
+                                    id: "credit_amount",
+                                    "aria-describedby":
+                                      "inputGroup-sizing-default",
+                                    readonly: ""
+                                  },
+                                  domProps: {
+                                    value: _vm._f("formatCurrencyNumber")(
+                                      _vm.totalCredit
+                                    )
+                                  }
+                                })
+                              ])
                             ]
                           )
                         ])
@@ -81898,19 +81914,19 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
       _c("label", {
-        staticClass: "col-4 text-center",
+        staticClass: "col-6 text-center",
         attrs: { for: "debit_amount" }
       }),
       _vm._v(" "),
       _c(
         "label",
-        { staticClass: "col-4 text-center", attrs: { for: "debit_amount" } },
+        { staticClass: "col-3 text-center", attrs: { for: "debit_amount" } },
         [_vm._v("Debit")]
       ),
       _vm._v(" "),
       _c(
         "label",
-        { staticClass: "col-4 text-center", attrs: { for: "debit_amount" } },
+        { staticClass: "col-3 text-center", attrs: { for: "debit_amount" } },
         [_vm._v("Credit")]
       )
     ])
