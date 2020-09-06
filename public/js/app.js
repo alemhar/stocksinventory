@@ -8088,10 +8088,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
       this.items = this.items.filter(function (item) {
         return item.transaction_entry_id !== transaction_entry_id;
-      });
-      this.form.amount = parseFloat(this.form.amount - entry_amount - entry_vat).toFixed(2) * 1;
-      this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount).toFixed(2) * 1;
-      this.form.vat = (this.form.vat - entry_vat).toFixed(2) * 1;
+      }); //this.form.amount = parseFloat(this.form.amount - entry_amount - entry_vat).toFixed(2) * 1;
+      //this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount).toFixed(2) * 1;
+      //this.form.vat = (this.form.vat - entry_vat).toFixed(2) * 1;
     },
     cancelItem: function cancelItem() {
       $('#entry-items').modal('hide');
@@ -8122,10 +8121,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.save_button_item_enabled = false; // To refresh ITEMS table
 
       this.current_transaction_entry_id = this.transaction_entry_id; //this.$Progress.start();
+      //this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
+      //this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
+      //this.form_entry.vat += (this.form_item.vat * 1);
 
-      this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
-      this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
-      this.form_entry.vat += this.form_item.vat * 1;
       ++this.item_no;
       this.items.push({
         item_no: this.item_no,
@@ -8146,9 +8145,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       $('#entry-items').modal('hide');
     },
     deleteItem: function deleteItem(item_no, item_sub_total, item_tax_excluded, item_vat) {
-      this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
-      this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
-      this.form_entry.vat = (this.form_entry.vat - item_vat).toFixed(2) * 1;
+      //this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
+      //this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
+      //this.form_entry.vat = (this.form_entry.vat - item_vat).toFixed(2) * 1;
       this.items = this.items.filter(function (item) {
         return item.item_no !== item_no;
       });
