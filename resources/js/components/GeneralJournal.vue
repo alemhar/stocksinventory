@@ -238,8 +238,8 @@
                     
                     </div>    
                     <div class="col-4 pl-1 pr-1">
-                        <input v-model="totalCredit" name="credit_amount" id="credit_amount"
-                        class="form-control" aria-describedby="inputGroup-sizing-default" readonly>
+                        <!-- input v-model="totalCredit" name="credit_amount" id="credit_amount"
+                        class="form-control" aria-describedby="inputGroup-sizing-default" readonly -->
                     </div>
                   </div>  
                 </div>
@@ -1872,11 +1872,11 @@
                 
             },
             totalCredit(){
-                var total_credit = 0;
+                //var total_credit = 0;
                 total_credit =  this.transactions.reduce(function(total, transaction) {
                     return total + (transaction.credit_amount * 1);
                 }, 0);
-                return this.formatCurrencyNumber(total_credit);
+                //return this.formatCurrencyNumber(total_credit);
             }
         },
         components: {

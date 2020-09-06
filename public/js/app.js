@@ -8200,11 +8200,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, 0); //return this.formatCurrencyNumber(total_debit);
     },
     totalCredit: function totalCredit() {
-      var total_credit = 0;
+      //var total_credit = 0;
       total_credit = this.transactions.reduce(function (total, transaction) {
         return total + transaction.credit_amount * 1;
-      }, 0);
-      return this.formatCurrencyNumber(total_credit);
+      }, 0); //return this.formatCurrencyNumber(total_credit);
     }
   },
   components: {}
@@ -80932,35 +80931,7 @@ var render = function() {
                                 })
                               ]),
                               _vm._v(" "),
-                              _c("div", { staticClass: "col-4 pl-1 pr-1" }, [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.totalCredit,
-                                      expression: "totalCredit"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    name: "credit_amount",
-                                    id: "credit_amount",
-                                    "aria-describedby":
-                                      "inputGroup-sizing-default",
-                                    readonly: ""
-                                  },
-                                  domProps: { value: _vm.totalCredit },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.totalCredit = $event.target.value
-                                    }
-                                  }
-                                })
-                              ])
+                              _c("div", { staticClass: "col-4 pl-1 pr-1" })
                             ]
                           )
                         ])
