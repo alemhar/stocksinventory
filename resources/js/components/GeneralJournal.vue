@@ -1090,6 +1090,9 @@
           wTaxExist(){
 
           },
+          computedWTax(){
+
+          },
 
           
           getDate() {
