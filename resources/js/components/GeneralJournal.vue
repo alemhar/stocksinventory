@@ -1442,9 +1442,9 @@
 
 
 
-                  this.form_item.tax_excluded = (this.form_item.sub_total/1.12).toFixed(2) * 1;
+                  this.form_item.tax_excluded = (this.form_item.sub_total/1.12).2Fixed(2) * 1;
 
-                  this.form_item.vat = (this.form_item.tax_excluded * 0.12).toFixed(2)  * 1;
+                  this.form_item.vat = (this.form_item.tax_excluded * 0.12).2Fixed(2)  * 1;
 
                 } else {
                   //this.form_entry.amount = event.target.value;
@@ -1456,9 +1456,8 @@
               */
           },
           computeInputTax(debit_amount,credit_amount,entity_type,payee_id,payee_name,branch_id){
-                  //this.amount = (tax_excluded / 1.88).toFixed(2) * 1;
-                  //console.log(tax_excluded);
-                  this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
+                  
+                  //this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
                   ++this.transaction_entry_id;
             
             this.transactions.push({ 
@@ -1504,9 +1503,8 @@
                 this.payee_name = '';
           },
           computeOutputTax(debit_amount,credit_amount,entity_type,payee_id,payee_name,branch_id){
-                  //this.amount = (tax_excluded / 1.88).toFixed(2) * 1;
-                  //console.log(tax_excluded);
-                  this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
+                  
+                  //this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
                   ++this.transaction_entry_id;
             
             this.transactions.push({ 
@@ -1552,7 +1550,7 @@
                 this.payee_name = ''; 
           },  
           computeDepreciation(){
-            //this.form_entry.depreciation_value = (this.form_entry.amount_ex_tax / this.form_entry.useful_life).toFixed(2)  * 1;
+            //this.form_entry.depreciation_value = (this.form_entry.amount_ex_tax / this.form_entry.useful_life).2Fixed(2)  * 1;
           },
           newEntry(){
               this.editmode = false;
@@ -1734,9 +1732,9 @@
                 return item.transaction_entry_id !== transaction_entry_id;
             });
 
-            //this.form.amount = parseFloat(this.form.amount - entry_amount - entry_vat).toFixed(2) * 1;
-            //this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount).toFixed(2) * 1;
-            //this.form.vat = (this.form.vat - entry_vat).toFixed(2) * 1;
+            //this.form.amount = parseFloat(this.form.amount - entry_amount - entry_vat).2Fixed(2) * 1;
+            //this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount).2Fixed(2) * 1;
+            //this.form.vat = (this.form.vat - entry_vat).2Fixed(2) * 1;
             
            
           },
@@ -1777,8 +1775,8 @@
 
             //this.$Progress.start();
             
-            //this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
-            //this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
+            //this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).2Fixed(2) * 1;
+            //this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).2Fixed(2) * 1;
             //this.form_entry.vat += (this.form_item.vat * 1);
             
             ++this.item_no;
@@ -1805,9 +1803,9 @@
           },
           deleteItem(item_no,item_sub_total,item_tax_excluded,item_vat){
 
-              //this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
-              //this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
-              //this.form_entry.vat = (this.form_entry.vat - item_vat).toFixed(2) * 1;
+              //this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).2Fixed(2) * 1;
+              //this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).2Fixed(2) * 1;
+              //this.form_entry.vat = (this.form_entry.vat - item_vat).2Fixed(2) * 1;
 
               this.items = this.items.filter(function( item ) {
                   return item.item_no !== item_no;

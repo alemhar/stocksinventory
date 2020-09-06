@@ -7835,8 +7835,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
         if(this.form_item.tax_type == 'VAT'){
           //this.form_item.amount = event.target.value;
-             this.form_item.tax_excluded = (this.form_item.sub_total/1.12).toFixed(2) * 1;
-           this.form_item.vat = (this.form_item.tax_excluded * 0.12).toFixed(2)  * 1;
+             this.form_item.tax_excluded = (this.form_item.sub_total/1.12).2Fixed(2) * 1;
+           this.form_item.vat = (this.form_item.tax_excluded * 0.12).2Fixed(2)  * 1;
          } else {
           //this.form_entry.amount = event.target.value;
           this.form_item.vat = 0;
@@ -7846,9 +7846,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       */
     },
     computeInputTax: function computeInputTax(debit_amount, credit_amount, entity_type, payee_id, payee_name, branch_id) {
-      //this.amount = (tax_excluded / 1.88).toFixed(2) * 1;
-      //console.log(tax_excluded);
-      this.vat = ((debit_amount * 1 + credit_amount * 1) * 0.12).toFixed(2) * 1;
+      //this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
       ++this.transaction_entry_id;
       this.transactions.push({
         // *************************
@@ -7890,9 +7888,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.payee_name = '';
     },
     computeOutputTax: function computeOutputTax(debit_amount, credit_amount, entity_type, payee_id, payee_name, branch_id) {
-      //this.amount = (tax_excluded / 1.88).toFixed(2) * 1;
-      //console.log(tax_excluded);
-      this.vat = ((debit_amount * 1 + credit_amount * 1) * 0.12).toFixed(2) * 1;
+      //this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
       ++this.transaction_entry_id;
       this.transactions.push({
         // *************************
@@ -7933,7 +7929,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.vat = 0;
       this.payee_name = '';
     },
-    computeDepreciation: function computeDepreciation() {//this.form_entry.depreciation_value = (this.form_entry.amount_ex_tax / this.form_entry.useful_life).toFixed(2)  * 1;
+    computeDepreciation: function computeDepreciation() {//this.form_entry.depreciation_value = (this.form_entry.amount_ex_tax / this.form_entry.useful_life).2Fixed(2)  * 1;
     },
     newEntry: function newEntry() {
       this.editmode = false;
@@ -8088,9 +8084,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
       this.items = this.items.filter(function (item) {
         return item.transaction_entry_id !== transaction_entry_id;
-      }); //this.form.amount = parseFloat(this.form.amount - entry_amount - entry_vat).toFixed(2) * 1;
-      //this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount).toFixed(2) * 1;
-      //this.form.vat = (this.form.vat - entry_vat).toFixed(2) * 1;
+      }); //this.form.amount = parseFloat(this.form.amount - entry_amount - entry_vat).2Fixed(2) * 1;
+      //this.form.amount_ex_tax = (this.form.amount_ex_tax - entry_amount).2Fixed(2) * 1;
+      //this.form.vat = (this.form.vat - entry_vat).2Fixed(2) * 1;
     },
     cancelItem: function cancelItem() {
       $('#entry-items').modal('hide');
@@ -8121,8 +8117,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.save_button_item_enabled = false; // To refresh ITEMS table
 
       this.current_transaction_entry_id = this.transaction_entry_id; //this.$Progress.start();
-      //this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).toFixed(2) * 1;
-      //this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).toFixed(2) * 1;
+      //this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).2Fixed(2) * 1;
+      //this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).2Fixed(2) * 1;
       //this.form_entry.vat += (this.form_item.vat * 1);
 
       ++this.item_no;
@@ -8145,9 +8141,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       $('#entry-items').modal('hide');
     },
     deleteItem: function deleteItem(item_no, item_sub_total, item_tax_excluded, item_vat) {
-      //this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).toFixed(2) * 1;
-      //this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).toFixed(2) * 1;
-      //this.form_entry.vat = (this.form_entry.vat - item_vat).toFixed(2) * 1;
+      //this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).2Fixed(2) * 1;
+      //this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).2Fixed(2) * 1;
+      //this.form_entry.vat = (this.form_entry.vat - item_vat).2Fixed(2) * 1;
       this.items = this.items.filter(function (item) {
         return item.item_no !== item_no;
       });
