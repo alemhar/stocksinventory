@@ -7362,9 +7362,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -81427,7 +81424,7 @@ var render = function() {
                     _c(
                       "label",
                       {
-                        staticClass: "col-sm-7 col-form-label",
+                        staticClass: "col-sm-6 col-form-label",
                         staticStyle: { "text-align": "right" },
                         attrs: { for: "inputWTax" }
                       },
@@ -81448,7 +81445,7 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-sm-2" }, [
+                    _c("div", { staticClass: "col-sm-6" }, [
                       _c("input", {
                         directives: [
                           {
@@ -81461,7 +81458,7 @@ var render = function() {
                         staticClass: "form-control col-12",
                         attrs: {
                           type: "text",
-                          id: "wtax_code",
+                          id: "inputwtax_code",
                           placeholder: "ATC Code"
                         },
                         domProps: { value: _vm.form.wtax_code },
@@ -81481,9 +81478,7 @@ var render = function() {
                             _vm._v(" Code Not Found!")
                           ])
                         : _vm._e()
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-sm-3" })
+                    ])
                   ])
                 ])
               ]),
