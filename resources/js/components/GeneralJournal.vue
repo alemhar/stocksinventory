@@ -1550,7 +1550,7 @@
                 this.payee_name = ''; 
           },  
           computeDepreciation(){
-            this.form_entry.depreciation_value = (this.form_entry.amount_ex_tax / this.form_entry.useful_life).toFixed(2)  * 1;
+            //this.form_entry.depreciation_value = (this.form_entry.amount_ex_tax / this.form_entry.useful_life).toFixed(2)  * 1;
           },
           newEntry(){
               this.editmode = false;
