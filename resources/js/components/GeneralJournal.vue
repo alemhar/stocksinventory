@@ -217,6 +217,17 @@
             </div>
 
           </div>  
+          <div v-show="transaction_created" class="box box-warning mt-2">  
+            <div class="form-group col-12 float-right">
+                <div class="row">
+                
+                    <label for="inputTotalAmount" class="col-sm-9 col-form-label" style="text-align: right;">Total Amount</label>
+                    <div class="col-sm-3">
+                    <input readonly v-model="Number(form.amount).toLocaleString()" type="text" class="form-control" id="inputTotalAmount" placeholder="Total Amount">
+                    </div>
+                </div>
+              </div>
+           </div>   
           <!-- /.box -->
 
 
@@ -236,16 +247,13 @@
       MAIN FORM ITEMS TABLE
       -->
 
-          <div v-show="transaction_created" class="box box-warning mt-2">
+          <!-- div v-show="transaction_created" class="box box-warning mt-2">
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
                   <h3 class="box-title box-title-transaction">Items</h3>
-                  <!--div class="box-tools">
-                    <button class="btn btn-success" @click="newItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
-                  </div-->
+                  
                 </div>
-                <!-- /.box-header -->
                 <div id="item-list" class="box-body table-responsive no-padding">
                   <table class="table table-hover">
                     <tbody>
@@ -273,18 +281,17 @@
                   </tbody>
                 </table>
                 </div>
-                <!-- /.box-body -->
+
                 <div class="box-footer">
                   
                 </div> 
               </div>
-              <!-- /.box -->
             </div>
 
-          </div>  
+          </div -->  
           <!-- /.box -->
 
-            <div v-show="transaction_created" class="box box-warning mt-2">
+            <!-- div v-show="transaction_created" class="box box-warning mt-2">
               
               <div class="form-group col-12 float-right">
                 <div class="row mt-2">
@@ -306,14 +313,14 @@
               <div class="form-group col-12 float-right">
                 <div class="row">
                 
-                <label for="inputTotalAmount" class="col-sm-9 col-form-label" style="text-align: right;">Total Amount</label>
-                <div class="col-sm-3">
-                  <input readonly v-model="Number(form.amount).toLocaleString()" type="text" class="form-control" id="inputTotalAmount" placeholder="Total Amount">
+                    <label for="inputTotalAmount" class="col-sm-9 col-form-label" style="text-align: right;">Total Amount</label>
+                    <div class="col-sm-3">
+                    <input readonly v-model="Number(form.amount).toLocaleString()" type="text" class="form-control" id="inputTotalAmount" placeholder="Total Amount">
+                    </div>
                 </div>
               </div>
-              </div>
             
-            </div>
+            </div -->
           
           </div>
           <!-- /.box -->
