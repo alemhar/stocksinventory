@@ -927,8 +927,8 @@
 
 <style>
     .input-currency{
-        float: right;
-        clear: both;
+        direction: rtl;
+        /*clear: both;*/
     }
 </style>
 <script>

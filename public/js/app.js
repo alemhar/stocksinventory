@@ -18761,7 +18761,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.input-currency{\n    float: right;\n    clear: both;\n}\n", ""]);
+exports.push([module.i, "\n.input-currency{\n    direction: rtl;\n    /*clear: both;*/\n}\n", ""]);
 
 // exports
 
