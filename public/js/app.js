@@ -8179,8 +8179,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var total_debit = 0;
       var formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 0
+        //currency: 'USD',
+        minimumFractionDigits: 2
       });
       total_debit = this.transactions.reduce(function (total, transaction) {
         return total + transaction.debit_amount * 1;
