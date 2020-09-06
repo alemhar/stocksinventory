@@ -1844,8 +1844,23 @@
                 )
             },
             totalDebit(){
-                return this.transactions.reduce(function(total, transaction) {
+                var total_debit = 0;
+                var formatter = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                    minimumFractionDigits: 0
+                });
+                
+                total_debit = this.transactions.reduce(function(total, transaction) {
                     return total + (transaction.debit_amount * 1);
+                }, 0);
+                
+                return formatter.format(total_debit);
+                
+            },
+            totalCredit(){
+                return this.transactions.reduce(function(total, transaction) {
+                    return total + (transaction.credit_amount * 1);
                 }, 0);
             }
         },
