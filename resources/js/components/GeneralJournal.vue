@@ -1817,6 +1817,24 @@
           selectEntryRow(current_transaction_entry_id){
               this.current_transaction_entry_id = current_transaction_entry_id;
               
+          },
+          formatCurrencyNumber(number){
+                var formatter = new Intl.NumberFormat('en-US', {
+                    //style: 'currency',
+                    //currency: 'USD',
+                    minimumFractionDigits: 2
+                });
+                return formatter.format(number);
+
+          },
+          formatNumber(number){
+                var formatter = new Intl.NumberFormat('en-US', {
+                    //style: 'currency',
+                    //currency: 'USD',
+                    minimumFractionDigits: 0
+                });
+                return formatter.format(number);
+
           }
         },
 
@@ -1844,24 +1862,19 @@
                 )
             },
             totalDebit(){
-                var total_debit = 0;
-                var formatter = new Intl.NumberFormat('en-US', {
-                    //style: 'currency',
-                    //currency: 'USD',
-                    minimumFractionDigits: 2
-                });
-                
+                var total_debit = 0;                
                 total_debit = this.transactions.reduce(function(total, transaction) {
                     return total + (transaction.debit_amount * 1);
                 }, 0);
-                
-                return formatter.format(total_debit);
+                return this.formatCurrencyNumber(total_debit);
                 
             },
             totalCredit(){
-                return this.transactions.reduce(function(total, transaction) {
+                var total_credit = 0;
+                total_credit =  this.transactions.reduce(function(total, transaction) {
                     return total + (transaction.credit_amount * 1);
                 }, 0);
+                return this.formatCurrencyNumber(total_credit);
             }
         },
         components: {
