@@ -8018,25 +8018,47 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           return false;
       }
       */
+      if (!this.form_entry.debit_amount && !this.form_entry.credit_amount) {
+        swal.fire({
+          title: 'Warning!',
+          text: "Can not save ZERO amount entry.",
+          type: 'info',
+          showCancelButton: false,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ok'
+        }).then(function (result) {});
+        return false;
+      }
 
-      /*
-       if(!this.form_entry.amount){
-           swal.fire({
-               title: 'Warning!',
-               text: "Can not save ZERO amount entry.",
-               type: 'info',
-               showCancelButton: false,
-               confirmButtonColor: '#3085d6',
-               cancelButtonColor: '#d33',
-               confirmButtonText: 'Ok'
-           }).then((result) => {
-               
-           });
-           return false;
-       }  
-       */
-      //this.form_entry.credit_amount = this.form_entry.amount
+      if (this.form_entry.debit_amount && this.form_entry.credit_amount) {
+        swal.fire({
+          title: 'Warning!',
+          text: "Can not save both debit and credit.",
+          type: 'info',
+          showCancelButton: false,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ok'
+        }).then(function (result) {});
+        return false;
+      }
+
+      if (!this.form_entry.payee_name) {
+        swal.fire({
+          title: 'Warning!',
+          text: "Please select payee",
+          type: 'info',
+          showCancelButton: false,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ok'
+        }).then(function (result) {});
+        return false;
+      } //this.form_entry.credit_amount = this.form_entry.amount
       // ** Temporary data to bypass Column cannot be null ERROR's
+
+
       this.save_button_entry_enabled = false; //this.depreciates = false;
 
       this.form.credit_amount += this.form_entry.credit_amount;
