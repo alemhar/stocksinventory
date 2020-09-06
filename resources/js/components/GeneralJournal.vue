@@ -287,9 +287,10 @@
                 </div> 
               </div>
             </div>
-
           </div -->  
           <!-- /.box -->
+
+
 
             <!-- div v-show="transaction_created" class="box box-warning mt-2">
               
