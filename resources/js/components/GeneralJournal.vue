@@ -1846,7 +1846,7 @@
             totalDebit(){
                 var total_debit = 0;
                 var formatter = new Intl.NumberFormat('en-US', {
-                    style: 'currency',
+                    //style: 'currency',
                     //currency: 'USD',
                     minimumFractionDigits: 2
                 });
