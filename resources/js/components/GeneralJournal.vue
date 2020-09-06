@@ -1845,7 +1845,7 @@
             },
             totalDebit(){
                 return this.transactions.reduce(function(total, transaction) {
-                    return total + transaction.debit_amount;
+                    return total + (transaction.debit_amount * 1);
                 }, 0);
             }
         },
