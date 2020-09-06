@@ -1455,7 +1455,7 @@
           },
           computeInputTax(debit_amount,credit_amount,entity_type,payee_id,payee_name,branch_id){
                   
-                  //this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
+                  this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
                   ++this.transaction_entry_id;
             this.transactions.push({ 
 
@@ -1501,7 +1501,7 @@
           },
           computeOutputTax(debit_amount,credit_amount,entity_type,payee_id,payee_name,branch_id){
                   
-                  //this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
+                  this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
                   ++this.transaction_entry_id;
             
             this.transactions.push({ 
