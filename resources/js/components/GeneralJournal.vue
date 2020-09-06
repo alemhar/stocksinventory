@@ -599,7 +599,7 @@
                     <span v-if="!wTaxExist" class="text-danger"> Code Not Found!</span>
                   </div -->
                   <div class="col-sm-3">
-                    <currency-input v-model="form.wtax" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputwtax"></currency-input>
+                    <!-- currency-input v-model="form.wtax" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputwtax"></currency-input -->
                   </div>
                 </div>
               </div>

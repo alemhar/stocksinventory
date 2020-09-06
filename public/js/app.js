@@ -81447,28 +81447,7 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "col-sm-3" },
-                      [
-                        _c("currency-input", {
-                          attrs: {
-                            isReadonly: true,
-                            fc: true,
-                            col: 12,
-                            id: "inputwtax"
-                          },
-                          model: {
-                            value: _vm.form.wtax,
-                            callback: function($$v) {
-                              _vm.$set(_vm.form, "wtax", $$v)
-                            },
-                            expression: "form.wtax"
-                          }
-                        })
-                      ],
-                      1
-                    )
+                    _c("div", { staticClass: "col-sm-3" })
                   ])
                 ])
               ]),
