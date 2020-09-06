@@ -81180,7 +81180,7 @@ var render = function() {
                             staticClass: "form-control",
                             attrs: {
                               name: "debit_amount",
-                              id: "debit_amount",
+                              id: "debit_amount_modal",
                               "aria-describedby": "inputGroup-sizing-default",
                               onfocus: "this.select()"
                             },
@@ -81213,7 +81213,7 @@ var render = function() {
                             staticClass: "form-control",
                             attrs: {
                               name: "credit_amount",
-                              id: "credit_amount",
+                              id: "credit_amount_modal",
                               "aria-describedby": "inputGroup-sizing-default",
                               onfocus: "this.select()"
                             },
