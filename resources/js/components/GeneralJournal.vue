@@ -594,10 +594,10 @@
                 <div class="form-group col-12 float-right">
                 <div class="row">
                 <label for="inputWTax" class="col-sm-7 col-form-label" style="text-align: right;">Withholding Tax&nbsp;&nbsp;&nbsp;<i class="fas fa-question-circle" @click="showWTaxTable"></i> <span v-if="wTaxExist" class="text-danger">  {{ this.wTaxExist.tax_rate}}%</span></label>
-                  <div class="col-sm-2">
+                  <!-- div class="col-sm-2">
                     <input type="text" @blur="computedWTax" @focus="$event.target.select()" v-model="form.wtax_code" class="form-control col-12" id="inputwtax_code" placeholder="ATC Code">
                     <span v-if="!wTaxExist" class="text-danger"> Code Not Found!</span>
-                  </div>
+                  </div -->
                   <div class="col-sm-3">
                     <currency-input v-model="form.wtax" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputwtax"></currency-input>
                   </div>
