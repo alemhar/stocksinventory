@@ -8173,6 +8173,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.items.filter(function (item) {
         return parseInt(item.transaction_entry_id) == parseInt(_this9.current_transaction_entry_id);
       });
+    },
+    totalDebit: function totalDebit() {
+      return this.transactions.reduce(function (total, cur) {
+        return prev + cur.debit;
+      }, 0);
     }
   },
   components: {}
@@ -80888,8 +80893,8 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.form_entry.debit_amount,
-                                      expression: "form_entry.debit_amount"
+                                      value: _vm.totalDebit,
+                                      expression: "totalDebit"
                                     }
                                   ],
                                   staticClass: "form-control",
@@ -80900,19 +80905,13 @@ var render = function() {
                                       "inputGroup-sizing-default",
                                     onfocus: "this.select()"
                                   },
-                                  domProps: {
-                                    value: _vm.form_entry.debit_amount
-                                  },
+                                  domProps: { value: _vm.totalDebit },
                                   on: {
                                     input: function($event) {
                                       if ($event.target.composing) {
                                         return
                                       }
-                                      _vm.$set(
-                                        _vm.form_entry,
-                                        "debit_amount",
-                                        $event.target.value
-                                      )
+                                      _vm.totalDebit = $event.target.value
                                     }
                                   }
                                 })
@@ -80924,8 +80923,8 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.form_entry.credit_amount,
-                                      expression: "form_entry.credit_amount"
+                                      value: _vm.form.credit_amount,
+                                      expression: "form.credit_amount"
                                     }
                                   ],
                                   staticClass: "form-control",
@@ -80936,16 +80935,14 @@ var render = function() {
                                       "inputGroup-sizing-default",
                                     onfocus: "this.select()"
                                   },
-                                  domProps: {
-                                    value: _vm.form_entry.credit_amount
-                                  },
+                                  domProps: { value: _vm.form.credit_amount },
                                   on: {
                                     input: function($event) {
                                       if ($event.target.composing) {
                                         return
                                       }
                                       _vm.$set(
-                                        _vm.form_entry,
+                                        _vm.form,
                                         "credit_amount",
                                         $event.target.value
                                       )

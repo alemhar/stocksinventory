@@ -233,12 +233,12 @@
                   <div class="row" style="margin: 0 5px">
                     <label for="inputTotalAmount" class="col-4 pl-1 pr-1 col-form-label" style="text-align: right;">Total Amount</label>  
                     <div class="col-4 pl-1 pr-1">
-                        <input v-model="form_entry.debit_amount" name="debit_amount" id="debit_amount"
+                        <input v-model="totalDebit" name="debit_amount" id="debit_amount"
                         class="form-control" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
                     
                     </div>    
                     <div class="col-4 pl-1 pr-1">
-                        <input v-model="form_entry.credit_amount" name="credit_amount" id="credit_amount"
+                        <input v-model="form.credit_amount" name="credit_amount" id="credit_amount"
                         class="form-control" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
                     </div>
                   </div>  
@@ -1842,6 +1842,11 @@
                     return parseInt(item.transaction_entry_id)==parseInt(this.current_transaction_entry_id);
                   }  
                 )
+            },
+            totalDebit(){
+                return this.transactions.reduce(function(total, cur) {
+                    return prev + cur.debit;
+                }, 0);
             }
         },
         components: {
