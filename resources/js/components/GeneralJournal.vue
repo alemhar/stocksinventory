@@ -1433,6 +1433,7 @@
               return ""+n+this.user_id;
           },
           computeTaxChange(event){
+              /*
               if(this.form_item.price && this.form_item.quantity){
                 
                 this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
@@ -1452,6 +1453,7 @@
                 }
 
               }
+              */
           },
           computeInputTax(debit_amount,credit_amount,entity_type,payee_id,payee_name,branch_id){
                   //this.amount = (tax_excluded / 1.88).toFixed(2) * 1;

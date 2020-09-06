@@ -7829,19 +7829,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return "" + n + this.user_id;
     },
     computeTaxChange: function computeTaxChange(event) {
-      if (this.form_item.price && this.form_item.quantity) {
+      /*
+      if(this.form_item.price && this.form_item.quantity){
+        
         this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
-
-        if (this.form_item.tax_type == 'VAT') {
+        if(this.form_item.tax_type == 'VAT'){
           //this.form_item.amount = event.target.value;
-          this.form_item.tax_excluded = (this.form_item.sub_total / 1.12).toFixed(2) * 1;
-          this.form_item.vat = (this.form_item.tax_excluded * 0.12).toFixed(2) * 1;
-        } else {
+             this.form_item.tax_excluded = (this.form_item.sub_total/1.12).toFixed(2) * 1;
+           this.form_item.vat = (this.form_item.tax_excluded * 0.12).toFixed(2)  * 1;
+         } else {
           //this.form_entry.amount = event.target.value;
           this.form_item.vat = 0;
-          this.form_item.tax_excluded = this.form_item.sub_total * 1;
+          this.form_item.tax_excluded = this.form_item.sub_total  * 1;
         }
-      }
+       }
+      */
     },
     computeInputTax: function computeInputTax(debit_amount, credit_amount, entity_type, payee_id, payee_name, branch_id) {
       //this.amount = (tax_excluded / 1.88).toFixed(2) * 1;
