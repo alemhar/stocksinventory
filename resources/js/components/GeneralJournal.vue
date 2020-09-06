@@ -233,13 +233,13 @@
                   <div class="row" style="margin: 0 5px">
                     <label for="inputTotalAmount" class="col-4 pl-1 pr-1 col-form-label" style="text-align: right;">Total Amount</label>  
                     <div class="col-4 pl-1 pr-1">
-                        <input v-model="totalDebit" name="debit_amount" id="debit_amount"
-                        class="form-control" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
+                        <input v-bind:value="totalDebit | formatCurrencyNumber" name="debit_amount" id="debit_amount"
+                        class="form-control" aria-describedby="inputGroup-sizing-default" readonly>
                     
                     </div>    
                     <div class="col-4 pl-1 pr-1">
-                        <input v-model="form.credit_amount" name="credit_amount" id="credit_amount"
-                        class="form-control" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
+                        <input v-model="totalCredit" name="credit_amount" id="credit_amount"
+                        class="form-control" aria-describedby="inputGroup-sizing-default" readonly>
                     </div>
                   </div>  
                 </div>
@@ -1818,15 +1818,7 @@
               this.current_transaction_entry_id = current_transaction_entry_id;
               
           },
-          formatCurrencyNumber(number){
-                var formatter = new Intl.NumberFormat('en-US', {
-                    //style: 'currency',
-                    //currency: 'USD',
-                    minimumFractionDigits: 2
-                });
-                return formatter.format(number);
-
-          },
+          
           formatNumber(number){
                 var formatter = new Intl.NumberFormat('en-US', {
                     //style: 'currency',
@@ -1853,6 +1845,16 @@
 
 
         },
+        filters: {
+            formatCurrencyNumber: (number) => {
+                var formatter = new Intl.NumberFormat('en-US', {
+                    //style: 'currency',
+                    //currency: 'USD',
+                    minimumFractionDigits: 2
+                });
+                return formatter.format(number);
+            },
+        },
         computed: {
             currentItems(){
                 return this.items.filter(item  => 
@@ -1862,11 +1864,11 @@
                 )
             },
             totalDebit(){
-                var total_debit = 0;                
-                total_debit = this.transactions.reduce(function(total, transaction) {
+                //var total_debit = 0;                
+                return this.transactions.reduce(function(total, transaction) {
                     return total + (transaction.debit_amount * 1);
                 }, 0);
-                return this.formatCurrencyNumber(total_debit);
+                //return this.formatCurrencyNumber(total_debit);
                 
             },
             totalCredit(){

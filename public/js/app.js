@@ -8154,14 +8154,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     selectEntryRow: function selectEntryRow(current_transaction_entry_id) {
       this.current_transaction_entry_id = current_transaction_entry_id;
     },
-    formatCurrencyNumber: function formatCurrencyNumber(number) {
-      var formatter = new Intl.NumberFormat('en-US', {
-        //style: 'currency',
-        //currency: 'USD',
-        minimumFractionDigits: 2
-      });
-      return formatter.format(number);
-    },
     formatNumber: function formatNumber(number) {
       var formatter = new Intl.NumberFormat('en-US', {
         //style: 'currency',
@@ -8183,6 +8175,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       $('.modal:visible').length && $(document.body).addClass('modal-open');
     });
   },
+  filters: {
+    formatCurrencyNumber: function formatCurrencyNumber(number) {
+      var formatter = new Intl.NumberFormat('en-US', {
+        //style: 'currency',
+        //currency: 'USD',
+        minimumFractionDigits: 2
+      });
+      return formatter.format(number);
+    }
+  },
   computed: {
     currentItems: function currentItems() {
       var _this9 = this;
@@ -8192,11 +8194,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     totalDebit: function totalDebit() {
-      var total_debit = 0;
-      total_debit = this.transactions.reduce(function (total, transaction) {
+      //var total_debit = 0;                
+      return this.transactions.reduce(function (total, transaction) {
         return total + transaction.debit_amount * 1;
-      }, 0);
-      return this.formatCurrencyNumber(total_debit);
+      }, 0); //return this.formatCurrencyNumber(total_debit);
     },
     totalCredit: function totalCredit() {
       var total_credit = 0;
@@ -80915,30 +80916,18 @@ var render = function() {
                               _vm._v(" "),
                               _c("div", { staticClass: "col-4 pl-1 pr-1" }, [
                                 _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.totalDebit,
-                                      expression: "totalDebit"
-                                    }
-                                  ],
                                   staticClass: "form-control",
                                   attrs: {
                                     name: "debit_amount",
                                     id: "debit_amount",
                                     "aria-describedby":
                                       "inputGroup-sizing-default",
-                                    onfocus: "this.select()"
+                                    readonly: ""
                                   },
-                                  domProps: { value: _vm.totalDebit },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.totalDebit = $event.target.value
-                                    }
+                                  domProps: {
+                                    value: _vm._f("formatCurrencyNumber")(
+                                      _vm.totalDebit
+                                    )
                                   }
                                 })
                               ]),
@@ -80949,8 +80938,8 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.form.credit_amount,
-                                      expression: "form.credit_amount"
+                                      value: _vm.totalCredit,
+                                      expression: "totalCredit"
                                     }
                                   ],
                                   staticClass: "form-control",
@@ -80959,19 +80948,15 @@ var render = function() {
                                     id: "credit_amount",
                                     "aria-describedby":
                                       "inputGroup-sizing-default",
-                                    onfocus: "this.select()"
+                                    readonly: ""
                                   },
-                                  domProps: { value: _vm.form.credit_amount },
+                                  domProps: { value: _vm.totalCredit },
                                   on: {
                                     input: function($event) {
                                       if ($event.target.composing) {
                                         return
                                       }
-                                      _vm.$set(
-                                        _vm.form,
-                                        "credit_amount",
-                                        $event.target.value
-                                      )
+                                      _vm.totalCredit = $event.target.value
                                     }
                                   }
                                 })
