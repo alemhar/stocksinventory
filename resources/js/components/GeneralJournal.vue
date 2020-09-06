@@ -194,7 +194,7 @@
                           </button>
                         </td>
                         <td>
-                          <button href="#" class="btn btn-primary" @click="deleteEntry(entry.transaction_entry_id,entry.amount,entry.vat)" :disabled="entry.tax_entry">
+                          <button href="#" class="btn btn-primary" @click="addWTax(entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id)" :disabled="entry.tax_entry">
                             <i class="fa fa-plus">Add</i>
                           </button>
                         </td>
@@ -584,16 +584,27 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add Input Tax</h5>
+              <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add WTax</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             
             <div class="modal-body">
+                <div class="form-group col-12 float-right">
+                <div class="row">
+                <label for="inputWTax" class="col-sm-7 col-form-label" style="text-align: right;">Withholding Tax&nbsp;&nbsp;&nbsp;<i class="fas fa-question-circle" @click="showWTaxTable"></i> <span v-if="wTaxExist" class="text-danger">  {{ this.wTaxExist.tax_rate}}%</span></label>
+                  <div class="col-sm-2">
+                    <input type="text" @blur="computedWTax" @focus="$event.target.select()" v-model="form.wtax_code" class="form-control col-12" id="inputwtax_code" placeholder="ATC Code">
+                    <span v-if="!wTaxExist" class="text-danger"> Code Not Found!</span>
+                  </div>
+                  <div class="col-sm-3">
+                    <currency-input v-model="form.wtax" v-bind:isReadonly="true" v-bind:fc="true" v-bind:col="12" id="inputwtax"></currency-input>
+                  </div>
+                </div>
+              </div>
               
-              
-              <div class="input-group mb-2">
+              <!-- div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Name</span>
                 </div>
@@ -691,7 +702,7 @@
                   
                   class="form-control" :class="{ 'is-invalid': form_item.errors.has('vat') }" readonly aria-describedby="inputGroup-sizing-default">
                   <has-error :form="form_item" field="vat"></has-error>
-              </div>
+              </div -->
 
             </div>
             <div class="modal-footer">
@@ -1551,8 +1562,8 @@
 
 
           },
-          newItem(){
-
+          addWTax(debit_amount,credit_amount,entity_type,payee_id,payee_name,branch_id){
+              /*
               if(this.depreciates && this.items.length > 0){
                 swal.fire({
                     title: 'Warning!',
@@ -1568,7 +1579,8 @@
 
                 return false;
               }
-              
+              */
+              /*
               if(this.form_entry.account_code == 0) {
                 this.no_entry_account_code = true;
               } else {
@@ -1578,12 +1590,14 @@
               if (this.no_entry_account_code){
                 return false;
               }
+              */
 
               this.save_button_item_enabled = true;
 
               this.editmode = false;
+              
               this.form_item.reset();
-
+              /*  
               this.no_item = false;
               this.no_price = false;
               this.no_quantity = false;
@@ -1591,7 +1605,7 @@
               this.form_item.transaction_no = this.form.transaction_no;
               this.form_item.transaction_type = this.transaction_type;
               this.form_item.account_code = this.form_entry.account_code;
- 
+              */  
               
               $('#entry-items').modal('show');
           },
