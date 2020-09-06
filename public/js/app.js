@@ -8153,14 +8153,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     selectEntryRow: function selectEntryRow(current_transaction_entry_id) {
       this.current_transaction_entry_id = current_transaction_entry_id;
-    },
-    formatNumber: function formatNumber(number) {
-      var formatter = new Intl.NumberFormat('en-US', {
-        //style: 'currency',
-        //currency: 'USD',
-        minimumFractionDigits: 0
-      });
-      return formatter.format(number);
     }
   },
   created: function created() {
@@ -8181,6 +8173,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         //style: 'currency',
         //currency: 'USD',
         minimumFractionDigits: 2
+      });
+      return formatter.format(number);
+    },
+    formatNumber: function formatNumber(number) {
+      var formatter = new Intl.NumberFormat('en-US', {
+        //style: 'currency',
+        //currency: 'USD',
+        minimumFractionDigits: 0
       });
       return formatter.format(number);
     }
@@ -80723,11 +80723,23 @@ var render = function() {
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [
-                                        _vm._v(_vm._s(entry.debit_amount))
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm._f("formatCurrencyNumber")(
+                                              entry.debit_amount
+                                            )
+                                          )
+                                        )
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [
-                                        _vm._v(_vm._s(entry.credit_amount))
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm._f("formatCurrencyNumber")(
+                                              entry.credit_amount
+                                            )
+                                          )
+                                        )
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [

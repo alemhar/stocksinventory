@@ -179,8 +179,8 @@
                       <tr v-for="entry in transactions" :key="entry.transaction_entry_id" @click="selectEntryRow(entry.transaction_entry_id)" :class="{ 'table-warning' : active_debit_row == entry.transaction_entry_id }" >
                         <td>{{ entry.account_code }}</td>
                         <td>{{ entry.account_name }}</td>
-                        <td>{{ entry.debit_amount }}</td>
-                        <td>{{ entry.credit_amount }}</td>
+                        <td>{{ entry.debit_amount | formatCurrencyNumber }}</td>
+                        <td>{{ entry.credit_amount | formatCurrencyNumber}}</td>
                         <td>{{ entry.description }}</td>
                         <td>{{ entry.payee_name }}</td>
                         <td>
@@ -1817,16 +1817,6 @@
           selectEntryRow(current_transaction_entry_id){
               this.current_transaction_entry_id = current_transaction_entry_id;
               
-          },
-          
-          formatNumber(number){
-                var formatter = new Intl.NumberFormat('en-US', {
-                    //style: 'currency',
-                    //currency: 'USD',
-                    minimumFractionDigits: 0
-                });
-                return formatter.format(number);
-
           }
         },
 
@@ -1854,6 +1844,15 @@
                 });
                 return formatter.format(number);
             },
+            formatNumber: (number) => {
+                    var formatter = new Intl.NumberFormat('en-US', {
+                        //style: 'currency',
+                        //currency: 'USD',
+                        minimumFractionDigits: 0
+                    });
+                    return formatter.format(number);
+
+            }
         },
         computed: {
             currentItems(){
