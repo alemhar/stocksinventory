@@ -221,10 +221,28 @@
             <div class="form-group col-12 float-right">
                 <div class="row">
                 
-                    <label for="inputTotalAmount" class="col-sm-9 col-form-label" style="text-align: right;">Total Amount</label>
-                    <div class="col-sm-3">
-                    <input readonly v-model="Number(form.amount).toLocaleString()" type="text" class="form-control" id="inputTotalAmount" placeholder="Total Amount">
+                    
+                    
+
+                    <div class="mb-4">
+                  <div class="row">
+                    <label class="col-6 text-center" for="debit_amount">Debit</label>
+                    <label class="col-6 text-center" for="debit_amount">Credit</label>
+                  </div>
+                  <div class="row" style="margin: 0 5px">
+                    <label for="inputTotalAmount" class="col-4 pl-1 pr-1 col-form-label" style="text-align: right;">Total Amount</label>  
+                    <div class="col-4 pl-1 pr-1">
+                        <input v-model="form_entry.debit_amount" name="debit_amount" id="debit_amount"
+                        class="form-control" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
+                    
+                    </div>    
+                    <div class="col-4 pl-1 pr-1">
+                        <input v-model="form_entry.credit_amount" name="credit_amount" id="credit_amount"
+                        class="form-control" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
                     </div>
+                  </div>  
+                </div>
+
                 </div>
               </div>
            </div>   

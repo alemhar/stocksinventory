@@ -7334,6 +7334,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -80822,49 +80840,99 @@ var render = function() {
                 [
                   _c("div", { staticClass: "form-group col-12 float-right" }, [
                     _c("div", { staticClass: "row" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "col-sm-9 col-form-label",
-                          staticStyle: { "text-align": "right" },
-                          attrs: { for: "inputTotalAmount" }
-                        },
-                        [_vm._v("Total Amount")]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-3" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: Number(_vm.form.amount).toLocaleString(),
-                              expression: "Number(form.amount).toLocaleString()"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            readonly: "",
-                            type: "text",
-                            id: "inputTotalAmount",
-                            placeholder: "Total Amount"
+                      _c("div", { staticClass: "mb-4" }, [
+                        _vm._m(4),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "row",
+                            staticStyle: { margin: "0 5px" }
                           },
-                          domProps: {
-                            value: Number(_vm.form.amount).toLocaleString()
-                          },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                Number(_vm.form.amount),
-                                "toLocaleString()",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
+                          [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "col-4 pl-1 pr-1 col-form-label",
+                                staticStyle: { "text-align": "right" },
+                                attrs: { for: "inputTotalAmount" }
+                              },
+                              [_vm._v("Total Amount")]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-4 pl-1 pr-1" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form_entry.debit_amount,
+                                    expression: "form_entry.debit_amount"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  name: "debit_amount",
+                                  id: "debit_amount",
+                                  "aria-describedby":
+                                    "inputGroup-sizing-default",
+                                  onfocus: "this.select()"
+                                },
+                                domProps: {
+                                  value: _vm.form_entry.debit_amount
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form_entry,
+                                      "debit_amount",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-4 pl-1 pr-1" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form_entry.credit_amount,
+                                    expression: "form_entry.credit_amount"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  name: "credit_amount",
+                                  id: "credit_amount",
+                                  "aria-describedby":
+                                    "inputGroup-sizing-default",
+                                  onfocus: "this.select()"
+                                },
+                                domProps: {
+                                  value: _vm.form_entry.credit_amount
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form_entry,
+                                      "credit_amount",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]
+                        )
                       ])
                     ])
                   ])
@@ -80931,7 +80999,7 @@ var render = function() {
                     [_vm._v("Add Entry")]
                   ),
                   _vm._v(" "),
-                  _vm._m(4)
+                  _vm._m(5)
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-body" }, [
@@ -80939,7 +81007,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(5),
+                      _vm._m(6),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -81022,7 +81090,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(6),
+                      _vm._m(7),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -81068,7 +81136,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "mb-4" }, [
-                    _vm._m(7),
+                    _vm._m(8),
                     _vm._v(" "),
                     _c(
                       "div",
@@ -81144,7 +81212,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "input-group mb-2" }, [
-                    _vm._m(8),
+                    _vm._m(9),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -81210,7 +81278,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "input-group mb-2" }, [
-                    _vm._m(9),
+                    _vm._m(10),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -81324,7 +81392,7 @@ var render = function() {
                   [_vm._v("Add Input Tax")]
                 ),
                 _vm._v(" "),
-                _vm._m(10)
+                _vm._m(11)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -81332,7 +81400,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(11),
+                    _vm._m(12),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -81391,7 +81459,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(12),
+                    _vm._m(13),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -81453,7 +81521,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(13),
+                    _vm._m(14),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -81519,7 +81587,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(14),
+                    _vm._m(15),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -81564,7 +81632,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(15),
+                  _vm._m(16),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -81628,7 +81696,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(16),
+                    _vm._m(17),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -81675,7 +81743,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(17),
+                    _vm._m(18),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -81766,7 +81834,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(18),
+              _vm._m(19),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -81805,7 +81873,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(19),
+                            _vm._m(20),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -81854,7 +81922,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(20)
+                _vm._m(21)
               ])
             ])
           ]
@@ -81885,7 +81953,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(21),
+              _vm._m(22),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -81924,7 +81992,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(22),
+                            _vm._m(23),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -81963,7 +82031,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(23)
+                _vm._m(24)
               ])
             ])
           ]
@@ -81994,7 +82062,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(24),
+              _vm._m(25),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -82033,7 +82101,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(25),
+                            _vm._m(26),
                             _vm._v(" "),
                             _vm._l(_vm.branches.data, function(branch) {
                               return _c("tr", { key: branch.id }, [
@@ -82071,7 +82139,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(26)
+                _vm._m(27)
               ])
             ])
           ]
@@ -82141,6 +82209,24 @@ var staticRenderFns = [
       _c("th", [_vm._v("WTax")]),
       _vm._v(" "),
       _c("th", [_vm._v("Option")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c(
+        "label",
+        { staticClass: "col-6 text-center", attrs: { for: "debit_amount" } },
+        [_vm._v("Debit")]
+      ),
+      _vm._v(" "),
+      _c(
+        "label",
+        { staticClass: "col-6 text-center", attrs: { for: "debit_amount" } },
+        [_vm._v("Credit")]
+      )
     ])
   },
   function() {
