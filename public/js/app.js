@@ -81597,8 +81597,8 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.current_atc_code,
-                        expression: "current_atc_code"
+                        value: _vm.current_atc_description,
+                        expression: "current_atc_description "
                       }
                     ],
                     staticClass: "form-control",
@@ -81608,13 +81608,13 @@ var render = function() {
                       readonly: "",
                       "aria-describedby": "inputGroup-sizing-default"
                     },
-                    domProps: { value: _vm.current_atc_code },
+                    domProps: { value: _vm.current_atc_description },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.current_atc_code = $event.target.value
+                        _vm.current_atc_description = $event.target.value
                       }
                     }
                   })
@@ -82303,7 +82303,7 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Code")]
+        [_vm._v("Description")]
       )
     ])
   },

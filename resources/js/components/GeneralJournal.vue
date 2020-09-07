@@ -616,10 +616,10 @@
               
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Code</span>
+                  <span class="input-group-text inputGroup-sizing-default">Description</span>
                 </div>
                 
-                <input v-model="current_atc_code" type="text" name="current_atc_code"
+                <input v-model="current_atc_description " type="text" name="current_atc_code"
                   class="form-control" readonly aria-describedby="inputGroup-sizing-default">
               </div>
               
