@@ -7355,20 +7355,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -7478,6 +7464,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       amount: 0,
       vat: 0,
       payee_name: '',
+      Wtaxes: {},
+      current_atc_code: 0,
+      current_tax_rate: 0,
+      current_atc: '',
+      current_atc_description: '',
       readabilityObject: {
         fontSize: user.font_size
       }
@@ -7735,6 +7726,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.loadBranch();
       $('#select-branch').modal('show');
     },
+    searchWTaxModal: function searchWTaxModal() {
+      //this.searchWTax = this.form.branch_id;
+      this.loadWTax();
+      $('#select-wtax').modal('show');
+    },
+    loadWTax: function loadWTax() {
+      var _this5 = this;
+
+      axios.get('api/taxrate').then(function (data) {
+        _this5.Wtaxes = data;
+      })["catch"](function () {//
+      });
+    },
+    selectWTax: function selectWTax() {
+      var atc_code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      var tax_rate = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      var atc = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+      var description = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+
+      if (atc_code) {
+        this.current_atc_code = atc_code;
+        this.current_tax_rate = tax_rate;
+        this.current_atc = atc;
+        this.current_atc_description = description;
+      }
+
+      $('#select-wtax').modal('hide');
+    },
     // *************************************************
     selectAccount: function selectAccount() {
       var account_code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
@@ -7798,30 +7817,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       $('#select-branch').modal('hide');
     },
     SearchIt: function SearchIt() {
-      var _this5 = this;
+      var _this6 = this;
 
       var query = this.searchText;
       var headerOrDetail = this.headerOrDetail;
       axios.get('api/searchAccount?q=' + query + '&transaction_type=' + this.transaction_type + '&headerordetail=' + headerOrDetail).then(function (data) {
-        _this5.chart_of_accounts = data.data;
+        _this6.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
     },
     SearchPayee: function SearchPayee() {
-      var _this6 = this;
+      var _this7 = this;
 
       var query = this.searchPayee;
       axios.get('api/searchPayee?q=' + query).then(function (data) {
-        _this6.payees = data.data;
+        _this7.payees = data.data;
       })["catch"](function () {//
       });
     },
     SearchBranch: function SearchBranch() {
-      var _this7 = this;
+      var _this8 = this;
 
       var query = this.searchBranch;
       axios.get('api/searchBranch?q=' + query).then(function (data) {
-        _this7.branches = data.data;
+        _this8.branches = data.data;
       })["catch"](function () {//
       });
     },
@@ -7993,11 +8012,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       $('#entry-items').modal('show');
     },
     cancelEntry: function cancelEntry() {
-      var _this8 = this;
+      var _this9 = this;
 
       //this.$Progress.start();
       this.items = this.items.filter(function (item) {
-        return item.transaction_entry_id !== _this8.transaction_entry_id;
+        return item.transaction_entry_id !== _this9.transaction_entry_id;
       });
       $('#entry-details').modal('hide');
     },
@@ -8018,6 +8037,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           return false;
       }
       */
+      if (!this.form_entry.account_name) {
+        swal.fire({
+          title: 'Warning!',
+          text: "Please select account.",
+          type: 'info',
+          showCancelButton: false,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ok'
+        }).then(function (result) {});
+        return false;
+      }
+
       if (!this.form_entry.debit_amount && !this.form_entry.credit_amount) {
         swal.fire({
           title: 'Warning!',
@@ -8047,7 +8079,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (!this.form_entry.payee_name) {
         swal.fire({
           title: 'Warning!',
-          text: "Please select payee",
+          text: "Please select payee/payor",
           type: 'info',
           showCancelButton: false,
           confirmButtonColor: '#3085d6',
@@ -8216,10 +8248,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: {
     currentItems: function currentItems() {
-      var _this9 = this;
+      var _this10 = this;
 
       return this.items.filter(function (item) {
-        return parseInt(item.transaction_entry_id) == parseInt(_this9.current_transaction_entry_id);
+        return parseInt(item.transaction_entry_id) == parseInt(_this10.current_transaction_entry_id);
       });
     },
     totalDebit: function totalDebit() {
@@ -81504,67 +81536,82 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
-                _c("div", { staticClass: "form-group col-12 float-right" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c(
-                      "label",
+                _c("div", { staticClass: "input-group mb-2" }, [
+                  _vm._m(12),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
                       {
-                        staticClass: "col-sm-6 col-form-label",
-                        staticStyle: { "text-align": "right" },
-                        attrs: { for: "inputWTax" }
-                      },
-                      [
-                        _vm._v("Withholding Tax   "),
-                        _c("i", {
-                          staticClass: "fas fa-question-circle",
-                          on: { click: _vm.showWTaxTable }
-                        }),
-                        _vm._v(" "),
-                        _vm.wTaxExist
-                          ? _c("span", { staticClass: "text-danger" }, [
-                              _vm._v(
-                                "  " + _vm._s(this.wTaxExist.tax_rate) + "%"
-                              )
-                            ])
-                          : _vm._e()
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-sm-6" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.wtax_code,
-                            expression: "form.wtax_code"
-                          }
-                        ],
-                        staticClass: "form-control col-12",
-                        attrs: {
-                          type: "text",
-                          id: "inputwtax_code",
-                          placeholder: "ATC Code"
-                        },
-                        domProps: { value: _vm.form.wtax_code },
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.current_atc_code,
+                        expression: "current_atc_code"
+                      }
+                    ],
+                    staticClass: "form-control col-4",
+                    attrs: {
+                      type: "text",
+                      name: "current_atc_code",
+                      readonly: "",
+                      "aria-describedby": "inputGroup-sizing-default"
+                    },
+                    domProps: { value: _vm.current_atc_code },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.current_atc_code = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "input-group-btn col-1" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        attrs: { type: "button" },
                         on: {
-                          blur: _vm.computedWTax,
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.form, "wtax_code", $event.target.value)
+                          click: function($event) {
+                            return _vm.searchWTaxModal()
                           }
                         }
-                      }),
-                      _vm._v(" "),
-                      !_vm.wTaxExist
-                        ? _c("span", { staticClass: "text-danger" }, [
-                            _vm._v(" Code Not Found!")
-                          ])
-                        : _vm._e()
-                    ])
+                      },
+                      [_c("i", { staticClass: "fas fa-search fa-fw" })]
+                    )
                   ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group mb-2" }, [
+                  _vm._m(13),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.current_atc_code,
+                        expression: "current_atc_code"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      name: "current_atc_code",
+                      readonly: "",
+                      "aria-describedby": "inputGroup-sizing-default"
+                    },
+                    domProps: { value: _vm.current_atc_code },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.current_atc_code = $event.target.value
+                      }
+                    }
+                  })
                 ])
               ]),
               _vm._v(" "),
@@ -81621,7 +81668,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(12),
+              _vm._m(14),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -81660,7 +81707,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(13),
+                            _vm._m(15),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -81709,7 +81756,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(14)
+                _vm._m(16)
               ])
             ])
           ]
@@ -81740,7 +81787,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(15),
+              _vm._m(17),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -81779,7 +81826,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(16),
+                            _vm._m(18),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -81818,7 +81865,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(17)
+                _vm._m(19)
               ])
             ])
           ]
@@ -81849,7 +81896,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(18),
+              _vm._m(20),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -81888,7 +81935,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(19),
+                            _vm._m(21),
                             _vm._v(" "),
                             _vm._l(_vm.branches.data, function(branch) {
                               return _c("tr", { key: branch.id }, [
@@ -81926,7 +81973,116 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(20)
+                _vm._m(22)
+              ])
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "select-wtax",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "addNewLabel",
+          "aria-hidden": "true",
+          "data-backdrop": "static",
+          "data-keyboard": "false"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(23),
+              _vm._v(" "),
+              _c("form", { attrs: { onsubmit: "return false;" } }, [
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Search")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.searchWTax,
+                          expression: "searchWTax"
+                        }
+                      ],
+                      staticClass: "float-right col-6",
+                      attrs: { type: "text", name: "search" },
+                      domProps: { value: _vm.searchWTax },
+                      on: {
+                        change: _vm.SearchWTax,
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.searchWTax = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "box-body table-responsive no-padding" },
+                    [
+                      _c("table", { staticClass: "table table-hover" }, [
+                        _c(
+                          "tbody",
+                          [
+                            _vm._m(24),
+                            _vm._v(" "),
+                            _vm._l(_vm.Wtaxes.data, function(Wtax) {
+                              return _c("tr", { key: Wtax.id }, [
+                                _c("td", [_vm._v(_vm._s(Wtax.atc_code))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(Wtax.description))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _c(
+                                    "a",
+                                    {
+                                      attrs: { href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.selectWTax(
+                                            Wtax.atc_code,
+                                            Wtax.tax_rate,
+                                            Wtax.atc
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v("Select\n                  "),
+                                      _c("i", { staticClass: "fa fa-edit" })
+                                    ]
+                                  )
+                                ])
+                              ])
+                            })
+                          ],
+                          2
+                        )
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(25)
               ])
             ])
           ]
@@ -82125,6 +82281,30 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Code")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Code")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
       _c(
         "button",
@@ -82240,6 +82420,52 @@ var staticRenderFns = [
       _c("th", [_vm._v("Code")]),
       _vm._v(" "),
       _c("th", [_vm._v("Branch")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Option")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Code")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Description")]),
       _vm._v(" "),
       _c("th", [_vm._v("Option")])
     ])

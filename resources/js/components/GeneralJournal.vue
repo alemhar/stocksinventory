@@ -591,7 +591,7 @@
             </div>
             
             <div class="modal-body">
-                <div class="form-group col-12 float-right">
+                <!-- div class="form-group col-12 float-right">
                 <div class="row">
                 <label for="inputWTax" class="col-sm-6 col-form-label" style="text-align: right;">Withholding Tax&nbsp;&nbsp;&nbsp;<i class="fas fa-question-circle" @click="showWTaxTable"></i> <span v-if="wTaxExist" class="text-danger">  {{ this.wTaxExist.tax_rate}}%</span></label>
                   <div class="col-sm-6">
@@ -600,107 +600,29 @@
                   </div>
                   
                 </div>
-              </div>
-              
-              <!-- div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Name</span>
-                </div>
-                
-                
-                <input v-model="form_item.item" type="text" name="item_name"
-                  
-                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('item') }" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
-                   
-                <has-error :form="form_item" field="item_name"></has-error>
-              </div>
-              <div class="input-group mb-2">
-                <p v-show="no_item" class="empty-field-message">** Please enter item.</p>
-              </div>  
-
-
-
-
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Price</span>
-                </div>
-
-              
-                  <input v-model="form_item.price" name="price" id="price"
-                  @change="computeTaxChange"
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('price') }" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
-                  <has-error :form="form_item" field="price"></has-error>
-              </div>
-              <div class="input-group mb-2">
-                <p v-show="no_price" class="empty-field-message">** Please enter price.</p> 
-              </div>  
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Quantity</span>
-                </div>
-
-                <input v-model="form_item.quantity" type="text" name="entry_description"
-                  @change="computeTaxChange"
-                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('quantity') }" aria-describedby="inputGroup-sizing-default" onfocus="this.select()">
-                  
-                <has-error :form="form_item" field="entry_description"></has-error>
-              </div>
-              <div class="input-group mb-2">
-                <p v-show="no_quantity" class="empty-field-message">** Please enter quantity.</p> 
-              </div>  
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Total</span>
-                </div>
-
-                <input v-model="form_item.sub_total" type="text" name="entry_description"
-                  @change="computeTaxChange"
-                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('sub_total') }" aria-describedby="inputGroup-sizing-default" readonly>
-                <has-error :form="form_item" field="entry_description"></has-error>
-              </div>
-
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Tax Type</span>
-                </div>
-
-             
-               
-
-                <select v-model="form_item.tax_type" @change="computeTaxChange" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
-                  <option value="VAT">VAT</option>
-                  <option value="NON VAT">NON VAT</option>
-                  <option value="VAT EXEMPT">VAT EXEMPT</option>
-                  <option value="ZERO RATED">ZERO RATED</option>
-                </select>
-
-              </div>
-
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Tax Excluded</span>
-                </div>
-
-              
-                  <input v-model="form_item.tax_excluded" name="amount_ex_tax" id="amount_ex_tax"
-                  
-                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('tax_excluded') }" readonly aria-describedby="inputGroup-sizing-default">
-                  <has-error :form="form_item" field="amount_ex_tax"></has-error>
-              </div>
-
-
-              <div class="input-group mb-2">
-                
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Tax</span>
-                </div>
-              
-                  <input v-model="form_item.vat" name="vat" id="vat"
-                  
-                  class="form-control" :class="{ 'is-invalid': form_item.errors.has('vat') }" readonly aria-describedby="inputGroup-sizing-default">
-                  <has-error :form="form_item" field="vat"></has-error>
               </div -->
+
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text inputGroup-sizing-default">Code</span>
+                </div>
+                <input v-model="current_atc_code" type="text" name="current_atc_code" 
+                  readonly
+                  class="form-control col-4"  aria-describedby="inputGroup-sizing-default">
+                <span class="input-group-btn col-1">
+                    <button type="button" class="btn btn-success" @click="searchWTaxModal()"><i class="fas fa-search fa-fw"></i></button>
+                </span>
+              </div>
+              
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text inputGroup-sizing-default">Code</span>
+                </div>
+                
+                <input v-model="current_atc_code" type="text" name="current_atc_code"
+                  class="form-control" readonly aria-describedby="inputGroup-sizing-default">
+              </div>
+              
 
             </div>
             <div class="modal-footer">
@@ -921,6 +843,70 @@
       </div>
       <!-- Search Branch Modal -->   
       
+      <!-- Search WTax Modal 
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      -->
+
+      <div class="modal fade" id="select-wtax" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form onsubmit="return false;">
+            <div class="modal-body">
+              
+              <div class="form-group">
+                <label>Search</label>
+                <input type="text" name="search" v-model="searchWTax" @change="SearchWTax" class="float-right col-6">
+              </div>
+              
+              <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tbody><tr>
+                  <th>Code</th>
+                  <th>Description</th>
+                  <th>Option</th>
+                </tr>
+                <tr v-for="Wtax in Wtaxes.data" :key="Wtax.id">
+                  <td>{{ Wtax.atc_code }}</td>
+                  <td>{{ Wtax.description }}</td> 
+                  <td>
+                    <a href="#" @click="selectWTax(Wtax.atc_code,Wtax.tax_rate,Wtax.atc)">Select
+                      <i class="fa fa-edit"></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody></table>
+            </div>
+            <!-- /.box-body -->
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Search WTax Modal -->   
 
     </div>
 </template>
@@ -1045,6 +1031,11 @@
               amount: 0,
               vat:0,
               payee_name: '',
+              Wtaxes: {},
+              current_atc_code: 0,
+              current_tax_rate: 0,
+              current_atc: '',
+              current_atc_description: '',
               readabilityObject: {
                 fontSize: user.font_size
               }
@@ -1057,6 +1048,7 @@
                 
             } 
           },
+          
           loadPayees(){
             if(this.$gate.isAdminOrUser()){
                 axios.get("api/payee").then(({data}) => (this.payees = data ));
@@ -1330,6 +1322,30 @@
               this.loadBranch();
               $('#select-branch').modal('show');
           },
+          searchWTaxModal(){
+              //this.searchWTax = this.form.branch_id;
+              this.loadWTax();
+              $('#select-wtax').modal('show');
+          },
+          loadWTax(){
+            axios.get('api/taxrate')
+                .then((data)=>{
+                  this.Wtaxes = data;
+                })
+                .catch(()=>{
+                  //
+                });
+          },
+          selectWTax(atc_code = null,tax_rate = null,atc = null, description = null){
+              if (atc_code){
+                    
+                      this.current_atc_code = atc_code;
+                      this.current_tax_rate = tax_rate;
+                      this.current_atc = atc;
+                      this.current_atc_description = description;
+              }
+              $('#select-wtax').modal('hide');  
+          },
           // *************************************************
           selectAccount(
                         account_code  = null,
@@ -1397,6 +1413,7 @@
               $('#select-branch').modal('hide');  
 
           },
+          
           SearchIt() {
               let query = this.searchText;
               let headerOrDetail = this.headerOrDetail;
@@ -1648,7 +1665,20 @@
                 return false;
             }
             */
-           
+            if(!this.form_entry.account_name){
+                swal.fire({
+                    title: 'Warning!',
+                    text: "Please select account.",
+                    type: 'info',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ok'
+                }).then((result) => {
+                    
+                });
+                return false;
+            }  
             if(!this.form_entry.debit_amount && !this.form_entry.credit_amount){
                 swal.fire({
                     title: 'Warning!',
@@ -1681,7 +1711,7 @@
             if(!this.form_entry.payee_name){
                 swal.fire({
                     title: 'Warning!',
-                    text: "Please select payee",
+                    text: "Please select payee/payor",
                     type: 'info',
                     showCancelButton: false,
                     confirmButtonColor: '#3085d6',
