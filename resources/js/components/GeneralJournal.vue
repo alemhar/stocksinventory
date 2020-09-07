@@ -874,7 +874,6 @@
                 <label>Search</label>
                 <input type="text" name="search" v-model="search_WTax" @change="SearchWTax" class="float-right col-6">
               </div>
-              
               <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
@@ -1395,7 +1394,6 @@
                   }
               }
               $('#select-account').modal('hide');  
-
           },
           // *************************************************
 
