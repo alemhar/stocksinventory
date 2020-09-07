@@ -7468,7 +7468,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       current_tax_rate: 0,
       current_atc: '',
       current_atc_description: '',
-      search_WTax: '',
+      searchWTax: '',
       readabilityObject: {
         fontSize: user.font_size
       }
@@ -7751,10 +7751,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       $('#select-wtax').modal('hide');
     },
-    searchWTax: function searchWTax() {
+    SearchWTax: function SearchWTax() {
       var _this6 = this;
 
-      var query = this.search_WTax;
+      var query = this.searchWTax;
       axios.get('api/searchWTax?q=' + query).then(function (data) {
         _this6.WTaxes = data.data;
       })["catch"](function () {//
@@ -82022,20 +82022,20 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.search_WTax,
-                          expression: "search_WTax"
+                          value: _vm.searchWTax,
+                          expression: "searchWTax"
                         }
                       ],
                       staticClass: "float-right col-6",
                       attrs: { type: "text", name: "search" },
-                      domProps: { value: _vm.search_WTax },
+                      domProps: { value: _vm.searchWTax },
                       on: {
                         change: _vm.SearchWTax,
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.search_WTax = $event.target.value
+                          _vm.searchWTax = $event.target.value
                         }
                       }
                     })

@@ -872,7 +872,7 @@
               
               <div class="form-group">
                 <label>Search</label>
-                <input type="text" name="search" v-model="search_WTax" @change="SearchWTax" class="float-right col-6">
+                <input type="text" name="search" v-model="searchWTax" @change="SearchWTax" class="float-right col-6">
               </div>
               <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
@@ -1035,7 +1035,7 @@
               current_tax_rate: 0,
               current_atc: '',
               current_atc_description: '',
-              search_WTax: '',
+              searchWTax: '',
               readabilityObject: {
                 fontSize: user.font_size
               }
@@ -1335,8 +1335,8 @@
               }
               $('#select-wtax').modal('hide');  
           },
-          searchWTax() {
-              let query = this.search_WTax;
+          SearchWTax() {
+              let query = this.searchWTax;
               axios.get('api/searchWTax?q='+query)
                 .then((data)=>{
                   this.WTaxes = data.data;
