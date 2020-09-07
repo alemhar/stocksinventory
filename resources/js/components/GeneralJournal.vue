@@ -1396,7 +1396,6 @@
               $('#select-account').modal('hide');  
           },
           // *************************************************
-
           selectPayee(id,payee_name,entity_type){
               if (id){
                     
