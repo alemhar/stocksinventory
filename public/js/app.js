@@ -7516,9 +7516,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })["catch"](function () {//
       });
     },
-    showWTaxTable: function showWTaxTable() {},
-    wTaxExist: function wTaxExist() {},
-    computedWTax: function computedWTax() {},
     getDate: function getDate() {
       var toTwoDigits = function toTwoDigits(num) {
         return num < 10 ? '0' + num : num;

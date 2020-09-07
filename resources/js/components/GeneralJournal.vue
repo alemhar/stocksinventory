@@ -1081,17 +1081,6 @@
                   //
                 });  
           },
-          showWTaxTable(){
-
-          },
-          wTaxExist(){
-
-          },
-          computedWTax(){
-
-          },
-
-          
           getDate() {
             const toTwoDigits = num => num < 10 ? '0' + num : num;
             let today = new Date();
