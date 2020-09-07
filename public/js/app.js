@@ -7469,6 +7469,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       current_tax_rate: 0,
       current_atc: '',
       current_atc_description: '',
+      searchWTax: '',
       readabilityObject: {
         fontSize: user.font_size
       }
@@ -7754,6 +7755,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       $('#select-wtax').modal('hide');
     },
+    searchWTax: function searchWTax() {
+      var _this6 = this;
+
+      var query = this.searchWTax;
+      axios.get('api/searchWTax?q=' + query).then(function (data) {
+        _this6.WTaxes = data.data;
+      })["catch"](function () {//
+      });
+    },
     // *************************************************
     selectAccount: function selectAccount() {
       var account_code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
@@ -7817,30 +7827,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       $('#select-branch').modal('hide');
     },
     SearchIt: function SearchIt() {
-      var _this6 = this;
+      var _this7 = this;
 
       var query = this.searchText;
       var headerOrDetail = this.headerOrDetail;
       axios.get('api/searchAccount?q=' + query + '&transaction_type=' + this.transaction_type + '&headerordetail=' + headerOrDetail).then(function (data) {
-        _this6.chart_of_accounts = data.data;
+        _this7.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
     },
     SearchPayee: function SearchPayee() {
-      var _this7 = this;
+      var _this8 = this;
 
       var query = this.searchPayee;
       axios.get('api/searchPayee?q=' + query).then(function (data) {
-        _this7.payees = data.data;
+        _this8.payees = data.data;
       })["catch"](function () {//
       });
     },
     SearchBranch: function SearchBranch() {
-      var _this8 = this;
+      var _this9 = this;
 
       var query = this.searchBranch;
       axios.get('api/searchBranch?q=' + query).then(function (data) {
-        _this8.branches = data.data;
+        _this9.branches = data.data;
       })["catch"](function () {//
       });
     },
@@ -8012,11 +8022,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       $('#entry-items').modal('show');
     },
     cancelEntry: function cancelEntry() {
-      var _this9 = this;
+      var _this10 = this;
 
       //this.$Progress.start();
       this.items = this.items.filter(function (item) {
-        return item.transaction_entry_id !== _this9.transaction_entry_id;
+        return item.transaction_entry_id !== _this10.transaction_entry_id;
       });
       $('#entry-details').modal('hide');
     },
@@ -8248,10 +8258,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: {
     currentItems: function currentItems() {
-      var _this10 = this;
+      var _this11 = this;
 
       return this.items.filter(function (item) {
-        return parseInt(item.transaction_entry_id) == parseInt(_this10.current_transaction_entry_id);
+        return parseInt(item.transaction_entry_id) == parseInt(_this11.current_transaction_entry_id);
       });
     },
     totalDebit: function totalDebit() {

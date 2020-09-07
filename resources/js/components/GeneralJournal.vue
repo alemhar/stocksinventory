@@ -1036,6 +1036,7 @@
               current_tax_rate: 0,
               current_atc: '',
               current_atc_description: '',
+              searchWTax: '',
               readabilityObject: {
                 fontSize: user.font_size
               }
@@ -1345,6 +1346,16 @@
                       this.current_atc_description = description;
               }
               $('#select-wtax').modal('hide');  
+          },
+          searchWTax() {
+              let query = this.searchWTax;
+              axios.get('api/searchWTax?q='+query)
+                .then((data)=>{
+                  this.WTaxes = data.data;
+                })
+                .catch(()=>{
+                  //
+                });
           },
           // *************************************************
           selectAccount(
