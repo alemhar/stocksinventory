@@ -170,8 +170,7 @@
                         <th>Credit</th> 
                         <th>Description</th>
                         <th>Payee/Payor</th>
-                        <th>InTax</th>
-                        <th>OutTax</th>
+                        <th>Tax</th>
                         <th>WTax</th>
                         <th>Option</th>
                         
@@ -185,11 +184,6 @@
                         <td>{{ entry.payee_name }}</td>
                         <td>
                           <button href="#" class="btn btn-primary" @click="computeTax(entry.account_code,entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id,entry.type,entry.transaction_entry_id)" :disabled="entry.tax_entry">
-                            <i class="fa fa-plus">Add</i>
-                          </button>
-                        </td>
-                        <td>
-                          <button href="#" class="btn btn-primary" @click="computeOutputTax(entry.account_code,entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id,entry.type,entry.transaction_entry_id)" :disabled="entry.tax_entry">
                             <i class="fa fa-plus">Add</i>
                           </button>
                         </td>
@@ -233,12 +227,12 @@
                   <div class="row" style="margin: 0 5px">
                     <label for="inputTotalAmount" class="col-6 pl-1 pr-1 col-form-label" style="text-align: right;">Total Amount</label>  
                     <div class="col-3 pl-1 pr-1">
-                        <input v-bind:value="totalDebit | formatCurrencyNumber" name="debit_amount" id="debit_amount"
+                        <input v-bind:value="totalDebit | formatCurrencyNumber" type="numeric" name="debit_amount" id="debit_amount"
                         class="form-control input-currency" aria-describedby="inputGroup-sizing-default" readonly>
                     
                     </div>    
                     <div class="col-3 pl-1 pr-1">
-                        <input v-bind:value="totalCredit | formatCurrencyNumber" name="credit_amount" id="credit_amount"
+                        <input v-bind:value="totalCredit | formatCurrencyNumber" type="numeric"  name="credit_amount" id="credit_amount"
                         class="form-control input-currency" aria-describedby="inputGroup-sizing-default" readonly>
                     </div>
                   </div>  

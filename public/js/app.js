@@ -7371,12 +7371,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -81066,41 +81060,6 @@ var render = function() {
                                             },
                                             on: {
                                               click: function($event) {
-                                                return _vm.computeOutputTax(
-                                                  entry.account_code,
-                                                  entry.debit_amount,
-                                                  entry.credit_amount,
-                                                  entry.entity_type,
-                                                  entry.payee_id,
-                                                  entry.payee_name,
-                                                  entry.branch_id,
-                                                  entry.type,
-                                                  entry.transaction_entry_id
-                                                )
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _c(
-                                              "i",
-                                              { staticClass: "fa fa-plus" },
-                                              [_vm._v("Add")]
-                                            )
-                                          ]
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass: "btn btn-primary",
-                                            attrs: {
-                                              href: "#",
-                                              disabled: entry.tax_entry
-                                            },
-                                            on: {
-                                              click: function($event) {
                                                 return _vm.addWTax(
                                                   entry.account_code,
                                                   entry.debit_amount,
@@ -81208,6 +81167,7 @@ var render = function() {
                                 _c("input", {
                                   staticClass: "form-control input-currency",
                                   attrs: {
+                                    type: "numeric",
                                     name: "debit_amount",
                                     id: "debit_amount",
                                     "aria-describedby":
@@ -81226,6 +81186,7 @@ var render = function() {
                                 _c("input", {
                                   staticClass: "form-control input-currency",
                                   attrs: {
+                                    type: "numeric",
                                     name: "credit_amount",
                                     id: "credit_amount",
                                     "aria-describedby":
@@ -82314,9 +82275,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Payee/Payor")]),
       _vm._v(" "),
-      _c("th", [_vm._v("InTax")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("OutTax")]),
+      _c("th", [_vm._v("Tax")]),
       _vm._v(" "),
       _c("th", [_vm._v("WTax")]),
       _vm._v(" "),
