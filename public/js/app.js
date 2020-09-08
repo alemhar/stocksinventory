@@ -7974,7 +7974,7 @@ __webpack_require__.r(__webpack_exports__);
       this.vat = ((debit_amount * 1 + credit_amount * 1) * 0.12).toFixed(2) * 1;
       amount = this.vat;
 
-      if (debit_amount) {
+      if (debit_amount * 1) {
         account_name = 'Input Tax';
         account_code = '11051100';
         account_type = 'ASSETS';
@@ -8031,89 +8031,6 @@ __webpack_require__.r(__webpack_exports__);
         taxed: 'NA',
         tax_of_id: transaction_entry_id,
         tax_of_account: main_account_code,
-        tax_entry: true
-      });
-      this.amount = 0;
-      this.vat = 0;
-      this.payee_name = '';
-    },
-    computeInputTax: function computeInputTax(debit_amount, credit_amount, entity_type, payee_id, payee_name, branch_id) {
-      this.vat = ((debit_amount * 1 + credit_amount * 1) * 0.12).toFixed(2) * 1;
-      ++this.transaction_entry_id;
-      this.transactions.push({
-        // *************************
-        account_type: 'ASSETS',
-        sub_account_type: 'CURRENT ASSETS',
-        main_code: 0,
-        main_account: 'NA',
-        type: 'NA',
-        entity_type: this.current_entity_type,
-        transaction_entry_id: this.transaction_entry_id,
-        payee_id: payee_id,
-        payee_name: this.payee_name,
-        branch_id: this.current_branch_id,
-        account_code: '11051100',
-        account_name: 'Input Tax',
-        reference_no: 0,
-        transaction_no: this.form.transaction_no,
-        transaction_type: this.form.transaction_type,
-        transaction_date: this.form.transaction_date,
-        amount: this.vat,
-        credit_amount: 0,
-        debit_amount: this.vat,
-        amount_ex_tax: 0,
-        vat: 0,
-        wtax_code: 0,
-        wtax: 0,
-        user_id: this.form.user_id,
-        useful_life: 0,
-        salvage_value: 0,
-        total_payment: 0,
-        status: 'CONFIRMED',
-        depreciation_date: this.form.transaction_date,
-        depreciated_id: 0,
-        description: 'Input Tax',
-        tax_entry: true
-      });
-      this.amount = 0;
-      this.vat = 0;
-      this.payee_name = '';
-    },
-    computeOutputTax: function computeOutputTax(debit_amount, credit_amount, entity_type, payee_id, payee_name, branch_id) {
-      this.vat = ((debit_amount * 1 + credit_amount * 1) * 0.12).toFixed(2) * 1;
-      ++this.transaction_entry_id;
-      this.transactions.push({
-        account_type: 'LIABILITIES',
-        sub_account_type: 'CURRENT LIABILITIES',
-        main_code: 0,
-        main_account: 'NA',
-        type: 'NA',
-        entity_type: this.current_entity_type,
-        transaction_entry_id: this.transaction_entry_id,
-        payee_id: payee_id,
-        payee_name: this.payee_name,
-        branch_id: this.current_branch_id,
-        account_code: '21051100',
-        account_name: 'Output Tax',
-        reference_no: 0,
-        transaction_no: this.form.transaction_no,
-        transaction_type: this.form.transaction_type,
-        transaction_date: this.form.transaction_date,
-        amount: this.vat,
-        credit_amount: this.vat,
-        debit_amount: 0,
-        amount_ex_tax: 0,
-        vat: 0,
-        wtax_code: 0,
-        wtax: 0,
-        user_id: this.form.user_id,
-        useful_life: 0,
-        salvage_value: 0,
-        total_payment: 0,
-        status: 'CONFIRMED',
-        depreciation_date: this.form.transaction_date,
-        depreciated_id: 0,
-        description: 'Output Tax',
         tax_entry: true
       });
       this.amount = 0;
@@ -8291,9 +8208,9 @@ __webpack_require__.r(__webpack_exports__);
         transaction_no: this.form.transaction_no,
         transaction_type: this.form.transaction_type,
         transaction_date: this.form.transaction_date,
-        amount: this.form_entry.credit_amount + this.form_entry.debit_amount,
-        credit_amount: this.form_entry.credit_amount,
-        debit_amount: this.form_entry.debit_amount,
+        amount: this.form_entry.credit_amount * 1 + this.form_entry.debit_amount * 1,
+        credit_amount: this.form_entry.credit_amount * 1,
+        debit_amount: this.form_entry.debit_amount * 1,
         amount_ex_tax: 0,
         vat: 0,
         wtax_code: 0,
