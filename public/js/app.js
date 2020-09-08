@@ -3155,14 +3155,12 @@ __webpack_require__.r(__webpack_exports__);
       this.transaction_created = false;
       ++this.transaction_entry_id;
       this.transactions.push({
-        // *************************
         account_type: this.form.account_type,
         sub_account_type: this.form.sub_account_type,
         main_code: this.form.main_code,
         main_account: this.form.main_account,
         type: this.form.type,
         entity_type: this.current_entity_type,
-        // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
         branch_id: this.current_branch_id,
@@ -3178,48 +3176,17 @@ __webpack_require__.r(__webpack_exports__);
         total_payment: 0,
         amount_ex_tax: this.form.amount_ex_tax,
         vat: this.form.vat,
-        wtax_code: 0,
+        wtax_code: 'NA',
         wtax: 0,
         user_id: this.form.user_id,
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
         depreciated_id: 0,
         useful_life: 0,
-        salvage_value: 0
-      });
-      ++this.transaction_entry_id;
-      this.transactions.push({
-        // *************************
-        account_type: 'ASSETS',
-        sub_account_type: 'CURRENT ASSETS',
-        main_code: 0,
-        main_account: 'NA',
-        type: 'NA',
-        entity_type: this.current_entity_type,
-        // 
-        transaction_entry_id: this.transaction_entry_id,
-        payee_id: this.form.payee_id,
-        branch_id: this.current_branch_id,
-        account_code: '11051100',
-        account_name: 'Input Tax',
-        reference_no: this.form.reference_no,
-        transaction_no: this.form.transaction_no,
-        transaction_type: this.form.transaction_type,
-        transaction_date: this.form.transaction_date,
-        amount: this.form.vat,
-        credit_amount: 0,
-        debit_amount: this.form.vat,
-        total_payment: 0,
-        amount_ex_tax: 0,
-        vat: 0,
-        wtax_code: 0,
-        wtax: 0,
-        user_id: this.form.user_id,
-        status: 'CONFIRMED',
-        depreciation_date: this.form.transaction_date,
-        depreciated_id: 0,
-        useful_life: 0,
-        salvage_value: 0
+        salvage_value: 0,
+        taxed: 'NA',
+        tax_of_id: 0,
+        tax_of_account: 0
       }); // Save Transactions START
 
       var rawData = {
@@ -3529,17 +3496,22 @@ __webpack_require__.r(__webpack_exports__);
       this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
       this.form.vat += this.form_entry.vat; // To refresh ITEMS table
 
-      this.current_transaction_entry_id = this.transaction_entry_id; //this.$Progress.start();
+      this.current_transaction_entry_id = this.transaction_entry_id;
+
+      if (this.form_entry.vat) {
+        this.taxed = 'YES';
+      } else {
+        this.taxed = 'NO';
+      } //this.$Progress.start();
+
 
       this.transactions.push({
-        // *************************
         account_type: this.form_entry.account_type,
         sub_account_type: this.form_entry.sub_account_type,
         main_code: this.form_entry.main_code,
         main_account: this.form_entry.main_account,
         type: this.form_entry.type,
         entity_type: this.current_entity_type,
-        // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
         branch_id: this.current_branch_id,
@@ -3562,8 +3534,50 @@ __webpack_require__.r(__webpack_exports__);
         salvage_value: this.form_entry.salvage_value,
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
-        depreciated_id: 0
+        depreciated_id: 0,
+        taxed: this.taxed,
+        tax_of_id: 0,
+        tax_of_account: 0
       });
+
+      if (this.form_entry.vat) {
+        ++this.transaction_entry_id;
+        this.transactions.push({
+          account_type: 'ASSETS',
+          sub_account_type: 'CURRENT ASSETS',
+          main_code: 0,
+          main_account: 'NA',
+          type: this.form_entry.type,
+          entity_type: 'NA',
+          transaction_entry_id: this.transaction_entry_id,
+          payee_id: this.form.payee_id,
+          branch_id: this.current_branch_id,
+          account_code: '11051100',
+          account_name: 'Input Tax',
+          reference_no: this.form.reference_no,
+          transaction_no: this.form.transaction_no,
+          transaction_type: this.form.transaction_type,
+          transaction_date: this.form.transaction_date,
+          amount: this.form_entry.vat,
+          credit_amount: 0,
+          debit_amount: this.form_entry.vat,
+          total_payment: 0,
+          amount_ex_tax: 0,
+          vat: 0,
+          wtax_code: 'NA',
+          wtax: 0,
+          user_id: this.form.user_id,
+          status: 'CONFIRMED',
+          depreciation_date: this.form.transaction_date,
+          depreciated_id: 0,
+          useful_life: 0,
+          salvage_value: 0,
+          taxed: 'NA',
+          tax_of_id: this.transaction_entry_id - 1,
+          tax_of_account: this.form_entry.account_code
+        });
+      }
+
       $('#entry-details').modal('hide'); //this.$Progress.finish();
     },
     deleteEntry: function deleteEntry(transaction_entry_id, entry_amount, entry_vat) {
@@ -4698,14 +4712,12 @@ __webpack_require__.r(__webpack_exports__);
       this.transaction_created = false;
       ++this.transaction_entry_id;
       this.transactions.push({
-        // *************************
         account_type: this.form.account_type,
         sub_account_type: this.form.sub_account_type,
         main_code: this.form.main_code,
         main_account: this.form.main_account,
         type: this.form.type,
         entity_type: this.current_entity_type,
-        // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
         branch_id: this.current_branch_id,
@@ -4720,7 +4732,7 @@ __webpack_require__.r(__webpack_exports__);
         debit_amount: this.form.amount,
         total_payment: 0,
         amount_ex_tax: this.form.amount_ex_tax,
-        vat: this.form.vat,
+        vat: 0,
         wtax_code: 0,
         wtax: 0,
         user_id: this.form.user_id,
@@ -4728,18 +4740,20 @@ __webpack_require__.r(__webpack_exports__);
         depreciation_date: this.form.transaction_date,
         depreciated_id: 0,
         useful_life: 0,
-        salvage_value: 0
+        salvage_value: 0,
+        taxed: 'NA',
+        tax_of_id: 0,
+        tax_of_account: 0
       });
       ++this.transaction_entry_id;
       this.transactions.push({
-        // *************************
         account_type: 'LIABILITIES',
         sub_account_type: 'CURRENT LIABILITIES',
         main_code: 0,
         main_account: 'NA',
         type: 'NA',
         entity_type: this.current_entity_type,
-        // 
+        // IMPORTANT field
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
         branch_id: this.current_branch_id,
@@ -4755,14 +4769,17 @@ __webpack_require__.r(__webpack_exports__);
         total_payment: 0,
         amount_ex_tax: 0,
         vat: 0,
-        wtax_code: 0,
+        wtax_code: 'NA',
         wtax: 0,
         user_id: this.form.user_id,
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
         depreciated_id: 0,
         useful_life: 0,
-        salvage_value: 0
+        salvage_value: 0,
+        taxed: 'NA',
+        tax_of_id: 0,
+        tax_of_account: 0
       }); // Save Transactions START
 
       var rawData = {
@@ -5036,17 +5053,22 @@ __webpack_require__.r(__webpack_exports__);
       this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
       this.form.vat += this.form_entry.vat; // To refresh ITEMS table
 
-      this.current_transaction_entry_id = this.transaction_entry_id; //this.$Progress.start();
+      this.current_transaction_entry_id = this.transaction_entry_id;
+
+      if (this.form_entry.vat) {
+        this.taxed = 'YES';
+      } else {
+        this.taxed = 'NO';
+      } //this.$Progress.start();
+
 
       this.transactions.push({
-        // *************************
         account_type: this.form_entry.account_type,
         sub_account_type: this.form_entry.sub_account_type,
         main_code: this.form_entry.main_code,
         main_account: this.form_entry.main_account,
         type: this.form_entry.type,
         entity_type: this.current_entity_type,
-        // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
         branch_id: this.current_branch_id,
@@ -5062,14 +5084,17 @@ __webpack_require__.r(__webpack_exports__);
         total_payment: 0,
         amount_ex_tax: 0,
         vat: this.form_entry.vat,
-        wtax_code: 0,
+        wtax_code: 'NA',
         wtax: 0,
         user_id: this.form.user_id,
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
         depreciated_id: 0,
         useful_life: 0,
-        salvage_value: 0
+        salvage_value: 0,
+        taxed: 'NA',
+        tax_of_id: 0,
+        tax_of_account: 0
       });
       $('#entry-details').modal('hide'); //this.$Progress.finish();
     },
@@ -6434,8 +6459,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -7469,6 +7492,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       current_atc: '',
       current_atc_description: '',
       searchWTax: '',
+      current_debit_amount: 0,
+      current_credit_amount: 0,
       readabilityObject: {
         fontSize: user.font_size
       }
@@ -7580,48 +7605,50 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.form.transaction_type = this.transaction_type;
     },
     saveTransaction: function saveTransaction() {
-      var _this$transactions$pu,
-          _this4 = this;
+      var _this4 = this;
 
       if (this.form.amount == 0) {
         return false;
       }
 
       this.transaction_created = false;
+      /*
       ++this.transaction_entry_id;
-      this.transactions.push((_this$transactions$pu = {
-        // *************************
-        account_type: this.form.account_type,
-        sub_account_type: this.form.sub_account_type,
-        main_code: this.form.main_code,
-        main_account: this.form.main_account,
-        type: this.form.type,
-        entity_type: this.current_entity_type,
-        // *************************
-        transaction_entry_id: this.transaction_entry_id,
-        payee_id: this.form.payee_id,
-        branch_id: this.current_branch_id,
-        account_code: this.form.account_code,
-        account_name: this.form.account_name,
-        reference_no: this.form.reference_no,
-        transaction_no: this.form.transaction_no,
-        transaction_type: this.form.transaction_type,
-        transaction_date: this.form.transaction_date,
-        amount: this.form.amount,
-        credit_amount: this.form.amount,
-        debit_amount: 0,
-        amount_ex_tax: this.form.amount_ex_tax,
-        vat: this.form.vat,
-        wtax_code: 0,
-        wtax: 0,
-        user_id: this.form.user_id,
-        useful_life: 0,
-        salvage_value: 0,
-        total_payment: 0,
-        status: 'CONFIRMED',
-        depreciation_date: this.form.transaction_date,
-        depreciated_id: 0
-      }, _defineProperty(_this$transactions$pu, "useful_life", 0), _defineProperty(_this$transactions$pu, "salvage_value", 0), _this$transactions$pu)); // Save Transactions START
+      this.transactions.push({ 
+          account_type: this.form.account_type,
+          sub_account_type: this.form.sub_account_type,
+          main_code: this.form.main_code,
+          main_account: this.form.main_account,
+          type: this.form.type,
+          entity_type: this.current_entity_type,
+          transaction_entry_id: this.transaction_entry_id,
+          payee_id: this.form.payee_id,
+          branch_id: this.current_branch_id,
+          account_code: this.form.account_code,
+          account_name: this.form.account_name,
+          reference_no: this.form.reference_no,
+          transaction_no: this.form.transaction_no,
+          transaction_type: this.form.transaction_type,
+          transaction_date: this.form.transaction_date,
+          amount: this.form.amount,
+          credit_amount: this.form.amount,
+          debit_amount: 0,
+          amount_ex_tax: this.form.amount_ex_tax,
+          vat: this.form.vat,
+          wtax_code: 0,
+          wtax: 0,
+          user_id: this.form.user_id,
+          useful_life: 0,
+          salvage_value: 0,
+          total_payment: 0,
+          status: 'CONFIRMED',
+          depreciation_date: this.form.transaction_date,
+          depreciated_id: 0,
+          useful_life: 0,
+          salvage_value: 0
+      });
+      */
+      // Save Transactions START
 
       var rawData = {
         transactions: this.transactions
@@ -7700,6 +7727,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.current_payee_tin = '';
       this.active_debit_row = 0;
       this.current_entity_type = '';
+      this.Wtaxes = {};
+      this.current_atc_code = 0;
+      this.current_tax_rate = 0;
+      this.current_atc = '';
+      this.current_atc_description = '';
+      this.searchWTax = '';
+      this.current_debit_amount = 0;
+      this.current_credit_amount = 0;
     },
     cancelTransaction: function cancelTransaction() {
       this.transaction_created = false;
@@ -7737,26 +7772,82 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     selectWTax: function selectWTax() {
+      var _this6 = this;
+
       var atc_code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
       var tax_rate = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
       var atc = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var description = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
 
       if (atc_code) {
-        this.current_atc_code = atc_code;
+        //this.current_atc_code = atc_code;
         this.current_tax_rate = tax_rate;
         this.current_atc = atc;
         this.current_atc_description = description;
+        this.current_wtax_code = this.atc_code.toUpperCase();
+        this.wTaxExist = this.Wtaxes.data.find(function (tax) {
+          return tax.atc_code == _this6.current_wtax_code;
+        });
+
+        if (this.wTaxExist) {
+          this.wtax_amount = (this.form.current_debit_amount * (this.wTaxExist.tax_rate / 100)).toFixed(2) * 1; //this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat) - parseFloat(this.form.wtax);
+
+          this.wTaxCodeInvalid = false;
+        } else {
+          this.wTaxCodeInvalid = true;
+          this.wtax_amount = 0; //this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat);
+        }
       }
 
       $('#select-wtax').modal('hide');
     },
+    saveItem: function saveItem() {
+      this.save_button_item_enabled = false; //this.current_debit_amount = debit_amount;
+      //this.current_credit_amount = credit_amount;
+
+      ++this.transaction_entry_id;
+      this.transactions.push({
+        // *************************
+        account_type: 'ASSETS',
+        sub_account_type: 'CURRENT ASSETS',
+        main_code: 0,
+        main_account: 'NA',
+        type: 'NA',
+        entity_type: this.current_entity_type,
+        //
+        transaction_entry_id: this.transaction_entry_id,
+        payee_id: this.current_payee_id,
+        branch_id: this.current_branch_id,
+        account_code: '11051200',
+        account_name: 'Creditable WTax',
+        reference_no: 'NA',
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        transaction_date: this.form.transaction_date,
+        amount: this.wtax_amount,
+        credit_amount: 0,
+        debit_amount: this.wtax_amount,
+        total_payment: 0,
+        amount_ex_tax: 0,
+        vat: 0,
+        wtax_code: this.current_wtax_code,
+        wtax: this.wtax_amount,
+        atc: this.current_atc,
+        user_id: this.form.user_id,
+        status: 'CONFIRMED',
+        depreciation_date: this.form.transaction_date,
+        depreciated_id: 0,
+        useful_life: 0,
+        salvage_value: 0
+      });
+      $('#entry-items').modal('hide');
+    },
     SearchWTax: function SearchWTax() {
-      var _this6 = this;
+      var _this7 = this;
 
       var query = this.searchWTax;
       axios.get('api/searchWTax?q=' + query).then(function (data) {
-        _this6.WTaxes = data.data;
+        _this7.WTaxes = data.data;
       })["catch"](function () {//
       });
     },
@@ -7804,6 +7895,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.form_entry.payee_name = payee_name;
         this.form_entry.payee_id = id;
         this.form_entry.entity_type = entity_type;
+        this.current_entity_type = entity_type;
         this.current_payee_id = id;
         this.payee_name = payee_name;
       }
@@ -7823,30 +7915,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       $('#select-branch').modal('hide');
     },
     SearchIt: function SearchIt() {
-      var _this7 = this;
+      var _this8 = this;
 
       var query = this.searchText;
       var headerOrDetail = this.headerOrDetail;
       axios.get('api/searchAccount?q=' + query + '&transaction_type=' + this.transaction_type + '&headerordetail=' + headerOrDetail).then(function (data) {
-        _this7.chart_of_accounts = data.data;
+        _this8.chart_of_accounts = data.data;
       })["catch"](function () {//
       });
     },
     SearchPayee: function SearchPayee() {
-      var _this8 = this;
+      var _this9 = this;
 
       var query = this.searchPayee;
       axios.get('api/searchPayee?q=' + query).then(function (data) {
-        _this8.payees = data.data;
+        _this9.payees = data.data;
       })["catch"](function () {//
       });
     },
     SearchBranch: function SearchBranch() {
-      var _this9 = this;
+      var _this10 = this;
 
       var query = this.searchBranch;
       axios.get('api/searchBranch?q=' + query).then(function (data) {
-        _this9.branches = data.data;
+        _this10.branches = data.data;
       })["catch"](function () {//
       });
     },
@@ -7874,6 +7966,82 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
        }
       */
+    },
+    computeTax: function computeTax(main_account_code, debit_amount, credit_amount, entity_type, payee_id, payee_name, branch_id, type, transaction_entry_id) {
+      var account_name = '';
+      var account_code = 0;
+      var account_type = '';
+      var sub_account_type = '';
+      var main_code = 0;
+      var main_account = 'NA';
+      var debit_tax = 0;
+      var credit_tax = 0;
+      var amount = 0;
+      this.vat = ((debit_amount * 1 + credit_amount * 1) * 0.12).toFixed(2) * 1;
+      amount = this.vat;
+
+      if (debit_amount) {
+        account_name = 'Input Tax';
+        account_code = '11051100';
+        account_type = 'ASSETS';
+        sub_account_type = 'CURRENT ASSETS';
+        main_code = 0;
+        main_account = 'NA';
+        debit_tax = this.vat;
+        entity_type = 'NA';
+      } else {
+        account_name = 'Output Tax';
+        account_code = '11051100';
+        account_type = 'LIABILITIES';
+        sub_account_type = 'CURRENT LIABILITIES';
+        main_code = 0;
+        main_account = 'NA';
+        credit_tax = this.vat;
+        type = 'NA';
+      }
+
+      ++this.transaction_entry_id;
+      this.transactions.push({
+        // *************************
+        account_type: account_type,
+        sub_account_type: sub_account_type,
+        main_code: main_code,
+        main_account: main_account,
+        type: type,
+        entity_type: entity_type,
+        transaction_entry_id: this.transaction_entry_id,
+        payee_id: payee_id,
+        payee_name: this.payee_name,
+        branch_id: this.current_branch_id,
+        account_code: account_code,
+        account_name: account_name,
+        reference_no: 0,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        transaction_date: this.form.transaction_date,
+        amount: amount,
+        credit_amount: credit_tax,
+        debit_amount: debit_tax,
+        amount_ex_tax: 0,
+        vat: 0,
+        wtax_code: 0,
+        wtax: 0,
+        user_id: this.form.user_id,
+        useful_life: 0,
+        salvage_value: 0,
+        total_payment: 0,
+        status: 'CONFIRMED',
+        depreciation_date: this.form.transaction_date,
+        depreciated_id: 0,
+        description: account_name + '-' + main_account_code,
+        taxed: 'NA',
+        tax_of_id: transaction_entry_id,
+        tax_of_account: main_account_code,
+        tax_entry: true
+      });
+      this.amount = 0;
+      this.vat = 0;
+      this.payee_name = '';
     },
     computeInputTax: function computeInputTax(debit_amount, credit_amount, entity_type, payee_id, payee_name, branch_id) {
       this.vat = ((debit_amount * 1 + credit_amount * 1) * 0.12).toFixed(2) * 1;
@@ -7921,7 +8089,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.vat = ((debit_amount * 1 + credit_amount * 1) * 0.12).toFixed(2) * 1;
       ++this.transaction_entry_id;
       this.transactions.push({
-        // *************************
         account_type: 'LIABILITIES',
         sub_account_type: 'CURRENT LIABILITIES',
         main_code: 0,
@@ -7975,6 +8142,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       $('#entry-details').modal('show');
     },
     addWTax: function addWTax(debit_amount, credit_amount, entity_type, payee_id, payee_name, branch_id) {
+      this.current_debit_amount = debit_amount;
+      this.current_credit_amount = credit_amount;
+      this.current_entity_type = entity_type;
+      this.current_payee_id = payee_id;
+      this.current_payee_name = payee_name;
+      this.current_branch_id = branch_id;
       /*
       if(this.depreciates && this.items.length > 0){
         swal.fire({
@@ -8002,9 +8175,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return false;
       }
       */
+
       this.save_button_item_enabled = true;
-      this.editmode = false;
-      this.form_item.reset();
+      this.editmode = false; //this.form_item.reset();
+
       /*  
       this.no_item = false;
       this.no_price = false;
@@ -8018,11 +8192,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       $('#entry-items').modal('show');
     },
     cancelEntry: function cancelEntry() {
-      var _this10 = this;
+      var _this11 = this;
 
       //this.$Progress.start();
       this.items = this.items.filter(function (item) {
-        return item.transaction_entry_id !== _this10.transaction_entry_id;
+        return item.transaction_entry_id !== _this11.transaction_entry_id;
       });
       $('#entry-details').modal('hide');
     },
@@ -8107,14 +8281,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.current_transaction_entry_id = this.transaction_entry_id; //this.$Progress.start();
 
       this.transactions.push({
-        // *************************
         account_type: this.form_entry.account_type,
         sub_account_type: this.form_entry.sub_account_type,
         main_code: this.form_entry.main_code,
         main_account: this.form_entry.main_account,
         type: this.form_entry.type,
         entity_type: this.form_entry.entity_type,
-        // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form_entry.payee_id,
         payee_name: this.form_entry.payee_name,
@@ -8157,55 +8329,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     cancelItem: function cancelItem() {
       $('#entry-items').modal('hide');
     },
-    saveItem: function saveItem() {
-      if (this.form_item.item.length == 0) {
-        this.no_item = true;
-      } else {
-        this.no_item = false;
-      }
-
-      if (this.form_item.price == 0) {
-        this.no_price = true;
-      } else {
-        this.no_price = false;
-      }
-
-      if (this.form_item.quantity == 0) {
-        this.no_quantity = true;
-      } else {
-        this.no_quantity = false;
-      }
-
-      if (this.no_item || this.no_price || this.no_quantity) {
-        return false;
-      }
-
-      this.save_button_item_enabled = false; // To refresh ITEMS table
-
-      this.current_transaction_entry_id = this.transaction_entry_id; //this.$Progress.start();
-      //this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).2Fixed(2) * 1;
-      //this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).2Fixed(2) * 1;
-      //this.form_entry.vat += (this.form_item.vat * 1);
-
-      ++this.item_no;
-      this.items.push({
-        item_no: this.item_no,
-        transaction_entry_id: this.transaction_entry_id,
-        transaction_no: this.form.transaction_no,
-        transaction_type: this.form.transaction_type,
-        account_code: this.form_entry.account_code,
-        item: this.form_item.item,
-        quantity: this.form_item.quantity,
-        price: this.form_item.price,
-        sub_total: this.form_item.sub_total,
-        tax_type: this.form_item.tax_type,
-        tax_excluded: this.form_item.tax_excluded,
-        vat: this.form_item.vat,
-        status: 'CONFIRMED'
-      });
-      this.computeDepreciation();
-      $('#entry-items').modal('hide');
-    },
+    computedWTax: function computedWTax() {},
     deleteItem: function deleteItem(item_no, item_sub_total, item_tax_excluded, item_vat) {
       //this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).2Fixed(2) * 1;
       //this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).2Fixed(2) * 1;
@@ -8254,10 +8378,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: {
     currentItems: function currentItems() {
-      var _this11 = this;
+      var _this12 = this;
 
       return this.items.filter(function (item) {
-        return parseInt(item.transaction_entry_id) == parseInt(_this11.current_transaction_entry_id);
+        return parseInt(item.transaction_entry_id) == parseInt(_this12.current_transaction_entry_id);
       });
     },
     totalDebit: function totalDebit() {
@@ -9930,8 +10054,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -10979,8 +11101,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.form.transaction_type = this.transaction_type;
     },
     saveTransaction: function saveTransaction() {
-      var _this$transactions$pu,
-          _this4 = this;
+      var _this4 = this;
 
       if (this.form.amount == 0) {
         return false;
@@ -10988,15 +11109,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       this.transaction_created = false;
       ++this.transaction_entry_id;
-      this.transactions.push((_this$transactions$pu = {
-        // *************************
+      this.transactions.push({
         account_type: this.form.account_type,
         sub_account_type: this.form.sub_account_type,
         main_code: this.form.main_code,
         main_account: this.form.main_account,
         type: this.form.type,
         entity_type: this.current_entity_type,
-        // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
         branch_id: this.current_branch_id,
@@ -11011,49 +11130,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         debit_amount: 0,
         amount_ex_tax: this.form.amount_ex_tax,
         vat: this.form.vat,
-        wtax_code: 0,
+        wtax_code: 'NA',
         wtax: 0,
         user_id: this.form.user_id,
+        status: 'CONFIRMED',
+        total_payment: 0,
+        depreciation_date: this.form.transaction_date,
+        depreciated_id: 0,
         useful_life: 0,
         salvage_value: 0,
-        total_payment: 0,
-        status: 'CONFIRMED',
-        depreciation_date: this.form.transaction_date,
-        depreciated_id: 0
-      }, _defineProperty(_this$transactions$pu, "useful_life", 0), _defineProperty(_this$transactions$pu, "salvage_value", 0), _this$transactions$pu));
-      ++this.transaction_entry_id;
-      this.transactions.push({
-        // *************************
-        account_type: 'ASSETS',
-        sub_account_type: 'CURRENT ASSETS',
-        main_code: 0,
-        main_account: 'NA',
-        type: 'NA',
-        entity_type: this.current_entity_type,
-        // 
-        transaction_entry_id: this.transaction_entry_id,
-        payee_id: this.form.payee_id,
-        branch_id: this.current_branch_id,
-        account_code: '11051100',
-        account_name: 'Input Tax',
-        reference_no: this.form.reference_no,
-        transaction_no: this.form.transaction_no,
-        transaction_type: this.form.transaction_type,
-        transaction_date: this.form.transaction_date,
-        amount: this.form.vat,
-        credit_amount: 0,
-        debit_amount: this.form.vat,
-        amount_ex_tax: 0,
-        vat: 0,
-        wtax_code: 0,
-        wtax: 0,
-        user_id: this.form.user_id,
-        useful_life: 0,
-        salvage_value: 0,
-        total_payment: 0,
-        status: 'CONFIRMED',
-        depreciation_date: this.form.transaction_date,
-        depreciated_id: 0
+        taxed: 'NA',
+        tax_of_id: 0,
+        tax_of_account: 0
       }); // Save Transactions START
 
       var rawData = {
@@ -11371,17 +11459,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
       this.form.vat += this.form_entry.vat; // To refresh ITEMS table
 
-      this.current_transaction_entry_id = this.transaction_entry_id; //this.$Progress.start();
+      this.current_transaction_entry_id = this.transaction_entry_id;
+
+      if (this.form_entry.vat) {
+        this.taxed = 'YES';
+      } else {
+        this.taxed = 'NO';
+      } //this.$Progress.start();
+
 
       this.transactions.push({
-        // *************************
         account_type: this.form_entry.account_type,
         sub_account_type: this.form_entry.sub_account_type,
         main_code: this.form_entry.main_code,
         main_account: this.form_entry.main_account,
         type: this.form_entry.type,
         entity_type: this.current_entity_type,
-        // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
         branch_id: this.current_branch_id,
@@ -11395,8 +11488,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         credit_amount: 0,
         debit_amount: this.form_entry.amount_ex_tax,
         amount_ex_tax: 0,
-        vat: this.form_entry.vat,
-        wtax_code: 0,
+        vat: 0,
+        wtax_code: 'NA',
         wtax: 0,
         user_id: this.form.user_id,
         useful_life: this.form_entry.useful_life,
@@ -11404,8 +11497,50 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         total_payment: 0,
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
-        depreciated_id: 0
+        depreciated_id: 0,
+        taxed: this.taxed,
+        tax_of_id: 0,
+        tax_of_account: 0
       });
+
+      if (this.form_entry.vat) {
+        ++this.transaction_entry_id;
+        this.transactions.push({
+          account_type: 'ASSETS',
+          sub_account_type: 'CURRENT ASSETS',
+          main_code: 0,
+          main_account: 'NA',
+          type: this.form_entry.type,
+          entity_type: 'NA',
+          transaction_entry_id: this.transaction_entry_id,
+          payee_id: this.form.payee_id,
+          branch_id: this.current_branch_id,
+          account_code: '11051100',
+          account_name: 'Input Tax',
+          reference_no: this.form.reference_no,
+          transaction_no: this.form.transaction_no,
+          transaction_type: this.form.transaction_type,
+          transaction_date: this.form.transaction_date,
+          amount: this.form_entry.vat,
+          credit_amount: 0,
+          debit_amount: this.form_entry.vat,
+          total_payment: 0,
+          amount_ex_tax: 0,
+          vat: 0,
+          wtax_code: 'NA',
+          wtax: 0,
+          user_id: this.form.user_id,
+          status: 'CONFIRMED',
+          depreciation_date: this.form.transaction_date,
+          depreciated_id: 0,
+          useful_life: 0,
+          salvage_value: 0,
+          taxed: 'NA',
+          tax_of_id: this.transaction_entry_id - 1,
+          tax_of_account: this.form_entry.account_code
+        });
+      }
+
       $('#entry-details').modal('hide'); //this.$Progress.finish();
     },
     deleteEntry: function deleteEntry(transaction_entry_id, entry_amount, entry_vat) {
@@ -12623,14 +12758,12 @@ __webpack_require__.r(__webpack_exports__);
       this.transaction_created = false;
       ++this.transaction_entry_id;
       this.transactions.push({
-        // *************************
         account_type: this.form.account_type,
         sub_account_type: this.form.sub_account_type,
         main_code: this.form.main_code,
         main_account: this.form.main_account,
         type: this.form.type,
         entity_type: this.current_entity_type,
-        // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
         branch_id: this.current_branch_id,
@@ -12653,50 +12786,21 @@ __webpack_require__.r(__webpack_exports__);
         depreciation_date: this.form.transaction_date,
         depreciated_id: 0,
         useful_life: 0,
-        salvage_value: 0
-      });
-      ++this.transaction_entry_id;
-      this.transactions.push({
-        // *************************
-        account_type: 'ASSETS',
-        sub_account_type: 'CURRENT ASSETS',
-        main_code: 0,
-        main_account: 'NA',
-        type: 'NA',
-        entity_type: this.current_entity_type,
-        //
-        transaction_entry_id: this.transaction_entry_id,
-        payee_id: this.form.payee_id,
-        branch_id: this.current_branch_id,
-        account_code: '11051100',
-        account_name: 'Input Tax',
-        reference_no: this.form.reference_no,
-        transaction_no: this.form.transaction_no,
-        transaction_type: this.form.transaction_type,
-        transaction_date: this.form.transaction_date,
-        amount: this.form.vat,
-        credit_amount: 0,
-        debit_amount: this.form.vat,
-        total_payment: 0,
-        amount_ex_tax: 0,
-        vat: 0,
-        wtax_code: 'NA',
-        wtax: 0,
-        user_id: this.form.user_id,
-        status: 'CONFIRMED'
+        salvage_value: 0,
+        taxed: 'NA',
+        tax_of_id: 0,
+        tax_of_account: 0
       });
 
       if (this.form.wtax > 0) {
         ++this.transaction_entry_id;
         this.transactions.push({
-          // *************************
           account_type: 'ASSETS',
           sub_account_type: 'CURRENT ASSETS',
           main_code: 0,
           main_account: 'NA',
           type: 'NA',
           entity_type: this.current_entity_type,
-          //
           transaction_entry_id: this.transaction_entry_id,
           payee_id: this.form.payee_id,
           branch_id: this.current_branch_id,
@@ -12719,7 +12823,10 @@ __webpack_require__.r(__webpack_exports__);
           depreciation_date: this.form.transaction_date,
           depreciated_id: 0,
           useful_life: 0,
-          salvage_value: 0
+          salvage_value: 0,
+          taxed: 'NA',
+          tax_of_id: 0,
+          tax_of_account: 0
         });
       } // Save Transactions START
 
@@ -13003,17 +13110,22 @@ __webpack_require__.r(__webpack_exports__);
       this.form.amount_ex_tax += this.form_entry.amount_ex_tax;
       this.form.vat += this.form_entry.vat; // To refresh ITEMS table
 
-      this.current_transaction_entry_id = this.transaction_entry_id; //this.$Progress.start();
+      this.current_transaction_entry_id = this.transaction_entry_id;
+
+      if (this.form_entry.vat) {
+        this.taxed = 'YES';
+      } else {
+        this.taxed = 'NO';
+      } //this.$Progress.start();
+
 
       this.transactions.push({
-        // *************************
         account_type: this.form_entry.account_type,
         sub_account_type: this.form_entry.sub_account_type,
         main_code: this.form_entry.main_code,
         main_account: this.form_entry.main_account,
         type: this.form_entry.type,
         entity_type: this.current_entity_type,
-        // *************************
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.form.payee_id,
         branch_id: this.current_branch_id,
@@ -13028,16 +13140,58 @@ __webpack_require__.r(__webpack_exports__);
         debit_amount: this.form_entry.amount_ex_tax,
         total_payment: 0,
         amount_ex_tax: 0,
-        vat: this.form_entry.vat,
-        wtax_code: 0,
+        vat: 0,
+        wtax_code: 'NA',
         wtax: 0,
         user_id: this.form.user_id,
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
         depreciated_id: 0,
         useful_life: 0,
-        salvage_value: 0
+        salvage_value: 0,
+        taxed: this.taxed,
+        tax_of_id: 0,
+        tax_of_account: 0
       });
+
+      if (this.form_entry.vat) {
+        ++this.transaction_entry_id;
+        this.transactions.push({
+          account_type: 'ASSETS',
+          sub_account_type: 'CURRENT ASSETS',
+          main_code: 0,
+          main_account: 'NA',
+          type: this.form_entry.type,
+          entity_type: 'NA',
+          transaction_entry_id: this.transaction_entry_id,
+          payee_id: this.form.payee_id,
+          branch_id: this.current_branch_id,
+          account_code: '11051100',
+          account_name: 'Input Tax',
+          reference_no: this.form.reference_no,
+          transaction_no: this.form.transaction_no,
+          transaction_type: this.form.transaction_type,
+          transaction_date: this.form.transaction_date,
+          amount: this.form_entry.vat,
+          credit_amount: 0,
+          debit_amount: this.form_entry.vat,
+          total_payment: 0,
+          amount_ex_tax: 0,
+          vat: 0,
+          wtax_code: 'NA',
+          wtax: 0,
+          user_id: this.form.user_id,
+          status: 'CONFIRMED',
+          depreciation_date: this.form.transaction_date,
+          depreciated_id: 0,
+          useful_life: 0,
+          salvage_value: 0,
+          taxed: 'NA',
+          tax_of_id: this.transaction_entry_id - 1,
+          tax_of_account: this.form_entry.account_code
+        });
+      }
+
       $('#entry-details').modal('hide'); //this.$Progress.finish();
     },
     deleteEntry: function deleteEntry(transaction_entry_id, entry_amount, entry_vat) {
@@ -80877,13 +81031,16 @@ var render = function() {
                                             },
                                             on: {
                                               click: function($event) {
-                                                return _vm.computeInputTax(
+                                                return _vm.computeTax(
+                                                  entry.account_code,
                                                   entry.debit_amount,
                                                   entry.credit_amount,
                                                   entry.entity_type,
                                                   entry.payee_id,
                                                   entry.payee_name,
-                                                  entry.branch_id
+                                                  entry.branch_id,
+                                                  entry.type,
+                                                  entry.transaction_entry_id
                                                 )
                                               }
                                             }
@@ -80910,12 +81067,15 @@ var render = function() {
                                             on: {
                                               click: function($event) {
                                                 return _vm.computeOutputTax(
+                                                  entry.account_code,
                                                   entry.debit_amount,
                                                   entry.credit_amount,
                                                   entry.entity_type,
                                                   entry.payee_id,
                                                   entry.payee_name,
-                                                  entry.branch_id
+                                                  entry.branch_id,
+                                                  entry.type,
+                                                  entry.transaction_entry_id
                                                 )
                                               }
                                             }
@@ -80942,12 +81102,15 @@ var render = function() {
                                             on: {
                                               click: function($event) {
                                                 return _vm.addWTax(
+                                                  entry.account_code,
                                                   entry.debit_amount,
                                                   entry.credit_amount,
                                                   entry.entity_type,
                                                   entry.payee_id,
                                                   entry.payee_name,
-                                                  entry.branch_id
+                                                  entry.branch_id,
+                                                  entry.type,
+                                                  entry.transaction_entry_id
                                                 )
                                               }
                                             }
@@ -109275,15 +109438,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************************************!*\
   !*** ./resources/js/components/GeneralJournal.vue ***!
   \****************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _GeneralJournal_vue_vue_type_template_id_05fe24da___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./GeneralJournal.vue?vue&type=template&id=05fe24da& */ "./resources/js/components/GeneralJournal.vue?vue&type=template&id=05fe24da&");
 /* harmony import */ var _GeneralJournal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GeneralJournal.vue?vue&type=script&lang=js& */ "./resources/js/components/GeneralJournal.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _GeneralJournal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _GeneralJournal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _GeneralJournal_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./GeneralJournal.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/GeneralJournal.vue?vue&type=style&index=0&lang=css&");
+/* empty/unused harmony star reexport *//* harmony import */ var _GeneralJournal_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./GeneralJournal.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/GeneralJournal.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -109315,7 +109477,7 @@ component.options.__file = "resources/js/components/GeneralJournal.vue"
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/GeneralJournal.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -398,21 +398,27 @@ class CDController extends Controller
                 'vat' => $transaction->vat,
                 'wtax_code' => $transaction->wtax_code,
                 'wtax' => $transaction->wtax,
-                'type' => $transaction->type,
+                'type' => $transaction->type, // GOODS|SERVICE|CAPITAL GOODS
                 'user_id' => $transaction->user_id,
                 'status' => $transaction->status,
                 'useful_life' => $transaction->useful_life,
                 'salvage_value' => $transaction->salvage_value,
                 'depreciation_date' => $transaction->depreciation_date,
-                'depreciated_id' => $transaction->depreciated_id
+                'depreciated_id' => $transaction->depreciated_id,
+                'taxed' => $transaction->taxed, // YES|NO (For main account)
+                'tax_of_id' => $transaction->tax_of_id, // id of taxed account (For input tax)
+                'tax_of_account' => $transaction->tax_of_account, // main account of tax (For input tax)
+                
             ]);
 
             
             $dailyAccount = DailyAccount::firstOrNew([
                 'account_code' => $transaction->account_code,
                 'transaction_date' => $transaction->transaction_date,
-                'entity_type' => $transaction->entity_type,
-                'type' => $transaction->type
+                'transaction_type' => $transaction->transaction_type, // CR|CD|PURCHASE|SALES|PAYMENT|COLLECTION|DEPRECIATION
+                'entity_type' => $transaction->entity_type, // Private|Goverment
+                'type' => $transaction->type, // GOODS|SERVICE|CAPITAL GOODS|NA
+                'taxed' => $transaction->taxed // YES|NO 
             ]); 
             
             if ($dailyAccount->exists) {
@@ -432,7 +438,7 @@ class CDController extends Controller
                 //$dailyAccount->amount = $transaction->credit_amount;
                 $dailyAccount->credit_amount = $transaction->credit_amount;
                 $dailyAccount->debit_amount =  $transaction->debit_amount;
-                $dailyAccount->type = $transaction->type;
+                //$dailyAccount->type = $transaction->type; // GOODS|SERVICE|CAPITAL GOODS|NA
                 $dailyAccount->user_id = $transaction->user_id;
                 $dailyAccount->status = $transaction->status;
             }    
@@ -443,8 +449,10 @@ class CDController extends Controller
             $runningAccount = RunningAccount::firstOrNew([
                 'account_code' => $transaction->account_code,
                 'transaction_date' => $transaction->transaction_date,
-                'entity_type' => $transaction->entity_type,
-                'type' => $transaction->type
+                'transaction_type' => $transaction->transaction_type, // CR|CD|PURCHASE|SALES|PAYMENT|COLLECTION|DEPRECIATION
+                'entity_type' => $transaction->entity_type, // Private|Goverment
+                'type' => $transaction->type, // GOODS|SERVICE|CAPITAL GOODS|NA
+                'taxed' => $transaction->taxed // YES|NO 
             ]); 
             
             if ($runningAccount->exists) {
@@ -460,9 +468,10 @@ class CDController extends Controller
                 $runningAccount->account_name = $transaction->account_name;
                 $runningAccount->credit_amount = $transaction->credit_amount;
                 $runningAccount->debit_amount =  $transaction->debit_amount;
-                $runningAccount->type = $transaction->type;
+                $runningAccount->type = $transaction->type; // GOODS|SERVICE|CAPITAL GOODS
                 $runningAccount->user_id = $transaction->user_id;
                 $runningAccount->status = $transaction->status;
+                //$runningAccount->taxed = $transaction->taxed;
             }    
             $runningAccount->save();
 
@@ -470,13 +479,14 @@ class CDController extends Controller
             // Update all records later than transaction date.
             RunningAccount::where('account_code', $transaction->account_code)
             ->where('transaction_date', '>' , $transaction->transaction_date)
+            ->where('transaction_type', '=' , $transaction->transaction_type)
             ->where('entity_type', '=' , $transaction->entity_type)
-            ->where('type', '=' , $transaction->type)
+            ->where('type', '=' , $transaction->type) // GOODS|SERVICE|CAPITAL GOODS
+            ->where('taxed', '=' , $transaction->taxed) // YES|NO
             ->update([
                 'credit_amount' => DB::raw( 'credit_amount +' . $transaction->credit_amount),
                 'debit_amount' => DB::raw( 'debit_amount +' . $transaction->debit_amount)
             ]);
-            
         }
     }
 
@@ -499,7 +509,7 @@ class CDController extends Controller
                 'main_account' => $account->main_account,
                 'account_code' => $account->account_code,
                 'account_name' => $account->account_name,
-                'type' => $account->type,
+                'type' => $account->type, // GOODS|SERVICE|CAPITAL GOODS
                 'counterpart_code' => $account->counterpart_code,
                 'counterpart_name' => $account->counterpart_name
                 ];

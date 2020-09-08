@@ -184,17 +184,17 @@
                         <td>{{ entry.description }}</td>
                         <td>{{ entry.payee_name }}</td>
                         <td>
-                          <button href="#" class="btn btn-primary" @click="computeInputTax(entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id)" :disabled="entry.tax_entry">
+                          <button href="#" class="btn btn-primary" @click="computeTax(entry.account_code,entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id,entry.type,entry.transaction_entry_id)" :disabled="entry.tax_entry">
                             <i class="fa fa-plus">Add</i>
                           </button>
                         </td>
                         <td>
-                          <button href="#" class="btn btn-primary" @click="computeOutputTax(entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id)" :disabled="entry.tax_entry">
+                          <button href="#" class="btn btn-primary" @click="computeOutputTax(entry.account_code,entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id,entry.type,entry.transaction_entry_id)" :disabled="entry.tax_entry">
                             <i class="fa fa-plus">Add</i>
                           </button>
                         </td>
                         <td>
-                          <button href="#" class="btn btn-primary" @click="addWTax(entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id)" :disabled="entry.tax_entry">
+                          <button href="#" class="btn btn-primary" @click="addWTax(entry.account_code,entry.debit_amount,entry.credit_amount,entry.entity_type,entry.payee_id,entry.payee_name,entry.branch_id,entry.type,entry.transaction_entry_id)" :disabled="entry.tax_entry">
                             <i class="fa fa-plus">Add</i>
                           </button>
                         </td>
@@ -1036,6 +1036,8 @@
               current_atc: '',
               current_atc_description: '',
               searchWTax: '',
+              current_debit_amount: 0,
+              current_credit_amount: 0,
               readabilityObject: {
                 fontSize: user.font_size
               }
@@ -1152,19 +1154,15 @@
             }
             
             this.transaction_created = false; 
-            
+            /*
             ++this.transaction_entry_id;
             this.transactions.push({ 
-
-                // *************************
                 account_type: this.form.account_type,
                 sub_account_type: this.form.sub_account_type,
                 main_code: this.form.main_code,
                 main_account: this.form.main_account,
                 type: this.form.type,
                 entity_type: this.current_entity_type,
-                // *************************
-
                 transaction_entry_id: this.transaction_entry_id,
                 payee_id: this.form.payee_id,
                 branch_id: this.current_branch_id,
@@ -1191,7 +1189,7 @@
                 useful_life: 0,
                 salvage_value: 0
             });
-            
+            */
 
 
                 // Save Transactions START
@@ -1289,6 +1287,14 @@
                   this.current_payee_tin = '';
                   this.active_debit_row = 0;
                   this.current_entity_type = '';
+                  this.Wtaxes= {};
+                  this.current_atc_code= 0;
+                  this.current_tax_rate= 0;
+                  this.current_atc= '';
+                  this.current_atc_description= '';
+                  this.searchWTax= '';
+                  this.current_debit_amount= 0;
+                  this.current_credit_amount= 0;
           },
           cancelTransaction(){
             this.transaction_created = false;
@@ -1326,15 +1332,76 @@
                 });
           },
           selectWTax(atc_code = null,tax_rate = null,atc = null, description = null){
-              if (atc_code){
-                    
-                      this.current_atc_code = atc_code;
+              if(atc_code){
+                      //this.current_atc_code = atc_code;
+                      
                       this.current_tax_rate = tax_rate;
                       this.current_atc = atc;
                       this.current_atc_description = description;
+
+                      this.current_wtax_code = this.atc_code.toUpperCase();
+                      this.wTaxExist = this.Wtaxes.data.find(tax => tax.atc_code == this.current_wtax_code);
+                      if(this.wTaxExist){
+                        this.wtax_amount = (this.form.current_debit_amount * (this.wTaxExist.tax_rate/100)).toFixed(2) * 1;
+                        //this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat) - parseFloat(this.form.wtax);
+                        this.wTaxCodeInvalid = false;
+                      } else {
+                          this.wTaxCodeInvalid = true; 
+                          this.wtax_amount = 0;
+                          //this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat);
+                      }
+                      
               }
               $('#select-wtax').modal('hide');  
           },
+          saveItem(){
+            this.save_button_item_enabled = false;
+
+              //this.current_debit_amount = debit_amount;
+              //this.current_credit_amount = credit_amount;
+
+
+
+            ++this.transaction_entry_id;
+                this.transactions.push({ 
+                    // *************************
+                    account_type: 'ASSETS',
+                    sub_account_type: 'CURRENT ASSETS',
+                    main_code: 0,
+                    main_account: 'NA',
+                    type: 'NA',
+                    entity_type: this.current_entity_type,
+                    //
+
+                    transaction_entry_id: this.transaction_entry_id,
+                    payee_id: this.current_payee_id,
+                    branch_id: this.current_branch_id,
+                    account_code: '11051200',
+                    account_name: 'Creditable WTax',
+                    reference_no: 'NA',
+                    transaction_no: this.form.transaction_no,
+                    transaction_type: this.form.transaction_type,
+                    transaction_date: this.form.transaction_date,
+                    amount: this.wtax_amount,
+                    credit_amount: 0,
+                    debit_amount: this.wtax_amount,
+                    total_payment: 0,
+                    amount_ex_tax: 0,
+                    vat: 0,
+                    wtax_code: this.current_wtax_code,
+                    wtax: this.wtax_amount,
+                    atc: this.current_atc,
+                    user_id: this.form.user_id,
+                    status: 'CONFIRMED',
+                    depreciation_date: this.form.transaction_date,
+                    depreciated_id: 0,
+                    useful_life: 0,
+                    salvage_value: 0
+                });  
+            $('#entry-items').modal('hide');
+            
+          },
+
           SearchWTax() {
               let query = this.searchWTax;
               axios.get('api/searchWTax?q='+query)
@@ -1391,6 +1458,7 @@
                       this.form_entry.payee_name = payee_name;
                       this.form_entry.payee_id = id;
                       this.form_entry.entity_type = entity_type;
+                      this.current_entity_type = entity_type;
                       this.current_payee_id = id;
                       this.payee_name = payee_name;
                       
@@ -1474,6 +1542,86 @@
               }
               */
           },
+          
+          computeTax(main_account_code,debit_amount,credit_amount,entity_type,payee_id,payee_name,branch_id,type,transaction_entry_id){
+              let account_name = '';
+              let account_code = 0;
+              let account_type = '';
+              let sub_account_type = '';
+              let main_code = 0;
+              let main_account = 'NA';
+              let debit_tax = 0;
+              let credit_tax = 0;
+              let amount = 0;
+              this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
+              amount =  this.vat;
+              if(debit_amount){
+                  account_name = 'Input Tax';
+                  account_code = '11051100';
+                  account_type = 'ASSETS';
+                  sub_account_type = 'CURRENT ASSETS';
+                  main_code = 0;
+                  main_account = 'NA';
+                  debit_tax = this.vat;
+                  entity_type = 'NA';
+              } else {
+                  account_name = 'Output Tax';
+                  account_code = '11051100';
+                  account_type = 'LIABILITIES';
+                  sub_account_type = 'CURRENT LIABILITIES';
+                  main_code = 0;
+                  main_account = 'NA';
+                  credit_tax = this.vat;
+                  type = 'NA';
+
+              }
+
+              
+                  ++this.transaction_entry_id;
+            this.transactions.push({ 
+
+                // *************************
+                account_type: account_type,
+                sub_account_type: sub_account_type,
+                main_code: main_code,
+                main_account: main_account,
+                type: type,
+                entity_type: entity_type,
+                transaction_entry_id: this.transaction_entry_id,
+                payee_id: payee_id,
+                payee_name: this.payee_name,
+                branch_id: this.current_branch_id,
+                account_code: account_code,
+                account_name: account_name,
+                reference_no: 0,
+                transaction_no: this.form.transaction_no,
+                transaction_type: this.form.transaction_type,
+                transaction_date: this.form.transaction_date,
+                amount: amount,
+                credit_amount: credit_tax,
+                debit_amount: debit_tax,
+                amount_ex_tax: 0,
+                vat: 0,
+                wtax_code: 0,
+                wtax: 0,
+                user_id: this.form.user_id,
+                useful_life: 0,
+                salvage_value: 0,
+                total_payment: 0,
+                status: 'CONFIRMED',
+                depreciation_date: this.form.transaction_date,
+                depreciated_id: 0,
+                description: account_name+'-'+ main_account_code,
+                taxed: 'NA',
+                tax_of_id: transaction_entry_id,
+                tax_of_account: main_account_code,
+                tax_entry: true
+            });  
+  
+                this.amount= 0;
+                this.vat= 0;    
+                this.payee_name = '';
+          },
           computeInputTax(debit_amount,credit_amount,entity_type,payee_id,payee_name,branch_id){
                   
                   this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
@@ -1526,15 +1674,12 @@
                   ++this.transaction_entry_id;
             
             this.transactions.push({ 
-
-                // *************************
                 account_type: 'LIABILITIES',
                 sub_account_type: 'CURRENT LIABILITIES',
                 main_code: 0,
                 main_account: 'NA',
                 type: 'NA',
                 entity_type: this.current_entity_type,
-
                 transaction_entry_id: this.transaction_entry_id,
                 payee_id: payee_id,
                 payee_name: this.payee_name,
@@ -1591,6 +1736,14 @@
 
           },
           addWTax(debit_amount,credit_amount,entity_type,payee_id,payee_name,branch_id){
+              
+              this.current_debit_amount = debit_amount;
+              this.current_credit_amount = credit_amount;
+              this.current_entity_type = entity_type;
+              this.current_payee_id = payee_id;
+              this.current_payee_name = payee_name;
+              this.current_branch_id = branch_id;
+              
               /*
               if(this.depreciates && this.items.length > 0){
                 swal.fire({
@@ -1624,7 +1777,7 @@
 
               this.editmode = false;
               
-              this.form_item.reset();
+              //this.form_item.reset();
               /*  
               this.no_item = false;
               this.no_price = false;
@@ -1735,20 +1888,15 @@
             this.current_transaction_entry_id = this.transaction_entry_id;
             //this.$Progress.start();
             this.transactions.push({ 
-
-                // *************************
                 account_type: this.form_entry.account_type,
                 sub_account_type: this.form_entry.sub_account_type,
                 main_code: this.form_entry.main_code,
                 main_account: this.form_entry.main_account,
                 type: this.form_entry.type,
                 entity_type: this.form_entry.entity_type,
-                // *************************
-                
                 transaction_entry_id: this.transaction_entry_id,
                 payee_id: this.form_entry.payee_id,
                 payee_name: this.form_entry.payee_name,
-                
                 branch_id: this.current_branch_id,
                 account_code: this.form_entry.account_code,
                 account_name: this.form_entry.account_name,
@@ -1801,64 +1949,12 @@
             $('#entry-items').modal('hide');
             
           },
-          saveItem(){
-            
-            if(this.form_item.item.length == 0) {
-              this.no_item = true;
-            } else {
-              this.no_item = false;
-            }
+          computedWTax(){
 
-            if(this.form_item.price == 0) {
-              this.no_price = true;
-            } else {
-              this.no_price = false;
-            }
             
-            if(this.form_item.quantity == 0) {
-              this.no_quantity = true;
-            } else {
-              this.no_quantity = false;
-            }
-            
-            if (this.no_item || this.no_price || this.no_quantity){
-              return false;
-            } 
-
-            this.save_button_item_enabled = false;
-
-
-            // To refresh ITEMS table
-            this.current_transaction_entry_id = this.transaction_entry_id;
-
-            //this.$Progress.start();
-            
-            //this.form_entry.amount = parseFloat(this.form_entry.amount + this.form_item.sub_total).2Fixed(2) * 1;
-            //this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax + this.form_item.tax_excluded).2Fixed(2) * 1;
-            //this.form_entry.vat += (this.form_item.vat * 1);
-            
-            ++this.item_no;
-            
-            this.items.push({ 
-                item_no: this.item_no,
-                transaction_entry_id: this.transaction_entry_id,
-                transaction_no: this.form.transaction_no,
-                transaction_type: this.form.transaction_type,
-                account_code: this.form_entry.account_code,
-                item: this.form_item.item,
-                quantity: this.form_item.quantity,
-                price: this.form_item.price, 
-                sub_total: this.form_item.sub_total,
-                tax_type: this.form_item.tax_type, 
-                tax_excluded: this.form_item.tax_excluded, 
-                vat: this.form_item.vat, 
-                status: 'CONFIRMED'
-
-            });
-            this.computeDepreciation();
-            $('#entry-items').modal('hide');
             
           },
+          
           deleteItem(item_no,item_sub_total,item_tax_excluded,item_vat){
 
               //this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).2Fixed(2) * 1;

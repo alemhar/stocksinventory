@@ -28,6 +28,9 @@ class CreateRunningAccountsTable extends Migration
             $table->string('type'); // GOODS, SERVICE, CAPITAL GOODS
             $table->integer('user_id')->unsigned();
             $table->string('status', 20)->default('UNCONFIRMED');
+            $table->string('transaction_type'); // ** New
+            $table->string('entity_type'); // ** New
+            $table->string('taxed', 5); // ** New
             $table->timestamps();
         });
     }

@@ -1104,16 +1104,12 @@
             this.transaction_created = false; 
             ++this.transaction_entry_id;
             this.transactions.push({ 
-
-                // *************************
                 account_type: this.form.account_type,
                 sub_account_type: this.form.sub_account_type,
                 main_code: this.form.main_code,
                 main_account: this.form.main_account,
                 type: this.form.type,
                 entity_type: this.current_entity_type,
-                // *************************
-
                 transaction_entry_id: this.transaction_entry_id,
                 payee_id: this.form.payee_id,
                 branch_id: this.current_branch_id,
@@ -1136,59 +1132,24 @@
                 depreciation_date: this.form.transaction_date,
                 depreciated_id: 0,
                 useful_life: 0,
-                salvage_value: 0
+                salvage_value: 0,
+                taxed: 'NA',
+                tax_of_id: 0,
+                tax_of_account: 0
             });
 
 
-            ++this.transaction_entry_id;
-            
-            this.transactions.push({ 
-
-                // *************************
-                account_type: 'ASSETS',
-                sub_account_type: 'CURRENT ASSETS',
-                main_code: 0,
-                main_account: 'NA',
-                type: 'NA',
-                entity_type: this.current_entity_type,
-                //
-
-
-                transaction_entry_id: this.transaction_entry_id,
-                payee_id: this.form.payee_id,
-                branch_id: this.current_branch_id,
-                account_code: '11051100',
-                account_name: 'Input Tax',
-                reference_no: this.form.reference_no,
-                transaction_no: this.form.transaction_no,
-                transaction_type: this.form.transaction_type,
-                transaction_date: this.form.transaction_date,
-                amount: this.form.vat,
-                credit_amount: 0,
-                debit_amount: this.form.vat,
-                total_payment: 0,
-                amount_ex_tax: 0,
-                vat: 0,
-                wtax_code: 'NA',
-                wtax: 0,
-                user_id: this.form.user_id,
-                status: 'CONFIRMED'
-            });  
             
 
             if(this.form.wtax > 0){
                 ++this.transaction_entry_id;
                 this.transactions.push({ 
-
-                    // *************************
                     account_type: 'ASSETS',
                     sub_account_type: 'CURRENT ASSETS',
                     main_code: 0,
                     main_account: 'NA',
                     type: 'NA',
                     entity_type: this.current_entity_type,
-                    //
-
                     transaction_entry_id: this.transaction_entry_id,
                     payee_id: this.form.payee_id,
                     branch_id: this.current_branch_id,
@@ -1211,7 +1172,10 @@
                     depreciation_date: this.form.transaction_date,
                     depreciated_id: 0,
                     useful_life: 0,
-                    salvage_value: 0
+                    salvage_value: 0,
+                    taxed: 'NA',
+                    tax_of_id: 0,
+                    tax_of_account: 0
                 });  
             }
 
@@ -1535,19 +1499,19 @@
 
             // To refresh ITEMS table
             this.current_transaction_entry_id = this.transaction_entry_id;
-            
+            if(this.form_entry.vat){
+              this.taxed = 'YES';
+            } else {
+              this.taxed = 'NO';
+            }
             //this.$Progress.start();
             this.transactions.push({ 
-
-                // *************************
                 account_type: this.form_entry.account_type,
                 sub_account_type: this.form_entry.sub_account_type,
                 main_code: this.form_entry.main_code,
                 main_account: this.form_entry.main_account,
                 type: this.form_entry.type,
                 entity_type: this.current_entity_type,
-                // *************************
-                
                 transaction_entry_id: this.transaction_entry_id,
                 payee_id: this.form.payee_id,
                 branch_id: this.current_branch_id,
@@ -1562,16 +1526,60 @@
                 debit_amount: this.form_entry.amount_ex_tax,
                 total_payment: 0,
                 amount_ex_tax: 0,
-                vat: this.form_entry.vat,
-                wtax_code: 0,
+                vat: 0,
+                wtax_code: 'NA',
                 wtax: 0,
                 user_id: this.form.user_id,
                 status: 'CONFIRMED',
                 depreciation_date: this.form.transaction_date,
                 depreciated_id: 0,
                 useful_life: 0,
-                salvage_value: 0
+                salvage_value: 0,
+                taxed: this.taxed,
+                tax_of_id: 0,
+                tax_of_account: 0
             });
+
+
+          if(this.form_entry.vat){
+            ++this.transaction_entry_id;
+            
+            this.transactions.push({ 
+                account_type: 'ASSETS',
+                sub_account_type: 'CURRENT ASSETS',
+                main_code: 0,
+                main_account: 'NA',
+                type: this.form_entry.type,
+                entity_type: 'NA',
+                transaction_entry_id: this.transaction_entry_id,
+                payee_id: this.form.payee_id,
+                branch_id: this.current_branch_id,
+                account_code: '11051100',
+                account_name: 'Input Tax',
+                reference_no: this.form.reference_no,
+                transaction_no: this.form.transaction_no,
+                transaction_type: this.form.transaction_type,
+                transaction_date: this.form.transaction_date,
+                amount: this.form_entry.vat,
+                credit_amount: 0,
+                debit_amount: this.form_entry.vat,
+                total_payment: 0,
+                amount_ex_tax: 0,
+                vat: 0,
+                wtax_code: 'NA',
+                wtax: 0,
+                user_id: this.form.user_id,
+                status: 'CONFIRMED',
+                depreciation_date: this.form.transaction_date,
+                depreciated_id: 0,
+                useful_life: 0,
+                salvage_value: 0,
+                taxed: 'NA',
+                tax_of_id: this.transaction_entry_id - 1,
+                tax_of_account: this.form_entry.account_code
+            });  
+          }
+
             $('#entry-details').modal('hide');
             //this.$Progress.finish();
             
