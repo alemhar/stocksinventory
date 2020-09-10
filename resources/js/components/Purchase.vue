@@ -1088,7 +1088,8 @@
                 salvage_value: 0,
                 taxed: 'NA',
                 tax_of_id: 0,
-                tax_of_account: 0
+                tax_of_account: 0,
+                description: ''
                 
             });
             
@@ -1492,7 +1493,8 @@
                 depreciated_id: 0,
                 taxed: this.taxed,
                 tax_of_id: 0,
-                tax_of_account: 0
+                tax_of_account: 0,
+                description: ''
             });
 
           if(this.form_entry.vat){
@@ -1531,7 +1533,8 @@
                 salvage_value: 0,
                 taxed: 'NA',
                 tax_of_id: this.transaction_entry_id - 1,
-                tax_of_account: this.form_entry.account_code
+                tax_of_account: this.form_entry.account_code,
+                description: ''
             });  
           }
 

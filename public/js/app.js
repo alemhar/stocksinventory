@@ -3186,7 +3186,8 @@ __webpack_require__.r(__webpack_exports__);
         salvage_value: 0,
         taxed: 'NA',
         tax_of_id: 0,
-        tax_of_account: 0
+        tax_of_account: 0,
+        description: ''
       }); // Save Transactions START
 
       var rawData = {
@@ -3537,7 +3538,8 @@ __webpack_require__.r(__webpack_exports__);
         depreciated_id: 0,
         taxed: this.taxed,
         tax_of_id: 0,
-        tax_of_account: 0
+        tax_of_account: 0,
+        description: ''
       });
 
       if (this.form_entry.vat) {
@@ -3574,7 +3576,8 @@ __webpack_require__.r(__webpack_exports__);
           salvage_value: 0,
           taxed: 'NA',
           tax_of_id: this.transaction_entry_id - 1,
-          tax_of_account: this.form_entry.account_code
+          tax_of_account: this.form_entry.account_code,
+          description: ''
         });
       }
 
@@ -4743,7 +4746,8 @@ __webpack_require__.r(__webpack_exports__);
         salvage_value: 0,
         taxed: 'NA',
         tax_of_id: 0,
-        tax_of_account: 0
+        tax_of_account: 0,
+        description: ''
       });
       ++this.transaction_entry_id;
       this.transactions.push({
@@ -4779,7 +4783,8 @@ __webpack_require__.r(__webpack_exports__);
         salvage_value: 0,
         taxed: 'NA',
         tax_of_id: 0,
-        tax_of_account: 0
+        tax_of_account: 0,
+        description: ''
       }); // Save Transactions START
 
       var rawData = {
@@ -5092,9 +5097,10 @@ __webpack_require__.r(__webpack_exports__);
         depreciated_id: 0,
         useful_life: 0,
         salvage_value: 0,
-        taxed: 'NA',
+        taxed: this.taxed,
         tax_of_id: 0,
-        tax_of_account: 0
+        tax_of_account: 0,
+        description: ''
       });
       $('#entry-details').modal('hide'); //this.$Progress.finish();
     },
@@ -6014,7 +6020,8 @@ __webpack_require__.r(__webpack_exports__);
         depreciation_date: this.form.transaction_date,
         depreciated_id: 0,
         useful_life: 0,
-        salvage_value: 0
+        salvage_value: 0,
+        description: ''
       }); // Save Transactions START
 
       var rawData = {
@@ -6261,7 +6268,8 @@ __webpack_require__.r(__webpack_exports__);
         depreciation_date: this.form.transaction_date,
         depreciated_id: 0,
         useful_life: 0,
-        salvage_value: 0
+        salvage_value: 0,
+        description: ''
       });
       $('#entry-payment').modal('hide'); //this.loadPayments();
 
@@ -7446,6 +7454,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       current_debit_amount: 0,
       current_credit_amount: 0,
       wtax_amount: 0,
+      main_account_code: 0,
       readabilityObject: {
         fontSize: user.font_size
       }
@@ -7563,44 +7572,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return false;
       }
 
-      this.transaction_created = false;
-      /*
-      ++this.transaction_entry_id;
-      this.transactions.push({ 
-          account_type: this.form.account_type,
-          sub_account_type: this.form.sub_account_type,
-          main_code: this.form.main_code,
-          main_account: this.form.main_account,
-          type: this.form.type,
-          entity_type: this.current_entity_type,
-          transaction_entry_id: this.transaction_entry_id,
-          payee_id: this.form.payee_id,
-          branch_id: this.current_branch_id,
-          account_code: this.form.account_code,
-          account_name: this.form.account_name,
-          reference_no: this.form.reference_no,
-          transaction_no: this.form.transaction_no,
-          transaction_type: this.form.transaction_type,
-          transaction_date: this.form.transaction_date,
-          amount: this.form.amount,
-          credit_amount: this.form.amount,
-          debit_amount: 0,
-          amount_ex_tax: this.form.amount_ex_tax,
-          vat: this.form.vat,
-          wtax_code: 0,
-          wtax: 0,
-          user_id: this.form.user_id,
-          useful_life: 0,
-          salvage_value: 0,
-          total_payment: 0,
-          status: 'CONFIRMED',
-          depreciation_date: this.form.transaction_date,
-          depreciated_id: 0,
-          useful_life: 0,
-          salvage_value: 0
-      });
-      */
-      // Save Transactions START
+      this.transaction_created = false; // Save Transactions START
 
       var rawData = {
         transactions: this.transactions
@@ -7617,31 +7589,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })["catch"](function (error) {
         console.log(error);
       }); // Save Transactions END
+
+      /*
       // Save Items START
-
-      var rawItemData = {
-        items: this.items
-      };
+      let rawItemData = {
+          items: this.items
+      }
       rawItemData = JSON.stringify(rawItemData);
-      var formItemData = new FormData();
-      formItemData.append('items', rawItemData);
+      let formItemData = new FormData();
+          formItemData.append('items', rawItemData);
       axios.post('api/items', formItemData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      }).then(function (response) {
-        console.log(response);
-      })["catch"](function (error) {
-        console.log(error);
-      }); // Save Items END
-      // Update Payee Account START ********************
-
+          headers: {
+              'Content-Type': 'multipart/form-data'
+          }
+      })
+      .then((response)=>{
+          
+          console.log(response);
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
+      // Save Items END
+       // Update Payee Account START ********************
       axios.post('api/update_payee_account', {
-        payee_id: this.form.payee_id,
-        amount: this.form.amount,
-        operation: 'add',
-        account: 'payable'
-      }).then(function (response) {})["catch"](function () {}); // Update Payee Account END ********************
+          payee_id: this.form.payee_id,
+          amount: this.form.amount,
+          operation: 'add',
+          account: 'payable',
+      })
+      .then((response)=>{
+       })
+      .catch(()=>{
+          
+      });
+      // Update Payee Account END ********************
+      */
 
       swal.fire({
         title: 'Saved!',
@@ -7687,6 +7670,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.searchWTax = '';
       this.current_debit_amount = 0;
       this.current_credit_amount = 0;
+      this.main_account_code = 0;
+      this.transaction_entry_id = 0;
+      this.main_account_code = 0;
+      this.current_atc = '';
+      this.current_wtax_code = '';
     },
     cancelTransaction: function cancelTransaction() {
       this.transaction_created = false;
@@ -7841,7 +7829,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
         depreciated_id: 0,
-        description: account_name + '-' + this.main_account_code,
+        description: account_name + ' - ' + this.main_account_code,
         taxed: 'NA',
         tax_of_id: this.transaction_entry_id - 1,
         tax_of_account: this.main_account_code,
@@ -8050,7 +8038,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
         depreciated_id: 0,
-        description: account_name + '-' + main_account_code,
+        description: account_name + ' - ' + main_account_code,
         taxed: 'NA',
         tax_of_id: transaction_entry_id,
         tax_of_account: main_account_code,
@@ -9610,7 +9598,8 @@ __webpack_require__.r(__webpack_exports__);
         depreciation_date: this.form.transaction_date,
         depreciated_id: 0,
         useful_life: 0,
-        salvage_value: 0
+        salvage_value: 0,
+        description: ''
       }); // Save Transactions START
 
       var rawData = {
@@ -9856,7 +9845,8 @@ __webpack_require__.r(__webpack_exports__);
         depreciation_date: this.form.transaction_date,
         depreciated_id: 0,
         useful_life: 0,
-        salvage_value: 0
+        salvage_value: 0,
+        description: ''
       });
       $('#entry-payment').modal('hide'); //this.loadPayments();
 
@@ -11040,7 +11030,8 @@ __webpack_require__.r(__webpack_exports__);
         salvage_value: 0,
         taxed: 'NA',
         tax_of_id: 0,
-        tax_of_account: 0
+        tax_of_account: 0,
+        description: ''
       }); // Save Transactions START
 
       var rawData = {
@@ -11399,7 +11390,8 @@ __webpack_require__.r(__webpack_exports__);
         depreciated_id: 0,
         taxed: this.taxed,
         tax_of_id: 0,
-        tax_of_account: 0
+        tax_of_account: 0,
+        description: ''
       });
 
       if (this.form_entry.vat) {
@@ -11436,7 +11428,8 @@ __webpack_require__.r(__webpack_exports__);
           salvage_value: 0,
           taxed: 'NA',
           tax_of_id: this.transaction_entry_id - 1,
-          tax_of_account: this.form_entry.account_code
+          tax_of_account: this.form_entry.account_code,
+          description: ''
         });
       }
 
@@ -12688,7 +12681,8 @@ __webpack_require__.r(__webpack_exports__);
         salvage_value: 0,
         taxed: 'NA',
         tax_of_id: 0,
-        tax_of_account: 0
+        tax_of_account: 0,
+        description: ''
       });
 
       if (this.form.wtax > 0) {
@@ -12725,7 +12719,8 @@ __webpack_require__.r(__webpack_exports__);
           salvage_value: 0,
           taxed: 'NA',
           tax_of_id: 0,
-          tax_of_account: 0
+          tax_of_account: 0,
+          description: ''
         });
       } // Save Transactions START
 
@@ -13050,7 +13045,8 @@ __webpack_require__.r(__webpack_exports__);
         salvage_value: 0,
         taxed: this.taxed,
         tax_of_id: 0,
-        tax_of_account: 0
+        tax_of_account: 0,
+        description: ''
       });
 
       if (this.form_entry.vat) {
@@ -13087,7 +13083,8 @@ __webpack_require__.r(__webpack_exports__);
           salvage_value: 0,
           taxed: 'NA',
           tax_of_id: this.transaction_entry_id - 1,
-          tax_of_account: this.form_entry.account_code
+          tax_of_account: this.form_entry.account_code,
+          description: ''
         });
       }
 

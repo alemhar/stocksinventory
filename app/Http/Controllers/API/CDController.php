@@ -408,7 +408,7 @@ class CDController extends Controller
                 'taxed' => $transaction->taxed, // YES|NO (For main account)
                 'tax_of_id' => $transaction->tax_of_id, // id of taxed account (For input tax)
                 'tax_of_account' => $transaction->tax_of_account, // main account of tax (For input tax)
-                
+                'description' => $transaction->description
             ]);
 
             

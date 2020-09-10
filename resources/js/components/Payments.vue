@@ -810,7 +810,8 @@
                 depreciation_date: this.form.transaction_date,
                 depreciated_id: 0,
                 useful_life: 0,
-                salvage_value: 0
+                salvage_value: 0,
+                description: ''
             });
 
                 // Save Transactions START
@@ -1120,7 +1121,8 @@
                 depreciation_date: this.form.transaction_date,
                 depreciated_id: 0,
                 useful_life: 0,
-                salvage_value: 0
+                salvage_value: 0,
+                description: ''
             });
 
 

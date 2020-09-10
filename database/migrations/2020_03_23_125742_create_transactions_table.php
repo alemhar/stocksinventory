@@ -49,6 +49,10 @@ class CreateTransactionsTable extends Migration
             $table->decimal('salvage_value', 14, 2)->default(0);
             $table->string('status', 20)->default('UNCONFIRMED');
             $table->integer('branch_id')->unsigned()->default(0);
+            $table->string('description');
+            $table->string('taxed');
+            $table->integer('tax_of_id')->unsigned();
+            $table->integer('tax_of_account')->unsigned();
             $table->timestamps();
         });
     }

@@ -54,6 +54,11 @@ class Transaction extends Model
 						'depreciation_date',
 						'depreciated_id',
 						'counterpart_code',
-            			'counterpart_name'
+						'counterpart_name',
+						'description',
+						'taxed',
+						'tax_of_id',
+						'tax_of_account',
+						'entity_type'
     					];
 }
