@@ -27,13 +27,9 @@
                 </div>
             </div>
           </div>  
-          <!-- CD List -->    
-
-
               <div  v-show="true" class="box box-warning mt-2">
                 <div class="col-md-12">
                   <div class="box">
-                    
 
 
                     <!-- /.box-header -->
