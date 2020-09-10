@@ -202,15 +202,17 @@
         },
 
         created() {
+            /*
             this.initChartAccounts();
             this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
             $(document).on('hidden.bs.modal', '.modal', function () {
                 $('.modal:visible').length && $(document.body).addClass('modal-open');
             });
-
+            */
             
         },
         computed: {
+            /*
             runningBalance(){
                  return this.ledgers.data.map((ledger) => {
                     this.running_balance = this.running_balance + Number(ledger.debit_amount - ledger.credit_amount);
@@ -218,7 +220,7 @@
                     return this.running_balance.toFixed(2);
                  });
             }  
-          
+            */          
 
         },
         components: {

@@ -13598,21 +13598,24 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
+    /*
     this.initChartAccounts();
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
     $(document).on('hidden.bs.modal', '.modal', function () {
-      $('.modal:visible').length && $(document.body).addClass('modal-open');
+        $('.modal:visible').length && $(document.body).addClass('modal-open');
     });
+    */
   },
   computed: {
-    runningBalance: function runningBalance() {
-      var _this4 = this;
-
-      return this.ledgers.data.map(function (ledger) {
-        _this4.running_balance = _this4.running_balance + Number(ledger.debit_amount - ledger.credit_amount);
-        return _this4.running_balance.toFixed(2);
-      });
-    }
+    /*
+    runningBalance(){
+         return this.ledgers.data.map((ledger) => {
+            this.running_balance = this.running_balance + Number(ledger.debit_amount - ledger.credit_amount);
+            
+            return this.running_balance.toFixed(2);
+         });
+    }  
+    */
   },
   components: {}
 });
