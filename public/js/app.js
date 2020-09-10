@@ -82119,7 +82119,8 @@ var render = function() {
                                           return _vm.selectWTax(
                                             Wtax.wtax_code,
                                             Wtax.tax_rate,
-                                            Wtax.atc
+                                            Wtax.atc,
+                                            Wtax.description
                                           )
                                         }
                                       }

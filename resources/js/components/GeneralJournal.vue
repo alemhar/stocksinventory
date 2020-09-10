@@ -880,7 +880,7 @@
                   <td>{{ Wtax.wtax_code }}</td>
                   <td>{{ Wtax.description }}</td> 
                   <td>
-                    <a href="#" @click="selectWTax(Wtax.wtax_code,Wtax.tax_rate,Wtax.atc)">Select
+                    <a href="#" @click="selectWTax(Wtax.wtax_code,Wtax.tax_rate,Wtax.atc,Wtax.description)">Select
                       <i class="fa fa-edit"></i>
                     </a>
                   </td>
@@ -1334,6 +1334,7 @@
                       this.current_atc_description = description;
 
                       this.current_wtax_code = wtax_code.toUpperCase();
+
                       this.wTaxExist = this.Wtaxes.data.find(tax => tax.wtax_code == this.current_wtax_code);
                       if(this.wTaxExist){
                         this.wtax_amount = (this.form.current_debit_amount * (this.wTaxExist.tax_rate/100)).toFixed(2) * 1;
@@ -1352,6 +1353,7 @@
               if(this.wTaxCodeInvalid){
                 return false; // ******* ADD Alert
               }
+
               $('#select-wtax').modal('hide');  
           },
           saveItem(main_account_code,debit_amount,credit_amount,entity_type,payee_id,payee_name,branch_id,type,transaction_entry_id){
