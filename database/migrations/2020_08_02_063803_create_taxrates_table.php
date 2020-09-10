@@ -18,7 +18,7 @@ class CreateTaxratesTable extends Migration
             $table->string('tax_type')->default('WE');
             $table->integer('tax_rate')->unsigned();
             $table->string('atc');
-            $table->string('atc_code');
+            $table->string('wtax_code');
             $table->string('description');
             $table->string('condition');
             $table->timestamps();

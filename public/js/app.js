@@ -6459,6 +6459,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -7481,7 +7483,7 @@ __webpack_require__.r(__webpack_exports__);
       vat: 0,
       payee_name: '',
       Wtaxes: {},
-      current_atc_code: 0,
+      current_wtax_code: 0,
       current_tax_rate: 0,
       current_atc: '',
       current_atc_description: '',
@@ -7722,7 +7724,7 @@ __webpack_require__.r(__webpack_exports__);
       this.active_debit_row = 0;
       this.current_entity_type = '';
       this.Wtaxes = {};
-      this.current_atc_code = 0;
+      this.current_wtax_code = 0;
       this.current_tax_rate = 0;
       this.current_atc = '';
       this.current_atc_description = '';
@@ -7768,19 +7770,19 @@ __webpack_require__.r(__webpack_exports__);
     selectWTax: function selectWTax() {
       var _this6 = this;
 
-      var atc_code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      var wtax_code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
       var tax_rate = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
       var atc = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var description = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
 
-      if (atc_code) {
+      if (wtax_code) {
         //this.current_atc_code = atc_code;
         this.current_tax_rate = tax_rate;
         this.current_atc = atc;
         this.current_atc_description = description;
-        this.current_wtax_code = this.atc_code.toUpperCase();
+        this.current_wtax_code = this.wtax_code.toUpperCase();
         this.wTaxExist = this.Wtaxes.data.find(function (tax) {
-          return tax.atc_code == _this6.current_wtax_code;
+          return tax.wtax_code == _this6.current_wtax_code;
         });
 
         if (this.wTaxExist) {
@@ -7791,49 +7793,94 @@ __webpack_require__.r(__webpack_exports__);
           this.wTaxCodeInvalid = true;
           this.wtax_amount = 0; //this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat);
         }
+      } else {
+        this.wTaxCodeInvalid = true;
+        this.wtax_amount = 0;
+      }
+
+      if (this.wTaxCodeInvalid) {
+        return false; // ******* ADD Alert
       }
 
       $('#select-wtax').modal('hide');
     },
-    saveItem: function saveItem() {
+    saveItem: function saveItem(main_account_code, debit_amount, credit_amount, entity_type, payee_id, payee_name, branch_id, type, transaction_entry_id) {
       this.save_button_item_enabled = false; //this.current_debit_amount = debit_amount;
       //this.current_credit_amount = credit_amount;
 
+      var account_name = '';
+      var account_code = 0;
+      var account_type = '';
+      var sub_account_type = '';
+      var main_code = 0;
+      var main_account = 'NA';
+      var debit_tax = 0;
+      var credit_tax = 0;
+      var amount = 0;
+      this.vat = ((debit_amount * 1 + credit_amount * 1) * 0.12).toFixed(2) * 1;
+      amount = this.vat;
+
+      if (debit_amount * 1) {
+        account_name = 'Creditable WTax';
+        account_code = '11051200';
+        account_type = 'ASSETS';
+        sub_account_type = 'CURRENT ASSETS';
+        main_code = 0;
+        main_account = 'NA';
+        debit_tax = this.vat;
+        entity_type = 'NA';
+        type = 'NA';
+      } else {
+        account_name = 'Payable WTax';
+        account_code = '21051200';
+        account_type = 'LIABILITIES';
+        sub_account_type = 'CURRENT LIABILITIES';
+        main_code = 0;
+        main_account = 'NA';
+        credit_tax = this.vat;
+        entity_type = 'NA';
+        type = 'NA';
+      }
+
       ++this.transaction_entry_id;
-      this.transactions.push({
+      this.transactions.push(_defineProperty({
         // *************************
-        account_type: 'ASSETS',
-        sub_account_type: 'CURRENT ASSETS',
-        main_code: 0,
-        main_account: 'NA',
-        type: 'NA',
+        account_type: account_type,
+        sub_account_type: sub_account_type,
+        main_code: main_code,
+        main_account: main_account,
+        type: type,
         entity_type: this.current_entity_type,
-        //
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.current_payee_id,
         branch_id: this.current_branch_id,
-        account_code: '11051200',
-        account_name: 'Creditable WTax',
+        account_code: account_code,
+        account_name: account_name,
         reference_no: 'NA',
         transaction_no: this.form.transaction_no,
         transaction_type: this.form.transaction_type,
         transaction_date: this.form.transaction_date,
-        amount: this.wtax_amount,
-        credit_amount: 0,
-        debit_amount: this.wtax_amount,
-        total_payment: 0,
+        amount: amount,
+        credit_amount: credit_tax,
+        debit_amount: debit_tax,
         amount_ex_tax: 0,
         vat: 0,
-        wtax_code: this.current_wtax_code,
-        wtax: this.wtax_amount,
-        atc: this.current_atc,
+        wtax_code: 0,
+        wtax: 0,
         user_id: this.form.user_id,
+        useful_life: 0,
+        salvage_value: 0,
+        total_payment: 0,
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
         depreciated_id: 0,
-        useful_life: 0,
-        salvage_value: 0
-      });
+        description: account_name + '-' + main_account_code,
+        taxed: 'NA',
+        tax_of_id: transaction_entry_id,
+        tax_of_account: main_account_code,
+        tax_entry: true,
+        atc: this.current_atc
+      }, "wtax_code", this.current_wtax_code));
       $('#entry-items').modal('hide');
     },
     SearchWTax: function SearchWTax() {
@@ -8052,54 +8099,18 @@ __webpack_require__.r(__webpack_exports__);
       this.save_button_entry_enabled = true;
       $('#entry-details').modal('show');
     },
-    addWTax: function addWTax(debit_amount, credit_amount, entity_type, payee_id, payee_name, branch_id) {
+    addWTax: function addWTax(main_account_code, debit_amount, credit_amount, entity_type, payee_id, payee_name, branch_id, type, transaction_entry_id) {
+      this.main_account_code = main_account_code;
       this.current_debit_amount = debit_amount;
       this.current_credit_amount = credit_amount;
       this.current_entity_type = entity_type;
       this.current_payee_id = payee_id;
       this.current_payee_name = payee_name;
       this.current_branch_id = branch_id;
-      /*
-      if(this.depreciates && this.items.length > 0){
-        swal.fire({
-            title: 'Warning!',
-            text: "Can only add one(1) item for "+ this.form_entry.account_name+ ". \nAdd another "+ this.form_entry.account_name+ " to enter another item.",
-            type: 'info',
-            showCancelButton: false,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ok'
-        }).then((result) => {
-            
-        });
-         return false;
-      }
-      */
-
-      /*
-      if(this.form_entry.account_code == 0) {
-        this.no_entry_account_code = true;
-      } else {
-        this.no_entry_account_code = false;
-      }
-       if (this.no_entry_account_code){
-        return false;
-      }
-      */
-
+      this.current_branch_id = type;
+      this.current_branch_id = transaction_entry_id;
       this.save_button_item_enabled = true;
-      this.editmode = false; //this.form_item.reset();
-
-      /*  
-      this.no_item = false;
-      this.no_price = false;
-      this.no_quantity = false;
-      this.form_item.transaction_entry_id = this.transaction_entry_id;
-      this.form_item.transaction_no = this.form.transaction_no;
-      this.form_item.transaction_type = this.transaction_type;
-      this.form_item.account_code = this.form_entry.account_code;
-      */
-
+      this.editmode = false;
       $('#entry-items').modal('show');
     },
     cancelEntry: function cancelEntry() {
@@ -81591,24 +81602,24 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.current_atc_code,
-                        expression: "current_atc_code"
+                        value: _vm.current_wtax_code,
+                        expression: "current_wtax_code"
                       }
                     ],
                     staticClass: "form-control col-4",
                     attrs: {
                       type: "text",
-                      name: "current_atc_code",
+                      name: "current_wtax_code",
                       readonly: "",
                       "aria-describedby": "inputGroup-sizing-default"
                     },
-                    domProps: { value: _vm.current_atc_code },
+                    domProps: { value: _vm.current_wtax_code },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.current_atc_code = $event.target.value
+                        _vm.current_wtax_code = $event.target.value
                       }
                     }
                   }),
@@ -81645,7 +81656,7 @@ var render = function() {
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
-                      name: "current_atc_code",
+                      name: "current_wtax_code",
                       readonly: "",
                       "aria-describedby": "inputGroup-sizing-default"
                     },
@@ -82094,7 +82105,7 @@ var render = function() {
                             _vm._v(" "),
                             _vm._l(_vm.Wtaxes.data, function(Wtax) {
                               return _c("tr", { key: Wtax.id }, [
-                                _c("td", [_vm._v(_vm._s(Wtax.atc_code))]),
+                                _c("td", [_vm._v(_vm._s(Wtax.wtax_code))]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(Wtax.description))]),
                                 _vm._v(" "),
@@ -82106,7 +82117,7 @@ var render = function() {
                                       on: {
                                         click: function($event) {
                                           return _vm.selectWTax(
-                                            Wtax.atc_code,
+                                            Wtax.wtax_code,
                                             Wtax.tax_rate,
                                             Wtax.atc
                                           )
