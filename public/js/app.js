@@ -7311,6 +7311,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -7428,6 +7445,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       searchWTax: '',
       current_debit_amount: 0,
       current_credit_amount: 0,
+      wtax_amount: 0,
       readabilityObject: {
         fontSize: user.font_size
       }
@@ -7726,15 +7744,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           if (this.current_debit_amount * 1) {
             this.wtax_debit_amount = (this.current_debit_amount * (this.wTaxExist.tax_rate / 100)).toFixed(2) * 1;
             this.wtax_credit_amount = 0;
+            this.wtax_amount = this.wtax_debit_amount;
           } else {
             this.wtax_credit_amount = (this.current_credit_amount * (this.wTaxExist.tax_rate / 100)).toFixed(2) * 1;
             this.wtax_debit_amount = 0;
+            this.wtax_amount = this.wtax_credit_amount;
           }
 
           this.wTaxCodeInvalid = false;
         } else {
           this.wTaxCodeInvalid = true;
-          this.wtax_amount = 0; //this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat);
+          this.wtax_amount = 0;
+          this.wtax_debit_amount = 0;
+          this.wtax_credit_amount = 0; //this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat);
         }
       } else {
         this.wTaxCodeInvalid = true;
@@ -7756,8 +7778,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var main_code = 0;
       var main_account = 'NA';
       var debit_tax = 0;
-      var credit_tax = 0;
-      var amount = 0;
+      var credit_tax = 0; //let amount = 0;
+
       var entity_type = '';
       var type = ''; //this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
       //amount =  this.vat;
@@ -7834,6 +7856,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.current_payee_name = '';
       this.current_branch_id = 0;
       this.current_type = '';
+      this.wtax_amount = 0;
       $('#entry-items').modal('hide');
     },
     SearchWTax: function SearchWTax() {
@@ -81624,6 +81647,68 @@ var render = function() {
                       }
                     }
                   })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group mb-2" }, [
+                  _vm._m(14),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.current_tax_rate,
+                        expression: "current_tax_rate "
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      name: "current_tax_rate",
+                      readonly: "",
+                      "aria-describedby": "inputGroup-sizing-default"
+                    },
+                    domProps: { value: _vm.current_tax_rate },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.current_tax_rate = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group mb-2" }, [
+                  _vm._m(15),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.current_tax_rate,
+                        expression: "current_tax_rate "
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      name: "current_tax_rate",
+                      readonly: "",
+                      "aria-describedby": "inputGroup-sizing-default"
+                    },
+                    domProps: { value: _vm.current_tax_rate },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.current_tax_rate = $event.target.value
+                      }
+                    }
+                  })
                 ])
               ]),
               _vm._v(" "),
@@ -81680,7 +81765,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(14),
+              _vm._m(16),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -81719,7 +81804,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(15),
+                            _vm._m(17),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -81768,7 +81853,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(16)
+                _vm._m(18)
               ])
             ])
           ]
@@ -81799,7 +81884,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(17),
+              _vm._m(19),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -81838,7 +81923,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(18),
+                            _vm._m(20),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -81877,7 +81962,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(19)
+                _vm._m(21)
               ])
             ])
           ]
@@ -81908,7 +81993,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(20),
+              _vm._m(22),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -81947,7 +82032,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(21),
+                            _vm._m(23),
                             _vm._v(" "),
                             _vm._l(_vm.branches.data, function(branch) {
                               return _c("tr", { key: branch.id }, [
@@ -81985,7 +82070,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(22)
+                _vm._m(24)
               ])
             ])
           ]
@@ -82016,7 +82101,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(23),
+              _vm._m(25),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -82055,7 +82140,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(24),
+                            _vm._m(26),
                             _vm._v(" "),
                             _vm._l(_vm.Wtaxes.data, function(Wtax) {
                               return _c("tr", { key: Wtax.id }, [
@@ -82095,7 +82180,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(25)
+                _vm._m(27)
               ])
             ])
           ]
@@ -82309,6 +82394,30 @@ var staticRenderFns = [
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Description")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Percent(%)")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Percent(%)")]
       )
     ])
   },

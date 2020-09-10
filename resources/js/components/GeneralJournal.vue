@@ -554,6 +554,23 @@
                 <input v-model="current_atc_description " type="text" name="current_wtax_code"
                   class="form-control" readonly aria-describedby="inputGroup-sizing-default">
               </div>
+
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text inputGroup-sizing-default">Percent(%)</span>
+                </div>
+                
+                <input v-model="current_tax_rate " type="text" name="current_tax_rate"
+                  class="form-control" readonly aria-describedby="inputGroup-sizing-default">
+              </div>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text inputGroup-sizing-default">Percent(%)</span>
+                </div>
+                
+                <input v-model="current_tax_rate " type="text" name="current_tax_rate"
+                  class="form-control" readonly aria-describedby="inputGroup-sizing-default">
+              </div>
               
 
             </div>
@@ -970,6 +987,7 @@
               searchWTax: '',
               current_debit_amount: 0,
               current_credit_amount: 0,
+              wtax_amount: 0,
               readabilityObject: {
                 fontSize: user.font_size
               }
@@ -1280,15 +1298,19 @@
                         if(this.current_debit_amount * 1){
                           this.wtax_debit_amount = (this.current_debit_amount * (this.wTaxExist.tax_rate/100)).toFixed(2) * 1;
                           this.wtax_credit_amount = 0;
+                          this.wtax_amount = this.wtax_debit_amount;
                         } else {
                           this.wtax_credit_amount = (this.current_credit_amount * (this.wTaxExist.tax_rate/100)).toFixed(2) * 1;
                           this.wtax_debit_amount = 0;
+                          this.wtax_amount = this.wtax_credit_amount;
                         }
 
                         this.wTaxCodeInvalid = false;
                       } else {
                           this.wTaxCodeInvalid = true; 
                           this.wtax_amount = 0;
+                          this.wtax_debit_amount = 0;
+                          this.wtax_credit_amount = 0;
                           //this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat);
                       }
                       
@@ -1315,7 +1337,7 @@
               let main_account = 'NA';
               let debit_tax = 0;
               let credit_tax = 0;
-              let amount = 0;
+              //let amount = 0;
               let entity_type ='';
               let type = '';
 
@@ -1401,7 +1423,7 @@
                 this.current_payee_name = '';
                 this.current_branch_id = 0;
                 this.current_type = '';
-                
+                this.wtax_amount = 0;
             $('#entry-items').modal('hide');
             
           },
