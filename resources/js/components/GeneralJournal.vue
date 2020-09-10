@@ -1663,6 +1663,11 @@
               this.form_entry.transaction_type = this.transaction_type;
               this.save_button_entry_enabled = true;
               
+              this.current_tax_rate = 0;
+              this.current_atc = '';
+              this.current_atc_description = '';
+              this.current_wtax_code = 0;
+              this.wtax_amount = 0;        
 
 
               $('#entry-details').modal('show');

@@ -8079,6 +8079,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.form_entry.transaction_no = this.form.transaction_no;
       this.form_entry.transaction_type = this.transaction_type;
       this.save_button_entry_enabled = true;
+      this.current_tax_rate = 0;
+      this.current_atc = '';
+      this.current_atc_description = '';
+      this.current_wtax_code = 0;
+      this.wtax_amount = 0;
       $('#entry-details').modal('show');
     },
     addWTax: function addWTax(main_account_code, debit_amount, credit_amount, entity_type, payee_id, payee_name, branch_id, type, transaction_entry_id) {
