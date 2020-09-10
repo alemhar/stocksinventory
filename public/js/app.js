@@ -13532,6 +13532,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -91679,7 +91684,9 @@ var render = function() {
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "box mt-4" }, [
               _c("div", { staticClass: "box-header" }, [
-                _c("h3", { staticClass: "box-title" }, [_vm._v("Ledger")]),
+                _c("h3", { staticClass: "box-title" }, [
+                  _vm._v("Transactions")
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "box-tools" }, [
                   _c("div", { staticClass: "input-group" }, [
@@ -91766,6 +91773,41 @@ var render = function() {
                         )
                       ])
                     ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group mb-2" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.transaction_date,
+                          expression: "form.transaction_date"
+                        }
+                      ],
+                      staticClass: "form-control col-12",
+                      attrs: {
+                        readonly: _vm.transaction_created,
+                        type: "date",
+                        id: "inputDate",
+                        placeholder: "Date"
+                      },
+                      domProps: { value: _vm.form.transaction_date },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form,
+                            "transaction_date",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
                   ])
                 ])
               ]),
@@ -91797,7 +91839,7 @@ var render = function() {
                             _c(
                               "tbody",
                               [
-                                _vm._m(1),
+                                _vm._m(2),
                                 _vm._v(" "),
                                 _vm._l(_vm.ledgers.data, function(
                                   ledger,
@@ -91870,7 +91912,7 @@ var render = function() {
                   },
                   [
                     _c("div", { staticClass: "modal-content" }, [
-                      _vm._m(2),
+                      _vm._m(3),
                       _vm._v(" "),
                       _c("form", { attrs: { onsubmit: "return false;" } }, [
                         _c("div", { staticClass: "modal-body" }, [
@@ -91915,7 +91957,7 @@ var render = function() {
                                   _c(
                                     "tbody",
                                     [
-                                      _vm._m(3),
+                                      _vm._m(4),
                                       _vm._v(" "),
                                       _vm._l(
                                         _vm.chart_of_accounts.data,
@@ -91977,7 +92019,7 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(4)
+                        _vm._m(5)
                       ])
                     ])
                   ]
@@ -91999,6 +92041,18 @@ var staticRenderFns = [
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Account")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Date")]
       )
     ])
   },

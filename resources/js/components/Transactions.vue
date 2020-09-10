@@ -5,7 +5,7 @@
         <div class="col-md-12">
           <div class="box mt-4">
           <div class="box-header">
-            <h3 class="box-title">Ledger</h3>
+            <h3 class="box-title">Transactions</h3>
             <div class="box-tools">
               <div class="input-group">
                 <div class="input-group mb-2">
@@ -19,7 +19,12 @@
                     </span>
                   </div>
               </div>
-              
+              <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text inputGroup-sizing-default">Date</span>
+                    </div>
+                    <input v-bind:readonly="transaction_created" type="date" v-model="form.transaction_date" class="form-control col-12" id="inputDate" placeholder="Date">
+                </div>
             </div>
           </div>  
           <!-- CD List -->    
