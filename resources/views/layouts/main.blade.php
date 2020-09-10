@@ -216,7 +216,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </router-link>
           </li>
-
+          @can('isAdmin')
+          <li class="nav-item">
+            <router-link to="/test" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p v-bind:style="[readabilityObject]">
+                Test Page
+              </p>
+            </router-link>
+          </li>
+          @endcan
           <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}"
                onclick="event.preventDefault();
