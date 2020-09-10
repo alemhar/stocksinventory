@@ -9,7 +9,7 @@
                 <div class="col-4">
                     <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                        <span class="input-group-text" for="inputGroupSelect01">Options</span>
                     </div>
                     <select class="custom-select" id="inputGroupSelect01">
                         <option value="ALL" selected>All</option>
@@ -151,7 +151,8 @@
               account_name: '',
               searchText: '',
               ledgers: {},
-              running_balance: 0
+              running_balance: 0,
+              transaction_date: this.getDate()
           }
         },
         methods: {
@@ -191,21 +192,14 @@
                 this.loadLedger(account_code);
 
             },
-            loadLedger(account_code) {
-                if(account_code.trim()  === "" ){
-                  return false;
-                }
-
-                axios.get('api/ledgers/'+account_code)
-                    .then((data)=>{
-                        this.running_balance = 0;
-                        this.ledgers = data.data;
-                        //console.log(this.ledgers);
-                    })
-                    .catch(()=>{
-                    //
-                    });
-            }  
+            getDate() {
+                const toTwoDigits = num => num < 10 ? '0' + num : num;
+                let today = new Date();
+                let year = today.getFullYear();
+                let month = toTwoDigits(today.getMonth() + 1);
+                let day = toTwoDigits(today.getDate());
+                return `${year}-${month}-${day}`;
+            }
         },
 
         created() {

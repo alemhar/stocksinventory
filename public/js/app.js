@@ -13549,7 +13549,8 @@ __webpack_require__.r(__webpack_exports__);
       account_name: '',
       searchText: '',
       ledgers: {},
-      running_balance: 0
+      running_balance: 0,
+      transaction_date: this.getDate()
     };
   },
   methods: {
@@ -13590,18 +13591,16 @@ __webpack_require__.r(__webpack_exports__);
       $('#select-account').modal('hide');
       this.loadLedger(account_code);
     },
-    loadLedger: function loadLedger(account_code) {
-      var _this3 = this;
+    getDate: function getDate() {
+      var toTwoDigits = function toTwoDigits(num) {
+        return num < 10 ? '0' + num : num;
+      };
 
-      if (account_code.trim() === "") {
-        return false;
-      }
-
-      axios.get('api/ledgers/' + account_code).then(function (data) {
-        _this3.running_balance = 0;
-        _this3.ledgers = data.data; //console.log(this.ledgers);
-      })["catch"](function () {//
-      });
+      var today = new Date();
+      var year = today.getFullYear();
+      var month = toTwoDigits(today.getMonth() + 1);
+      var day = toTwoDigits(today.getDate());
+      return "".concat(year, "-").concat(month, "-").concat(day);
     }
   },
   created: function created() {
@@ -91922,7 +91921,7 @@ var staticRenderFns = [
         _c("div", { staticClass: "input-group mb-3" }, [
           _c("div", { staticClass: "input-group-prepend" }, [
             _c(
-              "label",
+              "span",
               {
                 staticClass: "input-group-text",
                 attrs: { for: "inputGroupSelect01" }
