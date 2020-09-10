@@ -23,7 +23,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text inputGroup-sizing-default">Date</span>
                     </div>
-                    <input v-bind:readonly="transaction_created" type="date" v-model="form.transaction_date" class="form-control col-12" id="inputDate" placeholder="Date">
+                    <input  type="date"  class="form-control col-12" id="inputDate" placeholder="Date">
                 </div>
             </div>
           </div>  

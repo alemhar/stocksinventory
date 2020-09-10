@@ -91775,40 +91775,7 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "input-group mb-2" }, [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.transaction_date,
-                          expression: "form.transaction_date"
-                        }
-                      ],
-                      staticClass: "form-control col-12",
-                      attrs: {
-                        readonly: _vm.transaction_created,
-                        type: "date",
-                        id: "inputDate",
-                        placeholder: "Date"
-                      },
-                      domProps: { value: _vm.form.transaction_date },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.form,
-                            "transaction_date",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ])
+                  _vm._m(1)
                 ])
               ]),
               _vm._v(" "),
@@ -92048,12 +92015,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Date")]
-      )
+    return _c("div", { staticClass: "input-group mb-2" }, [
+      _c("div", { staticClass: "input-group-prepend" }, [
+        _c(
+          "span",
+          { staticClass: "input-group-text inputGroup-sizing-default" },
+          [_vm._v("Date")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control col-12",
+        attrs: { type: "date", id: "inputDate", placeholder: "Date" }
+      })
     ])
   },
   function() {
