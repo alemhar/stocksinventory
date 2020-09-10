@@ -31,7 +31,6 @@
                 <div class="col-md-12">
                   <div class="box">
 
-
                     <!-- /.box-header -->
                     <div id="cd-list" class="box-body table-responsive no-padding">
                       <table class="table table-hover">
