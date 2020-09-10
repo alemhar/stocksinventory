@@ -2,28 +2,30 @@
 
     <div class="container">
         <div class="row mt-1" v-if="$gate.isAdminOrUser()">
-        <div class="">
-            <div class="input-group">
-            <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                    <span class="input-group-text inputGroup-sizing-default">Account</span>
-                </div>
-                <input type="text" class="form-control col-2" id="inputAccountCode" placeholder="Code" @keyup.enter="loadLedger(account_code)" v-model="account_code">
-                <input readonly="true" type="text" class="form-control col-9" id="inputAccountName" placeholder="Account Name" v-model="account_name">
-                <span class="input-group-btn col-1">
-                    <button type="button" class="btn btn-success" @click="searchAccountModal"><i class="fas fa-search fa-fw"></i></button>
-                </span>
-                </div>
-            </div>
-            <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                    <span class="input-group-text inputGroup-sizing-default">Date</span>
-                </div>
-                <input  type="date"  class="form-control col-12" id="inputDate" placeholder="Date">
-            </div>
-        </div>
+        
 
         <div class="col-md-12">
+            <div class="">
+                <div class="input-group">
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text inputGroup-sizing-default">Account</span>
+                    </div>
+                    <input type="text" class="form-control col-2" id="inputAccountCode" placeholder="Code" @keyup.enter="loadLedger(account_code)" v-model="account_code">
+                    <input readonly="true" type="text" class="form-control col-9" id="inputAccountName" placeholder="Account Name" v-model="account_name">
+                    <span class="input-group-btn col-1">
+                        <button type="button" class="btn btn-success" @click="searchAccountModal"><i class="fas fa-search fa-fw"></i></button>
+                    </span>
+                    </div>
+                </div>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text inputGroup-sizing-default">Date</span>
+                    </div>
+                    <input  type="date"  class="form-control col-12" id="inputDate" placeholder="Date">
+                </div>
+            </div>
+            
           <div class="box mt-4">
           <div class="box-header">
             <h3 class="box-title">Transactions</h3>

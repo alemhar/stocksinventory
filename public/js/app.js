@@ -13534,6 +13534,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -91681,91 +91683,97 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _vm.$gate.isAdminOrUser()
       ? _c("div", { staticClass: "row mt-1" }, [
-          _c("div", {}, [
-            _c("div", { staticClass: "input-group" }, [
-              _c("div", { staticClass: "input-group mb-2" }, [
-                _vm._m(0),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.account_code,
-                      expression: "account_code"
-                    }
-                  ],
-                  staticClass: "form-control col-2",
-                  attrs: {
-                    type: "text",
-                    id: "inputAccountCode",
-                    placeholder: "Code"
-                  },
-                  domProps: { value: _vm.account_code },
-                  on: {
-                    keyup: function($event) {
-                      if (
-                        !$event.type.indexOf("key") &&
-                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                      ) {
-                        return null
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", {}, [
+              _c("div", { staticClass: "input-group" }, [
+                _c("div", { staticClass: "input-group mb-2" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.account_code,
+                        expression: "account_code"
                       }
-                      return _vm.loadLedger(_vm.account_code)
+                    ],
+                    staticClass: "form-control col-2",
+                    attrs: {
+                      type: "text",
+                      id: "inputAccountCode",
+                      placeholder: "Code"
                     },
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                    domProps: { value: _vm.account_code },
+                    on: {
+                      keyup: function($event) {
+                        if (
+                          !$event.type.indexOf("key") &&
+                          _vm._k(
+                            $event.keyCode,
+                            "enter",
+                            13,
+                            $event.key,
+                            "Enter"
+                          )
+                        ) {
+                          return null
+                        }
+                        return _vm.loadLedger(_vm.account_code)
+                      },
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.account_code = $event.target.value
                       }
-                      _vm.account_code = $event.target.value
                     }
-                  }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.account_name,
-                      expression: "account_name"
-                    }
-                  ],
-                  staticClass: "form-control col-9",
-                  attrs: {
-                    readonly: "true",
-                    type: "text",
-                    id: "inputAccountName",
-                    placeholder: "Account Name"
-                  },
-                  domProps: { value: _vm.account_name },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.account_name,
+                        expression: "account_name"
                       }
-                      _vm.account_name = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("span", { staticClass: "input-group-btn col-1" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-success",
-                      attrs: { type: "button" },
-                      on: { click: _vm.searchAccountModal }
+                    ],
+                    staticClass: "form-control col-9",
+                    attrs: {
+                      readonly: "true",
+                      type: "text",
+                      id: "inputAccountName",
+                      placeholder: "Account Name"
                     },
-                    [_c("i", { staticClass: "fas fa-search fa-fw" })]
-                  )
+                    domProps: { value: _vm.account_name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.account_name = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "input-group-btn col-1" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        attrs: { type: "button" },
+                        on: { click: _vm.searchAccountModal }
+                      },
+                      [_c("i", { staticClass: "fas fa-search fa-fw" })]
+                    )
+                  ])
                 ])
-              ])
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
             ]),
             _vm._v(" "),
-            _vm._m(1)
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "box mt-4" }, [
               _vm._m(2),
               _vm._v(" "),
