@@ -7671,7 +7671,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.current_payee_tin = '';
       this.active_debit_row = 0;
       this.current_entity_type = '';
-      this.Wtaxes = {};
       this.current_wtax_code = 0;
       this.current_tax_rate = 0;
       this.current_atc = '';
