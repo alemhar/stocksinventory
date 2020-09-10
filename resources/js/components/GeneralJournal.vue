@@ -1402,7 +1402,7 @@
                     depreciated_id: 0,
                     description: account_name+' - '+ this.main_account_code,
                     taxed: 'NA',
-                    tax_of_id: this.transaction_entry_id - 1,
+                    tax_of_id: this.current_transaction_entry_id,
                     tax_of_account: this.main_account_code,
                     tax_entry: true,
 
@@ -1542,31 +1542,18 @@
               // Return concatenated primative value with the user id. 
               return ""+n+this.user_id;
           },
-          computeTaxChange(event){
-              /*
-              if(this.form_item.price && this.form_item.quantity){
-                
-                this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
-                if(this.form_item.tax_type == 'VAT'){
-                  //this.form_item.amount = event.target.value;
-
-
-
-                  this.form_item.tax_excluded = (this.form_item.sub_total/1.12).2Fixed(2) * 1;
-
-                  this.form_item.vat = (this.form_item.tax_excluded * 0.12).2Fixed(2)  * 1;
-
-                } else {
-                  //this.form_entry.amount = event.target.value;
-                  this.form_item.vat = 0;
-                  this.form_item.tax_excluded = this.form_item.sub_total  * 1;
-                }
-
-              }
-              */
+          updateTaxed(transaction_entry_id){
+            for (let i = 0; i < this.transactions.length; i++) {
+                        if (this.transactions[i].transaction_entry_id === transaction_entry_id) {
+                          this.transactions[i].taxed = 'YES';
+                            //return;
+                        }
+                    }
           },
           
           computeTax(main_account_code,debit_amount,credit_amount,entity_type,payee_id,payee_name,branch_id,type,transaction_entry_id){
+              this.current_transaction_entry_id = transaction_entry_id;
+
               let account_name = '';
               let account_code = 0;
               let account_type = '';
@@ -1587,6 +1574,7 @@
                   main_account = 'NA';
                   debit_tax = this.vat;
                   entity_type = 'NA';
+                  this.updateTaxed(this.current_transaction_entry_id);
               } else {
                   account_name = 'Output Tax';
                   account_code = '11051100';
@@ -1636,7 +1624,7 @@
                 depreciated_id: 0,
                 description: account_name+' - '+ main_account_code,
                 taxed: 'NA',
-                tax_of_id: transaction_entry_id,
+                tax_of_id: this.current_transaction_entry_id,
                 tax_of_account: main_account_code,
                 tax_entry: true
             });  
@@ -1675,7 +1663,6 @@
 
           },
           addWTax(main_account_code,debit_amount,credit_amount,entity_type,payee_id,payee_name,branch_id,type,transaction_entry_id){
-              
               this.main_account_code = main_account_code;
               this.current_debit_amount = debit_amount;
               this.current_credit_amount = credit_amount;
@@ -1823,7 +1810,10 @@
                 depreciation_date: this.form.transaction_date,
                 depreciated_id: 0,
                 description: this.form_entry.description,
-                tax_entry: false
+                tax_entry: false,
+                taxed: 'NA',
+                tax_of_id: 0,
+                tax_of_account: 0
             });
 
 
@@ -1865,9 +1855,9 @@
               //this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).2Fixed(2) * 1;
               //this.form_entry.vat = (this.form_entry.vat - item_vat).2Fixed(2) * 1;
 
-              this.items = this.items.filter(function( item ) {
-                  return item.item_no !== item_no;
-              });
+              // this.items = this.items.filter(function( item ) {
+              //     return item.item_no !== item_no;
+              // });
               
 
           },

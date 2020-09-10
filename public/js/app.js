@@ -7849,7 +7849,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         depreciated_id: 0,
         description: account_name + ' - ' + this.main_account_code,
         taxed: 'NA',
-        tax_of_id: this.transaction_entry_id - 1,
+        tax_of_id: this.current_transaction_entry_id,
         tax_of_account: this.main_account_code,
         tax_entry: true,
         atc: this.current_atc
@@ -7973,24 +7973,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       return "" + n + this.user_id;
     },
-    computeTaxChange: function computeTaxChange(event) {
-      /*
-      if(this.form_item.price && this.form_item.quantity){
-        
-        this.form_item.sub_total = this.form_item.price * this.form_item.quantity;
-        if(this.form_item.tax_type == 'VAT'){
-          //this.form_item.amount = event.target.value;
-             this.form_item.tax_excluded = (this.form_item.sub_total/1.12).2Fixed(2) * 1;
-           this.form_item.vat = (this.form_item.tax_excluded * 0.12).2Fixed(2)  * 1;
-         } else {
-          //this.form_entry.amount = event.target.value;
-          this.form_item.vat = 0;
-          this.form_item.tax_excluded = this.form_item.sub_total  * 1;
+    updateTaxed: function updateTaxed(transaction_entry_id) {
+      for (var i = 0; i < this.transactions.length; i++) {
+        if (this.transactions[i].transaction_entry_id === transaction_entry_id) {
+          this.transactions[i].taxed = 'YES'; //return;
         }
-       }
-      */
+      }
     },
     computeTax: function computeTax(main_account_code, debit_amount, credit_amount, entity_type, payee_id, payee_name, branch_id, type, transaction_entry_id) {
+      this.current_transaction_entry_id = transaction_entry_id;
       var account_name = '';
       var account_code = 0;
       var account_type = '';
@@ -8012,6 +8003,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         main_account = 'NA';
         debit_tax = this.vat;
         entity_type = 'NA';
+        this.updateTaxed(this.current_transaction_entry_id);
       } else {
         account_name = 'Output Tax';
         account_code = '11051100';
@@ -8058,7 +8050,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         depreciated_id: 0,
         description: account_name + ' - ' + main_account_code,
         taxed: 'NA',
-        tax_of_id: transaction_entry_id,
+        tax_of_id: this.current_transaction_entry_id,
         tax_of_account: main_account_code,
         tax_entry: true
       });
@@ -8221,7 +8213,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         depreciation_date: this.form.transaction_date,
         depreciated_id: 0,
         description: this.form_entry.description,
-        tax_entry: false
+        tax_entry: false,
+        taxed: 'NA',
+        tax_of_id: 0,
+        tax_of_account: 0
       });
       $('#entry-details').modal('hide'); //this.$Progress.finish();
     },
@@ -8239,13 +8234,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       $('#entry-items').modal('hide');
     },
     computedWTax: function computedWTax() {},
-    deleteItem: function deleteItem(item_no, item_sub_total, item_tax_excluded, item_vat) {
-      //this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).2Fixed(2) * 1;
+    deleteItem: function deleteItem(item_no, item_sub_total, item_tax_excluded, item_vat) {//this.form_entry.amount = parseFloat(this.form_entry.amount - item_sub_total).2Fixed(2) * 1;
       //this.form_entry.amount_ex_tax = (this.form_entry.amount_ex_tax - item_tax_excluded).2Fixed(2) * 1;
       //this.form_entry.vat = (this.form_entry.vat - item_vat).2Fixed(2) * 1;
-      this.items = this.items.filter(function (item) {
-        return item.item_no !== item_no;
-      });
+      // this.items = this.items.filter(function( item ) {
+      //     return item.item_no !== item_no;
+      // });
     },
     branchChange: function branchChange() {
       this.form_entry.branch_id = this.selected_branch.id;
