@@ -1313,7 +1313,9 @@
               let sub_account_type = '';
               let main_code = 0;
               let main_account = 'NA';
-              
+              let debit_tax = 0;
+              let credit_tax = 0;
+              let amount = 0;
 
               //this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
               //amount =  this.vat;

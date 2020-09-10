@@ -7754,7 +7754,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var account_type = '';
       var sub_account_type = '';
       var main_code = 0;
-      var main_account = 'NA'; //this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
+      var main_account = 'NA';
+      var debit_tax = 0;
+      var credit_tax = 0;
+      var amount = 0; //this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
       //amount =  this.vat;
 
       if (this.wtax_debit_amount * 1) {
