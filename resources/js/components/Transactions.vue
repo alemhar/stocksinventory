@@ -25,7 +25,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text inputGroup-sizing-default">Date</span>
                         </div>
-                        <input  type="date"  class="form-control col-12" id="inputDate" placeholder="Date">
+                        <input  type="date" v-model="transaction_date" class="form-control col-12" id="inputDate" placeholder="Date">
                     </div>
                 </div>
             </div>

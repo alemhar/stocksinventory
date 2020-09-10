@@ -91687,10 +91687,44 @@ var render = function() {
     _vm.$gate.isAdminOrUser()
       ? _c("div", { staticClass: "row mt-1" }, [
           _c("div", { staticClass: "col-md-12" }, [
-            _vm._m(0),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-4" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group mb-2" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.transaction_date,
+                        expression: "transaction_date"
+                      }
+                    ],
+                    staticClass: "form-control col-12",
+                    attrs: {
+                      type: "date",
+                      id: "inputDate",
+                      placeholder: "Date"
+                    },
+                    domProps: { value: _vm.transaction_date },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.transaction_date = $event.target.value
+                      }
+                    }
+                  })
+                ])
+              ])
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "box mt-4" }, [
-              _vm._m(1),
+              _vm._m(2),
               _vm._v(" "),
               _c(
                 "div",
@@ -91719,7 +91753,7 @@ var render = function() {
                             _c(
                               "tbody",
                               [
-                                _vm._m(2),
+                                _vm._m(3),
                                 _vm._v(" "),
                                 _vm._l(_vm.ledgers.data, function(
                                   ledger,
@@ -91792,7 +91826,7 @@ var render = function() {
                   },
                   [
                     _c("div", { staticClass: "modal-content" }, [
-                      _vm._m(3),
+                      _vm._m(4),
                       _vm._v(" "),
                       _c("form", { attrs: { onsubmit: "return false;" } }, [
                         _c("div", { staticClass: "modal-body" }, [
@@ -91837,7 +91871,7 @@ var render = function() {
                                   _c(
                                     "tbody",
                                     [
-                                      _vm._m(4),
+                                      _vm._m(5),
                                       _vm._v(" "),
                                       _vm._l(
                                         _vm.chart_of_accounts.data,
@@ -91899,7 +91933,7 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(5)
+                        _vm._m(6)
                       ])
                     ])
                   ]
@@ -91916,71 +91950,55 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-4" }, [
-        _c("div", { staticClass: "input-group mb-3" }, [
-          _c("div", { staticClass: "input-group-prepend" }, [
-            _c(
-              "span",
-              {
-                staticClass: "input-group-text",
-                attrs: { for: "inputGroupSelect01" }
-              },
-              [_vm._v("Options")]
-            )
+    return _c("div", { staticClass: "input-group mb-3" }, [
+      _c("div", { staticClass: "input-group-prepend" }, [
+        _c(
+          "span",
+          {
+            staticClass: "input-group-text",
+            attrs: { for: "inputGroupSelect01" }
+          },
+          [_vm._v("Options")]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "select",
+        { staticClass: "custom-select", attrs: { id: "inputGroupSelect01" } },
+        [
+          _c("option", { attrs: { value: "ALL", selected: "" } }, [
+            _vm._v("All")
           ]),
           _vm._v(" "),
-          _c(
-            "select",
-            {
-              staticClass: "custom-select",
-              attrs: { id: "inputGroupSelect01" }
-            },
-            [
-              _c("option", { attrs: { value: "ALL", selected: "" } }, [
-                _vm._v("All")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "CD" } }, [
-                _vm._v("Cash Disbursements")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "CR" } }, [
-                _vm._v("Cash Receipts")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "PURCHASE" } }, [
-                _vm._v("Puchases")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "SALES" } }, [_vm._v("Sales")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "PAYMENT" } }, [
-                _vm._v("Payments")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "COLLECTION" } }, [
-                _vm._v("Collections")
-              ])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "input-group mb-2" }, [
-          _c("div", { staticClass: "input-group-prepend" }, [
-            _c(
-              "span",
-              { staticClass: "input-group-text inputGroup-sizing-default" },
-              [_vm._v("Date")]
-            )
+          _c("option", { attrs: { value: "CD" } }, [
+            _vm._v("Cash Disbursements")
           ]),
           _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control col-12",
-            attrs: { type: "date", id: "inputDate", placeholder: "Date" }
-          })
-        ])
-      ])
+          _c("option", { attrs: { value: "CR" } }, [_vm._v("Cash Receipts")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "PURCHASE" } }, [_vm._v("Puchases")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "SALES" } }, [_vm._v("Sales")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "PAYMENT" } }, [_vm._v("Payments")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "COLLECTION" } }, [
+            _vm._v("Collections")
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Date")]
+      )
     ])
   },
   function() {
