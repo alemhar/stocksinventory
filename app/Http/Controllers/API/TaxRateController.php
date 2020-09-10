@@ -15,7 +15,7 @@ class TaxRateController extends Controller
      */
     public function index()
     {
-        return Taxrate::orderBy('atc_code')->get();
+        return Taxrate::orderBy('wtax_code')->get();
     }
 
     /**

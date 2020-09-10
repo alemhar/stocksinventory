@@ -10,7 +10,7 @@ class Taxrate extends Model
         'tax_type',
         'tax_rate',
         'atc',
-        'atc_code',
+        'wtax_code',
         'description',
         'condition'
         ];
