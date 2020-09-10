@@ -205,6 +205,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </router-link>
                 </li>
                 @endcan
+                @can('isAdmin')
+                <li class="nav-item">
+                  <router-link to="/test" class="nav-link">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p v-bind:style="[readabilityObject]">
+                      Users
+                    </p>
+                  </router-link>
+                </li>
+                @endcan
             </ul>
           </li>
           <li class="nav-item">
