@@ -218,7 +218,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           @can('isAdmin')
           <li class="nav-item">
-            <router-link to="/test" class="nav-link">
+            <router-link to="/transations" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p v-bind:style="[readabilityObject]">
                 Test Page

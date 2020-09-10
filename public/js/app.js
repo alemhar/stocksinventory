@@ -108940,7 +108940,7 @@ var routes = [{
   path: '/generaljournal',
   component: __webpack_require__(/*! ./components/GeneralJournal.vue */ "./resources/js/components/GeneralJournal.vue")["default"]
 }, {
-  path: '/test',
+  path: '/transations',
   component: __webpack_require__(/*! ./components/Transactions.vue */ "./resources/js/components/Transactions.vue")["default"]
 }, {
   path: '*',

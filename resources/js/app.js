@@ -117,7 +117,7 @@ let routes = [
   { path: '/ledger', component: require('./components/Ledger.vue').default },
   { path: '/collections', component: require('./components/Collections.vue').default },
   { path: '/generaljournal', component: require('./components/GeneralJournal.vue').default },
-  { path: '/test', component: require('./components/Transactions.vue').default },
+  { path: '/transations', component: require('./components/Transactions.vue').default },
   { path: '*', component: require('./components/NotFound.vue').default }
   
 ];
