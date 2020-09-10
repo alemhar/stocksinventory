@@ -1100,8 +1100,19 @@
 
           },
           saveTransaction(){
-            if(this.form.amount == 0) {
-              return false;
+            if(this.totalDebit != this.totalCredit) {
+              swal.fire({
+                    title: 'Warning!',
+                    text: "Debit/Credit not balance",
+                    type: 'info',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ok'
+                }).then((result) => {
+                    
+                });
+                return false;
             }
             
             this.transaction_created = false; 
@@ -1292,7 +1303,20 @@
                           this.wtax_amount = 0;
               }
               if(this.wTaxCodeInvalid){
-                return false; // ******* ADD Alert
+                swal.fire({
+                    title: 'Warning!',
+                    text: "Invalid WTax Code",
+                    type: 'info',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ok'
+                }).then((result) => {
+                    
+                });
+                return false;
+
+                //return false; // ******* ADD Alert
               }
 
               $('#select-wtax').modal('hide');  

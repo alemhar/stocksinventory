@@ -7568,7 +7568,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     saveTransaction: function saveTransaction() {
       var _this4 = this;
 
-      if (this.form.amount == 0) {
+      if (this.totalDebit != this.totalCredit) {
+        swal.fire({
+          title: 'Warning!',
+          text: "Debit/Credit not balance",
+          type: 'info',
+          showCancelButton: false,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ok'
+        }).then(function (result) {});
         return false;
       }
 
@@ -7752,7 +7761,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       if (this.wTaxCodeInvalid) {
-        return false; // ******* ADD Alert
+        swal.fire({
+          title: 'Warning!',
+          text: "Invalid WTax Code",
+          type: 'info',
+          showCancelButton: false,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ok'
+        }).then(function (result) {});
+        return false; //return false; // ******* ADD Alert
       }
 
       $('#select-wtax').modal('hide');
