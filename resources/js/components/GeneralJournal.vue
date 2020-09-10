@@ -1337,7 +1337,7 @@
               let main_account = 'NA';
               let debit_tax = 0;
               let credit_tax = 0;
-              //let amount = 0;
+              let amount = 0;
               let entity_type ='';
               let type = '';
 
@@ -1353,7 +1353,7 @@
                   debit_tax = this.wtax_debit_amount;
                   entity_type = this.current_entity_type;
                   type = 'NA';
-                  amount =  this.wtax_debit_amount;
+                  amount =  this.wtax_amount;
               } else {
                   account_name = 'Payable WTax';
                   account_code = '21051200';
@@ -1364,7 +1364,7 @@
                   credit_tax = this.wtax_credit_amount;
                   entity_type = this.current_entity_type;
                   type = 'NA';
-                  amount =  this.wtax_credit_amount;
+                  amount =  this.wtax_amount;
 
               }
 
