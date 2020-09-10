@@ -1382,7 +1382,7 @@
                     depreciated_id: 0,
                     description: account_name+'-'+ this.main_account_code,
                     taxed: 'NA',
-                    tax_of_id: transaction_entry_id - 1,
+                    tax_of_id: this.transaction_entry_id - 1,
                     tax_of_account: this.main_account_code,
                     tax_entry: true,
 
