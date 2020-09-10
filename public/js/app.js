@@ -7756,7 +7756,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     searchWTaxModal: function searchWTaxModal() {
       //this.searchWTax = this.form.branch_id;
-      this.loadWTax();
       $('#select-wtax').modal('show');
     },
     loadWTax: function loadWTax() {
@@ -7780,7 +7779,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.current_tax_rate = tax_rate;
         this.current_atc = atc;
         this.current_atc_description = description;
-        this.current_wtax_code = this.wtax_code.toUpperCase();
+        this.current_wtax_code = wtax_code.toUpperCase();
         this.wTaxExist = this.Wtaxes.data.find(function (tax) {
           return tax.wtax_code == _this6.current_wtax_code;
         });
@@ -8273,6 +8272,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.loadBranch();
     this.initChartAccounts();
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
+    this.loadWTax();
     /* Scrollbar fix
        If you have a modal on your page that exceeds the browser height, then you can't scroll in it when closing an second modal. To fix this add: */
 

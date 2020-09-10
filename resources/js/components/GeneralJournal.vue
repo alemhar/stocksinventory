@@ -1313,7 +1313,7 @@
           },
           searchWTaxModal(){
               //this.searchWTax = this.form.branch_id;
-              this.loadWTax();
+              
               $('#select-wtax').modal('show');
           },
           loadWTax(){
@@ -1333,7 +1333,7 @@
                       this.current_atc = atc;
                       this.current_atc_description = description;
 
-                      this.current_wtax_code = this.wtax_code.toUpperCase();
+                      this.current_wtax_code = wtax_code.toUpperCase();
                       this.wTaxExist = this.Wtaxes.data.find(tax => tax.wtax_code == this.current_wtax_code);
                       if(this.wTaxExist){
                         this.wtax_amount = (this.form.current_debit_amount * (this.wTaxExist.tax_rate/100)).toFixed(2) * 1;
@@ -1699,12 +1699,6 @@
               this.current_branch_id = type;
               this.current_branch_id = transaction_entry_id;
 
-
-              
-
-              
-              
-
               this.save_button_item_enabled = true;
 
               this.editmode = false;
@@ -1904,7 +1898,7 @@
             this.loadBranch();
             this.initChartAccounts();
             this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
-
+            this.loadWTax();
 
             /* Scrollbar fix
                If you have a modal on your page that exceeds the browser height, then you can't scroll in it when closing an second modal. To fix this add: */
