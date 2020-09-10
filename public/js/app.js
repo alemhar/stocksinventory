@@ -81688,24 +81688,24 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.current_tax_rate,
-                        expression: "current_tax_rate "
+                        value: _vm.wtax_amount,
+                        expression: "wtax_amount "
                       }
                     ],
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
-                      name: "current_tax_rate",
+                      name: "wtax_amount",
                       readonly: "",
                       "aria-describedby": "inputGroup-sizing-default"
                     },
-                    domProps: { value: _vm.current_tax_rate },
+                    domProps: { value: _vm.wtax_amount },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.current_tax_rate = $event.target.value
+                        _vm.wtax_amount = $event.target.value
                       }
                     }
                   })
@@ -82417,7 +82417,7 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Percent(%)")]
+        [_vm._v("WTax")]
       )
     ])
   },

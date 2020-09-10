@@ -565,10 +565,10 @@
               </div>
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Percent(%)</span>
+                  <span class="input-group-text inputGroup-sizing-default">WTax</span>
                 </div>
                 
-                <input v-model="current_tax_rate " type="text" name="current_tax_rate"
+                <input v-model="wtax_amount " type="text" name="wtax_amount"
                   class="form-control" readonly aria-describedby="inputGroup-sizing-default">
               </div>
               
