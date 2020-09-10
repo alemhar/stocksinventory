@@ -13540,6 +13540,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -91687,7 +91688,7 @@ var render = function() {
     _vm.$gate.isAdminOrUser()
       ? _c("div", { staticClass: "row mt-1" }, [
           _c("div", { staticClass: "col-md-12" }, [
-            _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "row mt-3" }, [
               _c("div", { staticClass: "col-4" }, [
                 _vm._m(0),
                 _vm._v(" "),
@@ -91719,6 +91720,10 @@ var render = function() {
                       }
                     }
                   })
+                ]),
+                _vm._v(" "),
+                _c("button", { staticClass: "btn btn-primary" }, [
+                  _vm._v("Search")
                 ])
               ])
             ]),

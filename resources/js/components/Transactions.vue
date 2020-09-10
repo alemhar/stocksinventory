@@ -5,7 +5,7 @@
         
 
         <div class="col-md-12">
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col-4">
                     <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -27,6 +27,7 @@
                         </div>
                         <input  type="date" v-model="transaction_date" class="form-control col-12" id="inputDate" placeholder="Date">
                     </div>
+                    <button class="btn btn-primary">Search</button>
                 </div>
             </div>
             
