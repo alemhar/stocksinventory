@@ -20,7 +20,10 @@ class RunningAccount extends Model
         'debit_amount',
         'type',
         'user_id',
-        'status'
+        'status',
+        'taxed',
+        'entity_type',
+        'transaction_type'
         ];
 
     public function getTable()

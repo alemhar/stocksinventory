@@ -7593,10 +7593,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         headers: {
           'Content-Type': 'multipart/form-data'
         }
-      }).then(function (response) {
-        console.log(response);
-      })["catch"](function (error) {
-        console.log(error);
+      }).then(function (response) {//console.log(response);
+      })["catch"](function (error) {//console.log(error);
       }); // Save Transactions END
 
       /*

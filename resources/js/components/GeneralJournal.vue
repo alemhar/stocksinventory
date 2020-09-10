@@ -1132,10 +1132,10 @@
                 })
                 .then((response)=>{
                     
-                    console.log(response);
+                    //console.log(response);
                 })
                 .catch(function (error) {
-                    console.log(error);
+                    //console.log(error);
                 });
                 // Save Transactions END
 
