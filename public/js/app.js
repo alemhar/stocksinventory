@@ -7311,68 +7311,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -7785,7 +7723,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
 
         if (this.wTaxExist) {
-          this.wtax_amount = (this.form.current_debit_amount * (this.wTaxExist.tax_rate / 100)).toFixed(2) * 1; //this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat) - parseFloat(this.form.wtax);
+          if (this.current_debit_amount * 1) {
+            this.wtax_debit_amount = (this.current_debit_amount * (this.wTaxExist.tax_rate / 100)).toFixed(2) * 1;
+            this.wtax_credit_amount = 0;
+          } else {
+            this.wtax_credit_amount = (this.current_credit_amount * (this.wTaxExist.tax_rate / 100)).toFixed(2) * 1;
+            this.wtax_debit_amount = 0;
+          }
 
           this.wTaxCodeInvalid = false;
         } else {
@@ -7803,32 +7747,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       $('#select-wtax').modal('hide');
     },
-    saveItem: function saveItem(main_account_code, debit_amount, credit_amount, entity_type, payee_id, payee_name, branch_id, type, transaction_entry_id) {
-      this.save_button_item_enabled = false; //this.current_debit_amount = debit_amount;
-      //this.current_credit_amount = credit_amount;
-
+    saveItem: function saveItem() {
+      this.save_button_item_enabled = false;
       var account_name = '';
       var account_code = 0;
       var account_type = '';
       var sub_account_type = '';
       var main_code = 0;
-      var main_account = 'NA';
-      var debit_tax = 0;
-      var credit_tax = 0;
-      var amount = 0;
-      this.vat = ((debit_amount * 1 + credit_amount * 1) * 0.12).toFixed(2) * 1;
-      amount = this.vat;
+      var main_account = 'NA'; //this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
+      //amount =  this.vat;
 
-      if (debit_amount * 1) {
+      if (this.wtax_debit_amount * 1) {
         account_name = 'Creditable WTax';
         account_code = '11051200';
         account_type = 'ASSETS';
         sub_account_type = 'CURRENT ASSETS';
         main_code = 0;
         main_account = 'NA';
-        debit_tax = this.vat;
+        debit_tax = this.wtax_debit_amount;
         entity_type = 'NA';
         type = 'NA';
+        amount = this.wtax_debit_amount;
       } else {
         account_name = 'Payable WTax';
         account_code = '21051200';
@@ -7836,9 +7775,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         sub_account_type = 'CURRENT LIABILITIES';
         main_code = 0;
         main_account = 'NA';
-        credit_tax = this.vat;
+        credit_tax = this.wtax_credit_amount;
         entity_type = 'NA';
         type = 'NA';
+        amount = this.wtax_credit_amount;
       }
 
       ++this.transaction_entry_id;
@@ -7873,13 +7813,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         status: 'CONFIRMED',
         depreciation_date: this.form.transaction_date,
         depreciated_id: 0,
-        description: account_name + '-' + main_account_code,
+        description: account_name + '-' + this.main_account_code,
         taxed: 'NA',
-        tax_of_id: transaction_entry_id,
-        tax_of_account: main_account_code,
+        tax_of_id: transaction_entry_id - 1,
+        tax_of_account: this.main_account_code,
         tax_entry: true,
         atc: this.current_atc
       }, "wtax_code", this.current_wtax_code));
+      this.main_account_code = 0;
+      this.current_debit_amount = 0;
+      this.current_credit_amount = 0;
+      this.current_entity_type = '';
+      this.current_payee_id = 0;
+      this.current_payee_name = '';
+      this.current_branch_id = 0;
+      this.current_type = '';
       $('#entry-items').modal('hide');
     },
     SearchWTax: function SearchWTax() {
@@ -8106,8 +8054,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.current_payee_id = payee_id;
       this.current_payee_name = payee_name;
       this.current_branch_id = branch_id;
-      this.current_branch_id = type;
-      this.current_branch_id = transaction_entry_id;
+      this.current_type = type;
+      this.current_transaction_entry_id = transaction_entry_id;
       this.save_button_item_enabled = true;
       this.editmode = false;
       $('#entry-items').modal('show');

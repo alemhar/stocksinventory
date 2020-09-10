@@ -25,59 +25,6 @@
                 <div class="col-8">
 
 
-                  <!-- div class="input-group mb-2">
-
-                    <div class="input-group-prepend">
-                      <span class="input-group-text inputGroup-sizing-default"  v-bind:style="[readabilityObject]">Payee</span>
-                    </div>  
-                    <input v-model="current_payee_name" v-bind:readonly="transaction_created" type="text" class="form-control col-12" id="inputPayeeName" placeholder="Payees Name" v-bind:style="[readabilityObject]">
-                      
-                    <span class="input-group-btn col-1">
-                        <button type="button" v-show="!transaction_created" class="btn btn-success" @click="searchPayeeModal"><i class="fas fa-search fa-fw"></i></button>
-                    </span>  
-
-                    <p v-show="no_payee" class="empty-field-message">** Please select payee!</p>  
-                  
-
-                  </div -->
-                  
-
-                  <!-- div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="inputGroup-sizing-default">Address</span>
-                    </div>
-                    <input v-bind:readonly="transaction_created" type="text" class="form-control col-12" id="inputPayeesAddress" placeholder="Address" v-model="current_payee_address">
-                  </div>
-                  <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="inputGroup-sizing-default">TIN</span>
-                    </div>
-                      <input v-bind:readonly="transaction_created" type="text" class="form-control" id="inputPayeesTIN" placeholder="TIN"  v-model="current_payee_tin">
-                    
-
-                  </div -->
-
-                  <!-- div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text inputGroup-sizing-default">Account</span>
-                    </div>
-                    
-
-                    <input v-bind:readonly="transaction_created" type="text" class="form-control col-2" id="inputAccountCode" placeholder="Code"  v-model="form.account_code">
-
-                    <input readonly="true" type="text" class="form-control col-9" id="inputAccountName" placeholder="Account Name" v-model="form.account_name">
-
-                    <span class="input-group-btn col-1">
-                        <button type="button" v-show="!transaction_created" class="btn btn-success" @click="searchAccountModal('header')"><i class="fas fa-search fa-fw"></i></button>
-
-                    </span>
-                  </div>
-
-                  <div class="input-group mb-2">
-                    <p v-show="no_account_code" class="empty-field-message">** Please select account!</p>
-                  </div -->  
-
-
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Branch</span>
@@ -585,16 +532,7 @@
             </div>
             
             <div class="modal-body">
-                <!-- div class="form-group col-12 float-right">
-                <div class="row">
-                <label for="inputWTax" class="col-sm-6 col-form-label" style="text-align: right;">Withholding Tax&nbsp;&nbsp;&nbsp;<i class="fas fa-question-circle" @click="showWTaxTable"></i> <span v-if="wTaxExist" class="text-danger">  {{ this.wTaxExist.tax_rate}}%</span></label>
-                  <div class="col-sm-6">
-                    <input type="text" @blur="computedWTax" v-model="form.wtax_code" class="form-control col-12" id="inputwtax_code" placeholder="ATC Code">
-                    <span v-if="!wTaxExist" class="text-danger"> Code Not Found!</span>
-                  </div>
-                  
-                </div>
-              </div -->
+
 
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
@@ -1326,9 +1264,11 @@
                 });
           },
           selectWTax(wtax_code = null,tax_rate = null,atc = null, description = null){
+              
+              
+
               if(wtax_code){
                       //this.current_atc_code = atc_code;
-                      
                       this.current_tax_rate = tax_rate;
                       this.current_atc = atc;
                       this.current_atc_description = description;
@@ -1337,8 +1277,14 @@
 
                       this.wTaxExist = this.Wtaxes.data.find(tax => tax.wtax_code == this.current_wtax_code);
                       if(this.wTaxExist){
-                        this.wtax_amount = (this.form.current_debit_amount * (this.wTaxExist.tax_rate/100)).toFixed(2) * 1;
-                        //this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat) - parseFloat(this.form.wtax);
+                        if(this.current_debit_amount * 1){
+                          this.wtax_debit_amount = (this.current_debit_amount * (this.wTaxExist.tax_rate/100)).toFixed(2) * 1;
+                          this.wtax_credit_amount = 0;
+                        } else {
+                          this.wtax_credit_amount = (this.current_credit_amount * (this.wTaxExist.tax_rate/100)).toFixed(2) * 1;
+                          this.wtax_debit_amount = 0;
+                        }
+
                         this.wTaxCodeInvalid = false;
                       } else {
                           this.wTaxCodeInvalid = true; 
@@ -1356,11 +1302,10 @@
 
               $('#select-wtax').modal('hide');  
           },
-          saveItem(main_account_code,debit_amount,credit_amount,entity_type,payee_id,payee_name,branch_id,type,transaction_entry_id){
+          saveItem(){
             this.save_button_item_enabled = false;
 
-              //this.current_debit_amount = debit_amount;
-              //this.current_credit_amount = credit_amount;
+
 
               let account_name = '';
               let account_code = 0;
@@ -1368,21 +1313,21 @@
               let sub_account_type = '';
               let main_code = 0;
               let main_account = 'NA';
-              let debit_tax = 0;
-              let credit_tax = 0;
-              let amount = 0;
-              this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
-              amount =  this.vat;
-              if(debit_amount * 1){
+              
+
+              //this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
+              //amount =  this.vat;
+              if(this.wtax_debit_amount * 1){
                   account_name = 'Creditable WTax';
                   account_code = '11051200';
                   account_type = 'ASSETS';
                   sub_account_type = 'CURRENT ASSETS';
                   main_code = 0;
                   main_account = 'NA';
-                  debit_tax = this.vat;
+                  debit_tax = this.wtax_debit_amount;
                   entity_type = 'NA';
                   type = 'NA';
+                  amount =  this.wtax_debit_amount;
               } else {
                   account_name = 'Payable WTax';
                   account_code = '21051200';
@@ -1390,9 +1335,10 @@
                   sub_account_type = 'CURRENT LIABILITIES';
                   main_code = 0;
                   main_account = 'NA';
-                  credit_tax = this.vat;
+                  credit_tax = this.wtax_credit_amount;
                   entity_type = 'NA';
                   type = 'NA';
+                  amount =  this.wtax_credit_amount;
 
               }
 
@@ -1430,16 +1376,27 @@
                     status: 'CONFIRMED',
                     depreciation_date: this.form.transaction_date,
                     depreciated_id: 0,
-                    description: account_name+'-'+ main_account_code,
+                    description: account_name+'-'+ this.main_account_code,
                     taxed: 'NA',
-                    tax_of_id: transaction_entry_id,
-                    tax_of_account: main_account_code,
+                    tax_of_id: transaction_entry_id - 1,
+                    tax_of_account: this.main_account_code,
                     tax_entry: true,
 
                     atc: this.current_atc,
                     wtax_code: this.current_wtax_code
                     
                 });  
+
+                this.main_account_code = 0;
+                this.current_debit_amount = 0;
+                this.current_credit_amount = 0;
+                this.current_entity_type = '';
+                this.current_payee_id = 0;
+
+                this.current_payee_name = '';
+                this.current_branch_id = 0;
+                this.current_type = '';
+                
             $('#entry-items').modal('hide');
             
           },
@@ -1698,8 +1655,8 @@
 
               this.current_payee_name = payee_name;
               this.current_branch_id = branch_id;
-              this.current_branch_id = type;
-              this.current_branch_id = transaction_entry_id;
+              this.current_type = type;
+              this.current_transaction_entry_id = transaction_entry_id;
 
               this.save_button_item_enabled = true;
 
