@@ -7757,7 +7757,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var main_account = 'NA';
       var debit_tax = 0;
       var credit_tax = 0;
-      var amount = 0; //this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
+      var amount = 0;
+      var entity_type = '';
+      var type = ''; //this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
       //amount =  this.vat;
 
       if (this.wtax_debit_amount * 1) {
@@ -7768,7 +7770,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         main_code = 0;
         main_account = 'NA';
         debit_tax = this.wtax_debit_amount;
-        entity_type = 'NA';
+        entity_type = this.current_entity_type;
         type = 'NA';
         amount = this.wtax_debit_amount;
       } else {
@@ -7779,7 +7781,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         main_code = 0;
         main_account = 'NA';
         credit_tax = this.wtax_credit_amount;
-        entity_type = 'NA';
+        entity_type = this.current_entity_type;
         type = 'NA';
         amount = this.wtax_credit_amount;
       }

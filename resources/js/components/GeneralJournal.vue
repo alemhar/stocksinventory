@@ -1316,6 +1316,8 @@
               let debit_tax = 0;
               let credit_tax = 0;
               let amount = 0;
+              let entity_type ='';
+              let type = '';
 
               //this.vat = (((debit_amount * 1) + (credit_amount * 1)) * 0.12).toFixed(2)  * 1;
               //amount =  this.vat;
@@ -1327,7 +1329,7 @@
                   main_code = 0;
                   main_account = 'NA';
                   debit_tax = this.wtax_debit_amount;
-                  entity_type = 'NA';
+                  entity_type = this.current_entity_type;
                   type = 'NA';
                   amount =  this.wtax_debit_amount;
               } else {
@@ -1338,7 +1340,7 @@
                   main_code = 0;
                   main_account = 'NA';
                   credit_tax = this.wtax_credit_amount;
-                  entity_type = 'NA';
+                  entity_type = this.current_entity_type;
                   type = 'NA';
                   amount =  this.wtax_credit_amount;
 
