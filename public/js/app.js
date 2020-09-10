@@ -7797,6 +7797,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         entity_type: this.current_entity_type,
         transaction_entry_id: this.transaction_entry_id,
         payee_id: this.current_payee_id,
+        payee_name: this.current_payee_name,
         branch_id: this.current_branch_id,
         account_code: account_code,
         account_name: account_name,
