@@ -7,17 +7,19 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-4">
-                    <div class="input-group">
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text inputGroup-sizing-default">Account</span>
-                        </div>
-                        <input type="text" class="form-control col-2" id="inputAccountCode" placeholder="Code" @keyup.enter="loadLedger(account_code)" v-model="account_code">
-                        <input readonly="true" type="text" class="form-control col-9" id="inputAccountName" placeholder="Account Name" v-model="account_name">
-                        <span class="input-group-btn col-1">
-                            <button type="button" class="btn btn-success" @click="searchAccountModal"><i class="fas fa-search fa-fw"></i></button>
-                        </span>
-                        </div>
+                    <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect01">
+                        <option value="ALL" selected>All</option>
+                        <option value="CD">Cash Disbursements</option>
+                        <option value="CR">Cash Receipts</option>
+                        <option value="PURCHASE">Puchases</option>
+                        <option value="SALES">Sales</option>
+                        <option value="PAYMENT">Payments</option>
+                        <option value="COLLECTION">Collections</option>
+                    </select>
                     </div>
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
