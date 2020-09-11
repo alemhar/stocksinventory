@@ -312,9 +312,13 @@
                 }
                 
                 /*
+                
+                */
+            },
+            saveReverse(){
                 // Save Transactions START
                 let rawData = {
-                    transactions: this.transactions
+                    transactions: this.transaction
                 }
                 rawData = JSON.stringify(rawData);
                 let formData = new FormData();
@@ -325,17 +329,15 @@
                     }
                 })
                 .then((response)=>{
-                    
-                    console.log(response);
+                    this.reverse = false;
+                    //console.log(response);
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
                 // Save Transactions END
-                */
-            },
-            saveReverse(){
-                this.reverse = false;
+
+                
             }
         
         },

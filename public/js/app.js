@@ -13701,31 +13701,29 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
       /*
-      // Save Transactions START
-      let rawData = {
-          transactions: this.transactions
-      }
-      rawData = JSON.stringify(rawData);
-      let formData = new FormData();
-          formData.append('transactions', rawData);
-      axios.post('api/transactions', formData, {
-          headers: {
-              'Content-Type': 'multipart/form-data'
-          }
-      })
-      .then((response)=>{
-          
-          console.log(response);
-      })
-      .catch(function (error) {
-          console.log(error);
-      });
-      // Save Transactions END
+      
       */
 
     },
     saveReverse: function saveReverse() {
-      this.reverse = false;
+      var _this5 = this;
+
+      // Save Transactions START
+      var rawData = {
+        transactions: this.transaction
+      };
+      rawData = JSON.stringify(rawData);
+      var formData = new FormData();
+      formData.append('transactions', rawData);
+      axios.post('api/transactions', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        _this5.reverse = false; //console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      }); // Save Transactions END
     }
   },
   created: function created() {
