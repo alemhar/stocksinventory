@@ -642,17 +642,16 @@ class CDController extends Controller
 
         // use when($transaction_type != 'ALL')
 
-        /*
-        if () {
-            $transaction = Transaction::with('payee')->where(function($query) use ($transaction_type){
-                $query->where('transaction_type',$transaction_type)->where('status','CONFIRMED');
-            })->paginate(10);
+        
+        if ($transaction_type != 'ALL') {
+            $transactions = Transaction::where('transaction_date',$transaction_date)
+            ->where('transaction_type',$transaction_type)
+            ->paginate(25);
 
         }else{
-            $transaction = Transaction::latest()->paginate(10);
+            $transactions = Transaction::where('transaction_date',$transaction_date)->paginate(25);
         }
-        return $transaction;
-        */
+        return $transactions;
     }
     
 }
