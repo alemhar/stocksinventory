@@ -13541,6 +13541,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -13550,8 +13598,10 @@ __webpack_require__.r(__webpack_exports__);
       account_name: '',
       searchText: '',
       ledgers: {},
+      transactions: {},
       running_balance: 0,
-      transaction_date: this.getDate()
+      transaction_date: this.getDate(),
+      transction_type: 'ALL'
     };
   },
   methods: {
@@ -13602,6 +13652,17 @@ __webpack_require__.r(__webpack_exports__);
       var month = toTwoDigits(today.getMonth() + 1);
       var day = toTwoDigits(today.getDate());
       return "".concat(year, "-").concat(month, "-").concat(day);
+    },
+    loadTransactions: function loadTransactions() {
+      console.log(this.transction_type);
+      /*
+      axios.get('api/load_transactions?transction_type='+this.transction_type+'&transaction_date='+ this.transaction_date)
+        .then((data)=>{
+          this.transactions = data.data;
+        })
+        .catch(()=>{
+        });
+      */
     }
   },
   created: function created() {
@@ -91690,9 +91751,71 @@ var render = function() {
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "row mt-3" }, [
               _c("div", { staticClass: "col-4" }, [
-                _vm._m(0),
+                _c("div", { staticClass: "input-group mb-3" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.transction_type,
+                          expression: "transction_type"
+                        }
+                      ],
+                      staticClass: "custom-select",
+                      attrs: { id: "inputGroupSelect01" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.transction_type = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "ALL", selected: "" } }, [
+                        _vm._v("All")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "CD" } }, [
+                        _vm._v("Cash Disbursements")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "CR" } }, [
+                        _vm._v("Cash Receipts")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "PURCHASE" } }, [
+                        _vm._v("Puchases")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "SALES" } }, [
+                        _vm._v("Sales")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "PAYMENT" } }, [
+                        _vm._v("Payments")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "COLLECTION" } }, [
+                        _vm._v("Collections")
+                      ])
+                    ]
+                  )
+                ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "input-group mb-2" }, [
+                _c("div", { staticClass: "input-group mb-3" }, [
                   _vm._m(1),
                   _vm._v(" "),
                   _c("input", {
@@ -91722,9 +91845,14 @@ var render = function() {
                   })
                 ]),
                 _vm._v(" "),
-                _c("button", { staticClass: "btn btn-primary" }, [
-                  _vm._v("Search")
-                ])
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary float-right",
+                    on: { click: _vm.loadTransactions }
+                  },
+                  [_vm._v("Search")]
+                )
               ])
             ]),
             _vm._v(" "),
@@ -91746,7 +91874,7 @@ var render = function() {
                 },
                 [
                   _c("div", { staticClass: "col-md-12" }, [
-                    _c("div", { staticClass: "box" }, [
+                    _c("div", {}, [
                       _c(
                         "div",
                         {
@@ -91759,6 +91887,85 @@ var render = function() {
                               "tbody",
                               [
                                 _vm._m(3),
+                                _vm._v(" "),
+                                _vm._l(_vm.transactions.data, function(
+                                  transaction
+                                ) {
+                                  return _c("tr", { key: transaction.id }, [
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(transaction.transaction_date)
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(transaction.transaction_no))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(transaction.transaction_type)
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(transaction.reference_no))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(_vm.ledtransactionger.status)
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("button")])
+                                  ])
+                                })
+                              ],
+                              2
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "box-footer" })
+                    ])
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "box mt-4" }, [
+              _vm._m(4),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: true,
+                      expression: "true"
+                    }
+                  ],
+                  staticClass: "box box-warning mt-2"
+                },
+                [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", {}, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "box-body table-responsive no-padding",
+                          attrs: { id: "cd-list" }
+                        },
+                        [
+                          _c("table", { staticClass: "table table-hover" }, [
+                            _c(
+                              "tbody",
+                              [
+                                _vm._m(5),
                                 _vm._v(" "),
                                 _vm._l(_vm.ledgers.data, function(
                                   ledger,
@@ -91831,7 +92038,7 @@ var render = function() {
                   },
                   [
                     _c("div", { staticClass: "modal-content" }, [
-                      _vm._m(4),
+                      _vm._m(6),
                       _vm._v(" "),
                       _c("form", { attrs: { onsubmit: "return false;" } }, [
                         _c("div", { staticClass: "modal-body" }, [
@@ -91876,7 +92083,7 @@ var render = function() {
                                   _c(
                                     "tbody",
                                     [
-                                      _vm._m(5),
+                                      _vm._m(7),
                                       _vm._v(" "),
                                       _vm._l(
                                         _vm.chart_of_accounts.data,
@@ -91938,7 +92145,7 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(6)
+                        _vm._m(8)
                       ])
                     ])
                   ]
@@ -91955,42 +92162,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group mb-3" }, [
-      _c("div", { staticClass: "input-group-prepend" }, [
-        _c(
-          "span",
-          {
-            staticClass: "input-group-text",
-            attrs: { for: "inputGroupSelect01" }
-          },
-          [_vm._v("Options")]
-        )
-      ]),
-      _vm._v(" "),
+    return _c("div", { staticClass: "input-group-prepend" }, [
       _c(
-        "select",
-        { staticClass: "custom-select", attrs: { id: "inputGroupSelect01" } },
-        [
-          _c("option", { attrs: { value: "ALL", selected: "" } }, [
-            _vm._v("All")
-          ]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "CD" } }, [
-            _vm._v("Cash Disbursements")
-          ]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "CR" } }, [_vm._v("Cash Receipts")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "PURCHASE" } }, [_vm._v("Puchases")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "SALES" } }, [_vm._v("Sales")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "PAYMENT" } }, [_vm._v("Payments")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "COLLECTION" } }, [
-            _vm._v("Collections")
-          ])
-        ]
+        "span",
+        {
+          staticClass: "input-group-text",
+          attrs: { for: "inputGroupSelect01" }
+        },
+        [_vm._v("Options")]
       )
     ])
   },
@@ -92004,6 +92183,32 @@ var staticRenderFns = [
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Date")]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-header" }, [
+      _c("h3", { staticClass: "box-title" }, [_vm._v("Transactions")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Date")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Transaction #")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Transaction Type")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Debits")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Credits")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Option")])
     ])
   },
   function() {

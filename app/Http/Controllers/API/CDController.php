@@ -632,6 +632,26 @@ class CDController extends Controller
         }
 
     }
+
+    public function load_transactions()
+    {
+        
+        $transaction_type = \Request::get('transaction_type');
+        $transaction_date = \Request::get('transaction_date');
+        // use when($transaction_type != 'ALL')
+
+        /*
+        if () {
+            $transaction = Transaction::with('payee')->where(function($query) use ($transaction_type){
+                $query->where('transaction_type',$transaction_type)->where('status','CONFIRMED');
+            })->paginate(10);
+
+        }else{
+            $transaction = Transaction::latest()->paginate(10);
+        }
+        return $transaction;
+        */
+    }
     
 }
 

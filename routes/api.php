@@ -72,6 +72,8 @@ Route::get('cd/sales/list', 'API\CDController@listSales');
 
 Route::post('ledgers', 'API\AccountController@store_ledger');
 Route::post('transactions', 'API\CDController@store_transactions');
+Route::get('transactions', 'API\CDController@load_transactions');
+
 Route::post('items', 'API\CDItemController@store_items');
 
 Route::post('record_payment', 'API\CDController@record_payment');

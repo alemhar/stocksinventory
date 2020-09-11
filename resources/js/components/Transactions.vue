@@ -11,7 +11,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" for="inputGroupSelect01">Options</span>
                     </div>
-                    <select class="custom-select" id="inputGroupSelect01">
+                    <select v-model="transction_type" class="custom-select" id="inputGroupSelect01">
                         <option value="ALL" selected>All</option>
                         <option value="CD">Cash Disbursements</option>
                         <option value="CR">Cash Receipts</option>
@@ -21,13 +21,13 @@
                         <option value="COLLECTION">Collections</option>
                     </select>
                     </div>
-                    <div class="input-group mb-2">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text inputGroup-sizing-default">Date</span>
                         </div>
                         <input  type="date" v-model="transaction_date" class="form-control col-12" id="inputDate" placeholder="Date">
                     </div>
-                    <button class="btn btn-primary">Search</button>
+                    <button @click="loadTransactions" class="btn btn-primary float-right">Search</button>
                 </div>
             </div>
             
@@ -38,7 +38,55 @@
           </div>  
               <div  v-show="true" class="box box-warning mt-2">
                 <div class="col-md-12">
-                  <div class="box">
+                  <div class="">
+
+                    <!-- /.box-header -->
+                    <div id="cd-list" class="box-body table-responsive no-padding">
+                      <table class="table table-hover">
+                        <tbody>
+                          <tr>
+                            <th>Date</th>
+                            <th>Transaction #</th>
+                            <th>Transaction Type</th>
+                            <th>Debits</th>
+                            <th>Credits</th>
+                            <th>Option</th>
+                            
+                          </tr>
+                          
+                          <tr v-for="transaction in transactions.data" :key="transaction.id">
+                            <td>{{ transaction.transaction_date }}</td>
+                            <td>{{ transaction.transaction_no }}</td>
+                            <td>{{ transaction.transaction_type }}</td>
+                            <td>{{ transaction.reference_no }}</td>
+                            <td>{{ ledtransactionger.status }}</td>
+                            <td>button</td>
+                          </tr>
+                          
+                      </tbody>
+                    </table>
+                    </div>
+                    <div class="box-footer">
+                      <!-- pagination :data="cds" @pagination-change-page="getCDs"></pagination -->
+                    </div> 
+
+                  </div>
+                  <!-- /.box -->
+                </div>
+
+              </div>  
+              <!-- /.box -->
+        </div>
+
+
+        <div class="box mt-4">
+          <div class="box-header">
+            <h3 class="box-title">Transactions</h3>
+            
+          </div>  
+              <div  v-show="true" class="box box-warning mt-2">
+                <div class="col-md-12">
+                  <div class="">
 
                     <!-- /.box-header -->
                     <div id="cd-list" class="box-body table-responsive no-padding">
@@ -152,8 +200,10 @@
               account_name: '',
               searchText: '',
               ledgers: {},
+              transactions: {},
               running_balance: 0,
-              transaction_date: this.getDate()
+              transaction_date: this.getDate(),
+              transction_type: 'ALL'
           }
         },
         methods: {
@@ -200,7 +250,19 @@
                 let month = toTwoDigits(today.getMonth() + 1);
                 let day = toTwoDigits(today.getDate());
                 return `${year}-${month}-${day}`;
-            }
+            },
+            loadTransactions(){
+               console.log(this.transction_type); 
+              /*
+              axios.get('api/load_transactions?transction_type='+this.transction_type+'&transaction_date='+ this.transaction_date)
+                .then((data)=>{
+                  this.transactions = data.data;
+                })
+                .catch(()=>{
+                });
+              */
+            },
+        
         },
 
         created() {
