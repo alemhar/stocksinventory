@@ -59,7 +59,7 @@
                             <td>{{ transaction.transaction_no }}</td>
                             <td>{{ transaction.transaction_type }}</td>
                             <td>{{ transaction.reference_no }}</td>
-                            <td>{{ ledtransactionger.status }}</td>
+                            <td>{{ transaction.status }}</td>
                             <td>button</td>
                           </tr>
                           

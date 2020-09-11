@@ -91909,9 +91909,7 @@ var render = function() {
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      _vm._v(
-                                        _vm._s(_vm.ledtransactionger.status)
-                                      )
+                                      _vm._v(_vm._s(transaction.status))
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [_vm._v("button")])
