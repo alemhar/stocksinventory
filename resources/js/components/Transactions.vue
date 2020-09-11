@@ -54,7 +54,7 @@
                             
                           </tr>
                           
-                          <tr v-for="transaction in transactions.data" :key="transaction.id">
+                          <tr v-for="transaction in transactions.data" :key="transaction.id" @click="loadTransaction(transaction.transaction_no,transaction.id)" :class="{ 'table-warning' : active_debit_row == transaction.id }">
                             <td>{{ transaction.transaction_date }}</td>
                             <td>{{ transaction.transaction_no }}</td>
                             <td>{{ transaction.transaction_type }}</td>
@@ -81,7 +81,7 @@
 
         <div class="box mt-4">
           <div class="box-header">
-            <h3 class="box-title">Transactions</h3>
+            <h3 class="box-title">Entries</h3>
             
           </div>  
               <div  v-show="true" class="box box-warning mt-2">
@@ -93,22 +93,20 @@
                       <table class="table table-hover">
                         <tbody>
                           <tr>
-                            <th>Date</th>
-                            <th>Transaction #</th>
-                            <th>Transaction Type</th>
+                            <th>Account Code</th>
+                            <th>Title</th>
                             <th>Debits</th>
                             <th>Credits</th>
-                            <th>Balance</th>
+                            <th>Status</th>
                             
                           </tr>
                           
-                          <tr v-for="(ledger, index) in ledgers.data" :key="ledger.id">
-                            <td>{{ ledger.transaction_date }}</td>
-                            <td>{{ ledger.transaction_no }}</td>
-                            <td>{{ ledger.transaction_type }}</td>
-                            <td>{{ ledger.debit_amount }}</td>
-                            <td>{{ ledger.credit_amount }}</td>
-                            <td>{{ runningBalance[index] }}</td>
+                          <tr v-for="entry in transaction.data" :key="entry.id">
+                            <td>{{ entry.account_code }}</td>
+                            <td>{{ entry.account_name }}</td>
+                            <td>{{ entry.debit_amount }}</td>
+                            <td>{{ entry.credit_amount }}</td>
+                            <td>{{ entry.status }}</td>
                           </tr>
                           
                       </tbody>
@@ -201,6 +199,7 @@
               searchText: '',
               ledgers: {},
               transactions: {},
+              transaction: {},
               running_balance: 0,
               transaction_date: this.getDate(),
               transaction_type: 'ALL'
@@ -256,6 +255,18 @@
               axios.get('api/transactions?transaction_type='+this.transaction_type+'&transaction_date='+ this.transaction_date)
                 .then((data)=>{
                   this.transactions = data.data;
+                  //console.log(data.data); 
+
+                })
+                .catch(()=>{
+                });
+              
+            },
+            loadTransaction(transaction_no,active_debit_row_id){
+              this.active_debit_row = active_debit_row_id;
+              axios.get('api/transaction?transaction_no='+transaction_no)
+                .then((data)=>{
+                  this.transaction = data.data;
                   //console.log(data.data); 
 
                 })

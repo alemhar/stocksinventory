@@ -13587,8 +13587,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -13599,6 +13597,7 @@ __webpack_require__.r(__webpack_exports__);
       searchText: '',
       ledgers: {},
       transactions: {},
+      transaction: {},
       running_balance: 0,
       transaction_date: this.getDate(),
       transaction_type: 'ALL'
@@ -13658,6 +13657,14 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('api/transactions?transaction_type=' + this.transaction_type + '&transaction_date=' + this.transaction_date).then(function (data) {
         _this3.transactions = data.data; //console.log(data.data); 
+      })["catch"](function () {});
+    },
+    loadTransaction: function loadTransaction(transaction_no, active_debit_row_id) {
+      var _this4 = this;
+
+      this.active_debit_row = active_debit_row_id;
+      axios.get('api/transaction?transaction_no=' + transaction_no).then(function (data) {
+        _this4.transaction = data.data; //console.log(data.data); 
       })["catch"](function () {});
     }
   },
@@ -91887,33 +91894,53 @@ var render = function() {
                                 _vm._l(_vm.transactions.data, function(
                                   transaction
                                 ) {
-                                  return _c("tr", { key: transaction.id }, [
-                                    _c("td", [
-                                      _vm._v(
-                                        _vm._s(transaction.transaction_date)
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(transaction.transaction_no))
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(
-                                        _vm._s(transaction.transaction_type)
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(transaction.reference_no))
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(transaction.status))
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("button")])
-                                  ])
+                                  return _c(
+                                    "tr",
+                                    {
+                                      key: transaction.id,
+                                      class: {
+                                        "table-warning":
+                                          _vm.active_debit_row == transaction.id
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.loadTransaction(
+                                            transaction.transaction_no,
+                                            transaction.id
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("td", [
+                                        _vm._v(
+                                          _vm._s(transaction.transaction_date)
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          _vm._s(transaction.transaction_no)
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          _vm._s(transaction.transaction_type)
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(transaction.reference_no))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(transaction.status))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("button")])
+                                    ]
+                                  )
                                 })
                               ],
                               2
@@ -91961,34 +91988,25 @@ var render = function() {
                               [
                                 _vm._m(5),
                                 _vm._v(" "),
-                                _vm._l(_vm.ledgers.data, function(
-                                  ledger,
-                                  index
-                                ) {
-                                  return _c("tr", { key: ledger.id }, [
+                                _vm._l(_vm.transaction.data, function(entry) {
+                                  return _c("tr", { key: entry.id }, [
                                     _c("td", [
-                                      _vm._v(_vm._s(ledger.transaction_date))
+                                      _vm._v(_vm._s(entry.account_code))
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      _vm._v(_vm._s(ledger.transaction_no))
+                                      _vm._v(_vm._s(entry.account_name))
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      _vm._v(_vm._s(ledger.transaction_type))
+                                      _vm._v(_vm._s(entry.debit_amount))
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      _vm._v(_vm._s(ledger.debit_amount))
+                                      _vm._v(_vm._s(entry.credit_amount))
                                     ]),
                                     _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(ledger.credit_amount))
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(_vm._s(_vm.runningBalance[index]))
-                                    ])
+                                    _c("td", [_vm._v(_vm._s(entry.status))])
                                   ])
                                 })
                               ],
@@ -92210,7 +92228,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "box-header" }, [
-      _c("h3", { staticClass: "box-title" }, [_vm._v("Transactions")])
+      _c("h3", { staticClass: "box-title" }, [_vm._v("Entries")])
     ])
   },
   function() {
@@ -92218,17 +92236,15 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", [
-      _c("th", [_vm._v("Date")]),
+      _c("th", [_vm._v("Account Code")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Transaction #")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Transaction Type")]),
+      _c("th", [_vm._v("Title")]),
       _vm._v(" "),
       _c("th", [_vm._v("Debits")]),
       _vm._v(" "),
       _c("th", [_vm._v("Credits")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Balance")])
+      _c("th", [_vm._v("Status")])
     ])
   },
   function() {
