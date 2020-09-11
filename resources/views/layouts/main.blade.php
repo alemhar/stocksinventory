@@ -175,7 +175,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               @can('isAdmin')
               <li class="nav-item">
                 <router-link to="/transations" class="nav-link">
-                  <i class="nav-icon fas fa-buffer"></i>
+                  <i class="nav-icon fab fa-buffer"></i>
                   <p v-bind:style="[readabilityObject]">
                     Transactions
                   </p>
