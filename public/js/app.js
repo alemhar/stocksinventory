@@ -13670,10 +13670,6 @@ __webpack_require__.r(__webpack_exports__);
     loadTransaction: function loadTransaction(transaction_no, active_debit_row_id) {
       var _this4 = this;
 
-      if (this.reverse) {
-        return false;
-      }
-
       this.active_debit_row = active_debit_row_id;
       axios.get('api/transaction?transaction_no=' + transaction_no).then(function (response) {
         _this4.transaction = response.data.data; //console.log(response); 
@@ -13690,8 +13686,8 @@ __webpack_require__.r(__webpack_exports__);
           cancelButtonColor: '#d33',
           confirmButtonText: 'Ok'
         }).then(function (result) {});
-        return false;
         this.reverse = false;
+        return false;
       } else {
         this.reverse = true;
       }

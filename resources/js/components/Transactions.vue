@@ -271,9 +271,7 @@
               
             },
             loadTransaction(transaction_no,active_debit_row_id){
-              if(this.reverse){
-                  return false;
-              }
+              
               this.active_debit_row = active_debit_row_id;
               axios.get('api/transaction?transaction_no='+transaction_no)
                 .then((response)=>{
@@ -298,8 +296,9 @@
                     }).then((result) => {
                         
                     });
-                    return false;
+                    
                     this.reverse = false;
+                    return false;
                 } else {
                     this.reverse = true;
                 }
