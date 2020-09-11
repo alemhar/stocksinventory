@@ -255,8 +255,8 @@
               
               axios.get('api/transactions?transaction_type='+this.transaction_type+'&transaction_date='+ this.transaction_date)
                 .then((data)=>{
-                  //this.transactions = data.data;
-                    console.log(data.data); 
+                  this.transactions = data.data;
+                  //console.log(data.data); 
 
                 })
                 .catch(()=>{
