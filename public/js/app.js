@@ -13601,7 +13601,7 @@ __webpack_require__.r(__webpack_exports__);
       transactions: {},
       running_balance: 0,
       transaction_date: this.getDate(),
-      transction_type: 'ALL'
+      transaction_type: 'ALL'
     };
   },
   methods: {
@@ -91756,8 +91756,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.transction_type,
-                          expression: "transction_type"
+                          value: _vm.transaction_type,
+                          expression: "transaction_type"
                         }
                       ],
                       staticClass: "custom-select",
@@ -91772,7 +91772,7 @@ var render = function() {
                               var val = "_value" in o ? o._value : o.value
                               return val
                             })
-                          _vm.transction_type = $event.target.multiple
+                          _vm.transaction_type = $event.target.multiple
                             ? $$selectedVal
                             : $$selectedVal[0]
                         }

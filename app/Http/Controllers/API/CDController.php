@@ -639,7 +639,7 @@ class CDController extends Controller
         $transaction_type = \Request::get('transaction_type');
         $transaction_date = \Request::get('transaction_date');
         return $transaction_type . ' ' .$transaction_date;
-        
+
         // use when($transaction_type != 'ALL')
 
         /*

@@ -11,7 +11,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" for="inputGroupSelect01">Options</span>
                     </div>
-                    <select v-model="transction_type" class="custom-select" id="inputGroupSelect01">
+                    <select v-model="transaction_type" class="custom-select" id="inputGroupSelect01">
                         <option value="ALL" selected>All</option>
                         <option value="CD">Cash Disbursements</option>
                         <option value="CR">Cash Receipts</option>
@@ -203,7 +203,7 @@
               transactions: {},
               running_balance: 0,
               transaction_date: this.getDate(),
-              transction_type: 'ALL'
+              transaction_type: 'ALL'
           }
         },
         methods: {
