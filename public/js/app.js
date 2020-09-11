@@ -13679,11 +13679,8 @@ __webpack_require__.r(__webpack_exports__);
         _this4.transaction = response.data.data; //console.log(response); 
       })["catch"](function () {});
     },
-    reverseTransaction: function reverseTransaction(transaction_no) {
-      if (this.transaction.length <= 0) {
-        return false;
-      }
-
+    reverseTransaction: function reverseTransaction(transaction_no, active_debit_row_id) {
+      this.loadTransaction(transaction_no, active_debit_row_id);
       this.reverse = true;
       var credit_amount = 0;
       var debit_amount = 0;
@@ -92015,7 +92012,8 @@ var render = function() {
                                                 on: {
                                                   click: function($event) {
                                                     return _vm.reverseTransaction(
-                                                      transaction.transaction_no
+                                                      transaction.transaction_no,
+                                                      transaction.id
                                                     )
                                                   }
                                                 }

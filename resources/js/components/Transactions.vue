@@ -64,7 +64,7 @@
                             <td>{{ transaction.reference_no }}</td>
                             <td>{{ transaction.status }}</td>
                             <td>
-                                <button v-if="!reverse" class="btn btn-danger" @click="reverseTransaction(transaction.transaction_no)">Reverse</button>
+                                <button v-if="!reverse" class="btn btn-danger" @click="reverseTransaction(transaction.transaction_no,transaction.id)">Reverse</button>
                                 <button v-if="reverse" class="btn btn-danger" @click="saveReverse">Save</button>
                             </td>
                           </tr>
@@ -285,13 +285,9 @@
                 });
               
             },
-            reverseTransaction(transaction_no){
-                if( this.transaction.length <= 0){
-                    return false;
-                } 
-                
+            reverseTransaction(transaction_no,active_debit_row_id){
+                this.loadTransaction(transaction_no,active_debit_row_id);
                 this.reverse = true;
-
                 let credit_amount = 0;
                 let debit_amount = 0;
                 for (let i = 0; i < this.transaction.length; i++) {
