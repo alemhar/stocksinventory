@@ -13663,8 +13663,8 @@ __webpack_require__.r(__webpack_exports__);
     loadTransactions: function loadTransactions() {
       var _this3 = this;
 
-      axios.get('api/transactions?transaction_type=' + this.transaction_type + '&transaction_date=' + this.transaction_date).then(function (data) {
-        _this3.transactions = data.data; //console.log(data.data); 
+      axios.get('api/transactions?transaction_type=' + this.transaction_type + '&transaction_date=' + this.transaction_date).then(function (response) {
+        _this3.transactions = response.data.data; //console.log(data.data); 
       })["catch"](function () {});
     },
     loadTransaction: function loadTransaction(transaction_no, active_debit_row_id) {
@@ -13693,6 +13693,12 @@ __webpack_require__.r(__webpack_exports__);
         this.transaction[i].status = 'REVERSE';
         console.log(this.transaction[i].status); //return;
         //}
+      }
+
+      for (var _i = 0; _i < this.transactions.length; _i++) {
+        if (this.transactions[_i].transaction_no === transaction_no) {
+          this.transactions[_i].status = 'REVERSE';
+        }
       }
       /*
       // Save Transactions START
@@ -91953,9 +91959,7 @@ var render = function() {
                               [
                                 _vm._m(3),
                                 _vm._v(" "),
-                                _vm._l(_vm.transactions.data, function(
-                                  transaction
-                                ) {
+                                _vm._l(_vm.transactions, function(transaction) {
                                   return _c(
                                     "tr",
                                     {

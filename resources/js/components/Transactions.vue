@@ -57,7 +57,7 @@
                             
                           </tr>
                           
-                          <tr v-for="transaction in transactions.data" :key="transaction.id" @click="loadTransaction(transaction.transaction_no,transaction.id)" :class="{ 'table-warning' : active_debit_row == transaction.id }">
+                          <tr v-for="transaction in transactions" :key="transaction.id" @click="loadTransaction(transaction.transaction_no,transaction.id)" :class="{ 'table-warning' : active_debit_row == transaction.id }">
                             <td>{{ transaction.transaction_date }}</td>
                             <td>{{ transaction.transaction_no }}</td>
                             <td>{{ transaction.transaction_type }}</td>
@@ -261,8 +261,8 @@
             loadTransactions(){
               
               axios.get('api/transactions?transaction_type='+this.transaction_type+'&transaction_date='+ this.transaction_date)
-                .then((data)=>{
-                  this.transactions = data.data;
+                .then((response)=>{
+                  this.transactions = response.data.data;
                   //console.log(data.data); 
 
                 })
@@ -287,7 +287,7 @@
             },
             reverseTransaction(transaction_no){
                 this.reverse = true;
-              
+
                 let credit_amount = 0;
                 let debit_amount = 0;
                 for (let i = 0; i < this.transaction.length; i++) {
@@ -303,6 +303,12 @@
 
                         //return;
                     //}
+                }
+                for (let i = 0; i < this.transactions.length; i++) {
+                    if (this.transactions[i].transaction_no === transaction_no) {
+                        this.transactions[i].status = 'REVERSE';
+                        
+                    }
                 }
                 
                 /*
