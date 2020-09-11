@@ -104,7 +104,7 @@
                             
                           </tr>
                           
-                          <tr v-for="entry in transaction.data" :key="entry.id">
+                          <tr v-for="entry in transaction" :key="entry.id">
                             <td>{{ entry.account_code }}</td>
                             <td>{{ entry.account_name }}</td>
                             <td>{{ entry.debit_amount }}</td>
@@ -270,7 +270,7 @@
               this.active_debit_row = active_debit_row_id;
               axios.get('api/transaction?transaction_no='+transaction_no)
                 .then((response)=>{
-                  this.transaction = response.data;
+                  this.transaction = response.data.data;
                   console.log(response); 
 
                 })

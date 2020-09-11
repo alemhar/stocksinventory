@@ -13668,7 +13668,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.active_debit_row = active_debit_row_id;
       axios.get('api/transaction?transaction_no=' + transaction_no).then(function (response) {
-        _this4.transaction = response.data;
+        _this4.transaction = response.data.data;
         console.log(response);
       })["catch"](function () {});
     },
@@ -92053,7 +92053,7 @@ var render = function() {
                               [
                                 _vm._m(5),
                                 _vm._v(" "),
-                                _vm._l(_vm.transaction.data, function(entry) {
+                                _vm._l(_vm.transaction, function(entry) {
                                   return _c("tr", { key: entry.id }, [
                                     _c("td", [
                                       _vm._v(_vm._s(entry.account_code))
