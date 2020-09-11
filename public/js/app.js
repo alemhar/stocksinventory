@@ -13654,15 +13654,10 @@ __webpack_require__.r(__webpack_exports__);
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
     loadTransactions: function loadTransactions() {
-      console.log(this.transaction_date);
-      /*
-      axios.get('api/load_transactions?transction_type='+this.transction_type+'&transaction_date='+ this.transaction_date)
-        .then((data)=>{
-          this.transactions = data.data;
-        })
-        .catch(()=>{
-        });
-      */
+      axios.get('api/load_transactions?transction_type=' + this.transction_type + '&transaction_date=' + this.transaction_date).then(function (data) {
+        //this.transactions = data.data;
+        console.log(data.data);
+      })["catch"](function () {});
     }
   },
   created: function created() {
