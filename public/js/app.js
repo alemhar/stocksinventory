@@ -13668,8 +13668,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.active_debit_row = active_debit_row_id;
       axios.get('api/transaction?transaction_no=' + transaction_no).then(function (response) {
-        _this4.transaction = response.data.data;
-        console.log(response);
+        _this4.transaction = response.data.data; //console.log(response); 
       })["catch"](function () {});
     },
     reverseTransaction: function reverseTransaction(transaction_no) {
@@ -13682,7 +13681,8 @@ __webpack_require__.r(__webpack_exports__);
         debit_amount = this.transaction[i].debit_amount;
         this.transaction[i].credit_amount = credit_amount;
         this.transaction[i].debit_amount = debit_amount;
-        this.transaction[i].status = 'REVERSE'; //return;
+        this.transaction[i].status = 'REVERSE';
+        console.log(this.transaction[i].status); //return;
         //}
       }
       /*

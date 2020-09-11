@@ -271,7 +271,7 @@
               axios.get('api/transaction?transaction_no='+transaction_no)
                 .then((response)=>{
                   this.transaction = response.data.data;
-                  console.log(response); 
+                  //console.log(response); 
 
                 })
                 .catch(()=>{
@@ -290,6 +290,7 @@
                         this.transaction[i].credit_amount = credit_amount;
                         this.transaction[i].debit_amount = debit_amount;
                         this.transaction[i].status = 'REVERSE';
+                        console.log(this.transaction[i].status); 
 
                         //return;
                     //}
