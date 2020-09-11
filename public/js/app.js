@@ -13587,6 +13587,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -13600,7 +13601,8 @@ __webpack_require__.r(__webpack_exports__);
       transaction: {},
       running_balance: 0,
       transaction_date: this.getDate(),
-      transaction_type: 'ALL'
+      transaction_type: 'ALL',
+      active_debit_row: 0
     };
   },
   methods: {
@@ -91813,6 +91815,10 @@ var render = function() {
                       _vm._v(" "),
                       _c("option", { attrs: { value: "COLLECTION" } }, [
                         _vm._v("Collections")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "GENERAL" } }, [
+                        _vm._v("General")
                       ])
                     ]
                   )

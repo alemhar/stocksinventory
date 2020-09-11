@@ -19,6 +19,7 @@
                         <option value="SALES">Sales</option>
                         <option value="PAYMENT">Payments</option>
                         <option value="COLLECTION">Collections</option>
+                        <option value="GENERAL">General</option>
                     </select>
                     </div>
                     <div class="input-group mb-3">
@@ -202,7 +203,8 @@
               transaction: {},
               running_balance: 0,
               transaction_date: this.getDate(),
-              transaction_type: 'ALL'
+              transaction_type: 'ALL',
+              active_debit_row: 0
           }
         },
         methods: {
