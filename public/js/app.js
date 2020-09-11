@@ -13680,6 +13680,10 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {});
     },
     reverseTransaction: function reverseTransaction(transaction_no) {
+      if (this.transaction.length <= 0) {
+        return false;
+      }
+
       this.reverse = true;
       var credit_amount = 0;
       var debit_amount = 0;

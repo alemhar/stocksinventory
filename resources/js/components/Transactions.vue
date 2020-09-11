@@ -286,6 +286,9 @@
               
             },
             reverseTransaction(transaction_no){
+                if( this.transaction.length <= 0){
+                    return false;
+                }
                 this.reverse = true;
 
                 let credit_amount = 0;
