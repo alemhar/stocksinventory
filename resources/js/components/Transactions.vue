@@ -63,7 +63,10 @@
                             <td>{{ transaction.transaction_type }}</td>
                             <td>{{ transaction.reference_no }}</td>
                             <td>{{ transaction.status }}</td>
-                            <td><button class="btn btn-danger" @click="reverseTransaction(transaction.transaction_no)">Reverse</button></td>
+                            <td>
+                                <button v-if="!reverse" class="btn btn-danger" @click="reverseTransaction(transaction.transaction_no)">Reverse</button>
+                                <button v-if="reverse" class="btn btn-danger" @click="saveReverse">Save</button>
+                            </td>
                           </tr>
                           
                       </tbody>
@@ -206,7 +209,8 @@
               running_balance: 0,
               transaction_date: this.getDate(),
               transaction_type: 'ALL',
-              active_debit_row: 0
+              active_debit_row: 0,
+              reverse: false
           }
         },
         methods: {
@@ -267,6 +271,9 @@
               
             },
             loadTransaction(transaction_no,active_debit_row_id){
+              if(this.reverse){
+                  return false;
+              }
               this.active_debit_row = active_debit_row_id;
               axios.get('api/transaction?transaction_no='+transaction_no)
                 .then((response)=>{
@@ -279,6 +286,8 @@
               
             },
             reverseTransaction(transaction_no){
+                this.reverse = true;
+              
                 let credit_amount = 0;
                 let debit_amount = 0;
                 for (let i = 0; i < this.transaction.length; i++) {
@@ -318,6 +327,9 @@
                 });
                 // Save Transactions END
                 */
+            },
+            saveReverse(){
+                this.reverse = false;
             }
         
         },

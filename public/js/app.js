@@ -13590,6 +13590,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -13604,7 +13607,8 @@ __webpack_require__.r(__webpack_exports__);
       running_balance: 0,
       transaction_date: this.getDate(),
       transaction_type: 'ALL',
-      active_debit_row: 0
+      active_debit_row: 0,
+      reverse: false
     };
   },
   methods: {
@@ -13666,12 +13670,17 @@ __webpack_require__.r(__webpack_exports__);
     loadTransaction: function loadTransaction(transaction_no, active_debit_row_id) {
       var _this4 = this;
 
+      if (this.reverse) {
+        return false;
+      }
+
       this.active_debit_row = active_debit_row_id;
       axios.get('api/transaction?transaction_no=' + transaction_no).then(function (response) {
         _this4.transaction = response.data.data; //console.log(response); 
       })["catch"](function () {});
     },
     reverseTransaction: function reverseTransaction(transaction_no) {
+      this.reverse = true;
       var credit_amount = 0;
       var debit_amount = 0;
 
@@ -13708,6 +13717,9 @@ __webpack_require__.r(__webpack_exports__);
       // Save Transactions END
       */
 
+    },
+    saveReverse: function saveReverse() {
+      this.reverse = false;
     }
   },
   created: function created() {
@@ -91989,20 +92001,33 @@ var render = function() {
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass: "btn btn-danger",
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.reverseTransaction(
-                                                  transaction.transaction_no
-                                                )
-                                              }
-                                            }
-                                          },
-                                          [_vm._v("Reverse")]
-                                        )
+                                        !_vm.reverse
+                                          ? _c(
+                                              "button",
+                                              {
+                                                staticClass: "btn btn-danger",
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.reverseTransaction(
+                                                      transaction.transaction_no
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [_vm._v("Reverse")]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        _vm.reverse
+                                          ? _c(
+                                              "button",
+                                              {
+                                                staticClass: "btn btn-danger",
+                                                on: { click: _vm.saveReverse }
+                                              },
+                                              [_vm._v("Save")]
+                                            )
+                                          : _vm._e()
                                       ])
                                     ]
                                   )
