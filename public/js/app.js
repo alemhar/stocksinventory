@@ -92042,7 +92042,7 @@ var render = function() {
                                                 staticClass: "btn btn-danger",
                                                 attrs: {
                                                   disabled:
-                                                    transaction.status !=
+                                                    transaction.status ==
                                                     "REVERSE"
                                                 },
                                                 on: {
