@@ -13680,7 +13680,7 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {});
     },
     reverseTransaction: function reverseTransaction(transaction_no, active_debit_row_id) {
-      if (this.transaction.length == 0) {
+      if (!this.transaction.length) {
         swal.fire({
           title: 'Warning!',
           text: "Transaction details is empty, please load by clicking the transaction row.",
