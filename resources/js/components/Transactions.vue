@@ -20,6 +20,8 @@
                         <option value="PAYMENT">Payments</option>
                         <option value="COLLECTION">Collections</option>
                         <option value="GENERAL">General</option>
+                        <option value="REVERSE">Reverse</option>
+                        
                     </select>
                     </div>
                     <div class="input-group mb-3">
@@ -276,6 +278,46 @@
                 });
               
             },
+            reverseTransaction(transaction_no){
+                let credit_amount = 0;
+                let debit_amount = 0;
+                for (let i = 0; i < this.transactions.length; i++) {
+                    if (this.transactions[i].transaction_entry_id === transaction_entry_id) {
+                        
+                        credit_amount = this.transactions[i].credit_amount;
+                        debit_amount = this.transactions[i].debit_amount;
+
+                        this.transactions[i].credit_amount = credit_amount;
+                        this.transactions[i].debit_amount = debit_amount;
+                        this.transactions[i].status = 'REVERSE';
+
+                        //return;
+                    }
+                }
+                
+                /*
+                // Save Transactions START
+                let rawData = {
+                    transactions: this.transactions
+                }
+                rawData = JSON.stringify(rawData);
+                let formData = new FormData();
+                    formData.append('transactions', rawData);
+                axios.post('api/transactions', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                .then((response)=>{
+                    
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+                // Save Transactions END
+                */
+            }
         
         },
 

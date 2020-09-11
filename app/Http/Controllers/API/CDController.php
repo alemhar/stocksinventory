@@ -42,6 +42,7 @@ class CDController extends Controller
      */
     public function store(Request $request)
     {   
+        // Not is Use | Do not use this store method
         // With holding tax is from Sales Entry Form
         if(!isset($request['wtax_code'])){
             $wtax_code = 'NA';

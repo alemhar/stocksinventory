@@ -13588,6 +13588,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -13668,6 +13670,43 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('api/transaction?transaction_no=' + transaction_no).then(function (data) {
         _this4.transaction = data.data; //console.log(data.data); 
       })["catch"](function () {});
+    },
+    reverseTransaction: function reverseTransaction(transaction_no) {
+      var credit_amount = 0;
+      var debit_amount = 0;
+
+      for (var i = 0; i < this.transactions.length; i++) {
+        if (this.transactions[i].transaction_entry_id === transaction_entry_id) {
+          credit_amount = this.transactions[i].credit_amount;
+          debit_amount = this.transactions[i].debit_amount;
+          this.transactions[i].credit_amount = credit_amount;
+          this.transactions[i].debit_amount = debit_amount;
+          this.transactions[i].status = 'REVERSE'; //return;
+        }
+      }
+      /*
+      // Save Transactions START
+      let rawData = {
+          transactions: this.transactions
+      }
+      rawData = JSON.stringify(rawData);
+      let formData = new FormData();
+          formData.append('transactions', rawData);
+      axios.post('api/transactions', formData, {
+          headers: {
+              'Content-Type': 'multipart/form-data'
+          }
+      })
+      .then((response)=>{
+          
+          console.log(response);
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
+      // Save Transactions END
+      */
+
     }
   },
   created: function created() {
@@ -91819,6 +91858,10 @@ var render = function() {
                       _vm._v(" "),
                       _c("option", { attrs: { value: "GENERAL" } }, [
                         _vm._v("General")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "REVERSE" } }, [
+                        _vm._v("Reverse")
                       ])
                     ]
                   )
