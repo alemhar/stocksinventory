@@ -13654,7 +13654,7 @@ __webpack_require__.r(__webpack_exports__);
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
     loadTransactions: function loadTransactions() {
-      console.log(this.transction_type);
+      console.log(this.transaction_date);
       /*
       axios.get('api/load_transactions?transction_type='+this.transction_type+'&transaction_date='+ this.transaction_date)
         .then((data)=>{
