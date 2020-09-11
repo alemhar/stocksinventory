@@ -13681,7 +13681,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     reverseTransaction: function reverseTransaction(transaction_no) {
       if (this.transaction.length <= 0) {
+        console.log('empty');
         return false;
+      } else {
+        console.log('filled');
+        return true;
       }
 
       this.reverse = true;
