@@ -63,7 +63,7 @@
                             <td>{{ transaction.transaction_type }}</td>
                             <td>{{ transaction.reference_no }}</td>
                             <td>{{ transaction.status }}</td>
-                            <td>button</td>
+                            <td><button class="btn btn-danger" @click="reverseTransaction(transaction.transaction_no)">Reverse</button></td>
                           </tr>
                           
                       </tbody>

@@ -91987,7 +91987,22 @@ var render = function() {
                                         _vm._v(_vm._s(transaction.status))
                                       ]),
                                       _vm._v(" "),
-                                      _c("td", [_vm._v("button")])
+                                      _c("td", [
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass: "btn btn-danger",
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.reverseTransaction(
+                                                  transaction.transaction_no
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [_vm._v("Reverse")]
+                                        )
+                                      ])
                                     ]
                                   )
                                 })
