@@ -286,7 +286,21 @@
               
             },
             reverseTransaction(transaction_no,active_debit_row_id){
-                this.loadTransaction(transaction_no,active_debit_row_id);
+                if(this.transaction.length == 0){
+                    swal.fire({
+                        title: 'Warning!',
+                        text: "Transaction details is empty, please load by clicking the transaction row.",
+                        type: 'info',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ok'
+                    }).then((result) => {
+                        
+                    });
+                    return false;
+                }
+
                 this.reverse = true;
                 let credit_amount = 0;
                 let debit_amount = 0;
