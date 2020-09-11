@@ -13675,14 +13675,14 @@ __webpack_require__.r(__webpack_exports__);
       var credit_amount = 0;
       var debit_amount = 0;
 
-      for (var i = 0; i < this.transactions.length; i++) {
-        if (this.transactions[i].transaction_entry_id === transaction_entry_id) {
-          credit_amount = this.transactions[i].credit_amount;
-          debit_amount = this.transactions[i].debit_amount;
-          this.transactions[i].credit_amount = credit_amount;
-          this.transactions[i].debit_amount = debit_amount;
-          this.transactions[i].status = 'REVERSE'; //return;
-        }
+      for (var i = 0; i < this.transaction.data.length; i++) {
+        //if (this.transactions.data[i].transaction_entry_id === transaction_entry_id) {
+        credit_amount = this.transactions.data[i].credit_amount;
+        debit_amount = this.transactions.data[i].debit_amount;
+        this.transactions.data[i].credit_amount = credit_amount;
+        this.transactions.data[i].debit_amount = debit_amount;
+        this.transactions.data[i].status = 'REVERSE'; //return;
+        //}
       }
       /*
       // Save Transactions START
