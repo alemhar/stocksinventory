@@ -48,8 +48,8 @@
                             <th>Date</th>
                             <th>Transaction #</th>
                             <th>Transaction Type</th>
-                            <th>Debits</th>
-                            <th>Credits</th>
+                            <th>Reference #</th>
+                            <th>Status</th>
                             <th>Option</th>
                             
                           </tr>

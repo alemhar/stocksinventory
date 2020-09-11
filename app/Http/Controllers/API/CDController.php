@@ -646,10 +646,13 @@ class CDController extends Controller
         if ($transaction_type != 'ALL') {
             $transactions = Transaction::where('transaction_date',$transaction_date)
             ->where('transaction_type',$transaction_type)
+            ->groupBy('transaction_no')
             ->paginate(25);
 
         }else{
-            $transactions = Transaction::where('transaction_date',$transaction_date)->paginate(25);
+            $transactions = Transaction::where('transaction_date',$transaction_date)
+            ->groupBy('transaction_no')
+            ->paginate(25);
         }
         return $transactions;
     }

@@ -92198,9 +92198,9 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Transaction Type")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Debits")]),
+      _c("th", [_vm._v("Reference #")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Credits")]),
+      _c("th", [_vm._v("Status")]),
       _vm._v(" "),
       _c("th", [_vm._v("Option")])
     ])
