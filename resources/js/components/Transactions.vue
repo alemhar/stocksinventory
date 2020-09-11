@@ -67,7 +67,7 @@
                             <td><button v-if="!reverse" class="btn btn-default" @click="loadTransaction(transaction.transaction_no,transaction.id)"><i class="fas fa-eye"></i></button></td>
                             <td>
                                 <button v-if="!reverse" :disabled="transaction.status == 'REVERSE'" class="btn btn-danger" @click="reverseTransaction(transaction.transaction_no,transaction.id)">Reverse</button>
-                                <button v-if="reverse" class="btn btn-danger" @click="saveReverse">Save</button>
+                                <button v-if="reverse" class="btn btn-danger" @click="saveReverse(transaction.transaction_no)">Save</button>
                             </td>
                           </tr>
                           
@@ -333,7 +333,7 @@
                 
                 */
             },
-            saveReverse(){
+            saveReverse(transaction_no){
 
 
                 axios.get('api/reverse_transaction?transaction_no='+transaction_no)

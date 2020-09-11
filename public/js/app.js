@@ -13718,7 +13718,7 @@ __webpack_require__.r(__webpack_exports__);
       */
 
     },
-    saveReverse: function saveReverse() {
+    saveReverse: function saveReverse(transaction_no) {
       var _this5 = this;
 
       axios.get('api/reverse_transaction?transaction_no=' + transaction_no).then(function (response) {//this.transaction = response.data.data;
@@ -92063,7 +92063,13 @@ var render = function() {
                                               "button",
                                               {
                                                 staticClass: "btn btn-danger",
-                                                on: { click: _vm.saveReverse }
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.saveReverse(
+                                                      transaction.transaction_no
+                                                    )
+                                                  }
+                                                }
                                               },
                                               [_vm._v("Save")]
                                             )
