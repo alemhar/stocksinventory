@@ -299,9 +299,12 @@
                         
                     });
                     return false;
+                    this.reverse = false;
+                } else {
+                    this.reverse = true;
                 }
 
-                this.reverse = true;
+                
                 let credit_amount = 0;
                 let debit_amount = 0;
                 for (let i = 0; i < this.transaction.length; i++) {

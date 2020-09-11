@@ -13691,9 +13691,11 @@ __webpack_require__.r(__webpack_exports__);
           confirmButtonText: 'Ok'
         }).then(function (result) {});
         return false;
+        this.reverse = false;
+      } else {
+        this.reverse = true;
       }
 
-      this.reverse = true;
       var credit_amount = 0;
       var debit_amount = 0;
 
