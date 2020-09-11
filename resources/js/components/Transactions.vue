@@ -287,12 +287,9 @@
             },
             reverseTransaction(transaction_no){
                 if( this.transaction.length <= 0){
-                    console.log('empty');
                     return false;
-                } else {
-                    console.log('filled');
-                    return true;
-                }
+                } 
+                
                 this.reverse = true;
 
                 let credit_amount = 0;
