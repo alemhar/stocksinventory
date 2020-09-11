@@ -13679,8 +13679,8 @@ __webpack_require__.r(__webpack_exports__);
         //if (this.transaction[i].transaction_entry_id === transaction_entry_id) {
         credit_amount = this.transaction[i].credit_amount;
         debit_amount = this.transaction[i].debit_amount;
-        this.transaction[i].credit_amount = credit_amount;
-        this.transaction[i].debit_amount = debit_amount;
+        this.transaction[i].credit_amount = debit_amount;
+        this.transaction[i].debit_amount = credit_amount;
         this.transaction[i].status = 'REVERSE';
         console.log(this.transaction[i].status); //return;
         //}
