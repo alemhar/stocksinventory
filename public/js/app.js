@@ -13681,7 +13681,7 @@ __webpack_require__.r(__webpack_exports__);
       if (!this.transaction.length) {
         swal.fire({
           title: 'Warning!',
-          text: "Transaction details is empty, please load by clicking the transaction row.",
+          text: "Transaction details is empty, please load by clicking view icon of the transaction.",
           type: 'info',
           showCancelButton: false,
           confirmButtonColor: '#3085d6',
@@ -13721,7 +13721,10 @@ __webpack_require__.r(__webpack_exports__);
     saveReverse: function saveReverse() {
       var _this5 = this;
 
-      // Save Transactions START
+      axios.get('api/reverse_transaction?transaction_no=' + transaction_no).then(function (response) {//this.transaction = response.data.data;
+        //console.log(response); 
+      })["catch"](function () {}); // Save Transactions START
+
       var rawData = {
         transactions: this.transaction
       };
@@ -92037,6 +92040,11 @@ var render = function() {
                                               "button",
                                               {
                                                 staticClass: "btn btn-danger",
+                                                attrs: {
+                                                  disabled:
+                                                    transaction.status !=
+                                                    "REVERSE"
+                                                },
                                                 on: {
                                                   click: function($event) {
                                                     return _vm.reverseTransaction(

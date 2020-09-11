@@ -74,6 +74,8 @@ Route::post('ledgers', 'API\AccountController@store_ledger');
 Route::post('transactions', 'API\CDController@store_transactions');
 Route::get('transactions', 'API\CDController@load_transactions');
 Route::get('transaction', 'API\CDController@get_transaction');
+Route::get('reverse_transaction', 'API\CDController@reverse_transaction');
+
 
 Route::post('items', 'API\CDItemController@store_items');
 

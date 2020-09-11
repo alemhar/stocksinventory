@@ -66,7 +66,7 @@
                             <td>{{ transaction.status }}</td>
                             <td><button v-if="!reverse" class="btn btn-danger" @click="loadTransaction(transaction.transaction_no,transaction.id)"><i class="fas fa-eye"></i></button></td>
                             <td>
-                                <button v-if="!reverse" class="btn btn-danger" @click="reverseTransaction(transaction.transaction_no,transaction.id)">Reverse</button>
+                                <button v-if="!reverse" :disabled="transaction.status != 'REVERSE'" class="btn btn-danger" @click="reverseTransaction(transaction.transaction_no,transaction.id)">Reverse</button>
                                 <button v-if="reverse" class="btn btn-danger" @click="saveReverse">Save</button>
                             </td>
                           </tr>
@@ -289,7 +289,7 @@
                 if(!this.transaction.length){
                     swal.fire({
                         title: 'Warning!',
-                        text: "Transaction details is empty, please load by clicking the transaction row.",
+                        text: "Transaction details is empty, please load by clicking view icon of the transaction.",
                         type: 'info',
                         showCancelButton: false,
                         confirmButtonColor: '#3085d6',
@@ -334,7 +334,20 @@
                 */
             },
             saveReverse(){
+
+
+                axios.get('api/reverse_transaction?transaction_no='+transaction_no)
+                .then((response)=>{
+                  //this.transaction = response.data.data;
+                  //console.log(response); 
+
+                })
+                .catch(()=>{
+                });
+
                 // Save Transactions START
+                
+
                 let rawData = {
                     transactions: this.transaction
                 }
