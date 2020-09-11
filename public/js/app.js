@@ -13593,6 +13593,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -91976,14 +91978,6 @@ var render = function() {
                                       class: {
                                         "table-warning":
                                           _vm.active_debit_row == transaction.id
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.loadTransaction(
-                                            transaction.transaction_no,
-                                            transaction.id
-                                          )
-                                        }
                                       }
                                     },
                                     [
@@ -92011,6 +92005,30 @@ var render = function() {
                                       _vm._v(" "),
                                       _c("td", [
                                         _vm._v(_vm._s(transaction.status))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        !_vm.reverse
+                                          ? _c(
+                                              "button",
+                                              {
+                                                staticClass: "btn btn-danger",
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.loadTransaction(
+                                                      transaction.transaction_no,
+                                                      transaction.id
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "fas fa-eye"
+                                                })
+                                              ]
+                                            )
+                                          : _vm._e()
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [
@@ -92323,6 +92341,8 @@ var staticRenderFns = [
       _c("th", [_vm._v("Reference #")]),
       _vm._v(" "),
       _c("th", [_vm._v("Status")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("View")]),
       _vm._v(" "),
       _c("th", [_vm._v("Option")])
     ])

@@ -53,16 +53,18 @@
                             <th>Transaction Type</th>
                             <th>Reference #</th>
                             <th>Status</th>
+                            <th>View</th>
                             <th>Option</th>
                             
                           </tr>
                           
-                          <tr v-for="transaction in transactions" :key="transaction.id" @click="loadTransaction(transaction.transaction_no,transaction.id)" :class="{ 'table-warning' : active_debit_row == transaction.id }">
+                          <tr v-for="transaction in transactions" :key="transaction.id" :class="{ 'table-warning' : active_debit_row == transaction.id }">
                             <td>{{ transaction.transaction_date }}</td>
                             <td>{{ transaction.transaction_no }}</td>
                             <td>{{ transaction.transaction_type }}</td>
                             <td>{{ transaction.reference_no }}</td>
                             <td>{{ transaction.status }}</td>
+                            <td><button v-if="!reverse" class="btn btn-danger" @click="loadTransaction(transaction.transaction_no,transaction.id)"><i class="fas fa-eye"></i></button></td>
                             <td>
                                 <button v-if="!reverse" class="btn btn-danger" @click="reverseTransaction(transaction.transaction_no,transaction.id)">Reverse</button>
                                 <button v-if="reverse" class="btn btn-danger" @click="saveReverse">Save</button>
