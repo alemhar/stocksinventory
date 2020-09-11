@@ -92015,7 +92015,7 @@ var render = function() {
                                           ? _c(
                                               "button",
                                               {
-                                                staticClass: "btn btn-danger",
+                                                staticClass: "btn btn-default",
                                                 on: {
                                                   click: function($event) {
                                                     return _vm.loadTransaction(

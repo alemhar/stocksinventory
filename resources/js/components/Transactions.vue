@@ -64,7 +64,7 @@
                             <td>{{ transaction.transaction_type }}</td>
                             <td>{{ transaction.reference_no }}</td>
                             <td>{{ transaction.status }}</td>
-                            <td><button v-if="!reverse" class="btn btn-danger" @click="loadTransaction(transaction.transaction_no,transaction.id)"><i class="fas fa-eye"></i></button></td>
+                            <td><button v-if="!reverse" class="btn btn-default" @click="loadTransaction(transaction.transaction_no,transaction.id)"><i class="fas fa-eye"></i></button></td>
                             <td>
                                 <button v-if="!reverse" :disabled="transaction.status != 'REVERSE'" class="btn btn-danger" @click="reverseTransaction(transaction.transaction_no,transaction.id)">Reverse</button>
                                 <button v-if="reverse" class="btn btn-danger" @click="saveReverse">Save</button>
