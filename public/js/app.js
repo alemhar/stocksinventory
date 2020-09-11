@@ -13667,8 +13667,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       this.active_debit_row = active_debit_row_id;
-      axios.get('api/transaction?transaction_no=' + transaction_no).then(function (data) {
-        _this4.transaction = data.data; //console.log(data.data); 
+      axios.get('api/transaction?transaction_no=' + transaction_no).then(function (response) {
+        _this4.transaction = response.data;
+        console.log(response);
       })["catch"](function () {});
     },
     reverseTransaction: function reverseTransaction(transaction_no) {

@@ -269,9 +269,9 @@
             loadTransaction(transaction_no,active_debit_row_id){
               this.active_debit_row = active_debit_row_id;
               axios.get('api/transaction?transaction_no='+transaction_no)
-                .then((data)=>{
-                  this.transaction = data.data;
-                  //console.log(data.data); 
+                .then((response)=>{
+                  this.transaction = response.data;
+                  console.log(response); 
 
                 })
                 .catch(()=>{
