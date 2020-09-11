@@ -282,17 +282,17 @@
                 let credit_amount = 0;
                 let debit_amount = 0;
                 for (let i = 0; i < this.transaction.length; i++) {
-                    if (this.transactions[i].transaction_entry_id === transaction_entry_id) {
+                    //if (this.transaction[i].transaction_entry_id === transaction_entry_id) {
                         
-                        credit_amount = this.transactions[i].credit_amount;
-                        debit_amount = this.transactions[i].debit_amount;
+                        credit_amount = this.transaction[i].credit_amount;
+                        debit_amount = this.transaction[i].debit_amount;
 
-                        this.transactions[i].credit_amount = credit_amount;
-                        this.transactions[i].debit_amount = debit_amount;
-                        this.transactions[i].status = 'REVERSE';
+                        this.transaction[i].credit_amount = credit_amount;
+                        this.transaction[i].debit_amount = debit_amount;
+                        this.transaction[i].status = 'REVERSE';
 
                         //return;
-                    }
+                    //}
                 }
                 
                 /*
