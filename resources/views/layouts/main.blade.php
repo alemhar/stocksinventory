@@ -159,7 +159,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="nav-link" style="color:orange;">
               <i class="nav-icon fas fa-newspaper"></i>
               <p v-bind:style="[readabilityObject]">
-                Reports
+                Views
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -169,6 +169,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <router-link to="/ledger" class="nav-link">
                   <i class="nav-icon fas fa-info-circle"></i>
                   <p v-bind:style="[readabilityObject]">Ledger</p>
+                </router-link>
+              </li>
+              @endcan
+              @can('isAdmin')
+              <li class="nav-item">
+                <router-link to="/transations" class="nav-link">
+                  <i class="nav-icon fas fa-buffer"></i>
+                  <p v-bind:style="[readabilityObject]">
+                    Transactions
+                  </p>
                 </router-link>
               </li>
               @endcan
@@ -216,16 +226,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </router-link>
           </li>
-          @can('isAdmin')
-          <li class="nav-item">
-            <router-link to="/transations" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p v-bind:style="[readabilityObject]">
-                Test Page
-              </p>
-            </router-link>
-          </li>
-          @endcan
+          
           <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}"
                onclick="event.preventDefault();

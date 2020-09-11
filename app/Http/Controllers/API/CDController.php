@@ -680,15 +680,13 @@ class CDController extends Controller
     {
         
         $transaction_no = \Request::get('transaction_no');
-        //$transaction_date = \Request::get('transaction_date');
-        //return $transaction_type . ' ' .$transaction_date;
-
-        // use when($transaction_type != 'ALL')
+        
 
         
             $transaction = Transaction::where('transaction_no',$transaction_no)
             ->update(['status' => 'REVERSE']);
-
+            $transaction_items = TransactionItem::where('transaction_no',$transaction_no)
+            ->update(['status' => 'REVERSE']);
         
             return ['message' => 'Transactions reversed.'];
     }
