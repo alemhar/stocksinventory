@@ -13665,6 +13665,8 @@ __webpack_require__.r(__webpack_exports__);
     loadTransactions: function loadTransactions() {
       var _this3 = this;
 
+      this.transactions = {};
+      this.transaction = {};
       axios.get('api/transactions?transaction_type=' + this.transaction_type + '&transaction_date=' + this.transaction_date).then(function (response) {
         _this3.transactions = response.data.data; //console.log(data.data); 
       })["catch"](function () {});

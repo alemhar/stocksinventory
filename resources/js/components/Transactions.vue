@@ -261,7 +261,8 @@
                 return `${year}-${month}-${day}`;
             },
             loadTransactions(){
-              
+              this.transactions = {};
+              this.transaction = {};
               axios.get('api/transactions?transaction_type='+this.transaction_type+'&transaction_date='+ this.transaction_date)
                 .then((response)=>{
                   this.transactions = response.data.data;
