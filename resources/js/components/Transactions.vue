@@ -281,18 +281,18 @@
             reverseTransaction(transaction_no){
                 let credit_amount = 0;
                 let debit_amount = 0;
-                for (let i = 0; i < this.transaction.data.length; i++) {
-                    //if (this.transactions.data[i].transaction_entry_id === transaction_entry_id) {
+                for (let i = 0; i < this.transaction.length; i++) {
+                    if (this.transactions[i].transaction_entry_id === transaction_entry_id) {
                         
-                        credit_amount = this.transactions.data[i].credit_amount;
-                        debit_amount = this.transactions.data[i].debit_amount;
+                        credit_amount = this.transactions[i].credit_amount;
+                        debit_amount = this.transactions[i].debit_amount;
 
-                        this.transactions.data[i].credit_amount = credit_amount;
-                        this.transactions.data[i].debit_amount = debit_amount;
-                        this.transactions.data[i].status = 'REVERSE';
+                        this.transactions[i].credit_amount = credit_amount;
+                        this.transactions[i].debit_amount = debit_amount;
+                        this.transactions[i].status = 'REVERSE';
 
                         //return;
-                    //}
+                    }
                 }
                 
                 /*
