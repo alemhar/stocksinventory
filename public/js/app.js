@@ -13654,7 +13654,7 @@ __webpack_require__.r(__webpack_exports__);
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
     loadTransactions: function loadTransactions() {
-      axios.get('api/load_transactions?transction_type=' + this.transction_type + '&transaction_date=' + this.transaction_date).then(function (data) {
+      axios.get('api/transactions?transction_type=' + this.transction_type + '&transaction_date=' + this.transaction_date).then(function (data) {
         //this.transactions = data.data;
         console.log(data.data);
       })["catch"](function () {});

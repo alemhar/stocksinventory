@@ -253,7 +253,7 @@
             },
             loadTransactions(){
               
-              axios.get('api/load_transactions?transction_type='+this.transction_type+'&transaction_date='+ this.transaction_date)
+              axios.get('api/transactions?transction_type='+this.transction_type+'&transaction_date='+ this.transaction_date)
                 .then((data)=>{
                   //this.transactions = data.data;
                     console.log(data.data); 
