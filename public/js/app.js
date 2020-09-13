@@ -74118,23 +74118,36 @@ var render = function() {
                         _c("div", { staticClass: "input-group mb-2" }, [
                           _vm._m(4),
                           _vm._v(" "),
-                          _c(
-                            "input",
-                            _vm._b(
+                          _c("input", {
+                            directives: [
                               {
-                                staticClass: "form-control col-9",
-                                attrs: {
-                                  readonly: "true",
-                                  type: "text",
-                                  id: "inputCheck",
-                                  placeholder: "Check No"
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.check.check_no,
+                                expression: "check.check_no"
+                              }
+                            ],
+                            staticClass: "form-control col-9",
+                            attrs: {
+                              readonly: "true",
+                              type: "text",
+                              id: "inputCheck",
+                              placeholder: "Check No"
+                            },
+                            domProps: { value: _vm.check.check_no },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
                                 }
-                              },
-                              "input",
-                              _vm.check.check_no,
-                              false
-                            )
-                          ),
+                                _vm.$set(
+                                  _vm.check,
+                                  "check_no",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
                           _vm._v(" "),
                           _c("span", { staticClass: "input-group-btn col-1" }, [
                             _c(
