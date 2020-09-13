@@ -3099,7 +3099,7 @@ __webpack_require__.r(__webpack_exports__);
         check_no: '',
         check_bank: '',
         check_bank_branch: '',
-        check_date: null,
+        check_date: '',
         check_amount: 0
       }
     };
