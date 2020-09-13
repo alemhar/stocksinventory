@@ -66,7 +66,7 @@ class CheckController extends Controller
     {
         $data = json_decode($request['checks']);
 
-        $this->insert_transactions($data->checks);
+        $this->insert_checks($data->checks);
 
         return ['message' => 'Checkss posted.'];
     }
