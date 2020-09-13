@@ -5640,6 +5640,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5655,11 +5663,17 @@ __webpack_require__.r(__webpack_exports__);
       active_row: 0,
       account_code: 0,
       account_name: '',
+      account_type: '',
+      sub_account_type: '',
+      main_code: 0,
+      main_account: '',
+      type: type,
       description: '',
       save_button_entry_enabled: true,
       searchText: '',
       chart_of_accounts: {},
       check_amount: 0,
+      id: 0,
       reverse: false
     };
   },
@@ -5700,9 +5714,21 @@ __webpack_require__.r(__webpack_exports__);
 
       $('#select-account').modal('show');
     },
-    selectAccount: function selectAccount(account_code, account_name) {
+    selectAccount: function selectAccount() {
+      var account_code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      var account_name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      var account_type = arguments.length > 2 ? arguments[2] : undefined;
+      var sub_account_type = arguments.length > 3 ? arguments[3] : undefined;
+      var main_code = arguments.length > 4 ? arguments[4] : undefined;
+      var main_account = arguments.length > 5 ? arguments[5] : undefined;
+      var type = arguments.length > 6 ? arguments[6] : undefined;
       this.account_code = account_code;
       this.account_name = account_name;
+      this.account_type = account_type;
+      this.sub_account_type = sub_account_type;
+      this.main_code = main_code;
+      this.main_account = main_account;
+      this.type = type;
       $('#select-account').modal('hide');
     },
     loadChecks: function loadChecks() {
@@ -5715,9 +5741,15 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {});
     },
     depositCheck: function depositCheck(transaction_no, id, check_amount, transaction_type) {
+      this.id = id;
       this.account_code = 0;
       this.account_name = '';
       this.description = '';
+      this.account_type = '';
+      this.sub_account_type = '';
+      this.main_code = '';
+      this.main_account = '';
+      this.type = '';
       this.check_amount = check_amount;
       this.current_transaction_type = transaction_type;
       this.save_button_entry_enabled = true;
@@ -5794,6 +5826,40 @@ __webpack_require__.r(__webpack_exports__);
         useful_life: 0,
         salvage_value: 0,
         description: this.description
+      });
+      ++this.transaction_entry_id;
+      this.transactions.push({
+        account_type: this.account_type,
+        sub_account_type: this.sub_account_type,
+        main_code: this.main_code,
+        main_account: this.main_account,
+        type: this.type,
+        entity_type: 'NA',
+        transaction_entry_id: this.transaction_entry_id,
+        payee_id: 0,
+        branch_id: 0,
+        account_code: this.account_code,
+        account_name: this.account_name,
+        reference_no: '',
+        transaction_no: this.transaction_no,
+        transaction_type: 'DEPOSIT',
+        transaction_date: this.transaction_date,
+        amount: this.check_amount,
+        credit_amount: 0,
+        debit_amount: this.check_amount,
+        total_payment: 0,
+        total_collection: 0,
+        amount_ex_tax: 0,
+        vat: 0,
+        wtax_code: 0,
+        wtax: 0,
+        user_id: this.form.user_id,
+        status: 'CONFIRMED',
+        depreciation_date: '',
+        depreciated_id: 0,
+        useful_life: 0,
+        salvage_value: 0,
+        description: this.description
       }); // Save Transactions START
 
       var rawData = {
@@ -5811,30 +5877,12 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       }); // Save Transactions END
-      // Save Payment START
+      // Update Check Status START ********************
 
-      var saleData = {
-        sales: this.sales.data
-      };
-      saleData = JSON.stringify(saleData);
-      var saleFormData = new FormData();
-      saleFormData.append('sales', saleData);
-      axios.post('api/record_collection', saleFormData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      }).then(function (response) {
-        console.log(response);
-      })["catch"](function (error) {
-        console.log(error);
-      }); // Update Payee Account START ********************
-
-      axios.post('api/update_payee_account', {
-        payee_id: this.form.payee_id,
-        amount: this.form.amount,
-        operation: 'sub',
-        account: 'receivable'
-      }).then(function (response) {})["catch"](function () {}); // Update Payee Account END ********************
+      axios.post('api/update_check_status', {
+        id: this.id,
+        status: 'DEPOSIT'
+      }).then(function (response) {})["catch"](function () {}); // Update Check Status END ********************
       // Save Payment END
 
       swal.fire({
@@ -5848,7 +5896,9 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.value) {
           //Reload Current Page
-          _this4.dataReset();
+          //this.dataReset();
+          _this4.transactions = {};
+          _this4.transaction_entry_id = 0;
         }
       });
     },
@@ -80600,7 +80650,7 @@ var render = function() {
                               },
                               on: { click: _vm.postTransaction }
                             },
-                            [_vm._v("Transfer")]
+                            [_vm._v("Post")]
                           )
                         ])
                       ]
@@ -80712,7 +80762,12 @@ var render = function() {
                                                       click: function($event) {
                                                         return _vm.selectAccount(
                                                           chart_of_account.account_code,
-                                                          chart_of_account.account_name
+                                                          chart_of_account.account_name,
+                                                          chart_of_account.account_type,
+                                                          chart_of_account.sub_account_type,
+                                                          chart_of_account.main_code,
+                                                          chart_of_account.main_account,
+                                                          chart_of_account.type
                                                         )
                                                       }
                                                     }

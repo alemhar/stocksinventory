@@ -156,7 +156,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" @click="cancelEntry">Cancel</button>
-              <button type="button" :disabled="!save_button_entry_enabled" class="btn btn-success" @click="postTransaction">Transfer</button>
+              <button type="button" :disabled="!save_button_entry_enabled" class="btn btn-success" @click="postTransaction">Post</button>
             </div>
 
             <!-- /form -->
@@ -197,7 +197,15 @@
                   <td>{{ chart_of_account.account_code }}</td>
                   <td>{{ chart_of_account.account_name }}</td>
                   <td>
-                    <a href="#" @click="selectAccount(chart_of_account.account_code,chart_of_account.account_name)">Select
+                    <a href="#" @click="selectAccount(
+                    chart_of_account.account_code,
+                    chart_of_account.account_name,
+                    chart_of_account.account_type,
+                    chart_of_account.sub_account_type,
+                    chart_of_account.main_code,
+                    chart_of_account.main_account,
+                    chart_of_account.type
+                    )">Select
                       <i class="fa fa-edit"></i>
                     </a>
                   </td>
@@ -244,11 +252,19 @@
               active_row: 0,
               account_code: 0,
               account_name: '',
+
+                account_type: '',
+                sub_account_type: '',
+                main_code: 0,
+                main_account: '',
+                type: type,  
+
               description: '',
               save_button_entry_enabled: true,
               searchText: '',
               chart_of_accounts: {},
               check_amount: 0,
+              id: 0,
               reverse: false
           }
         },
@@ -287,10 +303,25 @@
               //this.loadChartAccounts(headerOrDetail);
               $('#select-account').modal('show');
             },
-            selectAccount(account_code,account_name){
+            selectAccount(
+                        account_code  = null,
+                        account_name = null, 
+                        account_type,
+                        sub_account_type,
+                        main_code,
+                        main_account,
+                        type
+                      ){
 
                 this.account_code = account_code;
                 this.account_name = account_name;
+
+                this.account_type = account_type;
+                this.sub_account_type = sub_account_type;
+                this.main_code = main_code;
+                this.main_account = main_account;
+                this.type = type;
+
                 $('#select-account').modal('hide');  
             },
             loadChecks(){
@@ -307,9 +338,17 @@
               
             },
             depositCheck(transaction_no,id,check_amount,transaction_type){
+                this.id = id;
                 this.account_code = 0;
                 this.account_name = '';
                 this.description = '';
+
+                this.account_type = '';
+                this.sub_account_type = '';
+                this.main_code = '';
+                this.main_account = '';
+                this.type = '';
+
                 this.check_amount = check_amount;
                 this.current_transaction_type = transaction_type;
                 this.save_button_entry_enabled =  true;
@@ -391,6 +430,41 @@
                     description: this.description
                 });
 
+                ++this.transaction_entry_id;
+                this.transactions.push({ 
+                    account_type: this.account_type,
+                    sub_account_type: this.sub_account_type,
+                    main_code: this.main_code,
+                    main_account: this.main_account,
+                    type: this.type,
+                    entity_type: 'NA',
+                    transaction_entry_id: this.transaction_entry_id,
+                    payee_id: 0,
+                    branch_id: 0,
+                    account_code: this.account_code,
+                    account_name: this.account_name,
+                    reference_no: '',
+                    transaction_no: this.transaction_no,
+                    transaction_type: 'DEPOSIT',
+                    transaction_date: this.transaction_date,
+                    amount: this.check_amount,
+                    credit_amount: 0,
+                    debit_amount: this.check_amount,
+                    total_payment: 0,
+                    total_collection: 0,
+                    amount_ex_tax: 0,
+                    vat: 0,
+                    wtax_code: 0,
+                    wtax: 0,
+                    user_id: this.form.user_id,
+                    status: 'CONFIRMED',
+                    depreciation_date: '',
+                    depreciated_id: 0,
+                    useful_life: 0,
+                    salvage_value: 0,
+                    description: this.description
+                });
+
                     // Save Transactions START
                     let rawData = {
                         transactions: this.transactions
@@ -413,33 +487,12 @@
                     // Save Transactions END
 
 
-                    // Save Payment START
-                    let saleData = {
-                        sales: this.sales.data
-                    }
+                    
 
-                    saleData = JSON.stringify(saleData);
-                    let saleFormData = new FormData();
-                    saleFormData.append('sales', saleData);
-                    axios.post('api/record_collection', saleFormData, {
-                        headers: {
-                            'Content-Type': 'multipart/form-data'
-                        }
-                    })
-                    .then((response)=>{
-                        
-                        console.log(response);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });  
-
-                    // Update Payee Account START ********************
-                    axios.post('api/update_payee_account', {
-                        payee_id: this.form.payee_id,
-                        amount: this.form.amount,
-                        operation: 'sub',
-                        account: 'receivable',
+                    // Update Check Status START ********************
+                    axios.post('api/update_check_status', {
+                        id: this.id,
+                        status: 'DEPOSIT',
                     })
                     .then((response)=>{
 
@@ -447,7 +500,7 @@
                     .catch(()=>{
                         
                     });
-                    // Update Payee Account END ********************
+                    // Update Check Status END ********************
 
 
                     // Save Payment END
@@ -462,7 +515,9 @@
                     }).then((result) => {
                     if (result.value) {
                         //Reload Current Page
-                        this.dataReset();        
+                        //this.dataReset();
+                        this.transactions = {};
+                        this.transaction_entry_id = 0;                                
                     }
                     });
             

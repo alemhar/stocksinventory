@@ -114,4 +114,15 @@ class CheckController extends Controller
         return $checks;
     }
 
+    public function update_check_status(){
+        $id = $request['id']; 
+        $status = $request['status']; 
+
+        $check = Check::findOrFail($id);
+
+        $check->status = $status;
+        $check->save();
+        return ['message' => 'Check status updated!'];
+    }
+
 }
