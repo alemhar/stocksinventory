@@ -1677,8 +1677,12 @@
           showCheckDetails(){
               $('#check-details').modal('show');
           },
-          updateCheckDetails(value){
-              this.check = value; 
+          updateCheckDetails(child_check){
+              this.check.check_no = child_check.check_no;
+              this.check.check_bank = child_check.check_bank;
+              this.check.check_bank_branch = child_check.check_bank_branch;
+              this.check.check_date = child_check.check_date;
+              this.check.check_amount = child_check.check_amount
             //console.log(value);          
           }
         },
