@@ -90,6 +90,137 @@
         </div>
 
 
+      <!-- Deposit Modal
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      -->
+
+
+      <div class="modal fade" id="entry-deposit" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content" style="width: 800px;">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addNewLabel">Select Account</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <!-- form onsubmit="return false;" -->
+            <div class="modal-body">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text inputGroup-sizing-default">Code</span>
+                </div>
+                <input v-model="form_entry.account_code" type="text" name="account_code" 
+                  readonly
+                  class="form-control col-4" :class="{ 'is-invalid': form_entry.errors.has('account_code') }" aria-describedby="inputGroup-sizing-default">
+                <has-error :form="form_entry" field="account_code"></has-error>
+                <span class="input-group-btn col-1">
+                    <button type="button" class="btn btn-success" @click="searchAccountModal('header')"><i class="fas fa-search fa-fw"></i></button>
+                </span>
+              </div>
+              <div class="input-group mb-2">
+                <p v-show="no_entry_account_code" class="empty-field-message">** Please select account!</p>
+              </div>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text inputGroup-sizing-default">Account</span>
+                </div>
+                
+                <input v-model="form_entry.account_name" type="text" name="account_name"
+                  
+                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('account_name') }" readonly aria-describedby="inputGroup-sizing-default">
+                <has-error :form="form_entry" field="account_name"></has-error>
+              </div>
+
+                
+
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text inputGroup-sizing-default">Description</span>
+                  </div>
+
+                    <input v-model="form_entry.description" name="description" id="description"
+                    class="form-control" aria-describedby="inputGroup-sizing-default">
+                </div>
+
+              
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" @click="cancelEntry">Cancel</button>
+              <button type="button" :disabled="!save_button_entry_enabled" class="btn btn-success" @click="saveEntry">Save</button>
+            </div>
+
+            <!-- /form -->
+          </div>
+        </div>
+      </div>
+      <!-- Deposit Modal -->
+
+      <!-- Search Account Modal -->
+
+      <div class="modal fade" id="select-account" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              
+              
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form onsubmit="return false;">
+            <div class="modal-body">
+              
+              <div class="form-group">
+                <label>Search</label>
+                <input type="text" name="search" v-model="searchText" @change="SearchIt" class="float-right col-6">
+              </div>
+              
+              <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tbody><tr>
+                  <th>Code</th>
+                  <th>Name</th>
+                  <th>Option</th>
+                </tr>
+                <tr v-for="chart_of_account in chart_of_accounts.data" :key="chart_of_account.id">
+                  <td>{{ chart_of_account.account_code }}</td>
+                  <td>{{ chart_of_account.account_name }}</td>
+                  <td>
+                    <a href="#" @click="selectAccount(chart_of_account.account_code,chart_of_account.account_name)">Select
+                      <i class="fa fa-edit"></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody></table>
+            </div>
+            <!-- /.box-body -->
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              
+            </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Search Account Modal -->
         
 
 
@@ -110,10 +241,31 @@
               transaction_date: this.getDate(),
               transaction_type: 'ALL',
               active_row: 0,
+              account_code: '',
+              account_name: '',
               reverse: false
           }
         },
         methods: {
+            initChartAccounts(){
+              axios.get('api/chartaccount?headerordetail=header&transaction_type=CHECKS')
+                .then((data)=>{
+                  this.chart_of_accounts = data.data;
+                })
+                .catch(()=>{
+                  //
+                });
+            },
+            SearchIt() {
+              let query = this.searchText;
+              axios.get('api/searchAccount?q='+query+'&headerordetail=header&transaction_type=CHECKS')
+                .then((data)=>{
+                  this.chart_of_accounts = data.data;
+                })
+                .catch(()=>{
+                  //
+                });
+            },
             getDate() {
                 const toTwoDigits = num => num < 10 ? '0' + num : num;
                 let today = new Date();
@@ -121,6 +273,19 @@
                 let month = toTwoDigits(today.getMonth() + 1);
                 let day = toTwoDigits(today.getDate());
                 return `${year}-${month}-${day}`;
+            },
+            searchAccountModal(headerOrDetail = 'header'){
+              this.headerOrDetail = headerOrDetail;
+              //this.searchText = this.form.account_code;
+              this.searchText = '';
+              //this.loadChartAccounts(headerOrDetail);
+              $('#select-account').modal('show');
+            },
+            selectAccount(account_code,account_name){
+
+                this.account_code = account_code;
+                this.account_name = account_name;
+                $('#select-account').modal('hide');  
             },
             loadChecks(){
               this.checks = {};
@@ -134,6 +299,12 @@
                 .catch(()=>{
                 });
               
+            },
+            depositCheck(){
+                this.account_code = '';
+                this.account_name = '';
+                $('#entry-deposit').modal('show');
+                
             },
             reverseTransaction(transaction_no,active_row_id){
                 /*
@@ -218,7 +389,12 @@
                 // Save Transactions END
 
                 */
-            }
+            },
+            cancelEntry(){
+                //this.$Progress.start();
+                $('#entry-deposit').modal('hide');
+    
+            },
         
         },
 

@@ -109,6 +109,9 @@ class AccountController extends Controller
                         ->orderBy('collection_list_order')
                         ->paginate(8);
                     }
+                } elseif($transaction_type == 'CHECKS'){
+                        $accounts = Account::whereBetween('account_code', [11011300, 11011399])    
+                        ->paginate(8);
                 } else {
                     // 'LEDGER'
                     $accounts = Account::paginate(10);

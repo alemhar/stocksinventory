@@ -313,7 +313,7 @@
           <div class="modal-content" style="width: 800px;">
             <div class="modal-header">
               <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add Entry</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close" @click="cancelEntry" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -346,76 +346,7 @@
               </div>
 
               
-              <!-- div class="box-header">
-                  <h3 class="box-title box-title-transaction">Items</h3>
-                  <div class="box-tools">
-                    <button class="btn btn-success" @click="newItem">Add Items <i class="fas fa-plus-circle fa-fw"></i></button>
-                  </div>
-                </div -->
-
-                <!-- /.box-header -->
-                <!-- div id="item-list" class="box-body table-responsive no-padding">
-                  <table class="table table-hover">
-                    <tbody>
-                      <tr>
-                        <th>Item</th>
-                        <th>Qty</th>
-                        <th>Price</th>
-                        <th>Sub-Total</th>
-                        <th>Tax Excluded</th>
-                        <th>Vat</th>
-                        <th>Option</th>
-                      </tr>
-                      <tr v-for="item in currentItems" :key="item.item_no">
-                        <td>{{ item.item }}</td>
-                        <td>{{ item.quantity }}</td> 
-                        <td>{{ item.price }}</td> 
-                        <td>{{ item.sub_total }}</td> 
-                        <td>{{ item.tax_excluded }}</td> 
-                        <td>{{ item.vat }}</td> 
-                        <td>
-                          <a href="#" @click="deleteItem(item.item_no,item.sub_total,item.tax_excluded,item.vat)">
-                            <i class="fa fa-trash"></i>
-                          </a>
-                        </td>
-                      </tr>  
-                  </tbody>
-                </table>
-                </div -->
-                <!-- /.box-body -->
-
-              <!-- div v-if="depreciates">
-
-                <div class="input-group mb-2">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text inputGroup-sizing-default">Useful Life (in Months)</span>
-                  </div>
-
-                    <input v-model="form_entry.useful_life" name="useful_life" id="useful_life"
-                    class="form-control" aria-describedby="inputGroup-sizing-default"  @blur="computeDepreciation">
-                    
-                </div>
-
-                <div class="input-group mb-2">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text inputGroup-sizing-default">Salvage Value</span>
-                  </div>
-
-                    <input v-model="form_entry.salvage_value" name="salvage_value" id="salvage_value"
-                    class="form-control" aria-describedby="inputGroup-sizing-default" @blur="computeDepreciation">
-                    
-                </div>
-                <div class="input-group mb-2">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text inputGroup-sizing-default">Depreciation</span>
-                  </div>
-
-                    <input v-model="form_entry.depreciation_value" name="depreciation_value" id="depreciation_value"
-                    class="form-control" aria-describedby="inputGroup-sizing-default" readonly>
-                </div>
-
-              </div -->
-
+              
 
                 <div class="mb-4">
                   <div class="row">
@@ -456,41 +387,7 @@
                     class="form-control" aria-describedby="inputGroup-sizing-default">
                 </div>
 
-              <!-- div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Amount</span>
-                </div>
-
-                  <input v-model="Number(form_entry.amount).toLocaleString()" name="amount" id="amount"
-                  readonly
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount') }" aria-describedby="inputGroup-sizing-default">
-                  <has-error :form="form_entry" field="amount"></has-error>
-              </div -->
-
-              <!-- div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Tax Excluded</span>
-                </div>
-
               
-                  <input v-model="Number(form_entry.amount_ex_tax).toLocaleString()" name="amount_ex_tax" id="amount_ex_tax2"
-                  
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('amount_ex_tax') }" readonly aria-describedby="inputGroup-sizing-default">
-                  <has-error :form="form_entry" field="amount_ex_tax"></has-error>
-              </div -->
-
-
-              <!-- div class="input-group mb-2">
-                
-                <div class="input-group-prepend">
-                  <span class="input-group-text inputGroup-sizing-default">Tax</span>
-                </div>
-              
-                  <input v-model="Number(form_entry.vat).toLocaleString()" name="vat" id="vat2"
-                  
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('vat') }" readonly aria-describedby="inputGroup-sizing-default">
-                  <has-error :form="form_entry" field="vat"></has-error>
-              </div -->
 
             </div>
             <div class="modal-footer">

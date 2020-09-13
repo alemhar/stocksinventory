@@ -5512,6 +5512,137 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5521,10 +5652,29 @@ __webpack_require__.r(__webpack_exports__);
       transaction_date: this.getDate(),
       transaction_type: 'ALL',
       active_row: 0,
+      account_code: '',
+      account_name: '',
       reverse: false
     };
   },
   methods: {
+    initChartAccounts: function initChartAccounts() {
+      var _this = this;
+
+      axios.get('api/chartaccount?headerordetail=header&transaction_type=CHECKS').then(function (data) {
+        _this.chart_of_accounts = data.data;
+      })["catch"](function () {//
+      });
+    },
+    SearchIt: function SearchIt() {
+      var _this2 = this;
+
+      var query = this.searchText;
+      axios.get('api/searchAccount?q=' + query + '&headerordetail=header&transaction_type=CHECKS').then(function (data) {
+        _this2.chart_of_accounts = data.data;
+      })["catch"](function () {//
+      });
+    },
     getDate: function getDate() {
       var toTwoDigits = function toTwoDigits(num) {
         return num < 10 ? '0' + num : num;
@@ -5536,14 +5686,32 @@ __webpack_require__.r(__webpack_exports__);
       var day = toTwoDigits(today.getDate());
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
+    searchAccountModal: function searchAccountModal() {
+      var headerOrDetail = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'header';
+      this.headerOrDetail = headerOrDetail; //this.searchText = this.form.account_code;
+
+      this.searchText = ''; //this.loadChartAccounts(headerOrDetail);
+
+      $('#select-account').modal('show');
+    },
+    selectAccount: function selectAccount(account_code, account_name) {
+      this.account_code = account_code;
+      this.account_name = account_name;
+      $('#select-account').modal('hide');
+    },
     loadChecks: function loadChecks() {
-      var _this = this;
+      var _this3 = this;
 
       this.checks = {}; //this.check = {};
 
       axios.get('api/checks?transaction_type=' + this.transaction_type + '&transaction_date=' + this.transaction_date).then(function (response) {
-        _this.checks = response.data.data; //console.log(data.data); 
+        _this3.checks = response.data.data; //console.log(data.data); 
       })["catch"](function () {});
+    },
+    depositCheck: function depositCheck() {
+      this.account_code = '';
+      this.account_name = '';
+      $('#entry-deposit').modal('show');
     },
     reverseTransaction: function reverseTransaction(transaction_no, active_row_id) {
       /*
@@ -5619,6 +5787,10 @@ __webpack_require__.r(__webpack_exports__);
       });
       // Save Transactions END
        */
+    },
+    cancelEntry: function cancelEntry() {
+      //this.$Progress.start();
+      $('#entry-deposit').modal('hide');
     }
   },
   created: function created() {
@@ -6907,109 +7079,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -80188,7 +80257,397 @@ var render = function() {
                   ])
                 ]
               )
-            ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "modal fade",
+                attrs: {
+                  id: "entry-deposit",
+                  tabindex: "-1",
+                  role: "dialog",
+                  "aria-labelledby": "addNewLabel",
+                  "aria-hidden": "true",
+                  "data-backdrop": "static",
+                  "data-keyboard": "false"
+                }
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "modal-dialog modal-dialog-centered",
+                    attrs: { role: "document" }
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "modal-content",
+                        staticStyle: { width: "800px" }
+                      },
+                      [
+                        _vm._m(4),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "modal-body" }, [
+                          _c(
+                            "div",
+                            { staticClass: "input-group mb-2" },
+                            [
+                              _vm._m(5),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form_entry.account_code,
+                                    expression: "form_entry.account_code"
+                                  }
+                                ],
+                                staticClass: "form-control col-4",
+                                class: {
+                                  "is-invalid": _vm.form_entry.errors.has(
+                                    "account_code"
+                                  )
+                                },
+                                attrs: {
+                                  type: "text",
+                                  name: "account_code",
+                                  readonly: "",
+                                  "aria-describedby":
+                                    "inputGroup-sizing-default"
+                                },
+                                domProps: {
+                                  value: _vm.form_entry.account_code
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form_entry,
+                                      "account_code",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("has-error", {
+                                attrs: {
+                                  form: _vm.form_entry,
+                                  field: "account_code"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "span",
+                                { staticClass: "input-group-btn col-1" },
+                                [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-success",
+                                      attrs: { type: "button" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.searchAccountModal(
+                                            "header"
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fas fa-search fa-fw"
+                                      })
+                                    ]
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group mb-2" }, [
+                            _c(
+                              "p",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: _vm.no_entry_account_code,
+                                    expression: "no_entry_account_code"
+                                  }
+                                ],
+                                staticClass: "empty-field-message"
+                              },
+                              [_vm._v("** Please select account!")]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "input-group mb-2" },
+                            [
+                              _vm._m(6),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form_entry.account_name,
+                                    expression: "form_entry.account_name"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                class: {
+                                  "is-invalid": _vm.form_entry.errors.has(
+                                    "account_name"
+                                  )
+                                },
+                                attrs: {
+                                  type: "text",
+                                  name: "account_name",
+                                  readonly: "",
+                                  "aria-describedby":
+                                    "inputGroup-sizing-default"
+                                },
+                                domProps: {
+                                  value: _vm.form_entry.account_name
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form_entry,
+                                      "account_name",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("has-error", {
+                                attrs: {
+                                  form: _vm.form_entry,
+                                  field: "account_name"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group mb-2" }, [
+                            _vm._m(7),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form_entry.description,
+                                  expression: "form_entry.description"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                name: "description",
+                                id: "description",
+                                "aria-describedby": "inputGroup-sizing-default"
+                              },
+                              domProps: { value: _vm.form_entry.description },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form_entry,
+                                    "description",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "modal-footer" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              attrs: { type: "button" },
+                              on: { click: _vm.cancelEntry }
+                            },
+                            [_vm._v("Cancel")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success",
+                              attrs: {
+                                type: "button",
+                                disabled: !_vm.save_button_entry_enabled
+                              },
+                              on: { click: _vm.saveEntry }
+                            },
+                            [_vm._v("Save")]
+                          )
+                        ])
+                      ]
+                    )
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "modal fade",
+                attrs: {
+                  id: "select-account",
+                  tabindex: "-1",
+                  role: "dialog",
+                  "aria-labelledby": "addNewLabel",
+                  "aria-hidden": "true",
+                  "data-backdrop": "static",
+                  "data-keyboard": "false"
+                }
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "modal-dialog modal-dialog-centered",
+                    attrs: { role: "document" }
+                  },
+                  [
+                    _c("div", { staticClass: "modal-content" }, [
+                      _vm._m(8),
+                      _vm._v(" "),
+                      _c("form", { attrs: { onsubmit: "return false;" } }, [
+                        _c("div", { staticClass: "modal-body" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("label", [_vm._v("Search")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.searchText,
+                                  expression: "searchText"
+                                }
+                              ],
+                              staticClass: "float-right col-6",
+                              attrs: { type: "text", name: "search" },
+                              domProps: { value: _vm.searchText },
+                              on: {
+                                change: _vm.SearchIt,
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.searchText = $event.target.value
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "box-body table-responsive no-padding"
+                            },
+                            [
+                              _c(
+                                "table",
+                                { staticClass: "table table-hover" },
+                                [
+                                  _c(
+                                    "tbody",
+                                    [
+                                      _vm._m(9),
+                                      _vm._v(" "),
+                                      _vm._l(
+                                        _vm.chart_of_accounts.data,
+                                        function(chart_of_account) {
+                                          return _c(
+                                            "tr",
+                                            { key: chart_of_account.id },
+                                            [
+                                              _c("td", [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    chart_of_account.account_code
+                                                  )
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("td", [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    chart_of_account.account_name
+                                                  )
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("td", [
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    attrs: { href: "#" },
+                                                    on: {
+                                                      click: function($event) {
+                                                        return _vm.selectAccount(
+                                                          chart_of_account.account_code,
+                                                          chart_of_account.account_name
+                                                        )
+                                                      }
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "Select\n                  "
+                                                    ),
+                                                    _c("i", {
+                                                      staticClass: "fa fa-edit"
+                                                    })
+                                                  ]
+                                                )
+                                              ])
+                                            ]
+                                          )
+                                        }
+                                      )
+                                    ],
+                                    2
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(10)
+                      ])
+                    ])
+                  ]
+                )
+              ]
+            )
           ])
         ])
       : _vm._e()
@@ -80254,6 +80713,111 @@ var staticRenderFns = [
       _c("th", [_vm._v("Transfer")]),
       _vm._v(" "),
       _c("th", [_vm._v("Option")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title", attrs: { id: "addNewLabel" } }, [
+        _vm._v("Select Account")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Code")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Account")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Description")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Code")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Option")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      )
     ])
   }
 ]
@@ -82669,7 +83233,19 @@ var render = function() {
                     [_vm._v("Add Entry")]
                   ),
                   _vm._v(" "),
-                  _vm._m(5)
+                  _c(
+                    "button",
+                    {
+                      staticClass: "close",
+                      attrs: { type: "button", "aria-label": "Close" },
+                      on: { click: _vm.cancelEntry }
+                    },
+                    [
+                      _c("span", { attrs: { "aria-hidden": "true" } }, [
+                        _vm._v("×")
+                      ])
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-body" }, [
@@ -82677,7 +83253,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(6),
+                      _vm._m(5),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -82760,7 +83336,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(7),
+                      _vm._m(6),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -82806,7 +83382,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "mb-4" }, [
-                    _vm._m(8),
+                    _vm._m(7),
                     _vm._v(" "),
                     _c(
                       "div",
@@ -82882,7 +83458,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "input-group mb-2" }, [
-                    _vm._m(9),
+                    _vm._m(8),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -82948,7 +83524,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "input-group mb-2" }, [
-                    _vm._m(10),
+                    _vm._m(9),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -83062,12 +83638,12 @@ var render = function() {
                   [_vm._v("Add WTax")]
                 ),
                 _vm._v(" "),
-                _vm._m(11)
+                _vm._m(10)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(12),
+                  _vm._m(11),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -83114,7 +83690,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(13),
+                  _vm._m(12),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -83145,7 +83721,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(14),
+                  _vm._m(13),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -83176,7 +83752,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(15),
+                  _vm._m(14),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -83260,7 +83836,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(16),
+              _vm._m(15),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -83299,7 +83875,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(17),
+                            _vm._m(16),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -83348,7 +83924,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(18)
+                _vm._m(17)
               ])
             ])
           ]
@@ -83379,7 +83955,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(19),
+              _vm._m(18),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -83418,7 +83994,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(20),
+                            _vm._m(19),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -83457,7 +84033,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(21)
+                _vm._m(20)
               ])
             ])
           ]
@@ -83488,7 +84064,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(22),
+              _vm._m(21),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -83527,7 +84103,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(23),
+                            _vm._m(22),
                             _vm._v(" "),
                             _vm._l(_vm.branches.data, function(branch) {
                               return _c("tr", { key: branch.id }, [
@@ -83565,7 +84141,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(24)
+                _vm._m(23)
               ])
             ])
           ]
@@ -83596,7 +84172,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(25),
+              _vm._m(24),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -83635,7 +84211,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(26),
+                            _vm._m(25),
                             _vm._v(" "),
                             _vm._l(_vm.Wtaxes.data, function(Wtax) {
                               return _c("tr", { key: Wtax.id }, [
@@ -83675,7 +84251,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(27)
+                _vm._m(26)
               ])
             ])
           ]
@@ -83767,23 +84343,6 @@ var staticRenderFns = [
         [_vm._v("Credit")]
       )
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: {
-          type: "button",
-          "data-dismiss": "modal",
-          "aria-label": "Close"
-        }
-      },
-      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-    )
   },
   function() {
     var _vm = this
