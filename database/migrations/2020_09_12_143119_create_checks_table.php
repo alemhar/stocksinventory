@@ -27,7 +27,6 @@ class CreateChecksTable extends Migration
             $table->string('deposit_reference_no');
             $table->string('deposit_date');
             $table->decimal('deposit_amount', 14, 2);
-
             $table->string('status', 20)->default('UNCONFIRMED');
 
             $table->timestamps();
