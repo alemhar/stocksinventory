@@ -5635,14 +5635,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      transaction_type: 'DEPOSIT',
+      transactions: [],
+      transaction_entry_id: 0,
+      transaction_no: '',
       user_id: null,
       checks: {},
       //check: {},
       transaction_date: this.getDate(),
-      transaction_type: 'ALL',
+      current_date: this.getDate(),
       active_row: 0,
       account_code: 0,
       account_name: '',
@@ -5650,6 +5659,7 @@ __webpack_require__.r(__webpack_exports__);
       save_button_entry_enabled: true,
       searchText: '',
       chart_of_accounts: {},
+      check_amount: 0,
       reverse: false
     };
   },
@@ -5704,15 +5714,142 @@ __webpack_require__.r(__webpack_exports__);
         _this3.checks = response.data.data; //console.log(data.data); 
       })["catch"](function () {});
     },
-    depositCheck: function depositCheck() {
+    depositCheck: function depositCheck(transaction_no, id, check_amount) {
       this.account_code = 0;
       this.account_name = '';
       this.description = '';
+      this.check_amount = check_amount;
       this.save_button_entry_enabled = true;
       $('#entry-deposit').modal('show');
     },
-    createJournal: function createJournal() {
-      this.save_button_entry_enabled = false;
+    createSerialNumber: function createSerialNumber() {
+      // Get current date
+      var d = new Date(); // Get pirmative value of date
+
+      var n = d.valueOf(); // Return concatenated primative value with the user id. 
+
+      return "" + n + this.user_id;
+    },
+    postTransaction: function postTransaction() {
+      var _this4 = this;
+
+      if (this.current_date < this.transaction_date) {
+        swal.fire({
+          title: 'Invalid date!',
+          text: "Future/Advance date not accepted.",
+          type: 'info',
+          showCancelButton: false,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ok'
+        }).then(function (result) {});
+        return false;
+      }
+
+      if (this.account_code == 0) {
+        swal.fire({
+          title: 'Missing account code!',
+          text: "Please provide account",
+          type: 'info',
+          showCancelButton: false,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ok'
+        }).then(function (result) {});
+        return false;
+      }
+
+      this.transaction_no = this.createSerialNumber();
+      ++this.transaction_entry_id;
+      this.transactions.push({
+        account_type: 'ASSETS',
+        sub_account_type: 'CURRENT ASSETS',
+        main_code: '',
+        main_account: '',
+        type: 'NA',
+        entity_type: 'NA',
+        transaction_entry_id: this.transaction_entry_id,
+        payee_id: 0,
+        branch_id: 0,
+        account_code: 11011100,
+        account_name: 'Cash On Hand',
+        reference_no: '',
+        transaction_no: this.transaction_no,
+        transaction_type: this.transaction_type,
+        transaction_date: this.transaction_date,
+        amount: this.check_amount,
+        credit_amount: this.check_amount,
+        debit_amount: 0,
+        total_payment: 0,
+        total_collection: 0,
+        amount_ex_tax: 0,
+        vat: 0,
+        wtax_code: 0,
+        wtax: 0,
+        user_id: this.form.user_id,
+        status: 'CONFIRMED',
+        depreciation_date: '',
+        depreciated_id: 0,
+        useful_life: 0,
+        salvage_value: 0,
+        description: this.description
+      }); // Save Transactions START
+
+      var rawData = {
+        transactions: this.transactions
+      };
+      rawData = JSON.stringify(rawData);
+      var formData = new FormData();
+      formData.append('transactions', rawData);
+      axios.post('api/transactions', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      }); // Save Transactions END
+      // Save Payment START
+
+      var saleData = {
+        sales: this.sales.data
+      };
+      saleData = JSON.stringify(saleData);
+      var saleFormData = new FormData();
+      saleFormData.append('sales', saleData);
+      axios.post('api/record_collection', saleFormData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      }); // Update Payee Account START ********************
+
+      axios.post('api/update_payee_account', {
+        payee_id: this.form.payee_id,
+        amount: this.form.amount,
+        operation: 'sub',
+        account: 'receivable'
+      }).then(function (response) {})["catch"](function () {}); // Update Payee Account END ********************
+      // Save Payment END
+
+      swal.fire({
+        title: 'Saved!',
+        text: "Journal posted",
+        type: 'info',
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ok'
+      }).then(function (result) {
+        if (result.value) {
+          //Reload Current Page
+          _this4.dataReset();
+        }
+      });
     },
     reverseTransaction: function reverseTransaction(transaction_no, active_row_id) {
       /*
@@ -80205,7 +80342,8 @@ var render = function() {
                                                 click: function($event) {
                                                   return _vm.depositCheck(
                                                     check.transaction_no,
-                                                    check.id
+                                                    check.id,
+                                                    check.check_amount
                                                   )
                                                 }
                                               }
@@ -80386,6 +80524,36 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
+                                  value: _vm.transaction_date,
+                                  expression: "transaction_date"
+                                }
+                              ],
+                              staticClass: "form-control col-12",
+                              attrs: {
+                                type: "date",
+                                id: "inputDate",
+                                placeholder: "Date"
+                              },
+                              domProps: { value: _vm.transaction_date },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.transaction_date = $event.target.value
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group mb-2" }, [
+                            _vm._m(8),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
                                   value: _vm.description,
                                   expression: "description"
                                 }
@@ -80428,9 +80596,9 @@ var render = function() {
                                 type: "button",
                                 disabled: !_vm.save_button_entry_enabled
                               },
-                              on: { click: _vm.createJournal }
+                              on: { click: _vm.postTransaction }
                             },
-                            [_vm._v("Save")]
+                            [_vm._v("Transfer")]
                           )
                         ])
                       ]
@@ -80463,7 +80631,7 @@ var render = function() {
                   },
                   [
                     _c("div", { staticClass: "modal-content" }, [
-                      _vm._m(8),
+                      _vm._m(9),
                       _vm._v(" "),
                       _c("form", { attrs: { onsubmit: "return false;" } }, [
                         _c("div", { staticClass: "modal-body" }, [
@@ -80508,7 +80676,7 @@ var render = function() {
                                   _c(
                                     "tbody",
                                     [
-                                      _vm._m(9),
+                                      _vm._m(10),
                                       _vm._v(" "),
                                       _vm._l(
                                         _vm.chart_of_accounts.data,
@@ -80570,7 +80738,7 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(10)
+                        _vm._m(11)
                       ])
                     ])
                   ]
@@ -80699,7 +80867,19 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Description")]
+        [_vm._v("Date")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Description/Bank Details")]
       )
     ])
   },

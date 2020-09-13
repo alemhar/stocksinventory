@@ -68,7 +68,7 @@
                             <td>{{ check.check_bank }}</td>
                             <td>{{ check.check_amount }}</td>
                             <td>{{ check.status }}</td>
-                            <td style="text-align: center;"><button :disabled="check.status == 'BANK' || check.status == 'REVERSE'" class="btn btn-success" @click="depositCheck(check.transaction_no,check.id)"><i class="fas fa-sign-in-alt"></i></button></td>
+                            <td style="text-align: center;"><button :disabled="check.status == 'BANK' || check.status == 'REVERSE'" class="btn btn-success" @click="depositCheck(check.transaction_no,check.id,check.check_amount)"><i class="fas fa-sign-in-alt"></i></button></td>
                             <td>
                                 <button :disabled="check.status == 'BANK' || check.status == 'REVERSE'" class="btn btn-danger" @click="reverseTransaction(transaction.transaction_no,transaction.id)">Reverse</button>
                             </td>
@@ -132,14 +132,19 @@
                   <span class="input-group-text inputGroup-sizing-default">Account</span>
                 </div>
                 <input v-model="account_name" type="text" name="account_name" class="form-control" readonly aria-describedby="inputGroup-sizing-default">
-                
               </div>
 
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text inputGroup-sizing-default">Date</span>
+                    </div>
+                    <input type="date" v-model="transaction_date" class="form-control col-12" id="inputDate" placeholder="Date">
+                </div>
                 
 
                 <div class="input-group mb-2">
                   <div class="input-group-prepend">
-                    <span class="input-group-text inputGroup-sizing-default">Description</span>
+                    <span class="input-group-text inputGroup-sizing-default">Description/Bank Details</span>
                   </div>
 
                     <input v-model="description" name="description" id="description"
@@ -151,7 +156,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" @click="cancelEntry">Cancel</button>
-              <button type="button" :disabled="!save_button_entry_enabled" class="btn btn-success" @click="createJournal">Save</button>
+              <button type="button" :disabled="!save_button_entry_enabled" class="btn btn-success" @click="postTransaction">Transfer</button>
             </div>
 
             <!-- /form -->
@@ -227,11 +232,15 @@
     export default {
         data() {
           return {
+              transaction_type: 'DEPOSIT',
+              transactions: [],
+              transaction_entry_id: 0,
+              transaction_no: '',
               user_id: null,
               checks: {},
               //check: {},
               transaction_date: this.getDate(),
-              transaction_type: 'ALL',
+              current_date: this.getDate(),
               active_row: 0,
               account_code: 0,
               account_name: '',
@@ -239,6 +248,7 @@
               save_button_entry_enabled: true,
               searchText: '',
               chart_of_accounts: {},
+              check_amount: 0,
               reverse: false
           }
         },
@@ -296,17 +306,166 @@
                 });
               
             },
-            depositCheck(){
+            depositCheck(transaction_no,id,check_amount){
                 this.account_code = 0;
                 this.account_name = '';
                 this.description = '';
+                this.check_amount = check_amount;
                 this.save_button_entry_enabled =  true;
                 $('#entry-deposit').modal('show');
                 
             },
-            createJournal(){
+            createSerialNumber(){
+                // Get current date
+                var d = new Date();
+                // Get pirmative value of date
+                var n = d.valueOf();
+                // Return concatenated primative value with the user id. 
+                return ""+n+this.user_id;
+            },
+            postTransaction(){
+                if(this.current_date < this.transaction_date){
+                    swal.fire({
+                        title: 'Invalid date!',
+                        text: "Future/Advance date not accepted.",
+                        type: 'info',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ok'
+                    }).then((result) => {
+                        
+                    });
+                    return false;
+                }
+                
+                if(this.account_code == 0) {
+                    swal.fire({
+                        title: 'Missing account code!',
+                        text: "Please provide account",
+                        type: 'info',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ok'
+                    }).then((result) => {
+                        
+                    });
+                    return false;
+                }
+                this.transaction_no = this.createSerialNumber();
 
-                this.save_button_entry_enabled = false;
+                ++this.transaction_entry_id;
+                this.transactions.push({ 
+                    account_type: 'ASSETS',
+                    sub_account_type: 'CURRENT ASSETS',
+                    main_code: '',
+                    main_account: '',
+                    type: 'NA',
+                    entity_type: 'NA',
+                    transaction_entry_id: this.transaction_entry_id,
+                    payee_id: 0,
+                    branch_id: 0,
+                    account_code: 11011100,
+                    account_name: 'Cash On Hand',
+                    reference_no: '',
+                    transaction_no: this.transaction_no,
+                    transaction_type: this.transaction_type,
+                    transaction_date: this.transaction_date,
+                    amount: this.check_amount,
+                    credit_amount: this.check_amount,
+                    debit_amount: 0,
+                    total_payment: 0,
+                    total_collection: 0,
+                    amount_ex_tax: 0,
+                    vat: 0,
+                    wtax_code: 0,
+                    wtax: 0,
+                    user_id: this.form.user_id,
+                    status: 'CONFIRMED',
+                    depreciation_date: '',
+                    depreciated_id: 0,
+                    useful_life: 0,
+                    salvage_value: 0,
+                    description: this.description
+                });
+
+                    // Save Transactions START
+                    let rawData = {
+                        transactions: this.transactions
+                    }
+                    rawData = JSON.stringify(rawData);
+                    let formData = new FormData();
+                        formData.append('transactions', rawData);
+                    axios.post('api/transactions', formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    })
+                    .then((response)=>{
+                        
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                    // Save Transactions END
+
+
+                    // Save Payment START
+                    let saleData = {
+                        sales: this.sales.data
+                    }
+
+                    saleData = JSON.stringify(saleData);
+                    let saleFormData = new FormData();
+                    saleFormData.append('sales', saleData);
+                    axios.post('api/record_collection', saleFormData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    })
+                    .then((response)=>{
+                        
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });  
+
+                    // Update Payee Account START ********************
+                    axios.post('api/update_payee_account', {
+                        payee_id: this.form.payee_id,
+                        amount: this.form.amount,
+                        operation: 'sub',
+                        account: 'receivable',
+                    })
+                    .then((response)=>{
+
+                    })
+                    .catch(()=>{
+                        
+                    });
+                    // Update Payee Account END ********************
+
+
+                    // Save Payment END
+                swal.fire({
+                    title: 'Saved!',
+                    text: "Journal posted",
+                    type: 'info',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ok'
+                    }).then((result) => {
+                    if (result.value) {
+                        //Reload Current Page
+                        this.dataReset();        
+                    }
+                    });
+            
+
             },
             reverseTransaction(transaction_no,active_row_id){
                 /*
