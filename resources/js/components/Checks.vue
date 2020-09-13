@@ -28,13 +28,13 @@
                         </div>
                         <input  type="date" v-model="transaction_date" class="form-control col-12" id="inputDate" placeholder="Date">
                     </div>
-                    <button @click="loadTransactions" class="btn btn-primary float-right">Search</button>
+                    <button @click="loadChecks" class="btn btn-primary float-right">Search</button>
                 </div>
             </div>
             
           <div class="box mt-4">
           <div class="box-header">
-            <h3 class="box-title">Transactions</h3>
+            <h3 class="box-title">Checks</h3>
             
           </div>  
               <div  v-show="true" class="box box-warning mt-2">

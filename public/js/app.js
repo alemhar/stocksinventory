@@ -80035,7 +80035,7 @@ var render = function() {
                   "button",
                   {
                     staticClass: "btn btn-primary float-right",
-                    on: { click: _vm.loadTransactions }
+                    on: { click: _vm.loadChecks }
                   },
                   [_vm._v("Search")]
                 )
@@ -80234,7 +80234,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "box-header" }, [
-      _c("h3", { staticClass: "box-title" }, [_vm._v("Transactions")])
+      _c("h3", { staticClass: "box-title" }, [_vm._v("Checks")])
     ])
   },
   function() {
