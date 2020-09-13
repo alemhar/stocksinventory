@@ -616,7 +616,6 @@
         },
 
         created() {
-            
             this.initChartAccounts();
             this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
             /*
