@@ -886,7 +886,7 @@
     </div>
 </template>
 <script>
-    import CheckInput from '@/components/CheckInput.vue';
+    import CheckInput from 'CheckInput.vue';
     export default {
         data() {
           return {
