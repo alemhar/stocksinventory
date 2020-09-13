@@ -151,7 +151,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" @click="cancelEntry">Cancel</button>
-              <button type="button" :disabled="!save_button_entry_enabled" class="btn btn-success" @click="saveEntry">Save</button>
+              <button type="button" :disabled="!save_button_entry_enabled" class="btn btn-success" @click="createJournal">Save</button>
             </div>
 
             <!-- /form -->
@@ -236,6 +236,7 @@
               account_code: 0,
               account_name: '',
               description: '',
+              save_button_entry_enabled: true,
               reverse: false
           }
         },
@@ -297,8 +298,13 @@
                 this.account_code = 0;
                 this.account_name = '';
                 this.description = '';
+                this.save_button_entry_enabled =  true;
                 $('#entry-deposit').modal('show');
                 
+            },
+            createJournal(){
+                
+                this.save_button_entry_enabled = false;
             },
             reverseTransaction(transaction_no,active_row_id){
                 /*

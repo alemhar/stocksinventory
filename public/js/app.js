@@ -5647,6 +5647,7 @@ __webpack_require__.r(__webpack_exports__);
       account_code: 0,
       account_name: '',
       description: '',
+      save_button_entry_enabled: true,
       reverse: false
     };
   },
@@ -5705,7 +5706,11 @@ __webpack_require__.r(__webpack_exports__);
       this.account_code = 0;
       this.account_name = '';
       this.description = '';
+      this.save_button_entry_enabled = true;
       $('#entry-deposit').modal('show');
+    },
+    createJournal: function createJournal() {
+      this.save_button_entry_enabled = false;
     },
     reverseTransaction: function reverseTransaction(transaction_no, active_row_id) {
       /*
@@ -80421,7 +80426,7 @@ var render = function() {
                                 type: "button",
                                 disabled: !_vm.save_button_entry_enabled
                               },
-                              on: { click: _vm.saveEntry }
+                              on: { click: _vm.createJournal }
                             },
                             [_vm._v("Save")]
                           )
