@@ -3282,7 +3282,7 @@ __webpack_require__.r(__webpack_exports__);
         }); // Save Check START
 
         var rawCheckData = {
-          checks: this.check
+          checks: this.checks
         };
         rawCheckData = JSON.stringify(rawCheckData);
         var formCheckData = new FormData();

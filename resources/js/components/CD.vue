@@ -1195,7 +1195,7 @@
 
                     // Save Check START
                     let rawCheckData = {
-                        checks: this.check
+                        checks: this.checks
                     }
                     rawCheckData = JSON.stringify(rawCheckData);
                     let formCheckData = new FormData();
