@@ -5907,6 +5907,7 @@ __webpack_require__.r(__webpack_exports__);
           _this4.transaction_entry_id = 0;
         }
       });
+      $('#entry-deposit').modal('hide');
     },
     reverseTransaction: function reverseTransaction(transaction_no, active_row_id) {
       /*
@@ -80382,7 +80383,7 @@ var render = function() {
                                               staticClass: "btn btn-success",
                                               attrs: {
                                                 disabled:
-                                                  check.status == "BANK" ||
+                                                  check.status == "DEPOSIT" ||
                                                   check.status == "REVERSE"
                                               },
                                               on: {
@@ -80413,7 +80414,7 @@ var render = function() {
                                             staticClass: "btn btn-danger",
                                             attrs: {
                                               disabled:
-                                                check.status == "BANK" ||
+                                                check.status == "DEPOSIT" ||
                                                 check.status == "REVERSE"
                                             },
                                             on: {

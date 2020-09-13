@@ -68,9 +68,9 @@
                             <td>{{ check.check_bank }}</td>
                             <td>{{ check.check_amount }}</td>
                             <td>{{ check.status }}</td>
-                            <td style="text-align: center;"><button :disabled="check.status == 'BANK' || check.status == 'REVERSE'" class="btn btn-success" @click="depositCheck(check.transaction_no,check.id,check.check_amount,check.transaction_type)"><i class="fas fa-sign-in-alt"></i></button></td>
+                            <td style="text-align: center;"><button :disabled="check.status == 'DEPOSIT' || check.status == 'REVERSE'" class="btn btn-success" @click="depositCheck(check.transaction_no,check.id,check.check_amount,check.transaction_type)"><i class="fas fa-sign-in-alt"></i></button></td>
                             <td>
-                                <button :disabled="check.status == 'BANK' || check.status == 'REVERSE'" class="btn btn-danger" @click="reverseTransaction(transaction.transaction_no,transaction.id)">Reverse</button>
+                                <button :disabled="check.status == 'DEPOSIT' || check.status == 'REVERSE'" class="btn btn-danger" @click="reverseTransaction(transaction.transaction_no,transaction.id)">Reverse</button>
                             </td>
                           </tr>
                           
@@ -524,7 +524,7 @@
                         this.transaction_entry_id = 0;                                
                     }
                     });
-            
+                $('#entry-deposit').modal('hide');
 
             },
             reverseTransaction(transaction_no,active_row_id){
