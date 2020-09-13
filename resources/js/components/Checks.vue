@@ -256,7 +256,7 @@
                 sub_account_type: '',
                 main_code: 0,
                 main_account: '',
-                type: type,  
+                type: '',  
               description: '',
               save_button_entry_enabled: true,
               searchText: '',
