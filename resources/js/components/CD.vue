@@ -1186,7 +1186,7 @@
                         transaction_no: this.form.transaction_no,
                         transaction_type: this.form.transaction_type,
                         transaction_date: this.form.transaction_date,
-                        deposit_reference_no: this.form.deposit_reference_no,
+                        deposit_reference_no: '',
                         deposit_date: '',
                         deposit_amount: 0,
                         status: 'CONFIRMED'
