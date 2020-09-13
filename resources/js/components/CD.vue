@@ -5,8 +5,6 @@
           <div class="box mt-4">
             <!-- general form elements -->
           <div class="box box-warning">
-
-
             <!-- /.box-header -->
             <!-- form start -->
             <form role="form" @submit.prevent="createTransaction()">
@@ -91,6 +89,18 @@
                   <div class="input-group mb-2">
                     <p v-show="no_branch_id" class="empty-field-message">** Please select branch!</p>
                   </div>
+
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text inputGroup-sizing-default">Check</span>
+                    </div>
+                    <input v-bind:readonly="transaction_created" type="text" class="form-control col-2" id="inputBranchId" placeholder="Code"  v-model="form.branch_id">
+                    <input readonly="true" type="text" class="form-control col-9" id="inputCheck" placeholder="Check No" v-bind="check.check_no">
+                    <span class="input-group-btn col-1">
+                        <button type="button" v-show="!transaction_created" class="btn btn-success" @click="showCheckDetails()"><i class="fas fa-search fa-fw"></i></button>
+                    </span>
+                  </div>
+                  
 
                 </div>
                 <!--Right Col-->
@@ -831,16 +841,117 @@
       </div>
       <!-- Search Branch Modal -->   
       
+      <!-- Check Details Modal 
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      *
+      -->
+
+      <div class="modal fade" id="check-details" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form onsubmit="return false;">
+            <div class="modal-body">
+              
+                <check-input></check-input>
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Check Details Modal -->   
+
 
     </div>
 </template>
 <script>
-
+    import CheckInput from '@/components/CheckInput.vue';
     export default {
         data() {
           return {
+              form: new Form({
+                  account_type:'',
+                  sub_account_type:'',
+                  main_code:0,
+                  main_account:'',
+                  type: '',
+                  payee_id: '',
+                  reference_no: '',
+                  transaction_no: '',
+                  transaction_type: this.transaction_type, // default for Cash Disbursement
+                  transaction_date: this.getDate(),
+                  account_code: '',
+                  account_name:'',
+                  amount: 0,
+                  credit_amount: 0,
+                  debit_amount: 0,
+                  amount_ex_tax: 0,
+                  vat: 0,
+                  canceled: 0,
+                  branch_id: '',
+                  useful_life: 0,
+                  salvage_value: 0,
+                  user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
+              }),
+              form_entry: new Form({
+                  account_type:'',
+                  sub_account_type:'',
+                  main_code:0,
+                  main_account:'',
+                  type: '',
+                  transaction_no:'',
+                  transaction_entry_id: 0,
+                  transaction_type: this.transaction_type,
+                  account_code : 0,
+                  account_name: 'NA',
+                  branch_id: '',
+                  branch_name: '',
+                  amount: 0,
+                  amount_ex_tax: 0,
+                  vat: 0,
+                  credit_amount: 0,
+                  debit_amount: 0,
+                  useful_life: 0,
+                  salvage_value: 0,
+                  depreciation_value: 0,
+                  transaction_date: this.getDate(),
+              }),
+              form_item: new Form({
+                  id:'',
+                  transaction_entry_id:'',
+                  transaction_no:'',
+                  transaction_type: this.transaction_type,
+                  account_code : '',
+                  item: '',
+                  quantity: 0,
+                  price: 0,
+                  sub_total: 0,
+                  tax_type: 'VAT',
+                  tax_excluded: 0,
+                  vat: 0
+              }),
               transaction_type: 'CD',
-              //ledgers: [],
               transactions: [],
               items: [],
               item_no: 0,
@@ -874,72 +985,6 @@
               active_debit_row: 0,
               selected_branch: {},
               cd : {},
-              form: new Form({
-                  account_type:'',
-                  sub_account_type:'',
-                  main_code:0,
-                  main_account:'',
-                  type: '',
-                  payee_id: '',
-                  reference_no: '',
-                  transaction_no: '',
-                  transaction_type: this.transaction_type, // default for Cash Disbursement
-                  transaction_date: this.getDate(),
-                  account_code: '',
-                  account_name:'',
-                  amount: 0,
-                  credit_amount: 0,
-                  debit_amount: 0,
-                  amount_ex_tax: 0,
-                  vat: 0,
-                  canceled: 0,
-                  branch_id: '',
-                  useful_life: 0,
-                  salvage_value: 0,
-                  
-                  user_id: document.querySelector('meta[name="user-id"]').getAttribute('content')
-              }),
-              form_entry: new Form({
-
-                  account_type:'',
-                  sub_account_type:'',
-                  main_code:0,
-                  main_account:'',
-                  type: '',
-                  transaction_no:'',
-                  transaction_entry_id: 0,
-                  transaction_type: this.transaction_type,
-                  account_code : 0,
-                  account_name: 'NA',
-                  branch_id: '',
-                  branch_name: '',
-                  amount: 0,
-                  amount_ex_tax: 0,
-                  vat: 0,
-                  credit_amount: 0,
-                  debit_amount: 0,
-                  useful_life: 0,
-                  salvage_value: 0,
-                  depreciation_value: 0,
-                  transaction_date: this.getDate(),
-              }),
-              form_item: new Form({
-
-                  id:'',
-                  transaction_entry_id:'',
-                  transaction_no:'',
-                  transaction_type: this.transaction_type,
-                  account_code : '',
-                  item: '',
-                  quantity: 0,
-                  price: 0,
-                  sub_total: 0,
-                  tax_type: 'VAT',
-                  tax_excluded: 0,
-                  vat: 0
-                  
-                  
-              }),
               payees: {},
               branches: {},
               chart_of_accounts: {},
@@ -949,8 +994,14 @@
               current_date: this.getDate(),
               readabilityObject: {
                 fontSize: user.font_size
+              },
+              check: {
+                check_no: '',
+                check_bank: '',
+                check_bank_branch: '',
+                check_date: null,
+                check_amount: 0
               }
-
           }
         },
         methods: {
@@ -1622,6 +1673,9 @@
           selectEntryRow(current_transaction_entry_id){
               this.current_transaction_entry_id = current_transaction_entry_id;
               
+          },
+          showCheckDetails(){
+              $('#check-details').modal('show');
           }
         },
 

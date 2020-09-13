@@ -53,6 +53,8 @@ class CreateTransactionsTable extends Migration
             $table->string('taxed');
             $table->integer('tax_of_id')->unsigned();
             $table->integer('tax_of_account')->unsigned();
+            
+            
             $table->timestamps();
         });
     }
