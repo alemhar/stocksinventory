@@ -17,13 +17,19 @@ class CreateChecksTable extends Migration
             $table->bigIncrements('id');
             $table->string('check_no');
             $table->string('check_bank');
+            $table->string('check_bank_branch');
             $table->date('check_date');
-            $table->date('check_amount');
+            $table->decimal('check_amount', 14, 2);
             $table->string('reference_no');
             $table->bigInteger('transaction_no')->unsigned();
             $table->string('transaction_type');
             $table->date('transaction_date');
+            $table->string('deposit_reference_no');
+            $table->string('deposit_date');
+            $table->decimal('deposit_amount', 14, 2);
+
             $table->string('status', 20)->default('UNCONFIRMED');
+
             $table->timestamps();
         });
     }
