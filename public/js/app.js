@@ -2966,25 +2966,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3728,7 +3709,8 @@ __webpack_require__.r(__webpack_exports__);
       this.check.check_bank = child_check.check_bank;
       this.check.check_bank_branch = child_check.check_bank_branch;
       this.check.check_date = child_check.check_date;
-      this.check.check_amount = child_check.check_amount; //console.log(value);          
+      this.check.check_amount = child_check.check_amount;
+      $('#check-details').modal('hide'); //console.log(value);          
     }
   },
   created: function created() {
@@ -76100,25 +76082,11 @@ var render = function() {
             attrs: { role: "document" }
           },
           [
-            _c("div", { staticClass: "modal-content" }, [
-              _vm._m(39),
-              _vm._v(" "),
-              _c("form", { attrs: { onsubmit: "return false;" } }, [
-                _c(
-                  "div",
-                  { staticClass: "modal-body" },
-                  [
-                    _c("check-input", {
-                      on: { updateCheckDetails: _vm.updateCheckDetails }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _vm._m(40)
-              ])
-            ])
-          ]
+            _c("check-input", {
+              on: { updateCheckDetails: _vm.updateCheckDetails }
+            })
+          ],
+          1
         )
       ]
     )
@@ -76642,40 +76610,6 @@ var staticRenderFns = [
       _c("th", [_vm._v("Branch")]),
       _vm._v(" "),
       _c("th", [_vm._v("Option")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-danger",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Close")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
     ])
   },
   function() {
