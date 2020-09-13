@@ -78,6 +78,7 @@ Route::get('reverse_transaction', 'API\CDController@reverse_transaction');
 
 
 Route::post('items', 'API\CDItemController@store_items');
+Route::post('check', 'API\CDItemController@store_checks');
 
 Route::post('record_payment', 'API\CDController@record_payment');
 Route::post('record_collection', 'API\CDController@record_collection');

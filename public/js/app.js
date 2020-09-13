@@ -3263,6 +3263,34 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       }); // Save Items END
 
+      if (this.check.check_no) {
+        this.check.check_amount = this.form.amount;
+        this.check.reference_no = this.form.reference_no;
+        this.check.transaction_no = this.form.transaction_no;
+        this.check.transaction_type = this.form.transaction_type;
+        this.check.transaction_date = this.form.transaction_date;
+        this.check.deposit_reference_no = this.form.deposit_reference_no;
+        this.check.deposit_date = '';
+        this.check.deposit_amount = 0;
+        this.check.status = 'CONFIRMED'; // Save Check START
+
+        var rawCheckData = {
+          checks: this.check
+        };
+        rawCheckData = JSON.stringify(rawCheckData);
+        var formCheckData = new FormData();
+        formCheckData.append('checks', rawCheckData);
+        axios.post('api/check', formCheckData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }).then(function (response) {
+          console.log(response);
+        })["catch"](function (error) {
+          console.log(error);
+        }); // Save Check END
+      }
+
       swal.fire({
         title: 'Saved!',
         text: "Journal posted",
@@ -76165,7 +76193,7 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Check")]
+        [_vm._v("Check #")]
       )
     ])
   },

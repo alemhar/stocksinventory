@@ -92,7 +92,7 @@
 
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
-                      <span class="input-group-text inputGroup-sizing-default">Check</span>
+                      <span class="input-group-text inputGroup-sizing-default">Check #</span>
                     </div>
                     <!-- input v-bind:readonly="transaction_created" type="text" class="form-control col-2" id="inputBranchId" placeholder="Code"  v-model="form.branch_id" -->
                     <input readonly="true" type="text" class="form-control col-9" id="inputCheck" placeholder="Check No" v-model="check.check_no">
@@ -1173,6 +1173,41 @@
                 });
                 // Save Items END
 
+                if(this.check.check_no){
+
+                    this.check.check_amount =  this.form.amount;
+                    this.check.reference_no =  this.form.reference_no;
+                    this.check.transaction_no =  this.form.transaction_no;
+                    this.check.transaction_type =  this.form.transaction_type;
+                    this.check.transaction_date =  this.form.transaction_date;
+                    this.check.deposit_reference_no =  this.form.deposit_reference_no;
+                    this.check.deposit_date = '';
+                    this.check.deposit_amount = 0;
+                    this.check.status = 'CONFIRMED';
+
+                    // Save Check START
+                    let rawCheckData = {
+                        checks: this.check
+                    }
+                    rawCheckData = JSON.stringify(rawCheckData);
+                    let formCheckData = new FormData();
+                        formCheckData.append('checks', rawCheckData);
+                    axios.post('api/check', formCheckData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    })
+                    .then((response)=>{
+                        
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                    // Save Check END
+
+                }
+
 
                 swal.fire({
                     title: 'Saved!',
@@ -1188,6 +1223,7 @@
                       this.dataReset();
                     }
                 });
+
           },
           dataReset(){
                   this.form.reset();
