@@ -5910,17 +5910,32 @@ __webpack_require__.r(__webpack_exports__);
       $('#entry-deposit').modal('hide');
     },
     reverseCheck: function reverseCheck(transaction_no, id) {
-      this.id = id;
-      this.loadTransaction(transaction_no);
+      var _this5 = this;
+
+      swal.fire({
+        title: 'Reversed!',
+        text: "Journal posted",
+        type: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ok'
+      }).then(function (result) {
+        if (result.value) {
+          _this5.id = id;
+
+          _this5.loadTransaction(transaction_no);
+        }
+      });
     },
     loadTransaction: function loadTransaction(transaction_no) {
-      var _this5 = this;
+      var _this6 = this;
 
       //this.active_debit_row = active_debit_row_id;
       axios.get('api/transaction?transaction_no=' + transaction_no).then(function (response) {
-        _this5.transaction = response.data.data; //console.log(response); 
+        _this6.transaction = response.data.data; //console.log(response); 
 
-        _this5.reverseTransaction(transaction_no);
+        _this6.reverseTransaction(transaction_no);
       })["catch"](function () {});
     },
     reverseTransaction: function reverseTransaction(transaction_no) {
@@ -5963,7 +5978,7 @@ __webpack_require__.r(__webpack_exports__);
       this.saveReverse(transaction_no);
     },
     saveReverse: function saveReverse(transaction_no) {
-      var _this6 = this;
+      var _this7 = this;
 
       axios.get('api/reverse_transaction?transaction_no=' + transaction_no).then(function (response) {//this.transaction = response.data.data;
         //console.log(response); 
@@ -5980,7 +5995,7 @@ __webpack_require__.r(__webpack_exports__);
           'Content-Type': 'multipart/form-data'
         }
       }).then(function (response) {
-        _this6.reverse = false; //console.log(response);
+        _this7.reverse = false; //console.log(response);
       })["catch"](function (error) {
         console.log(error);
       }); // Save Transactions END
@@ -6003,8 +6018,9 @@ __webpack_require__.r(__webpack_exports__);
         if (result.value) {
           //Reload Current Page
           //this.dataReset();
-          _this6.transactions = {};
-          _this6.transaction_entry_id = 0;
+          _this7.transactions = {};
+          _this7.transaction_entry_id = 0;
+          _this7.id = 0;
         }
       });
     },

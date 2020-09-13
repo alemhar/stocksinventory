@@ -528,8 +528,23 @@
 
             },
             reverseCheck(transaction_no,id){
-                this.id = id;
-                this.loadTransaction(transaction_no);
+
+                swal.fire({
+                    title: 'Reversed!',
+                    text: "Journal posted",
+                    type: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ok'
+                    }).then((result) => {
+                    if (result.value) {
+                        this.id = id;
+                        this.loadTransaction(transaction_no);                            
+                    }
+                    });
+
+                
 
             },
             loadTransaction(transaction_no){
@@ -654,7 +669,8 @@
                         //Reload Current Page
                         //this.dataReset();
                         this.transactions = {};
-                        this.transaction_entry_id = 0;                                
+                        this.transaction_entry_id = 0; 
+                        this.id = 0;                               
                     }
                     });
 
