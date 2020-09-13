@@ -26,9 +26,9 @@
                   <div class="input-group mb-2">
 
                     <div class="input-group-prepend">
-                      <span class="input-group-text inputGroup-sizing-default"  v-bind:style="[readabilityObject]">Payee</span>
+                      <span class="input-group-text inputGroup-sizing-default">Payee</span>
                     </div>  
-                    <input v-model="current_payee_name" v-bind:readonly="transaction_created" type="text" class="form-control col-12" id="inputPayeeName" placeholder="Payees Name" v-bind:style="[readabilityObject]">
+                    <input v-model="current_payee_name" v-bind:readonly="transaction_created" type="text" class="form-control col-12" id="inputPayeeName" placeholder="Payees Name">
                       
                     <span class="input-group-btn col-1">
                         <button type="button" v-show="!transaction_created" class="btn btn-success" @click="searchPayeeModal"><i class="fas fa-search fa-fw"></i></button>
@@ -124,10 +124,10 @@
                     </div>
                     <input readonly="true" type="text" class="form-control col-9" id="inputCheck" placeholder="Check No" v-model="check.check_no">
                     <span class="input-group-btn col-1">
-                        <button type="button" v-show="!transaction_created" class="btn btn-success" @click="showCheckDetails"><i class="fas fa-edit"></i></button>
+                        <button type="button" v-show="!transaction_created" class="btn btn-success" @click="showCheckDetails" style="margin-left: -15px;"><i class="fas fa-edit"></i></button>
                     </span>
                   </div>
-                  
+
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Amount</span>
