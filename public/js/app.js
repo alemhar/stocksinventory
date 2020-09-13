@@ -3721,7 +3721,10 @@ __webpack_require__.r(__webpack_exports__);
       this.current_transaction_entry_id = current_transaction_entry_id;
     },
     showCheckDetails: function showCheckDetails() {
-      $('#check-details').modal('show');
+      $('#check-d,etails').modal('show');
+    },
+    updateCheckDetails: function updateCheckDetails(value) {
+      console.log(value);
     }
   },
   created: function created() {
@@ -76096,7 +76099,11 @@ var render = function() {
                 _c(
                   "div",
                   { staticClass: "modal-body" },
-                  [_c("check-input")],
+                  [
+                    _c("check-input", {
+                      on: { updateCheckDetails: _vm.updateCheckDetails }
+                    })
+                  ],
                   1
                 ),
                 _vm._v(" "),

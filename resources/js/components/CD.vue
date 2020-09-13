@@ -868,7 +868,7 @@
             <form onsubmit="return false;">
             <div class="modal-body">
               
-                <check-input></check-input>
+                <check-input v-on:updateCheckDetails="updateCheckDetails"></check-input>
 
 
             </div>
@@ -1675,7 +1675,10 @@
               
           },
           showCheckDetails(){
-              $('#check-details').modal('show');
+              $('#check-d,etails').modal('show');
+          },
+          updateCheckDetails(value){
+            console.log(value);          
           }
         },
 
