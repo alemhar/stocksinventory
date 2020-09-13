@@ -237,6 +237,7 @@
               account_name: '',
               description: '',
               save_button_entry_enabled: true,
+              searchText: '',
               reverse: false
           }
         },
@@ -303,7 +304,7 @@
                 
             },
             createJournal(){
-                
+
                 this.save_button_entry_enabled = false;
             },
             reverseTransaction(transaction_no,active_row_id){

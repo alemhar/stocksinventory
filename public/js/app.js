@@ -5648,6 +5648,7 @@ __webpack_require__.r(__webpack_exports__);
       account_name: '',
       description: '',
       save_button_entry_enabled: true,
+      searchText: '',
       reverse: false
     };
   },
