@@ -5643,7 +5643,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      transaction_type: 'DEPOSIT',
+      transaction_type: 'ALL',
       transactions: [],
       transaction_entry_id: 0,
       transaction_no: '',
@@ -5719,6 +5719,7 @@ __webpack_require__.r(__webpack_exports__);
       this.account_name = '';
       this.description = '';
       this.check_amount = check_amount;
+      this.current_transaction_type = transaction_type;
       this.save_button_entry_enabled = true;
       $('#entry-deposit').modal('show');
     },
@@ -5775,7 +5776,7 @@ __webpack_require__.r(__webpack_exports__);
         account_name: 'Cash On Hand',
         reference_no: '',
         transaction_no: this.transaction_no,
-        transaction_type: this.transaction_type,
+        transaction_type: 'DEPOSIT',
         transaction_date: this.transaction_date,
         amount: this.check_amount,
         credit_amount: this.check_amount,
@@ -80343,7 +80344,8 @@ var render = function() {
                                                   return _vm.depositCheck(
                                                     check.transaction_no,
                                                     check.id,
-                                                    check.check_amount
+                                                    check.check_amount,
+                                                    check.transaction_type
                                                   )
                                                 }
                                               }

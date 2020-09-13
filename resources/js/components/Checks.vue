@@ -68,7 +68,7 @@
                             <td>{{ check.check_bank }}</td>
                             <td>{{ check.check_amount }}</td>
                             <td>{{ check.status }}</td>
-                            <td style="text-align: center;"><button :disabled="check.status == 'BANK' || check.status == 'REVERSE'" class="btn btn-success" @click="depositCheck(check.transaction_no,check.id,check.check_amount)"><i class="fas fa-sign-in-alt"></i></button></td>
+                            <td style="text-align: center;"><button :disabled="check.status == 'BANK' || check.status == 'REVERSE'" class="btn btn-success" @click="depositCheck(check.transaction_no,check.id,check.check_amount,check.transaction_type)"><i class="fas fa-sign-in-alt"></i></button></td>
                             <td>
                                 <button :disabled="check.status == 'BANK' || check.status == 'REVERSE'" class="btn btn-danger" @click="reverseTransaction(transaction.transaction_no,transaction.id)">Reverse</button>
                             </td>
@@ -232,7 +232,7 @@
     export default {
         data() {
           return {
-              transaction_type: 'DEPOSIT',
+              transaction_type: 'ALL',
               transactions: [],
               transaction_entry_id: 0,
               transaction_no: '',
@@ -311,6 +311,7 @@
                 this.account_name = '';
                 this.description = '';
                 this.check_amount = check_amount;
+                this.current_transaction_type = transaction_type;
                 this.save_button_entry_enabled =  true;
                 $('#entry-deposit').modal('show');
                 
@@ -370,7 +371,7 @@
                     account_name: 'Cash On Hand',
                     reference_no: '',
                     transaction_no: this.transaction_no,
-                    transaction_type: this.transaction_type,
+                    transaction_type: 'DEPOSIT',
                     transaction_date: this.transaction_date,
                     amount: this.check_amount,
                     credit_amount: this.check_amount,
