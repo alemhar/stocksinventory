@@ -1675,7 +1675,7 @@
               
           },
           showCheckDetails(){
-              $('#check-d,etails').modal('show');
+              $('#check-details').modal('show');
           },
           updateCheckDetails(value){
             console.log(value);          

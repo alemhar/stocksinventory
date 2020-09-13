@@ -3721,7 +3721,7 @@ __webpack_require__.r(__webpack_exports__);
       this.current_transaction_entry_id = current_transaction_entry_id;
     },
     showCheckDetails: function showCheckDetails() {
-      $('#check-d,etails').modal('show');
+      $('#check-details').modal('show');
     },
     updateCheckDetails: function updateCheckDetails(value) {
       console.log(value);

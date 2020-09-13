@@ -8,7 +8,7 @@
         <div class="input-group-prepend">
             <span class="input-group-text inputGroup-sizing-default">Check #</span>
         </div>
-        <input type="text"  v-model="check.check_no" class="form-control col-12" id="check_no" placeholder="Check No"  v-on:keyup="emitToParent">
+        <input type="text" v-model="check.check_no" class="form-control col-12" id="check_no" placeholder="Check No"  v-on:keyup="emitToParent">
         <!-- p v-show="no_reference_no" class="empty-field-message">** Please enter reference number!</p -->
     </div>
 
