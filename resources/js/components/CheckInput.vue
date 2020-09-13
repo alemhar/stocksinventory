@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" @click="updateCheckDetails">Close</button>
+              <button type="button" class="btn btn-danger" @click="emitToParent">Close</button>
             </div>
 
             </form>

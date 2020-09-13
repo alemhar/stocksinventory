@@ -79557,7 +79557,7 @@ var render = function() {
               {
                 staticClass: "btn btn-danger",
                 attrs: { type: "button" },
-                on: { click: _vm.updateCheckDetails }
+                on: { click: _vm.emitToParent }
               },
               [_vm._v("Close")]
             )
