@@ -2966,6 +2966,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3334,6 +3336,14 @@ __webpack_require__.r(__webpack_exports__);
       this.current_payee_tin = '';
       this.active_debit_row = 0;
       this.current_entity_type = '';
+      this.check = {
+        check_no: '',
+        check_bank: '',
+        check_bank_branch: '',
+        check_date: '',
+        check_amount: 0
+      };
+      this.checks = [];
     },
     cancelTransaction: function cancelTransaction() {
       this.transaction_created = false;
@@ -74149,67 +74159,12 @@ var render = function() {
                             },
                             [_vm._v("** Please select branch!")]
                           )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(4),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.check.check_no,
-                                expression: "check.check_no"
-                              }
-                            ],
-                            staticClass: "form-control col-9",
-                            attrs: {
-                              readonly: "true",
-                              type: "text",
-                              id: "inputCheck",
-                              placeholder: "Check No"
-                            },
-                            domProps: { value: _vm.check.check_no },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.check,
-                                  "check_no",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "input-group-btn col-1" }, [
-                            _c(
-                              "button",
-                              {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: !_vm.transaction_created,
-                                    expression: "!transaction_created"
-                                  }
-                                ],
-                                staticClass: "btn btn-success",
-                                attrs: { type: "button" },
-                                on: { click: _vm.showCheckDetails }
-                              },
-                              [_c("i", { staticClass: "fas fa-search fa-fw" })]
-                            )
-                          ])
                         ])
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-4" }, [
                         _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(5),
+                          _vm._m(4),
                           _vm._v(" "),
                           _c("input", {
                             directives: [
@@ -74260,7 +74215,7 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(6),
+                          _vm._m(5),
                           _vm._v(" "),
                           _c("input", {
                             directives: [
@@ -74295,7 +74250,7 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "input-group mb-2" }, [
-                          _vm._m(7),
+                          _vm._m(6),
                           _vm._v(" "),
                           _c("input", {
                             directives: [
@@ -74327,6 +74282,61 @@ var render = function() {
                               }
                             }
                           })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "input-group mb-2" }, [
+                          _vm._m(7),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.check.check_no,
+                                expression: "check.check_no"
+                              }
+                            ],
+                            staticClass: "form-control col-9",
+                            attrs: {
+                              readonly: "true",
+                              type: "text",
+                              id: "inputCheck",
+                              placeholder: "Check No"
+                            },
+                            domProps: { value: _vm.check.check_no },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.check,
+                                  "check_no",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "input-group-btn col-1" }, [
+                            _c(
+                              "button",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: !_vm.transaction_created,
+                                    expression: "!transaction_created"
+                                  }
+                                ],
+                                staticClass: "btn btn-success",
+                                attrs: { type: "button" },
+                                on: { click: _vm.showCheckDetails }
+                              },
+                              [_c("i", { staticClass: "fas fa-edit" })]
+                            )
+                          ])
                         ]),
                         _vm._v(" "),
                         _c(
@@ -76200,18 +76210,6 @@ var staticRenderFns = [
       _c(
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
-        [_vm._v("Check #")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Ref. #")]
       )
     ])
@@ -76237,6 +76235,18 @@ var staticRenderFns = [
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Transaction #")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Check #")]
       )
     ])
   },

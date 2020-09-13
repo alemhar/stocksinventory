@@ -90,16 +90,7 @@
                     <p v-show="no_branch_id" class="empty-field-message">** Please select branch!</p>
                   </div>
 
-                  <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text inputGroup-sizing-default">Check #</span>
-                    </div>
-                    <!-- input v-bind:readonly="transaction_created" type="text" class="form-control col-2" id="inputBranchId" placeholder="Code"  v-model="form.branch_id" -->
-                    <input readonly="true" type="text" class="form-control col-9" id="inputCheck" placeholder="Check No" v-model="check.check_no">
-                    <span class="input-group-btn col-1">
-                        <button type="button" v-show="!transaction_created" class="btn btn-success" @click="showCheckDetails"><i class="fas fa-search fa-fw"></i></button>
-                    </span>
-                  </div>
+                  
                   
 
                 </div>
@@ -126,6 +117,17 @@
                     </div>
                     <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="Transaction Number">
                   </div>
+
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text inputGroup-sizing-default">Check #</span>
+                    </div>
+                    <input readonly="true" type="text" class="form-control col-9" id="inputCheck" placeholder="Check No" v-model="check.check_no">
+                    <span class="input-group-btn col-1">
+                        <button type="button" v-show="!transaction_created" class="btn btn-success" @click="showCheckDetails"><i class="fas fa-edit"></i></button>
+                    </span>
+                  </div>
+                  
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Amount</span>
@@ -1254,6 +1256,14 @@
                   this.current_payee_tin = '';
                   this.active_debit_row = 0;
                   this.current_entity_type = '';
+                  this.check= {
+                    check_no: '',
+                    check_bank: '',
+                    check_bank_branch: '',
+                    check_date: '',
+                    check_amount: 0
+                  };
+                  this.checks = [];
           },
           cancelTransaction(){
             this.transaction_created = false;
