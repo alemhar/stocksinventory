@@ -5331,12 +5331,12 @@ __webpack_require__.r(__webpack_exports__);
         check_no: '',
         check_bank: '',
         check_bank_branch: '',
-        check_date: null,
+        check_date: '',
         check_amount: 0
       }
     };
   },
-  name: 'Child',
+  name: 'CheckInput',
   methods: {
     // Define the method that emits data to the parent as the first parameter to `$emit()`.
     // This is referenced in the <template> call in the parent. The second parameter is the payload.
