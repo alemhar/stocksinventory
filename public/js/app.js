@@ -5795,9 +5795,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    /*
     this.initChartAccounts();
     this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
+    /*
     $(document).on('hidden.bs.modal', '.modal', function () {
         $('.modal:visible').length && $(document.body).addClass('modal-open');
     });
