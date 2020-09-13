@@ -5991,17 +5991,7 @@ __webpack_require__.r(__webpack_exports__);
     });
     */
   },
-  computed: {
-    /*
-    runningBalance(){
-         return this.ledgers.data.map((ledger) => {
-            this.running_balance = this.running_balance + Number(ledger.debit_amount - ledger.credit_amount);
-            
-            return this.running_balance.toFixed(2);
-         });
-    }  
-    */
-  },
+  computed: {},
   components: {}
 });
 

@@ -252,13 +252,11 @@
               active_row: 0,
               account_code: 0,
               account_name: '',
-
                 account_type: '',
                 sub_account_type: '',
                 main_code: 0,
                 main_account: '',
                 type: type,  
-
               description: '',
               save_button_entry_enabled: true,
               searchText: '',
@@ -626,15 +624,7 @@
             
         },
         computed: {
-            /*
-            runningBalance(){
-                 return this.ledgers.data.map((ledger) => {
-                    this.running_balance = this.running_balance + Number(ledger.debit_amount - ledger.credit_amount);
-                    
-                    return this.running_balance.toFixed(2);
-                 });
-            }  
-            */          
+   
 
         },
         components: {
