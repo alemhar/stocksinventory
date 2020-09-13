@@ -858,7 +858,9 @@
 
       <div class="modal fade" id="check-details" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
           <check-input v-on:updateCheckDetails="updateCheckDetails"></check-input>
+          </div>
         </div>
       </div>
       <!-- Check Details Modal -->   

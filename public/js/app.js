@@ -2966,6 +2966,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -76082,11 +76084,17 @@ var render = function() {
             attrs: { role: "document" }
           },
           [
-            _c("check-input", {
-              on: { updateCheckDetails: _vm.updateCheckDetails }
-            })
-          ],
-          1
+            _c(
+              "div",
+              { staticClass: "modal-content" },
+              [
+                _c("check-input", {
+                  on: { updateCheckDetails: _vm.updateCheckDetails }
+                })
+              ],
+              1
+            )
+          ]
         )
       ]
     )
