@@ -74143,11 +74143,7 @@ var render = function() {
                                 ],
                                 staticClass: "btn btn-success",
                                 attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.showCheckDetails()
-                                  }
-                                }
+                                on: { click: _vm.showCheckDetails }
                               },
                               [_c("i", { staticClass: "fas fa-search fa-fw" })]
                             )
