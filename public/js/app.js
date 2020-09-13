@@ -5909,7 +5909,8 @@ __webpack_require__.r(__webpack_exports__);
       });
       $('#entry-deposit').modal('hide');
     },
-    reverseCheck: function reverseCheck(transaction_no) {
+    reverseCheck: function reverseCheck(transaction_no, id) {
+      this.id = id;
       this.loadTransaction(transaction_no);
     },
     loadTransaction: function loadTransaction(transaction_no) {
@@ -5983,6 +5984,29 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       }); // Save Transactions END
+      // Update Check Status START ********************
+
+      axios.post('api/update_check_status', {
+        id: this.id,
+        status: 'REVERSE'
+      }).then(function (response) {})["catch"](function () {}); // Update Check Status END ********************
+
+      swal.fire({
+        title: 'Reversed!',
+        text: "Journal posted",
+        type: 'info',
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ok'
+      }).then(function (result) {
+        if (result.value) {
+          //Reload Current Page
+          //this.dataReset();
+          _this6.transactions = {};
+          _this6.transaction_entry_id = 0;
+        }
+      });
     },
     cancelEntry: function cancelEntry() {
       //this.$Progress.start();
@@ -80420,7 +80444,8 @@ var render = function() {
                                             on: {
                                               click: function($event) {
                                                 return _vm.reverseCheck(
-                                                  check.transaction_no
+                                                  check.transaction_no,
+                                                  check.id
                                                 )
                                               }
                                             }

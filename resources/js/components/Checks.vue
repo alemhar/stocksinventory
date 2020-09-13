@@ -70,7 +70,7 @@
                             <td>{{ check.status }}</td>
                             <td style="text-align: center;"><button :disabled="check.status == 'DEPOSIT' || check.status == 'REVERSE'" class="btn btn-success" @click="depositCheck(check.transaction_no,check.id,check.check_amount,check.transaction_type)"><i class="fas fa-sign-in-alt"></i></button></td>
                             <td>
-                                <button :disabled="check.status == 'DEPOSIT' || check.status == 'REVERSE'" class="btn btn-danger" @click="reverseCheck(check.transaction_no)">Reverse</button>
+                                <button :disabled="check.status == 'DEPOSIT' || check.status == 'REVERSE'" class="btn btn-danger" @click="reverseCheck(check.transaction_no,check.id)">Reverse</button>
                             </td>
                           </tr>
                           
@@ -527,7 +527,8 @@
                 $('#entry-deposit').modal('hide');
 
             },
-            reverseCheck(transaction_no){
+            reverseCheck(transaction_no,id){
+                this.id = id;
                 this.loadTransaction(transaction_no);
 
             },
@@ -625,6 +626,37 @@
                     console.log(error);
                 });
                 // Save Transactions END
+
+                // Update Check Status START ********************
+                    axios.post('api/update_check_status', {
+                        id: this.id,
+                        status: 'REVERSE',
+                    })
+                    .then((response)=>{
+
+                    })
+                    .catch(()=>{
+                        
+                    });
+                    // Update Check Status END ********************
+
+
+                swal.fire({
+                    title: 'Reversed!',
+                    text: "Journal posted",
+                    type: 'info',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ok'
+                    }).then((result) => {
+                    if (result.value) {
+                        //Reload Current Page
+                        //this.dataReset();
+                        this.transactions = {};
+                        this.transaction_entry_id = 0;                                
+                    }
+                    });
 
                 
             },
