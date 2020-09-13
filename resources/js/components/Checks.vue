@@ -121,26 +121,18 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Code</span>
                 </div>
-                <input v-model="form_entry.account_code" type="text" name="account_code" 
-                  readonly
-                  class="form-control col-4" :class="{ 'is-invalid': form_entry.errors.has('account_code') }" aria-describedby="inputGroup-sizing-default">
-                <has-error :form="form_entry" field="account_code"></has-error>
+                <input v-model="account_code" type="text" name="account_code" readonly class="form-control col-4" aria-describedby="inputGroup-sizing-default">
+                
                 <span class="input-group-btn col-1">
                     <button type="button" class="btn btn-success" @click="searchAccountModal('header')"><i class="fas fa-search fa-fw"></i></button>
                 </span>
               </div>
               <div class="input-group mb-2">
-                <p v-show="no_entry_account_code" class="empty-field-message">** Please select account!</p>
-              </div>
-              <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <span class="input-group-text inputGroup-sizing-default">Account</span>
                 </div>
+                <input v-model="account_name" type="text" name="account_name" class="form-control" readonly aria-describedby="inputGroup-sizing-default">
                 
-                <input v-model="form_entry.account_name" type="text" name="account_name"
-                  
-                  class="form-control" :class="{ 'is-invalid': form_entry.errors.has('account_name') }" readonly aria-describedby="inputGroup-sizing-default">
-                <has-error :form="form_entry" field="account_name"></has-error>
               </div>
 
                 

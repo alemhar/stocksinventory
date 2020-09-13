@@ -5635,14 +5635,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -80291,159 +80283,91 @@ var render = function() {
                         _vm._m(4),
                         _vm._v(" "),
                         _c("div", { staticClass: "modal-body" }, [
-                          _c(
-                            "div",
-                            { staticClass: "input-group mb-2" },
-                            [
-                              _vm._m(5),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form_entry.account_code,
-                                    expression: "form_entry.account_code"
-                                  }
-                                ],
-                                staticClass: "form-control col-4",
-                                class: {
-                                  "is-invalid": _vm.form_entry.errors.has(
-                                    "account_code"
-                                  )
-                                },
-                                attrs: {
-                                  type: "text",
-                                  name: "account_code",
-                                  readonly: "",
-                                  "aria-describedby":
-                                    "inputGroup-sizing-default"
-                                },
-                                domProps: {
-                                  value: _vm.form_entry.account_code
-                                },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.form_entry,
-                                      "account_code",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("has-error", {
-                                attrs: {
-                                  form: _vm.form_entry,
-                                  field: "account_code"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "span",
-                                { staticClass: "input-group-btn col-1" },
-                                [
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass: "btn btn-success",
-                                      attrs: { type: "button" },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.searchAccountModal(
-                                            "header"
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c("i", {
-                                        staticClass: "fas fa-search fa-fw"
-                                      })
-                                    ]
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
                           _c("div", { staticClass: "input-group mb-2" }, [
-                            _c(
-                              "p",
-                              {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: _vm.no_entry_account_code,
-                                    expression: "no_entry_account_code"
-                                  }
-                                ],
-                                staticClass: "empty-field-message"
+                            _vm._m(5),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.account_code,
+                                  expression: "account_code"
+                                }
+                              ],
+                              staticClass: "form-control col-4",
+                              attrs: {
+                                type: "text",
+                                name: "account_code",
+                                readonly: "",
+                                "aria-describedby": "inputGroup-sizing-default"
                               },
-                              [_vm._v("** Please select account!")]
+                              domProps: { value: _vm.account_code },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.account_code = $event.target.value
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              { staticClass: "input-group-btn col-1" },
+                              [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-success",
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.searchAccountModal("header")
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fas fa-search fa-fw"
+                                    })
+                                  ]
+                                )
+                              ]
                             )
                           ]),
                           _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "input-group mb-2" },
-                            [
-                              _vm._m(6),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form_entry.account_name,
-                                    expression: "form_entry.account_name"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                class: {
-                                  "is-invalid": _vm.form_entry.errors.has(
-                                    "account_name"
-                                  )
-                                },
-                                attrs: {
-                                  type: "text",
-                                  name: "account_name",
-                                  readonly: "",
-                                  "aria-describedby":
-                                    "inputGroup-sizing-default"
-                                },
-                                domProps: {
-                                  value: _vm.form_entry.account_name
-                                },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.form_entry,
-                                      "account_name",
-                                      $event.target.value
-                                    )
-                                  }
+                          _c("div", { staticClass: "input-group mb-2" }, [
+                            _vm._m(6),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.account_name,
+                                  expression: "account_name"
                                 }
-                              }),
-                              _vm._v(" "),
-                              _c("has-error", {
-                                attrs: {
-                                  form: _vm.form_entry,
-                                  field: "account_name"
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "account_name",
+                                readonly: "",
+                                "aria-describedby": "inputGroup-sizing-default"
+                              },
+                              domProps: { value: _vm.account_name },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.account_name = $event.target.value
                                 }
-                              })
-                            ],
-                            1
-                          ),
+                              }
+                            })
+                          ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "input-group mb-2" }, [
                             _vm._m(7),
