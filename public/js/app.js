@@ -79457,20 +79457,20 @@ var render = function() {
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.check.check_no,
-            expression: "check.check_no"
+            value: _vm.check_no,
+            expression: "check_no"
           }
         ],
         staticClass: "form-control col-12",
         attrs: { type: "text", id: "check_no", placeholder: "Check No" },
-        domProps: { value: _vm.check.check_no },
+        domProps: { value: _vm.check_no },
         on: {
           keyup: _vm.emitToParent,
           input: function($event) {
             if ($event.target.composing) {
               return
             }
-            _vm.$set(_vm.check, "check_no", $event.target.value)
+            _vm.check_no = $event.target.value
           }
         }
       })
@@ -79484,20 +79484,20 @@ var render = function() {
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.check.check_bank,
-            expression: "check.check_bank"
+            value: _vm.check_bank,
+            expression: "check_bank"
           }
         ],
         staticClass: "form-control col-12",
         attrs: { type: "text", id: "check_bank", placeholder: "Bank" },
-        domProps: { value: _vm.check.check_bank },
+        domProps: { value: _vm.check_bank },
         on: {
           keyup: _vm.emitToParent,
           input: function($event) {
             if ($event.target.composing) {
               return
             }
-            _vm.$set(_vm.check, "check_bank", $event.target.value)
+            _vm.check_bank = $event.target.value
           }
         }
       })
@@ -79511,20 +79511,20 @@ var render = function() {
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.check.check_bank_branch,
-            expression: "check.check_bank_branch"
+            value: _vm.check_bank_branch,
+            expression: "check_bank_branch"
           }
         ],
         staticClass: "form-control col-12",
         attrs: { type: "text", id: "check_bank_branch", placeholder: "Branch" },
-        domProps: { value: _vm.check.check_bank_branch },
+        domProps: { value: _vm.check_bank_branch },
         on: {
           keyup: _vm.emitToParent,
           input: function($event) {
             if ($event.target.composing) {
               return
             }
-            _vm.$set(_vm.check, "check_bank_branch", $event.target.value)
+            _vm.check_bank_branch = $event.target.value
           }
         }
       })
@@ -79538,20 +79538,20 @@ var render = function() {
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.check.check_date,
-            expression: "check.check_date"
+            value: _vm.check_date,
+            expression: "check_date"
           }
         ],
         staticClass: "form-control col-12",
         attrs: { type: "date", id: "check_date", placeholder: "Date" },
-        domProps: { value: _vm.check.check_date },
+        domProps: { value: _vm.check_date },
         on: {
           keyup: _vm.emitToParent,
           input: function($event) {
             if ($event.target.composing) {
               return
             }
-            _vm.$set(_vm.check, "check_date", $event.target.value)
+            _vm.check_date = $event.target.value
           }
         }
       })
