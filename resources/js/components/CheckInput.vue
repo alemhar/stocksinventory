@@ -32,7 +32,7 @@
         <div class="input-group-prepend">
             <span class="input-group-text inputGroup-sizing-default">Check Date</span>
         </div>
-        <input type="date"  v-model="check.check_date" class="form-control col-12" id="check_date" placeholder="Date"  v-on:keyup="emitToParent">
+        <input type="date"  v-model="check.check_date" class="form-control col-12" id="check_date" placeholder="Date"  v-on:change="emitToParent">
         <!-- p v-show="no_reference_no" class="empty-field-message">** Please enter reference number!</p -->
     </div>
 

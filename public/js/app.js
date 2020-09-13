@@ -79566,7 +79566,7 @@ var render = function() {
         attrs: { type: "date", id: "check_date", placeholder: "Date" },
         domProps: { value: _vm.check.check_date },
         on: {
-          keyup: _vm.emitToParent,
+          change: _vm.emitToParent,
           input: function($event) {
             if ($event.target.composing) {
               return
