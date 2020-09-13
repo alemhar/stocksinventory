@@ -71,7 +71,7 @@
                     </span>
                   </div>
 
-                  <div class="input-group mb-2">
+                  <div class="input-group">
                     <p v-show="no_account_code" class="empty-field-message">** Please select account!</p>
                   </div>  
 

@@ -5401,6 +5401,252 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Checks.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Checks.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      user_id: null,
+      checks: {},
+      //check: {},
+      transaction_date: this.getDate(),
+      transaction_type: 'ALL',
+      active_row: 0,
+      reverse: false
+    };
+  },
+  methods: {
+    getDate: function getDate() {
+      var toTwoDigits = function toTwoDigits(num) {
+        return num < 10 ? '0' + num : num;
+      };
+
+      var today = new Date();
+      var year = today.getFullYear();
+      var month = toTwoDigits(today.getMonth() + 1);
+      var day = toTwoDigits(today.getDate());
+      return "".concat(year, "-").concat(month, "-").concat(day);
+    },
+    loadChecks: function loadChecks() {
+      var _this = this;
+
+      this.checks = {}; //this.check = {};
+
+      axios.get('api/checks?transaction_type=' + this.transaction_type + '&transaction_date=' + this.transaction_date).then(function (response) {
+        _this.checks = response.data.data; //console.log(data.data); 
+      })["catch"](function () {});
+    },
+    reverseTransaction: function reverseTransaction(transaction_no, active_row_id) {
+      /*
+      if(!this.transaction.length){
+          swal.fire({
+              title: 'Warning!',
+              text: "Transaction details is empty, please load by clicking view icon of the transaction.",
+              type: 'info',
+              showCancelButton: false,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Ok'
+          }).then((result) => {
+              
+          });
+          
+          this.reverse = false;
+          return false;
+      } else {
+          this.reverse = true;
+      }
+       
+      let credit_amount = 0;
+      let debit_amount = 0;
+      for (let i = 0; i < this.transaction.length; i++) {
+          //if (this.transaction[i].transaction_entry_id === transaction_entry_id) {
+              
+              credit_amount = this.transaction[i].credit_amount;
+              debit_amount = this.transaction[i].debit_amount;
+               this.transaction[i].credit_amount = debit_amount;
+              this.transaction[i].debit_amount = credit_amount;
+              this.transaction[i].status = 'REVERSE';
+              console.log(this.transaction[i].status); 
+               //return;
+          //}
+      }
+      for (let i = 0; i < this.transactions.length; i++) {
+          if (this.transactions[i].transaction_no === transaction_no) {
+              this.transactions[i].status = 'REVERSE';
+              
+          }
+      }
+      */
+    },
+    saveReverse: function saveReverse(transaction_no) {
+      /*
+      axios.get('api/reverse_transaction?transaction_no='+transaction_no)
+      .then((response)=>{
+        //this.transaction = response.data.data;
+        //console.log(response); 
+       })
+      .catch(()=>{
+      });
+       // Save Transactions START
+      
+       let rawData = {
+          transactions: this.transaction
+      }
+      rawData = JSON.stringify(rawData);
+      let formData = new FormData();
+          formData.append('transactions', rawData);
+      axios.post('api/transactions', formData, {
+          headers: {
+              'Content-Type': 'multipart/form-data'
+          }
+      })
+      .then((response)=>{
+          this.reverse = false;
+          //console.log(response);
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
+      // Save Transactions END
+       */
+    }
+  },
+  created: function created() {
+    /*
+    this.initChartAccounts();
+    this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
+    $(document).on('hidden.bs.modal', '.modal', function () {
+        $('.modal:visible').length && $(document.body).addClass('modal-open');
+    });
+    */
+  },
+  computed: {
+    /*
+    runningBalance(){
+         return this.ledgers.data.map((ledger) => {
+            this.running_balance = this.running_balance + Number(ledger.debit_amount - ledger.credit_amount);
+            
+            return this.running_balance.toFixed(2);
+         });
+    }  
+    */
+  },
+  components: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Collections.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Collections.vue?vue&type=script&lang=js& ***!
@@ -74028,7 +74274,7 @@ var render = function() {
                           ])
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "input-group mb-2" }, [
+                        _c("div", { staticClass: "input-group" }, [
                           _c(
                             "p",
                             {
@@ -79661,6 +79907,360 @@ var staticRenderFns = [
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Check Date")]
       )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Checks.vue?vue&type=template&id=5ca63d16&":
+/*!*********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Checks.vue?vue&type=template&id=5ca63d16& ***!
+  \*********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _vm.$gate.isAdminOrUser()
+      ? _c("div", { staticClass: "row mt-1" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "row mt-3" }, [
+              _c("div", { staticClass: "col-4" }, [
+                _c("div", { staticClass: "input-group mb-3" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.transaction_type,
+                          expression: "transaction_type"
+                        }
+                      ],
+                      staticClass: "custom-select",
+                      attrs: { id: "inputGroupSelect01" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.transaction_type = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "ALL", selected: "" } }, [
+                        _vm._v("All")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "CD" } }, [
+                        _vm._v("Cash Disbursements")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "CR" } }, [
+                        _vm._v("Cash Receipts")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "PAYMENT" } }, [
+                        _vm._v("Payments")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "COLLECTION" } }, [
+                        _vm._v("Collections")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "GENERAL" } }, [
+                        _vm._v("General")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "REVERSE" } }, [
+                        _vm._v("Reverse")
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group mb-3" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.transaction_date,
+                        expression: "transaction_date"
+                      }
+                    ],
+                    staticClass: "form-control col-12",
+                    attrs: {
+                      type: "date",
+                      id: "inputDate",
+                      placeholder: "Date"
+                    },
+                    domProps: { value: _vm.transaction_date },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.transaction_date = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary float-right",
+                    on: { click: _vm.loadTransactions }
+                  },
+                  [_vm._v("Search")]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "box mt-4" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: true,
+                      expression: "true"
+                    }
+                  ],
+                  staticClass: "box box-warning mt-2"
+                },
+                [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", {}, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "box-body table-responsive no-padding",
+                          attrs: { id: "cd-list" }
+                        },
+                        [
+                          _c("table", { staticClass: "table table-hover" }, [
+                            _c(
+                              "tbody",
+                              [
+                                _vm._m(3),
+                                _vm._v(" "),
+                                _vm._l(_vm.checks, function(check) {
+                                  return _c(
+                                    "tr",
+                                    {
+                                      key: check.id,
+                                      class: {
+                                        "table-warning":
+                                          _vm.active_row == check.id
+                                      }
+                                    },
+                                    [
+                                      _c("td", [
+                                        _vm._v(_vm._s(check.transaction_date))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(check.transaction_no))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(check.transaction_type))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(check.reference_no))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(check.check_no))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(check.check_bank))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(check.check_amount))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v(_vm._s(check.status))]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        !_vm.reverse
+                                          ? _c(
+                                              "button",
+                                              {
+                                                staticClass: "btn btn-default",
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.loadTransaction(
+                                                      check.transaction_no,
+                                                      _vm.transaction.id
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "fas fa-eye"
+                                                })
+                                              ]
+                                            )
+                                          : _vm._e()
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        !_vm.reverse
+                                          ? _c(
+                                              "button",
+                                              {
+                                                staticClass: "btn btn-danger",
+                                                attrs: {
+                                                  disabled:
+                                                    check.status == "REVERSE"
+                                                },
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.reverseTransaction(
+                                                      _vm.transaction
+                                                        .transaction_no,
+                                                      _vm.transaction.id
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [_vm._v("Reverse")]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        _vm.reverse
+                                          ? _c(
+                                              "button",
+                                              {
+                                                staticClass: "btn btn-danger",
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.saveReverse(
+                                                      check.transaction_no
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [_vm._v("Save")]
+                                            )
+                                          : _vm._e()
+                                      ])
+                                    ]
+                                  )
+                                })
+                              ],
+                              2
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "box-footer" })
+                    ])
+                  ])
+                ]
+              )
+            ])
+          ])
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        {
+          staticClass: "input-group-text",
+          attrs: { for: "inputGroupSelect01" }
+        },
+        [_vm._v("Options")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Date")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-header" }, [
+      _c("h3", { staticClass: "box-title" }, [_vm._v("Transactions")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Date")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Transaction #")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Transaction Type")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Reference #")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Check #")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Bank")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Amount")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Status")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("View")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Option")])
     ])
   }
 ]
@@ -109793,6 +110393,9 @@ var routes = [{
   path: '/transations',
   component: __webpack_require__(/*! ./components/Transactions.vue */ "./resources/js/components/Transactions.vue")["default"]
 }, {
+  path: '/checks',
+  component: __webpack_require__(/*! ./components/Checks.vue */ "./resources/js/components/Checks.vue")["default"]
+}, {
   path: '*',
   component: __webpack_require__(/*! ./components/NotFound.vue */ "./resources/js/components/NotFound.vue")["default"]
 }];
@@ -110709,6 +111312,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckInput_vue_vue_type_template_id_5f0b734d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckInput_vue_vue_type_template_id_5f0b734d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Checks.vue":
+/*!********************************************!*\
+  !*** ./resources/js/components/Checks.vue ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Checks_vue_vue_type_template_id_5ca63d16___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Checks.vue?vue&type=template&id=5ca63d16& */ "./resources/js/components/Checks.vue?vue&type=template&id=5ca63d16&");
+/* harmony import */ var _Checks_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Checks.vue?vue&type=script&lang=js& */ "./resources/js/components/Checks.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Checks_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Checks_vue_vue_type_template_id_5ca63d16___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Checks_vue_vue_type_template_id_5ca63d16___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Checks.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Checks.vue?vue&type=script&lang=js&":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/Checks.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Checks_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Checks.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Checks.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Checks_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Checks.vue?vue&type=template&id=5ca63d16&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/Checks.vue?vue&type=template&id=5ca63d16& ***!
+  \***************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Checks_vue_vue_type_template_id_5ca63d16___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Checks.vue?vue&type=template&id=5ca63d16& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Checks.vue?vue&type=template&id=5ca63d16&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Checks_vue_vue_type_template_id_5ca63d16___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Checks_vue_vue_type_template_id_5ca63d16___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
