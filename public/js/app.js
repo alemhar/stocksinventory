@@ -5909,80 +5909,80 @@ __webpack_require__.r(__webpack_exports__);
       });
       $('#entry-deposit').modal('hide');
     },
-    reverseTransaction: function reverseTransaction(transaction_no, active_row_id) {
-      /*
-      if(!this.transaction.length){
-          swal.fire({
-              title: 'Warning!',
-              text: "Transaction details is empty, please load by clicking view icon of the transaction.",
-              type: 'info',
-              showCancelButton: false,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Ok'
-          }).then((result) => {
-              
-          });
-          
-          this.reverse = false;
-          return false;
+    reverseCheck: function reverseCheck(transaction_no) {
+      this.loadTransaction(transaction_no);
+    },
+    loadTransaction: function loadTransaction(transaction_no) {
+      var _this5 = this;
+
+      //this.active_debit_row = active_debit_row_id;
+      axios.get('api/transaction?transaction_no=' + transaction_no).then(function (response) {
+        _this5.transaction = response.data.data; //console.log(response); 
+
+        _this5.reverseTransaction(transaction_no);
+      })["catch"](function () {});
+    },
+    reverseTransaction: function reverseTransaction(transaction_no) {
+      if (!this.transaction.length) {
+        swal.fire({
+          title: 'Warning!',
+          text: "Transaction details is empty, please load by clicking view icon of the transaction.",
+          type: 'info',
+          showCancelButton: false,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ok'
+        }).then(function (result) {});
+        this.reverse = false;
+        return false;
       } else {
-          this.reverse = true;
+        this.reverse = true;
       }
-       
-      let credit_amount = 0;
-      let debit_amount = 0;
-      for (let i = 0; i < this.transaction.length; i++) {
-          //if (this.transaction[i].transaction_entry_id === transaction_entry_id) {
-              
-              credit_amount = this.transaction[i].credit_amount;
-              debit_amount = this.transaction[i].debit_amount;
-               this.transaction[i].credit_amount = debit_amount;
-              this.transaction[i].debit_amount = credit_amount;
-              this.transaction[i].status = 'REVERSE';
-              console.log(this.transaction[i].status); 
-               //return;
-          //}
+
+      var credit_amount = 0;
+      var debit_amount = 0;
+
+      for (var i = 0; i < this.transaction.length; i++) {
+        //if (this.transaction[i].transaction_entry_id === transaction_entry_id) {
+        credit_amount = this.transaction[i].credit_amount;
+        debit_amount = this.transaction[i].debit_amount;
+        this.transaction[i].credit_amount = debit_amount;
+        this.transaction[i].debit_amount = credit_amount;
+        this.transaction[i].status = 'REVERSE';
+        console.log(this.transaction[i].status); //return;
+        //}
       }
-      for (let i = 0; i < this.transactions.length; i++) {
-          if (this.transactions[i].transaction_no === transaction_no) {
-              this.transactions[i].status = 'REVERSE';
-              
-          }
+
+      for (var _i = 0; _i < this.transactions.length; _i++) {
+        if (this.transactions[_i].transaction_no === transaction_no) {
+          this.transactions[_i].status = 'REVERSE';
+        }
       }
-      */
+
+      this.saveReverse(transaction_no);
     },
     saveReverse: function saveReverse(transaction_no) {
-      /*
-      axios.get('api/reverse_transaction?transaction_no='+transaction_no)
-      .then((response)=>{
-        //this.transaction = response.data.data;
+      var _this6 = this;
+
+      axios.get('api/reverse_transaction?transaction_no=' + transaction_no).then(function (response) {//this.transaction = response.data.data;
         //console.log(response); 
-       })
-      .catch(()=>{
-      });
-       // Save Transactions START
-      
-       let rawData = {
-          transactions: this.transaction
-      }
+      })["catch"](function () {}); // Save Transactions START
+
+      var rawData = {
+        transactions: this.transaction
+      };
       rawData = JSON.stringify(rawData);
-      let formData = new FormData();
-          formData.append('transactions', rawData);
+      var formData = new FormData();
+      formData.append('transactions', rawData);
       axios.post('api/transactions', formData, {
-          headers: {
-              'Content-Type': 'multipart/form-data'
-          }
-      })
-      .then((response)=>{
-          this.reverse = false;
-          //console.log(response);
-      })
-      .catch(function (error) {
-          console.log(error);
-      });
-      // Save Transactions END
-       */
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        _this6.reverse = false; //console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      }); // Save Transactions END
     },
     cancelEntry: function cancelEntry() {
       //this.$Progress.start();

@@ -527,8 +527,25 @@
                 $('#entry-deposit').modal('hide');
 
             },
-            reverseTransaction(transaction_no,active_row_id){
-                /*
+            reverseCheck(transaction_no){
+                this.loadTransaction(transaction_no);
+
+            },
+            loadTransaction(transaction_no){
+              
+              //this.active_debit_row = active_debit_row_id;
+              axios.get('api/transaction?transaction_no='+transaction_no)
+                .then((response)=>{
+                  this.transaction = response.data.data;
+                  //console.log(response); 
+                  this.reverseTransaction(transaction_no);  
+                })
+                .catch(()=>{
+                });
+              
+            },
+            reverseTransaction(transaction_no){
+                
                 if(!this.transaction.length){
                     swal.fire({
                         title: 'Warning!',
@@ -571,12 +588,12 @@
                         
                     }
                 }
-                */
+                this.saveReverse(transaction_no);
 
             },
             saveReverse(transaction_no){
 
-                /*
+                
                 axios.get('api/reverse_transaction?transaction_no='+transaction_no)
                 .then((response)=>{
                   //this.transaction = response.data.data;
@@ -609,7 +626,7 @@
                 });
                 // Save Transactions END
 
-                */
+                
             },
             cancelEntry(){
                 //this.$Progress.start();
