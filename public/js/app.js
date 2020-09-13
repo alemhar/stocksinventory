@@ -5714,7 +5714,7 @@ __webpack_require__.r(__webpack_exports__);
         _this3.checks = response.data.data; //console.log(data.data); 
       })["catch"](function () {});
     },
-    depositCheck: function depositCheck(transaction_no, id, check_amount) {
+    depositCheck: function depositCheck(transaction_no, id, check_amount, transaction_type) {
       this.account_code = 0;
       this.account_name = '';
       this.description = '';

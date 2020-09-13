@@ -306,7 +306,7 @@
                 });
               
             },
-            depositCheck(transaction_no,id,check_amount){
+            depositCheck(transaction_no,id,check_amount,transaction_type){
                 this.account_code = 0;
                 this.account_name = '';
                 this.description = '';
