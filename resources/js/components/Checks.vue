@@ -142,7 +142,7 @@
                     <span class="input-group-text inputGroup-sizing-default">Description</span>
                   </div>
 
-                    <input v-model="form_entry.description" name="description" id="description"
+                    <input v-model="description" name="description" id="description"
                     class="form-control" aria-describedby="inputGroup-sizing-default">
                 </div>
 
@@ -233,8 +233,9 @@
               transaction_date: this.getDate(),
               transaction_type: 'ALL',
               active_row: 0,
-              account_code: '',
+              account_code: 0,
               account_name: '',
+              description: '',
               reverse: false
           }
         },
@@ -293,8 +294,9 @@
               
             },
             depositCheck(){
-                this.account_code = '';
+                this.account_code = 0;
                 this.account_name = '';
+                this.description = '';
                 $('#entry-deposit').modal('show');
                 
             },

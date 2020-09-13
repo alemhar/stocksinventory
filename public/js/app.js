@@ -5644,8 +5644,9 @@ __webpack_require__.r(__webpack_exports__);
       transaction_date: this.getDate(),
       transaction_type: 'ALL',
       active_row: 0,
-      account_code: '',
+      account_code: 0,
       account_name: '',
+      description: '',
       reverse: false
     };
   },
@@ -5701,8 +5702,9 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {});
     },
     depositCheck: function depositCheck() {
-      this.account_code = '';
+      this.account_code = 0;
       this.account_name = '';
+      this.description = '';
       $('#entry-deposit').modal('show');
     },
     reverseTransaction: function reverseTransaction(transaction_no, active_row_id) {
@@ -80377,8 +80379,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.form_entry.description,
-                                  expression: "form_entry.description"
+                                  value: _vm.description,
+                                  expression: "description"
                                 }
                               ],
                               staticClass: "form-control",
@@ -80387,17 +80389,13 @@ var render = function() {
                                 id: "description",
                                 "aria-describedby": "inputGroup-sizing-default"
                               },
-                              domProps: { value: _vm.form_entry.description },
+                              domProps: { value: _vm.description },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.$set(
-                                    _vm.form_entry,
-                                    "description",
-                                    $event.target.value
-                                  )
+                                  _vm.description = $event.target.value
                                 }
                               }
                             })
