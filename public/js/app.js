@@ -3082,7 +3082,8 @@ __webpack_require__.r(__webpack_exports__);
         check_bank_branch: '',
         check_date: '',
         check_amount: 0
-      }
+      },
+      checks: []
     };
   },
   methods: {
@@ -3264,15 +3265,21 @@ __webpack_require__.r(__webpack_exports__);
       }); // Save Items END
 
       if (this.check.check_no) {
-        this.check.check_amount = this.form.amount;
-        this.check.reference_no = this.form.reference_no;
-        this.check.transaction_no = this.form.transaction_no;
-        this.check.transaction_type = this.form.transaction_type;
-        this.check.transaction_date = this.form.transaction_date;
-        this.check.deposit_reference_no = this.form.deposit_reference_no;
-        this.check.deposit_date = '';
-        this.check.deposit_amount = 0;
-        this.check.status = 'CONFIRMED'; // Save Check START
+        this.checks.push({
+          check_no: this.check.check_no,
+          check_bank: this.check.check_bank,
+          check_bank_branch: this.check.check_bank_branch,
+          check_date: this.check.check_date,
+          check_amount: this.form.amount,
+          reference_no: this.form.reference_no,
+          transaction_no: this.form.transaction_no,
+          transaction_type: this.form.transaction_type,
+          transaction_date: this.form.transaction_date,
+          deposit_reference_no: this.form.deposit_reference_no,
+          deposit_date: '',
+          deposit_amount: 0,
+          status: 'CONFIRMED'
+        }); // Save Check START
 
         var rawCheckData = {
           checks: this.check
