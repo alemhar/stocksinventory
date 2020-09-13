@@ -79485,6 +79485,7 @@ var render = function() {
         attrs: { type: "text", id: "check_no", placeholder: "Check No" },
         domProps: { value: _vm.check.check_no },
         on: {
+          blur: _vm.emitToParent,
           keyup: _vm.emitToParent,
           input: function($event) {
             if ($event.target.composing) {
@@ -79512,6 +79513,7 @@ var render = function() {
         attrs: { type: "text", id: "check_bank", placeholder: "Bank" },
         domProps: { value: _vm.check.check_bank },
         on: {
+          blur: _vm.emitToParent,
           keyup: _vm.emitToParent,
           input: function($event) {
             if ($event.target.composing) {
@@ -79539,6 +79541,7 @@ var render = function() {
         attrs: { type: "text", id: "check_bank_branch", placeholder: "Branch" },
         domProps: { value: _vm.check.check_bank_branch },
         on: {
+          blur: _vm.emitToParent,
           keyup: _vm.emitToParent,
           input: function($event) {
             if ($event.target.composing) {
@@ -79566,7 +79569,7 @@ var render = function() {
         attrs: { type: "date", id: "check_date", placeholder: "Date" },
         domProps: { value: _vm.check.check_date },
         on: {
-          change: _vm.emitToParent,
+          blur: _vm.emitToParent,
           keyup: _vm.emitToParent,
           input: function($event) {
             if ($event.target.composing) {

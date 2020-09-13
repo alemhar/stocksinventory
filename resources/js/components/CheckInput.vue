@@ -8,7 +8,7 @@
         <div class="input-group-prepend">
             <span class="input-group-text inputGroup-sizing-default">Check #</span>
         </div>
-        <input type="text" v-model="check.check_no" class="form-control col-12" id="check_no" placeholder="Check No"  v-on:keyup="emitToParent">
+        <input type="text" v-model="check.check_no" class="form-control col-12" id="check_no" placeholder="Check No" @blur="emitToParent"  v-on:keyup="emitToParent">
         <!-- p v-show="no_reference_no" class="empty-field-message">** Please enter reference number!</p -->
     </div>
 
@@ -16,7 +16,7 @@
         <div class="input-group-prepend">
             <span class="input-group-text inputGroup-sizing-default">Bank</span>
         </div>
-        <input type="text"  v-model="check.check_bank" class="form-control col-12" id="check_bank" placeholder="Bank"  v-on:keyup="emitToParent">
+        <input type="text"  v-model="check.check_bank" class="form-control col-12" id="check_bank" placeholder="Bank" @blur="emitToParent"  v-on:keyup="emitToParent">
         <!-- p v-show="no_reference_no" class="empty-field-message">** Please enter reference number!</p -->
     </div>
 
@@ -24,7 +24,7 @@
         <div class="input-group-prepend">
             <span class="input-group-text inputGroup-sizing-default">Branch</span>
         </div>
-        <input type="text"  v-model="check.check_bank_branch" class="form-control col-12" id="check_bank_branch" placeholder="Branch"  v-on:keyup="emitToParent">
+        <input type="text"  v-model="check.check_bank_branch" class="form-control col-12" id="check_bank_branch" placeholder="Branch" @blur="emitToParent"  v-on:keyup="emitToParent">
         <!-- p v-show="no_reference_no" class="empty-field-message">** Please enter reference number!</p -->
     </div>
 
@@ -32,7 +32,7 @@
         <div class="input-group-prepend">
             <span class="input-group-text inputGroup-sizing-default">Check Date</span>
         </div>
-        <input type="date"  v-model="check.check_date" class="form-control col-12" id="check_date" placeholder="Date"  @change="emitToParent" v-on:keyup="emitToParent">
+        <input type="date"  v-model="check.check_date" class="form-control col-12" id="check_date" placeholder="Date"  @blur="emitToParent" v-on:keyup="emitToParent">
         <!-- p v-show="no_reference_no" class="empty-field-message">** Please enter reference number!</p -->
     </div>
 
