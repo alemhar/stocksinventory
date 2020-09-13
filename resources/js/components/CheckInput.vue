@@ -7,7 +7,7 @@
 
     
             <div class="modal-header">
-              <button type="button" class="close"  @click="updateCheckDetails" aria-label="Close">
+              <button type="button" class="close"  @click="emitToParent" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>

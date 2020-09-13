@@ -79426,7 +79426,7 @@ var render = function() {
             {
               staticClass: "close",
               attrs: { type: "button", "aria-label": "Close" },
-              on: { click: _vm.updateCheckDetails }
+              on: { click: _vm.emitToParent }
             },
             [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
           )
