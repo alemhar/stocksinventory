@@ -101,10 +101,6 @@ class CheckController extends Controller
         
         $transaction_type = \Request::get('transaction_type');
         $transaction_date = \Request::get('transaction_date');
-        //return $transaction_type . ' ' .$transaction_date;
-
-        // use when($transaction_type != 'ALL')
-
         
         if ($transaction_type != 'ALL') {
             $checks = Check::where('transaction_date',$transaction_date)
@@ -112,7 +108,7 @@ class CheckController extends Controller
             ->paginate(25);
 
         }else{
-            $checks = Transaction::where('transaction_date',$transaction_date)
+            $checks = Check::where('transaction_date',$transaction_date)
             ->paginate(25);
         }
         return $checks;
