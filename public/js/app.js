@@ -5298,6 +5298,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -74085,37 +74116,6 @@ var render = function() {
                         _c("div", { staticClass: "input-group mb-2" }, [
                           _vm._m(4),
                           _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.branch_id,
-                                expression: "form.branch_id"
-                              }
-                            ],
-                            staticClass: "form-control col-2",
-                            attrs: {
-                              readonly: _vm.transaction_created,
-                              type: "text",
-                              id: "inputBranchId",
-                              placeholder: "Code"
-                            },
-                            domProps: { value: _vm.form.branch_id },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.form,
-                                  "branch_id",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
                           _c(
                             "input",
                             _vm._b(
@@ -79454,19 +79454,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "child" }, [
-    _c(
-      "button",
-      {
-        attrs: { type: "button", name: "button" },
-        on: {
-          click: function($event) {
-            return _vm.$emit("increment")
-          }
-        }
-      },
-      [_vm._v("Click me to increment!")]
-    ),
-    _vm._v(" "),
     _c("div", { staticClass: "input-group mb-2" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -79492,6 +79479,114 @@ var render = function() {
           }
         }
       })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "input-group mb-2" }, [
+      _vm._m(1),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.check_no,
+            expression: "check_no"
+          }
+        ],
+        staticClass: "form-control col-12",
+        attrs: { type: "text", id: "check_no", placeholder: "Check No" },
+        domProps: { value: _vm.check_no },
+        on: {
+          keyup: _vm.emitToParent,
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.check_no = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "input-group mb-2" }, [
+      _vm._m(2),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.check_bank,
+            expression: "check_bank"
+          }
+        ],
+        staticClass: "form-control col-12",
+        attrs: { type: "text", id: "check_bank", placeholder: "Bank" },
+        domProps: { value: _vm.check_bank },
+        on: {
+          keyup: _vm.emitToParent,
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.check_bank = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "input-group mb-2" }, [
+      _vm._m(3),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.check_bank_branch,
+            expression: "check_bank_branch"
+          }
+        ],
+        staticClass: "form-control col-12",
+        attrs: { type: "text", id: "check_bank_branch", placeholder: "Branch" },
+        domProps: { value: _vm.check_bank_branch },
+        on: {
+          keyup: _vm.emitToParent,
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.check_bank_branch = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "input-group mb-2" }, [
+      _vm._m(4),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.check_date,
+            expression: "check_date"
+          }
+        ],
+        staticClass: "form-control col-12",
+        attrs: { type: "date", id: "check_date", placeholder: "Date" },
+        domProps: { value: _vm.check_date },
+        on: {
+          keyup: _vm.emitToParent,
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.check_date = $event.target.value
+          }
+        }
+      })
     ])
   ])
 }
@@ -79505,6 +79600,54 @@ var staticRenderFns = [
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Check #")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Check #")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Bank")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Branch")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Check Date")]
       )
     ])
   }

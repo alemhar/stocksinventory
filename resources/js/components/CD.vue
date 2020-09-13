@@ -94,7 +94,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Check</span>
                     </div>
-                    <input v-bind:readonly="transaction_created" type="text" class="form-control col-2" id="inputBranchId" placeholder="Code"  v-model="form.branch_id">
+                    <!-- input v-bind:readonly="transaction_created" type="text" class="form-control col-2" id="inputBranchId" placeholder="Code"  v-model="form.branch_id" -->
                     <input readonly="true" type="text" class="form-control col-9" id="inputCheck" placeholder="Check No" v-bind="check.check_no">
                     <span class="input-group-btn col-1">
                         <button type="button" v-show="!transaction_created" class="btn btn-success" @click="showCheckDetails()"><i class="fas fa-search fa-fw"></i></button>

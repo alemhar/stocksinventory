@@ -2,14 +2,45 @@
 <template>
   <div class="child">
     <!-- Simplest - call `$emit()` inline-->
-    <button type="button" name="button" v-on:click="$emit('increment')">Click me to increment!</button>
+    <!-- button type="button" name="button" v-on:click="$emit('increment')">Click me to increment!</button -->
 
     <div class="input-group mb-2">
         <div class="input-group-prepend">
             <span class="input-group-text inputGroup-sizing-default">Check #</span>
         </div>
-
         <input type="text"  v-model="check_no" class="form-control col-12" id="check_no" placeholder="Check No"  v-on:keyup="emitToParent">
+        <!-- p v-show="no_reference_no" class="empty-field-message">** Please enter reference number!</p -->
+    </div>
+
+    <div class="input-group mb-2">
+        <div class="input-group-prepend">
+            <span class="input-group-text inputGroup-sizing-default">Check #</span>
+        </div>
+        <input type="text"  v-model="check_no" class="form-control col-12" id="check_no" placeholder="Check No"  v-on:keyup="emitToParent">
+        <!-- p v-show="no_reference_no" class="empty-field-message">** Please enter reference number!</p -->
+    </div>
+
+    <div class="input-group mb-2">
+        <div class="input-group-prepend">
+            <span class="input-group-text inputGroup-sizing-default">Bank</span>
+        </div>
+        <input type="text"  v-model="check_bank" class="form-control col-12" id="check_bank" placeholder="Bank"  v-on:keyup="emitToParent">
+        <!-- p v-show="no_reference_no" class="empty-field-message">** Please enter reference number!</p -->
+    </div>
+
+    <div class="input-group mb-2">
+        <div class="input-group-prepend">
+            <span class="input-group-text inputGroup-sizing-default">Branch</span>
+        </div>
+        <input type="text"  v-model="check_bank_branch" class="form-control col-12" id="check_bank_branch" placeholder="Branch"  v-on:keyup="emitToParent">
+        <!-- p v-show="no_reference_no" class="empty-field-message">** Please enter reference number!</p -->
+    </div>
+
+    <div class="input-group mb-2">
+        <div class="input-group-prepend">
+            <span class="input-group-text inputGroup-sizing-default">Check Date</span>
+        </div>
+        <input type="date"  v-model="check_date" class="form-control col-12" id="check_date" placeholder="Date"  v-on:keyup="emitToParent">
         <!-- p v-show="no_reference_no" class="empty-field-message">** Please enter reference number!</p -->
     </div>
 
