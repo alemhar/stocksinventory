@@ -19,7 +19,8 @@ class Check extends Model
        'transaction_date',
        'deposit_reference_no',
        'deposit_date',
-       'deposit_amount'
+       'deposit_amount',
+       'status'
     ];
 
     public function getTable()
