@@ -3724,7 +3724,7 @@ __webpack_require__.r(__webpack_exports__);
       $('#check-details').modal('show');
     },
     updateCheckDetails: function updateCheckDetails(value) {
-      console.log(value);
+      this.check = value; //console.log(value);          
     }
   },
   created: function created() {
@@ -5333,7 +5333,10 @@ __webpack_require__.r(__webpack_exports__);
         check_bank_branch: '',
         check_date: '',
         check_amount: 0
-      }
+      } //   props: {
+      //         parentCheckDetails: Object,
+      //     }  
+
     };
   },
   name: 'CheckInput',

@@ -48,7 +48,10 @@ export default {
             check_bank_branch: '',
             check_date: '',
             check_amount: 0
-        }
+        },
+    //   props: {
+    //         parentCheckDetails: Object,
+    //     }  
     }
   },
   name: 'CheckInput',

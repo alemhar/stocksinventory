@@ -1678,7 +1678,8 @@
               $('#check-details').modal('show');
           },
           updateCheckDetails(value){
-            console.log(value);          
+              this.check = value; 
+            //console.log(value);          
           }
         },
 
