@@ -5512,7 +5512,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -80116,27 +80115,30 @@ var render = function() {
                                       _c("td", [_vm._v(_vm._s(check.status))]),
                                       _vm._v(" "),
                                       _c("td", [
-                                        !_vm.reverse
-                                          ? _c(
-                                              "button",
-                                              {
-                                                staticClass: "btn btn-default",
-                                                on: {
-                                                  click: function($event) {
-                                                    return _vm.loadTransaction(
-                                                      check.transaction_no,
-                                                      _vm.transaction.id
-                                                    )
-                                                  }
-                                                }
-                                              },
-                                              [
-                                                _c("i", {
-                                                  staticClass: "fas fa-eye"
-                                                })
-                                              ]
-                                            )
-                                          : _vm._e()
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass: "btn btn-default",
+                                            attrs: {
+                                              disabled:
+                                                check.status != "BANK" ||
+                                                check.status != "REVERSE"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.depositCheck(
+                                                  check.transaction_no,
+                                                  check.id
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fas fa-sign-in-alt"
+                                            })
+                                          ]
+                                        )
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [
@@ -80147,7 +80149,8 @@ var render = function() {
                                                 staticClass: "btn btn-danger",
                                                 attrs: {
                                                   disabled:
-                                                    check.status == "REVERSE"
+                                                    check.status != "BANK" ||
+                                                    check.status != "REVERSE"
                                                 },
                                                 on: {
                                                   click: function($event) {
@@ -80160,23 +80163,6 @@ var render = function() {
                                                 }
                                               },
                                               [_vm._v("Reverse")]
-                                            )
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        _vm.reverse
-                                          ? _c(
-                                              "button",
-                                              {
-                                                staticClass: "btn btn-danger",
-                                                on: {
-                                                  click: function($event) {
-                                                    return _vm.saveReverse(
-                                                      check.transaction_no
-                                                    )
-                                                  }
-                                                }
-                                              },
-                                              [_vm._v("Save")]
                                             )
                                           : _vm._e()
                                       ])
@@ -80244,11 +80230,11 @@ var staticRenderFns = [
     return _c("tr", [
       _c("th", [_vm._v("Date")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Transaction #")]),
+      _c("th", [_vm._v("Trans. #")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Transaction Type")]),
+      _c("th", [_vm._v("Type")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Reference #")]),
+      _c("th", [_vm._v("Ref. #")]),
       _vm._v(" "),
       _c("th", [_vm._v("Check #")]),
       _vm._v(" "),

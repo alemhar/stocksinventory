@@ -47,9 +47,9 @@
                         <tbody>
                           <tr>
                             <th>Date</th>
-                            <th>Transaction #</th>
-                            <th>Transaction Type</th>
-                            <th>Reference #</th>
+                            <th>Trans. #</th>
+                            <th>Type</th>
+                            <th>Ref. #</th>
                             <th>Check #</th>
                             <th>Bank</th>
                             <th>Amount</th>
@@ -68,10 +68,9 @@
                             <td>{{ check.check_bank }}</td>
                             <td>{{ check.check_amount }}</td>
                             <td>{{ check.status }}</td>
-                            <td><button v-if="!reverse" class="btn btn-default" @click="loadTransaction(check.transaction_no,transaction.id)"><i class="fas fa-eye"></i></button></td>
+                            <td><button :disabled="check.status != 'BANK' || check.status != 'REVERSE'" class="btn btn-default" @click="depositCheck(check.transaction_no,check.id)"><i class="fas fa-sign-in-alt"></i></button></td>
                             <td>
-                                <button v-if="!reverse" :disabled="check.status == 'REVERSE'" class="btn btn-danger" @click="reverseTransaction(transaction.transaction_no,transaction.id)">Reverse</button>
-                                <button v-if="reverse" class="btn btn-danger" @click="saveReverse(check.transaction_no)">Save</button>
+                                <button v-if="!reverse" :disabled="check.status != 'BANK' || check.status != 'REVERSE'" class="btn btn-danger" @click="reverseTransaction(transaction.transaction_no,transaction.id)">Reverse</button>
                             </td>
                           </tr>
                           
