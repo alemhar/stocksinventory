@@ -238,6 +238,7 @@
               description: '',
               save_button_entry_enabled: true,
               searchText: '',
+              chart_of_accounts: {},
               reverse: false
           }
         },

@@ -5649,6 +5649,7 @@ __webpack_require__.r(__webpack_exports__);
       description: '',
       save_button_entry_enabled: true,
       searchText: '',
+      chart_of_accounts: {},
       reverse: false
     };
   },
