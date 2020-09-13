@@ -80419,10 +80419,8 @@ var render = function() {
                                             },
                                             on: {
                                               click: function($event) {
-                                                return _vm.reverseTransaction(
-                                                  _vm.transaction
-                                                    .transaction_no,
-                                                  _vm.transaction.id
+                                                return _vm.reverseCheck(
+                                                  check.transaction_no
                                                 )
                                               }
                                             }
