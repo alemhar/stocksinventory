@@ -5312,6 +5312,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -79410,115 +79428,160 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "child" }, [
-    _c("div", { staticClass: "input-group mb-2" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.check.check_no,
-            expression: "check.check_no"
-          }
-        ],
-        staticClass: "form-control col-12",
-        attrs: { type: "text", id: "check_no", placeholder: "Check No" },
-        domProps: { value: _vm.check.check_no },
-        on: {
-          keyup: _vm.emitToParent,
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.$set(_vm.check, "check_no", $event.target.value)
-          }
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "input-group mb-2" }, [
-      _vm._m(1),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.check.check_bank,
-            expression: "check.check_bank"
-          }
-        ],
-        staticClass: "form-control col-12",
-        attrs: { type: "text", id: "check_bank", placeholder: "Bank" },
-        domProps: { value: _vm.check.check_bank },
-        on: {
-          keyup: _vm.emitToParent,
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.$set(_vm.check, "check_bank", $event.target.value)
-          }
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "input-group mb-2" }, [
-      _vm._m(2),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.check.check_bank_branch,
-            expression: "check.check_bank_branch"
-          }
-        ],
-        staticClass: "form-control col-12",
-        attrs: { type: "text", id: "check_bank_branch", placeholder: "Branch" },
-        domProps: { value: _vm.check.check_bank_branch },
-        on: {
-          keyup: _vm.emitToParent,
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.$set(_vm.check, "check_bank_branch", $event.target.value)
-          }
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "input-group mb-2" }, [
-      _vm._m(3),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.check.check_date,
-            expression: "check.check_date"
-          }
-        ],
-        staticClass: "form-control col-12",
-        attrs: { type: "date", id: "check_date", placeholder: "Date" },
-        domProps: { value: _vm.check.check_date },
-        on: {
-          keyup: _vm.emitToParent,
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.$set(_vm.check, "check_date", $event.target.value)
-          }
-        }
-      })
-    ])
-  ])
+  return _c(
+    "div",
+    {
+      staticClass: "modal-dialog modal-dialog-centered",
+      attrs: { role: "document" }
+    },
+    [
+      _c("div", { staticClass: "modal-content" }, [
+        _c("div", { staticClass: "modal-header" }, [
+          _c(
+            "button",
+            {
+              staticClass: "close",
+              attrs: { type: "button", "aria-label": "Close" },
+              on: { click: _vm.updateCheckDetails }
+            },
+            [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+          )
+        ]),
+        _vm._v(" "),
+        _c("form", { attrs: { onsubmit: "return false;" } }, [
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", { staticClass: "input-group mb-2" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.check.check_no,
+                    expression: "check.check_no"
+                  }
+                ],
+                staticClass: "form-control col-12",
+                attrs: {
+                  type: "text",
+                  id: "check_no",
+                  placeholder: "Check No"
+                },
+                domProps: { value: _vm.check.check_no },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.check, "check_no", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-group mb-2" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.check.check_bank,
+                    expression: "check.check_bank"
+                  }
+                ],
+                staticClass: "form-control col-12",
+                attrs: { type: "text", id: "check_bank", placeholder: "Bank" },
+                domProps: { value: _vm.check.check_bank },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.check, "check_bank", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-group mb-2" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.check.check_bank_branch,
+                    expression: "check.check_bank_branch"
+                  }
+                ],
+                staticClass: "form-control col-12",
+                attrs: {
+                  type: "text",
+                  id: "check_bank_branch",
+                  placeholder: "Branch"
+                },
+                domProps: { value: _vm.check.check_bank_branch },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.check,
+                      "check_bank_branch",
+                      $event.target.value
+                    )
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-group mb-2" }, [
+              _vm._m(3),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.check.check_date,
+                    expression: "check.check_date"
+                  }
+                ],
+                staticClass: "form-control col-12",
+                attrs: { type: "date", id: "check_date", placeholder: "Date" },
+                domProps: { value: _vm.check.check_date },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.check, "check_date", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-footer" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-danger",
+                attrs: { type: "button" },
+                on: { click: _vm.updateCheckDetails }
+              },
+              [_vm._v("Close")]
+            )
+          ])
+        ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
