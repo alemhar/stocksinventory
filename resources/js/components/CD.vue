@@ -886,7 +886,7 @@
     </div>
 </template>
 <script>
-    import CheckInput from 'CheckInput.vue';
+    import CheckInput from './CheckInput.vue';
     export default {
         data() {
           return {
@@ -1704,7 +1704,7 @@
             }
         },
         components: {
-          
+          CheckInput
           
         }
     }
