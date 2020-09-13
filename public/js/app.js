@@ -2966,8 +2966,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3712,6 +3710,7 @@ __webpack_require__.r(__webpack_exports__);
       this.check.check_bank_branch = child_check.check_bank_branch;
       this.check.check_date = child_check.check_date;
       this.check.check_amount = child_check.check_amount;
+      console.log('hide');
       $('#check-details').modal('hide'); //console.log(value);          
     }
   },
@@ -76095,26 +76094,11 @@ var render = function() {
         }
       },
       [
-        _c(
-          "div",
-          {
-            staticClass: "modal-dialog modal-dialog-centered",
-            attrs: { role: "document" }
-          },
-          [
-            _c(
-              "div",
-              { staticClass: "modal-content" },
-              [
-                _c("check-input", {
-                  on: { updateCheckDetails: _vm.updateCheckDetails }
-                })
-              ],
-              1
-            )
-          ]
-        )
-      ]
+        _c("check-input", {
+          on: { updateCheckDetails: _vm.updateCheckDetails }
+        })
+      ],
+      1
     )
   ])
 }

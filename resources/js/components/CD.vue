@@ -857,11 +857,9 @@
       -->
 
       <div class="modal fade" id="check-details" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
+        
           <check-input v-on:updateCheckDetails="updateCheckDetails"></check-input>
-          </div>
-        </div>
+          
       </div>
       <!-- Check Details Modal -->   
 
@@ -1666,6 +1664,7 @@
               this.check.check_bank_branch = child_check.check_bank_branch;
               this.check.check_date = child_check.check_date;
               this.check.check_amount = child_check.check_amount;
+              console.log('hide');
               $('#check-details').modal('hide');
             //console.log(value);          
           }
