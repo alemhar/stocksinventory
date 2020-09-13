@@ -80114,32 +80114,41 @@ var render = function() {
                                       _vm._v(" "),
                                       _c("td", [_vm._v(_vm._s(check.status))]),
                                       _vm._v(" "),
-                                      _c("td", [
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass: "btn btn-default",
-                                            attrs: {
-                                              disabled:
-                                                check.status == "BANK" ||
-                                                check.status == "REVERSE"
-                                            },
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.depositCheck(
-                                                  check.transaction_no,
-                                                  check.id
-                                                )
+                                      _c(
+                                        "td",
+                                        {
+                                          staticStyle: {
+                                            "text-align": "center"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "button",
+                                            {
+                                              staticClass: "btn btn-success",
+                                              attrs: {
+                                                disabled:
+                                                  check.status == "BANK" ||
+                                                  check.status == "REVERSE"
+                                              },
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.depositCheck(
+                                                    check.transaction_no,
+                                                    check.id
+                                                  )
+                                                }
                                               }
-                                            }
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fas fa-sign-in-alt"
-                                            })
-                                          ]
-                                        )
-                                      ]),
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "fas fa-sign-in-alt"
+                                              })
+                                            ]
+                                          )
+                                        ]
+                                      ),
                                       _vm._v(" "),
                                       _c("td", [
                                         _c(
