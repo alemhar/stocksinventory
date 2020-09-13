@@ -425,6 +425,9 @@
                     depreciated_id: 0,
                     useful_life: 0,
                     salvage_value: 0,
+                    taxed: 'NA',
+                    tax_of_id: 0,
+                    tax_of_account: 0,
                     description: this.description
                 });
 
@@ -460,6 +463,9 @@
                     depreciated_id: 0,
                     useful_life: 0,
                     salvage_value: 0,
+                    taxed: 'NA',
+                    tax_of_id: 0,
+                    tax_of_account: 0,
                     description: this.description
                 });
 

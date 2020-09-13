@@ -114,7 +114,7 @@ class CheckController extends Controller
         return $checks;
     }
 
-    public function update_check_status(){
+    public function update_check_status(Request $request){
         $id = $request['id']; 
         $status = $request['status']; 
 
