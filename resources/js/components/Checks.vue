@@ -54,7 +54,7 @@
                             <th>Bank</th>
                             <th>Amount</th>
                             <th>Status</th>
-                            <th>View</th>
+                            <th>Transfer</th>
                             <th>Option</th>
                             
                           </tr>
@@ -68,9 +68,9 @@
                             <td>{{ check.check_bank }}</td>
                             <td>{{ check.check_amount }}</td>
                             <td>{{ check.status }}</td>
-                            <td><button :disabled="check.status != 'BANK' || check.status != 'REVERSE'" class="btn btn-default" @click="depositCheck(check.transaction_no,check.id)"><i class="fas fa-sign-in-alt"></i></button></td>
+                            <td><button :disabled="check.status == 'BANK' || check.status == 'REVERSE'" class="btn btn-default" @click="depositCheck(check.transaction_no,check.id)"><i class="fas fa-sign-in-alt"></i></button></td>
                             <td>
-                                <button v-if="!reverse" :disabled="check.status != 'BANK' || check.status != 'REVERSE'" class="btn btn-danger" @click="reverseTransaction(transaction.transaction_no,transaction.id)">Reverse</button>
+                                <button :disabled="check.status == 'BANK' || check.status == 'REVERSE'" class="btn btn-danger" @click="reverseTransaction(transaction.transaction_no,transaction.id)">Reverse</button>
                             </td>
                           </tr>
                           

@@ -80121,8 +80121,8 @@ var render = function() {
                                             staticClass: "btn btn-default",
                                             attrs: {
                                               disabled:
-                                                check.status != "BANK" ||
-                                                check.status != "REVERSE"
+                                                check.status == "BANK" ||
+                                                check.status == "REVERSE"
                                             },
                                             on: {
                                               click: function($event) {
@@ -80142,29 +80142,27 @@ var render = function() {
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [
-                                        !_vm.reverse
-                                          ? _c(
-                                              "button",
-                                              {
-                                                staticClass: "btn btn-danger",
-                                                attrs: {
-                                                  disabled:
-                                                    check.status != "BANK" ||
-                                                    check.status != "REVERSE"
-                                                },
-                                                on: {
-                                                  click: function($event) {
-                                                    return _vm.reverseTransaction(
-                                                      _vm.transaction
-                                                        .transaction_no,
-                                                      _vm.transaction.id
-                                                    )
-                                                  }
-                                                }
-                                              },
-                                              [_vm._v("Reverse")]
-                                            )
-                                          : _vm._e()
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass: "btn btn-danger",
+                                            attrs: {
+                                              disabled:
+                                                check.status == "BANK" ||
+                                                check.status == "REVERSE"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.reverseTransaction(
+                                                  _vm.transaction
+                                                    .transaction_no,
+                                                  _vm.transaction.id
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [_vm._v("Reverse")]
+                                        )
                                       ])
                                     ]
                                   )
@@ -80244,7 +80242,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Status")]),
       _vm._v(" "),
-      _c("th", [_vm._v("View")]),
+      _c("th", [_vm._v("Transfer")]),
       _vm._v(" "),
       _c("th", [_vm._v("Option")])
     ])
