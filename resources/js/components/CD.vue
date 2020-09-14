@@ -4,7 +4,7 @@
         <div class="col-md-12">
           <div class="box mt-4">
             <!-- general form elements -->
-          <div class="box box-warning" id="printarea">
+          <div class="box box-warning">
             <!-- /.box-header -->
             <!-- form start -->
             <form role="form" @submit.prevent="createTransaction()">
@@ -868,8 +868,8 @@
     </div>
 </template>
 <script>
-    import pdfobject from 'pdfobject';
-    import jspdf from 'jspdf';
+    //import pdfobject from 'pdfobject';
+    //import jspdf from 'jspdf';
 
     import CheckInput from './CheckInput.vue';
     export default {
@@ -1092,6 +1092,7 @@
             if(this.form.amount == 0) {
               return false;
             }
+            
             
             this.transaction_created = false; 
             ++this.transaction_entry_id;
@@ -1727,9 +1728,9 @@
 
 
           printForm(){
-            console.log('printForm');
+            //console.log('printForm');
             //this.$htmlToPaper('print-area');
-            const doc = new jspdf();
+            //const doc = new jspdf();
             //const html = this.$refs.printarea.innerHTML;
 
             //doc.fromHTML(html,15,15,{width: 150});
@@ -1747,6 +1748,7 @@
       
             //doc.save("print.pdf");
             window.print();
+            this.saveTransaction();
           }
         },
 
