@@ -3883,14 +3883,19 @@ __webpack_require__.r(__webpack_exports__);
       var doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"](); //const html = this.$refs.printarea.innerHTML;
       //doc.fromHTML(html,15,15,{width: 150});
 
+      /*
       doc.html($('#printarea'), {
-        callback: function callback(doc) {
+        callback: function (doc) {
           doc.save("print.pdf");
         },
         x: 10,
         y: 10
-      }); //doc.setFontSize(16).text('Cash Disbursement', 0.5, 1.0);
+      });
+      */
+      //doc.setFontSize(16).text('Cash Disbursement', 0.5, 1.0);
       //doc.save("print.pdf");
+
+      window.print();
     }
   },
   created: function created() {
