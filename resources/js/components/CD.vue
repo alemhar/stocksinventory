@@ -1724,11 +1724,12 @@
               $('#check-details').modal('hide');
             //console.log(value);          
           },
+
+
           printTransaction(){
             console.log('printTransaction');
             //this.$htmlToPaper('print-area');
             const doc = new jspdf();
-
             //const html = this.$refs.printarea.innerHTML;
 
             //doc.fromHTML(html,15,15,{width: 150});
