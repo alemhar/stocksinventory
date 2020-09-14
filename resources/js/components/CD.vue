@@ -4,7 +4,7 @@
         <div class="col-md-12">
           <div class="box mt-4">
             <!-- general form elements -->
-          <div class="box box-warning">
+          <div class="box box-warning" id="print-area">
             <!-- /.box-header -->
             <!-- form start -->
             <form role="form" @submit.prevent="createTransaction()">
@@ -14,6 +14,7 @@
                   <button type="submit" v-show="!transaction_created" class="btn btn-success">Create <i class="fas fa-plus-circle fa-fw"></i></button>
                   <!-- @click="createCD()"  -->
                   <button  type="button" class="btn btn-danger"  v-show="transaction_created" @click="cancelTransaction">Cancel <i class="fas fa-window-close fa-fw"></i></button>
+                  <button type="button"  class="btn btn-success"  v-show="transaction_created" @click="printTransaction">Print and Save <i class="fas fa-save fa-fw"></i></button>
                   <button type="button"  class="btn btn-success"  v-show="transaction_created" @click="saveTransaction">Save <i class="fas fa-save fa-fw"></i></button>
 
                 </div>
@@ -1721,8 +1722,12 @@
               console.log('hide');
               $('#check-details').modal('hide');
             //console.log(value);          
+          },
+          printTransaction(){
+            this.$htmlToPaper('print-area');
           }
         },
+        
 
         created() {
             this.loadPayees();

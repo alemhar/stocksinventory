@@ -499,7 +499,7 @@
                         status: 'DEPOSIT',
                     })
                     .then((response)=>{
-
+                        this.loadChecks();
                     })
                     .catch(()=>{
                         
@@ -521,7 +521,8 @@
                         //Reload Current Page
                         //this.dataReset();
                         this.transactions = {};
-                        this.transaction_entry_id = 0;                                
+                        this.transaction_entry_id = 0;     
+                                                   
                     }
                     });
                 $('#entry-deposit').modal('hide');
@@ -530,8 +531,8 @@
             reverseCheck(transaction_no,id){
 
                 swal.fire({
-                    title: 'Reversed!',
-                    text: "Journal posted",
+                    title: 'Please confirm',
+                    text: "Are you sure you want to reverse entry?",
                     type: 'info',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -648,7 +649,7 @@
                         status: 'REVERSE',
                     })
                     .then((response)=>{
-
+                        this.loadChecks();   
                     })
                     .catch(()=>{
                         
@@ -670,7 +671,8 @@
                         //this.dataReset();
                         this.transactions = {};
                         this.transaction_entry_id = 0; 
-                        this.id = 0;                               
+                        this.id = 0; 
+                                                   
                     }
                     });
 
