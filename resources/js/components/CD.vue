@@ -1725,6 +1725,7 @@
             //console.log(value);          
           },
           printTransaction(){
+            console.log('printTransaction');
             //this.$htmlToPaper('print-area');
             const doc = new jspdf();
 

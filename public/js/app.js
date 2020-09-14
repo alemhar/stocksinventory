@@ -3878,7 +3878,8 @@ __webpack_require__.r(__webpack_exports__);
       $('#check-details').modal('hide'); //console.log(value);          
     },
     printTransaction: function printTransaction() {
-      //this.$htmlToPaper('print-area');
+      console.log('printTransaction'); //this.$htmlToPaper('print-area');
+
       var doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"](); //const html = this.$refs.printarea.innerHTML;
       //doc.fromHTML(html,15,15,{width: 150});
 
