@@ -4,7 +4,7 @@
         <div class="col-md-12">
           <div class="box mt-4">
             <!-- general form elements -->
-          <div class="box box-warning" ref="printarea">
+          <div class="box box-warning" id="printarea">
             <!-- /.box-header -->
             <!-- form start -->
             <form role="form" @submit.prevent="createTransaction()">
@@ -1734,7 +1734,7 @@
 
             //doc.fromHTML(html,15,15,{width: 150});
 
-            doc.html(this.$refs.printarea.innerHTML, {
+            doc.html('#printarea', {
               callback: function (doc) {
                 doc.save("print.pdf");
               },
