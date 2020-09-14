@@ -3760,13 +3760,15 @@ __webpack_require__.r(__webpack_exports__);
       $('#check-details').modal('hide'); //console.log(value);          
     },
     printForm: function printForm() {
-      var mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150'); //window.print();
+      var mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150'); //let mywindow = window;  
+      //window.print();
 
       mywindow.document.write("<html><head><title>Company Name</title>");
       mywindow.document.write('</head><body >');
       mywindow.document.write('<h2>Company Name</h2>');
       mywindow.document.write('<h2>Company Address</h2>');
-      mywindow.document.write(document.getElementById('printarea').innerHTML);
+      mywindow.document.write(window); //mywindow.document.write(document.getElementById('printarea').innerHTML);
+
       mywindow.document.write('</body></html>');
       mywindow.document.close(); // necessary for IE >= 10
 
