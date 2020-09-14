@@ -4,7 +4,7 @@
         <div class="col-md-12">
           <div class="box mt-4">
             <!-- general form elements -->
-          <div class="box box-warning">
+          <div class="box box-warning" ref="printarea">
             <!-- /.box-header -->
             <!-- form start -->
             <form role="form" @submit.prevent="createTransaction()">
@@ -1730,11 +1730,11 @@
             console.log('printForm');
             //this.$htmlToPaper('print-area');
             const doc = new jspdf();
-            //const html = this.$refs.printarea.innerHTML;
+            const html = this.$refs.printarea.innerHTML;
 
-            //doc.fromHTML(html,15,15,{width: 150});
+            doc.fromHTML(html,15,15,{width: 150});
 
-            doc.setFontSize(16).text('Cash Disbursement', 0.5, 1.0);
+            //doc.setFontSize(16).text('Cash Disbursement', 0.5, 1.0);
       
             doc.save("print.pdf");
 
