@@ -3780,7 +3780,7 @@ __webpack_require__.r(__webpack_exports__);
     printForm: function printForm() {
       //let mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');  
       //let mywindow = window;  
-      document.title = this.transaction_no + '-' + this.transaction_type + '-' + this.transaction_date;
+      document.title = this.form.transaction_no + '-' + this.form.transaction_type + '-' + this.form.transaction_date;
       window.print(); //mywindow.document.write(`<html><head><title>Company Name</title>`);
       //mywindow.document.write('</head><body >');
       //mywindow.document.write('<h2>Company Name</h2>');
