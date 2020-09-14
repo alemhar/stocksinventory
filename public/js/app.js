@@ -3877,8 +3877,8 @@ __webpack_require__.r(__webpack_exports__);
       console.log('hide');
       $('#check-details').modal('hide'); //console.log(value);          
     },
-    printTransaction: function printTransaction() {
-      console.log('printTransaction'); //this.$htmlToPaper('print-area');
+    printForm: function printForm() {
+      console.log('printForm'); //this.$htmlToPaper('print-area');
 
       var doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"](); //const html = this.$refs.printarea.innerHTML;
       //doc.fromHTML(html,15,15,{width: 150});
@@ -75297,7 +75297,7 @@ var render = function() {
                             ],
                             staticClass: "btn btn-success",
                             attrs: { type: "button" },
-                            on: { click: _vm.printTransaction }
+                            on: { click: _vm.printForm }
                           },
                           [
                             _vm._v("Print and Save "),

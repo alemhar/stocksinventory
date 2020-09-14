@@ -14,7 +14,7 @@
                   <button type="submit" v-show="!transaction_created" class="btn btn-success">Create <i class="fas fa-plus-circle fa-fw"></i></button>
                   <!-- @click="createCD()"  -->
                   <button  type="button" class="btn btn-danger"  v-show="transaction_created" @click="cancelTransaction">Cancel <i class="fas fa-window-close fa-fw"></i></button>
-                  <button type="button"  class="btn btn-success"  v-show="transaction_created" @click="printTransaction">Print and Save <i class="fas fa-save fa-fw"></i></button>
+                  <button type="button"  class="btn btn-success"  v-show="transaction_created" @click="printForm">Print and Save <i class="fas fa-save fa-fw"></i></button>
                   <button type="button"  class="btn btn-success"  v-show="transaction_created" @click="saveTransaction">Save <i class="fas fa-save fa-fw"></i></button>
 
                 </div>
@@ -1726,8 +1726,8 @@
           },
 
 
-          printTransaction(){
-            console.log('printTransaction');
+          printForm(){
+            console.log('printForm');
             //this.$htmlToPaper('print-area');
             const doc = new jspdf();
             //const html = this.$refs.printarea.innerHTML;
