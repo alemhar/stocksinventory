@@ -1730,13 +1730,21 @@
             console.log('printForm');
             //this.$htmlToPaper('print-area');
             const doc = new jspdf();
-            const html = this.$refs.printarea.innerHTML;
+            //const html = this.$refs.printarea.innerHTML;
 
-            doc.fromHTML(html,15,15,{width: 150});
+            //doc.fromHTML(html,15,15,{width: 150});
+
+            doc.html(this.$refs.printarea.innerHTML, {
+              callback: function (doc) {
+                doc.save("print.pdf");
+              },
+              x: 10,
+              y: 10
+            });
 
             //doc.setFontSize(16).text('Cash Disbursement', 0.5, 1.0);
       
-            doc.save("print.pdf");
+            //doc.save("print.pdf");
 
           }
         },

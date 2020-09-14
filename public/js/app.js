@@ -3880,13 +3880,17 @@ __webpack_require__.r(__webpack_exports__);
     printForm: function printForm() {
       console.log('printForm'); //this.$htmlToPaper('print-area');
 
-      var doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"]();
-      var html = this.$refs.printarea.innerHTML;
-      doc.fromHTML(html, 15, 15, {
-        width: 150
-      }); //doc.setFontSize(16).text('Cash Disbursement', 0.5, 1.0);
+      var doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"](); //const html = this.$refs.printarea.innerHTML;
+      //doc.fromHTML(html,15,15,{width: 150});
 
-      doc.save("print.pdf");
+      doc.html(this.$refs.printarea.innerHTML, {
+        callback: function callback(doc) {
+          doc.save("print.pdf");
+        },
+        x: 10,
+        y: 10
+      }); //doc.setFontSize(16).text('Cash Disbursement', 0.5, 1.0);
+      //doc.save("print.pdf");
     }
   },
   created: function created() {
