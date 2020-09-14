@@ -2967,6 +2967,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //import pdfobject from 'pdfobject';
 //import jspdf from 'jspdf';
 
@@ -3760,21 +3774,19 @@ __webpack_require__.r(__webpack_exports__);
       $('#check-details').modal('hide'); //console.log(value);          
     },
     printForm: function printForm() {
-      var mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150'); //let mywindow = window;  
-      //window.print();
-
-      mywindow.document.write("<html><head><title>Company Name</title>");
-      mywindow.document.write('</head><body >');
-      mywindow.document.write('<h2>Company Name</h2>');
-      mywindow.document.write('<h2>Company Address</h2>');
-      mywindow.document.write(window); //mywindow.document.write(document.getElementById('printarea').innerHTML);
-
-      mywindow.document.write('</body></html>');
-      mywindow.document.close(); // necessary for IE >= 10
-
-      mywindow.focus(); // necessary for IE >= 10*/
-
-      mywindow.print(); //mywindow.close();
+      //let mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');  
+      //let mywindow = window;  
+      window.print(); //mywindow.document.write(`<html><head><title>Company Name</title>`);
+      //mywindow.document.write('</head><body >');
+      //mywindow.document.write('<h2>Company Name</h2>');
+      //mywindow.document.write('<h2>Company Address</h2>');
+      //mywindow.document.write(window);
+      //mywindow.document.write(document.getElementById('printarea').innerHTML);
+      //mywindow.document.write('</body></html>');
+      //mywindow.document.close(); // necessary for IE >= 10
+      //mywindow.focus(); // necessary for IE >= 10*/
+      //mywindow.print();
+      //mywindow.close();
       //console.log('printForm');
       //this.$htmlToPaper('print-area');
       //const doc = new jspdf();
@@ -74304,6 +74316,14 @@ var render = function() {
                 "div",
                 { staticClass: "box box-warning", attrs: { id: "printarea" } },
                 [
+                  _c("div", { staticClass: "print-content" }, [
+                    _vm._v("Company Name")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "print-content" }, [
+                    _vm._v("Company Address")
+                  ]),
+                  _vm._v(" "),
                   _c(
                     "form",
                     {
@@ -111997,7 +112017,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CD_vue_vue_type_template_id_e71f1928___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CD.vue?vue&type=template&id=e71f1928& */ "./resources/js/components/CD.vue?vue&type=template&id=e71f1928&");
 /* harmony import */ var _CD_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CD.vue?vue&type=script&lang=js& */ "./resources/js/components/CD.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport */!(function webpackMissingModule() { var e = new Error("Cannot find module './CD.vue?vue&type=style&index=0&lang=stylus&'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -112005,7 +112027,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _CD_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _CD_vue_vue_type_template_id_e71f1928___WEBPACK_IMPORTED_MODULE_0__["render"],
   _CD_vue_vue_type_template_id_e71f1928___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
