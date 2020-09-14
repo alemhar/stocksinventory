@@ -111127,8 +111127,16 @@ window.toast = toast;
 
 var options = {
   name: '_blank',
-  specs: ['fullscreen=yes', 'titlebar=yes', 'scrollbars=yes'],
-  styles: ['https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', 'https://unpkg.com/kidlat-css/css/kidlat.css']
+
+  /*
+  specs: [
+    'fullscreen=yes',
+    'titlebar=yes',
+    'scrollbars=yes'
+  ],
+  */
+  styles: ['https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' //'https://unpkg.com/kidlat-css/css/kidlat.css'
+  ]
 };
 Vue.use(vue_html_to_paper__WEBPACK_IMPORTED_MODULE_5___default.a, options); // or, using the defaults with no stylesheet
 
