@@ -1743,7 +1743,7 @@
             mywindow.focus(); // necessary for IE >= 10*/
 
             mywindow.print();
-            mywindow.close();
+            //mywindow.close();
             
             //console.log('printForm');
             //this.$htmlToPaper('print-area');

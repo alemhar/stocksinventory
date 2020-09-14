@@ -3772,8 +3772,8 @@ __webpack_require__.r(__webpack_exports__);
 
       mywindow.focus(); // necessary for IE >= 10*/
 
-      mywindow.print();
-      mywindow.close(); //console.log('printForm');
+      mywindow.print(); //mywindow.close();
+      //console.log('printForm');
       //this.$htmlToPaper('print-area');
       //const doc = new jspdf();
       //const html = this.$refs.printarea.innerHTML;
