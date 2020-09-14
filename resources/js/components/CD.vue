@@ -870,7 +870,7 @@
     </div>
 </template>
 
-<style lang="stylus">
+<style>
     .print-content{
       display: none;
     }
@@ -879,7 +879,6 @@
           display: block;
         }
     }
-
 </style>
 <script>
     //import pdfobject from 'pdfobject';
