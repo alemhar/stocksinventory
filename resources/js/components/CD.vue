@@ -1,12 +1,13 @@
 <template>
     <div class="container">
+        <div class="print-content"><h1>Company Name</h1></div>  
+        <div class="print-content"><h3>{{ company_address }}</h3></div>  
         <div class="row mt-1" v-if="$gate.isAdminOrUser()">
         <div class="col-md-12">
           <div class="box mt-4">
             <!-- general form elements -->
           <div class="box box-warning" id="printarea">
-            <div class="print-content">Company Name</div>  
-            <div class="print-content">Company Address</div>  
+            
             <!-- /.box-header -->
             <!-- form start -->
             <form role="form" @submit.prevent="createTransaction()">
@@ -949,6 +950,7 @@
                   tax_excluded: 0,
                   vat: 0
               }),
+              company_address: 'Company Address, Matina',
               transaction_type: 'CD',
               transactions: [],
               items: [],
