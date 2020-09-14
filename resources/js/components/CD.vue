@@ -1729,7 +1729,7 @@
 
           printForm(){
       
-            mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');  
+            let mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');  
             //window.print();
       
             mywindow.document.write(`<html><head><title>Company Name</title>`);

@@ -3760,7 +3760,7 @@ __webpack_require__.r(__webpack_exports__);
       $('#check-details').modal('hide'); //console.log(value);          
     },
     printForm: function printForm() {
-      mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150'); //window.print();
+      var mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150'); //window.print();
 
       mywindow.document.write("<html><head><title>Company Name</title>");
       mywindow.document.write('</head><body >');
