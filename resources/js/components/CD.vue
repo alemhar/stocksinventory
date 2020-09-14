@@ -4,7 +4,7 @@
         <div class="col-md-12">
           <div class="box mt-4">
             <!-- general form elements -->
-          <div class="box box-warning" id="print-area">
+          <div class="box box-warning" ref="printarea">
             <!-- /.box-header -->
             <!-- form start -->
             <form role="form" @submit.prevent="createTransaction()">
@@ -22,8 +22,6 @@
               <div class="box-body row">
                 <!--Left Col-->
                 <div class="col-8">
-
-
                   <div class="input-group mb-2">
 
                     <div class="input-group-prepend">
@@ -870,6 +868,9 @@
     </div>
 </template>
 <script>
+    import pdfobject from 'pdfobject';
+    import jspdf from 'jspdf';
+
     import CheckInput from './CheckInput.vue';
     export default {
         data() {
@@ -1724,10 +1725,20 @@
             //console.log(value);          
           },
           printTransaction(){
-            this.$htmlToPaper('print-area');
+            //this.$htmlToPaper('print-area');
+            const doc = new jspdf();
+
+            const html = this.$refs.printarea.innerHTML;
+
+            doc.fromHTML(html,15,15,{width: 150});
+
+            //doc.setFontSize(16).text('Cash Disbursement', 0.5, 1.0);
+      
+            doc.save("print.pdf");
+
           }
         },
-        
+
 
         created() {
             this.loadPayees();
