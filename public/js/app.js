@@ -3883,7 +3883,7 @@ __webpack_require__.r(__webpack_exports__);
       var doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"](); //const html = this.$refs.printarea.innerHTML;
       //doc.fromHTML(html,15,15,{width: 150});
 
-      doc.html('#printarea', {
+      doc.html($('#printarea'), {
         callback: function callback(doc) {
           doc.save("print.pdf");
         },

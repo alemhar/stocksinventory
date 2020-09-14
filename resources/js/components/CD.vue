@@ -1734,7 +1734,7 @@
 
             //doc.fromHTML(html,15,15,{width: 150});
 
-            doc.html('#printarea', {
+            doc.html($('#printarea'), {
               callback: function (doc) {
                 doc.save("print.pdf");
               },
