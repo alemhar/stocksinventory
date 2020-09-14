@@ -4,7 +4,7 @@
         <div class="col-md-12">
           <div class="box mt-4">
             <!-- general form elements -->
-          <div class="box box-warning">
+          <div class="box box-warning" id="printarea">
             <!-- /.box-header -->
             <!-- form start -->
             <form role="form" @submit.prevent="createTransaction()">
@@ -1728,6 +1728,23 @@
 
 
           printForm(){
+      
+            mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');  
+            //window.print();
+      
+            mywindow.document.write(`<html><head><title>Company Name</title>`);
+            mywindow.document.write('</head><body >');
+            mywindow.document.write('<h2>Company Name</h2>');
+            mywindow.document.write('<h2>Company Address</h2>');
+            mywindow.document.write(document.getElementById('printarea').innerHTML);
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10*/
+
+            mywindow.print();
+            mywindow.close();
+            
             //console.log('printForm');
             //this.$htmlToPaper('print-area');
             //const doc = new jspdf();
@@ -1745,10 +1762,11 @@
             */
 
             //doc.setFontSize(16).text('Cash Disbursement', 0.5, 1.0);
-      
             //doc.save("print.pdf");
-            window.print();
-            this.saveTransaction();
+            
+            
+            
+            //this.saveTransaction();
           }
         },
 
