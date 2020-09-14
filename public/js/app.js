@@ -2981,6 +2981,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 //import pdfobject from 'pdfobject';
 //import jspdf from 'jspdf';
 
@@ -20052,7 +20055,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.print-content{\n  display: none;\n}\n@media print {\n.print-content {\n      display: block;\n}\n}\n", ""]);
+exports.push([module.i, "\n.print-content {\n  display: none;\n}\n@media print {\n.print-content {\n      display: block;\n}\n.btn {\n      display: none;\n}\n}\n", ""]);
 
 // exports
 

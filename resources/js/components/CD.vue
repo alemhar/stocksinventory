@@ -872,12 +872,15 @@
 </template>
 
 <style>
-    .print-content{
+    .print-content {
       display: none;
     }
     @media print {
         .print-content {
           display: block;
+        }
+        .btn {
+          display: none;
         }
     }
 </style>
