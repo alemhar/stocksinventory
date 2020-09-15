@@ -842,8 +842,9 @@
     .print-content {
       display: none;
     }
+    @page { size:  auto; margin: 50px; }
     @media print {
-        @page { size:  auto; margin: 50px; }
+         
         .print-content {
           display: block;
         }

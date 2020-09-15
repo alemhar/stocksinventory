@@ -12000,6 +12000,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -20618,7 +20619,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.print-content {\n  display: none;\n}\n@media print {\n@page { size:  auto; margin: 50px;\n}\n.print-content {\n      display: block;\n}\n.btn {\n      display: none;\n}\n}\n", ""]);
+exports.push([module.i, "\n.print-content {\n  display: none;\n}\n@page { size:  auto; margin: 50px;\n}\n@media print {\n.print-content {\n      display: block;\n}\n.btn {\n      display: none;\n}\n}\n", ""]);
 
 // exports
 
@@ -88912,25 +88913,25 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "print-content" }, [
+      _c("h1", [_vm._v(_vm._s(_vm.company.name))])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "print-content" }, [
+      _c("h3", [
+        _vm._v(
+          _vm._s(_vm.company.address) +
+            ", " +
+            _vm._s(_vm.company.address2) +
+            " " +
+            _vm._s(_vm.company.city) +
+            " "
+        )
+      ])
+    ]),
+    _vm._v(" "),
     _vm.$gate.isAdminOrUser()
       ? _c("div", { staticClass: "row mt-1" }, [
-          _c("div", { staticClass: "print-content" }, [
-            _c("h1", [_vm._v(_vm._s(_vm.company.name))])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "print-content" }, [
-            _c("h3", [
-              _vm._v(
-                _vm._s(_vm.company.address) +
-                  ", " +
-                  _vm._s(_vm.company.address2) +
-                  " " +
-                  _vm._s(_vm.company.city) +
-                  " "
-              )
-            ])
-          ]),
-          _vm._v(" "),
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "box mt-4" }, [
               _c("div", { staticClass: "box box-warning" }, [
