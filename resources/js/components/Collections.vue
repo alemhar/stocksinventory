@@ -1359,7 +1359,7 @@
 
         },
         components: {
-          
+          CheckInput
           
         }
     }

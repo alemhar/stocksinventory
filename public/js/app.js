@@ -7336,7 +7336,9 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
-  components: {}
+  components: {
+    CheckInput: _CheckInput_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
 });
 
 /***/ }),
