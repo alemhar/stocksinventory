@@ -3262,8 +3262,7 @@ __webpack_require__.r(__webpack_exports__);
         headers: {
           'Content-Type': 'multipart/form-data'
         }
-      }).then(function (response) {
-        console.log(response);
+      }).then(function (response) {//console.log(response);
       })["catch"](function (error) {
         console.log(error);
       }); // Save Transactions END
@@ -3279,8 +3278,7 @@ __webpack_require__.r(__webpack_exports__);
         headers: {
           'Content-Type': 'multipart/form-data'
         }
-      }).then(function (response) {
-        console.log(response);
+      }).then(function (response) {//console.log(response);
       })["catch"](function (error) {
         console.log(error);
       }); // Save Items END
@@ -3312,8 +3310,7 @@ __webpack_require__.r(__webpack_exports__);
           headers: {
             'Content-Type': 'multipart/form-data'
           }
-        }).then(function (response) {
-          console.log(response);
+        }).then(function (response) {//console.log(response);
         })["catch"](function (error) {
           console.log(error);
         }); // Save Check END
@@ -3773,8 +3770,8 @@ __webpack_require__.r(__webpack_exports__);
       this.check.check_bank = child_check.check_bank;
       this.check.check_bank_branch = child_check.check_bank_branch;
       this.check.check_date = child_check.check_date;
-      this.check.check_amount = child_check.check_amount;
-      console.log('hide');
+      this.check.check_amount = child_check.check_amount; //console.log('hide');
+
       $('#check-details').modal('hide'); //console.log(value);          
     },
     printForm: function printForm() {
@@ -3810,6 +3807,12 @@ __webpack_require__.r(__webpack_exports__);
       //doc.setFontSize(16).text('Cash Disbursement', 0.5, 1.0);
       //doc.save("print.pdf");
       //this.saveTransaction();
+    },
+    getCompany: function getCompany() {
+      axios.get('api/company/' + this.user_id).then(function (response) {
+        console.log(response);
+      })["catch"](function () {//
+      });
     }
   },
   created: function created() {
@@ -3823,6 +3826,7 @@ __webpack_require__.r(__webpack_exports__);
     $(document).on('hidden.bs.modal', '.modal', function () {
       $('.modal:visible').length && $(document.body).addClass('modal-open');
     });
+    this.getCompany();
   },
   computed: {
     currentItems: function currentItems() {

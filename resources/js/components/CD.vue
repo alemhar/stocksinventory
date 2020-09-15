@@ -1167,7 +1167,7 @@
                 })
                 .then((response)=>{
                     
-                    console.log(response);
+                    //console.log(response);
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -1190,7 +1190,7 @@
                 })
                 .then((response)=>{
                     
-                    console.log(response);
+                    //console.log(response);
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -1230,7 +1230,7 @@
                     })
                     .then((response)=>{
                         
-                        console.log(response);
+                        //console.log(response);
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -1739,7 +1739,7 @@
               this.check.check_bank_branch = child_check.check_bank_branch;
               this.check.check_date = child_check.check_date;
               this.check.check_amount = child_check.check_amount;
-              console.log('hide');
+              //console.log('hide');
               $('#check-details').modal('hide');
             //console.log(value);          
           },
@@ -1788,6 +1788,16 @@
             
             
             //this.saveTransaction();
+          },
+          getCompany(){
+              axios.get('api/company/'+this.user_id)
+                .then((response)=>{
+                  console.log(response);
+                })
+                .catch(()=>{
+                  //
+                });
+            
           }
         },
 
@@ -1805,6 +1815,7 @@
                 $('.modal:visible').length && $(document.body).addClass('modal-open');
             });
 
+            this.getCompany();
 
         },
         computed: {

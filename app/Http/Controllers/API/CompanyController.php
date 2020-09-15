@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Company;
 
 class CompanyController extends Controller
 {
@@ -36,7 +37,10 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        //
+        $company = Company::findOrFail($id);
+        
+        return $company;
+        //return ['message' => 'Check status updated!'];
     }
 
     /**
