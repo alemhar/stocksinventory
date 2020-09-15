@@ -100,6 +100,7 @@
                     <input type="text" v-model="form.transaction_no" readonly class="form-control col-12" id="inputDCNo" placeholder="Transaction Number">
                   </div>
 
+
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Check #</span>
@@ -109,6 +110,7 @@
                         <button type="button" v-show="!transaction_created" class="btn btn-success" @click="showCheckDetails" style="margin-left: -15px;"><i class="fas fa-edit"></i></button>
                     </span>
                   </div>
+
 
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
