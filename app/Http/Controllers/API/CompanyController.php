@@ -40,7 +40,7 @@ class CompanyController extends Controller
         $company = Company::findOrFail($id);
         
         return $company;
-        //return ['message' => 'Check status updated!'];
+        //return ['message' => 'Check status updated!', ];
     }
 
     /**

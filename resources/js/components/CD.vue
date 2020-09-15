@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <div class="print-content"><h1>Company Name</h1></div>  
-        <div class="print-content"><h3>{{ company_address }}</h3></div>  
+        <div class="print-content"><h1>{{ company.name }}</h1></div>  
+        <div class="print-content"><h3>{{ company.address }}, {{ company.address2 }} {{ company.city }} </h3></div>  
         <div class="row mt-1" v-if="$gate.isAdminOrUser()">
         <div class="col-md-12">
           <div class="box mt-4">
@@ -953,7 +953,6 @@
                   tax_excluded: 0,
                   vat: 0
               }),
-              company_address: 'Company Address, Matina',
               transaction_type: 'CD',
               transactions: [],
               items: [],
@@ -1005,7 +1004,8 @@
                 check_date: '',
                 check_amount: 0
               },
-              checks: []
+              checks: [],
+              company: null
           }
         },
         methods: {
@@ -1792,7 +1792,7 @@
           getCompany(){
               axios.get('api/company/'+this.user_id)
                 .then((response)=>{
-                  console.log(response.data);
+                  this.company = response.data;
                 })
                 .catch(()=>{
                   //
