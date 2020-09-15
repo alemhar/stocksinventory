@@ -2,9 +2,7 @@
     <div class="container">
         <div class="print-content"><h1>{{ company.name }}</h1></div>  
         <div class="print-content"><h3>{{ company.address }}, {{ company.address2 }} {{ company.city }} </h3></div>  
-
         <div class="row mt-1" v-if="$gate.isAdminOrUser()">
-        
         <div class="col-md-12">
           <div class="box mt-4">
             <!-- general form elements -->
@@ -1717,6 +1715,3 @@
         }
     }
 </script>
-<style type="text/css">
-  
-</style>
