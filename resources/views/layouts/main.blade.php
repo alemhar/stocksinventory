@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Dashboard | AIA Books</title>
+  <title>Dashboard | AIA Cloud Apps</title>
   <link rel="stylesheet" type="text/css" href="/css/app.css">
   <!-- Font Awesome Icons -->
   <!--link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css"-->
@@ -50,7 +50,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <a href="index3.html" class="brand-link" style="/*text-align: center;*/">
       <img src="img/aia_logo_200x200.png" alt="AIA Books Logo" class="brand-image elevation-3 img-circle"
            style="background-color: white;padding: 2px;/*opacity: .8*/"> 
-      <span class="brand-text font-weight-light"  style="font-size: 1.2rem;/*text-align: left !important;*/">AIA Books</span>
+      <span class="brand-text font-weight-light"  style="font-size: 1.2rem;/*text-align: left !important;*/">AIA Cloud Apps</span>
     </a>
 
     <!-- Sidebar -->
