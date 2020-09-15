@@ -1,3 +1,58 @@
+<div class="print-content"><h1>{{ company.name }}</h1></div>  
+<div class="print-content"><h3>{{ company.address }}, {{ company.address2 }} {{ company.city }} </h3></div>  
+        
+
+<button type="button"  class="btn btn-success"  v-show="transaction_created" @click="printForm">Print and Save <i class="fas fa-save fa-fw"></i></button>
+
+
+company: null
+
+<style>
+    .print-content {
+      display: none;
+    }
+    @media print {
+        @page { size:  auto; margin: 50px; }
+        .print-content {
+          display: block;
+        }
+        .btn {
+          display: none;
+        }
+    }
+</style>
+
+
+method: 
+,
+
+
+          printForm(){
+      
+            
+            document.title = this.form.transaction_no+'-'+this.form.transaction_type+'-'+this.form.transaction_date;
+            window.print();
+            this.saveTransaction();
+            
+          }
+,
+          getCompany(){
+              axios.get('api/company/'+this.user_id)
+                .then((response)=>{
+                  this.company = response.data;
+                })
+                .catch(()=>{
+                  //
+                });
+            
+          }
+
+
+created: 
+          this.getCompany();
+
+
+
 <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <span class="input-group-text inputGroup-sizing-default">Check #</span>
