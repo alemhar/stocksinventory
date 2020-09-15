@@ -6110,6 +6110,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CheckInput_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CheckInput.vue */ "./resources/js/components/CheckInput.vue");
 //
 //
 //
@@ -6672,9 +6673,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//import { ModelSelect } from 'vue-search-select'
-//import { DynamicSelect } from 'vue-dynamic-select'
-//import { BasicSelect } from 'vue-search-select'
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -6754,7 +6781,15 @@ __webpack_require__.r(__webpack_exports__);
       current_date: this.getDate(),
       readabilityObject: {
         fontSize: user.font_size
-      }
+      },
+      check: {
+        check_no: '',
+        check_bank: '',
+        check_bank_branch: '',
+        check_date: '',
+        check_amount: 0
+      },
+      checks: []
     };
   },
   methods: {
@@ -6956,7 +6991,41 @@ __webpack_require__.r(__webpack_exports__);
         operation: 'sub',
         account: 'receivable'
       }).then(function (response) {})["catch"](function () {}); // Update Payee Account END ********************
-      // Save Payment END
+
+      if (this.check.check_no) {
+        this.checks.push({
+          check_no: this.check.check_no,
+          check_bank: this.check.check_bank,
+          check_bank_branch: this.check.check_bank_branch,
+          check_date: this.check.check_date,
+          check_amount: this.form.amount,
+          reference_no: this.form.reference_no,
+          transaction_no: this.form.transaction_no,
+          transaction_type: this.form.transaction_type,
+          transaction_date: this.form.transaction_date,
+          deposit_reference_no: '',
+          deposit_date: '',
+          deposit_amount: 0,
+          status: 'CONFIRMED'
+        }); // Save Check START
+
+        var rawCheckData = {
+          checks: this.checks
+        };
+        rawCheckData = JSON.stringify(rawCheckData);
+        var formCheckData = new FormData();
+        formCheckData.append('checks', rawCheckData);
+        axios.post('api/check', formCheckData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }).then(function (response) {
+          console.log(response);
+        })["catch"](function (error) {
+          console.log(error);
+        }); // Save Check END
+      } // Save Payment END
+
 
       swal.fire({
         title: 'Saved!',
@@ -6998,6 +7067,14 @@ __webpack_require__.r(__webpack_exports__);
       this.payment_history = {};
       this.sales = {};
       this.current_entity_type = '';
+      this.check = {
+        check_no: '',
+        check_bank: '',
+        check_bank_branch: '',
+        check_date: '',
+        check_amount: 0
+      };
+      this.checks = [];
     },
     cancelTransaction: function cancelTransaction() {
       this.transaction_created = false;
@@ -7209,6 +7286,18 @@ __webpack_require__.r(__webpack_exports__);
           return sale.total_collection = sale.total_collection;
         }
       });
+    },
+    showCheckDetails: function showCheckDetails() {
+      $('#check-details').modal('show');
+    },
+    updateCheckDetails: function updateCheckDetails(child_check) {
+      this.check.check_no = child_check.check_no;
+      this.check.check_bank = child_check.check_bank;
+      this.check.check_bank_branch = child_check.check_bank_branch;
+      this.check.check_date = child_check.check_date;
+      this.check.check_amount = child_check.check_amount;
+      console.log('hide');
+      $('#check-details').modal('hide'); //console.log(value);          
     }
   },
   created: function created() {
@@ -81685,11 +81774,67 @@ var render = function() {
                           })
                         ]),
                         _vm._v(" "),
+                        _c("div", { staticClass: "input-group mb-2" }, [
+                          _vm._m(6),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.check.check_no,
+                                expression: "check.check_no"
+                              }
+                            ],
+                            staticClass: "form-control col-9",
+                            attrs: {
+                              readonly: "true",
+                              type: "text",
+                              id: "inputCheck",
+                              placeholder: "Check No"
+                            },
+                            domProps: { value: _vm.check.check_no },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.check,
+                                  "check_no",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "input-group-btn col-1" }, [
+                            _c(
+                              "button",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: !_vm.transaction_created,
+                                    expression: "!transaction_created"
+                                  }
+                                ],
+                                staticClass: "btn btn-success",
+                                staticStyle: { "margin-left": "-15px" },
+                                attrs: { type: "button" },
+                                on: { click: _vm.showCheckDetails }
+                              },
+                              [_c("i", { staticClass: "fas fa-edit" })]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
                         _c(
                           "div",
                           { staticClass: "input-group mb-2" },
                           [
-                            _vm._m(6),
+                            _vm._m(7),
                             _vm._v(" "),
                             _c("currency-input", {
                               attrs: {
@@ -81732,7 +81877,7 @@ var render = function() {
                 [
                   _c("div", { staticClass: "col-md-12" }, [
                     _c("div", {}, [
-                      _vm._m(7),
+                      _vm._m(8),
                       _vm._v(" "),
                       _c(
                         "div",
@@ -81745,7 +81890,7 @@ var render = function() {
                             _c(
                               "tbody",
                               [
-                                _vm._m(8),
+                                _vm._m(9),
                                 _vm._v(" "),
                                 _vm._l(_vm.sales.data, function(sale) {
                                   return _c(
@@ -81859,7 +82004,7 @@ var render = function() {
                 [
                   _c("div", { staticClass: "col-md-12" }, [
                     _c("div", {}, [
-                      _vm._m(9),
+                      _vm._m(10),
                       _vm._v(" "),
                       _c(
                         "div",
@@ -81872,7 +82017,7 @@ var render = function() {
                             _c(
                               "tbody",
                               [
-                                _vm._m(10),
+                                _vm._m(11),
                                 _vm._v(" "),
                                 _vm._l(_vm.transactions, function(entry) {
                                   return _c(
@@ -81931,7 +82076,7 @@ var render = function() {
                 [
                   _c("div", { staticClass: "col-md-12" }, [
                     _c("div", {}, [
-                      _vm._m(11),
+                      _vm._m(12),
                       _vm._v(" "),
                       _c(
                         "div",
@@ -81944,7 +82089,7 @@ var render = function() {
                             _c(
                               "tbody",
                               [
-                                _vm._m(12),
+                                _vm._m(13),
                                 _vm._v(" "),
                                 _vm._l(_vm.payment_history.data, function(
                                   payment
@@ -82119,7 +82264,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(13),
+                      _vm._m(14),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -82165,7 +82310,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "input-group mb-2" }, [
-                    _vm._m(14),
+                    _vm._m(15),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -82206,7 +82351,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(15),
+                      _vm._m(16),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -82315,7 +82460,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(16),
+              _vm._m(17),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -82354,7 +82499,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(17),
+                            _vm._m(18),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -82403,7 +82548,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(18)
+                _vm._m(19)
               ])
             ])
           ]
@@ -82434,7 +82579,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(19),
+              _vm._m(20),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -82473,7 +82618,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(20),
+                            _vm._m(21),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -82514,12 +82659,34 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(21)
+                _vm._m(22)
               ])
             ])
           ]
         )
       ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "check-details",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "addNewLabel",
+          "aria-hidden": "true",
+          "data-backdrop": "static",
+          "data-keyboard": "false"
+        }
+      },
+      [
+        _c("check-input", {
+          on: { updateCheckDetails: _vm.updateCheckDetails }
+        })
+      ],
+      1
     )
   ])
 }
@@ -82599,6 +82766,18 @@ var staticRenderFns = [
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Transaction #")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Check #")]
       )
     ])
   },
