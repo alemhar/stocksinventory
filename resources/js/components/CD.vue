@@ -876,6 +876,7 @@
       display: none;
     }
     @media print {
+        @page { size:  auto; margin: 50px; }
         .print-content {
           display: block;
         }
