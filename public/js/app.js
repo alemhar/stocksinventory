@@ -3810,7 +3810,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     getCompany: function getCompany() {
       axios.get('api/company/' + this.user_id).then(function (response) {
-        console.log(response);
+        console.log(response.data);
       })["catch"](function () {//
       });
     }
