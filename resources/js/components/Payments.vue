@@ -1,6 +1,8 @@
 <template>
 
     <div class="container">
+      <div class="print-content"><h1>{{ company.name }}</h1></div>  
+      <div class="print-content"><h3>{{ company.address }}, {{ company.address2 }} {{ company.city }} </h3></div>  
         <div class="row mt-1" v-if="$gate.isAdminOrUser()">
         <div class="col-md-12">
           <div class="box mt-4">
@@ -17,6 +19,7 @@
                   <button type="submit" v-show="!transaction_created" class="btn btn-success">Create <i class="fas fa-plus-circle fa-fw"></i></button>
                   <!-- @click="createTransaction()"  -->
                   <button  type="button" class="btn btn-danger"  v-show="transaction_created" @click="cancelTransaction">Cancel <i class="fas fa-window-close fa-fw"></i></button>
+                  <button type="button"  class="btn btn-success"  v-show="transaction_created" @click="printForm">Print and Save <i class="fas fa-save fa-fw"></i></button>
                   <button type="button"  class="btn btn-success"  v-show="transaction_created" @click="saveTransaction">Save <i class="fas fa-save fa-fw"></i></button>
 
                 </div>
@@ -588,6 +591,21 @@
 
     </div>
 </template>
+<style>
+    .print-content {
+      display: none;
+    }
+    @media print {
+        @page { size:  auto; margin: 50px; }
+        .print-content {
+          display: block;
+        }
+        .btn {
+          display: none;
+        }
+    }
+</style>
+
 <script>
     import CheckInput from './CheckInput.vue';
   
@@ -684,7 +702,8 @@
                 check_date: '',
                 check_amount: 0
               },
-              checks: []
+              checks: [],
+              company: null
 
           }
         },
@@ -1292,6 +1311,27 @@
               console.log('hide');
               $('#check-details').modal('hide');
             //console.log(value);          
+          },
+
+
+          printForm(){
+      
+            
+            document.title = this.form.transaction_no+'-'+this.form.transaction_type+'-'+this.form.transaction_date;
+            window.print();
+            this.saveTransaction();
+            
+          }
+,
+          getCompany(){
+              axios.get('api/company/'+this.user_id)
+                .then((response)=>{
+                  this.company = response.data;
+                })
+                .catch(()=>{
+                  //
+                });
+            
           }
 
       },
@@ -1337,6 +1377,7 @@
                 }, 0);
             });
             */
+           this.getCompany();
         },
         computed: {
             currentTransctions(){

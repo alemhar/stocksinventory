@@ -1788,7 +1788,7 @@
             
             
             
-            //this.saveTransaction();
+            this.saveTransaction();
           },
           getCompany(){
               axios.get('api/company/'+this.user_id)

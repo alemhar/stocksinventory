@@ -4,9 +4,6 @@
 
 <button type="button"  class="btn btn-success"  v-show="transaction_created" @click="printForm">Print and Save <i class="fas fa-save fa-fw"></i></button>
 
-
-company: null
-
 <style>
     .print-content {
       display: none;
@@ -21,6 +18,10 @@ company: null
         }
     }
 </style>
+
+company: null
+
+
 
 
 method: 
@@ -50,6 +51,18 @@ method:
 
 created: 
           this.getCompany();
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
