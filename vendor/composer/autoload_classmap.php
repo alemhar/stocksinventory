@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Account' => $baseDir . '/app/Account.php',
     'App\\Branch' => $baseDir . '/app/Branch.php',
+    'App\\Check' => $baseDir . '/app/Check.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\DailyAccount' => $baseDir . '/app/DailyAccount.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
@@ -16,6 +17,7 @@ return array(
     'App\\Http\\Controllers\\API\\CDController' => $baseDir . '/app/Http/Controllers/API/CDController.php',
     'App\\Http\\Controllers\\API\\CDEntryController' => $baseDir . '/app/Http/Controllers/API/CDEntryController.php',
     'App\\Http\\Controllers\\API\\CDItemController' => $baseDir . '/app/Http/Controllers/API/CDItemController.php',
+    'App\\Http\\Controllers\\API\\CheckController' => $baseDir . '/app/Http/Controllers/API/CheckController.php',
     'App\\Http\\Controllers\\API\\PayeeController' => $baseDir . '/app/Http/Controllers/API/PayeeController.php',
     'App\\Http\\Controllers\\API\\ReportController' => $baseDir . '/app/Http/Controllers/API/ReportController.php',
     'App\\Http\\Controllers\\API\\TaxRateController' => $baseDir . '/app/Http/Controllers/API/TaxRateController.php',

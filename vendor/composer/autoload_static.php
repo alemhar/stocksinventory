@@ -472,6 +472,7 @@ class ComposerStaticInit0788a648f36db29b59d46db4e96f62fb
     public static $classMap = array (
         'App\\Account' => __DIR__ . '/../..' . '/app/Account.php',
         'App\\Branch' => __DIR__ . '/../..' . '/app/Branch.php',
+        'App\\Check' => __DIR__ . '/../..' . '/app/Check.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\DailyAccount' => __DIR__ . '/../..' . '/app/DailyAccount.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -480,6 +481,7 @@ class ComposerStaticInit0788a648f36db29b59d46db4e96f62fb
         'App\\Http\\Controllers\\API\\CDController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/CDController.php',
         'App\\Http\\Controllers\\API\\CDEntryController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/CDEntryController.php',
         'App\\Http\\Controllers\\API\\CDItemController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/CDItemController.php',
+        'App\\Http\\Controllers\\API\\CheckController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/CheckController.php',
         'App\\Http\\Controllers\\API\\PayeeController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/PayeeController.php',
         'App\\Http\\Controllers\\API\\ReportController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/ReportController.php',
         'App\\Http\\Controllers\\API\\TaxRateController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/TaxRateController.php',

@@ -1,30 +1,16 @@
-	      check: {
-                check_no: '',
-                check_bank: '',
-                check_bank_branch: '',
-                check_date: '',
-                check_amount: 0
-              },
-              checks: []
+<div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text inputGroup-sizing-default">Check #</span>
+                    </div>
+                    <input readonly="true" type="text" class="form-control col-9" id="inputCheck" placeholder="Check No" v-model="check.check_no">
+                    <span class="input-group-btn col-1">
+                        <button type="button" v-show="!transaction_created" class="btn btn-success" @click="showCheckDetails" style="margin-left: -15px;"><i class="fas fa-edit"></i></button>
+                    </span>
+                  </div>
 
 
 
-
-
-                  this.check= {
-                    check_no: '',
-                    check_bank: '',
-                    check_bank_branch: '',
-                    check_date: '',
-                    check_amount: 0
-                  };
-                  this.checks = [];
-
-
-
-
-
-      <!-- Check Details Modal 
+<!-- Check Details Modal 
       *
       *
       *
@@ -44,18 +30,24 @@
           <check-input v-on:updateCheckDetails="updateCheckDetails"></check-input>
           
       </div>
-      <!-- Check Details Modal -->   
+      <!-- Check Details Modal -->
+
+
+import CheckInput from './CheckInput.vue';
+
+data:	      
+          check: {
+                check_no: '',
+                check_bank: '',
+                check_bank_branch: '',
+                check_date: '',
+                check_amount: 0
+              },
+              checks: []
 
 
 
-
-
-    import CheckInput from './CheckInput.vue';
-
-
-
-
-
+Save transaction
 
                 if(this.check.check_no){
 
@@ -75,6 +67,7 @@
                         status: 'CONFIRMED'
                     });  
                     
+
 
                     // Save Check START
                     let rawCheckData = {
@@ -98,9 +91,36 @@
                     // Save Check END
 
                 }
+                
+
+
+reset:
+                  this.check= {
+                    check_no: '',
+                    check_bank: '',
+                    check_bank_branch: '',
+                    check_date: '',
+                    check_amount: 0
+                  };
+                  this.checks = [];
 
 
 
+
+
+         
+
+
+
+
+
+
+
+
+
+
+
+Method: 
 
 showCheckDetails(){
               $('#check-details').modal('show');
@@ -115,3 +135,10 @@ showCheckDetails(){
               $('#check-details').modal('hide');
             //console.log(value);          
           }
+
+
+
+components: {
+          CheckInput
+          
+        }
