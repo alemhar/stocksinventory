@@ -22,6 +22,10 @@ Route::apiResources([
 ]);
 
 Route::apiResources([
+    'company' => 'API\CompanyController'
+]);
+
+Route::apiResources([
     'payee' => 'API\PayeeController'
 ]);
 
