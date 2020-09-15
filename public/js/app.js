@@ -3849,6 +3849,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CheckInput_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CheckInput.vue */ "./resources/js/components/CheckInput.vue");
 //
 //
 //
@@ -4652,6 +4653,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4754,7 +4789,15 @@ __webpack_require__.r(__webpack_exports__);
       current_date: this.getDate(),
       readabilityObject: {
         fontSize: user.font_size
-      }
+      },
+      check: {
+        check_no: '',
+        check_bank: '',
+        check_bank_branch: '',
+        check_date: '',
+        check_amount: 0
+      },
+      checks: []
     };
   },
   methods: {
@@ -4972,6 +5015,40 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       }); // Save Items END
 
+      if (this.check.check_no) {
+        this.checks.push({
+          check_no: this.check.check_no,
+          check_bank: this.check.check_bank,
+          check_bank_branch: this.check.check_bank_branch,
+          check_date: this.check.check_date,
+          check_amount: this.form.amount,
+          reference_no: this.form.reference_no,
+          transaction_no: this.form.transaction_no,
+          transaction_type: this.form.transaction_type,
+          transaction_date: this.form.transaction_date,
+          deposit_reference_no: '',
+          deposit_date: '',
+          deposit_amount: 0,
+          status: 'CONFIRMED'
+        }); // Save Check START
+
+        var rawCheckData = {
+          checks: this.checks
+        };
+        rawCheckData = JSON.stringify(rawCheckData);
+        var formCheckData = new FormData();
+        formCheckData.append('checks', rawCheckData);
+        axios.post('api/check', formCheckData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }).then(function (response) {
+          console.log(response);
+        })["catch"](function (error) {
+          console.log(error);
+        }); // Save Check END
+      }
+
       swal.fire({
         title: 'Saved!',
         text: "Journal posted",
@@ -5008,6 +5085,14 @@ __webpack_require__.r(__webpack_exports__);
       this.current_payee_tin = '';
       this.active_debit_row = 0;
       this.current_entity_type = '';
+      this.check = {
+        check_no: '',
+        check_bank: '',
+        check_bank_branch: '',
+        check_date: '',
+        check_amount: 0
+      };
+      this.checks = [];
     },
     cancelTransaction: function cancelTransaction() {
       this.transaction_created = false;
@@ -5332,6 +5417,18 @@ __webpack_require__.r(__webpack_exports__);
     },
     selectEntryRow: function selectEntryRow(current_transaction_entry_id) {
       this.current_transaction_entry_id = current_transaction_entry_id;
+    },
+    showCheckDetails: function showCheckDetails() {
+      $('#check-details').modal('show');
+    },
+    updateCheckDetails: function updateCheckDetails(child_check) {
+      this.check.check_no = child_check.check_no;
+      this.check.check_bank = child_check.check_bank;
+      this.check.check_bank_branch = child_check.check_bank_branch;
+      this.check.check_date = child_check.check_date;
+      this.check.check_amount = child_check.check_amount;
+      console.log('hide');
+      $('#check-details').modal('hide'); //console.log(value);          
     }
   },
   created: function created() {
@@ -5355,7 +5452,9 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
-  components: {}
+  components: {
+    CheckInput: _CheckInput_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
 });
 
 /***/ }),
@@ -78084,11 +78183,67 @@ var render = function() {
                           })
                         ]),
                         _vm._v(" "),
+                        _c("div", { staticClass: "input-group mb-2" }, [
+                          _vm._m(7),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.check.check_no,
+                                expression: "check.check_no"
+                              }
+                            ],
+                            staticClass: "form-control col-9",
+                            attrs: {
+                              readonly: "true",
+                              type: "text",
+                              id: "inputCheck",
+                              placeholder: "Check No"
+                            },
+                            domProps: { value: _vm.check.check_no },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.check,
+                                  "check_no",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "input-group-btn col-1" }, [
+                            _c(
+                              "button",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: !_vm.transaction_created,
+                                    expression: "!transaction_created"
+                                  }
+                                ],
+                                staticClass: "btn btn-success",
+                                staticStyle: { "margin-left": "-15px" },
+                                attrs: { type: "button" },
+                                on: { click: _vm.showCheckDetails }
+                              },
+                              [_c("i", { staticClass: "fas fa-edit" })]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
                         _c(
                           "div",
                           { staticClass: "input-group mb-2" },
                           [
-                            _vm._m(7),
+                            _vm._m(8),
                             _vm._v(" "),
                             _c("currency-input", {
                               attrs: {
@@ -78166,7 +78321,7 @@ var render = function() {
                             _c(
                               "tbody",
                               [
-                                _vm._m(8),
+                                _vm._m(9),
                                 _vm._v(" "),
                                 _vm._l(_vm.transactions, function(entry) {
                                   return _c(
@@ -78253,7 +78408,7 @@ var render = function() {
                 [
                   _c("div", { staticClass: "col-md-12" }, [
                     _c("div", { staticClass: "box" }, [
-                      _vm._m(9),
+                      _vm._m(10),
                       _vm._v(" "),
                       _c(
                         "div",
@@ -78266,7 +78421,7 @@ var render = function() {
                             _c(
                               "tbody",
                               [
-                                _vm._m(10),
+                                _vm._m(11),
                                 _vm._v(" "),
                                 _vm._l(_vm.currentItems, function(item) {
                                   return _c("tr", { key: item.item_no }, [
@@ -78532,7 +78687,7 @@ var render = function() {
                     [_vm._v("Add Entry")]
                   ),
                   _vm._v(" "),
-                  _vm._m(11)
+                  _vm._m(12)
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-body" }, [
@@ -78540,7 +78695,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(12),
+                      _vm._m(13),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -78623,7 +78778,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(13),
+                      _vm._m(14),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -78701,7 +78856,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(14),
+                            _vm._m(15),
                             _vm._v(" "),
                             _vm._l(_vm.currentItems, function(item) {
                               return _c("tr", { key: item.item_no }, [
@@ -78749,7 +78904,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(15),
+                      _vm._m(16),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -78801,7 +78956,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(16),
+                      _vm._m(17),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -78857,7 +79012,7 @@ var render = function() {
                     "div",
                     { staticClass: "input-group mb-2" },
                     [
-                      _vm._m(17),
+                      _vm._m(18),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -79001,7 +79156,7 @@ var render = function() {
                   [_vm._v("Update Entry")]
                 ),
                 _vm._v(" "),
-                _vm._m(18)
+                _vm._m(19)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -79009,7 +79164,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(19),
+                    _vm._m(20),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -79068,7 +79223,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(20),
+                    _vm._m(21),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -79130,7 +79285,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(21),
+                    _vm._m(22),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -79196,7 +79351,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(22),
+                    _vm._m(23),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -79241,7 +79396,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group mb-2" }, [
-                  _vm._m(23),
+                  _vm._m(24),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -79305,7 +79460,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(24),
+                    _vm._m(25),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -79352,7 +79507,7 @@ var render = function() {
                   "div",
                   { staticClass: "input-group mb-2" },
                   [
-                    _vm._m(25),
+                    _vm._m(26),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -79443,7 +79598,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(26),
+              _vm._m(27),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -79482,7 +79637,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(27),
+                            _vm._m(28),
                             _vm._v(" "),
                             _vm._l(_vm.chart_of_accounts.data, function(
                               chart_of_account
@@ -79531,7 +79686,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(28)
+                _vm._m(29)
               ])
             ])
           ]
@@ -79562,7 +79717,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(29),
+              _vm._m(30),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -79601,7 +79756,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(30),
+                            _vm._m(31),
                             _vm._v(" "),
                             _vm._l(_vm.payees.data, function(payee) {
                               return _c("tr", { key: payee.id }, [
@@ -79642,7 +79797,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(31)
+                _vm._m(32)
               ])
             ])
           ]
@@ -79673,7 +79828,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(32),
+              _vm._m(33),
               _vm._v(" "),
               _c("form", { attrs: { onsubmit: "return false;" } }, [
                 _c("div", { staticClass: "modal-body" }, [
@@ -79712,7 +79867,7 @@ var render = function() {
                         _c(
                           "tbody",
                           [
-                            _vm._m(33),
+                            _vm._m(34),
                             _vm._v(" "),
                             _vm._l(_vm.branches.data, function(branch) {
                               return _c("tr", { key: branch.id }, [
@@ -79750,12 +79905,34 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(34)
+                _vm._m(35)
               ])
             ])
           ]
         )
       ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "check-details",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "addNewLabel",
+          "aria-hidden": "true",
+          "data-backdrop": "static",
+          "data-keyboard": "false"
+        }
+      },
+      [
+        _c("check-input", {
+          on: { updateCheckDetails: _vm.updateCheckDetails }
+        })
+      ],
+      1
     )
   ])
 }
@@ -79847,6 +80024,18 @@ var staticRenderFns = [
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("Transaction #")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("Check #")]
       )
     ])
   },
