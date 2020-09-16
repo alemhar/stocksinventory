@@ -1794,7 +1794,7 @@
             console.log('api/company/'+this.user_id);
               axios.get('api/company/'+this.user_id)
                 .then((response)=>{
-                  console.log(response);
+                  console.log(response.data);
                   this.company = response.data;
                 })
                 .catch(()=>{
