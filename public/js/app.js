@@ -75074,10 +75074,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "print-content" }, [
-      _c("h1", [_vm._v(_vm._s(_vm.company.name))])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "print-content" }, [
       _c("h3", [
         _vm._v(
           _vm._s(_vm.company.address) +
