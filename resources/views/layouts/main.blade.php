@@ -20,6 +20,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   @if (Auth::check())
     <meta name="user-id" content="{{ Auth::user()->id }}" />
+    <meta name="company-id" content="{{ Auth::user()->company_id }}" />
   @endif
   <style>
     .nav-treeview .nav-icon{

@@ -1008,7 +1008,8 @@
               wtax: [],
               wTaxExist: true,
               wTaxCodeInvalid: false,
-              company: null
+              company: null,
+              company_id: document.querySelector('meta[name="company-id"]').getAttribute('content')
 
 
           }
@@ -1754,7 +1755,7 @@
           }
 ,
           getCompany(){
-              axios.get('api/company/'+this.user_id)
+              axios.get('api/company/'+this.company_id)
                 .then((response)=>{
                   this.company = response.data;
                 })

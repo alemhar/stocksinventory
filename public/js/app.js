@@ -3105,7 +3105,8 @@ __webpack_require__.r(__webpack_exports__);
         check_amount: 0
       },
       checks: [],
-      company: null
+      company: null,
+      company_id: document.querySelector('meta[name="company-id"]').getAttribute('content')
     };
   },
   methods: {
@@ -3813,9 +3814,9 @@ __webpack_require__.r(__webpack_exports__);
     getCompany: function getCompany() {
       var _this9 = this;
 
-      console.log('api/company/' + this.user_id);
-      axios.get('api/company/' + this.user_id).then(function (response) {
-        console.log(response.data);
+      //console.log('api/company/'+this.user_id);
+      axios.get('api/company/' + this.company_id).then(function (response) {
+        //console.log(response.data);
         _this9.company = response.data;
       })["catch"](function () {//
       });
@@ -4827,7 +4828,8 @@ __webpack_require__.r(__webpack_exports__);
         check_amount: 0
       },
       checks: [],
-      company: null
+      company: null,
+      company_id: document.querySelector('meta[name="company-id"]').getAttribute('content')
     };
   },
   methods: {
@@ -5468,7 +5470,7 @@ __webpack_require__.r(__webpack_exports__);
     getCompany: function getCompany() {
       var _this9 = this;
 
-      axios.get('api/company/' + this.user_id).then(function (response) {
+      axios.get('api/company/' + this.company_id).then(function (response) {
         _this9.company = response.data;
       })["catch"](function () {//
       });
@@ -6956,7 +6958,8 @@ __webpack_require__.r(__webpack_exports__);
         check_amount: 0
       },
       checks: [],
-      company: null
+      company: null,
+      company_id: document.querySelector('meta[name="company-id"]').getAttribute('content')
     };
   },
   methods: {
@@ -7474,7 +7477,7 @@ __webpack_require__.r(__webpack_exports__);
     getCompany: function getCompany() {
       var _this11 = this;
 
-      axios.get('api/company/' + this.user_id).then(function (response) {
+      axios.get('api/company/' + this.company_id).then(function (response) {
         _this11.company = response.data;
       })["catch"](function () {//
       });
@@ -10571,7 +10574,8 @@ __webpack_require__.r(__webpack_exports__);
         check_amount: 0
       },
       checks: [],
-      company: null
+      company: null,
+      company_id: document.querySelector('meta[name="company-id"]').getAttribute('content')
     };
   },
   methods: {
@@ -11087,7 +11091,7 @@ __webpack_require__.r(__webpack_exports__);
     getCompany: function getCompany() {
       var _this11 = this;
 
-      axios.get('api/company/' + this.user_id).then(function (response) {
+      axios.get('api/company/' + this.company_id).then(function (response) {
         _this11.company = response.data;
       })["catch"](function () {//
       });
@@ -12108,7 +12112,8 @@ __webpack_require__.r(__webpack_exports__);
       readabilityObject: {
         fontSize: user.font_size
       },
-      company: null
+      company: null,
+      company_id: document.querySelector('meta[name="company-id"]').getAttribute('content')
     };
   },
   methods: {
@@ -12743,7 +12748,7 @@ __webpack_require__.r(__webpack_exports__);
     getCompany: function getCompany() {
       var _this9 = this;
 
-      axios.get('api/company/' + this.user_id).then(function (response) {
+      axios.get('api/company/' + this.company_id).then(function (response) {
         _this9.company = response.data;
       })["catch"](function () {//
       });
@@ -13790,7 +13795,8 @@ __webpack_require__.r(__webpack_exports__);
       wtax: [],
       wTaxExist: true,
       wTaxCodeInvalid: false,
-      company: null
+      company: null,
+      company_id: document.querySelector('meta[name="company-id"]').getAttribute('content')
     };
   },
   methods: {
@@ -14468,7 +14474,7 @@ __webpack_require__.r(__webpack_exports__);
     getCompany: function getCompany() {
       var _this11 = this;
 
-      axios.get('api/company/' + this.user_id).then(function (response) {
+      axios.get('api/company/' + this.company_id).then(function (response) {
         _this11.company = response.data;
       })["catch"](function () {//
       });
@@ -75075,6 +75081,23 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _vm.$gate.isAdminOrUser()
       ? _c("div", { staticClass: "row mt-1" }, [
+          _c("div", { staticClass: "print-content" }, [
+            _c("h1", [_vm._v(_vm._s(_vm.company.name))])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "print-content" }, [
+            _c("h3", [
+              _vm._v(
+                _vm._s(_vm.company.address) +
+                  ", " +
+                  _vm._s(_vm.company.address2) +
+                  " " +
+                  _vm._s(_vm.company.city) +
+                  " "
+              )
+            ])
+          ]),
+          _vm._v(" "),
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "box mt-4" }, [
               _c(

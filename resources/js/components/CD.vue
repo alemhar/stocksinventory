@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <div class="row mt-1" v-if="$gate.isAdminOrUser()">
-        <!-- div class="print-content"><h1>{{ company.name }}</h1></div -->  
-        <!-- div class="print-content"><h3>{{ company.address }}, {{ company.address2 }} {{ company.city }} </h3></div -->  
+        <div class="print-content"><h1>{{ company.name }}</h1></div>  
+        <div class="print-content"><h3>{{ company.address }}, {{ company.address2 }} {{ company.city }} </h3></div>  
         <div class="col-md-12">
           <div class="box mt-4">
             <!-- general form elements -->
@@ -1006,7 +1006,8 @@
                 check_amount: 0
               },
               checks: [],
-              company: null
+              company: null,
+              company_id: document.querySelector('meta[name="company-id"]').getAttribute('content')
           }
         },
         methods: {
@@ -1791,10 +1792,10 @@
             this.saveTransaction();
           },
           getCompany(){
-            console.log('api/company/'+this.user_id);
-              axios.get('api/company/'+this.user_id)
+            //console.log('api/company/'+this.user_id);
+              axios.get('api/company/'+this.company_id)
                 .then((response)=>{
-                  console.log(response.data);
+                  //console.log(response.data);
                   this.company = response.data;
                 })
                 .catch(()=>{
