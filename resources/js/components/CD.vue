@@ -1791,6 +1791,7 @@
             this.saveTransaction();
           },
           getCompany(){
+            console.log('api/company/'+this.user_id);
               axios.get('api/company/'+this.user_id)
                 .then((response)=>{
                   this.company = response.data;
@@ -1801,7 +1802,6 @@
             
           }
         },
-
 
         created() {
             this.loadPayees();

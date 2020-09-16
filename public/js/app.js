@@ -3813,6 +3813,7 @@ __webpack_require__.r(__webpack_exports__);
     getCompany: function getCompany() {
       var _this9 = this;
 
+      console.log('api/company/' + this.user_id);
       axios.get('api/company/' + this.user_id).then(function (response) {
         _this9.company = response.data;
       })["catch"](function () {//
