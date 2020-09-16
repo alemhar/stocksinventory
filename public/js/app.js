@@ -3815,6 +3815,7 @@ __webpack_require__.r(__webpack_exports__);
 
       console.log('api/company/' + this.user_id);
       axios.get('api/company/' + this.user_id).then(function (response) {
+        console.log(response);
         _this9.company = response.data;
       })["catch"](function () {//
       });
