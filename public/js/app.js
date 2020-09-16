@@ -75073,19 +75073,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "print-content" }, [
-      _c("h3", [
-        _vm._v(
-          _vm._s(_vm.company.address) +
-            ", " +
-            _vm._s(_vm.company.address2) +
-            " " +
-            _vm._s(_vm.company.city) +
-            " "
-        )
-      ])
-    ]),
-    _vm._v(" "),
     _vm.$gate.isAdminOrUser()
       ? _c("div", { staticClass: "row mt-1" }, [
           _c("div", { staticClass: "col-md-12" }, [
