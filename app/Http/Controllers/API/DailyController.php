@@ -23,8 +23,14 @@ class DailyController extends Controller
         }
 
         $transaction = DailyAccount::where(function($query) use ($transaction_date){
+            $query->where('transaction_date','=', $transaction_date);
+        })->paginate(10);
+
+        /*
+        $transaction = DailyAccount::where(function($query) use ($transaction_date){
             $query->where('transaction_date','=','transaction_date');
         })->paginate(10);
+        */
 
         return $transaction;
     }
