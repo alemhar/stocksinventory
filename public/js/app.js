@@ -11245,8 +11245,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get('api/daily?report_type=' + this.report_type + '&transaction_date=' + this.transaction_date).then(function (response) {
-        _this.reports = response.data.data;
-        console.log(response.data.data);
+        _this.reports = response.data;
+        console.log(response.data);
       })["catch"](function () {});
     }
   },
