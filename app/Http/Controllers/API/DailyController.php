@@ -22,11 +22,11 @@ class DailyController extends Controller
             $transaction_date = \Request::get('transaction_date');
         }
 
-        $transactions = DailyAccount::where(function($query) use ($transaction_date){
-            $query->where('transaction_date','=','transaction_date')
+        $transaction = DailyAccount::where(function($query) use ($transaction_date){
+            $query->where('transaction_date','=','transaction_date');
         })->paginate(10);
 
-        return $transactions;
+        return $transaction;
     }
 
     /**
