@@ -57,7 +57,7 @@ Route::apiResources([
 ]);
 
 Route::apiResources([
-    'daily' => 'API\TaxRateController'
+    'daily' => 'API\DailyController'
 ]);
 
 Route::get('account', 'API\UserController@account');
