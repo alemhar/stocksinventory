@@ -22,7 +22,7 @@ class DailyController extends Controller
             $transaction_date = \Request::get('transaction_date');
         }
 
-        return ['message' => $report_type . ' ' .$transaction_date];
+        return ['message' => $transaction_date];
     }
 
     /**
