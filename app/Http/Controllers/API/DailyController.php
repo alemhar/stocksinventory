@@ -24,7 +24,14 @@ class DailyController extends Controller
 
         $transaction = DailyAccount::where(function($query) use ($transaction_date){
             $query->where('transaction_date','=', $transaction_date);
-        })->paginate(10);
+        })
+        ->groupBy('account_code')
+        ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name')
+        ->pluck('debit','credit','account_name')
+        ->paginate(10);
+
+
+
 
         /*
         $transaction = DailyAccount::where(function($query) use ($transaction_date){
