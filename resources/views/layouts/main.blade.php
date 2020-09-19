@@ -193,14 +193,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </router-link>
               </li>
               @endcan
-
-              
-
-
             </ul>
           </li>
-
-
+          @can('isAdmin')
+          <li class="nav-item">
+            <router-link to="/reports" class="nav-link" style="color:orange;">
+              <i class="nav-icon fas fa-chart-bar"></i>
+              <p v-bind:style="[readabilityObject]">
+                Reports 
+              </p>
+            </router-link>
+          </li> 
+          @endcan
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link" style="color:orange;">
               <i class="nav-icon fas fa-cogs"></i>

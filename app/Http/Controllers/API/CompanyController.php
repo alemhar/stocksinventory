@@ -37,8 +37,8 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        $company = Company::findOrFail($id);
         
+        $company = Company::findOrFail($id);
         return $company;
         //return ['message' => 'Check status updated!', ];
     }
