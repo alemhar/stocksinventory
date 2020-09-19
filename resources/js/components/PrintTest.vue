@@ -91,8 +91,8 @@
             generateReport(){
                 axios.get('api/daily?report_type='+this.report_type+'&transaction_date='+this.transaction_date)
                 .then((response)=>{
-                  //this.reports = response.data.data;
-                  console.log(response); 
+                  this.reports = response.data.data;
+                  //console.log(response); 
 
                 })
                 .catch(()=>{
