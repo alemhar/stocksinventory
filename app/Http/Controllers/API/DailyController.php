@@ -18,7 +18,7 @@ class DailyController extends Controller
         if(\Request::get('report_type')) {
             $report_type = \Request::get('report_type');
         }
-        if(\Request::get('report_type')) {
+        if(\Request::get('transaction_date')) {
             $transaction_date = \Request::get('transaction_date');
         }
 
