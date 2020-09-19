@@ -11225,7 +11225,7 @@ __webpack_require__.r(__webpack_exports__);
       reports: {},
       running_balance: 0,
       transaction_date: this.getDate(),
-      transaction_type: 'IS',
+      report_type: 'IS',
       active_debit_row: 0
     };
   },
@@ -11240,6 +11240,12 @@ __webpack_require__.r(__webpack_exports__);
       var month = toTwoDigits(today.getMonth() + 1);
       var day = toTwoDigits(today.getDate());
       return "".concat(year, "-").concat(month, "-").concat(day);
+    },
+    generateReport: function generateReport() {
+      axios.get('api/daily?report_type=' + this.report_type).then(function (response) {
+        //this.reports = response.data.data;
+        console.log(response);
+      })["catch"](function () {});
     }
   },
   created: function created() {},
@@ -89041,8 +89047,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.transaction_type,
-                          expression: "transaction_type"
+                          value: _vm.report_type,
+                          expression: "report_type"
                         }
                       ],
                       staticClass: "custom-select",
@@ -89057,7 +89063,7 @@ var render = function() {
                               var val = "_value" in o ? o._value : o.value
                               return val
                             })
-                          _vm.transaction_type = $event.target.multiple
+                          _vm.report_type = $event.target.multiple
                             ? $$selectedVal
                             : $$selectedVal[0]
                         }

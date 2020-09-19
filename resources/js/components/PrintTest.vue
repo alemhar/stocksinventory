@@ -9,7 +9,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" for="inputGroupSelect01">Options</span>
                         </div>
-                        <select v-model="transaction_type" class="custom-select" id="inputGroupSelect01">
+                        <select v-model="report_type" class="custom-select" id="inputGroupSelect01">
                             <option value="IS" selected>Income Statement</option>
                             <option value="BS">Balance Sheet</option>
                         </select>
@@ -75,7 +75,7 @@
               reports: {},
               running_balance: 0,
               transaction_date: this.getDate(),
-              transaction_type: 'IS',
+              report_type: 'IS',
               active_debit_row: 0
           }
         },
@@ -87,6 +87,16 @@
                 let month = toTwoDigits(today.getMonth() + 1);
                 let day = toTwoDigits(today.getDate());
                 return `${year}-${month}-${day}`;
+            },
+            generateReport(){
+                axios.get('api/daily?report_type='+this.report_type)
+                .then((response)=>{
+                  //this.reports = response.data.data;
+                  console.log(response); 
+
+                })
+                .catch(()=>{
+                });
             }
         
         },
