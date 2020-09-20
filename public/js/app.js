@@ -11455,8 +11455,7 @@ __webpack_require__.r(__webpack_exports__);
         var doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"]();
         doc.setFontSize(16);
         doc.text('Sales', docV, docH);
-        doc.setFontSize(12);
-        console.log(_this.sales);
+        doc.setFontSize(12); //console.log(this.sales);
 
         for (var sale in _this.sales) {
           docY += 10;
