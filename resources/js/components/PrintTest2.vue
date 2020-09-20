@@ -183,7 +183,7 @@
 
                         docH += 30;
 
-                        doc.text( +this.sales[sale].credit - +this.sales[sale].debit ,docV,docH);
+                        //doc.text( +this.sales[sale].credit - +this.sales[sale].debit ,docV,docH);
                     }
                     
                     doc.save('test.pdf');
