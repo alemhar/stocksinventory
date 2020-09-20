@@ -179,7 +179,9 @@
                     console.log(this.sales);
                     for (var sale in this.sales) {
                         docY += 10;
-                        doc.text(this.sales[sale].account_name,15,25);
+                        console.log(this.sales[sale].account_name);
+                        //doc.text(this.sales[sale].account_name,15,25);
+
                         //docH += 30;
                         //amount = +this.sales[sale].credit - +this.sales[sale].debit;
                         //doc.text( this.sales[sale].credit ,docV,docH);
