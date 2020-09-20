@@ -11455,9 +11455,12 @@ __webpack_require__.r(__webpack_exports__);
       var doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"]();
       doc.setFontSize(16);
       doc.text('Sales', 15, 15);
-      doc.setFontSize(12);
-      this.sales.forEach(function (element) {
-        doc.text(element.account_name, 20, 25);
+      doc.setFontSize(12); // this.sales.forEach(element => {
+      //     doc.text(element.account_name,20,25);
+      // });
+
+      Object.keys(this.sales).forEach(function (sale) {
+        doc.text(sale.account_name, 20, 25);
       });
       doc.save('test.pdf');
     }
