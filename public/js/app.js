@@ -11453,30 +11453,30 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date=' + this.from_transaction_date + '&to_transaction_date=' + this.to_transaction_date).then(function (response) {
         _this.sales = response.data;
         var docV = 15;
-        var docH = 55;
+        var docH = 15;
         var sales_amount = 0;
         var cost_of_sales_amount = 0;
         var expense_amount = 0;
         var doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"]();
         doc.setFontSize(16);
-        doc.text('Sales', docV, docH);
+        doc.text('Sales', docH, docV);
         doc.setFontSize(12); //console.log(this.sales);
 
         for (var sale in _this.sales) {
           docH += 10;
           docV += 20;
-          doc.text(_this.sales[sale].account_name, docV, docH);
+          doc.text(_this.sales[sale].account_name, docH, docV);
           docV += 50;
           sales_amount = _this.sales[sale].credit * 1 - _this.sales[sale].debit * 1; //console.log(amount);
           //amount.toFixed(2)
 
-          doc.text(Number(sales_amount).toLocaleString() + '', docV, docH);
+          doc.text(Number(sales_amount).toLocaleString() + '', docH, docV);
         }
 
         docV += 20;
         docH = 15;
         doc.setFontSize(16);
-        doc.text('Cost of Sales', docV, docH);
+        doc.text('Cost of Sales', docH, docV);
         doc.setFontSize(12);
         axios.get('api/daily?sub_account_type=COST_OF_SALES&from_transaction_date=' + _this.from_transaction_date + '&to_transaction_date=' + _this.to_transaction_date).then(function (response) {
           _this.cost_of_sales = response.data;
@@ -11484,18 +11484,18 @@ __webpack_require__.r(__webpack_exports__);
           for (var cost_of_sale in _this.cost_of_sales) {
             docH += 10;
             docV += 20;
-            doc.text(_this.cost_of_sales[cost_of_sale].account_name, docV, docH);
+            doc.text(_this.cost_of_sales[cost_of_sale].account_name, docH, docV);
             docV += 50;
             cost_of_sales_amount = _this.cost_of_sales[cost_of_sale].debit * 1 - _this.cost_of_sales[cost_of_sale].credit * 1; //console.log(amount);
             //amount.toFixed(2)
 
-            doc.text(Number(cost_of_sales_amount).toLocaleString() + '', docV, docH);
+            doc.text(Number(cost_of_sales_amount).toLocaleString() + '', docH, docV);
           }
 
           docV += 20;
           docH = 15;
           doc.setFontSize(16);
-          doc.text('Expenses', docV, docH);
+          doc.text('Expenses', docH, docV);
           doc.setFontSize(12);
           axios.get('api/daily?sub_account_type=EXPENSES&from_transaction_date=' + _this.from_transaction_date + '&to_transaction_date=' + _this.to_transaction_date).then(function (response) {
             _this.expenses = response.data;
@@ -11503,12 +11503,12 @@ __webpack_require__.r(__webpack_exports__);
             for (var expense in _this.expenses) {
               docH += 10;
               docV += 20;
-              doc.text(_this.expenses[expense].account_name, docV, docH);
+              doc.text(_this.expenses[expense].account_name, docH, docV);
               docV += 50;
               expense_amount = _this.expenses[expense].debit * 1 - _this.expenses[expense].credit * 1; //console.log(amount);
               //amount.toFixed(2)
 
-              doc.text(Number(expense_amount).toLocaleString() + '', docV, docH);
+              doc.text(Number(expense_amount).toLocaleString() + '', docH, docV);
             }
 
             doc.save('test.pdf');
