@@ -553,6 +553,7 @@ class CDController extends Controller
     
             
             $depreciation = $depreciatiable->amount/$depreciatiable->useful_life;
+
             $remainingBalance = $depreciatiable->amount - $depreciatiable->total_deduction - $depreciatiable->salvage_value;
             if($depreciation > $remainingBalance){
                 $depreciation = $remainingBalance;
@@ -585,7 +586,7 @@ class CDController extends Controller
 
                 // Get the counter part of the initiating account title
                 $account_code = $depreciation_accounts[$account_code]['counterpart_code'];
-                
+                return $account_code;
                 $account_name = $depreciation_accounts[$account_code]['account_name'];
 
 
