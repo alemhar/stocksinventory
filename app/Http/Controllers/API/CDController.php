@@ -631,7 +631,7 @@ class CDController extends Controller
                 $transaction->taxed = 'NA';
                 $transaction->tax_of_id = 0;
                 $transaction->tax_of_account = 0;
-
+                $transaction->entity_type = 'NA';
                 array_push($transactions,$transaction);
                 $account_code = $counterpart_code;
                 $transaction = null;
