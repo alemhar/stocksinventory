@@ -11464,7 +11464,7 @@ __webpack_require__.r(__webpack_exports__);
           docH += 30; //amount = (this.sales[sale].credit * 1) - (this.sales[sale].debit * 1);
 
           console.log(amount);
-          doc.text(docY, docV, docH);
+          doc.text(docV, docV, docH);
         }
 
         doc.save('test.pdf');
