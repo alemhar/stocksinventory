@@ -873,7 +873,10 @@
                 depreciated_id: 0,
                 useful_life: 0,
                 salvage_value: 0,
-                description: ''
+                description: '',
+                taxed: 'NA',
+                tax_of_id: 0,
+                tax_of_account: 0
             });
 
                 // Save Transactions START
@@ -1238,7 +1241,10 @@
                 depreciated_id: 0,
                 useful_life: 0,
                 salvage_value: 0,
-                description: ''
+                description: '',
+                taxed: 'NA',
+                tax_of_id: 0,
+                tax_of_account: 0
             });
 
 

@@ -7119,7 +7119,10 @@ __webpack_require__.r(__webpack_exports__);
         depreciated_id: 0,
         useful_life: 0,
         salvage_value: 0,
-        description: ''
+        description: '',
+        taxed: 'NA',
+        tax_of_id: 0,
+        tax_of_account: 0
       }); // Save Transactions START
 
       var rawData = {
@@ -7409,7 +7412,10 @@ __webpack_require__.r(__webpack_exports__);
         depreciated_id: 0,
         useful_life: 0,
         salvage_value: 0,
-        description: ''
+        description: '',
+        taxed: 'NA',
+        tax_of_id: 0,
+        tax_of_account: 0
       });
       $('#entry-payment').modal('hide'); //this.loadPayments();
 
