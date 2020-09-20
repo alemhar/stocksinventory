@@ -46,12 +46,20 @@ class DailyController extends Controller
         //->pluck('debit','credit','account_name');
         */
 
+        $transaction = DailyAccount::
+        groupBy('account_code')
+        ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
+        ->get();
+
+        /*
         $transaction = DailyAccount::where(function($query) use ($transaction_date){
-            $query->where('transaction_date','=>', $transaction_date);
+            $query->where('transaction_date','=', $transaction_date);
         })
         ->groupBy('account_code')
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
         ->get();
+
+        */
 
         //->pluck('debit','credit','account_name');
         
