@@ -169,10 +169,14 @@
                 axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
                 .then((response)=>{
                     this.sales = response.data;
-                    console.log(response.data);
-                    Object.keys(this.sales).forEach((key) => {
-                        console.log(sale[key].account_name);
-                    });    
+                    //console.log(response.data);
+                    // Object.keys(this.sales).forEach((key) => {
+                    //     console.log(sale[key].account_name);
+                    // });    
+
+                    for (var sale in this.sales) {
+                        console.log(sale,":",this.sales[sale]);
+                    }
                      
                 })
                 .catch(()=>{
