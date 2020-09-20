@@ -585,18 +585,38 @@ class CDController extends Controller
 
 
                 // Get the counter part of the initiating account title
-                $account_code = $depreciation_accounts[$account_code]['counterpart_code'];
                 
-                $account_name = $depreciation_accounts[$account_code]['account_name'];
+                if(isset($depreciation_accounts[$account_code]['counterpart_code'])){
+                    $account_code = $depreciation_accounts[$account_code]['counterpart_code'];
 
-                //return $depreciation_accounts;
-                $account_type = $depreciation_accounts[$account_code]['account_type'];
-                $sub_account_type = $depreciation_accounts[$account_code]['sub_account_type'];
-                $main_code = $depreciation_accounts[$account_code]['main_code'];
-                $main_account = $depreciation_accounts[$account_code]['main_account'];
-                $type = $depreciation_accounts[$account_code]['type'];
-                $counterpart_code = $depreciation_accounts[$account_code]['counterpart_code'];
-                $counterpart_name = $depreciation_accounts[$account_code]['counterpart_name'];
+                    $account_name = $depreciation_accounts[$account_code]['account_name'];
+
+                    //return $depreciation_accounts;
+                    $account_type = $depreciation_accounts[$account_code]['account_type'];
+                    $sub_account_type = $depreciation_accounts[$account_code]['sub_account_type'];
+                    $main_code = $depreciation_accounts[$account_code]['main_code'];
+                    $main_account = $depreciation_accounts[$account_code]['main_account'];
+                    $type = $depreciation_accounts[$account_code]['type'];
+
+                    $counterpart_code = $depreciation_accounts[$account_code]['counterpart_code'];
+                    $counterpart_name = $depreciation_accounts[$account_code]['counterpart_name'];
+                } else {
+                    $account_code = 0;
+
+                    $account_name = 'NA';
+
+                    //return $depreciation_accounts;
+                    $account_type = 'NA';
+                    $sub_account_type = 'NA';
+                    $main_code = 0;
+                    $main_account = 0;
+                    $type = 'NA';
+
+                    $counterpart_code = 0;
+                    $counterpart_name = 'NA';
+                }
+
+                
                 
 
                 
