@@ -38,7 +38,7 @@ Route::get('/test1', function () {
     $depreciatiables = Transaction::whereBetween('account_code', [15011200, 15011550])
         ->where('amount', '>', DB::raw('total_deduction + salvage_value'))
         ->get();
-    return    $depreciatiables;   
+    dd($depreciatiables);   
 });
 
 // firstOrNew where date = last day and depreciatiable->id = depreciatiable_id(column) if exists skip else insert entry.
