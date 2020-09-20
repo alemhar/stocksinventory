@@ -201,10 +201,10 @@
                     .then((response)=>{
                         this.cost_of_sales = response.data;
                         for (var cost_of_sale in this.cost_of_sales) {
-                            docH += 10;
-                            docV += 20;
+                            docV += 10;
+                            docH = 35;
                             doc.text(this.cost_of_sales[cost_of_sale].account_name,docH,docV);
-                            docV += 50;
+                            docH = 80;
                             cost_of_sales_amount = (this.cost_of_sales[cost_of_sale].debit * 1) - (this.cost_of_sales[cost_of_sale].credit * 1);
                             //console.log(amount);
                             //amount.toFixed(2)
@@ -220,10 +220,10 @@
                         .then((response)=>{
                             this.expenses = response.data;
                             for (var expense in this.expenses) {
-                                docH += 10;
-                                docV = 35;
+                                docV += 10;
+                                docH = 35;
                                 doc.text(this.expenses[expense].account_name,docH,docV);
-                                docV = 80;
+                                docH = 80;
                                 expense_amount = (this.expenses[expense].debit * 1) - (this.expenses[expense].credit * 1);
                                 //console.log(amount);
                                 //amount.toFixed(2)

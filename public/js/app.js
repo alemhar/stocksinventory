@@ -11482,10 +11482,10 @@ __webpack_require__.r(__webpack_exports__);
           _this.cost_of_sales = response.data;
 
           for (var cost_of_sale in _this.cost_of_sales) {
-            docH += 10;
-            docV += 20;
+            docV += 10;
+            docH = 35;
             doc.text(_this.cost_of_sales[cost_of_sale].account_name, docH, docV);
-            docV += 50;
+            docH = 80;
             cost_of_sales_amount = _this.cost_of_sales[cost_of_sale].debit * 1 - _this.cost_of_sales[cost_of_sale].credit * 1; //console.log(amount);
             //amount.toFixed(2)
 
@@ -11501,10 +11501,10 @@ __webpack_require__.r(__webpack_exports__);
             _this.expenses = response.data;
 
             for (var expense in _this.expenses) {
-              docH += 10;
-              docV = 35;
+              docV += 10;
+              docH = 35;
               doc.text(_this.expenses[expense].account_name, docH, docV);
-              docV = 80;
+              docH = 80;
               expense_amount = _this.expenses[expense].debit * 1 - _this.expenses[expense].credit * 1; //console.log(amount);
               //amount.toFixed(2)
 
