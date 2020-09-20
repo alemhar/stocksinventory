@@ -564,6 +564,7 @@ class CDController extends Controller
     
             $transactions = [];
             $account_code = $depreciatiable->account_code;
+
             $credit = true;
             $amount = 0;
             $credit_amount = 0;
@@ -580,8 +581,12 @@ class CDController extends Controller
                     $credit_amount = 0;
                     $debit_amount = number_format($depreciation,2);
                 }
-                $account_code = $depreciation_accounts[$account_code]['counterpart_code'];
+
+                //$account_code = $depreciation_accounts[$account_code]['account_code'];
+                
                 $account_name = $depreciation_accounts[$account_code]['account_name'];
+
+
                 $account_type = $depreciation_accounts[$account_code]['account_type'];
                 $sub_account_type = $depreciation_accounts[$account_code]['sub_account_type'];
                 $main_code = $depreciation_accounts[$account_code]['main_code'];
