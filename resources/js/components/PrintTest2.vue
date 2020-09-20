@@ -170,19 +170,21 @@
                 .then((response)=>{
                     this.sales = response.data;
                     console.log(response.data);
-                    var doc = new jspdf();
-                    doc.setFontSize(16);
-                    doc.text('Sales',15,15);
-                    doc.setFontSize(12);
-                    Object.keys(this.sales).forEach((sale) => {
-                        doc.text(sale.account_name,20,25);
-                    });
                     
-                    doc.save('test.pdf');
                      
                 })
                 .catch(()=>{
                 });
+
+                var doc = new jspdf();
+                doc.setFontSize(16);
+                doc.text('Sales',15,15);
+                doc.setFontSize(12);
+                Object.keys(this.sales).forEach((sale) => {
+                    doc.text(sale.account_name,20,25);
+                });
+                
+                doc.save('test.pdf');
 
             }
 
