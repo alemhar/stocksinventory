@@ -192,7 +192,6 @@ Route::get('/lastdate/{year}/{month}', function ($current_year,$current_month) {
 });
 
 
-Route::get('/depreciate', 'CDController@depreciate_transactions')->name('depreciate_transactions');
 
 Auth::routes();
 

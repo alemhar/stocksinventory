@@ -60,6 +60,9 @@ Route::apiResources([
     'daily' => 'API\DailyController'
 ]);
 
+Route::get('depreciate', 'API\CDController@depreciate_transactions')->name('depreciate_transactions');
+
+
 Route::get('account', 'API\UserController@account');
 Route::get('findUser', 'API\UserController@search');
 Route::get('searchAccount', 'API\AccountController@search');
