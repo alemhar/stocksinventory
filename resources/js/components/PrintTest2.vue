@@ -171,7 +171,7 @@
                     this.sales = response.data;
                     var docV = 15;
                     var docH = 15;
-                    
+                    var amount = 0;
                     var doc = new jspdf();
                     doc.setFontSize(16);
                     doc.text('Sales',docV,docH);
@@ -181,9 +181,9 @@
                         docH += 10;
                         doc.text(this.sales[sale].account_name,docV,docH);
 
-                        docH += 30;
-                        //let amount = (this.sales[sale].credit * 1) - (this.sales[sale].debit * 1);
-                        doc.text(' amount' ,docV,docH);
+                        docY += 30;
+                        amount = (this.sales[sale].credit * 1) - (this.sales[sale].debit * 1);
+                        doc.text(amount ,docV,docH);
                     }
                     
                     doc.save('test.pdf');
