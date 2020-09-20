@@ -52,6 +52,7 @@ class DailyController extends Controller
         ->groupBy('account_code')
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
         ->get();
+        
         //->pluck('debit','credit','account_name');
         
 
