@@ -181,7 +181,8 @@
                         docY += 10;
                         doc.text(this.sales[sale].account_name,docV,docH);
                         docH += 30;
-                        doc.text(+this.sales[sale].credit - +this.sales[sale].debit  ,docV,docH);
+                        //amount = +this.sales[sale].credit - +this.sales[sale].debit;
+                        doc.text( this.sales[sale].credit ,docV,docH);
                     }
                     
                     doc.save('test.pdf');
