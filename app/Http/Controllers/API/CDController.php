@@ -586,10 +586,10 @@ class CDController extends Controller
 
                 // Get the counter part of the initiating account title
                 $account_code = $depreciation_accounts[$account_code]['counterpart_code'];
-                return $account_code;
+                
                 $account_name = $depreciation_accounts[$account_code]['account_name'];
 
-
+                return $account_name;
                 $account_type = $depreciation_accounts[$account_code]['account_type'];
                 $sub_account_type = $depreciation_accounts[$account_code]['sub_account_type'];
                 $main_code = $depreciation_accounts[$account_code]['main_code'];
