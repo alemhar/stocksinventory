@@ -169,8 +169,8 @@
                 axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
                 .then((response)=>{
                     this.sales = response.data;
-                    var docV = 15;
-                    var docH = 15;
+                    let docV = 15;
+                    let docH = 15;
                     
                     var doc = new jspdf();
                     doc.setFontSize(16);
