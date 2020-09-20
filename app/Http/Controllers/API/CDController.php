@@ -496,6 +496,7 @@ class CDController extends Controller
 
 
     public function depreciate_transactions(){
+        $temp = [];
         $depreciation_accounts = [];
         $ranges = [];
         array_push($ranges, [15011200, 15011550]);
@@ -584,21 +585,22 @@ class CDController extends Controller
                     $debit_amount = number_format($depreciation,2);
                 }
 
-
-                // Get the counter part of the initiating account title
+                 array_push($temp,$account_code);   
                 
-                    $account_name = $depreciation_accounts[$account_code]['account_name'];
-                    $account_code = $depreciation_accounts[$account_code]['counterpart_code'];
+                 // Get the counter part of the initiating account title
+            
+                $account_name = $depreciation_accounts[$account_code]['account_name'];
+                $account_code = $depreciation_accounts[$account_code]['counterpart_code'];
 
-                    //return $depreciation_accounts;
-                    $account_type = $depreciation_accounts[$account_code]['account_type'];
-                    $sub_account_type = $depreciation_accounts[$account_code]['sub_account_type'];
-                    $main_code = $depreciation_accounts[$account_code]['main_code'];
-                    $main_account = $depreciation_accounts[$account_code]['main_account'];
-                    $type = $depreciation_accounts[$account_code]['type'];
+                //return $depreciation_accounts;
+                $account_type = $depreciation_accounts[$account_code]['account_type'];
+                $sub_account_type = $depreciation_accounts[$account_code]['sub_account_type'];
+                $main_code = $depreciation_accounts[$account_code]['main_code'];
+                $main_account = $depreciation_accounts[$account_code]['main_account'];
+                $type = $depreciation_accounts[$account_code]['type'];
 
-                    $counterpart_code = $depreciation_accounts[$account_code]['counterpart_code'];
-                    $counterpart_name = $depreciation_accounts[$account_code]['counterpart_name'];
+                $counterpart_code = $depreciation_accounts[$account_code]['counterpart_code'];
+                $counterpart_name = $depreciation_accounts[$account_code]['counterpart_name'];
 
 
                 
@@ -643,6 +645,7 @@ class CDController extends Controller
                 $transaction->description = 'Depreciation';
                 
                 array_push($transactions,$transaction);
+                
                 $account_code = $counterpart_code;
                 $transaction = null;
     
