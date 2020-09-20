@@ -171,7 +171,7 @@
                     this.sales = response.data;
                     //console.log(response.data);
                     Object.entries(this.sales).forEach((sale) => {
-                        console.log(sale);
+                        console.log(sale.account_name);
                     });    
                      
                 })

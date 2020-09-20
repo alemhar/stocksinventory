@@ -11452,7 +11452,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.sales = response.data; //console.log(response.data);
 
         Object.entries(_this.sales).forEach(function (sale) {
-          console.log(sale);
+          console.log(sale.account_name);
         });
       })["catch"](function () {}); // var doc = new jspdf();
       // doc.setFontSize(16);
