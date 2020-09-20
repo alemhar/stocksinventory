@@ -594,7 +594,7 @@ class CDController extends Controller
                 
                 
                 
-                $transaction = new stdClass();
+                $transaction = new \stdClass();
                 $transaction->account_type = $account_type;
                 $transaction->sub_account_type = $sub_account_type;
                 $transaction->main_code = $main_code;
