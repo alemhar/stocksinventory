@@ -175,8 +175,11 @@
                 });
 
                 var doc = new jspdf();
-
-                doc.text('<p>Sales</p>',15,15);
+                doc.setFontSize(14);
+                doc.text('Sales',15,15);
+                doc.setFontSize(10);
+                doc.text('\ntest');
+                
                 doc.save('test.pdf');
 
             }

@@ -11453,7 +11453,10 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response.data);
       })["catch"](function () {});
       var doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"]();
-      doc.text('<p>Sales</p>', 15, 15);
+      doc.setFontSize(14);
+      doc.text('Sales', 15, 15);
+      doc.setFontSize(10);
+      doc.text('\ntest');
       doc.save('test.pdf');
     }
   },
