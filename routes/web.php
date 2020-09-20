@@ -35,10 +35,29 @@ Route::get('/test', function () {
 });
 
 Route::get('/test1', function () {
-    $depreciatiables = Transaction::whereBetween('account_code', [15011200, 15011550])
-        ->where('amount', '>', DB::raw('total_deduction + salvage_value'))
-        ->get();
-    dd($depreciatiables);   
+    $depreciation_accounts = [];
+        $ranges = [];
+        array_push($ranges, [15011200, 15011550]);
+        array_push($ranges, [15015000, 15020000]);
+        array_push($ranges, [62200000, 62201400]);
+        
+        foreach($ranges as $range){
+            $accounts = Account::whereBetween('account_code', $range)
+                    ->get();
+            foreach($accounts as $account){
+                $depreciation_accounts[$account->account_code] = 
+                ['account_type' => $account->account_type,
+                'sub_account_type' => $account->sub_account_type,
+                'main_code' => $account->main_code,
+                'main_account' => $account->main_account,
+                'account_code' => $account->account_code,
+                'account_name' => $account->account_name,
+                'type' => $account->type, // GOODS|SERVICE|CAPITAL GOODS
+                'counterpart_code' => $account->counterpart_code,
+                'counterpart_name' => $account->counterpart_name
+                ];
+            }
+        }
 });
 
 // firstOrNew where date = last day and depreciatiable->id = depreciatiable_id(column) if exists skip else insert entry.

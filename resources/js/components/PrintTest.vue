@@ -40,11 +40,13 @@
                                     <th>Titles</th>
                                     <th>Debit</th>
                                     <th>Credit</th>
+                                    <th>Balance</th>
                                 </tr>
                                 <tr v-for="report in reports" :key="report.id" :class="{ 'table-warning' : active_debit_row == report.id }">
                                     <td>{{ report.account_name }}</td>
                                     <td>{{ report.debit }}</td>
                                     <td>{{ report.credit }}</td>
+                                    <td>{{ +report.debit - +report.credit }}</td>
                                 </tr>
                                 
                             </tbody>
