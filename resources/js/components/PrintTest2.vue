@@ -136,6 +136,7 @@
               user_id: null,
               sales: {},
               cost_of_sales: {},
+              expenses: {},
               //running_balance: 0,
               from_transaction_date: this.getDate(),
               to_transaction_date: this.getDate(),
@@ -174,6 +175,7 @@
                     var docH = 15;
                     var sales_amount = 0;
                     var cost_of_sales_amount = 0;
+                    var expense_amount = 0;
                     var doc = new jspdf();
                     doc.setFontSize(16);
                     doc.text('Sales',docV,docH);
@@ -189,7 +191,8 @@
                         //amount.toFixed(2)
                         doc.text(Number(sales_amount).toLocaleString()+'' ,docV,docH);
                     }
-                    docH += 20;
+                    docV += 20;
+                    docH = 15;
                     doc.setFontSize(16);
                     doc.text('Cost of Sales',docV,docH);
                     doc.setFontSize(12);
@@ -202,11 +205,34 @@
                             docV += 20;
                             doc.text(this.cost_of_sales[cost_of_sale].account_name,docV,docH);
                             docV += 50;
-                            cost_of_sales_amount = (this.cost_of_sales[cost_of_sale].credit * 1) - (this.cost_of_sales[cost_of_sale].debit * 1);
+                            cost_of_sales_amount = (this.cost_of_sales[cost_of_sale].debit * 1) - (this.cost_of_sales[cost_of_sale].credit * 1);
                             //console.log(amount);
                             //amount.toFixed(2)
                             doc.text(Number(cost_of_sales_amount).toLocaleString()+'' ,docV,docH);
                         }
+                        docV += 20;
+                        docH = 15;
+                        doc.setFontSize(16);
+                        doc.text('Expenses',docV,docH);
+                        doc.setFontSize(12);
+
+                        axios.get('api/daily?sub_account_type=EXPENSES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
+                        .then((response)=>{
+                            this.expenses = response.data;
+                            for (var expense in this.expenses) {
+                                docH += 10;
+                                docV += 20;
+                                doc.text(this.expenses[expense].account_name,docV,docH);
+                                docV += 50;
+                                expense_amount = (this.expenses[expense].debit * 1) - (this.expenses[expense].credit * 1);
+                                //console.log(amount);
+                                //amount.toFixed(2)
+                                doc.text(Number(expense_amount).toLocaleString()+'' ,docV,docH);
+                            }
+
+                        })
+                        .catch(()=>{
+                        });
 
                     })
                     .catch(()=>{

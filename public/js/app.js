@@ -11416,6 +11416,7 @@ __webpack_require__.r(__webpack_exports__);
       user_id: null,
       sales: {},
       cost_of_sales: {},
+      expenses: {},
       //running_balance: 0,
       from_transaction_date: this.getDate(),
       to_transaction_date: this.getDate() //report_type: 'IS',
@@ -11455,6 +11456,7 @@ __webpack_require__.r(__webpack_exports__);
         var docH = 15;
         var sales_amount = 0;
         var cost_of_sales_amount = 0;
+        var expense_amount = 0;
         var doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"]();
         doc.setFontSize(16);
         doc.text('Sales', docV, docH);
@@ -11471,7 +11473,8 @@ __webpack_require__.r(__webpack_exports__);
           doc.text(Number(sales_amount).toLocaleString() + '', docV, docH);
         }
 
-        docH += 20;
+        docV += 20;
+        docH = 15;
         doc.setFontSize(16);
         doc.text('Cost of Sales', docV, docH);
         doc.setFontSize(12);
@@ -11483,11 +11486,31 @@ __webpack_require__.r(__webpack_exports__);
             docV += 20;
             doc.text(_this.cost_of_sales[cost_of_sale].account_name, docV, docH);
             docV += 50;
-            cost_of_sales_amount = _this.cost_of_sales[cost_of_sale].credit * 1 - _this.cost_of_sales[cost_of_sale].debit * 1; //console.log(amount);
+            cost_of_sales_amount = _this.cost_of_sales[cost_of_sale].debit * 1 - _this.cost_of_sales[cost_of_sale].credit * 1; //console.log(amount);
             //amount.toFixed(2)
 
             doc.text(Number(cost_of_sales_amount).toLocaleString() + '', docV, docH);
           }
+
+          docV += 20;
+          docH = 15;
+          doc.setFontSize(16);
+          doc.text('Expenses', docV, docH);
+          doc.setFontSize(12);
+          axios.get('api/daily?sub_account_type=EXPENSES&from_transaction_date=' + _this.from_transaction_date + '&to_transaction_date=' + _this.to_transaction_date).then(function (response) {
+            _this.expenses = response.data;
+
+            for (var expense in _this.expenses) {
+              docH += 10;
+              docV += 20;
+              doc.text(_this.expenses[expense].account_name, docV, docH);
+              docV += 50;
+              expense_amount = _this.expenses[expense].debit * 1 - _this.expenses[expense].credit * 1; //console.log(amount);
+              //amount.toFixed(2)
+
+              doc.text(Number(expense_amount).toLocaleString() + '', docV, docH);
+            }
+          })["catch"](function () {});
         })["catch"](function () {});
         doc.save('test.pdf');
       })["catch"](function () {});
