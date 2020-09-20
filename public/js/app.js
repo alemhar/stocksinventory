@@ -11461,7 +11461,7 @@ __webpack_require__.r(__webpack_exports__);
           docH += 10;
           doc.text(_this.sales[sale].account_name, docV, docH);
           docH += 30;
-          var amount = +_this.sales[sale].credit - +_this.sales[sale].debit;
+          var amount = _this.sales[sale].credit * 1 - _this.sales[sale].debit * 1;
           doc.text(amount, docV, docH);
         }
 

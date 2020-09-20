@@ -182,7 +182,7 @@
                         doc.text(this.sales[sale].account_name,docV,docH);
 
                         docH += 30;
-                        let amount = +this.sales[sale].credit - +this.sales[sale].debit;
+                        let amount = (this.sales[sale].credit * 1) - (this.sales[sale].debit * 1);
                         doc.text( amount ,docV,docH);
                     }
                     
