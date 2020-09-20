@@ -89118,7 +89118,7 @@ var staticRenderFns = [
           "div",
           { staticClass: "box-body no-padding", attrs: { id: "card-list" } },
           [
-            _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card col-4" }, [
               _c("div", { staticClass: "card-header" }, [
                 _vm._v(
                   "\n                                Income Statement\n                            "
@@ -89144,7 +89144,7 @@ var staticRenderFns = [
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card col-4" }, [
               _c("div", { staticClass: "card-header" }, [
                 _vm._v(
                   "\n                                Balance Sheet\n                            "
@@ -89170,7 +89170,7 @@ var staticRenderFns = [
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card col-4" }, [
               _c("div", { staticClass: "card-header" }, [
                 _vm._v(
                   "\n                                Featured\n                            "
@@ -89196,7 +89196,7 @@ var staticRenderFns = [
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card col-4" }, [
               _c("div", { staticClass: "card-header" }, [
                 _vm._v(
                   "\n                                Featured\n                            "
@@ -89222,7 +89222,7 @@ var staticRenderFns = [
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card col-4" }, [
               _c("div", { staticClass: "card-header" }, [
                 _vm._v(
                   "\n                                Featured\n                            "

@@ -34,7 +34,7 @@
 
                             <!-- /.box-header -->
                             <div id="card-list" class="box-body no-padding">
-                                <div class="card">
+                                <div class="card col-4">
                                 <div class="card-header">
                                     Income Statement
                                 </div>
@@ -45,7 +45,7 @@
                                 </div>
                                 </div>
 
-                                <div class="card">
+                                <div class="card col-4">
                                 <div class="card-header">
                                     Balance Sheet
                                 </div>
@@ -56,7 +56,7 @@
                                 </div>
                                 </div>
                                 
-                                <div class="card">
+                                <div class="card col-4">
                                 <div class="card-header">
                                     Featured
                                 </div>
@@ -67,7 +67,7 @@
                                 </div>
                                 </div>
                                 
-                                <div class="card">
+                                <div class="card col-4">
                                 <div class="card-header">
                                     Featured
                                 </div>
@@ -78,7 +78,7 @@
                                 </div>
                                 </div>
                                 
-                                <div class="card">
+                                <div class="card col-4">
                                 <div class="card-header">
                                     Featured
                                 </div>
