@@ -11455,15 +11455,15 @@ __webpack_require__.r(__webpack_exports__);
         var doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"]();
         doc.setFontSize(16);
         doc.text('Sales', docV, docH);
-        docH += 10;
         doc.setFontSize(12);
-        doc.text('Sales', docV, docH); // for (var sale in this.sales) {
-        //     docY += 10;
-        //     doc.text(this.sales[sale].account_name,docV,docH);
-        //     docH += 30;
-        //     //amount = +this.sales[sale].credit - +this.sales[sale].debit;
-        //     doc.text( this.sales[sale].credit ,docV,docH);
-        // }
+
+        for (var sale in _this.sales) {
+          docY += 10;
+          doc.text(_this.sales[sale].account_name, docV, docH);
+          docH += 30; //amount = +this.sales[sale].credit - +this.sales[sale].debit;
+
+          doc.text(_this.sales[sale].credit, docV, docH);
+        }
 
         doc.save('test.pdf');
       })["catch"](function () {});
