@@ -175,7 +175,7 @@
                     var doc = new jspdf();
                     doc.setFontSize(16);
                     doc.text('Sales',docX,docY);
-                        docY += 10;
+                        docY = +docY + 10;
                     doc.text('Test',docX,docY);
                     
                     doc.setFontSize(12);
