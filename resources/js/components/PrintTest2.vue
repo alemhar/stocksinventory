@@ -172,7 +172,7 @@
                 .then((response)=>{
                     this.sales = response.data;
                     var docV = 15;
-                    var docH = 15;
+                    var docH = 55;
                     var sales_amount = 0;
                     var cost_of_sales_amount = 0;
                     var expense_amount = 0;

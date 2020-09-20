@@ -11453,7 +11453,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date=' + this.from_transaction_date + '&to_transaction_date=' + this.to_transaction_date).then(function (response) {
         _this.sales = response.data;
         var docV = 15;
-        var docH = 15;
+        var docH = 55;
         var sales_amount = 0;
         var cost_of_sales_amount = 0;
         var expense_amount = 0;
