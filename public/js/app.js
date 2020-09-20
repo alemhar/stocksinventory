@@ -14610,7 +14610,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.form.wtax_code = this.form.wtax_code.toUpperCase();
       this.wTaxExist = this.wtax.find(function (tax) {
-        return tax.atc_code == _this10.form.wtax_code;
+        return tax.wtax_code == _this10.form.wtax_code;
       });
 
       if (this.wTaxExist) {
@@ -94652,7 +94652,7 @@ var render = function() {
                               return _c("tr", { key: _vm.wtax.id }, [
                                 _c("td", [_vm._v(_vm._s(tax.atc))]),
                                 _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(tax.atc_code))]),
+                                _c("td", [_vm._v(_vm._s(tax.wtax_code))]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(tax.tax_rate))]),
                                 _vm._v(" "),

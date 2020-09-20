@@ -857,7 +857,7 @@
                 </tr>
                 <tr v-for="tax in wtax" :key="wtax.id">
                   <td>{{ tax.atc }}</td>
-                  <td>{{ tax.atc_code }}</td> 
+                  <td>{{ tax.wtax_code }}</td> 
                   <td>{{ tax.tax_rate }}</td> 
                   <td>{{ tax.description }}, {{ tax.condition }}</td> 
                 </tr>
@@ -1773,7 +1773,7 @@
                 return false;
             }
             this.form.wtax_code = this.form.wtax_code.toUpperCase();
-            this.wTaxExist = this.wtax.find(tax => tax.atc_code == this.form.wtax_code);
+            this.wTaxExist = this.wtax.find(tax => tax.wtax_code == this.form.wtax_code);
             if(this.wTaxExist){
                this.form.wtax = (this.form.amount_ex_tax * (this.wTaxExist.tax_rate/100)).toFixed(2) * 1;
                this.form.amount = parseFloat(this.form.amount_ex_tax) + parseFloat(this.form.vat) - parseFloat(this.form.wtax);
