@@ -11448,21 +11448,18 @@ __webpack_require__.r(__webpack_exports__);
     generateReportIS: function generateReportIS() {
       var _this = this;
 
-      axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date=' + this.from_transaction_date + '&to_transaction_date=' + this.to_transaction_date).then(function (response) {
-        _this.sales = response.data;
-        console.log(response.data);
-      })["catch"](function () {});
       var doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"]();
-      doc.setFontSize(16);
-      doc.text('Sales', 15, 15);
-      doc.setFontSize(12); // this.sales.forEach(element => {
-      //     doc.text(element.account_name,20,25);
-      // });
+      axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date=' + this.from_transaction_date + '&to_transaction_date=' + this.to_transaction_date).then(function (response) {
+        _this.sales = response.data; //console.log(response.data); 
 
-      Object.keys(this.sales).forEach(function (sale) {
-        doc.text(sale.account_name, 20, 25);
-      });
-      doc.save('test.pdf');
+        doc.setFontSize(16);
+        doc.text('Sales', 15, 15);
+        doc.setFontSize(12);
+        Object.keys(_this.sales).forEach(function (sale) {
+          doc.text(sale.account_name, 20, 25);
+        });
+        doc.save('test.pdf');
+      })["catch"](function () {});
     }
   },
   created: function created() {},
