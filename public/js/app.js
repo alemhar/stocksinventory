@@ -11256,6 +11256,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -89118,133 +89129,143 @@ var staticRenderFns = [
           "div",
           { staticClass: "box-body no-padding", attrs: { id: "card-list" } },
           [
-            _c("div", { staticClass: "card col-4" }, [
-              _c("div", { staticClass: "card-header" }, [
-                _vm._v(
-                  "\n                                Income Statement\n                            "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("h5", { staticClass: "card-title" }, [
-                  _vm._v("Special title treatment")
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "card-text" }, [
+            _c("div", { staticClass: "col-4" }, [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-header" }, [
                   _vm._v(
-                    "With supporting text below as a natural lead-in to additional content."
+                    "\n                                    Income Statement\n                                "
                   )
                 ]),
                 _vm._v(" "),
-                _c(
-                  "a",
-                  { staticClass: "btn btn-primary", attrs: { href: "#" } },
-                  [_vm._v("Go somewhere")]
-                )
+                _c("div", { staticClass: "card-body" }, [
+                  _c("h5", { staticClass: "card-title" }, [
+                    _vm._v("Special title treatment")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "card-text" }, [
+                    _vm._v(
+                      "With supporting text below as a natural lead-in to additional content."
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    { staticClass: "btn btn-primary", attrs: { href: "#" } },
+                    [_vm._v("Go somewhere")]
+                  )
+                ])
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "card col-4" }, [
-              _c("div", { staticClass: "card-header" }, [
-                _vm._v(
-                  "\n                                Balance Sheet\n                            "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("h5", { staticClass: "card-title" }, [
-                  _vm._v("Special title treatment")
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "card-text" }, [
+            _c("div", { staticClass: "col-4" }, [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-header" }, [
                   _vm._v(
-                    "With supporting text below as a natural lead-in to additional content."
+                    "\n                                    Balance Sheet\n                                "
                   )
                 ]),
                 _vm._v(" "),
-                _c(
-                  "a",
-                  { staticClass: "btn btn-primary", attrs: { href: "#" } },
-                  [_vm._v("Go somewhere")]
-                )
+                _c("div", { staticClass: "card-body" }, [
+                  _c("h5", { staticClass: "card-title" }, [
+                    _vm._v("Special title treatment")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "card-text" }, [
+                    _vm._v(
+                      "With supporting text below as a natural lead-in to additional content."
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    { staticClass: "btn btn-primary", attrs: { href: "#" } },
+                    [_vm._v("Go somewhere")]
+                  )
+                ])
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "card col-4" }, [
-              _c("div", { staticClass: "card-header" }, [
-                _vm._v(
-                  "\n                                Featured\n                            "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("h5", { staticClass: "card-title" }, [
-                  _vm._v("Special title treatment")
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "card-text" }, [
+            _c("div", { staticClass: "col-4" }, [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-header" }, [
                   _vm._v(
-                    "With supporting text below as a natural lead-in to additional content."
+                    "\n                                    Featured\n                                "
                   )
                 ]),
                 _vm._v(" "),
-                _c(
-                  "a",
-                  { staticClass: "btn btn-primary", attrs: { href: "#" } },
-                  [_vm._v("Go somewhere")]
-                )
+                _c("div", { staticClass: "card-body" }, [
+                  _c("h5", { staticClass: "card-title" }, [
+                    _vm._v("Special title treatment")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "card-text" }, [
+                    _vm._v(
+                      "With supporting text below as a natural lead-in to additional content."
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    { staticClass: "btn btn-primary", attrs: { href: "#" } },
+                    [_vm._v("Go somewhere")]
+                  )
+                ])
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "card col-4" }, [
-              _c("div", { staticClass: "card-header" }, [
-                _vm._v(
-                  "\n                                Featured\n                            "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("h5", { staticClass: "card-title" }, [
-                  _vm._v("Special title treatment")
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "card-text" }, [
+            _c("div", { staticClass: "col-4" }, [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-header" }, [
                   _vm._v(
-                    "With supporting text below as a natural lead-in to additional content."
+                    "\n                                    Featured\n                                "
                   )
                 ]),
                 _vm._v(" "),
-                _c(
-                  "a",
-                  { staticClass: "btn btn-primary", attrs: { href: "#" } },
-                  [_vm._v("Go somewhere")]
-                )
+                _c("div", { staticClass: "card-body" }, [
+                  _c("h5", { staticClass: "card-title" }, [
+                    _vm._v("Special title treatment")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "card-text" }, [
+                    _vm._v(
+                      "With supporting text below as a natural lead-in to additional content."
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    { staticClass: "btn btn-primary", attrs: { href: "#" } },
+                    [_vm._v("Go somewhere")]
+                  )
+                ])
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "card col-4" }, [
-              _c("div", { staticClass: "card-header" }, [
-                _vm._v(
-                  "\n                                Featured\n                            "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("h5", { staticClass: "card-title" }, [
-                  _vm._v("Special title treatment")
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "card-text" }, [
+            _c("div", { staticClass: "col-4" }, [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-header" }, [
                   _vm._v(
-                    "With supporting text below as a natural lead-in to additional content."
+                    "\n                                    Featured\n                                "
                   )
                 ]),
                 _vm._v(" "),
-                _c(
-                  "a",
-                  { staticClass: "btn btn-primary", attrs: { href: "#" } },
-                  [_vm._v("Go somewhere")]
-                )
+                _c("div", { staticClass: "card-body" }, [
+                  _c("h5", { staticClass: "card-title" }, [
+                    _vm._v("Special title treatment")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "card-text" }, [
+                    _vm._v(
+                      "With supporting text below as a natural lead-in to additional content."
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    { staticClass: "btn btn-primary", attrs: { href: "#" } },
+                    [_vm._v("Go somewhere")]
+                  )
+                ])
               ])
             ])
           ]
