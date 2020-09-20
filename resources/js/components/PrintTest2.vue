@@ -135,6 +135,7 @@
           return {
               user_id: null,
               sales: {},
+              cost_of_sales: {},
               //running_balance: 0,
               from_transaction_date: this.getDate(),
               to_transaction_date: this.getDate(),
@@ -171,7 +172,8 @@
                     this.sales = response.data;
                     var docV = 15;
                     var docH = 15;
-                    var amount = 0;
+                    var sales_amount = 0;
+                    var cost_of_sales_amount = 0;
                     var doc = new jspdf();
                     doc.setFontSize(16);
                     doc.text('Sales',docV,docH);
@@ -182,15 +184,35 @@
                         docV += 20;
                         doc.text(this.sales[sale].account_name,docV,docH);
                         docV += 50;
-                        amount = (this.sales[sale].credit * 1) - (this.sales[sale].debit * 1);
+                        sales_amount = (this.sales[sale].credit * 1) - (this.sales[sale].debit * 1);
                         //console.log(amount);
                         //amount.toFixed(2)
-                        doc.text(Number(amount).toLocaleString()+'' ,docV,docH);
+                        doc.text(Number(sales_amount).toLocaleString()+'' ,docV,docH);
                     }
-                    
+                    docH += 20;
+                    doc.setFontSize(16);
+                    doc.text('Cost of Sales',docV,docH);
+                    doc.setFontSize(12);
+
+                    axios.get('api/daily?sub_account_type=COST_OF_SALES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
+                    .then((response)=>{
+                        this.cost_of_sales = response.data;
+                        for (var cost_of_sale in this.cost_of_sales) {
+                            docH += 10;
+                            docV += 20;
+                            doc.text(this.cost_of_sales[cost_of_sale].account_name,docV,docH);
+                            docV += 50;
+                            cost_of_sales_amount = (this.cost_of_sales[cost_of_sale].credit * 1) - (this.cost_of_sales[cost_of_sale].debit * 1);
+                            //console.log(amount);
+                            //amount.toFixed(2)
+                            doc.text(Number(cost_of_sales_amount).toLocaleString()+'' ,docV,docH);
+                        }
+
+                    })
+                    .catch(()=>{
+                    });
+
                     doc.save('test.pdf');
-                    
-                     
                 })
                 .catch(()=>{
                 });
