@@ -11463,8 +11463,9 @@ __webpack_require__.r(__webpack_exports__);
           doc.text(_this.sales[sale].account_name, docV, docH);
           docH += 30;
           amount = _this.sales[sale].credit * 1 - _this.sales[sale].debit * 1; //console.log(amount);
+          //amount.toFixed(2)
 
-          doc.text(amount.toFixed(2) + '', docV, docH);
+          doc.text(Number(amount).toLocaleString() + '', docV, docH);
         }
 
         doc.save('test.pdf');
