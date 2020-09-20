@@ -11456,6 +11456,7 @@ __webpack_require__.r(__webpack_exports__);
         doc.setFontSize(16);
         doc.text('Sales', docV, docH);
         doc.setFontSize(12);
+        console.log(_this.sales);
 
         for (var sale in _this.sales) {
           docY += 10;
