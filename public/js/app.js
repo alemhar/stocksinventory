@@ -11454,8 +11454,10 @@ __webpack_require__.r(__webpack_exports__);
         var docH = 15;
         var doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"]();
         doc.setFontSize(16);
-        doc.text('Sales', docV, docH); // doc.setFontSize(12);
-        // for (var sale in this.sales) {
+        doc.text('Sales', docV, docH);
+        docH += 10;
+        doc.setFontSize(12);
+        doc.text('Sales', docV, docH); // for (var sale in this.sales) {
         //     docY += 10;
         //     doc.text(this.sales[sale].account_name,docV,docH);
         //     docH += 30;

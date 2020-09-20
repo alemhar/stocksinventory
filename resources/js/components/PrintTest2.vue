@@ -175,8 +175,10 @@
                     var doc = new jspdf();
                     doc.setFontSize(16);
                     doc.text('Sales',docV,docH);
+                    docH += 10;
+                    doc.setFontSize(12);
+                    doc.text('Sales',docV,docH);
                     
-                    // doc.setFontSize(12);
                     // for (var sale in this.sales) {
                     //     docY += 10;
                     //     doc.text(this.sales[sale].account_name,docV,docH);
