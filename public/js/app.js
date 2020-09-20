@@ -11464,9 +11464,9 @@ __webpack_require__.r(__webpack_exports__);
 
         for (var sale in _this.sales) {
           docV += 10;
-          docH += 20;
+          docH = 35;
           doc.text(_this.sales[sale].account_name, docH, docV);
-          docH += 50;
+          docH = 80;
           sales_amount = _this.sales[sale].credit * 1 - _this.sales[sale].debit * 1; //console.log(amount);
           //amount.toFixed(2)
 
@@ -11502,9 +11502,9 @@ __webpack_require__.r(__webpack_exports__);
 
             for (var expense in _this.expenses) {
               docH += 10;
-              docV += 20;
+              docV = 35;
               doc.text(_this.expenses[expense].account_name, docH, docV);
-              docV += 50;
+              docV = 80;
               expense_amount = _this.expenses[expense].debit * 1 - _this.expenses[expense].credit * 1; //console.log(amount);
               //amount.toFixed(2)
 

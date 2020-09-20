@@ -183,9 +183,9 @@
                     //console.log(this.sales);
                     for (var sale in this.sales) {
                         docV += 10;
-                        docH += 20;
+                        docH = 35;
                         doc.text(this.sales[sale].account_name,docH,docV);
-                        docH += 50;
+                        docH = 80;
                         sales_amount = (this.sales[sale].credit * 1) - (this.sales[sale].debit * 1);
                         //console.log(amount);
                         //amount.toFixed(2)
@@ -221,9 +221,9 @@
                             this.expenses = response.data;
                             for (var expense in this.expenses) {
                                 docH += 10;
-                                docV += 20;
+                                docV = 35;
                                 doc.text(this.expenses[expense].account_name,docH,docV);
-                                docV += 50;
+                                docV = 80;
                                 expense_amount = (this.expenses[expense].debit * 1) - (this.expenses[expense].credit * 1);
                                 //console.log(amount);
                                 //amount.toFixed(2)
