@@ -229,6 +229,7 @@
                                 //amount.toFixed(2)
                                 doc.text(Number(expense_amount).toLocaleString()+'' ,docV,docH);
                             }
+                            doc.save('test.pdf');
 
                         })
                         .catch(()=>{
@@ -238,7 +239,7 @@
                     .catch(()=>{
                     });
 
-                    doc.save('test.pdf');
+                    
                 })
                 .catch(()=>{
                 });

@@ -11510,9 +11510,10 @@ __webpack_require__.r(__webpack_exports__);
 
               doc.text(Number(expense_amount).toLocaleString() + '', docV, docH);
             }
+
+            doc.save('test.pdf');
           })["catch"](function () {});
         })["catch"](function () {});
-        doc.save('test.pdf');
       })["catch"](function () {});
     }
   },
