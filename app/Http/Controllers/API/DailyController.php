@@ -18,12 +18,20 @@ class DailyController extends Controller
         if(\Request::get('report_type')) {
             $report_type = \Request::get('report_type');
         }
-        if(\Request::get('transaction_date')) {
-            $transaction_date = \Request::get('transaction_date');
+        if(\Request::get('from_transaction_date')) {
+            $from_transaction_date = \Request::get('from_transaction_date');
+        } else {
+            $from_transaction_date = '';
+        }
+        if(\Request::get('to_transaction_date')) {
+            $to_transaction_date = \Request::get('to_transaction_date');
+        } else {
+            $to_transaction_date = '';
         }
 
-        $transaction = DailyAccount::where(function($query) use ($transaction_date){
-            $query->where('transaction_date','=', $transaction_date);
+        $transaction = DailyAccount::where(function($query) use ($from_transaction_date,$to_transaction_date){
+            $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
+            //$query->where('transaction_date','=', $transaction_date);
         })
         ->groupBy('account_code')
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')

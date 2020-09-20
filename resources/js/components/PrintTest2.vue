@@ -45,9 +45,15 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text inputGroup-sizing-default">From:</span>
                                             </div>
-                                            <input  type="date" v-model="transaction_date" class="form-control col-12" id="inputDate" placeholder="Date">
+                                            <input  type="date" v-model="from_transaction_date" class="form-control col-12" id="inputFromDate" placeholder="Date">
                                         </div>
-                                        <a href="#" class="btn btn-primary">Generate</a>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text inputGroup-sizing-default">To:</span>
+                                            </div>
+                                            <input  type="date" v-model="to_transaction_date" class="form-control col-12" id="inputToDate" placeholder="Date">
+                                        </div>
+                                        <a href="#" class="btn btn-primary float-right">Generate</a>
                                     </div>
                                     </div>
                                 </div>
@@ -127,10 +133,11 @@
           return {
               user_id: null,
               reports: {},
-              running_balance: 0,
-              transaction_date: this.getDate(),
-              report_type: 'IS',
-              active_debit_row: 0
+              //running_balance: 0,
+              from_transaction_date: this.getDate(),
+              to_transaction_date: this.getDate(),
+              //report_type: 'IS',
+              //active_debit_row: 0
           }
         },
         methods: {
@@ -151,7 +158,18 @@
                 })
                 .catch(()=>{
                 });
+            },
+            generateReportIS(){
+                axios.get('api/daily?report_type=IS&transaction_date='+this.transaction_date)
+                .then((response)=>{
+                  this.reports = response.data;
+                  console.log(response.data); 
+
+                })
+                .catch(()=>{
+                });
             }
+
         
         },
 

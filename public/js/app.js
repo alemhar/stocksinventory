@@ -11272,15 +11272,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       user_id: null,
       reports: {},
-      running_balance: 0,
-      transaction_date: this.getDate(),
-      report_type: 'IS',
-      active_debit_row: 0
+      //running_balance: 0,
+      from_transaction_date: this.getDate(),
+      to_transaction_date: this.getDate() //report_type: 'IS',
+      //active_debit_row: 0
+
     };
   },
   methods: {
@@ -11300,6 +11307,14 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('api/daily?report_type=' + this.report_type + '&transaction_date=' + this.transaction_date).then(function (response) {
         _this.reports = response.data;
+        console.log(response.data);
+      })["catch"](function () {});
+    },
+    generateReportIS: function generateReportIS() {
+      var _this2 = this;
+
+      axios.get('api/daily?report_type=IS&transaction_date=' + this.transaction_date).then(function (response) {
+        _this2.reports = response.data;
         console.log(response.data);
       })["catch"](function () {});
     }
@@ -89138,23 +89153,58 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.transaction_date,
-                                        expression: "transaction_date"
+                                        value: _vm.from_transaction_date,
+                                        expression: "from_transaction_date"
                                       }
                                     ],
                                     staticClass: "form-control col-12",
                                     attrs: {
                                       type: "date",
-                                      id: "inputDate",
+                                      id: "inputFromDate",
                                       placeholder: "Date"
                                     },
-                                    domProps: { value: _vm.transaction_date },
+                                    domProps: {
+                                      value: _vm.from_transaction_date
+                                    },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
                                           return
                                         }
-                                        _vm.transaction_date =
+                                        _vm.from_transaction_date =
+                                          $event.target.value
+                                      }
+                                    }
+                                  })
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "input-group mb-3" }, [
+                                  _vm._m(2),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.to_transaction_date,
+                                        expression: "to_transaction_date"
+                                      }
+                                    ],
+                                    staticClass: "form-control col-12",
+                                    attrs: {
+                                      type: "date",
+                                      id: "inputToDate",
+                                      placeholder: "Date"
+                                    },
+                                    domProps: {
+                                      value: _vm.to_transaction_date
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.to_transaction_date =
                                           $event.target.value
                                       }
                                     }
@@ -89164,7 +89214,7 @@ var render = function() {
                                 _c(
                                   "a",
                                   {
-                                    staticClass: "btn btn-primary",
+                                    staticClass: "btn btn-primary float-right",
                                     attrs: { href: "#" }
                                   },
                                   [_vm._v("Generate")]
@@ -89173,13 +89223,13 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _vm._m(2),
-                          _vm._v(" "),
                           _vm._m(3),
                           _vm._v(" "),
                           _vm._m(4),
                           _vm._v(" "),
-                          _vm._m(5)
+                          _vm._m(5),
+                          _vm._v(" "),
+                          _vm._m(6)
                         ]
                       )
                     ])
@@ -89210,6 +89260,18 @@ var staticRenderFns = [
         "span",
         { staticClass: "input-group-text inputGroup-sizing-default" },
         [_vm._v("From:")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("To:")]
       )
     ])
   },
