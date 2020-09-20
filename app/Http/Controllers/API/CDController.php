@@ -586,9 +586,9 @@ class CDController extends Controller
 
                 // Get the counter part of the initiating account title
                 
-                if(isset($depreciation_accounts[$account_code]['account_name'])){
-                    $account_code = $depreciation_accounts[$account_code]['counterpart_code'];
+                $account_code = $depreciation_accounts[$account_code]['counterpart_code'];
 
+                if(isset($depreciation_accounts[$account_code]['account_name'])){
                     $account_name = $depreciation_accounts[$account_code]['account_name'];
 
                     //return $depreciation_accounts;
