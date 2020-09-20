@@ -175,7 +175,7 @@
                     // });    
 
                     for (var sale in this.sales) {
-                        console.log(sale,":",this.sales[sale]);
+                        console.log(sale,":",this.sales[sale].account_name);
                     }
                      
                 })

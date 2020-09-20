@@ -11455,7 +11455,7 @@ __webpack_require__.r(__webpack_exports__);
         // });    
 
         for (var sale in _this.sales) {
-          console.log(sale, ":", _this.sales[sale]);
+          console.log(sale, ":", _this.sales[sale].account_name);
         }
       })["catch"](function () {}); // var doc = new jspdf();
       // doc.setFontSize(16);
