@@ -179,9 +179,9 @@
                     //console.log(this.sales);
                     for (var sale in this.sales) {
                         docH += 10;
+                        docV += 20;
                         doc.text(this.sales[sale].account_name,docV,docH);
-
-                        docH+= 30;
+                        docV += 50;
                         amount = (this.sales[sale].credit * 1) - (this.sales[sale].debit * 1);
                         //console.log(amount);
                         //amount.toFixed(2)
