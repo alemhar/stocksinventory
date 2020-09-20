@@ -189,7 +189,7 @@
                         sales_amount = (this.sales[sale].credit * 1) - (this.sales[sale].debit * 1);
                         //console.log(amount);
                         //amount.toFixed(2)
-                        doc.text(Number(sales_amount).toLocaleString()+'' ,docH,docV);
+                        doc.text(Number(sales_amount).toLocaleString().toFixed(2)+'' ,docH,docV);
                     }
                     docV += 20;
                     docH = 15;
@@ -208,7 +208,7 @@
                             cost_of_sales_amount = (this.cost_of_sales[cost_of_sale].debit * 1) - (this.cost_of_sales[cost_of_sale].credit * 1);
                             //console.log(amount);
                             //amount.toFixed(2)
-                            doc.text(Number(cost_of_sales_amount).toLocaleString()+'' ,docH,docV);
+                            doc.text(Number(cost_of_sales_amount).toLocaleString().toFixed(2)+'' ,docH,docV);
                         }
                         docV += 20;
                         docH = 15;
@@ -227,7 +227,7 @@
                                 expense_amount = (this.expenses[expense].debit * 1) - (this.expenses[expense].credit * 1);
                                 //console.log(amount);
                                 //amount.toFixed(2)
-                                doc.text(Number(expense_amount).toLocaleString()+'' ,docH,docV);
+                                doc.text(Number(expense_amount).toLocaleString().toFixed(2)+'' ,docH,docV);
                             }
                             doc.save('test.pdf');
 
