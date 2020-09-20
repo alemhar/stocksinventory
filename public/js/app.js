@@ -89116,7 +89116,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "box-header" }, [
-      _c("h3", { staticClass: "box-title" }, [_vm._v("sReports")])
+      _c("h3", { staticClass: "box-title" }, [_vm._v("Reports")])
     ])
   },
   function() {
@@ -89127,7 +89127,10 @@ var staticRenderFns = [
       _c("div", {}, [
         _c(
           "div",
-          { staticClass: "box-body no-padding", attrs: { id: "card-list" } },
+          {
+            staticClass: "box-body no-padding row",
+            attrs: { id: "card-list" }
+          },
           [
             _c("div", { staticClass: "col-4" }, [
               _c("div", { staticClass: "card" }, [

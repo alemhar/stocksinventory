@@ -26,14 +26,14 @@
                     
                 <div class="box mt-4">
                     <div class="box-header">
-                        <h3 class="box-title">sReports</h3>
+                        <h3 class="box-title">Reports</h3>
                     </div>  
                     <div  v-show="true" class="box box-warning mt-2">
                         <div class="col-md-12">
                         <div class="">
 
                             <!-- /.box-header -->
-                            <div id="card-list" class="box-body no-padding">
+                            <div id="card-list" class="box-body no-padding row">
                                 <div class="col-4">
                                     <div class="card">
                                     <div class="card-header">
