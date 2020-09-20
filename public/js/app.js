@@ -11272,7 +11272,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -89128,23 +89127,8 @@ var render = function() {
                               _vm._v(" "),
                               _c("div", { staticClass: "card-body" }, [
                                 _c("h5", { staticClass: "card-title" }, [
-                                  _vm._v("Special title treatment")
+                                  _vm._v("Generate Income Statement")
                                 ]),
-                                _vm._v(" "),
-                                _c("p", { staticClass: "card-text" }, [
-                                  _vm._v(
-                                    "With supporting text below as a natural lead-in to additional content."
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "btn btn-primary",
-                                    attrs: { href: "#" }
-                                  },
-                                  [_vm._v("Generate")]
-                                ),
                                 _vm._v(" "),
                                 _c("div", { staticClass: "input-group mb-3" }, [
                                   _vm._m(1),
@@ -89175,7 +89159,16 @@ var render = function() {
                                       }
                                     }
                                   })
-                                ])
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "btn btn-primary",
+                                    attrs: { href: "#" }
+                                  },
+                                  [_vm._v("Generate")]
+                                )
                               ])
                             ])
                           ]),
