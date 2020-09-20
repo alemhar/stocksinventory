@@ -37,7 +37,7 @@ class DailyController extends Controller
 
         if(\Request::get('sub_account_type')) {
             $sub_account_type = \Request::get('sub_account_type');
-            $sub_account_type = str_replace(' ', '-', $sub_account_type);
+            $sub_account_type = str_replace('_', ' ', $sub_account_type);
         } else {
             $sub_account_type = '';
         }
