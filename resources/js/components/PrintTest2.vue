@@ -176,14 +176,14 @@
                     doc.setFontSize(16);
                     doc.text('Sales',docV,docH);
                     
-                    doc.setFontSize(12);
-                    for (var sale in this.sales) {
-                        docY += 10;
-                        doc.text(this.sales[sale].account_name,docV,docH);
-                        docH += 30;
-                        //amount = +this.sales[sale].credit - +this.sales[sale].debit;
-                        doc.text( this.sales[sale].credit ,docV,docH);
-                    }
+                    // doc.setFontSize(12);
+                    // for (var sale in this.sales) {
+                    //     docY += 10;
+                    //     doc.text(this.sales[sale].account_name,docV,docH);
+                    //     docH += 30;
+                    //     //amount = +this.sales[sale].credit - +this.sales[sale].debit;
+                    //     doc.text( this.sales[sale].credit ,docV,docH);
+                    // }
                     
                     doc.save('test.pdf');
                     
