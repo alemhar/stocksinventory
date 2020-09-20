@@ -11454,7 +11454,7 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {});
       var doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"]();
       doc.text('Sales', 15, 15);
-      doc.save(text.pdf);
+      doc.save('test.pdf');
     }
   },
   created: function created() {},

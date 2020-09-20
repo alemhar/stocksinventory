@@ -177,7 +177,7 @@
                 var doc = new jspdf();
 
                 doc.text('Sales',15,15);
-                doc.save(text.pdf);
+                doc.save('test.pdf');
 
             }
 
