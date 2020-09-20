@@ -164,12 +164,13 @@
                 */
             },
             generateReportIS(){
-                var doc = new jspdf();
+                
 
                 axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
                 .then((response)=>{
                     this.sales = response.data;
-                  //console.log(response.data); 
+                    //console.log(response.data); 
+                    var doc = new jspdf();
                     doc.setFontSize(16);
                     doc.text('Sales',15,15);
                     doc.setFontSize(12);
