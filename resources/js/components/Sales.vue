@@ -1161,6 +1161,44 @@
             });
 
 
+            ++this.transaction_entry_id;
+            
+            this.transactions.push({ 
+                account_type: 'LIABILITIES',
+                sub_account_type: 'CURRENT LIABILITIES',
+                main_code: 0,
+                main_account: 'NA',
+                type: 'NA',
+                entity_type: this.current_entity_type,  // IMPORTANT field
+                transaction_entry_id: this.transaction_entry_id,
+                payee_id: this.form.payee_id,
+                branch_id: this.current_branch_id,
+                account_code: '21051100',
+                account_name: 'Output Tax',
+                reference_no: this.form.reference_no,
+                transaction_no: this.form.transaction_no,
+                transaction_type: this.form.transaction_type,
+                transaction_date: this.form.transaction_date,
+                amount: this.form.vat,
+                credit_amount: this.form.vat,
+                debit_amount: 0,
+                total_payment: 0,
+                amount_ex_tax: 0,
+                vat: 0,
+                wtax_code: 'NA',
+                wtax: 0,
+                user_id: this.form.user_id,
+                status: 'CONFIRMED',
+                depreciation_date: this.form.transaction_date,
+                depreciated_id: 0,
+                useful_life: 0,
+                salvage_value: 0,
+                taxed: 'NA',
+                tax_of_id: 0,
+                tax_of_account: 0,
+                description: ''
+            });  
+            
             
 
             if(this.form.wtax > 0){
@@ -1564,7 +1602,10 @@
                 description: ''
             });
 
+            
 
+
+          /*
           if(this.form_entry.vat){
             ++this.transaction_entry_id;
             
@@ -1604,7 +1645,7 @@
                 description: ''
             });  
           }
-
+          */
             $('#entry-details').modal('hide');
             //this.$Progress.finish();
             

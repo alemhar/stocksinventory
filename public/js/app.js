@@ -14064,6 +14064,43 @@ __webpack_require__.r(__webpack_exports__);
         tax_of_account: 0,
         description: ''
       });
+      ++this.transaction_entry_id;
+      this.transactions.push({
+        account_type: 'LIABILITIES',
+        sub_account_type: 'CURRENT LIABILITIES',
+        main_code: 0,
+        main_account: 'NA',
+        type: 'NA',
+        entity_type: this.current_entity_type,
+        // IMPORTANT field
+        transaction_entry_id: this.transaction_entry_id,
+        payee_id: this.form.payee_id,
+        branch_id: this.current_branch_id,
+        account_code: '21051100',
+        account_name: 'Output Tax',
+        reference_no: this.form.reference_no,
+        transaction_no: this.form.transaction_no,
+        transaction_type: this.form.transaction_type,
+        transaction_date: this.form.transaction_date,
+        amount: this.form.vat,
+        credit_amount: this.form.vat,
+        debit_amount: 0,
+        total_payment: 0,
+        amount_ex_tax: 0,
+        vat: 0,
+        wtax_code: 'NA',
+        wtax: 0,
+        user_id: this.form.user_id,
+        status: 'CONFIRMED',
+        depreciation_date: this.form.transaction_date,
+        depreciated_id: 0,
+        useful_life: 0,
+        salvage_value: 0,
+        taxed: 'NA',
+        tax_of_id: 0,
+        tax_of_account: 0,
+        description: ''
+      });
 
       if (this.form.wtax > 0) {
         ++this.transaction_entry_id;
@@ -14428,45 +14465,47 @@ __webpack_require__.r(__webpack_exports__);
         tax_of_account: 0,
         description: ''
       });
-
-      if (this.form_entry.vat) {
+      /*
+      if(this.form_entry.vat){
         ++this.transaction_entry_id;
-        this.transactions.push({
-          account_type: 'ASSETS',
-          sub_account_type: 'CURRENT ASSETS',
-          main_code: 0,
-          main_account: 'NA',
-          type: this.form_entry.type,
-          entity_type: 'NA',
-          transaction_entry_id: this.transaction_entry_id,
-          payee_id: this.form.payee_id,
-          branch_id: this.current_branch_id,
-          account_code: '11051100',
-          account_name: 'Input Tax',
-          reference_no: this.form.reference_no,
-          transaction_no: this.form.transaction_no,
-          transaction_type: this.form.transaction_type,
-          transaction_date: this.form.transaction_date,
-          amount: this.form_entry.vat,
-          credit_amount: 0,
-          debit_amount: this.form_entry.vat,
-          total_payment: 0,
-          amount_ex_tax: 0,
-          vat: 0,
-          wtax_code: 'NA',
-          wtax: 0,
-          user_id: this.form.user_id,
-          status: 'CONFIRMED',
-          depreciation_date: this.form.transaction_date,
-          depreciated_id: 0,
-          useful_life: 0,
-          salvage_value: 0,
-          taxed: 'NA',
-          tax_of_id: this.transaction_entry_id - 1,
-          tax_of_account: this.form_entry.account_code,
-          description: ''
-        });
+        
+        this.transactions.push({ 
+            account_type: 'ASSETS',
+            sub_account_type: 'CURRENT ASSETS',
+            main_code: 0,
+            main_account: 'NA',
+            type: this.form_entry.type,
+            entity_type: 'NA',
+            transaction_entry_id: this.transaction_entry_id,
+            payee_id: this.form.payee_id,
+            branch_id: this.current_branch_id,
+            account_code: '11051100',
+            account_name: 'Input Tax',
+            reference_no: this.form.reference_no,
+            transaction_no: this.form.transaction_no,
+            transaction_type: this.form.transaction_type,
+            transaction_date: this.form.transaction_date,
+            amount: this.form_entry.vat,
+            credit_amount: 0,
+            debit_amount: this.form_entry.vat,
+            total_payment: 0,
+            amount_ex_tax: 0,
+            vat: 0,
+            wtax_code: 'NA',
+            wtax: 0,
+            user_id: this.form.user_id,
+            status: 'CONFIRMED',
+            depreciation_date: this.form.transaction_date,
+            depreciated_id: 0,
+            useful_life: 0,
+            salvage_value: 0,
+            taxed: 'NA',
+            tax_of_id: this.transaction_entry_id - 1,
+            tax_of_account: this.form_entry.account_code,
+            description: ''
+        });  
       }
+      */
 
       $('#entry-details').modal('hide'); //this.$Progress.finish();
     },
@@ -114503,14 +114542,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************!*\
   !*** ./resources/js/components/Payments.vue ***!
   \**********************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Payments_vue_vue_type_template_id_04c873d0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Payments.vue?vue&type=template&id=04c873d0& */ "./resources/js/components/Payments.vue?vue&type=template&id=04c873d0&");
 /* harmony import */ var _Payments_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Payments.vue?vue&type=script&lang=js& */ "./resources/js/components/Payments.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _Payments_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Payments.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/Payments.vue?vue&type=style&index=0&lang=css&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Payments_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Payments_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _Payments_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Payments.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/Payments.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -114542,7 +114582,7 @@ component.options.__file = "resources/js/components/Payments.vue"
 /*!***********************************************************************!*\
   !*** ./resources/js/components/Payments.vue?vue&type=script&lang=js& ***!
   \***********************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
