@@ -183,7 +183,8 @@
 
                         docY += 30;
                         amount = (this.sales[sale].credit * 1) - (this.sales[sale].debit * 1);
-                        doc.text(amount ,docV,docH);
+                        console.log(amount);
+                        //doc.text(docY ,docV,docH);
                     }
                     
                     doc.save('test.pdf');
