@@ -620,7 +620,10 @@ class CDController extends Controller
                 $transaction->depreciated_id = $depreciated_id;
                 $transaction->useful_life = 0;
                 $transaction->salvage_value = 0;
-                
+                $transaction->taxed = 'NA';
+                $transaction->tax_of_id = 0;
+                $transaction->tax_of_account = 0;
+
                 array_push($transactions,$transaction);
                 $account_code = $counterpart_code;
                 $transaction = null;

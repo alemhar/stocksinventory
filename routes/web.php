@@ -35,34 +35,7 @@ Route::get('/test', function () {
 });
 
 Route::get('/test1', function () {
-    $depreciation_accounts = [];
-    $ranges = [];
-    array_push($ranges, [15011200, 15011550]);
-    array_push($ranges, [15015000, 15020000]);
-    array_push($ranges, [62200000, 62201400]);
-    
-    foreach($ranges as $range){
-        $accounts = Account::whereBetween('account_code', $range)
-                ->get();
-        foreach($accounts as $account){
-            $depreciation_accounts[$account->account_code] = 
-            ['account_type' => $account->account_type,
-            'sub_account_type' => $account->sub_account_type,
-            'main_code' => $account->main_code,
-            'main_account' => $account->main_account,
-            'account_code' => $account->account_code,
-            'account_name' => $account->account_name,
-            'type' => $account->type,
-            'counterpart_code' => $account->counterpart_code,
-            'counterpart_name' => $account->counterpart_name
-            ];
-            // array_push($depreciation_accounts, 
-            // ['account_type' => $account->account_type,
-            // 'sub_account_type' => $account->sub_account_type]);            
-        }
-    }    
-
-    dd($depreciation_accounts[15011300]['account_name']);            
+             
 });
 
 // firstOrNew where date = last day and depreciatiable->id = depreciatiable_id(column) if exists skip else insert entry.
@@ -217,6 +190,9 @@ Route::get('/lastdate/{year}/{month}', function ($current_year,$current_month) {
     //$last_day = Carbon::create(2018, $month - 1, 1)->daysInMonth;
     //return $last_day;
 });
+
+
+Route::get('/depreciate', 'CDController@depreciate_transactions')->name('depreciate_transactions');
 
 Auth::routes();
 
