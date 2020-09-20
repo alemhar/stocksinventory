@@ -11458,11 +11458,10 @@ __webpack_require__.r(__webpack_exports__);
         doc.setFontSize(12); //console.log(this.sales);
 
         for (var sale in _this.sales) {
-          //docY += 10;
-          console.log(_this.sales[sale].account_name); //doc.text(this.sales[sale].account_name,15,25);
-          //docH += 30;
-          //amount = +this.sales[sale].credit - +this.sales[sale].debit;
-          //doc.text( this.sales[sale].credit ,docV,docH);
+          docH += 10;
+          doc.text(_this.sales[sale].account_name, docV, docH);
+          docH += 30;
+          doc.text(+_this.sales[sale].credit - +_this.sales[sale].debit, docV, docH);
         }
 
         doc.save('test.pdf');
