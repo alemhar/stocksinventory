@@ -582,7 +582,9 @@ class CDController extends Controller
                     $debit_amount = number_format($depreciation,2);
                 }
 
-                //$account_code = $depreciation_accounts[$account_code]['account_code'];
+
+                // Get the counter part of the initiating account title
+                $account_code = $depreciation_accounts[$account_code]['account_code'];
                 
                 $account_name = $depreciation_accounts[$account_code]['account_name'];
 
