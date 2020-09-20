@@ -170,8 +170,8 @@
                 .then((response)=>{
                     this.sales = response.data;
                     console.log(response.data);
-                    Object.entries(this.sales).forEach((sale) => {
-                        console.log(sale.account_name);
+                    Object.keys(this.sales).forEach((key) => {
+                        console.log(sale[key].account_name);
                     });    
                      
                 })

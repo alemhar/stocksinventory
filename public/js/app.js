@@ -11451,8 +11451,8 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date=' + this.from_transaction_date + '&to_transaction_date=' + this.to_transaction_date).then(function (response) {
         _this.sales = response.data;
         console.log(response.data);
-        Object.entries(_this.sales).forEach(function (sale) {
-          console.log(sale.account_name);
+        Object.keys(_this.sales).forEach(function (key) {
+          console.log(sale[key].account_name);
         });
       })["catch"](function () {}); // var doc = new jspdf();
       // doc.setFontSize(16);
