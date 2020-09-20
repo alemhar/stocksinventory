@@ -175,10 +175,13 @@
                 });
 
                 var doc = new jspdf();
-                doc.setFontSize(14);
+                doc.setFontSize(16);
                 doc.text('Sales',15,15);
-                doc.setFontSize(10);
-                doc.text('test',15,25);
+                doc.setFontSize(12);
+                this.sales.forEach(element => {
+                    doc.text(element.account_name,20,25);
+                });
+                
                 
                 doc.save('test.pdf');
 

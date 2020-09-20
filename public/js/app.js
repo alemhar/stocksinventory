@@ -11453,10 +11453,12 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response.data);
       })["catch"](function () {});
       var doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"]();
-      doc.setFontSize(14);
+      doc.setFontSize(16);
       doc.text('Sales', 15, 15);
-      doc.setFontSize(10);
-      doc.text('test', 15, 25);
+      doc.setFontSize(12);
+      this.sales.forEach(function (element) {
+        doc.text(element.account_name, 20, 25);
+      });
       doc.save('test.pdf');
     }
   },
