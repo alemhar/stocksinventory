@@ -128,6 +128,8 @@
     
 </template>
 <script>
+    import pdfobject from 'pdfobject';
+    import jspdf from 'jspdf';
     export default {
         data() {
           return {
@@ -171,6 +173,12 @@
                 })
                 .catch(()=>{
                 });
+
+                var doc = new jspdf();
+
+                doc.text('Sales',15,15);
+                doc.save(text.pdf);
+
             }
 
         
