@@ -11470,7 +11470,7 @@ __webpack_require__.r(__webpack_exports__);
           sales_amount = _this.sales[sale].credit * 1 - _this.sales[sale].debit * 1; //console.log(amount);
           //amount.toFixed(2)
 
-          doc.text(Number(sales_amount).toLocaleString().toFixed(2) + '', docH, docV);
+          doc.text(Number(sales_amount).toFixed(2).toLocaleString() + '', docH, docV);
         }
 
         docV += 20;
@@ -11489,7 +11489,7 @@ __webpack_require__.r(__webpack_exports__);
             cost_of_sales_amount = _this.cost_of_sales[cost_of_sale].debit * 1 - _this.cost_of_sales[cost_of_sale].credit * 1; //console.log(amount);
             //amount.toFixed(2)
 
-            doc.text(Number(cost_of_sales_amount).toLocaleString().toFixed(2) + '', docH, docV);
+            doc.text(Number(cost_of_sales_amount).toFixed(2).toLocaleString() + '', docH, docV);
           }
 
           docV += 20;
@@ -11508,7 +11508,7 @@ __webpack_require__.r(__webpack_exports__);
               expense_amount = _this.expenses[expense].debit * 1 - _this.expenses[expense].credit * 1; //console.log(amount);
               //amount.toFixed(2)
 
-              doc.text(Number(expense_amount).toLocaleString().toFixed(2) + '', docH, docV);
+              doc.text(Number(expense_amount).toFixed(2).toLocaleString() + '', docH, docV);
             }
 
             doc.save('test.pdf');
