@@ -182,10 +182,10 @@
                     doc.setFontSize(12);
                     //console.log(this.sales);
                     for (var sale in this.sales) {
-                        docH += 10;
-                        docV += 20;
+                        docV += 10;
+                        docH += 20;
                         doc.text(this.sales[sale].account_name,docH,docV);
-                        docV += 50;
+                        docH += 50;
                         sales_amount = (this.sales[sale].credit * 1) - (this.sales[sale].debit * 1);
                         //console.log(amount);
                         //amount.toFixed(2)
