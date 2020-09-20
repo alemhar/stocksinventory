@@ -184,7 +184,7 @@
                         docH+= 30;
                         amount = (this.sales[sale].credit * 1) - (this.sales[sale].debit * 1);
                         //console.log(amount);
-                        doc.text(amount+'' ,docV,docH);
+                        doc.text(amount.toFixed(2)+'' ,docV,docH);
                     }
                     
                     doc.save('test.pdf');
