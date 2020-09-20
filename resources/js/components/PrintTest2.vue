@@ -169,12 +169,19 @@
                 axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
                 .then((response)=>{
                     this.sales = response.data;
+                    var docV = 15;
+                    var docH = 15;
+                    
                     var doc = new jspdf();
                     doc.setFontSize(16);
-                    doc.text('Sales',15,15);
+                    doc.text('Sales',docX,docY);
+                    
                     doc.setFontSize(12);
                     for (var sale in this.sales) {
-                        doc.text(this.sales[sale].account_name,20,25);
+                        docY += 10;
+                        doc.text(this.sales[sale].account_name,docV,docH);
+                        docH += 30;
+                        doc.text(+this.sales[sale].credit - +this.sales[sale].debit  ,docV,docH);
                     }
                     
                     doc.save('test.pdf');

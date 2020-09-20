@@ -11450,13 +11450,18 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date=' + this.from_transaction_date + '&to_transaction_date=' + this.to_transaction_date).then(function (response) {
         _this.sales = response.data;
+        var docV = 15;
+        var docH = 15;
         var doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"]();
         doc.setFontSize(16);
-        doc.text('Sales', 15, 15);
+        doc.text('Sales', docX, docY);
         doc.setFontSize(12);
 
         for (var sale in _this.sales) {
-          doc.text(_this.sales[sale].account_name, 20, 25);
+          docY += 10;
+          doc.text(_this.sales[sale].account_name, docV, docH);
+          docH += 30;
+          doc.text(+_this.sales[sale].credit - +_this.sales[sale].debit, docV, docH);
         }
 
         doc.save('test.pdf');
