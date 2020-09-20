@@ -53,7 +53,7 @@
                                             </div>
                                             <input  type="date" v-model="to_transaction_date" class="form-control col-12" id="inputToDate" placeholder="Date">
                                         </div>
-                                        <a href="#" class="btn btn-primary float-right">Generate</a>
+                                        <a href="#" class="btn btn-primary float-right" @click="generateReportIS">Generate</a>
                                     </div>
                                     </div>
                                 </div>
@@ -132,7 +132,7 @@
         data() {
           return {
               user_id: null,
-              reports: {},
+              sales: {},
               //running_balance: 0,
               from_transaction_date: this.getDate(),
               to_transaction_date: this.getDate(),
@@ -150,6 +150,7 @@
                 return `${year}-${month}-${day}`;
             },
             generateReport(){
+                /*
                 axios.get('api/daily?report_type='+this.report_type+'&transaction_date='+this.transaction_date)
                 .then((response)=>{
                   this.reports = response.data;
@@ -158,11 +159,13 @@
                 })
                 .catch(()=>{
                 });
+                */
             },
             generateReportIS(){
-                axios.get('api/daily?report_type=IS&transaction_date='+this.transaction_date)
+                
+                axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
                 .then((response)=>{
-                  this.reports = response.data;
+                  this.sales = response.data;
                   console.log(response.data); 
 
                 })

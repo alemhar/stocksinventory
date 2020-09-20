@@ -35,21 +35,34 @@ class DailyController extends Controller
             $transaction_date = '';
         }
 
-        /*
+        if(\Request::get('sub_account_type')) {
+            $sub_account_type = \Request::get('sub_account_type');
+            $sub_account_type = str_replace(' ', '-', $sub_account_type);
+        } else {
+            $sub_account_type = '';
+        }
+
         $transaction = DailyAccount::where(function($query) use ($from_transaction_date,$to_transaction_date){
             $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
             //$query->where('transaction_date','=', $transaction_date);
         })
+        ->where('sub_account_type',$sub_account_type)
         ->groupBy('account_code')
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
         ->get();
-        //->pluck('debit','credit','account_name');
-        */
 
+
+        
+
+        //->pluck('debit','credit','account_name');
+        
+
+        /* Working for PrintTest.vue
         $transaction = DailyAccount::
         groupBy('account_code')
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
         ->get();
+        */
 
         /*
         $transaction = DailyAccount::where(function($query) use ($transaction_date){

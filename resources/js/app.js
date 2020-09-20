@@ -144,7 +144,7 @@ let routes = [
   { path: '/generaljournal', component: require('./components/GeneralJournal.vue').default },
   { path: '/transations', component: require('./components/Transactions.vue').default },
   { path: '/checks', component: require('./components/Checks.vue').default },
-  { path: '/reports', component: require('./components/PrintTest.vue').default },
+  { path: '/reports', component: require('./components/PrintTest2.vue').default },
   { path: '*', component: require('./components/NotFound.vue').default }
   
 ];
