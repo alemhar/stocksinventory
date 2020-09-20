@@ -524,6 +524,7 @@ class CDController extends Controller
         $depreciations = [];
         $depreciatiables = Transaction::whereBetween('account_code', [15011200, 15011550])
         ->where('amount', '>', DB::raw('total_deduction + salvage_value'))
+        ->where('status', '<>' , 'REVERSE')
         ->get();
         
     
