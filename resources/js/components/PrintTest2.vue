@@ -176,7 +176,7 @@
 
                 var doc = new jspdf();
 
-                doc.text('Sales',15,15);
+                doc.text('<p>Sales</p>',15,15);
                 doc.save('test.pdf');
 
             }
