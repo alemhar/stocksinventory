@@ -42,7 +42,13 @@
                                     <div class="card-body">
                                         <h5 class="card-title">Special title treatment</h5>
                                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        <a href="#" class="btn btn-primary">Generate</a>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text inputGroup-sizing-default">From:</span>
+                                            </div>
+                                            <input  type="date" v-model="transaction_date" class="form-control col-12" id="inputDate" placeholder="Date">
+                                        </div>
                                     </div>
                                     </div>
                                 </div>
@@ -56,7 +62,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">Special title treatment</h5>
                                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        <a href="#" class="btn btn-primary">Generate</a>
                                     </div>
                                     </div>
                                 </div>
@@ -69,7 +75,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">Special title treatment</h5>
                                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        <a href="#" class="btn btn-primary">Generate</a>
                                     </div>
                                     </div>
                                 </div>
@@ -82,7 +88,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">Special title treatment</h5>
                                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        <a href="#" class="btn btn-primary">Generate</a>
                                     </div>
                                     </div>
                                 </div>
@@ -95,7 +101,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">Special title treatment</h5>
                                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        <a href="#" class="btn btn-primary">Generate</a>
                                     </div>
                                     </div>
                                 </div>
