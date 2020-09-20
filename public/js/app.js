@@ -11461,10 +11461,10 @@ __webpack_require__.r(__webpack_exports__);
         for (var sale in _this.sales) {
           docH += 10;
           doc.text(_this.sales[sale].account_name, docV, docH);
-          docH += 30; //amount = (this.sales[sale].credit * 1) - (this.sales[sale].debit * 1);
+          docH += 30;
+          amount = _this.sales[sale].credit * 1 - _this.sales[sale].debit * 1; //console.log(amount);
 
-          console.log(amount);
-          doc.text(docV + '', docV, docH);
+          doc.text(amount + '', docV, docH);
         }
 
         doc.save('test.pdf');
