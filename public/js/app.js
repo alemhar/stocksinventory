@@ -11456,7 +11456,7 @@ __webpack_require__.r(__webpack_exports__);
       doc.setFontSize(14);
       doc.text('Sales', 15, 15);
       doc.setFontSize(10);
-      doc.text('\ntest');
+      doc.text('test', 15, 25);
       doc.save('test.pdf');
     }
   },
