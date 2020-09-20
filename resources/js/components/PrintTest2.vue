@@ -178,7 +178,7 @@
                     doc.setFontSize(12);
                     //console.log(this.sales);
                     for (var sale in this.sales) {
-                        docY += 10;
+                        //docY += 10;
                         console.log(this.sales[sale].account_name);
                         //doc.text(this.sales[sale].account_name,15,25);
 
