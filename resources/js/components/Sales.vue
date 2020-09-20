@@ -1141,8 +1141,8 @@
                 transaction_type: this.form.transaction_type,
                 transaction_date: this.form.transaction_date,
                 amount: this.form.amount,
-                credit_amount: this.form.amount,
-                debit_amount: 0,
+                credit_amount: 0,
+                debit_amount: this.form.amount,
                 total_payment: 0,
                 amount_ex_tax: this.form.amount_ex_tax,
                 vat: this.form.vat,
@@ -1198,7 +1198,7 @@
                 tax_of_account: 0,
                 description: ''
             });  
-            
+
             
 
             if(this.form.wtax > 0){
@@ -1583,8 +1583,8 @@
                 transaction_type: this.form.transaction_type,
                 transaction_date: this.form.transaction_date,
                 amount: this.form_entry.amount_ex_tax,
-                credit_amount: 0,
-                debit_amount: this.form_entry.amount_ex_tax,
+                credit_amount: this.form_entry.amount_ex_tax,
+                debit_amount: 0,
                 total_payment: 0,
                 amount_ex_tax: 0,
                 vat: 0,
