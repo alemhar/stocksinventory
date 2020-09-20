@@ -29,6 +29,13 @@ class DailyController extends Controller
             $to_transaction_date = '';
         }
 
+        if(\Request::get('transaction_date')) {
+            $transaction_date = \Request::get('transaction_date');
+        } else {
+            $transaction_date = '';
+        }
+
+        /*
         $transaction = DailyAccount::where(function($query) use ($from_transaction_date,$to_transaction_date){
             $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
             //$query->where('transaction_date','=', $transaction_date);
@@ -37,16 +44,11 @@ class DailyController extends Controller
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
         ->get();
         //->pluck('debit','credit','account_name');
-        
-
-
-
-
-        /*
-        $transaction = DailyAccount::where(function($query) use ($transaction_date){
-            $query->where('transaction_date','=','transaction_date');
-        })->paginate(10);
         */
+
+        $transaction = DailyAccount::where(function($query) use ($transaction_date){
+            $query->where('transaction_date','=',$transaction_date);
+        })->paginate(10);
 
         return $transaction;
     }

@@ -67,6 +67,7 @@
     </div>
     
 </template>
+
 <script>
     export default {
         data() {
@@ -98,14 +99,13 @@
                 .catch(()=>{
                 });
             }
-        
         },
 
         created() {
             
         },
         computed: {
-    
+            
 
         },
         components: {
