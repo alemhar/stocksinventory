@@ -200,6 +200,7 @@
                     doc.setFontSize(12);
                     doc.text(this.company.address +' '+  this.company.address2 +' '+ this.company.city,docH,docV);
                     docV += 12;
+                    doc.setFontSize(16);
                     doc.text('Sales',docH,docV);
                     doc.setFontSize(12);
                     //console.log(this.sales);
