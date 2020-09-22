@@ -11454,7 +11454,7 @@ __webpack_require__.r(__webpack_exports__);
       sales_amount = Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
-        currencyDisplay: 'name'
+        currencyDisplay: 'code'
       }).format(1000);
       sales_amount = sales_amount.replace(/[a-z]{3}/i, "").trim();
       alert(sales_amount);

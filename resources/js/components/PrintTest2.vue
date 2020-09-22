@@ -167,7 +167,7 @@
             },
             generateReportIS(){
                 let sales_amount = null;
-                sales_amount = Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', currencyDisplay: 'name' }).format(1000);
+                sales_amount = Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', currencyDisplay: 'code' }).format(1000);
                 sales_amount = sales_amount.replace(/[a-z]{3}/i, "").trim();
                 alert(sales_amount);
                 return false;
