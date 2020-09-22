@@ -11450,6 +11450,13 @@ __webpack_require__.r(__webpack_exports__);
     generateReportIS: function generateReportIS() {
       var _this = this;
 
+      sales_amount = Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD'
+      }).format(1000);
+      sales_amount = result.replace(/[a-z]{3}/i, "").trim();
+      alert(sales_amount);
+      return false;
       var result = null;
       axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date=' + this.from_transaction_date + '&to_transaction_date=' + this.to_transaction_date).then(function (response) {
         _this.sales = response.data;
