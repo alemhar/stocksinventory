@@ -11475,7 +11475,8 @@ __webpack_require__.r(__webpack_exports__);
             style: 'currency',
             currency: 'USD'
           }).format(sales_amount);
-          sales_amount = result.replace(/[a-z]{3}/i, "").trim(); //doc.text(Number(sales_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
+          sales_amount = result.replace(/[a-z]{3}/i, "").trim();
+          alert(sales_amount); //doc.text(Number(sales_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
 
           doc.text(sales_amount, docH, docV);
         }
