@@ -140,6 +140,8 @@
               //running_balance: 0,
               from_transaction_date: this.getDate(),
               to_transaction_date: this.getDate(),
+              company: null,
+              company_id: document.querySelector('meta[name="company-id"]').getAttribute('content')
               //report_type: 'IS',
               //active_debit_row: 0
           }
@@ -165,23 +167,38 @@
                 });
                 */
             },
+            getCompany(){
+                //console.log('api/company/'+this.user_id);
+                axios.get('api/company/'+this.company_id)
+                    .then((response)=>{
+                    //console.log(response.data);
+                    this.company = response.data;
+                    })
+                    .catch(()=>{
+                    //
+                    });
+                
+            },
             generateReportIS(){
                 let currencyOptions = { style: 'currency', currency: 'USD', currencyDisplay: 'code' };
-                //sales_amount = Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', currencyDisplay: 'code' }).format(1000);
-                //sales_amount = sales_amount.replace(/[a-z]{3}/i, "").trim();
-                //alert(sales_amount);
-                //return false;
+                
+                
                 let result = null;
                 axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
                 .then((response)=>{
                     this.sales = response.data;
                     var docV = 15;
                     var docH = 15;
+
                     var sales_amount = 0;
                     var cost_of_sales_amount = 0;
                     var expense_amount = 0;
                     var doc = new jspdf();
                     doc.setFontSize(16);
+                    doc.text(this.company.name,docH,docV);
+                    docV += 8;
+                    doc.text(this.company.address +' '+  this.company.address2 +' '+ this.company.city,docH,docV);
+                    docV += 8;
                     doc.text('Sales',docH,docV);
                     doc.setFontSize(12);
                     //console.log(this.sales);
@@ -271,7 +288,7 @@
         },
 
         created() {
-            
+            this.getCompany();
         },
         computed: {
     

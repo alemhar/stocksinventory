@@ -11419,7 +11419,9 @@ __webpack_require__.r(__webpack_exports__);
       expenses: {},
       //running_balance: 0,
       from_transaction_date: this.getDate(),
-      to_transaction_date: this.getDate() //report_type: 'IS',
+      to_transaction_date: this.getDate(),
+      company: null,
+      company_id: document.querySelector('meta[name="company-id"]').getAttribute('content') //report_type: 'IS',
       //active_debit_row: 0
 
     };
@@ -11447,21 +11449,27 @@ __webpack_require__.r(__webpack_exports__);
       });
       */
     },
-    generateReportIS: function generateReportIS() {
+    getCompany: function getCompany() {
       var _this = this;
+
+      //console.log('api/company/'+this.user_id);
+      axios.get('api/company/' + this.company_id).then(function (response) {
+        //console.log(response.data);
+        _this.company = response.data;
+      })["catch"](function () {//
+      });
+    },
+    generateReportIS: function generateReportIS() {
+      var _this2 = this;
 
       var currencyOptions = {
         style: 'currency',
         currency: 'USD',
         currencyDisplay: 'code'
-      }; //sales_amount = Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', currencyDisplay: 'code' }).format(1000);
-      //sales_amount = sales_amount.replace(/[a-z]{3}/i, "").trim();
-      //alert(sales_amount);
-      //return false;
-
+      };
       var result = null;
       axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date=' + this.from_transaction_date + '&to_transaction_date=' + this.to_transaction_date).then(function (response) {
-        _this.sales = response.data;
+        _this2.sales = response.data;
         var docV = 15;
         var docH = 15;
         var sales_amount = 0;
@@ -11469,15 +11477,19 @@ __webpack_require__.r(__webpack_exports__);
         var expense_amount = 0;
         var doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"]();
         doc.setFontSize(16);
+        doc.text(_this2.company.name, docH, docV);
+        docV += 8;
+        doc.text(_this2.company.address + ' ' + _this2.company.address2 + ' ' + _this2.company.city, docH, docV);
+        docV += 8;
         doc.text('Sales', docH, docV);
         doc.setFontSize(12); //console.log(this.sales);
 
-        for (var sale in _this.sales) {
+        for (var sale in _this2.sales) {
           docV += 8;
           docH = 40;
-          doc.text(_this.sales[sale].account_name, docH, docV);
+          doc.text(_this2.sales[sale].account_name, docH, docV);
           docH = 80;
-          sales_amount = _this.sales[sale].credit * 1 - _this.sales[sale].debit * 1; //console.log(amount);
+          sales_amount = _this2.sales[sale].credit * 1 - _this2.sales[sale].debit * 1; //console.log(amount);
           //amount.toFixed(2)
 
           sales_amount = Intl.NumberFormat('en-US', currencyOptions).format(sales_amount);
@@ -11492,15 +11504,15 @@ __webpack_require__.r(__webpack_exports__);
         doc.setFontSize(16);
         doc.text('Cost of Sales', docH, docV);
         doc.setFontSize(12);
-        axios.get('api/daily?sub_account_type=COST_OF_SALES&from_transaction_date=' + _this.from_transaction_date + '&to_transaction_date=' + _this.to_transaction_date).then(function (response) {
-          _this.cost_of_sales = response.data;
+        axios.get('api/daily?sub_account_type=COST_OF_SALES&from_transaction_date=' + _this2.from_transaction_date + '&to_transaction_date=' + _this2.to_transaction_date).then(function (response) {
+          _this2.cost_of_sales = response.data;
 
-          for (var cost_of_sale in _this.cost_of_sales) {
+          for (var cost_of_sale in _this2.cost_of_sales) {
             docV += 8;
             docH = 40;
-            doc.text(_this.cost_of_sales[cost_of_sale].account_name, docH, docV);
+            doc.text(_this2.cost_of_sales[cost_of_sale].account_name, docH, docV);
             docH = 80;
-            cost_of_sales_amount = _this.cost_of_sales[cost_of_sale].debit * 1 - _this.cost_of_sales[cost_of_sale].credit * 1; //console.log(amount);
+            cost_of_sales_amount = _this2.cost_of_sales[cost_of_sale].debit * 1 - _this2.cost_of_sales[cost_of_sale].credit * 1; //console.log(amount);
             //amount.toFixed(2)
 
             cost_of_sales_amount = Intl.NumberFormat('en-US', currencyOptions).format(cost_of_sales_amount);
@@ -11514,15 +11526,15 @@ __webpack_require__.r(__webpack_exports__);
           doc.setFontSize(16);
           doc.text('Expenses', docH, docV);
           doc.setFontSize(12);
-          axios.get('api/daily?sub_account_type=EXPENSES&from_transaction_date=' + _this.from_transaction_date + '&to_transaction_date=' + _this.to_transaction_date).then(function (response) {
-            _this.expenses = response.data;
+          axios.get('api/daily?sub_account_type=EXPENSES&from_transaction_date=' + _this2.from_transaction_date + '&to_transaction_date=' + _this2.to_transaction_date).then(function (response) {
+            _this2.expenses = response.data;
 
-            for (var expense in _this.expenses) {
+            for (var expense in _this2.expenses) {
               docV += 8;
               docH = 40;
-              doc.text(_this.expenses[expense].account_name, docH, docV);
+              doc.text(_this2.expenses[expense].account_name, docH, docV);
               docH = 80;
-              expense_amount = _this.expenses[expense].debit * 1 - _this.expenses[expense].credit * 1; //console.log(amount);
+              expense_amount = _this2.expenses[expense].debit * 1 - _this2.expenses[expense].credit * 1; //console.log(amount);
               //amount.toFixed(2)
 
               expense_amount = Intl.NumberFormat('en-US', currencyOptions).format(expense_amount);
@@ -11537,7 +11549,9 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {});
     }
   },
-  created: function created() {},
+  created: function created() {
+    this.getCompany();
+  },
   computed: {},
   components: {}
 });
