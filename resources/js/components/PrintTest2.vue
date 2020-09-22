@@ -168,7 +168,7 @@
             generateReportIS(){
                 let sales_amount = null;
                 sales_amount = Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(1000);
-                sales_amount = result.replace(/[a-z]{3}/i, "").trim();
+                sales_amount = sales_amount.replace(/[a-z]{3}/i, "").trim();
                 alert(sales_amount);
                 return false;
                 let result = null;
@@ -194,7 +194,7 @@
                         //console.log(amount);
                         //amount.toFixed(2)
                         sales_amount = Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(sales_amount);
-                        sales_amount = result.replace(/[a-z]{3}/i, "").trim();
+                        sales_amount = sales_amount.replace(/[a-z]{3}/i, "").trim();
                         alert(sales_amount);
                         //doc.text(Number(sales_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
                         doc.text(sales_amount,docH,docV);
@@ -237,8 +237,8 @@
                                 //console.log(amount);
                                 //amount.toFixed(2)
 
-                                expense_amount = Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(sales_amount);
-                                expense_amount = result.replace(/[a-z]{3}/i, "").trim();
+                                expense_amount = Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(expense_amount);
+                                expense_amount = expense_amount.replace(/[a-z]{3}/i, "").trim();
 
                                 //doc.text(Number(expense_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
                                 doc.text(expense_amount,docH,docV);
