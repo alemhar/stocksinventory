@@ -197,7 +197,7 @@
                     var total_sales_amount = 0;
                     var total_cost_of_sales_amount = 0;
                     var total_expense_amount = 0;
-
+                    var gross_profit = 0;
                     var doc = new jspdf();
                     doc.setFontSize(16);
                     doc.text(this.company.name,docH,docV);
@@ -216,7 +216,7 @@
                         docV += 6;
                         docH = 25;
                         doc.text(this.sales[sale].account_name,docH,docV);
-                        docH = 100;
+                        docH = 130;
                         sales_amount = (this.sales[sale].credit * 1) - (this.sales[sale].debit * 1);
                         total_sales_amount += sales_amount;
                         //console.log(amount);
@@ -243,7 +243,7 @@
                             docV += 6;
                             docH = 25;
                             doc.text(this.cost_of_sales[cost_of_sale].account_name,docH,docV);
-                            docH = 100;
+                            docH = 130;
                             cost_of_sales_amount = (this.cost_of_sales[cost_of_sale].debit * 1) - (this.cost_of_sales[cost_of_sale].credit * 1);
                             total_cost_of_sales_amount += cost_of_sales_amount;
                             //console.log(amount);
@@ -261,6 +261,16 @@
                         total_cost_of_sales_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_cost_of_sales_amount);
                         total_cost_of_sales_amount = total_cost_of_sales_amount.replace(/[a-z]{3}/i, "").trim();
                         doc.text(total_cost_of_sales_amount,docH,docV,'right');
+                        docV += 6;
+                        docH = 15;
+                        doc.setFontSize(16);
+                        doc.text('Gross Profit',docH,docV);
+
+                        doc.setFontSize(12);
+                        docH = 160;
+                        gross_profit = Intl.NumberFormat('en-US',currencyOptions).format(total_sales_amount - total_cost_of_sales_amount);
+                        gross_profit = gross_profit.replace(/[a-z]{3}/i, "").trim();
+                        doc.text(gross_profit,docH,docV,'right');
 
                         docV += 12;
                         docH = 15;
@@ -275,7 +285,7 @@
                                 docV += 6;
                                 docH = 25;
                                 doc.text(this.expenses[expense].account_name,docH,docV);
-                                docH = 100;
+                                docH = 130;
                                 expense_amount = (this.expenses[expense].debit * 1) - (this.expenses[expense].credit * 1);
                                 total_expense_amount += expense_amount;
                                 //console.log(amount);
