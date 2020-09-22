@@ -11479,16 +11479,17 @@ __webpack_require__.r(__webpack_exports__);
         doc.setFontSize(16);
         doc.text(_this2.company.name, docH, docV);
         docV += 8;
+        doc.setFontSize(12);
         doc.text(_this2.company.address + ' ' + _this2.company.address2 + ' ' + _this2.company.city, docH, docV);
-        docV += 8;
+        docV += 12;
         doc.text('Sales', docH, docV);
         doc.setFontSize(12); //console.log(this.sales);
 
         for (var sale in _this2.sales) {
           docV += 8;
-          docH = 40;
+          docH = 25;
           doc.text(_this2.sales[sale].account_name, docH, docV);
-          docH = 80;
+          docH = 100;
           sales_amount = _this2.sales[sale].credit * 1 - _this2.sales[sale].debit * 1; //console.log(amount);
           //amount.toFixed(2)
 
@@ -11509,9 +11510,9 @@ __webpack_require__.r(__webpack_exports__);
 
           for (var cost_of_sale in _this2.cost_of_sales) {
             docV += 8;
-            docH = 40;
+            docH = 25;
             doc.text(_this2.cost_of_sales[cost_of_sale].account_name, docH, docV);
-            docH = 80;
+            docH = 100;
             cost_of_sales_amount = _this2.cost_of_sales[cost_of_sale].debit * 1 - _this2.cost_of_sales[cost_of_sale].credit * 1; //console.log(amount);
             //amount.toFixed(2)
 
@@ -11531,9 +11532,9 @@ __webpack_require__.r(__webpack_exports__);
 
             for (var expense in _this2.expenses) {
               docV += 8;
-              docH = 40;
+              docH = 25;
               doc.text(_this2.expenses[expense].account_name, docH, docV);
-              docH = 80;
+              docH = 100;
               expense_amount = _this2.expenses[expense].debit * 1 - _this2.expenses[expense].credit * 1; //console.log(amount);
               //amount.toFixed(2)
 

@@ -197,16 +197,17 @@
                     doc.setFontSize(16);
                     doc.text(this.company.name,docH,docV);
                     docV += 8;
+                    doc.setFontSize(12);
                     doc.text(this.company.address +' '+  this.company.address2 +' '+ this.company.city,docH,docV);
-                    docV += 8;
+                    docV += 12;
                     doc.text('Sales',docH,docV);
                     doc.setFontSize(12);
                     //console.log(this.sales);
                     for (var sale in this.sales) {
                         docV += 8;
-                        docH = 40;
+                        docH = 25;
                         doc.text(this.sales[sale].account_name,docH,docV);
-                        docH = 80;
+                        docH = 100;
                         sales_amount = (this.sales[sale].credit * 1) - (this.sales[sale].debit * 1);
                         //console.log(amount);
                         //amount.toFixed(2)
@@ -227,9 +228,9 @@
                         this.cost_of_sales = response.data;
                         for (var cost_of_sale in this.cost_of_sales) {
                             docV += 8;
-                            docH = 40;
+                            docH = 25;
                             doc.text(this.cost_of_sales[cost_of_sale].account_name,docH,docV);
-                            docH = 80;
+                            docH = 100;
                             cost_of_sales_amount = (this.cost_of_sales[cost_of_sale].debit * 1) - (this.cost_of_sales[cost_of_sale].credit * 1);
                             //console.log(amount);
                             //amount.toFixed(2)
@@ -252,9 +253,9 @@
                             this.expenses = response.data;
                             for (var expense in this.expenses) {
                                 docV += 8;
-                                docH = 40;
+                                docH = 25;
                                 doc.text(this.expenses[expense].account_name,docH,docV);
-                                docH = 80;
+                                docH = 100;
                                 expense_amount = (this.expenses[expense].debit * 1) - (this.expenses[expense].credit * 1);
                                 //console.log(amount);
                                 //amount.toFixed(2)
