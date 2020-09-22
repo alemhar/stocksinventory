@@ -268,7 +268,8 @@
 
                         doc.setFontSize(12);
                         docH = 160;
-                        gross_profit = Intl.NumberFormat('en-US',currencyOptions).format(total_sales_amount - total_cost_of_sales_amount);
+                        gross_profit = +total_sales_amount - +total_cost_of_sales_amount;
+                        gross_profit = Intl.NumberFormat('en-US',currencyOptions).format(gross_profit);
                         gross_profit = gross_profit.replace(/[a-z]{3}/i, "").trim();
                         doc.text(gross_profit,docH,docV,'right');
 
