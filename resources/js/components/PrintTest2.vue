@@ -197,6 +197,12 @@
                     var total_sales_amount = 0;
                     var total_cost_of_sales_amount = 0;
                     var total_expense_amount = 0;
+
+                    var main_total_sales_amount = 0;
+                    var main_total_cost_of_sales_amount = 0;
+                    var main_total_expense_amount = 0;
+                    var net_profit = 0;
+
                     var gross_profit = 0;
                     var doc = new jspdf();
                     doc.setFontSize(16);
@@ -219,6 +225,7 @@
                         docH = 130;
                         sales_amount = (this.sales[sale].credit * 1) - (this.sales[sale].debit * 1);
                         total_sales_amount += sales_amount;
+                        main_total_sales_amount += sales_amount;
                         //console.log(amount);
                         //amount.toFixed(2)
                         sales_amount = Intl.NumberFormat('en-US',currencyOptions).format(sales_amount);
@@ -246,6 +253,7 @@
                             docH = 130;
                             cost_of_sales_amount = (this.cost_of_sales[cost_of_sale].debit * 1) - (this.cost_of_sales[cost_of_sale].credit * 1);
                             total_cost_of_sales_amount += cost_of_sales_amount;
+                            main_total_cost_of_sales_amount += cost_of_sales_amount;
                             //console.log(amount);
                             //amount.toFixed(2)
                             cost_of_sales_amount = Intl.NumberFormat('en-US',currencyOptions).format(cost_of_sales_amount);
@@ -268,7 +276,7 @@
 
                         doc.setFontSize(12);
                         docH = 160;
-                        gross_profit = (total_sales_amount*1) - (total_cost_of_sales_amount*1);
+                        gross_profit = (main_total_sales_amount*1) - (_main_total_cost_of_sales_amount*1);
                         gross_profit = Intl.NumberFormat('en-US',currencyOptions).format(gross_profit);
                         gross_profit = gross_profit.replace(/[a-z]{3}/i, "").trim();
                         doc.text(gross_profit,docH,docV,'right');
@@ -289,6 +297,7 @@
                                 docH = 130;
                                 expense_amount = (this.expenses[expense].debit * 1) - (this.expenses[expense].credit * 1);
                                 total_expense_amount += expense_amount;
+                                main_total_expense_amount += expense_amount;
                                 //console.log(amount);
                                 //amount.toFixed(2)
 
@@ -302,6 +311,18 @@
                             total_expense_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_expense_amount);
                             total_expense_amount = total_expense_amount.replace(/[a-z]{3}/i, "").trim();
                             doc.text(total_expense_amount,docH,docV,'right');
+
+                            docV += 6;
+                            docH = 15;
+                            doc.setFontSize(16);
+                            doc.text('Net Profit',docH,docV);
+
+                            doc.setFontSize(12);
+                            docH = 160;
+                            net_profit = (main_total_sales_amount*1) - (_main_total_cost_of_sales_amount*1) - (main_total_expense_amount*1);
+                            net_profit = Intl.NumberFormat('en-US',currencyOptions).format(net_profit);
+                            net_profit = net_profit.replace(/[a-z]{3}/i, "").trim();
+                            doc.text(gross_profit,docH,docV,'right');
                             doc.save('test.pdf');
 
                         })
