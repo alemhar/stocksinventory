@@ -11593,7 +11593,7 @@ __webpack_require__.r(__webpack_exports__);
             net_profit = main_total_sales_amount * 1 - main_total_cost_of_sales_amount * 1 - main_total_expense_amount * 1;
             net_profit = Intl.NumberFormat('en-US', currencyOptions).format(net_profit);
             net_profit = net_profit.replace(/[a-z]{3}/i, "").trim();
-            doc.text(gross_profit, docH, docV, 'right');
+            doc.text(net_profit, docH, docV, 'right');
             docV += 1;
             doc.line(docH - 25, docV, docH, docV);
             doc.save('test.pdf');
