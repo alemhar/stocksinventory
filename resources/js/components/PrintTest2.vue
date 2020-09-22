@@ -166,7 +166,7 @@
                 */
             },
             generateReportIS(){
-
+                let result = null;
                 axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
                 .then((response)=>{
                     this.sales = response.data;
@@ -188,7 +188,11 @@
                         sales_amount = (this.sales[sale].credit * 1) - (this.sales[sale].debit * 1);
                         //console.log(amount);
                         //amount.toFixed(2)
-                        doc.text(Number(sales_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
+                        sales_amount = Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(sales_amount);
+                        sales_amount = result.replace(/[a-z]{3}/i, "").trim();
+                
+                        //doc.text(Number(sales_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
+                        doc.text(Number(sales_amount,docH,docV);
                     }
                     docV += 16;
                     docH = 15;
@@ -207,6 +211,7 @@
                             cost_of_sales_amount = (this.cost_of_sales[cost_of_sale].debit * 1) - (this.cost_of_sales[cost_of_sale].credit * 1);
                             //console.log(amount);
                             //amount.toFixed(2)
+
                             doc.text(Number(cost_of_sales_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
                         }
                         docV += 16;
@@ -226,7 +231,12 @@
                                 expense_amount = (this.expenses[expense].debit * 1) - (this.expenses[expense].credit * 1);
                                 //console.log(amount);
                                 //amount.toFixed(2)
-                                doc.text(Number(expense_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
+
+                                expense_amount = Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(sales_amount);
+                                expense_amount = result.replace(/[a-z]{3}/i, "").trim();
+
+                                //doc.text(Number(expense_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
+                                doc.text(Number(expense_amount,docH,docV);
                             }
                             doc.save('test.pdf');
 
