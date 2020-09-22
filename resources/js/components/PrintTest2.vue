@@ -166,7 +166,6 @@
                 */
             },
             generateReportIS(){
-                
 
                 axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
                 .then((response)=>{

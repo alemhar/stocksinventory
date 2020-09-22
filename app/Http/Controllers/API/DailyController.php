@@ -48,6 +48,7 @@ class DailyController extends Controller
         })
         ->where('sub_account_type',$sub_account_type)
         ->groupBy('account_code')
+        ->orderBy('account_code')
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
         ->get();
 
