@@ -11544,7 +11544,7 @@ __webpack_require__.r(__webpack_exports__);
           doc.text('Gross Profit', docH, docV);
           doc.setFontSize(12);
           docH = 160;
-          gross_profit = +total_sales_amount - +total_cost_of_sales_amount;
+          gross_profit = total_sales_amount * 1 - total_cost_of_sales_amount * 1;
           gross_profit = Intl.NumberFormat('en-US', currencyOptions).format(gross_profit);
           gross_profit = gross_profit.replace(/[a-z]{3}/i, "").trim();
           doc.text(gross_profit, docH, docV, 'right');
