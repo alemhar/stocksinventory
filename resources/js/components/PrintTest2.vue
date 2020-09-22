@@ -192,7 +192,7 @@
                         sales_amount = result.replace(/[a-z]{3}/i, "").trim();
                 
                         //doc.text(Number(sales_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
-                        doc.text(Number(sales_amount,docH,docV);
+                        doc.text(sales_amount,docH,docV);
                     }
                     docV += 16;
                     docH = 15;
@@ -236,7 +236,7 @@
                                 expense_amount = result.replace(/[a-z]{3}/i, "").trim();
 
                                 //doc.text(Number(expense_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
-                                doc.text(Number(expense_amount,docH,docV);
+                                doc.text(expense_amount,docH,docV);
                             }
                             doc.save('test.pdf');
 
