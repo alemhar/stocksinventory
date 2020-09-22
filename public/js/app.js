@@ -11463,8 +11463,8 @@ __webpack_require__.r(__webpack_exports__);
         doc.setFontSize(12); //console.log(this.sales);
 
         for (var sale in _this.sales) {
-          docV += 10;
-          docH = 35;
+          docV += 8;
+          docH = 25;
           doc.text(_this.sales[sale].account_name, docH, docV);
           docH = 80;
           sales_amount = _this.sales[sale].credit * 1 - _this.sales[sale].debit * 1; //console.log(amount);
@@ -11473,7 +11473,7 @@ __webpack_require__.r(__webpack_exports__);
           doc.text(Number(sales_amount.toFixed(2)).toLocaleString() + '', docH, docV);
         }
 
-        docV += 20;
+        docV += 16;
         docH = 15;
         doc.setFontSize(16);
         doc.text('Cost of Sales', docH, docV);
@@ -11482,8 +11482,8 @@ __webpack_require__.r(__webpack_exports__);
           _this.cost_of_sales = response.data;
 
           for (var cost_of_sale in _this.cost_of_sales) {
-            docV += 10;
-            docH = 35;
+            docV += 8;
+            docH = 25;
             doc.text(_this.cost_of_sales[cost_of_sale].account_name, docH, docV);
             docH = 80;
             cost_of_sales_amount = _this.cost_of_sales[cost_of_sale].debit * 1 - _this.cost_of_sales[cost_of_sale].credit * 1; //console.log(amount);
@@ -11492,7 +11492,7 @@ __webpack_require__.r(__webpack_exports__);
             doc.text(Number(cost_of_sales_amount.toFixed(2)).toLocaleString() + '', docH, docV);
           }
 
-          docV += 20;
+          docV += 16;
           docH = 15;
           doc.setFontSize(16);
           doc.text('Expenses', docH, docV);
@@ -11501,8 +11501,8 @@ __webpack_require__.r(__webpack_exports__);
             _this.expenses = response.data;
 
             for (var expense in _this.expenses) {
-              docV += 10;
-              docH = 35;
+              docV += 8;
+              docH = 25;
               doc.text(_this.expenses[expense].account_name, docH, docV);
               docH = 80;
               expense_amount = _this.expenses[expense].debit * 1 - _this.expenses[expense].credit * 1; //console.log(amount);
