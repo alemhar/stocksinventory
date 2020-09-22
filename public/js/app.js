@@ -11478,10 +11478,10 @@ __webpack_require__.r(__webpack_exports__);
         var doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"]();
         doc.setFontSize(16);
         doc.text(_this2.company.name, docH, docV);
-        docV += 8;
+        docV += 6;
         doc.setFontSize(12);
         doc.text(_this2.company.address + ' ' + _this2.company.address2 + ' ' + _this2.company.city, docH, docV);
-        docV += 8;
+        docV += 6;
         doc.setFontSize(10);
         doc.text('From: ' + _this2.from_transaction_date + ' To: ' + _this2.to_transaction_date, docH, docV);
         docV += 12;
@@ -11490,7 +11490,7 @@ __webpack_require__.r(__webpack_exports__);
         doc.setFontSize(12); //console.log(this.sales);
 
         for (var sale in _this2.sales) {
-          docV += 8;
+          docV += 6;
           docH = 25;
           doc.text(_this2.sales[sale].account_name, docH, docV);
           docH = 100;
@@ -11504,7 +11504,7 @@ __webpack_require__.r(__webpack_exports__);
           doc.text(sales_amount, docH, docV, 'right');
         }
 
-        docV += 16;
+        docV += 12;
         docH = 15;
         doc.setFontSize(16);
         doc.text('Cost of Sales', docH, docV);
@@ -11513,7 +11513,7 @@ __webpack_require__.r(__webpack_exports__);
           _this2.cost_of_sales = response.data;
 
           for (var cost_of_sale in _this2.cost_of_sales) {
-            docV += 8;
+            docV += 6;
             docH = 25;
             doc.text(_this2.cost_of_sales[cost_of_sale].account_name, docH, docV);
             docH = 100;
@@ -11526,7 +11526,7 @@ __webpack_require__.r(__webpack_exports__);
             doc.text(cost_of_sales_amount, docH, docV, 'right'); //doc.text(Number(cost_of_sales_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
           }
 
-          docV += 16;
+          docV += 12;
           docH = 15;
           doc.setFontSize(16);
           doc.text('Expenses', docH, docV);
@@ -11535,7 +11535,7 @@ __webpack_require__.r(__webpack_exports__);
             _this2.expenses = response.data;
 
             for (var expense in _this2.expenses) {
-              docV += 8;
+              docV += 6;
               docH = 25;
               doc.text(_this2.expenses[expense].account_name, docH, docV);
               docH = 100;

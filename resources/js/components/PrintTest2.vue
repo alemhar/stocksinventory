@@ -196,10 +196,10 @@
                     var doc = new jspdf();
                     doc.setFontSize(16);
                     doc.text(this.company.name,docH,docV);
-                    docV += 8;
+                    docV += 6;
                     doc.setFontSize(12);
                     doc.text(this.company.address +' '+  this.company.address2 +' '+ this.company.city,docH,docV);
-                    docV += 8;
+                    docV += 6;
                     doc.setFontSize(10);
                     doc.text('From: '+this.from_transaction_date +' To: '+  this.to_transaction_date,docH,docV);
                     docV += 12;
@@ -208,7 +208,7 @@
                     doc.setFontSize(12);
                     //console.log(this.sales);
                     for (var sale in this.sales) {
-                        docV += 8;
+                        docV += 6;
                         docH = 25;
                         doc.text(this.sales[sale].account_name,docH,docV);
                         docH = 100;
@@ -221,7 +221,7 @@
                         //doc.text(Number(sales_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
                         doc.text(sales_amount,docH,docV,'right');
                     }
-                    docV += 16;
+                    docV += 12;
                     docH = 15;
                     doc.setFontSize(16);
                     doc.text('Cost of Sales',docH,docV);
@@ -231,7 +231,7 @@
                     .then((response)=>{
                         this.cost_of_sales = response.data;
                         for (var cost_of_sale in this.cost_of_sales) {
-                            docV += 8;
+                            docV += 6;
                             docH = 25;
                             doc.text(this.cost_of_sales[cost_of_sale].account_name,docH,docV);
                             docH = 100;
@@ -246,7 +246,7 @@
                             
                             //doc.text(Number(cost_of_sales_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
                         }
-                        docV += 16;
+                        docV += 12;
                         docH = 15;
                         doc.setFontSize(16);
                         doc.text('Expenses',docH,docV);
@@ -256,7 +256,7 @@
                         .then((response)=>{
                             this.expenses = response.data;
                             for (var expense in this.expenses) {
-                                docV += 8;
+                                docV += 6;
                                 docH = 25;
                                 doc.text(this.expenses[expense].account_name,docH,docV);
                                 docH = 100;
