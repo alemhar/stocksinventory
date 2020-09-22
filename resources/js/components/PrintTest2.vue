@@ -239,7 +239,7 @@
 
                     docV += 12;
                     docH = 15;
-                    doc.setFontSize(16);
+                    doc.setFontSize(14);
                     doc.text('Cost of Sales',docH,docV);
                     doc.setFontSize(12);
 
@@ -269,9 +269,9 @@
                         total_cost_of_sales_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_cost_of_sales_amount);
                         total_cost_of_sales_amount = total_cost_of_sales_amount.replace(/[a-z]{3}/i, "").trim();
                         doc.text(total_cost_of_sales_amount,docH,docV,'right');
-                        docV += 6;
+                        docV += 8;
                         docH = 15;
-                        doc.setFontSize(16);
+                        doc.setFontSize(14);
                         doc.text('Gross Profit',docH,docV);
 
                         doc.setFontSize(12);
@@ -283,7 +283,7 @@
 
                         docV += 12;
                         docH = 15;
-                        doc.setFontSize(16);
+                        doc.setFontSize(14);
                         doc.text('Expenses',docH,docV);
                         doc.setFontSize(12);
 
@@ -312,9 +312,9 @@
                             total_expense_amount = total_expense_amount.replace(/[a-z]{3}/i, "").trim();
                             doc.text(total_expense_amount,docH,docV,'right');
 
-                            docV += 6;
+                            docV += 8;
                             docH = 15;
-                            doc.setFontSize(16);
+                            doc.setFontSize(14);
                             doc.text('Net Profit',docH,docV);
 
                             doc.setFontSize(12);
