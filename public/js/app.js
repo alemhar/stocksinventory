@@ -11450,15 +11450,15 @@ __webpack_require__.r(__webpack_exports__);
     generateReportIS: function generateReportIS() {
       var _this = this;
 
-      var sales_amount = null;
-      sales_amount = Intl.NumberFormat('en-US', {
+      var currencyOptions = {
         style: 'currency',
         currency: 'USD',
         currencyDisplay: 'code'
-      }).format(1000);
-      sales_amount = sales_amount.replace(/[a-z]{3}/i, "").trim();
-      alert(sales_amount);
-      return false;
+      }; //sales_amount = Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', currencyDisplay: 'code' }).format(1000);
+      //sales_amount = sales_amount.replace(/[a-z]{3}/i, "").trim();
+      //alert(sales_amount);
+      //return false;
+
       var result = null;
       axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date=' + this.from_transaction_date + '&to_transaction_date=' + this.to_transaction_date).then(function (response) {
         _this.sales = response.data;
@@ -11480,10 +11480,7 @@ __webpack_require__.r(__webpack_exports__);
           sales_amount = _this.sales[sale].credit * 1 - _this.sales[sale].debit * 1; //console.log(amount);
           //amount.toFixed(2)
 
-          sales_amount = Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD'
-          }).format(sales_amount);
+          sales_amount = Intl.NumberFormat('en-US', currencyOptions).format(sales_amount);
           sales_amount = sales_amount.replace(/[a-z]{3}/i, "").trim();
           alert(sales_amount); //doc.text(Number(sales_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
 
@@ -11525,10 +11522,7 @@ __webpack_require__.r(__webpack_exports__);
               expense_amount = _this.expenses[expense].debit * 1 - _this.expenses[expense].credit * 1; //console.log(amount);
               //amount.toFixed(2)
 
-              expense_amount = Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD'
-              }).format(expense_amount);
+              expense_amount = Intl.NumberFormat('en-US', currencyOptions).format(expense_amount);
               expense_amount = expense_amount.replace(/[a-z]{3}/i, "").trim(); //doc.text(Number(expense_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
 
               doc.text(expense_amount, docH, docV);
