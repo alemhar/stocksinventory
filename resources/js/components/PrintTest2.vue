@@ -312,7 +312,7 @@
                             total_expense_amount = total_expense_amount.replace(/[a-z]{3}/i, "").trim();
                             doc.text(total_expense_amount,docH,docV,'right');
                             docV +=1;
-                            doc.line(docH - 30,docV,docH,docV);
+                            doc.line(docH - 25,docV,docH,docV);
                             
                             docV += 8;
                             docH = 15;
@@ -326,7 +326,7 @@
                             net_profit = net_profit.replace(/[a-z]{3}/i, "").trim();
                             doc.text(gross_profit,docH,docV,'right');
                             docV +=1;
-                            doc.line(docH - 30,docV,docH,docV);
+                            doc.line(docH - 25,docV,docH,docV);
                             doc.save('test.pdf');
 
                         })
