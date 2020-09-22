@@ -11582,6 +11582,7 @@ __webpack_require__.r(__webpack_exports__);
             total_expense_amount = Intl.NumberFormat('en-US', currencyOptions).format(total_expense_amount);
             total_expense_amount = total_expense_amount.replace(/[a-z]{3}/i, "").trim();
             doc.text(total_expense_amount, docH, docV, 'right');
+            doc.line(docH - 10, docV, docH, docV);
             docV += 8;
             docH = 15;
             doc.setFontSize(14);
