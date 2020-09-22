@@ -311,7 +311,8 @@
                             total_expense_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_expense_amount);
                             total_expense_amount = total_expense_amount.replace(/[a-z]{3}/i, "").trim();
                             doc.text(total_expense_amount,docH,docV,'right');
-                            doc.line(docH - 10,docV,docH,docV);
+                            docV +=1;
+                            doc.line(docH - 30,docV,docH,docV);
                             
                             docV += 8;
                             docH = 15;
@@ -324,6 +325,8 @@
                             net_profit = Intl.NumberFormat('en-US',currencyOptions).format(net_profit);
                             net_profit = net_profit.replace(/[a-z]{3}/i, "").trim();
                             doc.text(gross_profit,docH,docV,'right');
+                            docV +=1;
+                            doc.line(docH - 30,docV,docH,docV);
                             doc.save('test.pdf');
 
                         })
