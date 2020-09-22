@@ -11450,6 +11450,7 @@ __webpack_require__.r(__webpack_exports__);
     generateReportIS: function generateReportIS() {
       var _this = this;
 
+      var sales_amount = null;
       sales_amount = Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD'

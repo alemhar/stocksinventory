@@ -166,7 +166,7 @@
                 */
             },
             generateReportIS(){
-
+                let sales_amount = null;
                 sales_amount = Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(1000);
                 sales_amount = result.replace(/[a-z]{3}/i, "").trim();
                 alert(sales_amount);
