@@ -187,7 +187,7 @@
                     //console.log(this.sales);
                     for (var sale in this.sales) {
                         docV += 8;
-                        docH = 25;
+                        docH = 40;
                         doc.text(this.sales[sale].account_name,docH,docV);
                         docH = 80;
                         sales_amount = (this.sales[sale].credit * 1) - (this.sales[sale].debit * 1);
@@ -210,7 +210,7 @@
                         this.cost_of_sales = response.data;
                         for (var cost_of_sale in this.cost_of_sales) {
                             docV += 8;
-                            docH = 25;
+                            docH = 40;
                             doc.text(this.cost_of_sales[cost_of_sale].account_name,docH,docV);
                             docH = 80;
                             cost_of_sales_amount = (this.cost_of_sales[cost_of_sale].debit * 1) - (this.cost_of_sales[cost_of_sale].credit * 1);
@@ -235,7 +235,7 @@
                             this.expenses = response.data;
                             for (var expense in this.expenses) {
                                 docV += 8;
-                                docH = 25;
+                                docH = 40;
                                 doc.text(this.expenses[expense].account_name,docH,docV);
                                 docH = 80;
                                 expense_amount = (this.expenses[expense].debit * 1) - (this.expenses[expense].credit * 1);

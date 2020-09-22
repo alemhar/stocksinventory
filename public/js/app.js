@@ -11474,7 +11474,7 @@ __webpack_require__.r(__webpack_exports__);
 
         for (var sale in _this.sales) {
           docV += 8;
-          docH = 25;
+          docH = 40;
           doc.text(_this.sales[sale].account_name, docH, docV);
           docH = 80;
           sales_amount = _this.sales[sale].credit * 1 - _this.sales[sale].debit * 1; //console.log(amount);
@@ -11497,7 +11497,7 @@ __webpack_require__.r(__webpack_exports__);
 
           for (var cost_of_sale in _this.cost_of_sales) {
             docV += 8;
-            docH = 25;
+            docH = 40;
             doc.text(_this.cost_of_sales[cost_of_sale].account_name, docH, docV);
             docH = 80;
             cost_of_sales_amount = _this.cost_of_sales[cost_of_sale].debit * 1 - _this.cost_of_sales[cost_of_sale].credit * 1; //console.log(amount);
@@ -11519,7 +11519,7 @@ __webpack_require__.r(__webpack_exports__);
 
             for (var expense in _this.expenses) {
               docV += 8;
-              docH = 25;
+              docH = 40;
               doc.text(_this.expenses[expense].account_name, docH, docV);
               docH = 80;
               expense_amount = _this.expenses[expense].debit * 1 - _this.expenses[expense].credit * 1; //console.log(amount);
