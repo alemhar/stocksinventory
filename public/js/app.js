@@ -11481,10 +11481,10 @@ __webpack_require__.r(__webpack_exports__);
           //amount.toFixed(2)
 
           sales_amount = Intl.NumberFormat('en-US', currencyOptions).format(sales_amount);
-          sales_amount = sales_amount.replace(/[a-z]{3}/i, "").trim();
-          alert(sales_amount); //doc.text(Number(sales_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
+          sales_amount = sales_amount.replace(/[a-z]{3}/i, "").trim(); //alert(sales_amount);
+          //doc.text(Number(sales_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
 
-          doc.text(sales_amount, docH, docV);
+          doc.text(sales_amount, docH, docV, 'right');
         }
 
         docV += 16;
@@ -11503,7 +11503,10 @@ __webpack_require__.r(__webpack_exports__);
             cost_of_sales_amount = _this.cost_of_sales[cost_of_sale].debit * 1 - _this.cost_of_sales[cost_of_sale].credit * 1; //console.log(amount);
             //amount.toFixed(2)
 
-            doc.text(Number(cost_of_sales_amount.toFixed(2)).toLocaleString() + '', docH, docV);
+            cost_of_sales_amount = Intl.NumberFormat('en-US', currencyOptions).format(cost_of_sales_amount);
+            cost_of_sales_amount = cost_of_sales_amount.replace(/[a-z]{3}/i, "").trim(); //doc.text(Number(expense_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
+
+            doc.text(cost_of_sales_amount, docH, docV, 'right'); //doc.text(Number(cost_of_sales_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
           }
 
           docV += 16;
@@ -11525,7 +11528,7 @@ __webpack_require__.r(__webpack_exports__);
               expense_amount = Intl.NumberFormat('en-US', currencyOptions).format(expense_amount);
               expense_amount = expense_amount.replace(/[a-z]{3}/i, "").trim(); //doc.text(Number(expense_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
 
-              doc.text(expense_amount, docH, docV);
+              doc.text(expense_amount, docH, docV, 'right');
             }
 
             doc.save('test.pdf');
