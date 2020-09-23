@@ -28,7 +28,7 @@ class RunningController extends Controller
             $transaction_date = '';
         }
 
-        $transaction = RunningAccount::where(function($query) use ($transaction_date){
+        $transaction = RunningAccount::where(function($query) use ($start,$end){
             $query->whereBetween('account_code', [$start, $end]);
             //$query->where('transaction_date','=', $transaction_date);
         })

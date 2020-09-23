@@ -90598,7 +90598,7 @@ var render = function() {
                                 _c(
                                   "a",
                                   {
-                                    staticClass: "btn btn-primary",
+                                    staticClass: "btn btn-primary float-right",
                                     attrs: { href: "#" },
                                     on: { click: _vm.generateReportBS }
                                   },

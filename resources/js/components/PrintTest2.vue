@@ -78,7 +78,7 @@
                                             </div>
                                             <input  type="date" class="form-control col-12" id="inputToDate" placeholder="Date">
                                         </div>
-                                        <a href="#" class="btn btn-primary" @click="generateReportBS">Generate</a>
+                                        <a href="#" class="btn btn-primary float-right" @click="generateReportBS">Generate</a>
                                     </div>
                                     </div>
                                 </div>
