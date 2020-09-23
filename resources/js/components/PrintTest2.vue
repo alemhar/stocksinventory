@@ -207,7 +207,7 @@
                     var docH = 15;
 
                     var doc = new jspdf();
-                    doc.setFont("Arial", 'normal');
+                    doc.setFont("Serif", 'normal');
                     doc.setFontSize(16);
                     doc.text(this.company.name,docH,docV);
                     docV += 6;
@@ -216,11 +216,11 @@
                     docV += 12;
                     docH = 105;
                     doc.setFontSize(16);
-                    doc.setFont("Arial", 'bold');
+                    doc.setFont("Serif", 'bold');
                     doc.text('INCOME STATEMENT',docH,docV, 'center');
                     docV += 6;
                     doc.setFontSize(10);
-                    doc.setFont("Arial", 'normal');
+                    doc.setFont("Serif", 'normal');
                     doc.text('From: '+this.from_transaction_date +' To: '+  this.to_transaction_date,docH,docV, 'center');
                     docV += 12;
                     docH = 15;
