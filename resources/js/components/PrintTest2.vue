@@ -212,13 +212,13 @@
                     docV += 6;
                     doc.setFontSize(12);
                     doc.text(this.company.address +' '+  this.company.address2 +' '+ this.company.city,docH,docV);
-                    docV += 6;
-                    doc.setFontSize(10);
-                    doc.text('From: '+this.from_transaction_date +' To: '+  this.to_transaction_date,docH,docV);
                     docV += 12;
-                    docH = 100;
+                    docH = 90;
                     doc.setFontSize(16);
                     doc.text('Income Statement',docH,docV, 'center');
+                    docV += 6;
+                    doc.setFontSize(10);
+                    doc.text('From: '+this.from_transaction_date +' To: '+  this.to_transaction_date,docH,docV, 'center');
                     docV += 12;
                     docH = 15;
                     doc.setFontSize(16);
