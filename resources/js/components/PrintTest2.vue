@@ -218,7 +218,7 @@
                     docV += 12;
                     docH = 100;
                     doc.setFontSize(16);
-                    doc.text('Income Statement',docH,docV);
+                    doc.text('Income Statement',docH,docV, 'center');
                     docV += 12;
                     docH = 15;
                     doc.setFontSize(16);
