@@ -148,6 +148,16 @@
               sales: {},
               cost_of_sales: {},
               expenses: {},
+              cashes: {},
+              current_assets: {},
+              non_current_assets: {},
+              liabilities: {},
+              non_current_liabilities: {},
+              loans: {},
+              other_non_current_liabilities: {},
+              owners_equity: {},
+              owners_withdrawal: {},
+
               //running_balance: 0,
               from_transaction_date: this.getDate(),
               to_transaction_date: this.getDate(),
@@ -182,20 +192,12 @@
             generateReportBS(){
                 let currencyOptions = { style: 'currency', currency: 'USD', currencyDisplay: 'code' };
                 let result = null;
-                axios.get('api/running?start=11011100&end=11011399&transaction_date='+this.transaction_date)
-                //axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
-                .then((response)=>{
-                    //console.log(response.data);
-                    axios.get('api/running?start=11011400&end=11051299&transaction_date='+this.transaction_date)
-                    .then((response)=>{
-                        console.log(response.data);
-                    })
-                    .catch(()=>{
-                    });
+                var cash_amount = 0;
+                var total_cash_amount = 0;
+                var main_total_cash_amount = 0;    
                 /*    
                     
                     this.sales = response.data;
-                    var sales_amount = 0;
                     var cost_of_sales_amount = 0;
                     var expense_amount = 0;
 
@@ -209,6 +211,7 @@
                     var net_profit = 0;
 
                     var gross_profit = 0;
+                */    
                     var docV = 15;
                     var docH = 15;
 
@@ -241,31 +244,86 @@
                     doc.setFontSize(16);
                     doc.text('Cash and Cash Equivalent',docH,docV);
                     doc.setFontSize(12);
+
+                axios.get('api/running?start=11011100&end=11011399&transaction_date='+this.transaction_date)
+                //axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
+                .then((response)=>{
+                    //console.log(response.data);
+                    this.cashes = response.data;
+
                     //console.log(this.sales);
-                    for (var sale in this.sales) {
+                    for (var cash in this.cashes) {
                         docV += 6;
                         docH = 25;
-                        doc.text(this.sales[sale].account_name,docH,docV);
+                        doc.text(this.cashes[cash].account_name,docH,docV);
                         docH = 130;
-                        sales_amount = (this.sales[sale].credit * 1) - (this.sales[sale].debit * 1);
-                        total_sales_amount += sales_amount;
-                        main_total_sales_amount += sales_amount;
+                        cash_amount = (this.cashes[cash].credit * 1) - (this.cashes[cash].debit * 1);
+                        total_cash_amount += cash_amount;
+                        main_total_cash_amount += cash_amount;
                         //console.log(amount);
                         //amount.toFixed(2)
-                        sales_amount = Intl.NumberFormat('en-US',currencyOptions).format(sales_amount);
-                        sales_amount = sales_amount.replace(/[a-z]{3}/i, "").trim();
-                        doc.text(sales_amount,docH,docV,'right');
+                        cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(cash_amount);
+                        cash_amount = cash_amount.replace(/[a-z]{3}/i, "").trim();
+                        doc.text(cash_amount,docH,docV,'right');
                     }
                     docH = 160;
-                        total_sales_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_sales_amount);
-                        total_sales_amount = total_sales_amount.replace(/[a-z]{3}/i, "").trim();
-                        doc.text(total_sales_amount,docH,docV,'right');
-
+                        total_cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_cash_amount);
+                        total_cash_amount = total_cash_amount.replace(/[a-z]{3}/i, "").trim();
+                        doc.text(total_cash_amount,docH,docV,'right');
+                    
+                    /*
                     docV += 12;
                     docH = 15;
                     doc.setFontSize(14);
                     doc.text('Cost of Sales',docH,docV);
                     doc.setFontSize(12);
+                    */
+
+                    axios.get('api/running?start=11011400&end=11051299&transaction_date='+this.transaction_date)
+                    .then((response)=>{
+                        console.log(response.data);
+                        this.current_assets = response.data;
+                        axios.get('api/running?start=15011100&end=15020099&transaction_date='+this.transaction_date)
+                        .then((response)=>{
+                            console.log(response.data);
+                            this.non_current_assets = response.data;
+                            axios.get('api/running?start=21010000&end=21051299&transaction_date='+this.transaction_date)
+                            .then((response)=>{
+                                console.log(response.data);
+                                this.liabilities = response.data;
+                                axios.get('api/running?start=22010000&end=22020099&transaction_date='+this.transaction_date)
+                                .then((response)=>{
+                                    console.log(response.data);
+                                    this.other_non_current_liabilities = response.data;
+                                    axios.get('api/running?start=31010000&end=31010099&transaction_date='+this.transaction_date)
+                                    .then((response)=>{
+                                        console.log(response.data);
+                                        this.owners_equity = response.data;
+                                        axios.get('api/running?start=31020000&end=31020099&transaction_date='+this.transaction_date)
+                                        .then((response)=>{
+                                            console.log(response.data);
+                                            this.owners_withdrawal = response.data;
+                                        })
+                                        .catch(()=>{
+                                        });
+                                    })
+                                    .catch(()=>{
+                                    });
+                                })
+                                .catch(()=>{
+                                });
+                            })
+                            .catch(()=>{
+                            });
+                        })
+                        .catch(()=>{
+                        });
+                    })
+                    .catch(()=>{
+                    });
+                
+
+                    /*
 
                     axios.get('api/daily?sub_account_type=COST_OF_SALES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
                     .then((response)=>{
@@ -467,6 +525,9 @@
                         total_cost_of_sales_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_cost_of_sales_amount);
                         total_cost_of_sales_amount = total_cost_of_sales_amount.replace(/[a-z]{3}/i, "").trim();
                         doc.text(total_cost_of_sales_amount,docH,docV,'right');
+                        docV +=1;
+                        doc.line(docH - 25,docV,docH,docV);
+
                         docV += 8;
                         docH = 15;
                         doc.setFontSize(14);

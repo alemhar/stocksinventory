@@ -712,6 +712,8 @@ class CDController extends Controller
             $transaction_items = TransactionItem::where('transaction_no',$transaction_no)
             ->update(['status' => 'REVERSE']);
         
+            // Add logic for reversing payment/collection ******************
+
             return ['message' => 'Transactions reversed.'];
     }
 
