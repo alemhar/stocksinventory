@@ -277,7 +277,7 @@
                         total_cash_amount = total_cash_amount.replace(/[a-z]{3}/i, "").trim();
                         doc.text(total_cash_amount,docH,docV,'right');
                     
-                    doc.save('test.pdf');
+                    
                     /*
                     docV += 12;
                     docH = 15;
@@ -298,13 +298,12 @@
                             current_asset_amount = (this.current_assets[current_asset].credit * 1) - (this.current_assets[current_asset].debit * 1);
                             total_current_asset_amount += current_asset_amount;
                             main_total_current_asset_amount += current_asset_amount;
-                            //console.log(amount);
-                            //amount.toFixed(2)
+
                             current_asset_amount = Intl.NumberFormat('en-US',currencyOptions).format(current_asset_amount);
                             current_asset_amount = current_asset_amount.replace(/[a-z]{3}/i, "").trim();
                             doc.text(current_asset_amount,docH,docV,'right');
                         }
-                        
+                        doc.save('test.pdf');
                         axios.get('api/running?start=15011100&end=15020099&transaction_date='+this.transaction_date)
                         .then((response)=>{
                             //console.log(response.data);
