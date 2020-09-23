@@ -271,6 +271,7 @@
                         total_cash_amount = total_cash_amount.replace(/[a-z]{3}/i, "").trim();
                         doc.text(total_cash_amount,docH,docV,'right');
                     
+                    doc.save('test.pdf');
                     /*
                     docV += 12;
                     docH = 15;
@@ -281,27 +282,27 @@
 
                     axios.get('api/running?start=11011400&end=11051299&transaction_date='+this.transaction_date)
                     .then((response)=>{
-                        console.log(response.data);
+                        //console.log(response.data);
                         this.current_assets = response.data;
                         axios.get('api/running?start=15011100&end=15020099&transaction_date='+this.transaction_date)
                         .then((response)=>{
-                            console.log(response.data);
+                            //console.log(response.data);
                             this.non_current_assets = response.data;
                             axios.get('api/running?start=21010000&end=21051299&transaction_date='+this.transaction_date)
                             .then((response)=>{
-                                console.log(response.data);
+                                //console.log(response.data);
                                 this.liabilities = response.data;
                                 axios.get('api/running?start=22010000&end=22020099&transaction_date='+this.transaction_date)
                                 .then((response)=>{
-                                    console.log(response.data);
+                                    //console.log(response.data);
                                     this.other_non_current_liabilities = response.data;
                                     axios.get('api/running?start=31010000&end=31010099&transaction_date='+this.transaction_date)
                                     .then((response)=>{
-                                        console.log(response.data);
+                                        //console.log(response.data);
                                         this.owners_equity = response.data;
                                         axios.get('api/running?start=31020000&end=31020099&transaction_date='+this.transaction_date)
                                         .then((response)=>{
-                                            console.log(response.data);
+                                            //console.log(response.data);
                                             this.owners_withdrawal = response.data;
                                         })
                                         .catch(()=>{
