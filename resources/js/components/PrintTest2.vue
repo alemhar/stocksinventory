@@ -264,7 +264,7 @@
                         docH = 25;
                         doc.text(this.cashes[cash].account_name,docH,docV);
                         docH = 130;
-                        cash_amount = (this.cashes[cash].credit * 1) - (this.cashes[cash].debit * 1);
+                        cash_amount = (this.cashes[cash].debit * 1) - (this.cashes[cash].credit * 1);
                         total_cash_amount += cash_amount;
                         main_total_cash_amount += cash_amount;
                         //console.log(amount);
@@ -296,7 +296,7 @@
                             docH = 25;
                             doc.text(this.current_assets[current_asset].account_name,docH,docV);
                             docH = 160;
-                            current_asset_amount = (this.current_assets[current_asset].credit * 1) - (this.current_assets[current_asset].debit * 1);
+                            current_asset_amount = (this.current_assets[current_asset].debit * 1) - (this.current_assets[current_asset].credit * 1);
                             total_current_asset_amount += current_asset_amount;
                             main_total_current_asset_amount += current_asset_amount;
                             
