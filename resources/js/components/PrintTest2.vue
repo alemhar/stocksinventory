@@ -215,9 +215,11 @@
                     docV += 12;
                     docH = 105;
                     doc.setFontSize(16);
-                    doc.fromHTML('<b>INCOME STATEMENT</b>',docH,docV, 'center');
+                    doc.setFontType("bold");
+                    doc.text('INCOME STATEMENT',docH,docV, 'center');
                     docV += 6;
                     doc.setFontSize(10);
+                    doc.setFontType("normal");
                     doc.text('From: '+this.from_transaction_date +' To: '+  this.to_transaction_date,docH,docV, 'center');
                     docV += 12;
                     docH = 15;
