@@ -11570,7 +11570,7 @@ __webpack_require__.r(__webpack_exports__);
             docV += 6;
             docH = 25;
             doc.text(_this2.current_assets[current_asset].account_name, docH, docV);
-            docH = 130;
+            docH = 160;
             current_asset_amount = _this2.current_assets[current_asset].credit * 1 - _this2.current_assets[current_asset].debit * 1;
             total_current_asset_amount += current_asset_amount;
             main_total_current_asset_amount += current_asset_amount;
