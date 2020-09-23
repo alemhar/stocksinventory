@@ -11481,6 +11481,9 @@ __webpack_require__.r(__webpack_exports__);
       var cash_amount = 0;
       var total_cash_amount = 0;
       var main_total_cash_amount = 0;
+      var current_asset_amount = 0;
+      var total_current_asset_amount = 0;
+      var main_total_current_asset_amount = 0;
       /*    
           
           this.sales = response.data;
@@ -11563,6 +11566,22 @@ __webpack_require__.r(__webpack_exports__);
         axios.get('api/running?start=11011400&end=11051299&transaction_date=' + _this2.transaction_date).then(function (response) {
           //console.log(response.data);
           _this2.current_assets = response.data;
+
+          for (var current_asset in _this2.current_assets) {
+            docV += 6;
+            docH = 25;
+            doc.text(_this2.current_assets[current_asset].account_name, docH, docV);
+            docH = 130;
+            current_asset_amount = _this2.current_assets[current_asset].credit * 1 - _this2.current_assets[current_asset].debit * 1;
+            total_current_asset_amount += current_asset_amount;
+            main_total_current_asset_amount += current_asset_amount; //console.log(amount);
+            //amount.toFixed(2)
+
+            current_asset_amount = Intl.NumberFormat('en-US', currencyOptions).format(current_asset_amount);
+            current_asset_amount = current_asset_amount.replace(/[a-z]{3}/i, "").trim();
+            doc.text(current_asset_amount, docH, docV, 'right');
+          }
+
           axios.get('api/running?start=15011100&end=15020099&transaction_date=' + _this2.transaction_date).then(function (response) {
             //console.log(response.data);
             _this2.non_current_assets = response.data;
