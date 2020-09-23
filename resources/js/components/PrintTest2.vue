@@ -72,7 +72,7 @@
                                             </div>
                                             <input  type="date" v-model="transaction_date" class="form-control col-12" id="inputFromDate" placeholder="Date">
                                         </div>
-                                        <div visibility="hidden" class="input-group mb-3">
+                                        <div style="visibility: hidden;" class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text inputGroup-sizing-default">To:</span>
                                             </div>
