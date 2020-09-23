@@ -214,6 +214,9 @@
                     doc.setFontSize(10);
                     doc.text('From: '+this.from_transaction_date +' To: '+  this.to_transaction_date,docH,docV);
                     docV += 12;
+                    doc.setFontSize(12);
+                    doc.text('Income Statement',docH,docV);
+                    docV += 12;
                     doc.setFontSize(16);
                     doc.text('Sales',docH,docV);
                     doc.setFontSize(12);
