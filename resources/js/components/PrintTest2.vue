@@ -187,8 +187,7 @@
                 axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
                 .then((response)=>{
                     this.sales = response.data;
-                    var docV = 15;
-                    var docH = 15;
+                    
 
                     var sales_amount = 0;
                     var cost_of_sales_amount = 0;
@@ -204,6 +203,9 @@
                     var net_profit = 0;
 
                     var gross_profit = 0;
+                    var docV = 15;
+                    var docH = 15;
+
                     var doc = new jspdf();
                     doc.setFontSize(16);
                     doc.text(this.company.name,docH,docV);
@@ -214,9 +216,11 @@
                     doc.setFontSize(10);
                     doc.text('From: '+this.from_transaction_date +' To: '+  this.to_transaction_date,docH,docV);
                     docV += 12;
-                    doc.setFontSize(12);
+                    docH = 100;
+                    doc.setFontSize(16);
                     doc.text('Income Statement',docH,docV);
                     docV += 12;
+                    docH = 15;
                     doc.setFontSize(16);
                     doc.text('Sales',docH,docV);
                     doc.setFontSize(12);
