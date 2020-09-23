@@ -11490,7 +11490,7 @@ __webpack_require__.r(__webpack_exports__);
         doc.setFontSize(12);
         doc.text(_this2.company.address + ' ' + _this2.company.address2 + ' ' + _this2.company.city, docH, docV);
         docV += 12;
-        docH = 90;
+        docH = 105;
         doc.setFontSize(16);
         doc.text('Income Statement', docH, docV, 'center');
         docV += 6;

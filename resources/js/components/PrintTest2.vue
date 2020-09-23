@@ -213,7 +213,7 @@
                     doc.setFontSize(12);
                     doc.text(this.company.address +' '+  this.company.address2 +' '+ this.company.city,docH,docV);
                     docV += 12;
-                    docH = 90;
+                    docH = 105;
                     doc.setFontSize(16);
                     doc.text('Income Statement',docH,docV, 'center');
                     docV += 6;
