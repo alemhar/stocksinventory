@@ -185,7 +185,13 @@
                 axios.get('api/running?start=11011100&end=11011399&transaction_date='+this.transaction_date)
                 //axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
                 .then((response)=>{
-                    console.log(response.data);
+                    //console.log(response.data);
+                    axios.get('api/running?start=11011400&end=11051299&transaction_date='+this.transaction_date)
+                    .then((response)=>{
+                        console.log(response.data);
+                    })
+                    .catch(()=>{
+                    });
                 /*    
                     
                     this.sales = response.data;
