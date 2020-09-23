@@ -304,7 +304,7 @@
                             current_asset_amount = current_asset_amount.replace(/[a-z]{3}/i, "").trim();
                             doc.text(current_asset_amount,docH,docV,'right');
                         }
-                        docV += 6;    
+                        docV += 12;    
                         docH = 15;
                         doc.setFontSize(16);
                         doc.text('TOTAL CURRENT ASSETS',docH,docV);

@@ -11580,7 +11580,7 @@ __webpack_require__.r(__webpack_exports__);
             doc.text(current_asset_amount, docH, docV, 'right');
           }
 
-          docV += 6;
+          docV += 12;
           docH = 15;
           doc.setFontSize(16);
           doc.text('TOTAL CURRENT ASSETS', docH, docV);
