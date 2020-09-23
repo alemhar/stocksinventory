@@ -215,7 +215,7 @@
                     docV += 12;
                     docH = 105;
                     doc.setFontSize(16);
-                    doc.text('Income Statement',docH,docV, 'center');
+                    doc.text('INCOME STATEMENT',docH,docV, 'center');
                     docV += 6;
                     doc.setFontSize(10);
                     doc.text('From: '+this.from_transaction_date +' To: '+  this.to_transaction_date,docH,docV, 'center');

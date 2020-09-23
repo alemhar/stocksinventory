@@ -11492,7 +11492,7 @@ __webpack_require__.r(__webpack_exports__);
         docV += 12;
         docH = 105;
         doc.setFontSize(16);
-        doc.text('Income Statement', docH, docV, 'center');
+        doc.text('INCOME STATEMENT', docH, docV, 'center');
         docV += 6;
         doc.setFontSize(10);
         doc.text('From: ' + _this2.from_transaction_date + ' To: ' + _this2.to_transaction_date, docH, docV, 'center');
