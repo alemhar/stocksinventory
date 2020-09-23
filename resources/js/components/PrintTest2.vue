@@ -237,7 +237,7 @@
                     docV += 6;
                     doc.setFontSize(10);
                     doc.setFont("Serif", 'normal');
-                    doc.text('From: '+this.from_transaction_date +' To: '+  this.to_transaction_date,docH,docV, 'center');
+                    doc.text('As of: '+this.transaction_date,docH,docV, 'center');
                     docV += 12;
                     docH = 15;
                     doc.setFontSize(16);
