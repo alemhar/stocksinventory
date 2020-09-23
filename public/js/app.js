@@ -11408,6 +11408,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -11420,6 +11431,7 @@ __webpack_require__.r(__webpack_exports__);
       //running_balance: 0,
       from_transaction_date: this.getDate(),
       to_transaction_date: this.getDate(),
+      transaction_date: this.getDate(),
       company: null,
       company_id: document.querySelector('meta[name="company-id"]').getAttribute('content') //report_type: 'IS',
       //active_debit_row: 0
@@ -11438,17 +11450,6 @@ __webpack_require__.r(__webpack_exports__);
       var day = toTwoDigits(today.getDate());
       return "".concat(year, "-").concat(month, "-").concat(day);
     },
-    generateReport: function generateReport() {
-      /*
-      axios.get('api/daily?report_type='+this.report_type+'&transaction_date='+this.transaction_date)
-      .then((response)=>{
-        this.reports = response.data;
-        console.log(response.data); 
-       })
-      .catch(()=>{
-      });
-      */
-    },
     getCompany: function getCompany() {
       var _this = this;
 
@@ -11458,6 +11459,171 @@ __webpack_require__.r(__webpack_exports__);
         _this.company = response.data;
       })["catch"](function () {//
       });
+    },
+    generateReportBS: function generateReportBS() {
+      var currencyOptions = {
+        style: 'currency',
+        currency: 'USD',
+        currencyDisplay: 'code'
+      };
+      var result = null;
+      axios.get('api/running?start=11011100&end=11011399&transaction_date=' + this.transaction_date) //axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
+      .then(function (response) {
+        console.log(response.data);
+        /*    
+            
+            this.sales = response.data;
+            var sales_amount = 0;
+            var cost_of_sales_amount = 0;
+            var expense_amount = 0;
+             var total_sales_amount = 0;
+            var total_cost_of_sales_amount = 0;
+            var total_expense_amount = 0;
+             var main_total_sales_amount = 0;
+            var main_total_cost_of_sales_amount = 0;
+            var main_total_expense_amount = 0;
+            var net_profit = 0;
+             var gross_profit = 0;
+            var docV = 15;
+            var docH = 15;
+             var doc = new jspdf();
+            doc.setFont("Serif", 'normal');
+            doc.setFontSize(16);
+            doc.text(this.company.name,docH,docV);
+            docV += 6;
+            doc.setFontSize(12);
+            doc.text(this.company.address +' '+  this.company.address2 +' '+ this.company.city,docH,docV);
+            docV += 12;
+            docH = 105;
+            doc.setFontSize(16);
+            doc.setFont("Serif", 'bold');
+            doc.text('BALANCE SHEET',docH,docV, 'center');
+            docV += 6;
+            doc.setFontSize(10);
+            doc.setFont("Serif", 'normal');
+            doc.text('From: '+this.from_transaction_date +' To: '+  this.to_transaction_date,docH,docV, 'center');
+            docV += 12;
+            docH = 15;
+            doc.setFontSize(16);
+            doc.text('ASSETS',docH,docV);
+            docV += 12;
+            docH = 15;
+            doc.setFontSize(16);
+            doc.text('CURRENT ASSETS',docH,docV);
+            docV += 12;
+            docH = 15;
+            doc.setFontSize(16);
+            doc.text('Cash and Cash Equivalent',docH,docV);
+            doc.setFontSize(12);
+            //console.log(this.sales);
+            for (var sale in this.sales) {
+                docV += 6;
+                docH = 25;
+                doc.text(this.sales[sale].account_name,docH,docV);
+                docH = 130;
+                sales_amount = (this.sales[sale].credit * 1) - (this.sales[sale].debit * 1);
+                total_sales_amount += sales_amount;
+                main_total_sales_amount += sales_amount;
+                //console.log(amount);
+                //amount.toFixed(2)
+                sales_amount = Intl.NumberFormat('en-US',currencyOptions).format(sales_amount);
+                sales_amount = sales_amount.replace(/[a-z]{3}/i, "").trim();
+                doc.text(sales_amount,docH,docV,'right');
+            }
+            docH = 160;
+                total_sales_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_sales_amount);
+                total_sales_amount = total_sales_amount.replace(/[a-z]{3}/i, "").trim();
+                doc.text(total_sales_amount,docH,docV,'right');
+             docV += 12;
+            docH = 15;
+            doc.setFontSize(14);
+            doc.text('Cost of Sales',docH,docV);
+            doc.setFontSize(12);
+             axios.get('api/daily?sub_account_type=COST_OF_SALES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
+            .then((response)=>{
+                this.cost_of_sales = response.data;
+                for (var cost_of_sale in this.cost_of_sales) {
+                    docV += 6;
+                    docH = 25;
+                    doc.text(this.cost_of_sales[cost_of_sale].account_name,docH,docV);
+                    docH = 130;
+                    cost_of_sales_amount = (this.cost_of_sales[cost_of_sale].debit * 1) - (this.cost_of_sales[cost_of_sale].credit * 1);
+                    total_cost_of_sales_amount += cost_of_sales_amount;
+                    main_total_cost_of_sales_amount += cost_of_sales_amount;
+                    //console.log(amount);
+                    //amount.toFixed(2)
+                    cost_of_sales_amount = Intl.NumberFormat('en-US',currencyOptions).format(cost_of_sales_amount);
+                     cost_of_sales_amount = cost_of_sales_amount.replace(/[a-z]{3}/i, "").trim();
+                     //doc.text(Number(expense_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
+                    doc.text(cost_of_sales_amount,docH,docV,'right');
+                    
+                    //doc.text(Number(cost_of_sales_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
+                }
+                docH = 160;
+                total_cost_of_sales_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_cost_of_sales_amount);
+                total_cost_of_sales_amount = total_cost_of_sales_amount.replace(/[a-z]{3}/i, "").trim();
+                doc.text(total_cost_of_sales_amount,docH,docV,'right');
+                docV += 8;
+                docH = 15;
+                doc.setFontSize(14);
+                doc.text('Gross Profit',docH,docV);
+                 doc.setFontSize(12);
+                docH = 160;
+                gross_profit = (main_total_sales_amount*1) - (main_total_cost_of_sales_amount*1);
+                gross_profit = Intl.NumberFormat('en-US',currencyOptions).format(gross_profit);
+                gross_profit = gross_profit.replace(/[a-z]{3}/i, "").trim();
+                doc.text(gross_profit,docH,docV,'right');
+                 docV += 12;
+                docH = 15;
+                doc.setFontSize(14);
+                doc.text('Expenses',docH,docV);
+                doc.setFontSize(12);
+                 axios.get('api/daily?sub_account_type=EXPENSES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
+                .then((response)=>{
+                    this.expenses = response.data;
+                    for (var expense in this.expenses) {
+                        docV += 6;
+                        docH = 25;
+                        doc.text(this.expenses[expense].account_name,docH,docV);
+                        docH = 130;
+                        expense_amount = (this.expenses[expense].debit * 1) - (this.expenses[expense].credit * 1);
+                        total_expense_amount += expense_amount;
+                        main_total_expense_amount += expense_amount;
+                        //console.log(amount);
+                        //amount.toFixed(2)
+                         expense_amount = Intl.NumberFormat('en-US',currencyOptions).format(expense_amount);
+                        expense_amount = expense_amount.replace(/[a-z]{3}/i, "").trim();
+                         //doc.text(Number(expense_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
+                        doc.text(expense_amount,docH,docV,'right');
+                    }
+                    docH = 160;
+                    total_expense_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_expense_amount);
+                    total_expense_amount = total_expense_amount.replace(/[a-z]{3}/i, "").trim();
+                    doc.text(total_expense_amount,docH,docV,'right');
+                    docV +=1;
+                    doc.line(docH - 25,docV,docH,docV);
+                    
+                    docV += 8;
+                    docH = 15;
+                    doc.setFontSize(14);
+                    doc.text('Net Profit',docH,docV);
+                     doc.setFontSize(12);
+                    docH = 160;
+                    net_profit = (main_total_sales_amount*1) - (main_total_cost_of_sales_amount*1) - (main_total_expense_amount*1);
+                    net_profit = Intl.NumberFormat('en-US',currencyOptions).format(net_profit);
+                    net_profit = net_profit.replace(/[a-z]{3}/i, "").trim();
+                    doc.text(net_profit,docH,docV,'right');
+                    docV +=1;
+                    doc.line(docH - 25,docV,docH,docV);
+                    doc.save('test.pdf');
+                 })
+                .catch(()=>{
+                });
+             })
+            .catch(()=>{
+            });
+         */
+      })["catch"](function () {});
     },
     generateReportIS: function generateReportIS() {
       var _this2 = this;
@@ -90383,13 +90549,70 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _vm._m(3),
-                          _vm._v(" "),
-                          _vm._m(4),
+                          _c("div", { staticClass: "col-4" }, [
+                            _c("div", { staticClass: "card" }, [
+                              _c("div", { staticClass: "card-header" }, [
+                                _vm._v(
+                                  "\n                                    Balance Sheet\n                                "
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "card-body" }, [
+                                _c("h5", { staticClass: "card-title" }, [
+                                  _vm._v("Generate Balance Sheet")
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "input-group mb-3" }, [
+                                  _vm._m(3),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.transaction_date,
+                                        expression: "transaction_date"
+                                      }
+                                    ],
+                                    staticClass: "form-control col-12",
+                                    attrs: {
+                                      type: "date",
+                                      id: "inputFromDate",
+                                      placeholder: "Date"
+                                    },
+                                    domProps: { value: _vm.transaction_date },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.transaction_date =
+                                          $event.target.value
+                                      }
+                                    }
+                                  })
+                                ]),
+                                _vm._v(" "),
+                                _vm._m(4),
+                                _vm._v(" "),
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "btn btn-primary",
+                                    attrs: { href: "#" },
+                                    on: { click: _vm.generateReportBS }
+                                  },
+                                  [_vm._v("Generate")]
+                                )
+                              ])
+                            ])
+                          ]),
                           _vm._v(" "),
                           _vm._m(5),
                           _vm._v(" "),
-                          _vm._m(6)
+                          _vm._m(6),
+                          _vm._v(" "),
+                          _vm._m(7)
                         ]
                       )
                     ])
@@ -90439,31 +90662,36 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-4" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-header" }, [
-          _vm._v(
-            "\n                                    Balance Sheet\n                                "
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text inputGroup-sizing-default" },
+        [_vm._v("As of:")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "input-group mb-3", attrs: { visibility: "hidden" } },
+      [
+        _c("div", { staticClass: "input-group-prepend" }, [
+          _c(
+            "span",
+            { staticClass: "input-group-text inputGroup-sizing-default" },
+            [_vm._v("To:")]
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c("h5", { staticClass: "card-title" }, [
-            _vm._v("Special title treatment")
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "card-text" }, [
-            _vm._v(
-              "With supporting text below as a natural lead-in to additional content."
-            )
-          ]),
-          _vm._v(" "),
-          _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
-            _vm._v("Generate")
-          ])
-        ])
-      ])
-    ])
+        _c("input", {
+          staticClass: "form-control col-12",
+          attrs: { type: "date", id: "inputToDate", placeholder: "Date" }
+        })
+      ]
+    )
   },
   function() {
     var _vm = this

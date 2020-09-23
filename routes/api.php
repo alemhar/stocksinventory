@@ -60,6 +60,11 @@ Route::apiResources([
     'daily' => 'API\DailyController'
 ]);
 
+Route::apiResources([
+    'running' => 'API\RunningController'
+]);
+
+
 Route::get('depreciate', 'API\CDController@depreciate_transactions')->name('depreciate_transactions');
 
 
