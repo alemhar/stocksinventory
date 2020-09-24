@@ -11607,8 +11607,9 @@ __webpack_require__.r(__webpack_exports__);
           doc.text('Land', docH, docV);
           docH = 160;
           doc.setFontSize(12);
-          doc.text(_this2.formatToCurrency(_this2.getLandAccount()), docH, docV, 'right');
-          doc.save('test.pdf');
+          console.log(_this2.getLandAccount()); //doc.text(this.formatToCurrency(this.getLandAccount()),docH,docV,'right');
+          //doc.save('test.pdf');
+
           /*
           axios.get('api/running?start=15011100&end=15011199&transaction_date='+this.transaction_date)
           .then((response)=>{

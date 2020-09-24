@@ -333,9 +333,10 @@
                         doc.text('Land',docH,docV);
                         docH = 160;
                         doc.setFontSize(12);
-                        doc.text(this.formatToCurrency(this.getLandAccount()),docH,docV,'right');
+                        console.log(this.getLandAccount());
+                        //doc.text(this.formatToCurrency(this.getLandAccount()),docH,docV,'right');
                             
-                        doc.save('test.pdf');
+                        //doc.save('test.pdf');
                         
                         
                         /*
