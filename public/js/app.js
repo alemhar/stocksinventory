@@ -11685,6 +11685,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 doc.text(this.formatToCurrency(accu_total_building_amount), docH, docV, 'right');
+                docH = 160;
+                doc.setFontSize(12);
+                doc.text(this.formatToCurrency(total_building_amount - accu_total_building_amount), docH, docV, 'right');
                 doc.save('test.pdf');
                 /*
                 axios.get('api/running?start=15011100&end=15011199&transaction_date='+this.transaction_date)
@@ -11817,7 +11820,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 //.catch(()=>{
                 //});
 
-              case 113:
+              case 116:
               case "end":
                 return _context.stop();
             }

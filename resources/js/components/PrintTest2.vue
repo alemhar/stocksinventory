@@ -372,7 +372,9 @@
                             accu_total_building_amount = 0;
                         }
                         doc.text(this.formatToCurrency(accu_total_building_amount),docH,docV,'right');
-
+                        docH = 160;
+                        doc.setFontSize(12);
+                        doc.text(this.formatToCurrency(total_building_amount - accu_total_building_amount),docH,docV,'right');
                         
 
                         doc.save('test.pdf');
