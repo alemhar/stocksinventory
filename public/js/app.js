@@ -11617,6 +11617,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           doc.text(current_asset_amount, docH, docV, 'right');
         }
 
+        console.log(_this2.current_assets);
         docV += 12;
         docH = 15;
         doc.setFontSize(16);
