@@ -239,18 +239,16 @@
                     doc.text('Cash and Cash Equivalent',docH,docV);
                     doc.setFontSize(12);
 
-                    /*
-                    getCashAccount();
+                    
                     (async () => {
-                        this.lands = await this.getLandAccount();
+                        this.cashes = await this.getCashAccount();
                     })();
-                    */
-
-                axios.get('api/running?start=11011100&end=11011399&transaction_date='+this.transaction_date)
+                    
+                //axios.get('api/running?start=11011100&end=11011399&transaction_date='+this.transaction_date)
                 //axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
-                .then((response)=>{
+                //.then((response)=>{
                     //console.log(response.data);
-                    this.cashes = response.data;
+                    //this.cashes = response.data;
 
                     //console.log(this.sales);
                     for (var cash in this.cashes) {
@@ -503,9 +501,9 @@
                     });
 
                 */    
-                })
-                .catch(()=>{
-                });
+                //})
+                //.catch(()=>{
+                //});
 
             },
             async getCurrentAssets(){
