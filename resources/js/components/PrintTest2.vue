@@ -336,10 +336,12 @@
                         docH = 160;
                         doc.setFontSize(12);
                         
-                        async () => {
+                        (async () => {
                             this.lands = await this.getLandAccount();
-                        }
-                        /*
+                        });
+
+                        
+                        
                         var land_amount = 0;
                         
                         for (var land in this.lands) {
