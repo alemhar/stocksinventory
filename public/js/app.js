@@ -11760,31 +11760,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _getLandAccount = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _this3 = this;
-
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                axios.get('api/running?start=15011100&end=15011199&transaction_date=' + this.transaction_date).then(function (response) {
-                  _this3.lands = response.data;
+                return _context.abrupt("return", axios.get('api/running?start=15011100&end=15011199&transaction_date=' + this.transaction_date).then(function (response) {
+                  /*
+                  this.lands = response.data;
                   var total_land_amount = 0;
-                  var land_amount = 0; //console.log(this.sales);
-
-                  for (var land in _this3.lands) {
-                    console.log('land: ', land); //docV += 6;
-                    //docH = 25;
-                    //doc.text(this.lands[land].account_name,docH,docV);
-                    //docH = 130;
-
-                    land_amount = _this3.lands[land].debit * 1 - _this3.lands[land].credit * 1;
-                    total_land_amount += land_amount; //main_total_land_amount += land_amount;
+                  var land_amount = 0;
+                   //console.log(this.sales);
+                  for (var land in this.lands) {
+                      console.log('land: ',land);
+                      //docV += 6;
+                      //docH = 25;
+                      //doc.text(this.lands[land].account_name,docH,docV);
+                      //docH = 130;
+                      land_amount = (this.lands[land].debit * 1) - (this.lands[land].credit * 1);
+                      total_land_amount += land_amount;
+                      //main_total_land_amount += land_amount;
                   }
-
-                  return 100;
-                })["catch"](function () {
-                  return 0;
-                });
+                  //return 100;
+                  */
+                })["catch"](function () {//return 0;
+                }));
 
               case 1:
               case "end":
@@ -11811,7 +11810,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return amount;
     },
     generateReportIS: function generateReportIS() {
-      var _this4 = this;
+      var _this3 = this;
 
       var currencyOptions = {
         style: 'currency',
@@ -11820,7 +11819,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       };
       var result = null;
       axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date=' + this.from_transaction_date + '&to_transaction_date=' + this.to_transaction_date).then(function (response) {
-        _this4.sales = response.data;
+        _this3.sales = response.data;
         var sales_amount = 0;
         var cost_of_sales_amount = 0;
         var expense_amount = 0;
@@ -11837,10 +11836,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         var doc = new jspdf__WEBPACK_IMPORTED_MODULE_2__["default"]();
         doc.setFont("Serif", 'normal');
         doc.setFontSize(16);
-        doc.text(_this4.company.name, docH, docV);
+        doc.text(_this3.company.name, docH, docV);
         docV += 6;
         doc.setFontSize(12);
-        doc.text(_this4.company.address + ' ' + _this4.company.address2 + ' ' + _this4.company.city, docH, docV);
+        doc.text(_this3.company.address + ' ' + _this3.company.address2 + ' ' + _this3.company.city, docH, docV);
         docV += 12;
         docH = 105;
         doc.setFontSize(16);
@@ -11849,19 +11848,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         docV += 6;
         doc.setFontSize(10);
         doc.setFont("Serif", 'normal');
-        doc.text('From: ' + _this4.from_transaction_date + ' To: ' + _this4.to_transaction_date, docH, docV, 'center');
+        doc.text('From: ' + _this3.from_transaction_date + ' To: ' + _this3.to_transaction_date, docH, docV, 'center');
         docV += 12;
         docH = 15;
         doc.setFontSize(16);
         doc.text('Sales', docH, docV);
         doc.setFontSize(12); //console.log(this.sales);
 
-        for (var sale in _this4.sales) {
+        for (var sale in _this3.sales) {
           docV += 6;
           docH = 25;
-          doc.text(_this4.sales[sale].account_name, docH, docV);
+          doc.text(_this3.sales[sale].account_name, docH, docV);
           docH = 130;
-          sales_amount = _this4.sales[sale].credit * 1 - _this4.sales[sale].debit * 1;
+          sales_amount = _this3.sales[sale].credit * 1 - _this3.sales[sale].debit * 1;
           total_sales_amount += sales_amount;
           main_total_sales_amount += sales_amount; //console.log(amount);
           //amount.toFixed(2)
@@ -11880,15 +11879,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         doc.setFontSize(14);
         doc.text('Cost of Sales', docH, docV);
         doc.setFontSize(12);
-        axios.get('api/daily?sub_account_type=COST_OF_SALES&from_transaction_date=' + _this4.from_transaction_date + '&to_transaction_date=' + _this4.to_transaction_date).then(function (response) {
-          _this4.cost_of_sales = response.data;
+        axios.get('api/daily?sub_account_type=COST_OF_SALES&from_transaction_date=' + _this3.from_transaction_date + '&to_transaction_date=' + _this3.to_transaction_date).then(function (response) {
+          _this3.cost_of_sales = response.data;
 
-          for (var cost_of_sale in _this4.cost_of_sales) {
+          for (var cost_of_sale in _this3.cost_of_sales) {
             docV += 6;
             docH = 25;
-            doc.text(_this4.cost_of_sales[cost_of_sale].account_name, docH, docV);
+            doc.text(_this3.cost_of_sales[cost_of_sale].account_name, docH, docV);
             docH = 130;
-            cost_of_sales_amount = _this4.cost_of_sales[cost_of_sale].debit * 1 - _this4.cost_of_sales[cost_of_sale].credit * 1;
+            cost_of_sales_amount = _this3.cost_of_sales[cost_of_sale].debit * 1 - _this3.cost_of_sales[cost_of_sale].credit * 1;
             total_cost_of_sales_amount += cost_of_sales_amount;
             main_total_cost_of_sales_amount += cost_of_sales_amount; //console.log(amount);
             //amount.toFixed(2)
@@ -11920,15 +11919,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           doc.setFontSize(14);
           doc.text('Expenses', docH, docV);
           doc.setFontSize(12);
-          axios.get('api/daily?sub_account_type=EXPENSES&from_transaction_date=' + _this4.from_transaction_date + '&to_transaction_date=' + _this4.to_transaction_date).then(function (response) {
-            _this4.expenses = response.data;
+          axios.get('api/daily?sub_account_type=EXPENSES&from_transaction_date=' + _this3.from_transaction_date + '&to_transaction_date=' + _this3.to_transaction_date).then(function (response) {
+            _this3.expenses = response.data;
 
-            for (var expense in _this4.expenses) {
+            for (var expense in _this3.expenses) {
               docV += 6;
               docH = 25;
-              doc.text(_this4.expenses[expense].account_name, docH, docV);
+              doc.text(_this3.expenses[expense].account_name, docH, docV);
               docH = 130;
-              expense_amount = _this4.expenses[expense].debit * 1 - _this4.expenses[expense].credit * 1;
+              expense_amount = _this3.expenses[expense].debit * 1 - _this3.expenses[expense].credit * 1;
               total_expense_amount += expense_amount;
               main_total_expense_amount += expense_amount; //console.log(amount);
               //amount.toFixed(2)
