@@ -334,9 +334,9 @@
                         docH = 160;
                         doc.setFontSize(12);
                         
+                        var test = this.getLandAccount();
 
-
-                        console.log('getLandAccount :', this.getLandAccount());
+                        console.log('getLandAccount :', test);
                         //doc.text(this.formatToCurrency(this.getLandAccount()),docH,docV,'right');
                             
                         //doc.save('test.pdf');

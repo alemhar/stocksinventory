@@ -11627,7 +11627,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           doc.text('Land', docH, docV);
           docH = 160;
           doc.setFontSize(12);
-          console.log('getLandAccount :', _this2.getLandAccount()); //doc.text(this.formatToCurrency(this.getLandAccount()),docH,docV,'right');
+
+          var test = _this2.getLandAccount();
+
+          console.log('getLandAccount :', test); //doc.text(this.formatToCurrency(this.getLandAccount()),docH,docV,'right');
           //doc.save('test.pdf');
 
           /*
