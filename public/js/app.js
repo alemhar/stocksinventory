@@ -11760,6 +11760,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _getLandAccount = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -11768,9 +11769,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.get('api/running?start=15011100&end=15011199&transaction_date=' + this.transaction_date);
 
               case 2:
-                return _context.abrupt("return", _context.sent);
+                response = _context.sent;
+                return _context.abrupt("return", response);
 
-              case 3:
+              case 4:
               case "end":
                 return _context.stop();
             }

@@ -489,8 +489,8 @@
             },
             async getLandAccount(){
 
-                return await axios.get('api/running?start=15011100&end=15011199&transaction_date='+this.transaction_date);
-
+                const response = await axios.get('api/running?start=15011100&end=15011199&transaction_date='+this.transaction_date);
+                return response;
                 //.then((response)=>{
                     /*
                     this.lands = response.data;
