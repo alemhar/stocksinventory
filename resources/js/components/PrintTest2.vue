@@ -507,7 +507,7 @@
             },
             async getCurrentAssets(){
                 const response = await axios.get('api/running?start=11011400&end=11051299&transaction_date='+this.transaction_date);
-                return response;
+                return response.data;
             },
             async getCashAccount(){
                 const response = await axios.get('api/running?start=11011100&end=11011399&transaction_date='+this.transaction_date);

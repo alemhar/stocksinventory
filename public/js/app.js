@@ -11821,7 +11821,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 response = _context3.sent;
-                return _context3.abrupt("return", response);
+                return _context3.abrupt("return", response.data);
 
               case 4:
               case "end":
