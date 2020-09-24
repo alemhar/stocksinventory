@@ -11764,7 +11764,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                return _context.abrupt("return", axios.get('api/running?start=15011100&end=15011199&transaction_date=' + this.transaction_date).then(function (response) {
+                return _context.abrupt("return", axios.get('api/running?start=11011400&end=11051299&transaction_date=' + this.transaction_date).then(function (response) {
                   /*
                   this.lands = response.data;
                   var total_land_amount = 0;
