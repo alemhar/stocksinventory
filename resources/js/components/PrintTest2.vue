@@ -374,7 +374,7 @@
                         doc.text(this.formatToCurrency(accu_total_building_amount),docH,docV,'right');
                         docH = 160;
                         doc.setFontSize(12);
-                        doc.text(this.formatToCurrency(total_building_amount - accu_total_building_amount),docH,docV,'right');
+                        doc.text(this.formatToCurrency(10 - 3),docH,docV,'right');
                         
 
                         doc.save('test.pdf');
