@@ -159,7 +159,7 @@
               owners_withdrawal: {},
               lands: {},
               buildings: {},
-              
+              accu_buildings: {},
               //running_balance: 0,
               from_transaction_date: this.getDate(),
               to_transaction_date: this.getDate(),
@@ -206,7 +206,11 @@
                 
                 var building_amount = 0;
                 var total_building_amount = 0;
+                
                 var total_land_amount = 0;        
+                
+                var accu_building_amount = 0;
+                var accu_total_building_amount = 0;
                 
                     var docV = 15;
                     var docH = 15;
@@ -331,7 +335,7 @@
                         docH = 15;
                         doc.setFontSize(16);
                         doc.text('Building',docH,docV);
-                        docH = 160;
+                        docH = 130;
                         doc.setFontSize(12);
 
                         this.buildings = await this.getBuildingAccount();
@@ -346,6 +350,30 @@
                             total_building_amount = 0;
                         }
                         doc.text(this.formatToCurrency(total_building_amount),docH,docV,'right');
+
+
+
+                        docV += 6;
+                        docH = 15;
+                        doc.setFontSize(16);
+                        doc.text('Accumulated Dep. - Building',docH,docV);
+                        docH = 130;
+                        doc.setFontSize(12);
+
+                        this.accu_buildings = await this.getAccuBuildingAccount();
+                        var accu_building_amount = 0;
+                        if(this.buildings){
+                            for (var accu_building in this.accu_buildings) {
+                                //console.log('land: ',land);
+                                accu_building_amount = (this.accu_buildings[accu_building].debit * 1) - (this.accu_buildings[accu_building].credit * 1);
+                                accu_total_building_amount += accu_building_amount;
+                            }
+                        } else {
+                            accu_total_building_amount = 0;
+                        }
+                        doc.text(this.formatToCurrency(accu_total_building_amount),docH,docV,'right');
+
+                        
 
                         doc.save('test.pdf');
 
@@ -497,6 +525,10 @@
                 //.catch(()=>{
                 //});
 
+            },
+            async getAccuBuildingAccount(){
+                const response = await axios.get('api/running?start=15011200&end=15011299&transaction_date='+this.transaction_date);
+                return response.data;
             },
             async getBuildingAccount(){
                 const response = await axios.get('api/running?start=15011200&end=15011299&transaction_date='+this.transaction_date);

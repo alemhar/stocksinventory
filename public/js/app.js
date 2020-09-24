@@ -11459,6 +11459,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       owners_withdrawal: {},
       lands: {},
       buildings: {},
+      accu_buildings: {},
       //running_balance: 0,
       from_transaction_date: this.getDate(),
       to_transaction_date: this.getDate(),
@@ -11495,7 +11496,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _generateReportBS = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var currencyOptions, result, cash_amount, total_cash_amount, main_total_cash_amount, current_asset_amount, total_current_asset_amount, main_total_current_asset_amount, grand_total_current_asset_amount, building_amount, total_building_amount, total_land_amount, docV, docH, doc, cash, current_asset, land_amount, land, building;
+        var currencyOptions, result, cash_amount, total_cash_amount, main_total_cash_amount, current_asset_amount, total_current_asset_amount, main_total_current_asset_amount, grand_total_current_asset_amount, building_amount, total_building_amount, total_land_amount, accu_building_amount, accu_total_building_amount, docV, docH, doc, cash, current_asset, land_amount, land, building, accu_building;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -11516,6 +11517,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 building_amount = 0;
                 total_building_amount = 0;
                 total_land_amount = 0;
+                accu_building_amount = 0;
+                accu_total_building_amount = 0;
                 docV = 15;
                 docH = 15;
                 doc = new jspdf__WEBPACK_IMPORTED_MODULE_2__["default"]();
@@ -11547,10 +11550,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 doc.setFontSize(16);
                 doc.text('Cash and Cash Equivalent', docH, docV);
                 doc.setFontSize(12);
-                _context.next = 45;
+                _context.next = 47;
                 return this.getCashAccount();
 
-              case 45:
+              case 47:
                 this.cashes = _context.sent;
 
                 for (cash in this.cashes) {
@@ -11570,10 +11573,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 total_cash_amount = Intl.NumberFormat('en-US', currencyOptions).format(total_cash_amount);
                 total_cash_amount = total_cash_amount.replace(/[a-z]{3}/i, "").trim();
                 doc.text(total_cash_amount, docH, docV, 'right');
-                _context.next = 53;
+                _context.next = 55;
                 return this.getCurrentAssets();
 
-              case 53:
+              case 55:
                 this.current_assets = _context.sent;
                 console.log(this.current_assets);
 
@@ -11616,10 +11619,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 doc.text('Land', docH, docV);
                 docH = 160;
                 doc.setFontSize(12);
-                _context.next = 82;
+                _context.next = 84;
                 return this.getLandAccount();
 
-              case 82:
+              case 84:
                 this.lands = _context.sent;
                 land_amount = 0;
 
@@ -11638,12 +11641,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 docH = 15;
                 doc.setFontSize(16);
                 doc.text('Building', docH, docV);
-                docH = 160;
+                docH = 130;
                 doc.setFontSize(12);
-                _context.next = 94;
+                _context.next = 96;
                 return this.getBuildingAccount();
 
-              case 94:
+              case 96:
                 this.buildings = _context.sent;
                 building_amount = 0;
 
@@ -11658,6 +11661,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 doc.text(this.formatToCurrency(total_building_amount), docH, docV, 'right');
+                docV += 6;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('Accumulated Dep. - Building', docH, docV);
+                docH = 130;
+                doc.setFontSize(12);
+                _context.next = 108;
+                return this.getAccuBuildingAccount();
+
+              case 108:
+                this.accu_buildings = _context.sent;
+                accu_building_amount = 0;
+
+                if (this.buildings) {
+                  for (accu_building in this.accu_buildings) {
+                    //console.log('land: ',land);
+                    accu_building_amount = this.accu_buildings[accu_building].debit * 1 - this.accu_buildings[accu_building].credit * 1;
+                    accu_total_building_amount += accu_building_amount;
+                  }
+                } else {
+                  accu_total_building_amount = 0;
+                }
+
+                doc.text(this.formatToCurrency(accu_total_building_amount), docH, docV, 'right');
                 doc.save('test.pdf');
                 /*
                 axios.get('api/running?start=15011100&end=15011199&transaction_date='+this.transaction_date)
@@ -11790,7 +11817,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 //.catch(()=>{
                 //});
 
-              case 99:
+              case 113:
               case "end":
                 return _context.stop();
             }
@@ -11804,8 +11831,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       return generateReportBS;
     }(),
-    getBuildingAccount: function () {
-      var _getBuildingAccount = _asyncToGenerator(
+    getAccuBuildingAccount: function () {
+      var _getAccuBuildingAccount = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var response;
@@ -11828,14 +11855,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2, this);
       }));
 
-      function getBuildingAccount() {
-        return _getBuildingAccount.apply(this, arguments);
+      function getAccuBuildingAccount() {
+        return _getAccuBuildingAccount.apply(this, arguments);
       }
 
-      return getBuildingAccount;
+      return getAccuBuildingAccount;
     }(),
-    getCurrentAssets: function () {
-      var _getCurrentAssets = _asyncToGenerator(
+    getBuildingAccount: function () {
+      var _getBuildingAccount = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var response;
@@ -11844,7 +11871,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return axios.get('api/running?start=11011400&end=11051299&transaction_date=' + this.transaction_date);
+                return axios.get('api/running?start=15011200&end=15011299&transaction_date=' + this.transaction_date);
 
               case 2:
                 response = _context3.sent;
@@ -11858,14 +11885,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3, this);
       }));
 
-      function getCurrentAssets() {
-        return _getCurrentAssets.apply(this, arguments);
+      function getBuildingAccount() {
+        return _getBuildingAccount.apply(this, arguments);
       }
 
-      return getCurrentAssets;
+      return getBuildingAccount;
     }(),
-    getCashAccount: function () {
-      var _getCashAccount = _asyncToGenerator(
+    getCurrentAssets: function () {
+      var _getCurrentAssets = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         var response;
@@ -11874,7 +11901,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context4.prev = _context4.next) {
               case 0:
                 _context4.next = 2;
-                return axios.get('api/running?start=11011100&end=11011399&transaction_date=' + this.transaction_date);
+                return axios.get('api/running?start=11011400&end=11051299&transaction_date=' + this.transaction_date);
 
               case 2:
                 response = _context4.sent;
@@ -11888,14 +11915,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee4, this);
       }));
 
-      function getCashAccount() {
-        return _getCashAccount.apply(this, arguments);
+      function getCurrentAssets() {
+        return _getCurrentAssets.apply(this, arguments);
       }
 
-      return getCashAccount;
+      return getCurrentAssets;
     }(),
-    getLandAccount: function () {
-      var _getLandAccount = _asyncToGenerator(
+    getCashAccount: function () {
+      var _getCashAccount = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
         var response;
@@ -11904,7 +11931,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return axios.get('api/running?start=15011100&end=15011199&transaction_date=' + this.transaction_date);
+                return axios.get('api/running?start=11011100&end=11011399&transaction_date=' + this.transaction_date);
 
               case 2:
                 response = _context5.sent;
@@ -11916,6 +11943,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee5, this);
+      }));
+
+      function getCashAccount() {
+        return _getCashAccount.apply(this, arguments);
+      }
+
+      return getCashAccount;
+    }(),
+    getLandAccount: function () {
+      var _getLandAccount = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.next = 2;
+                return axios.get('api/running?start=15011100&end=15011199&transaction_date=' + this.transaction_date);
+
+              case 2:
+                response = _context6.sent;
+                return _context6.abrupt("return", response.data);
+
+              case 4:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this);
       }));
 
       function getLandAccount() {
