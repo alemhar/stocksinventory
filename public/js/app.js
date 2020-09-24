@@ -11458,6 +11458,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       owners_equity: {},
       owners_withdrawal: {},
       lands: {},
+      total_land_amount: 0,
       //running_balance: 0,
       from_transaction_date: this.getDate(),
       to_transaction_date: this.getDate(),
@@ -11632,7 +11633,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           _asyncToGenerator(
           /*#__PURE__*/
           _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-            var test;
             return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
@@ -11641,18 +11641,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     return _this2.getLandAccount();
 
                   case 2:
-                    test = _context.sent;
-                    console.log(test);
+                    _this2.lands = _context.sent;
 
-                  case 4:
+                  case 3:
                   case "end":
                     return _context.stop();
                 }
               }
             }, _callee);
-          }))(); //doc.text(this.formatToCurrency(this.getLandAccount()),docH,docV,'right');
-          //doc.save('test.pdf');
+          }))();
 
+          var land_amount = 0;
+
+          for (var land in _this2.lands) {
+            console.log('land: ', land);
+            land_amount = _this2.lands[land].debit * 1 - _this2.lands[land].credit * 1;
+            _this2.total_land_amount += land_amount;
+          }
+
+          doc.text(_this2.formatToCurrency(_this2.total_land_amount), docH, docV, 'right');
+          doc.save('test.pdf');
           /*
           axios.get('api/running?start=15011100&end=15011199&transaction_date='+this.transaction_date)
           .then((response)=>{
@@ -11691,7 +11699,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           .catch(()=>{
           });
           */
-
         })["catch"](function () {});
         /*
          axios.get('api/daily?sub_account_type=COST_OF_SALES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)

@@ -158,7 +158,9 @@
               owners_equity: {},
               owners_withdrawal: {},
               lands: {},
-                      
+              
+              
+              total_land_amount: 0,
               //running_balance: 0,
               from_transaction_date: this.getDate(),
               to_transaction_date: this.getDate(),
@@ -333,16 +335,23 @@
                         doc.text('Land',docH,docV);
                         docH = 160;
                         doc.setFontSize(12);
-                        ;(async () => {
-                            const test = await this.getLandAccount();
-                            console.log(test)
-                        })()
 
+                        ;(async () => {
+                            this.lands = await this.getLandAccount();
+                        })()
+                        var land_amount = 0;
+                        
+                        for (var land in this.lands) {
+                        console.log('land: ',land);
+                        land_amount = (this.lands[land].debit * 1) - (this.lands[land].credit * 1);
+                        this.total_land_amount += land_amount;
+
+                    }
                         
                         
-                        //doc.text(this.formatToCurrency(this.getLandAccount()),docH,docV,'right');
+                        doc.text(this.formatToCurrency(this.total_land_amount),docH,docV,'right');
                             
-                        //doc.save('test.pdf');
+                        doc.save('test.pdf');
                         
                         
                         /*
