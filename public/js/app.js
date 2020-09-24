@@ -11437,6 +11437,7 @@ __webpack_require__.r(__webpack_exports__);
       other_non_current_liabilities: {},
       owners_equity: {},
       owners_withdrawal: {},
+      lands: {},
       //running_balance: 0,
       from_transaction_date: this.getDate(),
       to_transaction_date: this.getDate(),
@@ -11563,7 +11564,6 @@ __webpack_require__.r(__webpack_exports__);
         doc.setFontSize(12);
         */
 
-        doc.setFontSize(16);
         axios.get('api/running?start=11011400&end=11051299&transaction_date=' + _this2.transaction_date).then(function (response) {
           //console.log(response.data);
           _this2.current_assets = response.data;
@@ -11571,6 +11571,7 @@ __webpack_require__.r(__webpack_exports__);
           for (var current_asset in _this2.current_assets) {
             docV += 6;
             docH = 15;
+            doc.setFontSize(16);
             doc.text(_this2.current_assets[current_asset].account_name, docH, docV);
             docH = 160;
             current_asset_amount = _this2.current_assets[current_asset].debit * 1 - _this2.current_assets[current_asset].credit * 1;
@@ -11578,6 +11579,7 @@ __webpack_require__.r(__webpack_exports__);
             main_total_current_asset_amount += current_asset_amount;
             current_asset_amount = Intl.NumberFormat('en-US', currencyOptions).format(current_asset_amount);
             current_asset_amount = current_asset_amount.replace(/[a-z]{3}/i, "").trim();
+            doc.setFontSize(12);
             doc.text(current_asset_amount, docH, docV, 'right');
           }
 
@@ -11591,27 +11593,60 @@ __webpack_require__.r(__webpack_exports__);
           grand_total_current_asset_amount = Intl.NumberFormat('en-US', currencyOptions).format(grand_total_current_asset_amount);
           grand_total_current_asset_amount = grand_total_current_asset_amount.replace(/[a-z]{3}/i, "").trim();
           doc.text(grand_total_current_asset_amount, docH, docV, 'right');
+          docV += 12;
+          docH = 15;
+          doc.setFontSize(16);
+          doc.text('NON CURRENT ASSETS', docH, docV);
+          docV += 6;
+          docH = 15;
+          doc.setFontSize(16);
+          doc.text('Property, Plan & Equipment', docH, docV);
+          docV += 6;
+          docH = 15;
+          doc.setFontSize(16);
+          doc.text('Land', docH, docV);
+          docH = 160;
+          doc.setFontSize(12);
+          doc.text(_this2.formatToCurrency(_this2.getLandAccount()), docH, docV, 'right');
           doc.save('test.pdf');
-          axios.get('api/running?start=15011100&end=15020099&transaction_date=' + _this2.transaction_date).then(function (response) {
-            //console.log(response.data);
-            _this2.non_current_assets = response.data;
-            axios.get('api/running?start=21010000&end=21051299&transaction_date=' + _this2.transaction_date).then(function (response) {
+          /*
+          axios.get('api/running?start=15011100&end=15011199&transaction_date='+this.transaction_date)
+          .then((response)=>{
               //console.log(response.data);
-              _this2.liabilities = response.data;
-              axios.get('api/running?start=22010000&end=22020099&transaction_date=' + _this2.transaction_date).then(function (response) {
-                //console.log(response.data);
-                _this2.other_non_current_liabilities = response.data;
-                axios.get('api/running?start=31010000&end=31010099&transaction_date=' + _this2.transaction_date).then(function (response) {
+              this.non_current_assets = response.data;
+               axios.get('api/running?start=21010000&end=21051299&transaction_date='+this.transaction_date)
+              .then((response)=>{
                   //console.log(response.data);
-                  _this2.owners_equity = response.data;
-                  axios.get('api/running?start=31020000&end=31020099&transaction_date=' + _this2.transaction_date).then(function (response) {
-                    //console.log(response.data);
-                    _this2.owners_withdrawal = response.data;
-                  })["catch"](function () {});
-                })["catch"](function () {});
-              })["catch"](function () {});
-            })["catch"](function () {});
-          })["catch"](function () {});
+                  this.liabilities = response.data;
+                  axios.get('api/running?start=22010000&end=22020099&transaction_date='+this.transaction_date)
+                  .then((response)=>{
+                      //console.log(response.data);
+                      this.other_non_current_liabilities = response.data;
+                      axios.get('api/running?start=31010000&end=31010099&transaction_date='+this.transaction_date)
+                      .then((response)=>{
+                          //console.log(response.data);
+                          this.owners_equity = response.data;
+                          axios.get('api/running?start=31020000&end=31020099&transaction_date='+this.transaction_date)
+                          .then((response)=>{
+                              //console.log(response.data);
+                              this.owners_withdrawal = response.data;
+                          })
+                          .catch(()=>{
+                          });
+                      })
+                      .catch(()=>{
+                      });
+                  })
+                  .catch(()=>{
+                  });
+              })
+              .catch(()=>{
+              });
+              
+          })
+          .catch(()=>{
+          });
+          */
         })["catch"](function () {});
         /*
          axios.get('api/daily?sub_account_type=COST_OF_SALES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
@@ -11700,8 +11735,40 @@ __webpack_require__.r(__webpack_exports__);
         */
       })["catch"](function () {});
     },
-    generateReportIS: function generateReportIS() {
+    getLandAccount: function getLandAccount() {
       var _this3 = this;
+
+      axios.get('api/running?start=15011100&end=15011199&transaction_date=' + this.transaction_date).then(function (response) {
+        _this3.lands = response.data;
+        var total_land_amount;
+        var land_amount = 0; //console.log(this.sales);
+
+        for (var land in _this3.lands) {
+          //docV += 6;
+          //docH = 25;
+          //doc.text(this.lands[land].account_name,docH,docV);
+          //docH = 130;
+          land_amount = _this3.lands[land].debit * 1 - _this3.lands[land].credit * 1;
+          total_land_amount += land_amount; //main_total_land_amount += land_amount;
+        }
+
+        return total_land_amount;
+      })["catch"](function () {
+        return 0;
+      });
+    },
+    formatToCurrency: function formatToCurrency(amount) {
+      var currencyOptions = {
+        style: 'currency',
+        currency: 'USD',
+        currencyDisplay: 'code'
+      };
+      amount = Intl.NumberFormat('en-US', currencyOptions).format(amount);
+      amount = amount.replace(/[a-z]{3}/i, "").trim();
+      return amount;
+    },
+    generateReportIS: function generateReportIS() {
+      var _this4 = this;
 
       var currencyOptions = {
         style: 'currency',
@@ -11710,7 +11777,7 @@ __webpack_require__.r(__webpack_exports__);
       };
       var result = null;
       axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date=' + this.from_transaction_date + '&to_transaction_date=' + this.to_transaction_date).then(function (response) {
-        _this3.sales = response.data;
+        _this4.sales = response.data;
         var sales_amount = 0;
         var cost_of_sales_amount = 0;
         var expense_amount = 0;
@@ -11727,10 +11794,10 @@ __webpack_require__.r(__webpack_exports__);
         var doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"]();
         doc.setFont("Serif", 'normal');
         doc.setFontSize(16);
-        doc.text(_this3.company.name, docH, docV);
+        doc.text(_this4.company.name, docH, docV);
         docV += 6;
         doc.setFontSize(12);
-        doc.text(_this3.company.address + ' ' + _this3.company.address2 + ' ' + _this3.company.city, docH, docV);
+        doc.text(_this4.company.address + ' ' + _this4.company.address2 + ' ' + _this4.company.city, docH, docV);
         docV += 12;
         docH = 105;
         doc.setFontSize(16);
@@ -11739,19 +11806,19 @@ __webpack_require__.r(__webpack_exports__);
         docV += 6;
         doc.setFontSize(10);
         doc.setFont("Serif", 'normal');
-        doc.text('From: ' + _this3.from_transaction_date + ' To: ' + _this3.to_transaction_date, docH, docV, 'center');
+        doc.text('From: ' + _this4.from_transaction_date + ' To: ' + _this4.to_transaction_date, docH, docV, 'center');
         docV += 12;
         docH = 15;
         doc.setFontSize(16);
         doc.text('Sales', docH, docV);
         doc.setFontSize(12); //console.log(this.sales);
 
-        for (var sale in _this3.sales) {
+        for (var sale in _this4.sales) {
           docV += 6;
           docH = 25;
-          doc.text(_this3.sales[sale].account_name, docH, docV);
+          doc.text(_this4.sales[sale].account_name, docH, docV);
           docH = 130;
-          sales_amount = _this3.sales[sale].credit * 1 - _this3.sales[sale].debit * 1;
+          sales_amount = _this4.sales[sale].credit * 1 - _this4.sales[sale].debit * 1;
           total_sales_amount += sales_amount;
           main_total_sales_amount += sales_amount; //console.log(amount);
           //amount.toFixed(2)
@@ -11770,15 +11837,15 @@ __webpack_require__.r(__webpack_exports__);
         doc.setFontSize(14);
         doc.text('Cost of Sales', docH, docV);
         doc.setFontSize(12);
-        axios.get('api/daily?sub_account_type=COST_OF_SALES&from_transaction_date=' + _this3.from_transaction_date + '&to_transaction_date=' + _this3.to_transaction_date).then(function (response) {
-          _this3.cost_of_sales = response.data;
+        axios.get('api/daily?sub_account_type=COST_OF_SALES&from_transaction_date=' + _this4.from_transaction_date + '&to_transaction_date=' + _this4.to_transaction_date).then(function (response) {
+          _this4.cost_of_sales = response.data;
 
-          for (var cost_of_sale in _this3.cost_of_sales) {
+          for (var cost_of_sale in _this4.cost_of_sales) {
             docV += 6;
             docH = 25;
-            doc.text(_this3.cost_of_sales[cost_of_sale].account_name, docH, docV);
+            doc.text(_this4.cost_of_sales[cost_of_sale].account_name, docH, docV);
             docH = 130;
-            cost_of_sales_amount = _this3.cost_of_sales[cost_of_sale].debit * 1 - _this3.cost_of_sales[cost_of_sale].credit * 1;
+            cost_of_sales_amount = _this4.cost_of_sales[cost_of_sale].debit * 1 - _this4.cost_of_sales[cost_of_sale].credit * 1;
             total_cost_of_sales_amount += cost_of_sales_amount;
             main_total_cost_of_sales_amount += cost_of_sales_amount; //console.log(amount);
             //amount.toFixed(2)
@@ -11810,15 +11877,15 @@ __webpack_require__.r(__webpack_exports__);
           doc.setFontSize(14);
           doc.text('Expenses', docH, docV);
           doc.setFontSize(12);
-          axios.get('api/daily?sub_account_type=EXPENSES&from_transaction_date=' + _this3.from_transaction_date + '&to_transaction_date=' + _this3.to_transaction_date).then(function (response) {
-            _this3.expenses = response.data;
+          axios.get('api/daily?sub_account_type=EXPENSES&from_transaction_date=' + _this4.from_transaction_date + '&to_transaction_date=' + _this4.to_transaction_date).then(function (response) {
+            _this4.expenses = response.data;
 
-            for (var expense in _this3.expenses) {
+            for (var expense in _this4.expenses) {
               docV += 6;
               docH = 25;
-              doc.text(_this3.expenses[expense].account_name, docH, docV);
+              doc.text(_this4.expenses[expense].account_name, docH, docV);
               docH = 130;
-              expense_amount = _this3.expenses[expense].debit * 1 - _this3.expenses[expense].credit * 1;
+              expense_amount = _this4.expenses[expense].debit * 1 - _this4.expenses[expense].credit * 1;
               total_expense_amount += expense_amount;
               main_total_expense_amount += expense_amount; //console.log(amount);
               //amount.toFixed(2)

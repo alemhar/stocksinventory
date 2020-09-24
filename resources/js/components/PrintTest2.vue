@@ -157,7 +157,8 @@
               other_non_current_liabilities: {},
               owners_equity: {},
               owners_withdrawal: {},
-
+              lands: {},
+                      
               //running_balance: 0,
               from_transaction_date: this.getDate(),
               to_transaction_date: this.getDate(),
@@ -274,9 +275,9 @@
                         doc.text(cash_amount,docH,docV,'right');
                     }
                     docH = 160;
-                        total_cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_cash_amount);
-                        total_cash_amount = total_cash_amount.replace(/[a-z]{3}/i, "").trim();
-                        doc.text(total_cash_amount,docH,docV,'right');
+                    total_cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_cash_amount);
+                    total_cash_amount = total_cash_amount.replace(/[a-z]{3}/i, "").trim();
+                    doc.text(total_cash_amount,docH,docV,'right');
                     
                     
                     /*
@@ -286,7 +287,7 @@
                     doc.text('Cost of Sales',docH,docV);
                     doc.setFontSize(12);
                     */
-                    doc.setFontSize(16);
+                    
                     axios.get('api/running?start=11011400&end=11051299&transaction_date='+this.transaction_date)
                     .then((response)=>{
                         //console.log(response.data);
@@ -294,6 +295,7 @@
                         for (var current_asset in this.current_assets) {
                             docV += 6;
                             docH = 15;
+                            doc.setFontSize(16);
                             doc.text(this.current_assets[current_asset].account_name,docH,docV);
                             docH = 160;
                             current_asset_amount = (this.current_assets[current_asset].debit * 1) - (this.current_assets[current_asset].credit * 1);
@@ -302,6 +304,7 @@
                             
                             current_asset_amount = Intl.NumberFormat('en-US',currencyOptions).format(current_asset_amount);
                             current_asset_amount = current_asset_amount.replace(/[a-z]{3}/i, "").trim();
+                            doc.setFontSize(12);
                             doc.text(current_asset_amount,docH,docV,'right');
                         }
                         docV += 12;    
@@ -316,14 +319,31 @@
                         grand_total_current_asset_amount = grand_total_current_asset_amount.replace(/[a-z]{3}/i, "").trim();
                         doc.text(grand_total_current_asset_amount,docH,docV,'right');
 
-                        
-
-
+                        docV += 12;
+                        docH = 15;
+                        doc.setFontSize(16);
+                        doc.text('NON CURRENT ASSETS',docH,docV);
+                        docV += 6;
+                        docH = 15;
+                        doc.setFontSize(16);
+                        doc.text('Property, Plan & Equipment',docH,docV);
+                        docV += 6;
+                        docH = 15;
+                        doc.setFontSize(16);
+                        doc.text('Land',docH,docV);
+                        docH = 160;
+                        doc.setFontSize(12);
+                        doc.text(this.formatToCurrency(this.getLandAccount()),docH,docV,'right');
+                            
                         doc.save('test.pdf');
-                        axios.get('api/running?start=15011100&end=15020099&transaction_date='+this.transaction_date)
+                        
+                        
+                        /*
+                        axios.get('api/running?start=15011100&end=15011199&transaction_date='+this.transaction_date)
                         .then((response)=>{
                             //console.log(response.data);
                             this.non_current_assets = response.data;
+
                             axios.get('api/running?start=21010000&end=21051299&transaction_date='+this.transaction_date)
                             .then((response)=>{
                                 //console.log(response.data);
@@ -352,13 +372,14 @@
                             })
                             .catch(()=>{
                             });
+                            
                         })
                         .catch(()=>{
                         });
+                        */
                     })
                     .catch(()=>{
                     });
-                
 
                     /*
 
@@ -462,6 +483,37 @@
                 });
 
             },
+            getLandAccount(){
+                axios.get('api/running?start=15011100&end=15011199&transaction_date='+this.transaction_date)
+                .then((response)=>{
+                    
+                    this.lands = response.data;
+                    var total_land_amount;
+                    var land_amount = 0;
+
+                    //console.log(this.sales);
+                    for (var land in this.lands) {
+                        //docV += 6;
+                        //docH = 25;
+                        //doc.text(this.lands[land].account_name,docH,docV);
+                        //docH = 130;
+                        land_amount = (this.lands[land].debit * 1) - (this.lands[land].credit * 1);
+                        total_land_amount += land_amount;
+                        //main_total_land_amount += land_amount;
+                    }
+                    return total_land_amount;
+                })
+                .catch(()=>{
+                    return 0;
+                });    
+            },
+            formatToCurrency(amount){
+                let currencyOptions = { style: 'currency', currency: 'USD', currencyDisplay: 'code' };
+                amount = Intl.NumberFormat('en-US',currencyOptions).format(amount);
+                amount = amount.replace(/[a-z]{3}/i, "").trim();
+                return amount;
+            },
+
             generateReportIS(){
                 let currencyOptions = { style: 'currency', currency: 'USD', currencyDisplay: 'code' };
                 
