@@ -484,7 +484,7 @@
                 });
 
             },
-            getLandAccount(){
+            async getLandAccount(){
 
                 axios.get('api/running?start=15011100&end=15011199&transaction_date='+this.transaction_date)
                 .then((response)=>{
@@ -505,6 +505,7 @@
                         //main_total_land_amount += land_amount;
                     }
                     return 100;
+
                 })
                 .catch(()=>{
                     return 0;
