@@ -11589,8 +11589,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 case 2:
                   _this2.current_assets = _context.sent;
+                  console.log(_this2.current_assets);
 
-                case 3:
+                case 4:
                 case "end":
                   return _context.stop();
               }
@@ -11615,9 +11616,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           current_asset_amount = current_asset_amount.replace(/[a-z]{3}/i, "").trim();
           doc.setFontSize(12);
           doc.text(current_asset_amount, docH, docV, 'right');
-        }
+        } //console.log(this.current_assets);
 
-        console.log(_this2.current_assets);
+
         docV += 12;
         docH = 15;
         doc.setFontSize(16);

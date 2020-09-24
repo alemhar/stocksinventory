@@ -283,7 +283,7 @@
                     
                     (async () => {
                         this.current_assets = await this.getCurrentAssets();
-                        //console.log(this.current_assets);
+                        console.log(this.current_assets);
                     })();
 
                     //axios.get('api/running?start=11011400&end=11051299&transaction_date='+this.transaction_date)
@@ -307,7 +307,7 @@
                         doc.setFontSize(12);
                         doc.text(current_asset_amount,docH,docV,'right');
                     }
-                    console.log(this.current_assets);
+                    //console.log(this.current_assets);
                         docV += 12;    
                         docH = 15;
                         doc.setFontSize(16);
