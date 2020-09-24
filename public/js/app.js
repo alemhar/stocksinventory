@@ -11628,8 +11628,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           doc.text('Land', docH, docV);
           docH = 160;
           doc.setFontSize(12);
-          ;
 
+          /*#__PURE__*/
           _asyncToGenerator(
           /*#__PURE__*/
           _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -11649,18 +11649,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
               }
             }, _callee);
-          }))();
-
+          }));
+          /*
           var land_amount = 0;
-
-          for (var land in _this2.lands) {
-            console.log('land: ', land);
-            land_amount = _this2.lands[land].debit * 1 - _this2.lands[land].credit * 1;
-            _this2.total_land_amount += land_amount;
-          }
-
-          doc.text(_this2.formatToCurrency(_this2.total_land_amount), docH, docV, 'right');
+          
+          for (var land in this.lands) {
+          console.log('land: ',land);
+          land_amount = (this.lands[land].debit * 1) - (this.lands[land].credit * 1);
+          this.total_land_amount += land_amount;
+          doc.text(this.formatToCurrency(this.total_land_amount),docH,docV,'right');
+              
           doc.save('test.pdf');
+                            
+          
+          
+          
+          
           /*
           axios.get('api/running?start=15011100&end=15011199&transaction_date='+this.transaction_date)
           .then((response)=>{
@@ -11699,6 +11703,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           .catch(()=>{
           });
           */
+
         })["catch"](function () {});
         /*
          axios.get('api/daily?sub_account_type=COST_OF_SALES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)

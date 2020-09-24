@@ -335,23 +335,25 @@
                         doc.text('Land',docH,docV);
                         docH = 160;
                         doc.setFontSize(12);
-
-                        ;(async () => {
+                        
+                        async () => {
                             this.lands = await this.getLandAccount();
-                        })()
+                        }
+                        /*
                         var land_amount = 0;
                         
                         for (var land in this.lands) {
                         console.log('land: ',land);
                         land_amount = (this.lands[land].debit * 1) - (this.lands[land].credit * 1);
                         this.total_land_amount += land_amount;
-
-                    }
-                        
-                        
                         doc.text(this.formatToCurrency(this.total_land_amount),docH,docV,'right');
                             
                         doc.save('test.pdf');
+
+                    
+                        
+                        
+                        
                         
                         
                         /*
