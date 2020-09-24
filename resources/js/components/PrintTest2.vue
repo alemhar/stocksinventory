@@ -284,6 +284,21 @@
                     (async () => {
                         this.current_assets = await this.getCurrentAssets();
                         console.log(this.current_assets);
+                        for (var current_asset in this.current_assets) {
+                            docV += 6;
+                            docH = 15;
+                            doc.setFontSize(16);
+                            doc.text(this.current_assets[current_asset].account_name,docH,docV);
+                            docH = 160;
+                            current_asset_amount = (this.current_assets[current_asset].debit * 1) - (this.current_assets[current_asset].credit * 1);
+                            total_current_asset_amount += current_asset_amount;
+                            main_total_current_asset_amount += current_asset_amount;
+                            
+                            current_asset_amount = Intl.NumberFormat('en-US',currencyOptions).format(current_asset_amount);
+                            current_asset_amount = current_asset_amount.replace(/[a-z]{3}/i, "").trim();
+                            doc.setFontSize(12);
+                            doc.text(current_asset_amount,docH,docV,'right');
+                        }
                     })();
 
                     //axios.get('api/running?start=11011400&end=11051299&transaction_date='+this.transaction_date)
@@ -292,21 +307,7 @@
                         //console.log(response.data);
                         //this.current_assets = response.data;
 
-                    for (var current_asset in this.current_assets) {
-                        docV += 6;
-                        docH = 15;
-                        doc.setFontSize(16);
-                        doc.text(this.current_assets[current_asset].account_name,docH,docV);
-                        docH = 160;
-                        current_asset_amount = (this.current_assets[current_asset].debit * 1) - (this.current_assets[current_asset].credit * 1);
-                        total_current_asset_amount += current_asset_amount;
-                        main_total_current_asset_amount += current_asset_amount;
-                        
-                        current_asset_amount = Intl.NumberFormat('en-US',currencyOptions).format(current_asset_amount);
-                        current_asset_amount = current_asset_amount.replace(/[a-z]{3}/i, "").trim();
-                        doc.setFontSize(12);
-                        doc.text(current_asset_amount,docH,docV,'right');
-                    }
+                    
                     //console.log(this.current_assets);
                         docV += 12;    
                         docH = 15;

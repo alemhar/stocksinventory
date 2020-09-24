@@ -11580,6 +11580,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _asyncToGenerator(
         /*#__PURE__*/
         _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+          var current_asset;
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
@@ -11591,7 +11592,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this2.current_assets = _context.sent;
                   console.log(_this2.current_assets);
 
-                case 4:
+                  for (current_asset in _this2.current_assets) {
+                    docV += 6;
+                    docH = 15;
+                    doc.setFontSize(16);
+                    doc.text(_this2.current_assets[current_asset].account_name, docH, docV);
+                    docH = 160;
+                    current_asset_amount = _this2.current_assets[current_asset].debit * 1 - _this2.current_assets[current_asset].credit * 1;
+                    total_current_asset_amount += current_asset_amount;
+                    main_total_current_asset_amount += current_asset_amount;
+                    current_asset_amount = Intl.NumberFormat('en-US', currencyOptions).format(current_asset_amount);
+                    current_asset_amount = current_asset_amount.replace(/[a-z]{3}/i, "").trim();
+                    doc.setFontSize(12);
+                    doc.text(current_asset_amount, docH, docV, 'right');
+                  }
+
+                case 5:
                 case "end":
                   return _context.stop();
               }
@@ -11601,22 +11617,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         //.then((response)=>{
         //console.log(response.data);
         //this.current_assets = response.data;
-
-
-        for (var current_asset in _this2.current_assets) {
-          docV += 6;
-          docH = 15;
-          doc.setFontSize(16);
-          doc.text(_this2.current_assets[current_asset].account_name, docH, docV);
-          docH = 160;
-          current_asset_amount = _this2.current_assets[current_asset].debit * 1 - _this2.current_assets[current_asset].credit * 1;
-          total_current_asset_amount += current_asset_amount;
-          main_total_current_asset_amount += current_asset_amount;
-          current_asset_amount = Intl.NumberFormat('en-US', currencyOptions).format(current_asset_amount);
-          current_asset_amount = current_asset_amount.replace(/[a-z]{3}/i, "").trim();
-          doc.setFontSize(12);
-          doc.text(current_asset_amount, docH, docV, 'right');
-        } //console.log(this.current_assets);
+        //console.log(this.current_assets);
 
 
         docV += 12;
