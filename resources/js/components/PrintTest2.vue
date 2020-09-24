@@ -489,7 +489,7 @@
                 .then((response)=>{
                     console.log(response.data);
                     this.lands = response.data;
-                    var total_land_amount;
+                    var total_land_amount = 0;
                     var land_amount = 0;
 
                     //console.log(this.sales);

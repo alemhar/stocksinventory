@@ -11742,7 +11742,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('api/running?start=15011100&end=15011199&transaction_date=' + this.transaction_date).then(function (response) {
         console.log(response.data);
         _this3.lands = response.data;
-        var total_land_amount;
+        var total_land_amount = 0;
         var land_amount = 0; //console.log(this.sales);
 
         for (var land in _this3.lands) {
