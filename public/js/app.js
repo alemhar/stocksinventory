@@ -11607,7 +11607,7 @@ __webpack_require__.r(__webpack_exports__);
           doc.text('Land', docH, docV);
           docH = 160;
           doc.setFontSize(12);
-          console.log(_this2.getLandAccount()); //doc.text(this.formatToCurrency(this.getLandAccount()),docH,docV,'right');
+          console.log('getLandAccount :', _this2.getLandAccount()); //doc.text(this.formatToCurrency(this.getLandAccount()),docH,docV,'right');
           //doc.save('test.pdf');
 
           /*
