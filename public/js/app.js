@@ -11754,7 +11754,7 @@ __webpack_require__.r(__webpack_exports__);
           total_land_amount += land_amount; //main_total_land_amount += land_amount;
         }
 
-        return total_land_amount;
+        return 100;
       })["catch"](function () {
         return 0;
       });
