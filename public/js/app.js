@@ -11459,7 +11459,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       owners_withdrawal: {},
       lands: {},
       buildings: {},
-      total_land_amount: 0,
       //running_balance: 0,
       from_transaction_date: this.getDate(),
       to_transaction_date: this.getDate(),
@@ -11496,7 +11495,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _generateReportBS = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var currencyOptions, result, cash_amount, total_cash_amount, main_total_cash_amount, current_asset_amount, total_current_asset_amount, main_total_current_asset_amount, grand_total_current_asset_amount, building_amount, total_building_amount, docV, docH, doc, cash, current_asset, land_amount, land, building;
+        var currencyOptions, result, cash_amount, total_cash_amount, main_total_cash_amount, current_asset_amount, total_current_asset_amount, main_total_current_asset_amount, grand_total_current_asset_amount, building_amount, total_building_amount, total_land_amount, docV, docH, doc, cash, current_asset, land_amount, land, building;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -11516,6 +11515,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 grand_total_current_asset_amount = 0;
                 building_amount = 0;
                 total_building_amount = 0;
+                total_land_amount = 0;
                 docV = 15;
                 docH = 15;
                 doc = new jspdf__WEBPACK_IMPORTED_MODULE_2__["default"]();
@@ -11547,10 +11547,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 doc.setFontSize(16);
                 doc.text('Cash and Cash Equivalent', docH, docV);
                 doc.setFontSize(12);
-                _context.next = 44;
+                _context.next = 45;
                 return this.getCashAccount();
 
-              case 44:
+              case 45:
                 this.cashes = _context.sent;
 
                 for (cash in this.cashes) {
@@ -11570,10 +11570,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 total_cash_amount = Intl.NumberFormat('en-US', currencyOptions).format(total_cash_amount);
                 total_cash_amount = total_cash_amount.replace(/[a-z]{3}/i, "").trim();
                 doc.text(total_cash_amount, docH, docV, 'right');
-                _context.next = 52;
+                _context.next = 53;
                 return this.getCurrentAssets();
 
-              case 52:
+              case 53:
                 this.current_assets = _context.sent;
                 console.log(this.current_assets);
 
@@ -11616,10 +11616,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 doc.text('Land', docH, docV);
                 docH = 160;
                 doc.setFontSize(12);
-                _context.next = 81;
+                _context.next = 82;
                 return this.getLandAccount();
 
-              case 81:
+              case 82:
                 this.lands = _context.sent;
                 land_amount = 0;
 
@@ -11627,23 +11627,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   for (land in this.lands) {
                     console.log('land: ', land);
                     land_amount = this.lands[land].debit * 1 - this.lands[land].credit * 1;
-                    this.total_land_amount += land_amount;
+                    total_land_amount += land_amount;
                   }
                 } else {
-                  this.total_land_amount = 0;
+                  total_land_amount = 0;
                 }
 
-                doc.text(this.formatToCurrency(this.total_land_amount), docH, docV, 'right');
+                doc.text(this.formatToCurrency(total_land_amount), docH, docV, 'right');
                 docV += 6;
                 docH = 15;
                 doc.setFontSize(16);
                 doc.text('Building', docH, docV);
                 docH = 160;
                 doc.setFontSize(12);
-                _context.next = 93;
+                _context.next = 94;
                 return this.getBuildingAccount();
 
-              case 93:
+              case 94:
                 this.buildings = _context.sent;
                 building_amount = 0;
 
@@ -11790,7 +11790,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 //.catch(()=>{
                 //});
 
-              case 98:
+              case 99:
               case "end":
                 return _context.stop();
             }
