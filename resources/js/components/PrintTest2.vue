@@ -488,8 +488,8 @@
 
             },
             async getLandAccount(){
-
-                const response = await axios.get('api/running?start=15011100&end=15011199&transaction_date='+this.transaction_date);
+                ///start=15011100&end=15011199    
+                const response = await axios.get('api/running?start=11011400&end=11051299&transaction_date='+this.transaction_date);
                 return response;
                 //.then((response)=>{
                     /*

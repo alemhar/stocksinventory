@@ -11766,7 +11766,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get('api/running?start=15011100&end=15011199&transaction_date=' + this.transaction_date);
+                return axios.get('api/running?start=11011400&end=11051299&transaction_date=' + this.transaction_date);
 
               case 2:
                 response = _context.sent;
