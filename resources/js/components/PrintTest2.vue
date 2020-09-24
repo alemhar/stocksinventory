@@ -283,12 +283,14 @@
                     
                     (async () => {
                         this.current_assets = await this.getCurrentAssets();
-                    })()
+                        console.log(this.current_assets);
+                    })();
                     //axios.get('api/running?start=11011400&end=11051299&transaction_date='+this.transaction_date)
                     //.then((response)=>{
 
                         //console.log(response.data);
                         //this.current_assets = response.data;
+
                         for (var current_asset in this.current_assets) {
                             docV += 6;
                             docH = 15;

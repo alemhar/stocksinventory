@@ -11589,8 +11589,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 case 2:
                   _this2.current_assets = _context.sent;
+                  console.log(_this2.current_assets);
 
-                case 3:
+                case 4:
                 case "end":
                   return _context.stop();
               }
