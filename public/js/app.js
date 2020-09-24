@@ -11491,364 +11491,341 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       })["catch"](function () {//
       });
     },
-    generateReportBS: function generateReportBS() {
-      var _this2 = this;
-
-      var currencyOptions = {
-        style: 'currency',
-        currency: 'USD',
-        currencyDisplay: 'code'
-      };
-      var result = null;
-      var cash_amount = 0;
-      var total_cash_amount = 0;
-      var main_total_cash_amount = 0;
-      var current_asset_amount = 0;
-      var total_current_asset_amount = 0;
-      var main_total_current_asset_amount = 0;
-      var grand_total_current_asset_amount = 0;
-      var docV = 15;
-      var docH = 15;
-      var doc = new jspdf__WEBPACK_IMPORTED_MODULE_2__["default"]();
-      doc.setFont("Serif", 'normal');
-      doc.setFontSize(16);
-      doc.text(this.company.name, docH, docV);
-      docV += 6;
-      doc.setFontSize(12);
-      doc.text(this.company.address + ' ' + this.company.address2 + ' ' + this.company.city, docH, docV);
-      docV += 12;
-      docH = 105;
-      doc.setFontSize(16);
-      doc.setFont("Serif", 'bold');
-      doc.text('BALANCE SHEET', docH, docV, 'center');
-      docV += 6;
-      doc.setFontSize(10);
-      doc.setFont("Serif", 'normal');
-      doc.text('As of: ' + this.transaction_date, docH, docV, 'center');
-      docV += 12;
-      docH = 15;
-      doc.setFontSize(16);
-      doc.text('ASSETS', docH, docV);
-      docV += 12;
-      docH = 15;
-      doc.setFontSize(16);
-      doc.text('CURRENT ASSETS', docH, docV);
-      docV += 12;
-      docH = 15;
-      doc.setFontSize(16);
-      doc.text('Cash and Cash Equivalent', docH, docV);
-      doc.setFontSize(12);
-
-      _asyncToGenerator(
+    generateReportBS: function () {
+      var _generateReportBS = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var currencyOptions, result, cash_amount, total_cash_amount, main_total_cash_amount, current_asset_amount, total_current_asset_amount, main_total_current_asset_amount, grand_total_current_asset_amount, docV, docH, doc, cash, current_asset, land_amount, land;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return _this2.getCashAccount();
+                currencyOptions = {
+                  style: 'currency',
+                  currency: 'USD',
+                  currencyDisplay: 'code'
+                };
+                result = null;
+                cash_amount = 0;
+                total_cash_amount = 0;
+                main_total_cash_amount = 0;
+                current_asset_amount = 0;
+                total_current_asset_amount = 0;
+                main_total_current_asset_amount = 0;
+                grand_total_current_asset_amount = 0;
+                docV = 15;
+                docH = 15;
+                doc = new jspdf__WEBPACK_IMPORTED_MODULE_2__["default"]();
+                doc.setFont("Serif", 'normal');
+                doc.setFontSize(16);
+                doc.text(this.company.name, docH, docV);
+                docV += 6;
+                doc.setFontSize(12);
+                doc.text(this.company.address + ' ' + this.company.address2 + ' ' + this.company.city, docH, docV);
+                docV += 12;
+                docH = 105;
+                doc.setFontSize(16);
+                doc.setFont("Serif", 'bold');
+                doc.text('BALANCE SHEET', docH, docV, 'center');
+                docV += 6;
+                doc.setFontSize(10);
+                doc.setFont("Serif", 'normal');
+                doc.text('As of: ' + this.transaction_date, docH, docV, 'center');
+                docV += 12;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('ASSETS', docH, docV);
+                docV += 12;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('CURRENT ASSETS', docH, docV);
+                docV += 12;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('Cash and Cash Equivalent', docH, docV);
+                doc.setFontSize(12); //(async () => {
 
-              case 2:
-                _this2.cashes = _context.sent;
+                _context.next = 42;
+                return this.getCashAccount();
 
-              case 3:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))(); //axios.get('api/running?start=11011100&end=11011399&transaction_date='+this.transaction_date)
-      //axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
-      //.then((response)=>{
-      //console.log(response.data);
-      //this.cashes = response.data;
-      //console.log(this.sales);
+              case 42:
+                this.cashes = _context.sent;
 
+                //})();
+                //axios.get('api/running?start=11011100&end=11011399&transaction_date='+this.transaction_date)
+                //axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
+                //.then((response)=>{
+                //console.log(response.data);
+                //this.cashes = response.data;
+                //console.log(this.sales);
+                for (cash in this.cashes) {
+                  docV += 6;
+                  docH = 25;
+                  doc.text(this.cashes[cash].account_name, docH, docV);
+                  docH = 130;
+                  cash_amount = this.cashes[cash].debit * 1 - this.cashes[cash].credit * 1;
+                  total_cash_amount += cash_amount;
+                  main_total_cash_amount += cash_amount; //console.log(amount);
+                  //amount.toFixed(2)
 
-      for (var cash in this.cashes) {
-        docV += 6;
-        docH = 25;
-        doc.text(this.cashes[cash].account_name, docH, docV);
-        docH = 130;
-        cash_amount = this.cashes[cash].debit * 1 - this.cashes[cash].credit * 1;
-        total_cash_amount += cash_amount;
-        main_total_cash_amount += cash_amount; //console.log(amount);
-        //amount.toFixed(2)
+                  cash_amount = Intl.NumberFormat('en-US', currencyOptions).format(cash_amount);
+                  cash_amount = cash_amount.replace(/[a-z]{3}/i, "").trim();
+                  doc.text(cash_amount, docH, docV, 'right');
+                }
 
-        cash_amount = Intl.NumberFormat('en-US', currencyOptions).format(cash_amount);
-        cash_amount = cash_amount.replace(/[a-z]{3}/i, "").trim();
-        doc.text(cash_amount, docH, docV, 'right');
-      }
+                docH = 160;
+                total_cash_amount = Intl.NumberFormat('en-US', currencyOptions).format(total_cash_amount);
+                total_cash_amount = total_cash_amount.replace(/[a-z]{3}/i, "").trim();
+                doc.text(total_cash_amount, docH, docV, 'right');
+                /*
+                docV += 12;
+                docH = 15;
+                doc.setFontSize(14);
+                doc.text('Cost of Sales',docH,docV);
+                doc.setFontSize(12);
+                */
+                //(async () => {
 
-      docH = 160;
-      total_cash_amount = Intl.NumberFormat('en-US', currencyOptions).format(total_cash_amount);
-      total_cash_amount = total_cash_amount.replace(/[a-z]{3}/i, "").trim();
-      doc.text(total_cash_amount, docH, docV, 'right');
-      /*
-      docV += 12;
-      docH = 15;
-      doc.setFontSize(14);
-      doc.text('Cost of Sales',docH,docV);
-      doc.setFontSize(12);
-      */
+                _context.next = 50;
+                return this.getCurrentAssets();
 
-      _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var current_asset;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return _this2.getCurrentAssets();
+              case 50:
+                this.current_assets = _context.sent;
+                console.log(this.current_assets);
 
-              case 2:
-                _this2.current_assets = _context2.sent;
-                console.log(_this2.current_assets);
-
-                for (current_asset in _this2.current_assets) {
+                for (current_asset in this.current_assets) {
                   docV += 6;
                   docH = 15;
                   doc.setFontSize(16);
-                  doc.text(_this2.current_assets[current_asset].account_name, docH, docV);
+                  doc.text(this.current_assets[current_asset].account_name, docH, docV);
                   docH = 160;
-                  current_asset_amount = _this2.current_assets[current_asset].debit * 1 - _this2.current_assets[current_asset].credit * 1;
+                  current_asset_amount = this.current_assets[current_asset].debit * 1 - this.current_assets[current_asset].credit * 1;
                   total_current_asset_amount += current_asset_amount;
                   main_total_current_asset_amount += current_asset_amount;
                   current_asset_amount = Intl.NumberFormat('en-US', currencyOptions).format(current_asset_amount);
                   current_asset_amount = current_asset_amount.replace(/[a-z]{3}/i, "").trim();
                   doc.setFontSize(12);
                   doc.text(current_asset_amount, docH, docV, 'right');
+                } //})();
+                //axios.get('api/running?start=11011400&end=11051299&transaction_date='+this.transaction_date)
+                //.then((response)=>{
+                //console.log(response.data);
+                //this.current_assets = response.data;
+                //console.log(this.current_assets);
+
+
+                docV += 12;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('TOTAL CURRENT ASSETS', docH, docV);
+                docH = 160;
+                doc.setFontSize(12);
+                grand_total_current_asset_amount = +main_total_cash_amount + +main_total_current_asset_amount;
+                grand_total_current_asset_amount = Intl.NumberFormat('en-US', currencyOptions).format(grand_total_current_asset_amount);
+                grand_total_current_asset_amount = grand_total_current_asset_amount.replace(/[a-z]{3}/i, "").trim();
+                doc.text(grand_total_current_asset_amount, docH, docV, 'right');
+                docV += 12;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('NON CURRENT ASSETS', docH, docV);
+                docV += 6;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('Property, Plan & Equipment', docH, docV);
+                docV += 6;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('Land', docH, docV);
+                docH = 160;
+                doc.setFontSize(12); //(async () => {
+
+                _context.next = 79;
+                return this.getLandAccount();
+
+              case 79:
+                this.lands = _context.sent;
+                //})();
+                land_amount = 0;
+
+                if (this.lands) {
+                  for (land in this.lands) {
+                    console.log('land: ', land);
+                    land_amount = this.lands[land].debit * 1 - this.lands[land].credit * 1;
+                    this.total_land_amount += land_amount;
+                  }
+                } else {
+                  this.total_land_amount = 0;
                 }
 
-              case 5:
+                doc.text(this.formatToCurrency(this.total_land_amount), docH, docV, 'right');
+                doc.save('test.pdf');
+                /*
+                axios.get('api/running?start=15011100&end=15011199&transaction_date='+this.transaction_date)
+                .then((response)=>{
+                    //console.log(response.data);
+                    this.non_current_assets = response.data;
+                     axios.get('api/running?start=21010000&end=21051299&transaction_date='+this.transaction_date)
+                    .then((response)=>{
+                        //console.log(response.data);
+                        this.liabilities = response.data;
+                        axios.get('api/running?start=22010000&end=22020099&transaction_date='+this.transaction_date)
+                        .then((response)=>{
+                            //console.log(response.data);
+                            this.other_non_current_liabilities = response.data;
+                            axios.get('api/running?start=31010000&end=31010099&transaction_date='+this.transaction_date)
+                            .then((response)=>{
+                                //console.log(response.data);
+                                this.owners_equity = response.data;
+                                axios.get('api/running?start=31020000&end=31020099&transaction_date='+this.transaction_date)
+                                .then((response)=>{
+                                    //console.log(response.data);
+                                    this.owners_withdrawal = response.data;
+                                })
+                                .catch(()=>{
+                                });
+                            })
+                            .catch(()=>{
+                            });
+                        })
+                        .catch(()=>{
+                        });
+                    })
+                    .catch(()=>{
+                    });
+                    
+                })
+                .catch(()=>{
+                });
+                */
+                //})
+                //.catch(()=>{
+                //});
+
+                /*
+                 axios.get('api/daily?sub_account_type=COST_OF_SALES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
+                .then((response)=>{
+                    this.cost_of_sales = response.data;
+                    for (var cost_of_sale in this.cost_of_sales) {
+                        docV += 6;
+                        docH = 25;
+                        doc.text(this.cost_of_sales[cost_of_sale].account_name,docH,docV);
+                        docH = 130;
+                        cost_of_sales_amount = (this.cost_of_sales[cost_of_sale].debit * 1) - (this.cost_of_sales[cost_of_sale].credit * 1);
+                        total_cost_of_sales_amount += cost_of_sales_amount;
+                        main_total_cost_of_sales_amount += cost_of_sales_amount;
+                        //console.log(amount);
+                        //amount.toFixed(2)
+                        cost_of_sales_amount = Intl.NumberFormat('en-US',currencyOptions).format(cost_of_sales_amount);
+                         cost_of_sales_amount = cost_of_sales_amount.replace(/[a-z]{3}/i, "").trim();
+                         //doc.text(Number(expense_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
+                        doc.text(cost_of_sales_amount,docH,docV,'right');
+                        
+                        //doc.text(Number(cost_of_sales_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
+                    }
+                    docH = 160;
+                    total_cost_of_sales_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_cost_of_sales_amount);
+                    total_cost_of_sales_amount = total_cost_of_sales_amount.replace(/[a-z]{3}/i, "").trim();
+                    doc.text(total_cost_of_sales_amount,docH,docV,'right');
+                    docV += 8;
+                    docH = 15;
+                    doc.setFontSize(14);
+                    doc.text('Gross Profit',docH,docV);
+                     doc.setFontSize(12);
+                    docH = 160;
+                    gross_profit = (main_total_sales_amount*1) - (main_total_cost_of_sales_amount*1);
+                    gross_profit = Intl.NumberFormat('en-US',currencyOptions).format(gross_profit);
+                    gross_profit = gross_profit.replace(/[a-z]{3}/i, "").trim();
+                    doc.text(gross_profit,docH,docV,'right');
+                     docV += 12;
+                    docH = 15;
+                    doc.setFontSize(14);
+                    doc.text('Expenses',docH,docV);
+                    doc.setFontSize(12);
+                     axios.get('api/daily?sub_account_type=EXPENSES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
+                    .then((response)=>{
+                        this.expenses = response.data;
+                        for (var expense in this.expenses) {
+                            docV += 6;
+                            docH = 25;
+                            doc.text(this.expenses[expense].account_name,docH,docV);
+                            docH = 130;
+                            expense_amount = (this.expenses[expense].debit * 1) - (this.expenses[expense].credit * 1);
+                            total_expense_amount += expense_amount;
+                            main_total_expense_amount += expense_amount;
+                            //console.log(amount);
+                            //amount.toFixed(2)
+                             expense_amount = Intl.NumberFormat('en-US',currencyOptions).format(expense_amount);
+                            expense_amount = expense_amount.replace(/[a-z]{3}/i, "").trim();
+                             //doc.text(Number(expense_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
+                            doc.text(expense_amount,docH,docV,'right');
+                        }
+                        docH = 160;
+                        total_expense_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_expense_amount);
+                        total_expense_amount = total_expense_amount.replace(/[a-z]{3}/i, "").trim();
+                        doc.text(total_expense_amount,docH,docV,'right');
+                        docV +=1;
+                        doc.line(docH - 25,docV,docH,docV);
+                        
+                        docV += 8;
+                        docH = 15;
+                        doc.setFontSize(14);
+                        doc.text('Net Profit',docH,docV);
+                         doc.setFontSize(12);
+                        docH = 160;
+                        net_profit = (main_total_sales_amount*1) - (main_total_cost_of_sales_amount*1) - (main_total_expense_amount*1);
+                        net_profit = Intl.NumberFormat('en-US',currencyOptions).format(net_profit);
+                        net_profit = net_profit.replace(/[a-z]{3}/i, "").trim();
+                        doc.text(net_profit,docH,docV,'right');
+                        docV +=1;
+                        doc.line(docH - 25,docV,docH,docV);
+                        doc.save('test.pdf');
+                     })
+                    .catch(()=>{
+                    });
+                 })
+                .catch(()=>{
+                });
+                */
+                //})
+                //.catch(()=>{
+                //});
+
+              case 84:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function generateReportBS() {
+        return _generateReportBS.apply(this, arguments);
+      }
+
+      return generateReportBS;
+    }(),
+    getCurrentAssets: function () {
+      var _getCurrentAssets = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios.get('api/running?start=11011400&end=11051299&transaction_date=' + this.transaction_date);
+
+              case 2:
+                response = _context2.sent;
+                return _context2.abrupt("return", response.data);
+
+              case 4:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2);
-      }))(); //axios.get('api/running?start=11011400&end=11051299&transaction_date='+this.transaction_date)
-      //.then((response)=>{
-      //console.log(response.data);
-      //this.current_assets = response.data;
-      //console.log(this.current_assets);
-
-
-      docV += 12;
-      docH = 15;
-      doc.setFontSize(16);
-      doc.text('TOTAL CURRENT ASSETS', docH, docV);
-      docH = 160;
-      doc.setFontSize(12);
-      grand_total_current_asset_amount = +main_total_cash_amount + +main_total_current_asset_amount;
-      grand_total_current_asset_amount = Intl.NumberFormat('en-US', currencyOptions).format(grand_total_current_asset_amount);
-      grand_total_current_asset_amount = grand_total_current_asset_amount.replace(/[a-z]{3}/i, "").trim();
-      doc.text(grand_total_current_asset_amount, docH, docV, 'right');
-      docV += 12;
-      docH = 15;
-      doc.setFontSize(16);
-      doc.text('NON CURRENT ASSETS', docH, docV);
-      docV += 6;
-      docH = 15;
-      doc.setFontSize(16);
-      doc.text('Property, Plan & Equipment', docH, docV);
-      docV += 6;
-      docH = 15;
-      doc.setFontSize(16);
-      doc.text('Land', docH, docV);
-      docH = 160;
-      doc.setFontSize(12);
-
-      _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _context3.next = 2;
-                return _this2.getLandAccount();
-
-              case 2:
-                _this2.lands = _context3.sent;
-
-              case 3:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }))();
-
-      var land_amount = 0;
-
-      if (this.lands) {
-        for (var land in this.lands) {
-          console.log('land: ', land);
-          land_amount = this.lands[land].debit * 1 - this.lands[land].credit * 1;
-          this.total_land_amount += land_amount;
-        }
-      } else {
-        this.total_land_amount = 0;
-      }
-
-      doc.text(this.formatToCurrency(this.total_land_amount), docH, docV, 'right');
-      doc.save('test.pdf');
-      /*
-      axios.get('api/running?start=15011100&end=15011199&transaction_date='+this.transaction_date)
-      .then((response)=>{
-          //console.log(response.data);
-          this.non_current_assets = response.data;
-           axios.get('api/running?start=21010000&end=21051299&transaction_date='+this.transaction_date)
-          .then((response)=>{
-              //console.log(response.data);
-              this.liabilities = response.data;
-              axios.get('api/running?start=22010000&end=22020099&transaction_date='+this.transaction_date)
-              .then((response)=>{
-                  //console.log(response.data);
-                  this.other_non_current_liabilities = response.data;
-                  axios.get('api/running?start=31010000&end=31010099&transaction_date='+this.transaction_date)
-                  .then((response)=>{
-                      //console.log(response.data);
-                      this.owners_equity = response.data;
-                      axios.get('api/running?start=31020000&end=31020099&transaction_date='+this.transaction_date)
-                      .then((response)=>{
-                          //console.log(response.data);
-                          this.owners_withdrawal = response.data;
-                      })
-                      .catch(()=>{
-                      });
-                  })
-                  .catch(()=>{
-                  });
-              })
-              .catch(()=>{
-              });
-          })
-          .catch(()=>{
-          });
-          
-      })
-      .catch(()=>{
-      });
-      */
-      //})
-      //.catch(()=>{
-      //});
-
-      /*
-       axios.get('api/daily?sub_account_type=COST_OF_SALES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
-      .then((response)=>{
-          this.cost_of_sales = response.data;
-          for (var cost_of_sale in this.cost_of_sales) {
-              docV += 6;
-              docH = 25;
-              doc.text(this.cost_of_sales[cost_of_sale].account_name,docH,docV);
-              docH = 130;
-              cost_of_sales_amount = (this.cost_of_sales[cost_of_sale].debit * 1) - (this.cost_of_sales[cost_of_sale].credit * 1);
-              total_cost_of_sales_amount += cost_of_sales_amount;
-              main_total_cost_of_sales_amount += cost_of_sales_amount;
-              //console.log(amount);
-              //amount.toFixed(2)
-              cost_of_sales_amount = Intl.NumberFormat('en-US',currencyOptions).format(cost_of_sales_amount);
-               cost_of_sales_amount = cost_of_sales_amount.replace(/[a-z]{3}/i, "").trim();
-               //doc.text(Number(expense_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
-              doc.text(cost_of_sales_amount,docH,docV,'right');
-              
-              //doc.text(Number(cost_of_sales_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
-          }
-          docH = 160;
-          total_cost_of_sales_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_cost_of_sales_amount);
-          total_cost_of_sales_amount = total_cost_of_sales_amount.replace(/[a-z]{3}/i, "").trim();
-          doc.text(total_cost_of_sales_amount,docH,docV,'right');
-          docV += 8;
-          docH = 15;
-          doc.setFontSize(14);
-          doc.text('Gross Profit',docH,docV);
-           doc.setFontSize(12);
-          docH = 160;
-          gross_profit = (main_total_sales_amount*1) - (main_total_cost_of_sales_amount*1);
-          gross_profit = Intl.NumberFormat('en-US',currencyOptions).format(gross_profit);
-          gross_profit = gross_profit.replace(/[a-z]{3}/i, "").trim();
-          doc.text(gross_profit,docH,docV,'right');
-           docV += 12;
-          docH = 15;
-          doc.setFontSize(14);
-          doc.text('Expenses',docH,docV);
-          doc.setFontSize(12);
-           axios.get('api/daily?sub_account_type=EXPENSES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
-          .then((response)=>{
-              this.expenses = response.data;
-              for (var expense in this.expenses) {
-                  docV += 6;
-                  docH = 25;
-                  doc.text(this.expenses[expense].account_name,docH,docV);
-                  docH = 130;
-                  expense_amount = (this.expenses[expense].debit * 1) - (this.expenses[expense].credit * 1);
-                  total_expense_amount += expense_amount;
-                  main_total_expense_amount += expense_amount;
-                  //console.log(amount);
-                  //amount.toFixed(2)
-                   expense_amount = Intl.NumberFormat('en-US',currencyOptions).format(expense_amount);
-                  expense_amount = expense_amount.replace(/[a-z]{3}/i, "").trim();
-                   //doc.text(Number(expense_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
-                  doc.text(expense_amount,docH,docV,'right');
-              }
-              docH = 160;
-              total_expense_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_expense_amount);
-              total_expense_amount = total_expense_amount.replace(/[a-z]{3}/i, "").trim();
-              doc.text(total_expense_amount,docH,docV,'right');
-              docV +=1;
-              doc.line(docH - 25,docV,docH,docV);
-              
-              docV += 8;
-              docH = 15;
-              doc.setFontSize(14);
-              doc.text('Net Profit',docH,docV);
-               doc.setFontSize(12);
-              docH = 160;
-              net_profit = (main_total_sales_amount*1) - (main_total_cost_of_sales_amount*1) - (main_total_expense_amount*1);
-              net_profit = Intl.NumberFormat('en-US',currencyOptions).format(net_profit);
-              net_profit = net_profit.replace(/[a-z]{3}/i, "").trim();
-              doc.text(net_profit,docH,docV,'right');
-              docV +=1;
-              doc.line(docH - 25,docV,docH,docV);
-              doc.save('test.pdf');
-           })
-          .catch(()=>{
-          });
-       })
-      .catch(()=>{
-      });
-      */
-      //})
-      //.catch(()=>{
-      //});
-    },
-    getCurrentAssets: function () {
-      var _getCurrentAssets = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                _context4.next = 2;
-                return axios.get('api/running?start=11011400&end=11051299&transaction_date=' + this.transaction_date);
-
-              case 2:
-                response = _context4.sent;
-                return _context4.abrupt("return", response.data);
-
-              case 4:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4, this);
+        }, _callee2, this);
       }));
 
       function getCurrentAssets() {
@@ -11860,25 +11837,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     getCashAccount: function () {
       var _getCashAccount = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context5.prev = _context5.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                _context5.next = 2;
+                _context3.next = 2;
                 return axios.get('api/running?start=11011100&end=11011399&transaction_date=' + this.transaction_date);
 
               case 2:
-                response = _context5.sent;
-                return _context5.abrupt("return", response.data);
+                response = _context3.sent;
+                return _context3.abrupt("return", response.data);
 
               case 4:
               case "end":
-                return _context5.stop();
+                return _context3.stop();
             }
           }
-        }, _callee5, this);
+        }, _callee3, this);
       }));
 
       function getCashAccount() {
@@ -11890,25 +11867,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     getLandAccount: function () {
       var _getLandAccount = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context6.prev = _context6.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
-                _context6.next = 2;
+                _context4.next = 2;
                 return axios.get('api/running?start=15011100&end=15011199&transaction_date=' + this.transaction_date);
 
               case 2:
-                response = _context6.sent;
-                return _context6.abrupt("return", response.data);
+                response = _context4.sent;
+                return _context4.abrupt("return", response.data);
 
               case 4:
               case "end":
-                return _context6.stop();
+                return _context4.stop();
             }
           }
-        }, _callee6, this);
+        }, _callee4, this);
       }));
 
       function getLandAccount() {
@@ -11928,7 +11905,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return amount;
     },
     generateReportIS: function generateReportIS() {
-      var _this3 = this;
+      var _this2 = this;
 
       var currencyOptions = {
         style: 'currency',
@@ -11937,7 +11914,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       };
       var result = null;
       axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date=' + this.from_transaction_date + '&to_transaction_date=' + this.to_transaction_date).then(function (response) {
-        _this3.sales = response.data;
+        _this2.sales = response.data;
         var sales_amount = 0;
         var cost_of_sales_amount = 0;
         var expense_amount = 0;
@@ -11954,10 +11931,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         var doc = new jspdf__WEBPACK_IMPORTED_MODULE_2__["default"]();
         doc.setFont("Serif", 'normal');
         doc.setFontSize(16);
-        doc.text(_this3.company.name, docH, docV);
+        doc.text(_this2.company.name, docH, docV);
         docV += 6;
         doc.setFontSize(12);
-        doc.text(_this3.company.address + ' ' + _this3.company.address2 + ' ' + _this3.company.city, docH, docV);
+        doc.text(_this2.company.address + ' ' + _this2.company.address2 + ' ' + _this2.company.city, docH, docV);
         docV += 12;
         docH = 105;
         doc.setFontSize(16);
@@ -11966,19 +11943,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         docV += 6;
         doc.setFontSize(10);
         doc.setFont("Serif", 'normal');
-        doc.text('From: ' + _this3.from_transaction_date + ' To: ' + _this3.to_transaction_date, docH, docV, 'center');
+        doc.text('From: ' + _this2.from_transaction_date + ' To: ' + _this2.to_transaction_date, docH, docV, 'center');
         docV += 12;
         docH = 15;
         doc.setFontSize(16);
         doc.text('Sales', docH, docV);
         doc.setFontSize(12); //console.log(this.sales);
 
-        for (var sale in _this3.sales) {
+        for (var sale in _this2.sales) {
           docV += 6;
           docH = 25;
-          doc.text(_this3.sales[sale].account_name, docH, docV);
+          doc.text(_this2.sales[sale].account_name, docH, docV);
           docH = 130;
-          sales_amount = _this3.sales[sale].credit * 1 - _this3.sales[sale].debit * 1;
+          sales_amount = _this2.sales[sale].credit * 1 - _this2.sales[sale].debit * 1;
           total_sales_amount += sales_amount;
           main_total_sales_amount += sales_amount; //console.log(amount);
           //amount.toFixed(2)
@@ -11997,15 +11974,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         doc.setFontSize(14);
         doc.text('Cost of Sales', docH, docV);
         doc.setFontSize(12);
-        axios.get('api/daily?sub_account_type=COST_OF_SALES&from_transaction_date=' + _this3.from_transaction_date + '&to_transaction_date=' + _this3.to_transaction_date).then(function (response) {
-          _this3.cost_of_sales = response.data;
+        axios.get('api/daily?sub_account_type=COST_OF_SALES&from_transaction_date=' + _this2.from_transaction_date + '&to_transaction_date=' + _this2.to_transaction_date).then(function (response) {
+          _this2.cost_of_sales = response.data;
 
-          for (var cost_of_sale in _this3.cost_of_sales) {
+          for (var cost_of_sale in _this2.cost_of_sales) {
             docV += 6;
             docH = 25;
-            doc.text(_this3.cost_of_sales[cost_of_sale].account_name, docH, docV);
+            doc.text(_this2.cost_of_sales[cost_of_sale].account_name, docH, docV);
             docH = 130;
-            cost_of_sales_amount = _this3.cost_of_sales[cost_of_sale].debit * 1 - _this3.cost_of_sales[cost_of_sale].credit * 1;
+            cost_of_sales_amount = _this2.cost_of_sales[cost_of_sale].debit * 1 - _this2.cost_of_sales[cost_of_sale].credit * 1;
             total_cost_of_sales_amount += cost_of_sales_amount;
             main_total_cost_of_sales_amount += cost_of_sales_amount; //console.log(amount);
             //amount.toFixed(2)
@@ -12037,15 +12014,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           doc.setFontSize(14);
           doc.text('Expenses', docH, docV);
           doc.setFontSize(12);
-          axios.get('api/daily?sub_account_type=EXPENSES&from_transaction_date=' + _this3.from_transaction_date + '&to_transaction_date=' + _this3.to_transaction_date).then(function (response) {
-            _this3.expenses = response.data;
+          axios.get('api/daily?sub_account_type=EXPENSES&from_transaction_date=' + _this2.from_transaction_date + '&to_transaction_date=' + _this2.to_transaction_date).then(function (response) {
+            _this2.expenses = response.data;
 
-            for (var expense in _this3.expenses) {
+            for (var expense in _this2.expenses) {
               docV += 6;
               docH = 25;
-              doc.text(_this3.expenses[expense].account_name, docH, docV);
+              doc.text(_this2.expenses[expense].account_name, docH, docV);
               docH = 130;
-              expense_amount = _this3.expenses[expense].debit * 1 - _this3.expenses[expense].credit * 1;
+              expense_amount = _this2.expenses[expense].debit * 1 - _this2.expenses[expense].credit * 1;
               total_expense_amount += expense_amount;
               main_total_expense_amount += expense_amount; //console.log(amount);
               //amount.toFixed(2)

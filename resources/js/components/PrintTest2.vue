@@ -192,7 +192,7 @@
                     });
                 
             },
-            generateReportBS(){
+            async generateReportBS(){
                 let currencyOptions = { style: 'currency', currency: 'USD', currencyDisplay: 'code' };
                 let result = null;
                 var cash_amount = 0;
@@ -240,9 +240,9 @@
                     doc.setFontSize(12);
 
                     
-                    (async () => {
+                    //(async () => {
                         this.cashes = await this.getCashAccount();
-                    })();
+                    //})();
                     
                 //axios.get('api/running?start=11011100&end=11011399&transaction_date='+this.transaction_date)
                 //axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
@@ -279,7 +279,7 @@
                     doc.setFontSize(12);
                     */
                     
-                    (async () => {
+                    //(async () => {
                         this.current_assets = await this.getCurrentAssets();
                         console.log(this.current_assets);
                         for (var current_asset in this.current_assets) {
@@ -297,7 +297,7 @@
                             doc.setFontSize(12);
                             doc.text(current_asset_amount,docH,docV,'right');
                         }
-                    })();
+                    //})();
 
                     //axios.get('api/running?start=11011400&end=11051299&transaction_date='+this.transaction_date)
                     //.then((response)=>{
@@ -334,9 +334,9 @@
                         docH = 160;
                         doc.setFontSize(12);
                         
-                        (async () => {
+                        //(async () => {
                             this.lands = await this.getLandAccount();
-                        })();
+                        //})();
 
 
                         
