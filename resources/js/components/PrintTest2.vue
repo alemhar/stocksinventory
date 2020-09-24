@@ -158,7 +158,7 @@
               owners_equity: {},
               owners_withdrawal: {},
               lands: {},
-              
+              buildings: {},
               
               total_land_amount: 0,
               //running_balance: 0,
@@ -204,7 +204,10 @@
                 var total_current_asset_amount = 0;
                 var main_total_current_asset_amount = 0;
                 var grand_total_current_asset_amount = 0;
-
+                
+                var building_amount = 0;
+                var total_building_amount = 0;
+                        
                 
                     var docV = 15;
                     var docH = 15;
@@ -240,17 +243,9 @@
                     doc.setFontSize(12);
 
                     
-                    //(async () => {
                         this.cashes = await this.getCashAccount();
-                    //})();
                     
-                //axios.get('api/running?start=11011100&end=11011399&transaction_date='+this.transaction_date)
-                //axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
-                //.then((response)=>{
-                    //console.log(response.data);
-                    //this.cashes = response.data;
-
-                    //console.log(this.sales);
+                
                     for (var cash in this.cashes) {
                         docV += 6;
                         docH = 25;
@@ -259,8 +254,7 @@
                         cash_amount = (this.cashes[cash].debit * 1) - (this.cashes[cash].credit * 1);
                         total_cash_amount += cash_amount;
                         main_total_cash_amount += cash_amount;
-                        //console.log(amount);
-                        //amount.toFixed(2)
+                        
                         cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(cash_amount);
                         cash_amount = cash_amount.replace(/[a-z]{3}/i, "").trim();
                         doc.text(cash_amount,docH,docV,'right');
@@ -271,15 +265,8 @@
                     doc.text(total_cash_amount,docH,docV,'right');
                     
                     
-                    /*
-                    docV += 12;
-                    docH = 15;
-                    doc.setFontSize(14);
-                    doc.text('Cost of Sales',docH,docV);
-                    doc.setFontSize(12);
-                    */
                     
-                    //(async () => {
+                    
                         this.current_assets = await this.getCurrentAssets();
                         console.log(this.current_assets);
                         for (var current_asset in this.current_assets) {
@@ -297,16 +284,9 @@
                             doc.setFontSize(12);
                             doc.text(current_asset_amount,docH,docV,'right');
                         }
-                    //})();
-
-                    //axios.get('api/running?start=11011400&end=11051299&transaction_date='+this.transaction_date)
-                    //.then((response)=>{
-
-                        //console.log(response.data);
-                        //this.current_assets = response.data;
+                   
 
                     
-                    //console.log(this.current_assets);
                         docV += 12;    
                         docH = 15;
                         doc.setFontSize(16);
@@ -334,12 +314,8 @@
                         docH = 160;
                         doc.setFontSize(12);
                         
-                        //(async () => {
-                            this.lands = await this.getLandAccount();
-                        //})();
-
-
                         
+                        this.lands = await this.getLandAccount();
                         var land_amount = 0;
                         if(this.lands){
                             for (var land in this.lands) {
@@ -350,13 +326,30 @@
                         } else {
                             this.total_land_amount = 0;
                         }
-
                         doc.text(this.formatToCurrency(this.total_land_amount),docH,docV,'right');
-                            
+                        
+                        docV += 6;
+                        docH = 15;
+                        doc.setFontSize(16);
+                        doc.text('Building',docH,docV);
+                        docH = 160;
+                        doc.setFontSize(12);
+
+                        this.buildings = await this.getBuildingAccount();
+                        var building_amount = 0;
+                        if(this.lands){
+                            for (var building in this.buildings) {
+                                //console.log('land: ',land);
+                                building_amount = (this.buildings[building].debit * 1) - (this.buildings[building].credit * 1);
+                                this.total_building_amount += building_amount;
+                            }
+                        } else {
+                            this.total_building_amount = 0;
+                        }
+                        doc.text(this.formatToCurrency(this.total_building_amount),docH,docV,'right');
+
                         doc.save('test.pdf');
 
-                    
-                        
                         
                         
                         
@@ -505,6 +498,10 @@
                 //.catch(()=>{
                 //});
 
+            },
+            async getBuildingAccount(){
+                const response = await axios.get('api/running?start=15011200&end=15011299&transaction_date='+this.transaction_date);
+                return response.data;
             },
             async getCurrentAssets(){
                 const response = await axios.get('api/running?start=11011400&end=11051299&transaction_date='+this.transaction_date);
