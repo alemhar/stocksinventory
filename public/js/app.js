@@ -11764,26 +11764,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                return _context.abrupt("return", axios.get('api/running?start=11011400&end=11051299&transaction_date=' + this.transaction_date).then(function (response) {
-                  /*
-                  this.lands = response.data;
-                  var total_land_amount = 0;
-                  var land_amount = 0;
-                   //console.log(this.sales);
-                  for (var land in this.lands) {
-                      console.log('land: ',land);
-                      //docV += 6;
-                      //docH = 25;
-                      //doc.text(this.lands[land].account_name,docH,docV);
-                      //docH = 130;
-                      land_amount = (this.lands[land].debit * 1) - (this.lands[land].credit * 1);
-                      total_land_amount += land_amount;
-                      //main_total_land_amount += land_amount;
-                  }
-                  //return 100;
-                  */
-                })["catch"](function () {//return 0;
-                }));
+                return _context.abrupt("return", axios.get('api/running?start=15011100&end=15011199&transaction_date=' + this.transaction_date));
 
               case 1:
               case "end":
@@ -117055,14 +117036,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************!*\
   !*** ./resources/js/components/PrintTest2.vue ***!
   \************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PrintTest2_vue_vue_type_template_id_d603ab44___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PrintTest2.vue?vue&type=template&id=d603ab44& */ "./resources/js/components/PrintTest2.vue?vue&type=template&id=d603ab44&");
 /* harmony import */ var _PrintTest2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PrintTest2.vue?vue&type=script&lang=js& */ "./resources/js/components/PrintTest2.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _PrintTest2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _PrintTest2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -117092,7 +117074,7 @@ component.options.__file = "resources/js/components/PrintTest2.vue"
 /*!*************************************************************************!*\
   !*** ./resources/js/components/PrintTest2.vue?vue&type=script&lang=js& ***!
   \*************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -333,6 +333,9 @@
                         doc.text('Land',docH,docV);
                         docH = 160;
                         doc.setFontSize(12);
+                        
+
+
                         console.log('getLandAccount :', this.getLandAccount());
                         //doc.text(this.formatToCurrency(this.getLandAccount()),docH,docV,'right');
                             
@@ -486,8 +489,9 @@
             },
             async getLandAccount(){
 
-                return axios.get('api/running?start=11011400&end=11051299&transaction_date='+this.transaction_date)
-                .then((response)=>{
+                return axios.get('api/running?start=15011100&end=15011199&transaction_date='+this.transaction_date);
+
+                //.then((response)=>{
                     /*
                     this.lands = response.data;
                     var total_land_amount = 0;
@@ -506,10 +510,10 @@
                     }
                    //return 100;
                     */
-                })
-                .catch(()=>{
+                //})
+                //.catch(()=>{
                     //return 0;
-                });    
+                //});    
             },
             formatToCurrency(amount){
                 let currencyOptions = { style: 'currency', currency: 'USD', currencyDisplay: 'code' };
