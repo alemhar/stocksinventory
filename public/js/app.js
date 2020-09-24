@@ -11740,16 +11740,16 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       axios.get('api/running?start=15011100&end=15011199&transaction_date=' + this.transaction_date).then(function (response) {
-        console.log(response.data);
         _this3.lands = response.data;
         var total_land_amount = 0;
         var land_amount = 0; //console.log(this.sales);
 
         for (var land in _this3.lands) {
-          //docV += 6;
+          console.log('land: ', land); //docV += 6;
           //docH = 25;
           //doc.text(this.lands[land].account_name,docH,docV);
           //docH = 130;
+
           land_amount = _this3.lands[land].debit * 1 - _this3.lands[land].credit * 1;
           total_land_amount += land_amount; //main_total_land_amount += land_amount;
         }

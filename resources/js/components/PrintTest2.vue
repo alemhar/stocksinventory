@@ -485,15 +485,17 @@
 
             },
             getLandAccount(){
+                
                 axios.get('api/running?start=15011100&end=15011199&transaction_date='+this.transaction_date)
                 .then((response)=>{
-                    console.log(response.data);
+                    
                     this.lands = response.data;
                     var total_land_amount = 0;
                     var land_amount = 0;
 
                     //console.log(this.sales);
                     for (var land in this.lands) {
+                        console.log('land: ',land);
                         //docV += 6;
                         //docH = 25;
                         //doc.text(this.lands[land].account_name,docH,docV);
