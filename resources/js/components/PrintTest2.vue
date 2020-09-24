@@ -337,16 +337,16 @@
 
                         this.buildings = await this.getBuildingAccount();
                         var building_amount = 0;
-                        if(this.lands){
+                        if(this.buildings){
                             for (var building in this.buildings) {
                                 //console.log('land: ',land);
                                 building_amount = (this.buildings[building].debit * 1) - (this.buildings[building].credit * 1);
-                                this.total_building_amount += building_amount;
+                                total_building_amount += building_amount;
                             }
                         } else {
-                            this.total_building_amount = 0;
+                            total_building_amount = 0;
                         }
-                        doc.text(this.formatToCurrency(this.total_building_amount),docH,docV,'right');
+                        doc.text(this.formatToCurrency(total_building_amount),docH,docV,'right');
 
                         doc.save('test.pdf');
 

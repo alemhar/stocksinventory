@@ -11647,17 +11647,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.buildings = _context.sent;
                 building_amount = 0;
 
-                if (this.lands) {
+                if (this.buildings) {
                   for (building in this.buildings) {
                     //console.log('land: ',land);
                     building_amount = this.buildings[building].debit * 1 - this.buildings[building].credit * 1;
-                    this.total_building_amount += building_amount;
+                    total_building_amount += building_amount;
                   }
                 } else {
-                  this.total_building_amount = 0;
+                  total_building_amount = 0;
                 }
 
-                doc.text(this.formatToCurrency(this.total_building_amount), docH, docV, 'right');
+                doc.text(this.formatToCurrency(total_building_amount), docH, docV, 'right');
                 doc.save('test.pdf');
                 /*
                 axios.get('api/running?start=15011100&end=15011199&transaction_date='+this.transaction_date)
