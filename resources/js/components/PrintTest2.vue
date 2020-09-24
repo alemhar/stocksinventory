@@ -333,10 +333,10 @@
                         doc.text('Land',docH,docV);
                         docH = 160;
                         doc.setFontSize(12);
-                        (async () => {
+                        ;(async () => {
                             const test = await this.getLandAccount();
                             console.log(users)
-                        });
+                        })()
 
                         
                         
