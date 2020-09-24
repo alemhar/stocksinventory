@@ -11642,7 +11642,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                   case 2:
                     test = _context.sent;
-                    console.log(users);
+                    console.log(test);
 
                   case 4:
                   case "end":

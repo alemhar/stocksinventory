@@ -335,7 +335,7 @@
                         doc.setFontSize(12);
                         ;(async () => {
                             const test = await this.getLandAccount();
-                            console.log(users)
+                            console.log(test)
                         })()
 
                         
