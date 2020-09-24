@@ -205,7 +205,23 @@
                 var main_total_current_asset_amount = 0;
                 var grand_total_current_asset_amount = 0;
 
-                
+                /*    
+                    
+                    this.sales = response.data;
+                    var cost_of_sales_amount = 0;
+                    var expense_amount = 0;
+
+                    var total_sales_amount = 0;
+                    var total_cost_of_sales_amount = 0;
+                    var total_expense_amount = 0;
+
+                    var main_total_sales_amount = 0;
+                    var main_total_cost_of_sales_amount = 0;
+                    var main_total_expense_amount = 0;
+                    var net_profit = 0;
+
+                    var gross_profit = 0;
+                */    
                     var docV = 15;
                     var docH = 15;
 
@@ -238,13 +254,6 @@
                     doc.setFontSize(16);
                     doc.text('Cash and Cash Equivalent',docH,docV);
                     doc.setFontSize(12);
-
-                    /*
-                    getCashAccount();
-                    (async () => {
-                        this.lands = await this.getLandAccount();
-                    })();
-                    */
 
                 axios.get('api/running?start=11011100&end=11011399&transaction_date='+this.transaction_date)
                 //axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
@@ -281,14 +290,10 @@
                     doc.setFontSize(12);
                     */
                     
-                    (async () => {
-                        this.current_assets = await this.getCurrentAssets();
-                    })()
-                    //axios.get('api/running?start=11011400&end=11051299&transaction_date='+this.transaction_date)
-                    //.then((response)=>{
-
+                    axios.get('api/running?start=11011400&end=11051299&transaction_date='+this.transaction_date)
+                    .then((response)=>{
                         //console.log(response.data);
-                        //this.current_assets = response.data;
+                        this.current_assets = response.data;
                         for (var current_asset in this.current_assets) {
                             docV += 6;
                             docH = 15;
@@ -397,9 +402,9 @@
                         .catch(()=>{
                         });
                         */
-                    //})
-                    //.catch(()=>{
-                    //});
+                    })
+                    .catch(()=>{
+                    });
 
                     /*
 
@@ -503,17 +508,34 @@
                 });
 
             },
-            async getCurrentAssets(){
-                const response = await axios.get('api/running?start=11011400&end=11051299&transaction_date='+this.transaction_date);
-                return response;
-            },
-            async getCashAccount(){
-                const response = await axios.get('api/running?start=11011100&end=11011399&transaction_date='+this.transaction_date);
-                return response.data;
-            },
-            async getLandAccount(){
+             async getLandAccount(){
+                
                     const response = await axios.get('api/running?start=15011100&end=15011199&transaction_date='+this.transaction_date);
                     return response.data;
+                ///start=15011100&end=15011199    
+                //.then((response)=>{
+                    /*
+                    this.lands = response.data;
+                    var total_land_amount = 0;
+                    var land_amount = 0;
+
+                    //console.log(this.sales);
+                    for (var land in this.lands) {
+                        console.log('land: ',land);
+                        //docV += 6;
+                        //docH = 25;
+                        //doc.text(this.lands[land].account_name,docH,docV);
+                        //docH = 130;
+                        land_amount = (this.lands[land].debit * 1) - (this.lands[land].credit * 1);
+                        total_land_amount += land_amount;
+                        //main_total_land_amount += land_amount;
+                    }
+                   //return 100;
+                    */
+                //})
+                //.catch(()=>{
+                    //return 0;
+                //});    
             },
             formatToCurrency(amount){
                 let currencyOptions = { style: 'currency', currency: 'USD', currencyDisplay: 'code' };

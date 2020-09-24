@@ -11507,21 +11507,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var total_current_asset_amount = 0;
       var main_total_current_asset_amount = 0;
       var grand_total_current_asset_amount = 0;
-      /*    
-          
-          this.sales = response.data;
-          var cost_of_sales_amount = 0;
-          var expense_amount = 0;
-           var total_sales_amount = 0;
-          var total_cost_of_sales_amount = 0;
-          var total_expense_amount = 0;
-           var main_total_sales_amount = 0;
-          var main_total_cost_of_sales_amount = 0;
-          var main_total_expense_amount = 0;
-          var net_profit = 0;
-           var gross_profit = 0;
-      */
-
       var docV = 15;
       var docH = 15;
       var doc = new jspdf__WEBPACK_IMPORTED_MODULE_2__["default"]();
@@ -11553,6 +11538,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       doc.setFontSize(16);
       doc.text('Cash and Cash Equivalent', docH, docV);
       doc.setFontSize(12);
+      /*
+      getCashAccount();
+      (async () => {
+          this.lands = await this.getLandAccount();
+      })();
+      */
+
       axios.get('api/running?start=11011100&end=11011399&transaction_date=' + this.transaction_date) //axios.get('api/daily?sub_account_type=SALES_AND_REVENUES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
       .then(function (response) {
         //console.log(response.data);
@@ -11585,120 +11577,148 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         doc.setFontSize(12);
         */
 
-        axios.get('api/running?start=11011400&end=11051299&transaction_date=' + _this2.transaction_date).then(function (response) {
-          //console.log(response.data);
-          _this2.current_assets = response.data;
+        _asyncToGenerator(
+        /*#__PURE__*/
+        _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  _context.next = 2;
+                  return _this2.getCurrentAssets();
 
-          for (var current_asset in _this2.current_assets) {
-            docV += 6;
-            docH = 15;
-            doc.setFontSize(16);
-            doc.text(_this2.current_assets[current_asset].account_name, docH, docV);
-            docH = 160;
-            current_asset_amount = _this2.current_assets[current_asset].debit * 1 - _this2.current_assets[current_asset].credit * 1;
-            total_current_asset_amount += current_asset_amount;
-            main_total_current_asset_amount += current_asset_amount;
-            current_asset_amount = Intl.NumberFormat('en-US', currencyOptions).format(current_asset_amount);
-            current_asset_amount = current_asset_amount.replace(/[a-z]{3}/i, "").trim();
-            doc.setFontSize(12);
-            doc.text(current_asset_amount, docH, docV, 'right');
-          }
+                case 2:
+                  _this2.current_assets = _context.sent;
 
-          docV += 12;
-          docH = 15;
-          doc.setFontSize(16);
-          doc.text('TOTAL CURRENT ASSETS', docH, docV);
-          docH = 160;
-          doc.setFontSize(12);
-          grand_total_current_asset_amount = +main_total_cash_amount + +main_total_current_asset_amount;
-          grand_total_current_asset_amount = Intl.NumberFormat('en-US', currencyOptions).format(grand_total_current_asset_amount);
-          grand_total_current_asset_amount = grand_total_current_asset_amount.replace(/[a-z]{3}/i, "").trim();
-          doc.text(grand_total_current_asset_amount, docH, docV, 'right');
-          docV += 12;
-          docH = 15;
-          doc.setFontSize(16);
-          doc.text('NON CURRENT ASSETS', docH, docV);
-          docV += 6;
-          docH = 15;
-          doc.setFontSize(16);
-          doc.text('Property, Plan & Equipment', docH, docV);
-          docV += 6;
-          docH = 15;
-          doc.setFontSize(16);
-          doc.text('Land', docH, docV);
-          docH = 160;
-          doc.setFontSize(12);
-
-          _asyncToGenerator(
-          /*#__PURE__*/
-          _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-              while (1) {
-                switch (_context.prev = _context.next) {
-                  case 0:
-                    _context.next = 2;
-                    return _this2.getLandAccount();
-
-                  case 2:
-                    _this2.lands = _context.sent;
-
-                  case 3:
-                  case "end":
-                    return _context.stop();
-                }
+                case 3:
+                case "end":
+                  return _context.stop();
               }
-            }, _callee);
-          }))();
+            }
+          }, _callee);
+        }))(); //axios.get('api/running?start=11011400&end=11051299&transaction_date='+this.transaction_date)
+        //.then((response)=>{
+        //console.log(response.data);
+        //this.current_assets = response.data;
 
-          var land_amount = 0;
 
+        for (var current_asset in _this2.current_assets) {
+          docV += 6;
+          docH = 15;
+          doc.setFontSize(16);
+          doc.text(_this2.current_assets[current_asset].account_name, docH, docV);
+          docH = 160;
+          current_asset_amount = _this2.current_assets[current_asset].debit * 1 - _this2.current_assets[current_asset].credit * 1;
+          total_current_asset_amount += current_asset_amount;
+          main_total_current_asset_amount += current_asset_amount;
+          current_asset_amount = Intl.NumberFormat('en-US', currencyOptions).format(current_asset_amount);
+          current_asset_amount = current_asset_amount.replace(/[a-z]{3}/i, "").trim();
+          doc.setFontSize(12);
+          doc.text(current_asset_amount, docH, docV, 'right');
+        }
+
+        docV += 12;
+        docH = 15;
+        doc.setFontSize(16);
+        doc.text('TOTAL CURRENT ASSETS', docH, docV);
+        docH = 160;
+        doc.setFontSize(12);
+        grand_total_current_asset_amount = +main_total_cash_amount + +main_total_current_asset_amount;
+        grand_total_current_asset_amount = Intl.NumberFormat('en-US', currencyOptions).format(grand_total_current_asset_amount);
+        grand_total_current_asset_amount = grand_total_current_asset_amount.replace(/[a-z]{3}/i, "").trim();
+        doc.text(grand_total_current_asset_amount, docH, docV, 'right');
+        docV += 12;
+        docH = 15;
+        doc.setFontSize(16);
+        doc.text('NON CURRENT ASSETS', docH, docV);
+        docV += 6;
+        docH = 15;
+        doc.setFontSize(16);
+        doc.text('Property, Plan & Equipment', docH, docV);
+        docV += 6;
+        docH = 15;
+        doc.setFontSize(16);
+        doc.text('Land', docH, docV);
+        docH = 160;
+        doc.setFontSize(12);
+
+        _asyncToGenerator(
+        /*#__PURE__*/
+        _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  _context2.next = 2;
+                  return _this2.getLandAccount();
+
+                case 2:
+                  _this2.lands = _context2.sent;
+
+                case 3:
+                case "end":
+                  return _context2.stop();
+              }
+            }
+          }, _callee2);
+        }))();
+
+        var land_amount = 0;
+
+        if (_this2.lands) {
           for (var land in _this2.lands) {
             console.log('land: ', land);
             land_amount = _this2.lands[land].debit * 1 - _this2.lands[land].credit * 1;
             _this2.total_land_amount += land_amount;
           }
+        } else {
+          _this2.total_land_amount = 0;
+        }
 
-          doc.text(_this2.formatToCurrency(_this2.total_land_amount), docH, docV, 'right');
-          doc.save('test.pdf');
-          /*
-          axios.get('api/running?start=15011100&end=15011199&transaction_date='+this.transaction_date)
-          .then((response)=>{
-              //console.log(response.data);
-              this.non_current_assets = response.data;
-               axios.get('api/running?start=21010000&end=21051299&transaction_date='+this.transaction_date)
-              .then((response)=>{
-                  //console.log(response.data);
-                  this.liabilities = response.data;
-                  axios.get('api/running?start=22010000&end=22020099&transaction_date='+this.transaction_date)
-                  .then((response)=>{
-                      //console.log(response.data);
-                      this.other_non_current_liabilities = response.data;
-                      axios.get('api/running?start=31010000&end=31010099&transaction_date='+this.transaction_date)
-                      .then((response)=>{
-                          //console.log(response.data);
-                          this.owners_equity = response.data;
-                          axios.get('api/running?start=31020000&end=31020099&transaction_date='+this.transaction_date)
-                          .then((response)=>{
-                              //console.log(response.data);
-                              this.owners_withdrawal = response.data;
-                          })
-                          .catch(()=>{
-                          });
-                      })
-                      .catch(()=>{
-                      });
-                  })
-                  .catch(()=>{
-                  });
-              })
-              .catch(()=>{
-              });
-              
-          })
-          .catch(()=>{
-          });
-          */
-        })["catch"](function () {});
+        doc.text(_this2.formatToCurrency(_this2.total_land_amount), docH, docV, 'right');
+        doc.save('test.pdf');
+        /*
+        axios.get('api/running?start=15011100&end=15011199&transaction_date='+this.transaction_date)
+        .then((response)=>{
+            //console.log(response.data);
+            this.non_current_assets = response.data;
+             axios.get('api/running?start=21010000&end=21051299&transaction_date='+this.transaction_date)
+            .then((response)=>{
+                //console.log(response.data);
+                this.liabilities = response.data;
+                axios.get('api/running?start=22010000&end=22020099&transaction_date='+this.transaction_date)
+                .then((response)=>{
+                    //console.log(response.data);
+                    this.other_non_current_liabilities = response.data;
+                    axios.get('api/running?start=31010000&end=31010099&transaction_date='+this.transaction_date)
+                    .then((response)=>{
+                        //console.log(response.data);
+                        this.owners_equity = response.data;
+                        axios.get('api/running?start=31020000&end=31020099&transaction_date='+this.transaction_date)
+                        .then((response)=>{
+                            //console.log(response.data);
+                            this.owners_withdrawal = response.data;
+                        })
+                        .catch(()=>{
+                        });
+                    })
+                    .catch(()=>{
+                    });
+                })
+                .catch(()=>{
+                });
+            })
+            .catch(()=>{
+            });
+            
+        })
+        .catch(()=>{
+        });
+        */
+        //})
+        //.catch(()=>{
+        //});
+
         /*
          axios.get('api/daily?sub_account_type=COST_OF_SALES&from_transaction_date='+this.from_transaction_date+'&to_transaction_date='+this.to_transaction_date)
         .then((response)=>{
@@ -11786,28 +11806,88 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         */
       })["catch"](function () {});
     },
-    getLandAccount: function () {
-      var _getLandAccount = _asyncToGenerator(
+    getCurrentAssets: function () {
+      var _getCurrentAssets = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                _context2.next = 2;
+                _context3.next = 2;
                 return axios.get('api/running?start=11011400&end=11051299&transaction_date=' + this.transaction_date);
 
               case 2:
-                response = _context2.sent;
-                return _context2.abrupt("return", response.data);
+                response = _context3.sent;
+                return _context3.abrupt("return", response);
 
               case 4:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee3, this);
+      }));
+
+      function getCurrentAssets() {
+        return _getCurrentAssets.apply(this, arguments);
+      }
+
+      return getCurrentAssets;
+    }(),
+    getCashAccount: function () {
+      var _getCashAccount = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return axios.get('api/running?start=11011100&end=11011399&transaction_date=' + this.transaction_date);
+
+              case 2:
+                response = _context4.sent;
+                return _context4.abrupt("return", response.data);
+
+              case 4:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+
+      function getCashAccount() {
+        return _getCashAccount.apply(this, arguments);
+      }
+
+      return getCashAccount;
+    }(),
+    getLandAccount: function () {
+      var _getLandAccount = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return axios.get('api/running?start=15011100&end=15011199&transaction_date=' + this.transaction_date);
+
+              case 2:
+                response = _context5.sent;
+                return _context5.abrupt("return", response.data);
+
+              case 4:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this);
       }));
 
       function getLandAccount() {
