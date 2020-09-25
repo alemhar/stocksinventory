@@ -284,7 +284,7 @@
                         //cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(cash_amount);
                         //cash_amount = cash_amount.replace(/[a-z]{3}/i, "").trim();
                         //doc.text(cash_amount,docH,docV,'right');
-                        doc.text(1000,docH,docV,'right');
+                        doc.text('1000',docH,docV,'right');
                     }
                     docH = 160;
                     //total_cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_cash_amount);
