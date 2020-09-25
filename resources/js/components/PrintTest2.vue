@@ -600,11 +600,11 @@
 
             },
             async getTransportationsAccount(){
-                const response = await axios.get('api/asof?start=15011400&end=15011499&transaction_date='+this.transaction_date);
+                const response = await axios.get('api/asof?start=15011500&end=15011599&transaction_date='+this.transaction_date);
                 return response.data;            
             },
             async getAccuTransportationsAccount(){
-                const response = await axios.get('api/asof?start=15015300&end=15015399&transaction_date='+this.transaction_date);
+                const response = await axios.get('api/asof?start=15015400&end=15015499&transaction_date='+this.transaction_date);
                 return response.data;
             },
             async getMachineriesAccount(){
