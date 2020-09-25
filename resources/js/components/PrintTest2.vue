@@ -265,16 +265,16 @@
                 
                 
                 //(async () => {
-                    this.cashes = await this.getCashAccount();
-                    console.log(this.cashes);
+                    cashes = await this.getCashAccount();
+                    console.log(cashes);
 
-                    for (var cash in this.cashes) {
+                    for (var cash in cashes) {
                         docV += 6;
                         docH = 25;
-                        doc.text('this.cashes[cash].account_name',docH,docV);
+                        doc.text(cashes[cash].account_name,docH,docV);
                         //doc.text(cashes[cash].account_name,docH,docV);
                         docH = 130;
-                        cash_amount = (this.cashes[cash].debit * 1) - (this.cashes[cash].credit * 1);
+                        cash_amount = (cashes[cash].debit * 1) - (cashes[cash].credit * 1);
                         
                         console.log( 'FOR LOOP '+this.formatToCurrency(cash_amount));
 
@@ -285,7 +285,7 @@
                         //cash_amount = cash_amount.replace(/[a-z]{3}/i, "").trim();
                         //doc.text(cash_amount,docH,docV,'right');
 
-                        doc.text('1000',docH,docV,'right');
+                        doc.text(this.formatToCurrency(cash_amount),docH,docV,'right');
                     }
                     docH = 160;
                     //total_cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_cash_amount);

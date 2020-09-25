@@ -11569,23 +11569,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return this.getCashAccount();
 
               case 59:
-                this.cashes = _context.sent;
-                console.log(this.cashes);
+                cashes = _context.sent;
+                console.log(cashes);
 
-                for (cash in this.cashes) {
+                for (cash in cashes) {
                   docV += 6;
                   docH = 25;
-                  doc.text('this.cashes[cash].account_name', docH, docV); //doc.text(cashes[cash].account_name,docH,docV);
+                  doc.text(cashes[cash].account_name, docH, docV); //doc.text(cashes[cash].account_name,docH,docV);
 
                   docH = 130;
-                  cash_amount = this.cashes[cash].debit * 1 - this.cashes[cash].credit * 1;
+                  cash_amount = cashes[cash].debit * 1 - cashes[cash].credit * 1;
                   console.log('FOR LOOP ' + this.formatToCurrency(cash_amount));
                   total_cash_amount += cash_amount;
                   main_total_cash_amount += cash_amount; //cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(cash_amount);
                   //cash_amount = cash_amount.replace(/[a-z]{3}/i, "").trim();
                   //doc.text(cash_amount,docH,docV,'right');
 
-                  doc.text('1000', docH, docV, 'right');
+                  doc.text(this.formatToCurrency(cash_amount), docH, docV, 'right');
                 }
 
                 docH = 160; //total_cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_cash_amount);
