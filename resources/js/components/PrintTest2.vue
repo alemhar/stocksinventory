@@ -275,7 +275,8 @@
                 total_cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_cash_amount);
                 total_cash_amount = total_cash_amount.replace(/[a-z]{3}/i, "").trim();
                 doc.text(total_cash_amount,docH,docV,'right');
-                    
+                
+                /*
                     
                     
                     
@@ -432,7 +433,7 @@
                 doc.setFontSize(12);
                 doc.text(this.formatToCurrency(total_furniture_amount - accu_total_furniture_amount),docH,docV,'right');
 
-                
+                */
 
                 doc.save('test.pdf');
 

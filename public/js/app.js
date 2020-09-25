@@ -11498,7 +11498,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _generateReportBS = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var currencyOptions, result, cash_amount, total_cash_amount, main_total_cash_amount, current_asset_amount, total_current_asset_amount, main_total_current_asset_amount, grand_total_current_asset_amount, building_amount, total_building_amount, land_amount, total_land_amount, accu_building_amount, accu_total_building_amount, furniture_amount, total_furniture_amount, accu_furniture_amount, accu_total_furniture_amount, docV, docH, doc, cash, current_asset, land, building, accu_building, furniture, accu_furniture;
+        var currencyOptions, result, cash_amount, total_cash_amount, main_total_cash_amount, current_asset_amount, total_current_asset_amount, main_total_current_asset_amount, grand_total_current_asset_amount, building_amount, total_building_amount, land_amount, total_land_amount, accu_building_amount, accu_total_building_amount, furniture_amount, total_furniture_amount, accu_furniture_amount, accu_total_furniture_amount, docV, docH, doc, cash;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -11580,171 +11580,151 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 total_cash_amount = Intl.NumberFormat('en-US', currencyOptions).format(total_cash_amount);
                 total_cash_amount = total_cash_amount.replace(/[a-z]{3}/i, "").trim();
                 doc.text(total_cash_amount, docH, docV, 'right');
-                _context.next = 60;
-                return this.getCurrentAssets();
-
-              case 60:
-                this.current_assets = _context.sent;
-
+                /*
+                    
+                    
+                    
+                this.current_assets = await this.getCurrentAssets();
                 //console.log(this.current_assets);
-                for (current_asset in this.current_assets) {
-                  docV += 6;
-                  docH = 15;
-                  doc.setFontSize(16);
-                  doc.text(this.current_assets[current_asset].account_name, docH, docV);
-                  docH = 160;
-                  current_asset_amount = this.current_assets[current_asset].debit * 1 - this.current_assets[current_asset].credit * 1;
-                  total_current_asset_amount += current_asset_amount;
-                  main_total_current_asset_amount += current_asset_amount;
-                  current_asset_amount = Intl.NumberFormat('en-US', currencyOptions).format(current_asset_amount);
-                  current_asset_amount = current_asset_amount.replace(/[a-z]{3}/i, "").trim();
-                  doc.setFontSize(12);
-                  doc.text(current_asset_amount, docH, docV, 'right');
+                for (var current_asset in this.current_assets) {
+                    docV += 6;
+                    docH = 15;
+                    doc.setFontSize(16);
+                    doc.text(this.current_assets[current_asset].account_name,docH,docV);
+                    docH = 160;
+                    current_asset_amount = (this.current_assets[current_asset].debit * 1) - (this.current_assets[current_asset].credit * 1);
+                    total_current_asset_amount += current_asset_amount;
+                    main_total_current_asset_amount += current_asset_amount;
+                    
+                    current_asset_amount = Intl.NumberFormat('en-US',currencyOptions).format(current_asset_amount);
+                    current_asset_amount = current_asset_amount.replace(/[a-z]{3}/i, "").trim();
+                    doc.setFontSize(12);
+                    doc.text(current_asset_amount,docH,docV,'right');
                 }
-
-                docV += 12;
+                   
+                     
+                docV += 12;    
                 docH = 15;
                 doc.setFontSize(16);
-                doc.text('TOTAL CURRENT ASSETS', docH, docV);
+                doc.text('TOTAL CURRENT ASSETS',docH,docV);
                 docH = 160;
                 doc.setFontSize(12);
                 grand_total_current_asset_amount = +main_total_cash_amount + +main_total_current_asset_amount;
-                grand_total_current_asset_amount = Intl.NumberFormat('en-US', currencyOptions).format(grand_total_current_asset_amount);
+                 grand_total_current_asset_amount = Intl.NumberFormat('en-US',currencyOptions).format(grand_total_current_asset_amount);
                 grand_total_current_asset_amount = grand_total_current_asset_amount.replace(/[a-z]{3}/i, "").trim();
-                doc.text(grand_total_current_asset_amount, docH, docV, 'right');
-                docV += 12;
+                doc.text(grand_total_current_asset_amount,docH,docV,'right');
+                 docV += 12;
                 docH = 15;
                 doc.setFontSize(16);
-                doc.text('NON CURRENT ASSETS', docH, docV);
+                doc.text('NON CURRENT ASSETS',docH,docV);
                 docV += 6;
                 docH = 15;
                 doc.setFontSize(16);
-                doc.text('Property, Plan & Equipment', docH, docV);
+                doc.text('Property, Plan & Equipment',docH,docV);
                 docV += 6;
                 docH = 15;
                 doc.setFontSize(16);
-                doc.text('Land', docH, docV);
+                doc.text('Land',docH,docV);
                 docH = 160;
                 doc.setFontSize(12);
-                _context.next = 88;
-                return this.getLandAccount();
-
-              case 88:
-                this.lands = _context.sent;
-
-                if (this.lands) {
-                  for (land in this.lands) {
-                    console.log('land: ', land);
-                    land_amount = this.lands[land].debit * 1 - this.lands[land].credit * 1;
-                    total_land_amount += land_amount;
-                  }
+                        
+                        
+                this.lands = await this.getLandAccount();
+                
+                if(this.lands){
+                    for (var land in this.lands) {
+                        console.log('land: ',land);
+                        land_amount = (this.lands[land].debit * 1) - (this.lands[land].credit * 1);
+                        total_land_amount += land_amount;
+                    }
                 } else {
-                  total_land_amount = 0;
+                    total_land_amount = 0;
                 }
-
-                doc.text(this.formatToCurrency(total_land_amount), docH, docV, 'right');
+                doc.text(this.formatToCurrency(total_land_amount),docH,docV,'right');
+                
                 docV += 6;
                 docH = 15;
                 doc.setFontSize(16);
-                doc.text('Building', docH, docV);
+                doc.text('Building',docH,docV);
                 docH = 130;
                 doc.setFontSize(12);
-                _context.next = 99;
-                return this.getBuildingAccount();
-
-              case 99:
-                this.buildings = _context.sent;
-                building_amount = 0;
-
-                if (this.buildings) {
-                  for (building in this.buildings) {
-                    //console.log('land: ',land);
-                    building_amount = this.buildings[building].debit * 1 - this.buildings[building].credit * 1;
-                    total_building_amount += building_amount;
-                  }
+                 this.buildings = await this.getBuildingAccount();
+                var building_amount = 0;
+                if(this.buildings){
+                    for (var building in this.buildings) {
+                        //console.log('land: ',land);
+                        building_amount = (this.buildings[building].debit * 1) - (this.buildings[building].credit * 1);
+                        total_building_amount += building_amount;
+                    }
                 } else {
-                  total_building_amount = 0;
+                    total_building_amount = 0;
                 }
-
-                doc.text(this.formatToCurrency(total_building_amount), docH, docV, 'right');
-                docV += 6;
+                doc.text(this.formatToCurrency(total_building_amount),docH,docV,'right');
+                   docV += 6;
                 docH = 15;
                 doc.setFontSize(16);
-                doc.text('Accumulated Dep. - Building', docH, docV);
+                doc.text('Accumulated Dep. - Building',docH,docV);
                 docH = 130;
                 doc.setFontSize(12);
-                _context.next = 111;
-                return this.getAccuBuildingAccount();
-
-              case 111:
-                this.accu_buildings = _context.sent;
-
-                if (this.accu_buildings) {
-                  for (accu_building in this.accu_buildings) {
-                    //console.log('land: ',land);
-                    accu_building_amount = this.accu_buildings[accu_building].debit * 1 - this.accu_buildings[accu_building].credit * 1;
-                    accu_total_building_amount += accu_building_amount;
-                  }
+                 this.accu_buildings = await this.getAccuBuildingAccount();
+                if(this.accu_buildings){
+                    for (var accu_building in this.accu_buildings) {
+                        //console.log('land: ',land);
+                        accu_building_amount = (this.accu_buildings[accu_building].debit * 1) - (this.accu_buildings[accu_building].credit * 1);
+                        accu_total_building_amount += accu_building_amount;
+                    }
                 } else {
-                  accu_total_building_amount = 0;
+                    accu_total_building_amount = 0;
                 }
-
-                doc.text(this.formatToCurrency(accu_total_building_amount), docH, docV, 'right');
+                doc.text(this.formatToCurrency(accu_total_building_amount),docH,docV,'right');
                 docH = 160;
                 doc.setFontSize(12);
-                doc.text(this.formatToCurrency(total_building_amount - accu_total_building_amount), docH, docV, 'right');
-                docV += 6;
+                doc.text(this.formatToCurrency(total_building_amount - accu_total_building_amount),docH,docV,'right');
+                   docV += 6;
                 docH = 15;
                 doc.setFontSize(16);
-                doc.text('Furnitures & Fixtures', docH, docV);
+                doc.text('Furnitures & Fixtures',docH,docV);
                 docH = 130;
                 doc.setFontSize(12);
-                _context.next = 125;
-                return this.getFurnitureAccount();
-
-              case 125:
-                this.furnitures = _context.sent;
-
-                if (this.furnitures) {
-                  for (furniture in this.furnitures) {
-                    //console.log('land: ',land);
-                    furniture_amount = this.furnitures[furniture].debit * 1 - this.furnitures[furniture].credit * 1;
-                    total_furniture_amount += furniture_amount;
-                  }
+                 this.furnitures = await this.getFurnitureAccount();
+                
+                if(this.furnitures){
+                    for (var furniture in this.furnitures) {
+                        //console.log('land: ',land);
+                        furniture_amount = (this.furnitures[furniture].debit * 1) - (this.furnitures[furniture].credit * 1);
+                        total_furniture_amount += furniture_amount;
+                    }
                 } else {
-                  total_furniture_amount = 0;
+                    total_furniture_amount = 0;
                 }
-
-                doc.text(this.formatToCurrency(total_furniture_amount), docH, docV, 'right');
-                docV += 6;
+                doc.text(this.formatToCurrency(total_furniture_amount),docH,docV,'right');
+                 
+                  docV += 6;
                 docH = 15;
                 doc.setFontSize(16);
-                doc.text('Accumulated Dep. - Furnitures & Fixtures', docH, docV);
+                doc.text('Accumulated Dep. - Furnitures & Fixtures',docH,docV);
                 docH = 130;
                 doc.setFontSize(12);
-                _context.next = 136;
-                return this.getAccuFurnitureAccount();
-
-              case 136:
-                this.accu_furnitures = _context.sent;
-
-                if (this.accu_furnitures) {
-                  for (accu_furniture in this.accu_furnitures) {
-                    //console.log('land: ',land);
-                    accu_furniture_amount = this.accu_furnitures[accu_furniture].debit * 1 - this.accu_furnitures[accu_furniture].credit * 1;
-                    accu_total_furniture_amount += accu_furniture_amount;
-                  }
+                 this.accu_furnitures = await this.getAccuFurnitureAccount();
+                
+                if(this.accu_furnitures){
+                    for (var accu_furniture in this.accu_furnitures) {
+                        //console.log('land: ',land);
+                        accu_furniture_amount = (this.accu_furnitures[accu_furniture].debit * 1) - (this.accu_furnitures[accu_furniture].credit * 1);
+                        accu_total_furniture_amount += accu_furniture_amount;
+                    }
                 } else {
-                  accu_total_furniture_amount = 0;
+                    accu_total_furniture_amount = 0;
                 }
-
-                doc.text(this.formatToCurrency(accu_total_furniture_amount), docH, docV, 'right');
+                doc.text(this.formatToCurrency(accu_total_furniture_amount),docH,docV,'right');
                 docH = 160;
                 doc.setFontSize(12);
-                doc.text(this.formatToCurrency(total_furniture_amount - accu_total_furniture_amount), docH, docV, 'right');
+                doc.text(this.formatToCurrency(total_furniture_amount - accu_total_furniture_amount),docH,docV,'right');
+                 */
+
                 doc.save('test.pdf');
 
-              case 143:
+              case 59:
               case "end":
                 return _context.stop();
             }
