@@ -227,8 +227,15 @@
                 var accu_buildings = {};
                 var furnitures = {};
                 var accu_furnitures = {};
-
-
+                
+                var machineries = null;
+                var machine_amount = 0;
+                var total_machine_amount = 0;
+                
+                var accu_machineries = null;
+                var accu_machine_amount = 0;
+                var accu_total_machine_amount = 0;
+                
                 var docV = 15;
                 var docH = 15;
 
@@ -478,12 +485,71 @@
                 doc.text(this.formatToCurrency(total_furniture_amount - accu_total_furniture_amount),docH,docV,'right');
 
                 
+
+                // ***** Machineries
+
+                docV += 6;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('Machineries',docH,docV);
+                docH = 130;
+                doc.setFontSize(12);
+
+                machineries = await this.getMachineriesAccount();
+                
+                if(machineries){
+                    for (var machine in machineries) {
+                        machine_amount = (machineries[machine].debit * 1) - (machineries[machine].credit * 1);
+                        total_machine_amount += machine_amount;
+                    }
+                } else {
+                    total_machine_amount = 0;
+                }
+                doc.text(this.formatToCurrency(total_machine_amount),docH,docV,'right');
+
+                docV += 6;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('Accumulated Dep. - Machineries',docH,docV);
+                docH = 130;
+                doc.setFontSize(12);
+
+                accu_machineries = await this.getAccuMachineriesAccount();
+                
+                if(accu_machineries){
+                    for (var accu_machine in accu_machineries) {
+                        //console.log('land: ',land);
+                        accu_machine_amount = (accu_machineries[accu_machine].debit * 1) - (accu_machineries[accu_machine].credit * 1);
+                        accu_total_machine_amount += accu_machine_amount;
+                    }
+                } else {
+                    accu_total_machine_amount = 0;
+                }
+                doc.text(this.formatToCurrency(accu_total_machine_amount),docH,docV,'right');
+                docH = 160;
+                doc.setFontSize(12);
+                doc.text(this.formatToCurrency(total_machine_amount - accu_total_machine_amount),docH,docV,'right');
+
+                // ***** Machineries
+                
+                
+                
+                
+                
                 doc.save('test.pdf');
 
                         
                         
                         
 
+            },
+            async getMachineriesAccount(){
+                const response = await axios.get('api/asof?start=15011400&end=15011499&transaction_date='+this.transaction_date);
+                return response.data;            
+            },
+            async getAccuMachineriesAccount(){
+                const response = await axios.get('api/asof?start=15015300&end=15015399&transaction_date='+this.transaction_date);
+                return response.data;
             },
             async getFurnitureAccount(){
                 const response = await axios.get('api/asof?start=15011300&end=15011399&transaction_date='+this.transaction_date);
