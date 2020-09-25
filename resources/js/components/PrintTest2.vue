@@ -267,33 +267,34 @@
                 (async () => {
                     this.cashes = await this.getCashAccount();
                     console.log(this.cashes);
-                for (var cash in this.cashes) {
-                    docV += 6;
-                    docH = 25;
-                    doc.text('this.cashes[cash].account_name',docH,docV);
-                    //doc.text(cashes[cash].account_name,docH,docV);
-                    docH = 130;
-                    cash_amount = (this.cashes[cash].debit * 1) - (this.cashes[cash].credit * 1);
-                    
-                    console.log( 'FOR LOOP '+this.formatToCurrency(cash_amount));
 
-                    total_cash_amount += cash_amount;
-                    main_total_cash_amount += cash_amount;
+                    for (var cash in this.cashes) {
+                        docV += 6;
+                        docH = 25;
+                        doc.text('this.cashes[cash].account_name',docH,docV);
+                        //doc.text(cashes[cash].account_name,docH,docV);
+                        docH = 130;
+                        cash_amount = (this.cashes[cash].debit * 1) - (this.cashes[cash].credit * 1);
+                        
+                        console.log( 'FOR LOOP '+this.formatToCurrency(cash_amount));
+
+                        total_cash_amount += cash_amount;
+                        main_total_cash_amount += cash_amount;
+                        
+                        //cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(cash_amount);
+                        //cash_amount = cash_amount.replace(/[a-z]{3}/i, "").trim();
+                        //doc.text(cash_amount,docH,docV,'right');
+                        doc.text('1000',docH,docV,'right');
+                    }
+                    docH = 160;
+                    //total_cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_cash_amount);
+                    //total_cash_amount = total_cash_amount.replace(/[a-z]{3}/i, "").trim();
                     
-                    //cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(cash_amount);
-                    //cash_amount = cash_amount.replace(/[a-z]{3}/i, "").trim();
-                    //doc.text(cash_amount,docH,docV,'right');
-                    doc.text('1000',docH,docV,'right');
-                }
-                docH = 160;
-                //total_cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_cash_amount);
-                //total_cash_amount = total_cash_amount.replace(/[a-z]{3}/i, "").trim();
-                
-                //doc.text(total_cash_amount,docH,docV,'right');
-                doc.text(this.formatToCurrency(total_cash_amount),docH,docV,'right');
+                    //doc.text(total_cash_amount,docH,docV,'right');
+                    doc.text(this.formatToCurrency(total_cash_amount),docH,docV,'right');
                 })(); 
                 
-                
+                /*
                     
                     
                 (async () => {
@@ -472,7 +473,7 @@
                 doc.setFontSize(12);
                 doc.text(this.formatToCurrency(total_furniture_amount - accu_total_furniture_amount),docH,docV,'right');
 
-
+                */
                 doc.save('test.pdf');
 
                         
