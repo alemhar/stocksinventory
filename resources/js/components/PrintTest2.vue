@@ -266,8 +266,7 @@
                 
                 (async () => {
                     this.cashes = await this.getCashAccount();
-                })(); 
-                console.log(this.cashes);
+                    console.log(this.cashes);
                 for (var cash in this.cashes) {
                     docV += 6;
                     docH = 25;
@@ -292,6 +291,8 @@
                 
                 //doc.text(total_cash_amount,docH,docV,'right');
                 doc.text(this.formatToCurrency(total_cash_amount),docH,docV,'right');
+                })(); 
+                
                 
                     
                     
