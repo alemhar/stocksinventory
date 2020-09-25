@@ -32,7 +32,7 @@ class RunningController extends Controller
             $query->whereBetween('account_code', [$start, $end]);
             //$query->where('transaction_date','=', $transaction_date);
         })
-        ->where('transaction_date','=', $transaction_date)
+        ->where('transaction_date','=<', $transaction_date)
         //->groupBy('account_code')
         ->groupBy(['account_code', 'transaction_date'])
         ->orderBy('account_code')
