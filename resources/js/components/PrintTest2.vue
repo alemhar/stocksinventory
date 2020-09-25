@@ -220,7 +220,7 @@
 
                 var accu_furniture_amount = 0;
                 var accu_total_furniture_amount = 0;
-                var cashes = {};
+                var cashes = null;
                 var current_assets = {};
                 var lands = {};
                 var buildings = {};
