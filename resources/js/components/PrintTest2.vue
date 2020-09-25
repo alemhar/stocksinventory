@@ -350,9 +350,9 @@
 
 
                 
-                (async () => {
+                //(async () => {
                     lands = await this.getLandAccount();
-                })();           
+                //})();           
                 
                 
                 if(lands){
@@ -373,10 +373,10 @@
                 docH = 130;
                 doc.setFontSize(12);
 
-                /*
-                (async () => {
+                
+                //(async () => {
                     buildings = await this.getBuildingAccount();
-                })(); 
+                //})(); 
 
                 
                 var building_amount = 0;
@@ -399,7 +399,7 @@
                 doc.text('Accumulated Dep. - Building',docH,docV);
                 docH = 130;
                 doc.setFontSize(12);
-
+                /*
                 (async () => {
                     accu_buildings = await this.getAccuBuildingAccount();
                 
