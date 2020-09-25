@@ -11577,7 +11577,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 for (cash in cashes) {
                   docV += 6;
                   docH = 25;
-                  doc.text(cashes[cash].account_name, docH, docV);
+                  doc.text('cashes[cash].account_name', docH, docV); //doc.text(cashes[cash].account_name,docH,docV);
+
                   docH = 130;
                   cash_amount = cashes[cash].debit * 1 - cashes[cash].credit * 1;
                   console.log(_this2.formatToCurrency(cash_amount));
