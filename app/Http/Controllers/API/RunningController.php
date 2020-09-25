@@ -33,9 +33,11 @@ class RunningController extends Controller
             //$query->where('transaction_date','=', $transaction_date);
         })
         ->where('transaction_date','=', $transaction_date)
-        ->groupBy('account_code')
+        //->groupBy('account_code')
+        ->groupBy(['account_code', 'transaction_date'])
         ->orderBy('account_code')
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
+        ->limit(1)
         ->get();
 
         return $transaction;
