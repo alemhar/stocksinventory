@@ -250,6 +250,9 @@
                 var other_non_current_asset_amount = 0;
                 var total_other_non_current_asset_amount = 0;
 
+                var total_non_current_asset_amount = 0;
+
+                
                 var docV = 15;
                 var docH = 15;
 
@@ -619,9 +622,26 @@
                 doc.text(this.formatToCurrency(total_other_non_current_asset_amount),docH,docV,'right');
                 // ***** Other Non Current Assets
 
+                // ***** Total Non Current Assets
+                docV += 12;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('TOTAL NON CURRENT ASSETS',docH,docV);
+                //docH = 135;
+                //doc.setFontSize(12);
+
+                //docV += 6;
+                docH = 165;
+                doc.setFontSize(12);
 
                 
+                total_non_current_asset_amount = total_other_non_current_asset_amount + (total_transportation_amount - accu_total_transportation_amount) + (total_machine_amount - accu_total_machine_amount) + (total_furniture_amount - accu_total_furniture_amount) + (total_building_amount - accu_total_building_amount) + total_land_amount;
 
+                doc.text(this.formatToCurrency(total_other_non_current_asset_amount),docH,docV,'right');
+
+                
+                // ***** Total Non Current Assets
+                
                 
                 doc.save('test.pdf');
 
