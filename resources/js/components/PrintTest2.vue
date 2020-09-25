@@ -630,7 +630,7 @@
                 docH = 180;
                 doc.setFontSize(12);
                 total_non_current_asset_amount = total_other_non_current_asset_amount + (total_transportation_amount - accu_total_transportation_amount) + (total_machine_amount - accu_total_machine_amount) + (total_furniture_amount - accu_total_furniture_amount) + (total_building_amount - accu_total_building_amount) + total_land_amount;
-                doc.text(this.formatToCurrency(total_other_non_current_asset_amount),docH,docV,'right');
+                doc.text(this.formatToCurrency(total_non_current_asset_amount),docH,docV,'right');
                 // ***** Total Non Current Assets
                 
                 // ***** Total Non Current Assets
