@@ -194,7 +194,7 @@
                     });
                 
             },
-            async generateReportBS(){
+            generateReportBS(){
                 let currencyOptions = { style: 'currency', currency: 'USD', currencyDisplay: 'code' };
                 let result = null;
                 var cash_amount = 0;
@@ -255,8 +255,10 @@
                 doc.setFontSize(12);
 
                 
-                this.cashes = await this.getCashAccount();
-                    
+                
+                (async () => {
+                    this.cashes = await this.getCashAccount();
+                })();    
                 
                 for (var cash in this.cashes) {
                     docV += 6;
