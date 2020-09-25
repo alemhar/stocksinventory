@@ -11521,6 +11521,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var accu_furniture_amount = 0;
       var accu_total_furniture_amount = 0;
       var cashes = {};
+      var current_assets = {};
+      var lands = {};
+      var buildings = {};
+      var accu_buildings = {};
+      var furnitures = {};
+      var accu_furnitures = {};
       var docV = 15;
       var docH = 15;
       var doc = new jspdf__WEBPACK_IMPORTED_MODULE_2__["default"]();
@@ -11603,7 +11609,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this2.getCurrentAssets();
 
               case 2:
-                _this2.current_assets = _context2.sent;
+                current_assets = _context2.sent;
 
               case 3:
               case "end":
@@ -11614,13 +11620,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))(); //console.log(this.current_assets);
 
 
-      for (var current_asset in this.current_assets) {
+      for (var current_asset in current_assets) {
         docV += 6;
         docH = 15;
         doc.setFontSize(16);
-        doc.text(this.current_assets[current_asset].account_name, docH, docV);
+        doc.text(current_assets[current_asset].account_name, docH, docV);
         docH = 160;
-        current_asset_amount = this.current_assets[current_asset].debit * 1 - this.current_assets[current_asset].credit * 1;
+        current_asset_amount = current_assets[current_asset].debit * 1 - current_assets[current_asset].credit * 1;
         total_current_asset_amount += current_asset_amount;
         main_total_current_asset_amount += current_asset_amount;
         current_asset_amount = Intl.NumberFormat('en-US', currencyOptions).format(current_asset_amount);
@@ -11665,7 +11671,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this2.getLandAccount();
 
               case 2:
-                _this2.lands = _context3.sent;
+                lands = _context3.sent;
 
               case 3:
               case "end":
@@ -11675,10 +11681,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3);
       }))();
 
-      if (this.lands) {
-        for (var land in this.lands) {
-          console.log('land: ', land);
-          land_amount = this.lands[land].debit * 1 - this.lands[land].credit * 1;
+      if (lands) {
+        for (var land in lands) {
+          //console.log('land: ',land);
+          land_amount = lands[land].debit * 1 - lands[land].credit * 1;
           total_land_amount += land_amount;
         }
       } else {
@@ -11704,7 +11710,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this2.getBuildingAccount();
 
               case 2:
-                _this2.buildings = _context4.sent;
+                buildings = _context4.sent;
 
               case 3:
               case "end":
@@ -11716,10 +11722,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       var building_amount = 0;
 
-      if (this.buildings) {
-        for (var building in this.buildings) {
+      if (buildings) {
+        for (var building in buildings) {
           //console.log('land: ',land);
-          building_amount = this.buildings[building].debit * 1 - this.buildings[building].credit * 1;
+          building_amount = buildings[building].debit * 1 - buildings[building].credit * 1;
           total_building_amount += building_amount;
         }
       } else {
@@ -11745,7 +11751,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this2.getAccuBuildingAccount();
 
               case 2:
-                _this2.accu_buildings = _context5.sent;
+                accu_buildings = _context5.sent;
 
               case 3:
               case "end":
@@ -11755,10 +11761,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee5);
       }))();
 
-      if (this.accu_buildings) {
-        for (var accu_building in this.accu_buildings) {
+      if (accu_buildings) {
+        for (var accu_building in accu_buildings) {
           //console.log('land: ',land);
-          accu_building_amount = this.accu_buildings[accu_building].debit * 1 - this.accu_buildings[accu_building].credit * 1;
+          accu_building_amount = accu_buildings[accu_building].debit * 1 - accu_buildings[accu_building].credit * 1;
           accu_total_building_amount += accu_building_amount;
         }
       } else {
@@ -11787,7 +11793,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this2.getFurnitureAccount();
 
               case 2:
-                _this2.furnitures = _context6.sent;
+                furnitures = _context6.sent;
 
               case 3:
               case "end":
@@ -11797,10 +11803,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee6);
       }))();
 
-      if (this.furnitures) {
-        for (var furniture in this.furnitures) {
+      if (furnitures) {
+        for (var furniture in furnitures) {
           //console.log('land: ',land);
-          furniture_amount = this.furnitures[furniture].debit * 1 - this.furnitures[furniture].credit * 1;
+          furniture_amount = furnitures[furniture].debit * 1 - furnitures[furniture].credit * 1;
           total_furniture_amount += furniture_amount;
         }
       } else {
@@ -11826,7 +11832,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this2.getAccuFurnitureAccount();
 
               case 2:
-                _this2.accu_furnitures = _context7.sent;
+                accu_furnitures = _context7.sent;
 
               case 3:
               case "end":
@@ -11836,10 +11842,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee7);
       }))();
 
-      if (this.accu_furnitures) {
-        for (var accu_furniture in this.accu_furnitures) {
+      if (accu_furnitures) {
+        for (var accu_furniture in accu_furnitures) {
           //console.log('land: ',land);
-          accu_furniture_amount = this.accu_furnitures[accu_furniture].debit * 1 - this.accu_furnitures[accu_furniture].credit * 1;
+          accu_furniture_amount = accu_furnitures[accu_furniture].debit * 1 - accu_furnitures[accu_furniture].credit * 1;
           accu_total_furniture_amount += accu_furniture_amount;
         }
       } else {

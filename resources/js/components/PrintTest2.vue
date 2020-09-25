@@ -221,7 +221,14 @@
                 var accu_furniture_amount = 0;
                 var accu_total_furniture_amount = 0;
                 var cashes = {};
-                
+                var current_assets = {};
+                var lands = {};
+                var buildings = {};
+                var accu_buildings = {};
+                var furnitures = {};
+                var accu_furnitures = {};
+
+
                 var docV = 15;
                 var docH = 15;
 
@@ -283,17 +290,17 @@
                     
                     
                 (async () => {
-                    this.current_assets = await this.getCurrentAssets();
+                    current_assets = await this.getCurrentAssets();
                 })();     
                 
                 //console.log(this.current_assets);
-                for (var current_asset in this.current_assets) {
+                for (var current_asset in current_assets) {
                     docV += 6;
                     docH = 15;
                     doc.setFontSize(16);
-                    doc.text(this.current_assets[current_asset].account_name,docH,docV);
+                    doc.text(current_assets[current_asset].account_name,docH,docV);
                     docH = 160;
-                    current_asset_amount = (this.current_assets[current_asset].debit * 1) - (this.current_assets[current_asset].credit * 1);
+                    current_asset_amount = (current_assets[current_asset].debit * 1) - (current_assets[current_asset].credit * 1);
                     total_current_asset_amount += current_asset_amount;
                     main_total_current_asset_amount += current_asset_amount;
                     
@@ -333,14 +340,14 @@
                 doc.setFontSize(12);
                         
                 (async () => {
-                    this.lands = await this.getLandAccount();
+                    lands = await this.getLandAccount();
                 })();           
                 
                 
-                if(this.lands){
-                    for (var land in this.lands) {
-                        console.log('land: ',land);
-                        land_amount = (this.lands[land].debit * 1) - (this.lands[land].credit * 1);
+                if(lands){
+                    for (var land in lands) {
+                        //console.log('land: ',land);
+                        land_amount = (lands[land].debit * 1) - (lands[land].credit * 1);
                         total_land_amount += land_amount;
                     }
                 } else {
@@ -356,15 +363,15 @@
                 doc.setFontSize(12);
 
                 (async () => {
-                    this.buildings = await this.getBuildingAccount();
+                    buildings = await this.getBuildingAccount();
                 })(); 
 
                 
                 var building_amount = 0;
-                if(this.buildings){
-                    for (var building in this.buildings) {
+                if(buildings){
+                    for (var building in buildings) {
                         //console.log('land: ',land);
-                        building_amount = (this.buildings[building].debit * 1) - (this.buildings[building].credit * 1);
+                        building_amount = (buildings[building].debit * 1) - (buildings[building].credit * 1);
                         total_building_amount += building_amount;
                     }
                 } else {
@@ -382,14 +389,14 @@
                 doc.setFontSize(12);
 
                 (async () => {
-                    this.accu_buildings = await this.getAccuBuildingAccount();
+                    accu_buildings = await this.getAccuBuildingAccount();
                 
                 })(); 
 
-                if(this.accu_buildings){
-                    for (var accu_building in this.accu_buildings) {
+                if(accu_buildings){
+                    for (var accu_building in accu_buildings) {
                         //console.log('land: ',land);
-                        accu_building_amount = (this.accu_buildings[accu_building].debit * 1) - (this.accu_buildings[accu_building].credit * 1);
+                        accu_building_amount = (accu_buildings[accu_building].debit * 1) - (accu_buildings[accu_building].credit * 1);
                         accu_total_building_amount += accu_building_amount;
                     }
                 } else {
@@ -411,15 +418,15 @@
                 
                 
                 (async () => {
-                    this.furnitures = await this.getFurnitureAccount();
+                    furnitures = await this.getFurnitureAccount();
                 
                 })(); 
                 
                 
-                if(this.furnitures){
-                    for (var furniture in this.furnitures) {
+                if(furnitures){
+                    for (var furniture in furnitures) {
                         //console.log('land: ',land);
-                        furniture_amount = (this.furnitures[furniture].debit * 1) - (this.furnitures[furniture].credit * 1);
+                        furniture_amount = (furnitures[furniture].debit * 1) - (furnitures[furniture].credit * 1);
                         total_furniture_amount += furniture_amount;
                     }
                 } else {
@@ -438,16 +445,16 @@
                 doc.setFontSize(12);
 
                 (async () => {
-                    this.accu_furnitures = await this.getAccuFurnitureAccount();
+                    accu_furnitures = await this.getAccuFurnitureAccount();
                 
                 })(); 
 
                 
                 
-                if(this.accu_furnitures){
-                    for (var accu_furniture in this.accu_furnitures) {
+                if(accu_furnitures){
+                    for (var accu_furniture in accu_furnitures) {
                         //console.log('land: ',land);
-                        accu_furniture_amount = (this.accu_furnitures[accu_furniture].debit * 1) - (this.accu_furnitures[accu_furniture].credit * 1);
+                        accu_furniture_amount = (accu_furnitures[accu_furniture].debit * 1) - (accu_furnitures[accu_furniture].credit * 1);
                         accu_total_furniture_amount += accu_furniture_amount;
                     }
                 } else {
