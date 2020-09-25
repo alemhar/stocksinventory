@@ -295,12 +295,12 @@
                     doc.text(this.formatToCurrency(total_cash_amount),docH,docV,'right');
                 //})(); 
                 
-                /*
+                
                     
                     
-                (async () => {
+                //(async () => {
                     current_assets = await this.getCurrentAssets();
-                })();     
+                //})();     
                 
                 //console.log(this.current_assets);
                 for (var current_asset in current_assets) {
@@ -313,10 +313,10 @@
                     total_current_asset_amount += current_asset_amount;
                     main_total_current_asset_amount += current_asset_amount;
                     
-                    current_asset_amount = Intl.NumberFormat('en-US',currencyOptions).format(current_asset_amount);
-                    current_asset_amount = current_asset_amount.replace(/[a-z]{3}/i, "").trim();
+                    //current_asset_amount = Intl.NumberFormat('en-US',currencyOptions).format(current_asset_amount);
+                    //current_asset_amount = current_asset_amount.replace(/[a-z]{3}/i, "").trim();
                     doc.setFontSize(12);
-                    doc.text(current_asset_amount,docH,docV,'right');
+                    doc.text(this.formatToCurrency(current_asset_amount),docH,docV,'right');
                 }
                    
 
@@ -329,10 +329,10 @@
                 doc.setFontSize(12);
                 grand_total_current_asset_amount = +main_total_cash_amount + +main_total_current_asset_amount;
 
-                grand_total_current_asset_amount = Intl.NumberFormat('en-US',currencyOptions).format(grand_total_current_asset_amount);
-                grand_total_current_asset_amount = grand_total_current_asset_amount.replace(/[a-z]{3}/i, "").trim();
-                doc.text(grand_total_current_asset_amount,docH,docV,'right');
-
+                //grand_total_current_asset_amount = Intl.NumberFormat('en-US',currencyOptions).format(grand_total_current_asset_amount);
+                //grand_total_current_asset_amount = grand_total_current_asset_amount.replace(/[a-z]{3}/i, "").trim();
+                //doc.text(grand_total_current_asset_amount,docH,docV,'right');
+                doc.text(this.formatToCurrency(grand_total_current_asset_amount),docH,docV,'right');
                 docV += 12;
                 docH = 15;
                 doc.setFontSize(16);
@@ -347,7 +347,9 @@
                 doc.text('Land',docH,docV);
                 docH = 160;
                 doc.setFontSize(12);
-                        
+
+
+                /*
                 (async () => {
                     lands = await this.getLandAccount();
                 })();           

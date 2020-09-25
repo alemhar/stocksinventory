@@ -11498,7 +11498,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _generateReportBS = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var currencyOptions, result, cash_amount, total_cash_amount, main_total_cash_amount, current_asset_amount, total_current_asset_amount, main_total_current_asset_amount, grand_total_current_asset_amount, building_amount, total_building_amount, land_amount, total_land_amount, accu_building_amount, accu_total_building_amount, furniture_amount, total_furniture_amount, accu_furniture_amount, accu_total_furniture_amount, cashes, current_assets, lands, buildings, accu_buildings, furnitures, accu_furnitures, docV, docH, doc, cash;
+        var currencyOptions, result, cash_amount, total_cash_amount, main_total_cash_amount, current_asset_amount, total_current_asset_amount, main_total_current_asset_amount, grand_total_current_asset_amount, building_amount, total_building_amount, land_amount, total_land_amount, accu_building_amount, accu_total_building_amount, furniture_amount, total_furniture_amount, accu_furniture_amount, accu_total_furniture_amount, cashes, current_assets, lands, buildings, accu_buildings, furnitures, accu_furnitures, docV, docH, doc, cash, current_asset;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -11593,57 +11593,57 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 //doc.text(total_cash_amount,docH,docV,'right');
 
                 doc.text(this.formatToCurrency(total_cash_amount), docH, docV, 'right'); //})(); 
+                //(async () => {
 
-                /*
-                    
-                    
-                (async () => {
-                    current_assets = await this.getCurrentAssets();
-                })();     
-                
+                _context.next = 66;
+                return this.getCurrentAssets();
+
+              case 66:
+                current_assets = _context.sent;
+
+                //})();     
                 //console.log(this.current_assets);
-                for (var current_asset in current_assets) {
-                    docV += 6;
-                    docH = 15;
-                    doc.setFontSize(16);
-                    doc.text(current_assets[current_asset].account_name,docH,docV);
-                    docH = 160;
-                    current_asset_amount = (current_assets[current_asset].debit * 1) - (current_assets[current_asset].credit * 1);
-                    total_current_asset_amount += current_asset_amount;
-                    main_total_current_asset_amount += current_asset_amount;
-                    
-                    current_asset_amount = Intl.NumberFormat('en-US',currencyOptions).format(current_asset_amount);
-                    current_asset_amount = current_asset_amount.replace(/[a-z]{3}/i, "").trim();
-                    doc.setFontSize(12);
-                    doc.text(current_asset_amount,docH,docV,'right');
+                for (current_asset in current_assets) {
+                  docV += 6;
+                  docH = 15;
+                  doc.setFontSize(16);
+                  doc.text(current_assets[current_asset].account_name, docH, docV);
+                  docH = 160;
+                  current_asset_amount = current_assets[current_asset].debit * 1 - current_assets[current_asset].credit * 1;
+                  total_current_asset_amount += current_asset_amount;
+                  main_total_current_asset_amount += current_asset_amount; //current_asset_amount = Intl.NumberFormat('en-US',currencyOptions).format(current_asset_amount);
+                  //current_asset_amount = current_asset_amount.replace(/[a-z]{3}/i, "").trim();
+
+                  doc.setFontSize(12);
+                  doc.text(this.formatToCurrency(current_asset_amount), docH, docV, 'right');
                 }
-                   
-                     
-                docV += 12;    
+
+                docV += 12;
                 docH = 15;
                 doc.setFontSize(16);
-                doc.text('TOTAL CURRENT ASSETS',docH,docV);
+                doc.text('TOTAL CURRENT ASSETS', docH, docV);
                 docH = 160;
                 doc.setFontSize(12);
-                grand_total_current_asset_amount = +main_total_cash_amount + +main_total_current_asset_amount;
-                 grand_total_current_asset_amount = Intl.NumberFormat('en-US',currencyOptions).format(grand_total_current_asset_amount);
-                grand_total_current_asset_amount = grand_total_current_asset_amount.replace(/[a-z]{3}/i, "").trim();
-                doc.text(grand_total_current_asset_amount,docH,docV,'right');
-                 docV += 12;
+                grand_total_current_asset_amount = +main_total_cash_amount + +main_total_current_asset_amount; //grand_total_current_asset_amount = Intl.NumberFormat('en-US',currencyOptions).format(grand_total_current_asset_amount);
+                //grand_total_current_asset_amount = grand_total_current_asset_amount.replace(/[a-z]{3}/i, "").trim();
+                //doc.text(grand_total_current_asset_amount,docH,docV,'right');
+
+                doc.text(this.formatToCurrency(grand_total_current_asset_amount), docH, docV, 'right');
+                docV += 12;
                 docH = 15;
                 doc.setFontSize(16);
-                doc.text('NON CURRENT ASSETS',docH,docV);
+                doc.text('NON CURRENT ASSETS', docH, docV);
                 docV += 6;
                 docH = 15;
                 doc.setFontSize(16);
-                doc.text('Property, Plan & Equipment',docH,docV);
+                doc.text('Property, Plan & Equipment', docH, docV);
                 docV += 6;
                 docH = 15;
                 doc.setFontSize(16);
-                doc.text('Land',docH,docV);
+                doc.text('Land', docH, docV);
                 docH = 160;
                 doc.setFontSize(12);
-                        
+                /*
                 (async () => {
                     lands = await this.getLandAccount();
                 })();           
@@ -11758,7 +11758,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 doc.save('test.pdf');
 
-              case 65:
+              case 91:
               case "end":
                 return _context.stop();
             }
