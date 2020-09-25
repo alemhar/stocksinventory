@@ -11590,332 +11590,269 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       total_cash_amount = Intl.NumberFormat('en-US', currencyOptions).format(total_cash_amount);
       total_cash_amount = total_cash_amount.replace(/[a-z]{3}/i, "").trim();
       doc.text(total_cash_amount, docH, docV, 'right');
-      /*
-          
-          
-          
-      this.current_assets = await this.getCurrentAssets();
-      //console.log(this.current_assets);
-      for (var current_asset in this.current_assets) {
-          docV += 6;
-          docH = 15;
-          doc.setFontSize(16);
-          doc.text(this.current_assets[current_asset].account_name,docH,docV);
-          docH = 160;
-          current_asset_amount = (this.current_assets[current_asset].debit * 1) - (this.current_assets[current_asset].credit * 1);
-          total_current_asset_amount += current_asset_amount;
-          main_total_current_asset_amount += current_asset_amount;
-          
-          current_asset_amount = Intl.NumberFormat('en-US',currencyOptions).format(current_asset_amount);
-          current_asset_amount = current_asset_amount.replace(/[a-z]{3}/i, "").trim();
-          doc.setFontSize(12);
-          doc.text(current_asset_amount,docH,docV,'right');
-      }
-         
-           
-      docV += 12;    
-      docH = 15;
-      doc.setFontSize(16);
-      doc.text('TOTAL CURRENT ASSETS',docH,docV);
-      docH = 160;
-      doc.setFontSize(12);
-      grand_total_current_asset_amount = +main_total_cash_amount + +main_total_current_asset_amount;
-       grand_total_current_asset_amount = Intl.NumberFormat('en-US',currencyOptions).format(grand_total_current_asset_amount);
-      grand_total_current_asset_amount = grand_total_current_asset_amount.replace(/[a-z]{3}/i, "").trim();
-      doc.text(grand_total_current_asset_amount,docH,docV,'right');
-       docV += 12;
-      docH = 15;
-      doc.setFontSize(16);
-      doc.text('NON CURRENT ASSETS',docH,docV);
-      docV += 6;
-      docH = 15;
-      doc.setFontSize(16);
-      doc.text('Property, Plan & Equipment',docH,docV);
-      docV += 6;
-      docH = 15;
-      doc.setFontSize(16);
-      doc.text('Land',docH,docV);
-      docH = 160;
-      doc.setFontSize(12);
-              
-              
-      this.lands = await this.getLandAccount();
-      
-      if(this.lands){
-          for (var land in this.lands) {
-              console.log('land: ',land);
-              land_amount = (this.lands[land].debit * 1) - (this.lands[land].credit * 1);
-              total_land_amount += land_amount;
-          }
-      } else {
-          total_land_amount = 0;
-      }
-      doc.text(this.formatToCurrency(total_land_amount),docH,docV,'right');
-      
-      docV += 6;
-      docH = 15;
-      doc.setFontSize(16);
-      doc.text('Building',docH,docV);
-      docH = 130;
-      doc.setFontSize(12);
-       this.buildings = await this.getBuildingAccount();
-      var building_amount = 0;
-      if(this.buildings){
-          for (var building in this.buildings) {
-              //console.log('land: ',land);
-              building_amount = (this.buildings[building].debit * 1) - (this.buildings[building].credit * 1);
-              total_building_amount += building_amount;
-          }
-      } else {
-          total_building_amount = 0;
-      }
-      doc.text(this.formatToCurrency(total_building_amount),docH,docV,'right');
-         docV += 6;
-      docH = 15;
-      doc.setFontSize(16);
-      doc.text('Accumulated Dep. - Building',docH,docV);
-      docH = 130;
-      doc.setFontSize(12);
-       this.accu_buildings = await this.getAccuBuildingAccount();
-      if(this.accu_buildings){
-          for (var accu_building in this.accu_buildings) {
-              //console.log('land: ',land);
-              accu_building_amount = (this.accu_buildings[accu_building].debit * 1) - (this.accu_buildings[accu_building].credit * 1);
-              accu_total_building_amount += accu_building_amount;
-          }
-      } else {
-          accu_total_building_amount = 0;
-      }
-      doc.text(this.formatToCurrency(accu_total_building_amount),docH,docV,'right');
-      docH = 160;
-      doc.setFontSize(12);
-      doc.text(this.formatToCurrency(total_building_amount - accu_total_building_amount),docH,docV,'right');
-         docV += 6;
-      docH = 15;
-      doc.setFontSize(16);
-      doc.text('Furnitures & Fixtures',docH,docV);
-      docH = 130;
-      doc.setFontSize(12);
-       this.furnitures = await this.getFurnitureAccount();
-      
-      if(this.furnitures){
-          for (var furniture in this.furnitures) {
-              //console.log('land: ',land);
-              furniture_amount = (this.furnitures[furniture].debit * 1) - (this.furnitures[furniture].credit * 1);
-              total_furniture_amount += furniture_amount;
-          }
-      } else {
-          total_furniture_amount = 0;
-      }
-      doc.text(this.formatToCurrency(total_furniture_amount),docH,docV,'right');
-       
-        docV += 6;
-      docH = 15;
-      doc.setFontSize(16);
-      doc.text('Accumulated Dep. - Furnitures & Fixtures',docH,docV);
-      docH = 130;
-      doc.setFontSize(12);
-       this.accu_furnitures = await this.getAccuFurnitureAccount();
-      
-      if(this.accu_furnitures){
-          for (var accu_furniture in this.accu_furnitures) {
-              //console.log('land: ',land);
-              accu_furniture_amount = (this.accu_furnitures[accu_furniture].debit * 1) - (this.accu_furnitures[accu_furniture].credit * 1);
-              accu_total_furniture_amount += accu_furniture_amount;
-          }
-      } else {
-          accu_total_furniture_amount = 0;
-      }
-      doc.text(this.formatToCurrency(accu_total_furniture_amount),docH,docV,'right');
-      docH = 160;
-      doc.setFontSize(12);
-      doc.text(this.formatToCurrency(total_furniture_amount - accu_total_furniture_amount),docH,docV,'right');
-       */
 
-      doc.save('test.pdf');
-    },
-    getFurnitureAccount: function () {
-      var _getFurnitureAccount = _asyncToGenerator(
+      _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return axios.get('api/asof?start=15011300&end=15011399&transaction_date=' + this.transaction_date);
+                return _this2.getCurrentAssets();
 
               case 2:
-                response = _context2.sent;
-                return _context2.abrupt("return", response.data);
+                _this2.current_assets = _context2.sent;
 
-              case 4:
+              case 3:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, this);
-      }));
+        }, _callee2);
+      }))(); //console.log(this.current_assets);
 
-      function getFurnitureAccount() {
-        return _getFurnitureAccount.apply(this, arguments);
+
+      for (var current_asset in this.current_assets) {
+        docV += 6;
+        docH = 15;
+        doc.setFontSize(16);
+        doc.text(this.current_assets[current_asset].account_name, docH, docV);
+        docH = 160;
+        current_asset_amount = this.current_assets[current_asset].debit * 1 - this.current_assets[current_asset].credit * 1;
+        total_current_asset_amount += current_asset_amount;
+        main_total_current_asset_amount += current_asset_amount;
+        current_asset_amount = Intl.NumberFormat('en-US', currencyOptions).format(current_asset_amount);
+        current_asset_amount = current_asset_amount.replace(/[a-z]{3}/i, "").trim();
+        doc.setFontSize(12);
+        doc.text(current_asset_amount, docH, docV, 'right');
       }
 
-      return getFurnitureAccount;
-    }(),
-    getAccuFurnitureAccount: function () {
-      var _getAccuFurnitureAccount = _asyncToGenerator(
+      docV += 12;
+      docH = 15;
+      doc.setFontSize(16);
+      doc.text('TOTAL CURRENT ASSETS', docH, docV);
+      docH = 160;
+      doc.setFontSize(12);
+      grand_total_current_asset_amount = +main_total_cash_amount + +main_total_current_asset_amount;
+      grand_total_current_asset_amount = Intl.NumberFormat('en-US', currencyOptions).format(grand_total_current_asset_amount);
+      grand_total_current_asset_amount = grand_total_current_asset_amount.replace(/[a-z]{3}/i, "").trim();
+      doc.text(grand_total_current_asset_amount, docH, docV, 'right');
+      docV += 12;
+      docH = 15;
+      doc.setFontSize(16);
+      doc.text('NON CURRENT ASSETS', docH, docV);
+      docV += 6;
+      docH = 15;
+      doc.setFontSize(16);
+      doc.text('Property, Plan & Equipment', docH, docV);
+      docV += 6;
+      docH = 15;
+      doc.setFontSize(16);
+      doc.text('Land', docH, docV);
+      docH = 160;
+      doc.setFontSize(12);
+
+      _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return axios.get('api/asof?start=15015200&end=15015299&transaction_date=' + this.transaction_date);
+                return _this2.getLandAccount();
 
               case 2:
-                response = _context3.sent;
-                return _context3.abrupt("return", response.data);
+                _this2.lands = _context3.sent;
 
-              case 4:
+              case 3:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, this);
-      }));
+        }, _callee3);
+      }))();
 
-      function getAccuFurnitureAccount() {
-        return _getAccuFurnitureAccount.apply(this, arguments);
+      if (this.lands) {
+        for (var land in this.lands) {
+          console.log('land: ', land);
+          land_amount = this.lands[land].debit * 1 - this.lands[land].credit * 1;
+          total_land_amount += land_amount;
+        }
+      } else {
+        total_land_amount = 0;
       }
 
-      return getAccuFurnitureAccount;
-    }(),
-    getAccuBuildingAccount: function () {
-      var _getAccuBuildingAccount = _asyncToGenerator(
+      doc.text(this.formatToCurrency(total_land_amount), docH, docV, 'right');
+      docV += 6;
+      docH = 15;
+      doc.setFontSize(16);
+      doc.text('Building', docH, docV);
+      docH = 130;
+      doc.setFontSize(12);
+
+      _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
                 _context4.next = 2;
-                return axios.get('api/asof?start=15011200&end=15011299&transaction_date=' + this.transaction_date);
+                return _this2.getBuildingAccount();
 
               case 2:
-                response = _context4.sent;
-                return _context4.abrupt("return", response.data);
+                _this2.buildings = _context4.sent;
 
-              case 4:
+              case 3:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4, this);
-      }));
+        }, _callee4);
+      }))();
 
-      function getAccuBuildingAccount() {
-        return _getAccuBuildingAccount.apply(this, arguments);
+      var building_amount = 0;
+
+      if (this.buildings) {
+        for (var building in this.buildings) {
+          //console.log('land: ',land);
+          building_amount = this.buildings[building].debit * 1 - this.buildings[building].credit * 1;
+          total_building_amount += building_amount;
+        }
+      } else {
+        total_building_amount = 0;
       }
 
-      return getAccuBuildingAccount;
-    }(),
-    getBuildingAccount: function () {
-      var _getBuildingAccount = _asyncToGenerator(
+      doc.text(this.formatToCurrency(total_building_amount), docH, docV, 'right');
+      docV += 6;
+      docH = 15;
+      doc.setFontSize(16);
+      doc.text('Accumulated Dep. - Building', docH, docV);
+      docH = 130;
+      doc.setFontSize(12);
+
+      _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return axios.get('api/asof?start=15011200&end=15011299&transaction_date=' + this.transaction_date);
+                return _this2.getAccuBuildingAccount();
 
               case 2:
-                response = _context5.sent;
-                return _context5.abrupt("return", response.data);
+                _this2.accu_buildings = _context5.sent;
 
-              case 4:
+              case 3:
               case "end":
                 return _context5.stop();
             }
           }
-        }, _callee5, this);
-      }));
+        }, _callee5);
+      }))();
 
-      function getBuildingAccount() {
-        return _getBuildingAccount.apply(this, arguments);
+      if (this.accu_buildings) {
+        for (var accu_building in this.accu_buildings) {
+          //console.log('land: ',land);
+          accu_building_amount = this.accu_buildings[accu_building].debit * 1 - this.accu_buildings[accu_building].credit * 1;
+          accu_total_building_amount += accu_building_amount;
+        }
+      } else {
+        accu_total_building_amount = 0;
       }
 
-      return getBuildingAccount;
-    }(),
-    getCurrentAssets: function () {
-      var _getCurrentAssets = _asyncToGenerator(
+      doc.text(this.formatToCurrency(accu_total_building_amount), docH, docV, 'right');
+      docH = 160;
+      doc.setFontSize(12);
+      doc.text(this.formatToCurrency(total_building_amount - accu_total_building_amount), docH, docV, 'right');
+      docV += 6;
+      docH = 15;
+      doc.setFontSize(16);
+      doc.text('Furnitures & Fixtures', docH, docV);
+      docH = 130;
+      doc.setFontSize(12);
+
+      _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
                 _context6.next = 2;
-                return axios.get('api/asof?start=11011400&end=11051299&transaction_date=' + this.transaction_date);
+                return _this2.getFurnitureAccount();
 
               case 2:
-                response = _context6.sent;
-                return _context6.abrupt("return", response.data);
+                _this2.furnitures = _context6.sent;
 
-              case 4:
+              case 3:
               case "end":
                 return _context6.stop();
             }
           }
-        }, _callee6, this);
-      }));
+        }, _callee6);
+      }))();
 
-      function getCurrentAssets() {
-        return _getCurrentAssets.apply(this, arguments);
+      if (this.furnitures) {
+        for (var furniture in this.furnitures) {
+          //console.log('land: ',land);
+          furniture_amount = this.furnitures[furniture].debit * 1 - this.furnitures[furniture].credit * 1;
+          total_furniture_amount += furniture_amount;
+        }
+      } else {
+        total_furniture_amount = 0;
       }
 
-      return getCurrentAssets;
-    }(),
-    getCashAccount: function () {
-      var _getCashAccount = _asyncToGenerator(
+      doc.text(this.formatToCurrency(total_furniture_amount), docH, docV, 'right');
+      docV += 6;
+      docH = 15;
+      doc.setFontSize(16);
+      doc.text('Accumulated Dep. - Furnitures & Fixtures', docH, docV);
+      docH = 130;
+      doc.setFontSize(12);
+
+      _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
                 _context7.next = 2;
-                return axios.get('api/asof?start=11011100&end=11011399&transaction_date=' + this.transaction_date);
+                return _this2.getAccuFurnitureAccount();
 
               case 2:
-                response = _context7.sent;
-                return _context7.abrupt("return", response.data);
+                _this2.accu_furnitures = _context7.sent;
 
-              case 4:
+              case 3:
               case "end":
                 return _context7.stop();
             }
           }
-        }, _callee7, this);
-      }));
+        }, _callee7);
+      }))();
 
-      function getCashAccount() {
-        return _getCashAccount.apply(this, arguments);
+      if (this.accu_furnitures) {
+        for (var accu_furniture in this.accu_furnitures) {
+          //console.log('land: ',land);
+          accu_furniture_amount = this.accu_furnitures[accu_furniture].debit * 1 - this.accu_furnitures[accu_furniture].credit * 1;
+          accu_total_furniture_amount += accu_furniture_amount;
+        }
+      } else {
+        accu_total_furniture_amount = 0;
       }
 
-      return getCashAccount;
-    }(),
-    getLandAccount: function () {
-      var _getLandAccount = _asyncToGenerator(
+      doc.text(this.formatToCurrency(accu_total_furniture_amount), docH, docV, 'right');
+      docH = 160;
+      doc.setFontSize(12);
+      doc.text(this.formatToCurrency(total_furniture_amount - accu_total_furniture_amount), docH, docV, 'right');
+      doc.save('test.pdf');
+    },
+    getFurnitureAccount: function () {
+      var _getFurnitureAccount = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
         var response;
@@ -11924,7 +11861,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context8.prev = _context8.next) {
               case 0:
                 _context8.next = 2;
-                return axios.get('api/asof?start=15011100&end=15011199&transaction_date=' + this.transaction_date);
+                return axios.get('api/asof?start=15011300&end=15011399&transaction_date=' + this.transaction_date);
 
               case 2:
                 response = _context8.sent;
@@ -11936,6 +11873,186 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee8, this);
+      }));
+
+      function getFurnitureAccount() {
+        return _getFurnitureAccount.apply(this, arguments);
+      }
+
+      return getFurnitureAccount;
+    }(),
+    getAccuFurnitureAccount: function () {
+      var _getAccuFurnitureAccount = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
+          while (1) {
+            switch (_context9.prev = _context9.next) {
+              case 0:
+                _context9.next = 2;
+                return axios.get('api/asof?start=15015200&end=15015299&transaction_date=' + this.transaction_date);
+
+              case 2:
+                response = _context9.sent;
+                return _context9.abrupt("return", response.data);
+
+              case 4:
+              case "end":
+                return _context9.stop();
+            }
+          }
+        }, _callee9, this);
+      }));
+
+      function getAccuFurnitureAccount() {
+        return _getAccuFurnitureAccount.apply(this, arguments);
+      }
+
+      return getAccuFurnitureAccount;
+    }(),
+    getAccuBuildingAccount: function () {
+      var _getAccuBuildingAccount = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
+          while (1) {
+            switch (_context10.prev = _context10.next) {
+              case 0:
+                _context10.next = 2;
+                return axios.get('api/asof?start=15011200&end=15011299&transaction_date=' + this.transaction_date);
+
+              case 2:
+                response = _context10.sent;
+                return _context10.abrupt("return", response.data);
+
+              case 4:
+              case "end":
+                return _context10.stop();
+            }
+          }
+        }, _callee10, this);
+      }));
+
+      function getAccuBuildingAccount() {
+        return _getAccuBuildingAccount.apply(this, arguments);
+      }
+
+      return getAccuBuildingAccount;
+    }(),
+    getBuildingAccount: function () {
+      var _getBuildingAccount = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee11$(_context11) {
+          while (1) {
+            switch (_context11.prev = _context11.next) {
+              case 0:
+                _context11.next = 2;
+                return axios.get('api/asof?start=15011200&end=15011299&transaction_date=' + this.transaction_date);
+
+              case 2:
+                response = _context11.sent;
+                return _context11.abrupt("return", response.data);
+
+              case 4:
+              case "end":
+                return _context11.stop();
+            }
+          }
+        }, _callee11, this);
+      }));
+
+      function getBuildingAccount() {
+        return _getBuildingAccount.apply(this, arguments);
+      }
+
+      return getBuildingAccount;
+    }(),
+    getCurrentAssets: function () {
+      var _getCurrentAssets = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee12$(_context12) {
+          while (1) {
+            switch (_context12.prev = _context12.next) {
+              case 0:
+                _context12.next = 2;
+                return axios.get('api/asof?start=11011400&end=11051299&transaction_date=' + this.transaction_date);
+
+              case 2:
+                response = _context12.sent;
+                return _context12.abrupt("return", response.data);
+
+              case 4:
+              case "end":
+                return _context12.stop();
+            }
+          }
+        }, _callee12, this);
+      }));
+
+      function getCurrentAssets() {
+        return _getCurrentAssets.apply(this, arguments);
+      }
+
+      return getCurrentAssets;
+    }(),
+    getCashAccount: function () {
+      var _getCashAccount = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee13$(_context13) {
+          while (1) {
+            switch (_context13.prev = _context13.next) {
+              case 0:
+                _context13.next = 2;
+                return axios.get('api/asof?start=11011100&end=11011399&transaction_date=' + this.transaction_date);
+
+              case 2:
+                response = _context13.sent;
+                return _context13.abrupt("return", response.data);
+
+              case 4:
+              case "end":
+                return _context13.stop();
+            }
+          }
+        }, _callee13, this);
+      }));
+
+      function getCashAccount() {
+        return _getCashAccount.apply(this, arguments);
+      }
+
+      return getCashAccount;
+    }(),
+    getLandAccount: function () {
+      var _getLandAccount = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
+          while (1) {
+            switch (_context14.prev = _context14.next) {
+              case 0:
+                _context14.next = 2;
+                return axios.get('api/asof?start=15011100&end=15011199&transaction_date=' + this.transaction_date);
+
+              case 2:
+                response = _context14.sent;
+                return _context14.abrupt("return", response.data);
+
+              case 4:
+              case "end":
+                return _context14.stop();
+            }
+          }
+        }, _callee14, this);
       }));
 
       function getLandAccount() {

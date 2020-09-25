@@ -278,11 +278,13 @@
                 total_cash_amount = total_cash_amount.replace(/[a-z]{3}/i, "").trim();
                 doc.text(total_cash_amount,docH,docV,'right');
                 
-                /*
+                
                     
                     
-                    
-                this.current_assets = await this.getCurrentAssets();
+                (async () => {
+                    this.current_assets = await this.getCurrentAssets();
+                })();     
+                
                 //console.log(this.current_assets);
                 for (var current_asset in this.current_assets) {
                     docV += 6;
@@ -329,8 +331,10 @@
                 docH = 160;
                 doc.setFontSize(12);
                         
-                        
-                this.lands = await this.getLandAccount();
+                (async () => {
+                    this.lands = await this.getLandAccount();
+                })();           
+                
                 
                 if(this.lands){
                     for (var land in this.lands) {
@@ -350,7 +354,11 @@
                 docH = 130;
                 doc.setFontSize(12);
 
-                this.buildings = await this.getBuildingAccount();
+                (async () => {
+                    this.buildings = await this.getBuildingAccount();
+                })(); 
+
+                
                 var building_amount = 0;
                 if(this.buildings){
                     for (var building in this.buildings) {
@@ -372,7 +380,11 @@
                 docH = 130;
                 doc.setFontSize(12);
 
-                this.accu_buildings = await this.getAccuBuildingAccount();
+                (async () => {
+                    this.accu_buildings = await this.getAccuBuildingAccount();
+                
+                })(); 
+
                 if(this.accu_buildings){
                     for (var accu_building in this.accu_buildings) {
                         //console.log('land: ',land);
@@ -395,8 +407,13 @@
                 doc.text('Furnitures & Fixtures',docH,docV);
                 docH = 130;
                 doc.setFontSize(12);
-
-                this.furnitures = await this.getFurnitureAccount();
+                
+                
+                (async () => {
+                    this.furnitures = await this.getFurnitureAccount();
+                
+                })(); 
+                
                 
                 if(this.furnitures){
                     for (var furniture in this.furnitures) {
@@ -419,7 +436,12 @@
                 docH = 130;
                 doc.setFontSize(12);
 
-                this.accu_furnitures = await this.getAccuFurnitureAccount();
+                (async () => {
+                    this.accu_furnitures = await this.getAccuFurnitureAccount();
+                
+                })(); 
+
+                
                 
                 if(this.accu_furnitures){
                     for (var accu_furniture in this.accu_furnitures) {
@@ -435,7 +457,6 @@
                 doc.setFontSize(12);
                 doc.text(this.formatToCurrency(total_furniture_amount - accu_total_furniture_amount),docH,docV,'right');
 
-                */
 
                 doc.save('test.pdf');
 
