@@ -11768,8 +11768,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 doc.text(this.formatToCurrency(accu_total_furniture_amount), docH, docV, 'right');
                 docH = 160;
                 doc.setFontSize(12);
-                doc.text(this.formatToCurrency(total_furniture_amount - accu_total_furniture_amount), docH, docV, 'right'); //*/
-
+                doc.text(this.formatToCurrency(total_furniture_amount - accu_total_furniture_amount), docH, docV, 'right');
                 doc.save('test.pdf');
 
               case 146:

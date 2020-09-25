@@ -477,7 +477,7 @@
                 doc.setFontSize(12);
                 doc.text(this.formatToCurrency(total_furniture_amount - accu_total_furniture_amount),docH,docV,'right');
 
-                //*/
+                
                 doc.save('test.pdf');
 
                         
