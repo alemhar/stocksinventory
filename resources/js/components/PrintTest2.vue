@@ -251,7 +251,7 @@
                 var total_other_non_current_asset_amount = 0;
 
                 var total_non_current_asset_amount = 0;
-
+                var total_asset_amount = 0;
 
                 var docV = 15;
                 var docH = 15;
@@ -297,7 +297,7 @@
                         docH = 25;
                         doc.text(cashes[cash].account_name,docH,docV);
                         //doc.text(cashes[cash].account_name,docH,docV);
-                        docH = 135;
+                        docH = 150;
                         cash_amount = (cashes[cash].debit * 1) - (cashes[cash].credit * 1);
                         
                         //console.log( 'FOR LOOP '+this.formatToCurrency(cash_amount));
@@ -311,7 +311,7 @@
 
                         doc.text(this.formatToCurrency(cash_amount),docH,docV,'right');
                     }
-                    docH = 165;
+                    docH = 180;
                     //total_cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_cash_amount);
                     //total_cash_amount = total_cash_amount.replace(/[a-z]{3}/i, "").trim();
                     
@@ -332,7 +332,7 @@
                     docH = 15;
                     doc.setFontSize(16);
                     doc.text(current_assets[current_asset].account_name,docH,docV);
-                    docH = 165;
+                    docH = 180;
                     current_asset_amount = (current_assets[current_asset].debit * 1) - (current_assets[current_asset].credit * 1);
                     total_current_asset_amount += current_asset_amount;
                     main_total_current_asset_amount += current_asset_amount;
@@ -349,7 +349,7 @@
                 docH = 15;
                 doc.setFontSize(16);
                 doc.text('TOTAL CURRENT ASSETS',docH,docV);
-                docH = 165;
+                docH = 180;
                 doc.setFontSize(12);
                 grand_total_current_asset_amount = +main_total_cash_amount + +main_total_current_asset_amount;
 
@@ -369,7 +369,7 @@
                 docH = 15;
                 doc.setFontSize(16);
                 doc.text('Land',docH,docV);
-                docH = 165;
+                docH = 180;
                 doc.setFontSize(12);
 
 
@@ -394,7 +394,7 @@
                 docH = 15;
                 doc.setFontSize(16);
                 doc.text('Building',docH,docV);
-                docH = 135;
+                docH = 150;
                 doc.setFontSize(12);
 
                 
@@ -421,7 +421,7 @@
                 docH = 15;
                 doc.setFontSize(16);
                 doc.text('Accu. Dep. - Building',docH,docV);
-                docH = 135;
+                docH = 150;
                 doc.setFontSize(12);
                 
                 //(async () => {
@@ -439,7 +439,7 @@
                     accu_total_building_amount = 0;
                 }
                 doc.text(this.formatToCurrency(accu_total_building_amount),docH,docV,'right');
-                docH = 165;
+                docH = 180;
                 doc.setFontSize(12);
                 doc.text(this.formatToCurrency(total_building_amount - accu_total_building_amount),docH,docV,'right');
 
@@ -449,7 +449,7 @@
                 docH = 15;
                 doc.setFontSize(16);
                 doc.text('Furnitures & Fixtures',docH,docV);
-                docH = 135;
+                docH = 150;
                 doc.setFontSize(12);
                 
                 
@@ -477,7 +477,7 @@
                 docH = 15;
                 doc.setFontSize(16);
                 doc.text('Accu. Dep. - Furnitures & Fixtures',docH,docV);
-                docH = 135;
+                docH = 150;
                 doc.setFontSize(12);
 
                 //(async () => {
@@ -497,7 +497,7 @@
                     accu_total_furniture_amount = 0;
                 }
                 doc.text(this.formatToCurrency(accu_total_furniture_amount),docH,docV,'right');
-                docH = 165;
+                docH = 180;
                 doc.setFontSize(12);
                 doc.text(this.formatToCurrency(total_furniture_amount - accu_total_furniture_amount),docH,docV,'right');
 
@@ -509,7 +509,7 @@
                 docH = 15;
                 doc.setFontSize(16);
                 doc.text('Machineries',docH,docV);
-                docH = 135;
+                docH = 150;
                 doc.setFontSize(12);
 
                 machineries = await this.getMachineriesAccount();
@@ -528,7 +528,7 @@
                 docH = 15;
                 doc.setFontSize(16);
                 doc.text('Accu. Dep. - Machineries',docH,docV);
-                docH = 135;
+                docH = 150;
                 doc.setFontSize(12);
 
                 accu_machineries = await this.getAccuMachineriesAccount();
@@ -543,7 +543,7 @@
                     accu_total_machine_amount = 0;
                 }
                 doc.text(this.formatToCurrency(accu_total_machine_amount),docH,docV,'right');
-                docH = 165;
+                docH = 180;
                 doc.setFontSize(12);
                 doc.text(this.formatToCurrency(total_machine_amount - accu_total_machine_amount),docH,docV,'right');
 
@@ -555,7 +555,7 @@
                 docH = 15;
                 doc.setFontSize(16);
                 doc.text('Transportation Equipment',docH,docV);
-                docH = 135;
+                docH = 150;
                 doc.setFontSize(12);
 
                 transportations = await this.getTransportationsAccount();
@@ -574,7 +574,7 @@
                 docH = 15;
                 doc.setFontSize(16);
                 doc.text('Accu. Dep. - Transportation Equipment',docH,docV);
-                docH = 135;
+                docH = 150;
                 doc.setFontSize(12);
 
                 accu_transportations = await this.getAccuTransportationsAccount();
@@ -589,7 +589,7 @@
                     accu_total_transportation_amount = 0;
                 }
                 doc.text(this.formatToCurrency(accu_total_transportation_amount),docH,docV,'right');
-                docH = 165;
+                docH = 180;
                 doc.setFontSize(12);
                 doc.text(this.formatToCurrency(total_transportation_amount - accu_total_transportation_amount),docH,docV,'right');
 
@@ -602,7 +602,7 @@
                 docH = 15;
                 doc.setFontSize(16);
                 doc.text('Other Non Current Assets',docH,docV);
-                docH = 135;
+                docH = 150;
                 doc.setFontSize(12);
 
 
@@ -617,7 +617,7 @@
                     total_other_non_current_asset_amount = 0;
                 }
                 docV += 6;
-                docH = 165;
+                docH = 180;
                 doc.setFontSize(12);
                 doc.text(this.formatToCurrency(total_other_non_current_asset_amount),docH,docV,'right');
                 // ***** Other Non Current Assets
@@ -627,22 +627,24 @@
                 docH = 15;
                 doc.setFontSize(16);
                 doc.text('TOTAL NON CURRENT ASSETS',docH,docV);
-                //docH = 135;
-                //doc.setFontSize(12);
-
-                //docV += 6;
-                docH = 165;
+                docH = 180;
                 doc.setFontSize(12);
-
-                
                 total_non_current_asset_amount = total_other_non_current_asset_amount + (total_transportation_amount - accu_total_transportation_amount) + (total_machine_amount - accu_total_machine_amount) + (total_furniture_amount - accu_total_furniture_amount) + (total_building_amount - accu_total_building_amount) + total_land_amount;
-
                 doc.text(this.formatToCurrency(total_other_non_current_asset_amount),docH,docV,'right');
-
-                
                 // ***** Total Non Current Assets
                 
-                
+                // ***** Total Non Current Assets
+                docV += 12;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('TOTAL ASSETS',docH,docV);
+                docH = 180;
+                doc.setFontSize(12);
+                total_asset_amount = total_other_non_current_asset_amount + grand_total_current_asset_amount;
+                doc.text(this.formatToCurrency(total_asset_amount),docH,docV,'right');
+                // ***** Total Non Current Assets
+
+
                 doc.save('test.pdf');
 
                         
@@ -758,7 +760,7 @@
                         docV += 6;
                         docH = 25;
                         doc.text(this.sales[sale].account_name,docH,docV);
-                        docH = 135;
+                        docH = 150;
                         sales_amount = (this.sales[sale].credit * 1) - (this.sales[sale].debit * 1);
                         total_sales_amount += sales_amount;
                         main_total_sales_amount += sales_amount;
@@ -768,7 +770,7 @@
                         sales_amount = sales_amount.replace(/[a-z]{3}/i, "").trim();
                         doc.text(sales_amount,docH,docV,'right');
                     }
-                    docH = 165;
+                    docH = 180;
                         total_sales_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_sales_amount);
                         total_sales_amount = total_sales_amount.replace(/[a-z]{3}/i, "").trim();
                         doc.text(total_sales_amount,docH,docV,'right');
@@ -786,7 +788,7 @@
                             docV += 6;
                             docH = 25;
                             doc.text(this.cost_of_sales[cost_of_sale].account_name,docH,docV);
-                            docH = 135;
+                            docH = 150;
                             cost_of_sales_amount = (this.cost_of_sales[cost_of_sale].debit * 1) - (this.cost_of_sales[cost_of_sale].credit * 1);
                             total_cost_of_sales_amount += cost_of_sales_amount;
                             main_total_cost_of_sales_amount += cost_of_sales_amount;
@@ -801,7 +803,7 @@
                             
                             //doc.text(Number(cost_of_sales_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
                         }
-                        docH = 165;
+                        docH = 180;
                         total_cost_of_sales_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_cost_of_sales_amount);
                         total_cost_of_sales_amount = total_cost_of_sales_amount.replace(/[a-z]{3}/i, "").trim();
                         doc.text(total_cost_of_sales_amount,docH,docV,'right');
@@ -814,7 +816,7 @@
                         doc.text('Gross Profit',docH,docV);
 
                         doc.setFontSize(12);
-                        docH = 165;
+                        docH = 180;
                         gross_profit = (main_total_sales_amount*1) - (main_total_cost_of_sales_amount*1);
                         gross_profit = Intl.NumberFormat('en-US',currencyOptions).format(gross_profit);
                         gross_profit = gross_profit.replace(/[a-z]{3}/i, "").trim();
@@ -833,7 +835,7 @@
                                 docV += 6;
                                 docH = 25;
                                 doc.text(this.expenses[expense].account_name,docH,docV);
-                                docH = 135;
+                                docH = 150;
                                 expense_amount = (this.expenses[expense].debit * 1) - (this.expenses[expense].credit * 1);
                                 total_expense_amount += expense_amount;
                                 main_total_expense_amount += expense_amount;
@@ -846,7 +848,7 @@
                                 //doc.text(Number(expense_amount.toFixed(2)).toLocaleString()+'' ,docH,docV);
                                 doc.text(expense_amount,docH,docV,'right');
                             }
-                            docH = 165;
+                            docH = 180;
                             total_expense_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_expense_amount);
                             total_expense_amount = total_expense_amount.replace(/[a-z]{3}/i, "").trim();
                             doc.text(total_expense_amount,docH,docV,'right');
@@ -859,7 +861,7 @@
                             doc.text('Net Profit',docH,docV);
 
                             doc.setFontSize(12);
-                            docH = 165;
+                            docH = 180;
                             net_profit = (main_total_sales_amount*1) - (main_total_cost_of_sales_amount*1) - (main_total_expense_amount*1);
                             net_profit = Intl.NumberFormat('en-US',currencyOptions).format(net_profit);
                             net_profit = net_profit.replace(/[a-z]{3}/i, "").trim();
