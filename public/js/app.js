@@ -11585,7 +11585,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         docH = 25;
         doc.text(cashes[cash].account_name, docH, docV);
         docH = 130;
-        cash_amount = cashes[cash].debit * 1 - cashes[cash].credit * 1;
+        cash_amount = cashes[cash].debit * 1; // - (cashes[cash].credit * 1);
+
         total_cash_amount += cash_amount;
         main_total_cash_amount += cash_amount;
         cash_amount = Intl.NumberFormat('en-US', currencyOptions).format(cash_amount);
