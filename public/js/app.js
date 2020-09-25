@@ -11571,15 +11571,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 cashes = _context.sent;
-                console.log(cashes);
 
-              case 4:
+              case 3:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
       }))();
+
+      console.log(cashes);
 
       for (var cash in cashes) {
         docV += 6;
