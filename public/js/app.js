@@ -11520,6 +11520,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var total_furniture_amount = 0;
       var accu_furniture_amount = 0;
       var accu_total_furniture_amount = 0;
+      var cashes = {};
       var docV = 15;
       var docH = 15;
       var doc = new jspdf__WEBPACK_IMPORTED_MODULE_2__["default"]();
@@ -11563,7 +11564,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this2.getCashAccount();
 
               case 2:
-                _this2.cashes = _context.sent;
+                cashes = _context.sent;
 
               case 3:
               case "end":
@@ -11573,12 +11574,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
 
-      for (var cash in this.cashes) {
+      for (var cash in cashes) {
         docV += 6;
         docH = 25;
-        doc.text(this.cashes[cash].account_name, docH, docV);
+        doc.text(cashes[cash].account_name, docH, docV);
         docH = 130;
-        cash_amount = this.cashes[cash].debit * 1 - this.cashes[cash].credit * 1;
+        cash_amount = cashes[cash].debit * 1 - cashes[cash].credit * 1;
         total_cash_amount += cash_amount;
         main_total_cash_amount += cash_amount;
         cash_amount = Intl.NumberFormat('en-US', currencyOptions).format(cash_amount);

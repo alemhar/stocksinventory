@@ -220,7 +220,8 @@
 
                 var accu_furniture_amount = 0;
                 var accu_total_furniture_amount = 0;
-
+                var cashes = {};
+                
                 var docV = 15;
                 var docH = 15;
 
@@ -257,15 +258,15 @@
                 
                 
                 (async () => {
-                    this.cashes = await this.getCashAccount();
+                    cashes = await this.getCashAccount();
                 })();    
                 
-                for (var cash in this.cashes) {
+                for (var cash in cashes) {
                     docV += 6;
                     docH = 25;
-                    doc.text(this.cashes[cash].account_name,docH,docV);
+                    doc.text(cashes[cash].account_name,docH,docV);
                     docH = 130;
-                    cash_amount = (this.cashes[cash].debit * 1) - (this.cashes[cash].credit * 1);
+                    cash_amount = (cashes[cash].debit * 1) - (cashes[cash].credit * 1);
                     total_cash_amount += cash_amount;
                     main_total_cash_amount += cash_amount;
                     
