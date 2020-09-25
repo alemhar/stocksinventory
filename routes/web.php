@@ -23,7 +23,7 @@ Route::get('/test', function () {
     $transaction_date = Carbon::now();
 
     $transaction = RunningAccount::
-    where('transaction_date','<', $transaction_date)
+    where('transaction_date','>', $transaction_date)
     ->selectRaw('transaction_date, debit_amount,credit_amount, account_name, id')
     ->get();
 
