@@ -232,10 +232,22 @@
                 var machine_amount = 0;
                 var total_machine_amount = 0;
                 
+                var transportations = null;
+                var transportation_amount = 0;
+                var total_transportation_amount = 0;
+                
+
                 var accu_machineries = null;
                 var accu_machine_amount = 0;
                 var accu_total_machine_amount = 0;
+
+
+                var accu_transportations = null;
+                var accu_transportation_amount = 0;
+                var accu_total_transportation_amount = 0;
+
                 
+
                 var docV = 15;
                 var docH = 15;
 
@@ -532,7 +544,51 @@
 
                 // ***** Machineries
                 
+                // ***** Transportation
+
+                docV += 6;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('Transportation Equipment',docH,docV);
+                docH = 130;
+                doc.setFontSize(12);
+
+                transportations = await this.getTransportationsAccount();
                 
+                if(transportations){
+                    for (var transportation in transportations) {
+                        transportation_amount = (transportations[transportation].debit * 1) - (transportations[transportation].credit * 1);
+                        total_transportation_amount += transportation_amount;
+                    }
+                } else {
+                    total_transportation_amount = 0;
+                }
+                doc.text(this.formatToCurrency(total_transportation_amount),docH,docV,'right');
+
+                docV += 6;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('Accumulated Dep. - Transportation Equipment',docH,docV);
+                docH = 130;
+                doc.setFontSize(12);
+
+                accu_transportations = await this.getAccuTransportationsAccount();
+                
+                if(accu_machineries){
+                    for (var accu_transportation in accu_transportations) {
+                        //console.log('land: ',land);
+                        accu_transportation_amount = (accu_transportations[accu_transportation].debit * 1) - (accu_transportations[accu_transportation].credit * 1);
+                        accu_total_transportation_amount += accu_transportation_amount;
+                    }
+                } else {
+                    accu_total_transportation_amount = 0;
+                }
+                doc.text(this.formatToCurrency(accu_total_transportation_amount),docH,docV,'right');
+                docH = 160;
+                doc.setFontSize(12);
+                doc.text(this.formatToCurrency(total_transportation_amount - accu_total_transportation_amount),docH,docV,'right');
+
+                // ***** Transportation
                 
                 
                 
@@ -542,6 +598,14 @@
                         
                         
 
+            },
+            async getTransportationsAccount(){
+                const response = await axios.get('api/asof?start=15011400&end=15011499&transaction_date='+this.transaction_date);
+                return response.data;            
+            },
+            async getAccuTransportationsAccount(){
+                const response = await axios.get('api/asof?start=15015300&end=15015399&transaction_date='+this.transaction_date);
+                return response.data;
             },
             async getMachineriesAccount(){
                 const response = await axios.get('api/asof?start=15011400&end=15011499&transaction_date='+this.transaction_date);
