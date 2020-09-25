@@ -11570,7 +11570,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this2.getCashAccount();
 
               case 2:
-                cashes = _context.sent;
+                _this2.cashes = _context.sent;
 
               case 3:
               case "end":
@@ -11580,15 +11580,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
 
-      console.log(cashes);
+      console.log(this.cashes);
 
-      for (var cash in cashes) {
+      for (var cash in this.cashes) {
         docV += 6;
         docH = 25;
-        doc.text('cashes[cash].account_name', docH, docV); //doc.text(cashes[cash].account_name,docH,docV);
+        doc.text('this.cashes[cash].account_name', docH, docV); //doc.text(cashes[cash].account_name,docH,docV);
 
         docH = 130;
-        cash_amount = cashes[cash].debit * 1 - cashes[cash].credit * 1;
+        cash_amount = this.cashes[cash].debit * 1 - this.cashes[cash].credit * 1;
         console.log('FOR LOOP ' + this.formatToCurrency(cash_amount));
         total_cash_amount += cash_amount;
         main_total_cash_amount += cash_amount; //cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(cash_amount);

@@ -265,16 +265,16 @@
                 
                 
                 (async () => {
-                    cashes = await this.getCashAccount();
+                    this.cashes = await this.getCashAccount();
                 })(); 
-                console.log(cashes);
-                for (var cash in cashes) {
+                console.log(this.cashes);
+                for (var cash in this.cashes) {
                     docV += 6;
                     docH = 25;
-                    doc.text('cashes[cash].account_name',docH,docV);
+                    doc.text('this.cashes[cash].account_name',docH,docV);
                     //doc.text(cashes[cash].account_name,docH,docV);
                     docH = 130;
-                    cash_amount = (cashes[cash].debit * 1) - (cashes[cash].credit * 1);
+                    cash_amount = (this.cashes[cash].debit * 1) - (this.cashes[cash].credit * 1);
                     
                     console.log( 'FOR LOOP '+this.formatToCurrency(cash_amount));
 
