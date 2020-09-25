@@ -194,7 +194,7 @@
                     });
                 
             },
-            generateReportBS(){
+            async generateReportBS(){
                 let currencyOptions = { style: 'currency', currency: 'USD', currencyDisplay: 'code' };
                 let result = null;
                 var cash_amount = 0;
@@ -264,7 +264,7 @@
 
                 
                 
-                (async () => {
+                //(async () => {
                     this.cashes = await this.getCashAccount();
                     console.log(this.cashes);
 
@@ -284,6 +284,7 @@
                         //cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(cash_amount);
                         //cash_amount = cash_amount.replace(/[a-z]{3}/i, "").trim();
                         //doc.text(cash_amount,docH,docV,'right');
+
                         doc.text('1000',docH,docV,'right');
                     }
                     docH = 160;
@@ -292,7 +293,7 @@
                     
                     //doc.text(total_cash_amount,docH,docV,'right');
                     doc.text(this.formatToCurrency(total_cash_amount),docH,docV,'right');
-                })(); 
+                //})(); 
                 
                 /*
                     
