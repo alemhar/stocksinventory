@@ -266,11 +266,11 @@
                 docV += 12;
                 docH = 105;
                 doc.setFontSize(16);
-                doc.setFont("Serif", 'bold');
+                doc.setFont("Sans Serif", 'bold');
                 doc.text('BALANCE SHEET',docH,docV, 'center');
                 docV += 6;
                 doc.setFontSize(10);
-                doc.setFont("Serif", 'normal');
+                doc.setFont("Sans Serif", 'normal');
                 doc.text('As of: '+this.transaction_date,docH,docV, 'center');
                 docV += 12;
                 docH = 15;
