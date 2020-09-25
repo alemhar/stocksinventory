@@ -11562,6 +11562,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var cash;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -11571,33 +11572,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 cashes = _context.sent;
+                console.log(cashes);
 
-              case 3:
+                for (cash in cashes) {
+                  docV += 6;
+                  docH = 25;
+                  doc.text(cashes[cash].account_name, docH, docV);
+                  docH = 130;
+                  cash_amount = cashes[cash].debit * 1 - cashes[cash].credit * 1;
+                  total_cash_amount += cash_amount;
+                  main_total_cash_amount += cash_amount;
+                  cash_amount = Intl.NumberFormat('en-US', currencyOptions).format(cash_amount);
+                  cash_amount = cash_amount.replace(/[a-z]{3}/i, "").trim();
+                  console.log(cash_amount);
+                  doc.text(cash_amount, docH, docV, 'right');
+                }
+
+                docH = 160;
+                total_cash_amount = Intl.NumberFormat('en-US', currencyOptions).format(total_cash_amount);
+                total_cash_amount = total_cash_amount.replace(/[a-z]{3}/i, "").trim();
+                doc.text(total_cash_amount, docH, docV, 'right');
+
+              case 9:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
       }))();
-
-      for (var cash in cashes) {
-        docV += 6;
-        docH = 25;
-        doc.text(cashes[cash].account_name, docH, docV);
-        docH = 130;
-        cash_amount = cashes[cash].debit * 1 - cashes[cash].credit * 1;
-        total_cash_amount += cash_amount;
-        main_total_cash_amount += cash_amount;
-        cash_amount = Intl.NumberFormat('en-US', currencyOptions).format(cash_amount);
-        cash_amount = cash_amount.replace(/[a-z]{3}/i, "").trim();
-        console.log(cash_amount);
-        doc.text(cash_amount, docH, docV, 'right');
-      }
-
-      docH = 160;
-      total_cash_amount = Intl.NumberFormat('en-US', currencyOptions).format(total_cash_amount);
-      total_cash_amount = total_cash_amount.replace(/[a-z]{3}/i, "").trim();
-      doc.text(total_cash_amount, docH, docV, 'right');
 
       _asyncToGenerator(
       /*#__PURE__*/
