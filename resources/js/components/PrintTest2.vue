@@ -442,31 +442,31 @@
 
             },
             async getFurnitureAccount(){
-                const response = await axios.get('api/running?start=15011300&end=15011399&transaction_date='+this.transaction_date);
+                const response = await axios.get('api/asof?start=15011300&end=15011399&transaction_date='+this.transaction_date);
                 return response.data;
             },
             async getAccuFurnitureAccount(){
-                const response = await axios.get('api/running?start=15015200&end=15015299&transaction_date='+this.transaction_date);
+                const response = await axios.get('api/asof?start=15015200&end=15015299&transaction_date='+this.transaction_date);
                 return response.data;
             },
             async getAccuBuildingAccount(){
-                const response = await axios.get('api/running?start=15011200&end=15011299&transaction_date='+this.transaction_date);
+                const response = await axios.get('api/asof?start=15011200&end=15011299&transaction_date='+this.transaction_date);
                 return response.data;
             },
             async getBuildingAccount(){
-                const response = await axios.get('api/running?start=15011200&end=15011299&transaction_date='+this.transaction_date);
+                const response = await axios.get('api/asof?start=15011200&end=15011299&transaction_date='+this.transaction_date);
                 return response.data;
             },
             async getCurrentAssets(){
-                const response = await axios.get('api/running?start=11011400&end=11051299&transaction_date='+this.transaction_date);
+                const response = await axios.get('api/asof?start=11011400&end=11051299&transaction_date='+this.transaction_date);
                 return response.data;
             },
             async getCashAccount(){
-                const response = await axios.get('api/running?start=11011100&end=11011399&transaction_date='+this.transaction_date);
+                const response = await axios.get('api/asof?start=11011100&end=11011399&transaction_date='+this.transaction_date);
                 return response.data;
             },
             async getLandAccount(){
-                    const response = await axios.get('api/running?start=15011100&end=15011199&transaction_date='+this.transaction_date);
+                    const response = await axios.get('api/asof?start=15011100&end=15011199&transaction_date='+this.transaction_date);
                     return response.data;
             },
             formatToCurrency(amount){

@@ -11768,7 +11768,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return axios.get('api/running?start=15011300&end=15011399&transaction_date=' + this.transaction_date);
+                return axios.get('api/asof?start=15011300&end=15011399&transaction_date=' + this.transaction_date);
 
               case 2:
                 response = _context2.sent;
@@ -11798,7 +11798,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return axios.get('api/running?start=15015200&end=15015299&transaction_date=' + this.transaction_date);
+                return axios.get('api/asof?start=15015200&end=15015299&transaction_date=' + this.transaction_date);
 
               case 2:
                 response = _context3.sent;
@@ -11828,7 +11828,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context4.prev = _context4.next) {
               case 0:
                 _context4.next = 2;
-                return axios.get('api/running?start=15011200&end=15011299&transaction_date=' + this.transaction_date);
+                return axios.get('api/asof?start=15011200&end=15011299&transaction_date=' + this.transaction_date);
 
               case 2:
                 response = _context4.sent;
@@ -11858,7 +11858,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return axios.get('api/running?start=15011200&end=15011299&transaction_date=' + this.transaction_date);
+                return axios.get('api/asof?start=15011200&end=15011299&transaction_date=' + this.transaction_date);
 
               case 2:
                 response = _context5.sent;
@@ -11888,7 +11888,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context6.prev = _context6.next) {
               case 0:
                 _context6.next = 2;
-                return axios.get('api/running?start=11011400&end=11051299&transaction_date=' + this.transaction_date);
+                return axios.get('api/asof?start=11011400&end=11051299&transaction_date=' + this.transaction_date);
 
               case 2:
                 response = _context6.sent;
@@ -11918,7 +11918,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context7.prev = _context7.next) {
               case 0:
                 _context7.next = 2;
-                return axios.get('api/running?start=11011100&end=11011399&transaction_date=' + this.transaction_date);
+                return axios.get('api/asof?start=11011100&end=11011399&transaction_date=' + this.transaction_date);
 
               case 2:
                 response = _context7.sent;
@@ -11948,7 +11948,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context8.prev = _context8.next) {
               case 0:
                 _context8.next = 2;
-                return axios.get('api/running?start=15011100&end=15011199&transaction_date=' + this.transaction_date);
+                return axios.get('api/asof?start=15011100&end=15011199&transaction_date=' + this.transaction_date);
 
               case 2:
                 response = _context8.sent;
