@@ -1,6 +1,7 @@
 <template>
 
     <div class="container">
+        <spinner-overlay :active.sync="loading"></spinner-overlay>
         <div class="row mt-1" v-if="$gate.isAdminOrUser()">
             <div class="col-md-12">
                 <!-- div class="row mt-3">
@@ -139,11 +140,13 @@
     
 </template>
 <script>
+    import SpinnerOverlay from './SpinnerOverlay.vue'; 
     import pdfobject from 'pdfobject';
     import jspdf from 'jspdf';
     export default {
         data() {
           return {
+              loading: false,
               user_id: null,
               sales: {},
               cost_of_sales: {},
@@ -195,6 +198,7 @@
                 
             },
             async generateReportBS(){
+                this.loading = true;
                 let currencyOptions = { style: 'currency', currency: 'USD', currencyDisplay: 'code' };
                 let result = null;
                 var cash_amount = 0;
@@ -644,7 +648,7 @@
                 doc.text(this.formatToCurrency(total_asset_amount),docH,docV,'right');
                 // ***** Total Non Current Assets
 
-
+                this.loading = false;    
                 doc.save('test.pdf');
 
                         
