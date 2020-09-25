@@ -252,12 +252,12 @@
 
                 var total_non_current_asset_amount = 0;
 
-                
+
                 var docV = 15;
                 var docH = 15;
 
                 var doc = new jspdf();
-                doc.setFont("Serif", 'normal');
+                doc.setFont("Sans Serif", 'normal');
                 doc.setFontSize(16);
                 doc.text(this.company.name,docH,docV);
                 docV += 6;
