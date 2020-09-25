@@ -266,6 +266,7 @@
                 
                 (async () => {
                     cashes = await this.getCashAccount();
+                    console.log(cashes);
                 })();    
                 
                 for (var cash in cashes) {
