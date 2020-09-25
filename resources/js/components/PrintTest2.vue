@@ -277,7 +277,7 @@
                         docH = 130;
                         cash_amount = (cashes[cash].debit * 1) - (cashes[cash].credit * 1);
                         
-                        console.log(this.formatToCurrency(cash_amount));
+                        console.log( 'FOR LOOP '+this.formatToCurrency(cash_amount));
 
                         total_cash_amount += cash_amount;
                         main_total_cash_amount += cash_amount;
