@@ -640,7 +640,7 @@
                 doc.text('TOTAL ASSETS',docH,docV);
                 docH = 180;
                 doc.setFontSize(12);
-                total_asset_amount = total_other_non_current_asset_amount + grand_total_current_asset_amount;
+                total_asset_amount = total_non_current_asset_amount + grand_total_current_asset_amount;
                 doc.text(this.formatToCurrency(total_asset_amount),docH,docV,'right');
                 // ***** Total Non Current Assets
 
