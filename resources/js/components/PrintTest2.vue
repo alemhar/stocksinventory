@@ -266,7 +266,7 @@
                 
                 //(async () => {
                     cashes = await this.getCashAccount();
-                    console.log(cashes);
+                    //console.log(cashes);
 
                     for (var cash in cashes) {
                         docV += 6;
@@ -276,7 +276,7 @@
                         docH = 130;
                         cash_amount = (cashes[cash].debit * 1) - (cashes[cash].credit * 1);
                         
-                        console.log( 'FOR LOOP '+this.formatToCurrency(cash_amount));
+                        //console.log( 'FOR LOOP '+this.formatToCurrency(cash_amount));
 
                         total_cash_amount += cash_amount;
                         main_total_cash_amount += cash_amount;
@@ -349,7 +349,7 @@
                 doc.setFontSize(12);
 
 
-                /*
+                
                 (async () => {
                     lands = await this.getLandAccount();
                 })();           
@@ -373,6 +373,7 @@
                 docH = 130;
                 doc.setFontSize(12);
 
+                /*
                 (async () => {
                     buildings = await this.getBuildingAccount();
                 })(); 
