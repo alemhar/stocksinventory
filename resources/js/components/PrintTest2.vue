@@ -278,15 +278,22 @@
                         total_cash_amount += cash_amount;
                         main_total_cash_amount += cash_amount;
                         
-                        cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(cash_amount);
-                        cash_amount = cash_amount.replace(/[a-z]{3}/i, "").trim();
+                        //cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(cash_amount);
+                        //cash_amount = cash_amount.replace(/[a-z]{3}/i, "").trim();
+                        
                         console.log(cash_amount);
-                        doc.text(cash_amount,docH,docV,'right');
+                        
+                        //doc.text(cash_amount,docH,docV,'right');
+                        doc.text(this.formatToCurrency(cash_amount),docH,docV,'right');
                     }
                     docH = 160;
-                    total_cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_cash_amount);
-                    total_cash_amount = total_cash_amount.replace(/[a-z]{3}/i, "").trim();
-                    doc.text(total_cash_amount,docH,docV,'right');
+                    //total_cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_cash_amount);
+                    //total_cash_amount = total_cash_amount.replace(/[a-z]{3}/i, "").trim();
+                    
+                    //doc.text(total_cash_amount,docH,docV,'right');
+                    doc.text(this.formatToCurrency(total_cash_amount),docH,docV,'right');
+                    
+
                 })(); 
                 
                     

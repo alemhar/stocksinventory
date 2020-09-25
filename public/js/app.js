@@ -11581,19 +11581,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   docH = 130;
                   cash_amount = cashes[cash].debit * 1 - cashes[cash].credit * 1;
                   total_cash_amount += cash_amount;
-                  main_total_cash_amount += cash_amount;
-                  cash_amount = Intl.NumberFormat('en-US', currencyOptions).format(cash_amount);
-                  cash_amount = cash_amount.replace(/[a-z]{3}/i, "").trim();
-                  console.log(cash_amount);
-                  doc.text(cash_amount, docH, docV, 'right');
+                  main_total_cash_amount += cash_amount; //cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(cash_amount);
+                  //cash_amount = cash_amount.replace(/[a-z]{3}/i, "").trim();
+
+                  console.log(cash_amount); //doc.text(cash_amount,docH,docV,'right');
+
+                  doc.text(_this2.formatToCurrency(cash_amount), docH, docV, 'right');
                 }
 
-                docH = 160;
-                total_cash_amount = Intl.NumberFormat('en-US', currencyOptions).format(total_cash_amount);
-                total_cash_amount = total_cash_amount.replace(/[a-z]{3}/i, "").trim();
-                doc.text(total_cash_amount, docH, docV, 'right');
+                docH = 160; //total_cash_amount = Intl.NumberFormat('en-US',currencyOptions).format(total_cash_amount);
+                //total_cash_amount = total_cash_amount.replace(/[a-z]{3}/i, "").trim();
+                //doc.text(total_cash_amount,docH,docV,'right');
 
-              case 9:
+                doc.text(_this2.formatToCurrency(total_cash_amount), docH, docV, 'right');
+
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -117327,14 +117329,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************!*\
   !*** ./resources/js/components/PrintTest2.vue ***!
   \************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PrintTest2_vue_vue_type_template_id_d603ab44___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PrintTest2.vue?vue&type=template&id=d603ab44& */ "./resources/js/components/PrintTest2.vue?vue&type=template&id=d603ab44&");
 /* harmony import */ var _PrintTest2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PrintTest2.vue?vue&type=script&lang=js& */ "./resources/js/components/PrintTest2.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _PrintTest2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _PrintTest2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -117364,7 +117367,7 @@ component.options.__file = "resources/js/components/PrintTest2.vue"
 /*!*************************************************************************!*\
   !*** ./resources/js/components/PrintTest2.vue?vue&type=script&lang=js& ***!
   \*************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
