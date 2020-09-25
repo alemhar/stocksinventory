@@ -1,7 +1,7 @@
 <template>
 
     <div class="container">
-        <spinner-overlay :active.sync="loading"></spinner-overlay>
+        <loading :active.sync="isLoading" :is-full-page="fullPage"></loading>
         <div class="row mt-1" v-if="$gate.isAdminOrUser()">
             <div class="col-md-12">
                 <!-- div class="row mt-3">
@@ -140,13 +140,19 @@
     
 </template>
 <script>
-    import SpinnerOverlay from './SpinnerOverlay.vue'; 
+    //import SpinnerOverlay from './SpinnerOverlay.vue'; 
+    
+    import Loading from 'vue-loading-overlay';
+    import 'vue-loading-overlay/dist/vue-loading.css';
+    
+
     import pdfobject from 'pdfobject';
     import jspdf from 'jspdf';
     export default {
         data() {
           return {
-              loading: false,
+              isLoading: false,
+                fullPage: true,
               user_id: null,
               sales: {},
               cost_of_sales: {},
@@ -198,7 +204,7 @@
                 
             },
             async generateReportBS(){
-                this.loading = true;
+                this.isLoading = true;
                 let currencyOptions = { style: 'currency', currency: 'USD', currencyDisplay: 'code' };
                 let result = null;
                 var cash_amount = 0;
@@ -648,7 +654,7 @@
                 doc.text(this.formatToCurrency(total_asset_amount),docH,docV,'right');
                 // ***** Total Non Current Assets
 
-                this.loading = false;    
+                this.isLoading = false;    
                 doc.save('test.pdf');
 
                         
@@ -903,7 +909,7 @@
 
         },
         components: {
-          SpinnerOverlay
+          Loading
           
         }
     }

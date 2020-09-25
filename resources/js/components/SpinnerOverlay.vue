@@ -1,5 +1,5 @@
 <template>
-    <div class="vld-parent">
+    <div class="vld2-parent">
         <loading :active.sync="isLoading" 
         :can-cancel="true" 
         :on-cancel="onCancel"

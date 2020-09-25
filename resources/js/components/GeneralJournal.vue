@@ -848,6 +848,7 @@
                   salvage_value: 0,
                   depreciation_value: 0,
                   transaction_date: this.getDate(),
+                  description: ''
               }),
               form_item: new Form({
 
