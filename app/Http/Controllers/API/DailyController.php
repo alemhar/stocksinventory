@@ -130,4 +130,35 @@ class DailyController extends Controller
     {
         //
     }
+
+
+    public function runninng()
+    {
+        if(\Request::get('transaction_date')) {
+            $transaction_date = \Request::get('transaction_date');
+        } else {
+            $transaction_date = '';
+        }
+
+        if(\Request::get('sub_account_type')) {
+            $sub_account_type = \Request::get('sub_account_type');
+            $sub_account_type = str_replace('_', ' ', $sub_account_type);
+        } else {
+            $sub_account_type = '';
+        }
+
+        $transaction = DailyAccount::where(function($query) use ($start,$end){
+            $query->whereBetween('account_code', [$start, $end]);
+            //$query->where('transaction_date','=', $transaction_date);
+        })
+        ->where('transaction_date','<', $transaction_date)
+        //->groupBy('account_code')
+        ->groupBy(['account_code', 'transaction_date'])
+        ->orderBy('account_code')
+        ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
+        ->limit(1)
+        ->get();
+
+    }
+
 }

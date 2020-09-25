@@ -1,5 +1,13 @@
 <?php
+/*
+Schedule every 2AM.
 
+(Will not work because of the backlog)
+Select all transaction for the previous day DAILY TABLE, group by account_code SUM debit and credit 
+
+
+
+*/
 namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;

@@ -18,6 +18,19 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
+
+    $transaction_date = Carbon::now();
+
+    $transaction = RunningAccount::
+    where('transaction_date','<', $transaction_date)
+    ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
+    ->get();
+
+    return $transaction;
+
+});
+
+Route::get('/test2', function () {
     $current_month = date('m');
     $current_year = date('Y');
     $date = Carbon::create($current_year, $current_month, 1);
@@ -32,6 +45,8 @@ Route::get('/test', function () {
     ])->get();
 
     return count($depreciation_entry);
+
+
 });
 
 Route::get('/test1', function () {
