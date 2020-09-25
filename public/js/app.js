@@ -11571,9 +11571,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 cashes = _context.sent;
-                console.log(cashes);
 
-              case 4:
+              case 3:
               case "end":
                 return _context.stop();
             }
@@ -11586,12 +11585,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         docH = 25;
         doc.text(cashes[cash].account_name, docH, docV);
         docH = 130;
-        cash_amount = cashes[cash].debit * 1; // - (cashes[cash].credit * 1);
-
+        cash_amount = cashes[cash].debit * 1 - cashes[cash].credit * 1;
         total_cash_amount += cash_amount;
         main_total_cash_amount += cash_amount;
         cash_amount = Intl.NumberFormat('en-US', currencyOptions).format(cash_amount);
         cash_amount = cash_amount.replace(/[a-z]{3}/i, "").trim();
+        console.log(cash_amount);
         doc.text(cash_amount, docH, docV, 'right');
       }
 
