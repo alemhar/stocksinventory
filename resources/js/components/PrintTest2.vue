@@ -1,7 +1,7 @@
 <template>
 
     <div class="container">
-        <loading :active.sync="isLoading" :is-full-page="fullPage" color="orange"></loading>
+        <loading :active.sync="isLoading" :is-full-page="fullPage" width="128" height="128" color="orange"></loading>
         <div class="row mt-1" v-if="$gate.isAdminOrUser()">
             <div class="col-md-12">
                 <!-- div class="row mt-3">
@@ -270,6 +270,22 @@
                 var short_terms = null;
                 var short_term_amount = 0;
                 var total_short_term_amount = 0;
+                
+                var long_terms = null;
+                var long_term_amount = 0;
+                var total_long_term_amount = 0;
+
+                var income_taxs = null;
+                var income_tax_amount = 0;
+                var total_income_tax_amount = 0;
+
+                var other_current_liabs = null;
+                var other_current_liab_amount = 0;
+                var total_other_current_liab_amount = 0;
+
+                var witholding_taxs = null;
+                var witholding_tax_amount = 0;
+                var total_witholding_tax_amount = 0;
                 
 
                 var docV = 15;
@@ -675,7 +691,7 @@
                 
                 
                 // Trades Payables
-                docV += 12;
+                docV += 6;
                 docH = 15;
                 doc.setFontSize(16);
                 doc.text('Trade Payables',docH,docV);
@@ -696,7 +712,7 @@
                 
 
                 // Short-Term Borrowings
-                docV += 12;
+                docV += 6;
                 docH = 15;
                 doc.setFontSize(16);
                 doc.text('Short-Term Borrowings',docH,docV);
@@ -715,8 +731,129 @@
                 doc.text(this.formatToCurrency(total_short_term_amount),docH,docV,'right');
                 // Short-Term Borrowings
 
-                
+                // Current Portion Of Long Term Debr
+                docV += 6;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('Current Portion Of Long Term Debr',docH,docV);
+                doc.setFontSize(12);
+                long_terms = await this.getLongTermsAccount();
+                if(long_terms){
+                    for (var long_term in long_terms) {
+                        long_term_amount = (long_terms[long_term].debit * 1) - (long_terms[long_term].credit * 1);
+                        total_long_term_amount += long_term_amount;
+                    }
+                } else {
+                    total_long_term_amount = 0;
+                }
+                docH = 180;
+                doc.setFontSize(12);
+                doc.text(this.formatToCurrency(total_long_term_amount),docH,docV,'right');
+                // Current Portion Of Long Term Debr
 
+
+                // Income Tax Payable
+                /*
+                var income_taxs = null;
+                var income_tax_amount = 0;
+                var total_income_tax_amount = 0;
+                */
+                docV += 6;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('Income Tax Payable',docH,docV);
+                doc.setFontSize(12);
+                income_taxs = await this.getIncomeTaxPayableAccount();
+                if(income_taxs){
+                    for (var income_tax in income_taxs) {
+                        income_tax_amount = (income_taxs[income_tax].debit * 1) - (income_taxs[income_tax].credit * 1);
+                        total_income_tax_amount += income_tax_amount;
+                    }
+                } else {
+                    total_income_tax_amount = 0;
+                }
+                docH = 180;
+                doc.setFontSize(12);
+                doc.text(this.formatToCurrency(total_income_tax_amount),docH,docV,'right');
+                // Income Tax Payable
+
+                
+                // Other Current Liabilities
+                /*
+                var other_current_liabs = null;
+                var other_current_liab_amount = 0;
+                var total_other_current_liab_amount = 0;
+                */
+                docV += 6;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('Other Current Liabilities',docH,docV);
+                doc.setFontSize(12);
+                other_current_liabs = await this.getOtherCurrentLiabilitiesAccount();
+                if(other_current_liabs){
+                    for (var other_current_liab in other_current_liabs) {
+                        other_current_liab_amount = (other_current_liabs[other_current_liab].debit * 1) - (other_current_liabs[other_current_liab].credit * 1);
+                        total_other_current_liab_amount += other_current_liab_amount;
+                    }
+                } else {
+                    total_other_current_liab_amount = 0;
+                }
+                docH = 180;
+                doc.setFontSize(12);
+                doc.text(this.formatToCurrency(total_other_current_liab_amount),docH,docV,'right');
+                // Other Current Liabilities
+
+
+                // Witholding Tax Payable
+                /*
+                var witholding_taxs = null;
+                var witholding_tax_amount = 0;
+                var total_witholding_tax_amount = 0;
+                */
+                docV += 6;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('Witholding Tax Payable',docH,docV);
+                doc.setFontSize(12);
+                witholding_taxs = await this.getWitholdingTaxAccount();
+                if(witholding_taxs){
+                    for (var witholding_tax in witholding_taxs) {
+                        witholding_tax_amount = (witholding_taxs[witholding_tax].debit * 1) - (witholding_taxs[witholding_tax].credit * 1);
+                        total_witholding_tax_amount += witholding_tax_amount;
+                    }
+                } else {
+                    total_witholding_tax_amount = 0;
+                }
+                docH = 180;
+                doc.setFontSize(12);
+                doc.text(this.formatToCurrency(total_witholding_tax_amount),docH,docV,'right');
+                // Witholding Tax Payable
+
+
+                // Output Tax
+                /*
+                var output_taxs = null;
+                var output_tax_amount = 0;
+                var total_output_tax_amount = 0;
+                */
+                docV += 6;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('Output Tax',docH,docV);
+                doc.setFontSize(12);
+                output_taxs = await this.getOutputTaxAccount();
+                if(output_taxs){
+                    for (var output_tax in output_taxs) {
+                        output_tax_amount = (output_taxs[output_tax].debit * 1) - (output_taxs[output_tax].credit * 1);
+                        total_output_tax_amount += output_tax_amount;
+                    }
+                } else {
+                    total_output_tax_amount = 0;
+                }
+                docH = 180;
+                doc.setFontSize(12);
+                doc.text(this.formatToCurrency(total_output_tax_amount),docH,docV,'right');
+                // Output Tax
 
 
 
