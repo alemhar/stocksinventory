@@ -660,9 +660,6 @@
                 // ***** Total Non Current Assets
 
 
-
-                
-
                 docV += 12;
                 docH = 15;
                 doc.setFontSize(16);
