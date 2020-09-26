@@ -1,7 +1,7 @@
 <template>
 
     <div class="container">
-        <loading :active.sync="isLoading" :is-full-page="fullPage" :width="128" :height="128" color="orange" loader="dots"></loading>
+        <loading :active.sync="isLoading" :is-full-page="fullPage" :width="154" :height="154" color="orange" loader="dots"></loading>
         <div class="row mt-1" v-if="$gate.isAdminOrUser()">
             <div class="col-md-12">
                 <!-- div class="row mt-3">
@@ -290,6 +290,8 @@
                 var output_taxs = null;
                 var output_tax_amount = 0;
                 var total_output_tax_amount = 0;
+
+                var total_current_liab_amount = 0;
 
                 var docV = 15;
                 var docH = 15;
@@ -716,7 +718,7 @@
                 doc.text(this.formatToCurrency(total_non_current_asset_amount),docH,docV,'right');
                 // ***** Total Non Current Assets
                 
-                // ***** Total Non Current Assets
+                // ***** Total Assets
                 docV += 12;
                 docH = 15;
                 doc.setFontSize(16);
@@ -725,7 +727,7 @@
                 doc.setFontSize(12);
                 total_asset_amount = total_non_current_asset_amount + grand_total_current_asset_amount;
                 doc.text(this.formatToCurrency(total_asset_amount),docH,docV,'right');
-                // ***** Total Non Current Assets
+                // ***** Total Assets
 
 
                 docV += 12;
@@ -757,7 +759,7 @@
                 } else {
                     total_trade_amount = 0;
                 }
-                docH = 180;
+                docH = 150;
                 doc.setFontSize(12);
                 doc.text(this.formatToCurrency(total_trade_amount),docH,docV,'right');
                 // Trades Payables
@@ -782,7 +784,7 @@
                 } else {
                     total_short_term_amount = 0;
                 }
-                docH = 180;
+                docH = 150;
                 doc.setFontSize(12);
                 doc.text(this.formatToCurrency(total_short_term_amount),docH,docV,'right');
                 // Short-Term Borrowings
@@ -806,7 +808,7 @@
                 } else {
                     total_long_term_amount = 0;
                 }
-                docH = 180;
+                docH = 150;
                 doc.setFontSize(12);
                 doc.text(this.formatToCurrency(total_long_term_amount),docH,docV,'right');
                 // Current Portion Of Long Term Debr
@@ -837,7 +839,7 @@
                 } else {
                     total_income_tax_amount = 0;
                 }
-                docH = 180;
+                docH = 150;
                 doc.setFontSize(12);
                 doc.text(this.formatToCurrency(total_income_tax_amount),docH,docV,'right');
                 // Income Tax Payable
@@ -871,7 +873,7 @@
                 } else {
                     total_other_current_liab_amount = 0;
                 }
-                docH = 180;
+                docH = 150;
                 doc.setFontSize(12);
                 doc.text(this.formatToCurrency(total_other_current_liab_amount),docH,docV,'right');
                 // Other Current Liabilities
@@ -902,7 +904,7 @@
                 } else {
                     total_witholding_tax_amount = 0;
                 }
-                docH = 180;
+                docH = 150;
                 doc.setFontSize(12);
                 doc.text(this.formatToCurrency(total_witholding_tax_amount),docH,docV,'right');
                 // Witholding Tax Payable
@@ -939,15 +941,31 @@
                 doc.text(this.formatToCurrency(total_output_tax_amount),docH,docV,'right');
                 // Output Tax
 
-
-
+                if(docV > 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
+                // ***** Total Assets
+                docV += 12;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('TOTAL CURRENT LIABILITIES',docH,docV);
+                docH = 180;
+                doc.setFontSize(12);
+                total_current_liab_amount = total_trade_amount +
+                total_short_term_amount +
+                total_long_term_amount +
+                total_income_tax_amount +
+                total_other_current_liab_amount +
+                total_witholding_tax_amount +
+                total_output_tax_amount;
+                doc.text(this.formatToCurrency(total_current_liab_amount),docH,docV,'right');
+                // ***** Total Assets    
 
                 this.isLoading = false;    
                 doc.save('test.pdf');
 
-                        
-                        
-                        
+                            
 
             },
             async getTradesAccount(){
