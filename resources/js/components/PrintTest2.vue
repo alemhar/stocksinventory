@@ -1,7 +1,7 @@
 <template>
 
     <div class="container">
-        <loading :active.sync="isLoading" :is-full-page="fullPage" width="128" height="128" color="orange"></loading>
+        <loading :active.sync="isLoading" :is-full-page="fullPage" :width="128" :height="128" color="orange"></loading>
         <div class="row mt-1" v-if="$gate.isAdminOrUser()">
             <div class="col-md-12">
                 <!-- div class="row mt-3">
@@ -287,6 +287,9 @@
                 var witholding_tax_amount = 0;
                 var total_witholding_tax_amount = 0;
                 
+                var output_taxs = null;
+                var output_tax_amount = 0;
+                var total_output_tax_amount = 0;
 
                 var docV = 15;
                 var docH = 15;
