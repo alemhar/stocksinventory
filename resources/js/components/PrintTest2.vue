@@ -263,6 +263,11 @@
                 var total_non_current_asset_amount = 0;
                 var total_asset_amount = 0;
 
+                var trades = null;
+                var trade_amount = 0;
+                var total_trade_amount = 0;
+
+
                 var docV = 15;
                 var docH = 15;
 
@@ -654,6 +659,51 @@
                 doc.text(this.formatToCurrency(total_asset_amount),docH,docV,'right');
                 // ***** Total Non Current Assets
 
+
+
+                
+
+                docV += 12;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('LIABILITIES AND EQUITY',docH,docV);
+                docV += 12;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('CURRENT LIABILITIES',docH,docV);
+                docV += 12;
+                docH = 15;
+                doc.setFontSize(16);
+
+                // Trades Payables
+
+                doc.text('Trade Payables',docH,docV);
+                docH = 150;
+                doc.setFontSize(12);
+
+
+                trades = await this.getTradesAccount();
+                
+                if(trades){
+                    for (var trade in trades) {
+                        trade_amount = (trades[trade].debit * 1) - (trades[trade].credit * 1);
+                        total_trade_amount += trade_amount;
+                    }
+                } else {
+                    total_trade_amount = 0;
+                }
+                docV += 6;
+                docH = 180;
+                doc.setFontSize(12);
+                doc.text(this.formatToCurrency(total_trade_amount),docH,docV,'right');
+
+                // Trades Payables
+                
+
+
+
+
+
                 this.isLoading = false;    
                 doc.save('test.pdf');
 
@@ -661,6 +711,34 @@
                         
                         
 
+            },
+            async getTradesAccount(){
+                const response = await axios.get('api/asof?start=21010000&end=21010099&transaction_date='+this.transaction_date);
+                return response.data;
+            },
+            async getShortTermsAccount(){
+                const response = await axios.get('api/asof?start=21020000&end=21020099&transaction_date='+this.transaction_date);
+                return response.data;
+            },
+            async getLongTermsAccount(){
+                const response = await axios.get('api/asof?start=21030000&end=21030099&transaction_date='+this.transaction_date);
+                return response.data;
+            },
+            async getIncomeTaxPayableAccount(){
+                const response = await axios.get('api/asof?start=21040000&end=21040099&transaction_date='+this.transaction_date);
+                return response.data;
+            },
+            async getOtherCurrentLiabilitiesAccount(){
+                const response = await axios.get('api/asof?start=21050000&end=21050099&transaction_date='+this.transaction_date);
+                return response.data;
+            },
+            async getWitholdingTaxAccount(){
+                const response = await axios.get('api/asof?start=21051200&end=21051299&transaction_date='+this.transaction_date);
+                return response.data;
+            },
+            async getOutputTaxAccount(){
+                const response = await axios.get('api/asof?start=21051100&end=21051199&transaction_date='+this.transaction_date);
+                return response.data;
             },
             async getOtherNonCurrentAssetsAccount(){
                 const response = await axios.get('api/asof?start=15020000&end=15020099&transaction_date='+this.transaction_date);
@@ -718,6 +796,7 @@
             },
 
             generateReportIS(){
+                this.isLoading = true;
                 let currencyOptions = { style: 'currency', currency: 'USD', currencyDisplay: 'code' };
                 
                 
@@ -878,6 +957,7 @@
                             doc.text(net_profit,docH,docV,'right');
                             docV +=1;
                             doc.line(docH - 25,docV,docH,docV);
+                            this.isLoading = false;
                             doc.save('test.pdf');
 
                         })
@@ -894,7 +974,7 @@
                 });
 
                 
-
+                
             }
 
 
