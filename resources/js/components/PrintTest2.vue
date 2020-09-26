@@ -267,6 +267,10 @@
                 var trade_amount = 0;
                 var total_trade_amount = 0;
 
+                var short_terms = null;
+                var short_term_amount = 0;
+                var total_short_term_amount = 0;
+                
 
                 var docV = 15;
                 var docH = 15;
@@ -669,18 +673,13 @@
                 doc.setFontSize(16);
                 doc.text('CURRENT LIABILITIES',docH,docV);
                 docV += 12;
+                
+                // Trades Payables
                 docH = 15;
                 doc.setFontSize(16);
-
-                // Trades Payables
-
                 doc.text('Trade Payables',docH,docV);
-                docH = 150;
                 doc.setFontSize(12);
-
-
                 trades = await this.getTradesAccount();
-                
                 if(trades){
                     for (var trade in trades) {
                         trade_amount = (trades[trade].debit * 1) - (trades[trade].credit * 1);
@@ -689,13 +688,34 @@
                 } else {
                     total_trade_amount = 0;
                 }
-                docV += 6;
                 docH = 180;
                 doc.setFontSize(12);
                 doc.text(this.formatToCurrency(total_trade_amount),docH,docV,'right');
-
                 // Trades Payables
                 
+
+                // Trades Payables
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('Short-Term Borrowings',docH,docV);
+                doc.setFontSize(12);
+                short_terms = await this.getShortTermsAccount();
+                if(short_terms){
+                    for (var short_term in short_terms) {
+                        short_term_amount = (short_terms[short_term].debit * 1) - (short_terms[short_term].credit * 1);
+                        total_short_term_amount += short_term_amount;
+                    }
+                } else {
+                    total_short_term_amount = 0;
+                }
+                docH = 180;
+                doc.setFontSize(12);
+                doc.text(this.formatToCurrency(total_short_term_amount),docH,docV,'right');
+                // Trades Payables
+
+                var short_terms = null;
+                var short_term_amount = 0;
+                var total_short_term_amount = 0;
 
 
 
