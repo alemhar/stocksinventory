@@ -832,7 +832,8 @@
                 doc.text(this.formatToCurrency(total_witholding_tax_amount),docH,docV,'right');
                 // Witholding Tax Payable
 
-
+                doc.addPage();
+                
                 // Output Tax
                 /*
                 var output_taxs = null;
