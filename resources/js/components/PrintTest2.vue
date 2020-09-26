@@ -363,7 +363,11 @@
                 //(async () => {
                     current_assets = await this.getCurrentAssets();
                 //})();     
-                
+                if(docV => 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
+
                 //console.log(this.current_assets);
                 for (var current_asset in current_assets) {
                     docV += 6;
@@ -427,7 +431,11 @@
                     total_land_amount = 0;
                 }
                 doc.text(this.formatToCurrency(total_land_amount),docH,docV,'right');
-                
+                if(docV => 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
+
                 docV += 6;
                 docH = 15;
                 doc.setFontSize(16);
@@ -453,6 +461,10 @@
                 }
                 doc.text(this.formatToCurrency(total_building_amount),docH,docV,'right');
 
+                if(docV => 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
 
 
                 docV += 6;
@@ -480,6 +492,10 @@
                 docH = 180;
                 doc.setFontSize(12);
                 doc.text(this.formatToCurrency(total_building_amount - accu_total_building_amount),docH,docV,'right');
+                if(docV => 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
 
 
 
@@ -508,7 +524,11 @@
                 }
                 doc.text(this.formatToCurrency(total_furniture_amount),docH,docV,'right');
 
-                
+                if(docV => 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
+
 
 
                 docV += 6;
@@ -542,6 +562,10 @@
                 
 
                 // ***** Machineries
+                if(docV => 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
 
                 docV += 6;
                 docH = 15;
@@ -561,6 +585,10 @@
                     total_machine_amount = 0;
                 }
                 doc.text(this.formatToCurrency(total_machine_amount),docH,docV,'right');
+                if(docV => 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
 
                 docV += 6;
                 docH = 15;
@@ -588,6 +616,10 @@
                 // ***** Machineries
                 
                 // ***** Transportation
+                if(docV => 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
 
                 docV += 6;
                 docH = 15;
@@ -607,6 +639,10 @@
                     total_transportation_amount = 0;
                 }
                 doc.text(this.formatToCurrency(total_transportation_amount),docH,docV,'right');
+                if(docV => 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
 
                 docV += 6;
                 docH = 15;
@@ -635,7 +671,11 @@
                 
                 
                 // ***** Other Non Current Assets
-                
+                if(docV => 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
+
                 docV += 6;
                 docH = 15;
                 doc.setFontSize(16);
@@ -654,6 +694,11 @@
                 } else {
                     total_other_non_current_asset_amount = 0;
                 }
+                if(docV => 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
+
                 docV += 6;
                 docH = 180;
                 doc.setFontSize(12);
@@ -692,7 +737,11 @@
                 doc.setFontSize(16);
                 doc.text('CURRENT LIABILITIES',docH,docV);
                 
-                
+                if(docV => 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
+
                 // Trades Payables
                 docV += 6;
                 docH = 15;
@@ -713,6 +762,10 @@
                 doc.text(this.formatToCurrency(total_trade_amount),docH,docV,'right');
                 // Trades Payables
                 
+                if(docV => 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
 
                 // Short-Term Borrowings
                 docV += 6;
@@ -733,6 +786,10 @@
                 doc.setFontSize(12);
                 doc.text(this.formatToCurrency(total_short_term_amount),docH,docV,'right');
                 // Short-Term Borrowings
+                if(docV => 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
 
                 // Current Portion Of Long Term Debr
                 docV += 6;
@@ -761,6 +818,11 @@
                 var income_tax_amount = 0;
                 var total_income_tax_amount = 0;
                 */
+                if(docV => 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
+
                 docV += 6;
                 docH = 15;
                 doc.setFontSize(16);
@@ -787,11 +849,16 @@
                 var other_current_liab_amount = 0;
                 var total_other_current_liab_amount = 0;
                 */
-                docV += 6;
 
+                if(docV => 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
+
+                docV += 6;
                 docH = 15;
                 doc.setFontSize(16);
-                doc.text('Other Current Liabilities'+docV,docH,docV);
+                doc.text('Other Current Liabilities',docH,docV);
                 
                 //doc.text('Other Current Liabilities',docH,docV);
                 doc.setFontSize(12);
@@ -816,6 +883,11 @@
                 var witholding_tax_amount = 0;
                 var total_witholding_tax_amount = 0;
                 */
+               if(docV => 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
+
                 docV += 6;
                 docH = 15;
                 doc.setFontSize(16);
@@ -835,7 +907,7 @@
                 doc.text(this.formatToCurrency(total_witholding_tax_amount),docH,docV,'right');
                 // Witholding Tax Payable
 
-                doc.addPage();
+                
 
                 // Output Tax
                 /*
@@ -843,6 +915,11 @@
                 var output_tax_amount = 0;
                 var total_output_tax_amount = 0;
                 */
+                if(docV => 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
+
                 docV += 6;
                 docH = 15;
                 doc.setFontSize(16);
