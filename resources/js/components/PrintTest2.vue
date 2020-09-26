@@ -1,7 +1,7 @@
 <template>
 
     <div class="container">
-        <loading :active.sync="isLoading" :is-full-page="fullPage" :width="128" :height="128" color="orange"></loading>
+        <loading :active.sync="isLoading" :is-full-page="fullPage" :width="128" :height="128" color="orange" loader="dots"></loading>
         <div class="row mt-1" v-if="$gate.isAdminOrUser()">
             <div class="col-md-12">
                 <!-- div class="row mt-3">
