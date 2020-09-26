@@ -672,9 +672,10 @@
                 docH = 15;
                 doc.setFontSize(16);
                 doc.text('CURRENT LIABILITIES',docH,docV);
-                docV += 12;
+                
                 
                 // Trades Payables
+                docV += 12;
                 docH = 15;
                 doc.setFontSize(16);
                 doc.text('Trade Payables',docH,docV);
@@ -694,7 +695,8 @@
                 // Trades Payables
                 
 
-                // Trades Payables
+                // Short-Term Borrowings
+                docV += 12;
                 docH = 15;
                 doc.setFontSize(16);
                 doc.text('Short-Term Borrowings',docH,docV);
@@ -711,11 +713,9 @@
                 docH = 180;
                 doc.setFontSize(12);
                 doc.text(this.formatToCurrency(total_short_term_amount),docH,docV,'right');
-                // Trades Payables
+                // Short-Term Borrowings
 
-                var short_terms = null;
-                var short_term_amount = 0;
-                var total_short_term_amount = 0;
+                
 
 
 
