@@ -788,9 +788,12 @@
                 var total_other_current_liab_amount = 0;
                 */
                 docV += 6;
+
                 docH = 15;
                 doc.setFontSize(16);
-                doc.text('Other Current Liabilities',docH,docV);
+                doc.text('Other Current Liabilities'+docV,docH,docV);
+                
+                //doc.text('Other Current Liabilities',docH,docV);
                 doc.setFontSize(12);
                 other_current_liabs = await this.getOtherCurrentLiabilitiesAccount();
                 if(other_current_liabs){
@@ -833,7 +836,7 @@
                 // Witholding Tax Payable
 
                 doc.addPage();
-                
+
                 // Output Tax
                 /*
                 var output_taxs = null;
