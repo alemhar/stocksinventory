@@ -301,6 +301,10 @@
                 var other_non_current_liab_amount = 0;
                 var total_other_non_current_liab_amount = 0;
 
+                var owners_equity_begins = null;
+                var owners_equity_begin_amount = 0;
+                var total_owners_equity_begin_amount = 0;
+
                 var total_liab_amount = 0;
                 var total_non_current_liab_amount = 0;
 
@@ -1067,12 +1071,57 @@
                 doc.text(this.formatToCurrency(total_liab_amount),docH,docV,'right');
                 // ***** Total Liab   
 
+                // ***** EQUITY
+                docV += 12;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('EQUITY',docH,docV);
+                // ***** EQUITY
+
+                
+                // OWNERS EQUITY Beg.
+                /*
+                var owners_equity_begins = null;
+                var owners_equity_begin_amount = 0;
+                var total_owners_equity_begin_amount = 0;
+                */
+               if(docV > 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
+
+                docV += 6;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('Owners Equity Beginning',docH,docV);
+                doc.setFontSize(12);
+                owners_equity_begins = await this.getOwnersEquityBegAccount();
+                if(owners_equity_begins){
+                    for (var owners_equity_begin in owners_equity_begins) {
+                        owners_equity_begin_amount = (owners_equity_begins[owners_equity_begin].debit * 1) - (owners_equity_begins[owners_equity_begin].credit * 1);
+                        total_owners_equity_begin_amount += owners_equity_begin_amount;
+                    }
+                } else {
+                    total_owners_equity_begin_amount = 0;
+                }
+                docH = 150;
+                doc.setFontSize(12);
+                doc.text(this.formatToCurrency(total_owners_equity_begin_amount),docH,docV,'right');
+
+                // OWNERS EQUITY Beg.
 
                 this.isLoading = false;    
                 doc.save('test.pdf');
 
                             
 
+            },
+            async getOwnersEquityBegAccount(){
+                var transactionYear = this.transaction_date.getFullYear();
+                var lastYearDec31 = new Date((+transactionYear - +1), 12, 31);
+                console.log(lastYearDec31);
+                const response = await axios.get('api/asof?start=31010000&end=31010099&transaction_date='+lastYearDec31);
+                return response.data;
             },
             async getOtherNonCurrentLiabsAccount(){
                 const response = await axios.get('api/asof?start=22020000&end=22020099&transaction_date='+this.transaction_date);
