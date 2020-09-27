@@ -969,7 +969,7 @@
                 } else {
                     total_output_tax_amount = 0;
                 }
-                docH = 180;
+                docH = 150;
                 doc.setFontSize(12);
                 doc.text(this.formatToCurrency(total_output_tax_amount),docH,docV,'right');
                 // Output Tax
