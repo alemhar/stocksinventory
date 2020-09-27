@@ -325,7 +325,7 @@
                 var total_liab_amount = 0;
                 var total_non_current_liab_amount = 0;
                 var total_owners_equity_end = 0;
-                
+
                 var docV = 15;
                 var docH = 15;
 
@@ -371,7 +371,7 @@
                         doc.text(cashes[cash].account_name,docH,docV);
                         //doc.text(cashes[cash].account_name,docH,docV);
                         docH = 150;
-                        cash_amount = (cashes[cash].credit * 1) - (cashes[cash].debit * 1);
+                        cash_amount = (cashes[cash].debit * 1) - (cashes[cash].credit * 1);
                         
                         //console.log( 'FOR LOOP '+this.formatToCurrency(cash_amount));
 
