@@ -293,6 +293,17 @@
 
                 var total_current_liab_amount = 0;
 
+                var loans_payables = null;
+                var loans_payable_amount = 0;
+                var total_loans_payable_amount = 0;
+
+                var other_non_current_liabs = null;
+                var other_non_current_liab_amount = 0;
+                var total_other_non_current_liab_amount = 0;
+
+                var total_liab_amount = 0;
+                var total_non_current_liab_amount = 0;
+
                 var docV = 15;
                 var docH = 15;
 
@@ -945,7 +956,8 @@
                     doc.addPage();
                     docV = 6;    
                 }
-                // ***** Total Assets
+
+                // ***** Total Current Liab
                 docV += 12;
                 docH = 15;
                 doc.setFontSize(16);
@@ -960,13 +972,115 @@
                 total_witholding_tax_amount +
                 total_output_tax_amount;
                 doc.text(this.formatToCurrency(total_current_liab_amount),docH,docV,'right');
-                // ***** Total Assets    
+                // ***** Total Current Liab    
+
+                docV += 12;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('NON-CURRENT LIABILITIES',docH,docV);
+                
+                // Loans Payable
+                /*
+                var loans_payables = null;
+                var loans_payable_amount = 0;
+                var total_loans_payable_amount = 0;
+                */
+               if(docV > 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
+
+                docV += 6;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('Loans Payable',docH,docV);
+                doc.setFontSize(12);
+                loans_payables = await this.getLoansPayablesAccount();
+                if(loans_payables){
+                    for (var loans_payable in loans_payables) {
+                        loans_payable_amount = (loans_payables[loans_payable].debit * 1) - (loans_payables[loans_payable].credit * 1);
+                        total_loans_payable_amount += loans_payable_amount;
+                    }
+                } else {
+                    total_loans_payable_amount = 0;
+                }
+                docH = 150;
+                doc.setFontSize(12);
+                doc.text(this.formatToCurrency(total_loans_payable_amount),docH,docV,'right');
+                // Loans Payable
+
+
+                // Other Non-Current Liabilites
+                /*
+                var other_non_current_liabs = null;
+                var other_non_current_liab_amount = 0;
+                var total_other_non_current_liab_amount = 0;
+                */
+               if(docV > 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
+
+                docV += 6;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('Other Non-Current Liabilites',docH,docV);
+                doc.setFontSize(12);
+                other_non_current_liabs = await this.getOtherNonCurrentLiabsAccount();
+                if(other_non_current_liabs){
+                    for (var other_non_current_liab in other_non_current_liabs) {
+                        other_non_current_liab_amount = (other_non_current_liabs[other_non_current_liab].debit * 1) - (other_non_current_liabs[other_non_current_liab].credit * 1);
+                        total_other_non_current_liab_amount += other_non_current_liab_amount;
+                    }
+                } else {
+                    total_other_non_current_liab_amount = 0;
+                }
+                docH = 150;
+                doc.setFontSize(12);
+                doc.text(this.formatToCurrency(total_other_non_current_liab_amount),docH,docV,'right');
+                
+                //docH = 180;
+                //doc.text(this.formatToCurrency(total_non_current_liab_amount),docH,docV,'right');
+                // Other Non-Current Liabilites
+
+                // ***** Total Non Current Liab
+                docV += 12;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('TOTAL NON CURRENT LIABILITIES',docH,docV);
+                docH = 180;
+                doc.setFontSize(12);
+                total_non_current_liab_amount = +total_other_non_current_liab_amount + +total_loans_payable_amount;
+                doc.text(this.formatToCurrency(total_non_current_liab_amount),docH,docV,'right');
+                // ***** Total Non Current Liab    
+
+                
+
+                // ***** Total Liab
+                docV += 12;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('TOTAL LIABILITIES',docH,docV);
+                docH = 180;
+                doc.setFontSize(12);
+                total_liab_amount = +total_non_current_liab_amount + +total_current_liab_amount;
+                doc.text(this.formatToCurrency(total_liab_amount),docH,docV,'right');
+                // ***** Total Liab   
+
 
                 this.isLoading = false;    
                 doc.save('test.pdf');
 
                             
 
+            },
+            async getOtherNonCurrentLiabsAccount(){
+                const response = await axios.get('api/asof?start=22020000&end=22020099&transaction_date='+this.transaction_date);
+                return response.data;
+            },
+            async getLoansPayablesAccount(){
+                const response = await axios.get('api/asof?start=22010000&end=22010099&transaction_date='+this.transaction_date);
+                return response.data;
             },
             async getTradesAccount(){
                 const response = await axios.get('api/asof?start=21010000&end=21010099&transaction_date='+this.transaction_date);
