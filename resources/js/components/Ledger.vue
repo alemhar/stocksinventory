@@ -210,6 +210,16 @@
             
         },
         computed: {
+            // Accumulated Dep Credit - Debit
+            /*
+            Trade Payables
+            Short-Term Borrowings
+            Current Portion Of Long Term Debr
+            Income Tax Payable
+            Other Current Liabilities
+            Witholding Tax Payable
+            Output Tax
+            */
             runningBalance(){
                  return this.ledgers.data.map((ledger) => {
                     this.running_balance = this.running_balance + Number(ledger.debit_amount - ledger.credit_amount);

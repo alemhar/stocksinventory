@@ -517,7 +517,7 @@
                 if(accu_buildings){
                     for (var accu_building in accu_buildings) {
                         //console.log('land: ',land);
-                        accu_building_amount = (accu_buildings[accu_building].debit * 1) - (accu_buildings[accu_building].credit * 1);
+                        accu_building_amount = (accu_buildings[accu_building].credit * 1) - (accu_buildings[accu_building].debit * 1);
                         accu_total_building_amount += accu_building_amount;
                     }
                 } else {
@@ -583,7 +583,7 @@
                 if(accu_furnitures){
                     for (var accu_furniture in accu_furnitures) {
                         //console.log('land: ',land);
-                        accu_furniture_amount = (accu_furnitures[accu_furniture].debit * 1) - (accu_furnitures[accu_furniture].credit * 1);
+                        accu_furniture_amount = (accu_furnitures[accu_furniture].credit * 1) - (accu_furnitures[accu_furniture].debit * 1);
                         accu_total_furniture_amount += accu_furniture_amount;
                     }
                 } else {
@@ -637,7 +637,7 @@
                 if(accu_machineries){
                     for (var accu_machine in accu_machineries) {
                         //console.log('land: ',land);
-                        accu_machine_amount = (accu_machineries[accu_machine].debit * 1) - (accu_machineries[accu_machine].credit * 1);
+                        accu_machine_amount = (accu_machineries[accu_machine].credit * 1) - (accu_machineries[accu_machine].debit * 1);
                         accu_total_machine_amount += accu_machine_amount;
                     }
                 } else {
@@ -691,7 +691,7 @@
                 if(accu_machineries){
                     for (var accu_transportation in accu_transportations) {
                         //console.log('land: ',land);
-                        accu_transportation_amount = (accu_transportations[accu_transportation].debit * 1) - (accu_transportations[accu_transportation].credit * 1);
+                        accu_transportation_amount = (accu_transportations[accu_transportation].credit * 1) - (accu_transportations[accu_transportation].debit * 1);
                         accu_total_transportation_amount += accu_transportation_amount;
                     }
                 } else {
@@ -786,7 +786,7 @@
                 trades = await this.getTradesAccount();
                 if(trades){
                     for (var trade in trades) {
-                        trade_amount = (trades[trade].debit * 1) - (trades[trade].credit * 1);
+                        trade_amount = (trades[trade].credit * 1) - (trades[trade].debit * 1);
                         total_trade_amount += trade_amount;
                     }
                 } else {
@@ -811,7 +811,7 @@
                 short_terms = await this.getShortTermsAccount();
                 if(short_terms){
                     for (var short_term in short_terms) {
-                        short_term_amount = (short_terms[short_term].debit * 1) - (short_terms[short_term].credit * 1);
+                        short_term_amount = (short_terms[short_term].credit * 1) - (short_terms[short_term].debit * 1);
                         total_short_term_amount += short_term_amount;
                     }
                 } else {
@@ -835,7 +835,7 @@
                 long_terms = await this.getLongTermsAccount();
                 if(long_terms){
                     for (var long_term in long_terms) {
-                        long_term_amount = (long_terms[long_term].debit * 1) - (long_terms[long_term].credit * 1);
+                        long_term_amount = (long_terms[long_term].credit * 1) - (long_terms[long_term].debit * 1);
                         total_long_term_amount += long_term_amount;
                     }
                 } else {
@@ -866,7 +866,7 @@
                 income_taxs = await this.getIncomeTaxPayableAccount();
                 if(income_taxs){
                     for (var income_tax in income_taxs) {
-                        income_tax_amount = (income_taxs[income_tax].debit * 1) - (income_taxs[income_tax].credit * 1);
+                        income_tax_amount = (income_taxs[income_tax].credit * 1) - (income_taxs[income_tax].debit * 1);
                         total_income_tax_amount += income_tax_amount;
                     }
                 } else {
@@ -900,7 +900,7 @@
                 other_current_liabs = await this.getOtherCurrentLiabilitiesAccount();
                 if(other_current_liabs){
                     for (var other_current_liab in other_current_liabs) {
-                        other_current_liab_amount = (other_current_liabs[other_current_liab].debit * 1) - (other_current_liabs[other_current_liab].credit * 1);
+                        other_current_liab_amount = (other_current_liabs[other_current_liab].credit * 1) - (other_current_liabs[other_current_liab].debit * 1);
                         total_other_current_liab_amount += other_current_liab_amount;
                     }
                 } else {
@@ -931,7 +931,7 @@
                 witholding_taxs = await this.getWitholdingTaxAccount();
                 if(witholding_taxs){
                     for (var witholding_tax in witholding_taxs) {
-                        witholding_tax_amount = (witholding_taxs[witholding_tax].debit * 1) - (witholding_taxs[witholding_tax].credit * 1);
+                        witholding_tax_amount = (witholding_taxs[witholding_tax].credit * 1) - (witholding_taxs[witholding_tax].debit * 1);
                         total_witholding_tax_amount += witholding_tax_amount;
                     }
                 } else {
@@ -963,7 +963,7 @@
                 output_taxs = await this.getOutputTaxAccount();
                 if(output_taxs){
                     for (var output_tax in output_taxs) {
-                        output_tax_amount = (output_taxs[output_tax].debit * 1) - (output_taxs[output_tax].credit * 1);
+                        output_tax_amount = (output_taxs[output_tax].credit * 1) - (output_taxs[output_tax].debit * 1);
                         total_output_tax_amount += output_tax_amount;
                     }
                 } else {
