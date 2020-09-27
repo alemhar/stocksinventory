@@ -1117,7 +1117,7 @@
 
             },
             async getOwnersEquityBegAccount(){
-                var transactionYear = this.transaction_date.getFullYear();
+                var transactionYear = (new Date(this.transaction_date) ).getFullYear();
                 var lastYearDec31 = new Date((+transactionYear - +1), 12, 31);
                 console.log(lastYearDec31);
                 const response = await axios.get('api/asof?start=31010000&end=31010099&transaction_date='+lastYearDec31);
