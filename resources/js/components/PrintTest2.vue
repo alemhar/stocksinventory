@@ -305,9 +305,27 @@
                 var owners_equity_begin_amount = 0;
                 var total_owners_equity_begin_amount = 0;
 
+                var expenses = null;
+                var expense_amount = 0;
+                var total_expense_amount = 0;
+
+                var cost_of_sales = null;
+                var cost_of_sale_amount = 0;
+                var total_cost_of_sale_amount = 0;
+
+                var sales_revenues = null;
+                var sales_revenue_amount = 0;
+                var total_sales_revenue_amount = 0;
+
+                var owners_drawings = null;
+                var owners_drawing_amount = 0;
+                var total_owners_drawing_amount = 0;
+
+                var total_net_profit = 0;
                 var total_liab_amount = 0;
                 var total_non_current_liab_amount = 0;
-
+                var total_owners_equity_end = 0;
+                
                 var docV = 15;
                 var docH = 15;
 
@@ -353,7 +371,7 @@
                         doc.text(cashes[cash].account_name,docH,docV);
                         //doc.text(cashes[cash].account_name,docH,docV);
                         docH = 150;
-                        cash_amount = (cashes[cash].debit * 1) - (cashes[cash].credit * 1);
+                        cash_amount = (cashes[cash].credit * 1) - (cashes[cash].debit * 1);
                         
                         //console.log( 'FOR LOOP '+this.formatToCurrency(cash_amount));
 
@@ -392,7 +410,7 @@
                     doc.setFontSize(16);
                     doc.text(current_assets[current_asset].account_name,docH,docV);
                     docH = 180;
-                    current_asset_amount = (current_assets[current_asset].debit * 1) - (current_assets[current_asset].credit * 1);
+                    current_asset_amount = (current_assets[current_asset].credit * 1) - (current_assets[current_asset].debit * 1);
                     total_current_asset_amount += current_asset_amount;
                     main_total_current_asset_amount += current_asset_amount;
                     
@@ -441,7 +459,7 @@
                 if(lands){
                     for (var land in lands) {
                         //console.log('land: ',land);
-                        land_amount = (lands[land].debit * 1) - (lands[land].credit * 1);
+                        land_amount = (lands[land].credit * 1) - (lands[land].debit * 1);
                         total_land_amount += land_amount;
                     }
                 } else {
@@ -470,7 +488,7 @@
                 if(buildings){
                     for (var building in buildings) {
                         //console.log('land: ',land);
-                        building_amount = (buildings[building].debit * 1) - (buildings[building].credit * 1);
+                        building_amount = (buildings[building].credit * 1) - (buildings[building].debit * 1);
                         total_building_amount += building_amount;
                     }
                 } else {
@@ -499,7 +517,7 @@
                 if(accu_buildings){
                     for (var accu_building in accu_buildings) {
                         //console.log('land: ',land);
-                        accu_building_amount = (accu_buildings[accu_building].debit * 1) - (accu_buildings[accu_building].credit * 1);
+                        accu_building_amount = (accu_buildings[accu_building].credit * 1) - (accu_buildings[accu_building].debit * 1);
                         accu_total_building_amount += accu_building_amount;
                     }
                 } else {
@@ -533,7 +551,7 @@
                 if(furnitures){
                     for (var furniture in furnitures) {
                         //console.log('land: ',land);
-                        furniture_amount = (furnitures[furniture].debit * 1) - (furnitures[furniture].credit * 1);
+                        furniture_amount = (furnitures[furniture].credit * 1) - (furnitures[furniture].debit * 1);
                         total_furniture_amount += furniture_amount;
                     }
                 } else {
@@ -565,7 +583,7 @@
                 if(accu_furnitures){
                     for (var accu_furniture in accu_furnitures) {
                         //console.log('land: ',land);
-                        accu_furniture_amount = (accu_furnitures[accu_furniture].debit * 1) - (accu_furnitures[accu_furniture].credit * 1);
+                        accu_furniture_amount = (accu_furnitures[accu_furniture].credit * 1) - (accu_furnitures[accu_furniture].debit * 1);
                         accu_total_furniture_amount += accu_furniture_amount;
                     }
                 } else {
@@ -595,7 +613,7 @@
                 
                 if(machineries){
                     for (var machine in machineries) {
-                        machine_amount = (machineries[machine].debit * 1) - (machineries[machine].credit * 1);
+                        machine_amount = (machineries[machine].credit * 1) - (machineries[machine].debit * 1);
                         total_machine_amount += machine_amount;
                     }
                 } else {
@@ -619,7 +637,7 @@
                 if(accu_machineries){
                     for (var accu_machine in accu_machineries) {
                         //console.log('land: ',land);
-                        accu_machine_amount = (accu_machineries[accu_machine].debit * 1) - (accu_machineries[accu_machine].credit * 1);
+                        accu_machine_amount = (accu_machineries[accu_machine].credit * 1) - (accu_machineries[accu_machine].debit * 1);
                         accu_total_machine_amount += accu_machine_amount;
                     }
                 } else {
@@ -649,7 +667,7 @@
                 
                 if(transportations){
                     for (var transportation in transportations) {
-                        transportation_amount = (transportations[transportation].debit * 1) - (transportations[transportation].credit * 1);
+                        transportation_amount = (transportations[transportation].credit * 1) - (transportations[transportation].debit * 1);
                         total_transportation_amount += transportation_amount;
                     }
                 } else {
@@ -673,7 +691,7 @@
                 if(accu_machineries){
                     for (var accu_transportation in accu_transportations) {
                         //console.log('land: ',land);
-                        accu_transportation_amount = (accu_transportations[accu_transportation].debit * 1) - (accu_transportations[accu_transportation].credit * 1);
+                        accu_transportation_amount = (accu_transportations[accu_transportation].credit * 1) - (accu_transportations[accu_transportation].debit * 1);
                         accu_total_transportation_amount += accu_transportation_amount;
                     }
                 } else {
@@ -705,7 +723,7 @@
                 
                 if(other_non_current_assets){
                     for (var other_non_current_asset in other_non_current_assets) {
-                        other_non_current_asset_amount = (other_non_current_assets[other_non_current_asset].debit * 1) - (other_non_current_assets[other_non_current_asset].credit * 1);
+                        other_non_current_asset_amount = (other_non_current_assets[other_non_current_asset].credit * 1) - (other_non_current_assets[other_non_current_asset].debit * 1);
                         total_other_non_current_asset_amount += other_non_current_asset_amount;
                     }
                 } else {
@@ -768,7 +786,7 @@
                 trades = await this.getTradesAccount();
                 if(trades){
                     for (var trade in trades) {
-                        trade_amount = (trades[trade].debit * 1) - (trades[trade].credit * 1);
+                        trade_amount = (trades[trade].credit * 1) - (trades[trade].debit * 1);
                         total_trade_amount += trade_amount;
                     }
                 } else {
@@ -793,7 +811,7 @@
                 short_terms = await this.getShortTermsAccount();
                 if(short_terms){
                     for (var short_term in short_terms) {
-                        short_term_amount = (short_terms[short_term].debit * 1) - (short_terms[short_term].credit * 1);
+                        short_term_amount = (short_terms[short_term].credit * 1) - (short_terms[short_term].debit * 1);
                         total_short_term_amount += short_term_amount;
                     }
                 } else {
@@ -817,7 +835,7 @@
                 long_terms = await this.getLongTermsAccount();
                 if(long_terms){
                     for (var long_term in long_terms) {
-                        long_term_amount = (long_terms[long_term].debit * 1) - (long_terms[long_term].credit * 1);
+                        long_term_amount = (long_terms[long_term].credit * 1) - (long_terms[long_term].debit * 1);
                         total_long_term_amount += long_term_amount;
                     }
                 } else {
@@ -848,7 +866,7 @@
                 income_taxs = await this.getIncomeTaxPayableAccount();
                 if(income_taxs){
                     for (var income_tax in income_taxs) {
-                        income_tax_amount = (income_taxs[income_tax].debit * 1) - (income_taxs[income_tax].credit * 1);
+                        income_tax_amount = (income_taxs[income_tax].credit * 1) - (income_taxs[income_tax].debit * 1);
                         total_income_tax_amount += income_tax_amount;
                     }
                 } else {
@@ -882,7 +900,7 @@
                 other_current_liabs = await this.getOtherCurrentLiabilitiesAccount();
                 if(other_current_liabs){
                     for (var other_current_liab in other_current_liabs) {
-                        other_current_liab_amount = (other_current_liabs[other_current_liab].debit * 1) - (other_current_liabs[other_current_liab].credit * 1);
+                        other_current_liab_amount = (other_current_liabs[other_current_liab].credit * 1) - (other_current_liabs[other_current_liab].debit * 1);
                         total_other_current_liab_amount += other_current_liab_amount;
                     }
                 } else {
@@ -913,7 +931,7 @@
                 witholding_taxs = await this.getWitholdingTaxAccount();
                 if(witholding_taxs){
                     for (var witholding_tax in witholding_taxs) {
-                        witholding_tax_amount = (witholding_taxs[witholding_tax].debit * 1) - (witholding_taxs[witholding_tax].credit * 1);
+                        witholding_tax_amount = (witholding_taxs[witholding_tax].credit * 1) - (witholding_taxs[witholding_tax].debit * 1);
                         total_witholding_tax_amount += witholding_tax_amount;
                     }
                 } else {
@@ -945,7 +963,7 @@
                 output_taxs = await this.getOutputTaxAccount();
                 if(output_taxs){
                     for (var output_tax in output_taxs) {
-                        output_tax_amount = (output_taxs[output_tax].debit * 1) - (output_taxs[output_tax].credit * 1);
+                        output_tax_amount = (output_taxs[output_tax].credit * 1) - (output_taxs[output_tax].debit * 1);
                         total_output_tax_amount += output_tax_amount;
                     }
                 } else {
@@ -1002,7 +1020,7 @@
                 loans_payables = await this.getLoansPayablesAccount();
                 if(loans_payables){
                     for (var loans_payable in loans_payables) {
-                        loans_payable_amount = (loans_payables[loans_payable].debit * 1) - (loans_payables[loans_payable].credit * 1);
+                        loans_payable_amount = (loans_payables[loans_payable].credit * 1) - (loans_payables[loans_payable].debit * 1);
                         total_loans_payable_amount += loans_payable_amount;
                     }
                 } else {
@@ -1033,7 +1051,7 @@
                 other_non_current_liabs = await this.getOtherNonCurrentLiabsAccount();
                 if(other_non_current_liabs){
                     for (var other_non_current_liab in other_non_current_liabs) {
-                        other_non_current_liab_amount = (other_non_current_liabs[other_non_current_liab].debit * 1) - (other_non_current_liabs[other_non_current_liab].credit * 1);
+                        other_non_current_liab_amount = (other_non_current_liabs[other_non_current_liab].credit * 1) - (other_non_current_liabs[other_non_current_liab].debit * 1);
                         total_other_non_current_liab_amount += other_non_current_liab_amount;
                     }
                 } else {
@@ -1098,27 +1116,146 @@
                 owners_equity_begins = await this.getOwnersEquityBegAccount();
                 if(owners_equity_begins){
                     for (var owners_equity_begin in owners_equity_begins) {
-                        owners_equity_begin_amount = (owners_equity_begins[owners_equity_begin].debit * 1) - (owners_equity_begins[owners_equity_begin].credit * 1);
+                        owners_equity_begin_amount = (owners_equity_begins[owners_equity_begin].credit * 1) - (owners_equity_begins[owners_equity_begin].debit * 1);
                         total_owners_equity_begin_amount += owners_equity_begin_amount;
                     }
                 } else {
                     total_owners_equity_begin_amount = 0;
                 }
-                docH = 150;
+                docH = 180;
                 doc.setFontSize(12);
                 doc.text(this.formatToCurrency(total_owners_equity_begin_amount),docH,docV,'right');
-
                 // OWNERS EQUITY Beg.
+
+
+
+                // Sales and Revenues
+                /*
+                var sales_revenues = null;
+                var sales_revenue_amount = 0;
+                var total_sales_revenue_amount = 0;
+                */
+                sales_revenues = await this.getSalesRevenuesAccount();
+                if(sales_revenues){
+                    for (var sales_revenue in sales_revenues) {
+                        sales_revenue_amount = (sales_revenues[sales_revenue].credit * 1) - (sales_revenues[sales_revenue].debit * 1);
+                        total_sales_revenue_amount += sales_revenue_amount;
+                    }
+                } else {
+                    total_sales_revenue_amount = 0;
+                }
+
+
+                // Cost of Sales
+                /*
+                var cost_of_sales = null;
+                var cost_of_sale_amount = 0;
+                var total_cost_of_sale_amount = 0;
+                */
+                cost_of_sales = await this.getCostOfSalesAccount();
+                if(cost_of_sales){
+                    for (var cost_of_sale in cost_of_sales) {
+                        cost_of_sale_amount = (cost_of_sales[cost_of_sale].debit * 1) - (cost_of_sales[cost_of_sale].credit * 1);
+                        total_cost_of_sale_amount += cost_of_sale_amount;
+                    }
+                } else {
+                    total_cost_of_sale_amount = 0;
+                }
+
+                // Expenses
+                /*
+                var expenses = null;
+                var expense_amount = 0;
+                var total_expense_amount = 0;
+                */
+                expenses = await this.getExpensesAccount();
+                if(expenses){
+                    for (var expense in expenses) {
+                        expense_amount = (expenses[expense].debit * 1) - (expenses[expense].credit * 1);
+                        total_expense_amount += expense_amount;
+                    }
+                } else {
+                    total_expense_amount = 0;
+                }
+
+
+                // NET Profit/loss
+                docV += 6;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('NET Profit/Loss',docH,docV);
+                docH = 180;
+                doc.setFontSize(12);
+                total_net_profit = total_sales_revenue_amount - total_cost_of_sale_amount - total_expense_amount;
+                doc.text(this.formatToCurrency(total_net_profit),docH,docV,'right');
+
+
+                // OWNERS Drawing.
+                /*
+                var owners_drawings = null;
+                var owners_drawing_amount = 0;
+                var total_owners_drawing_amount = 0;
+                */
+               if(docV > 272){
+                    doc.addPage();
+                    docV = 6;    
+                }
+
+                docV += 6;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('Owner\'s Drawing',docH,docV);
+                doc.setFontSize(12);
+                owners_drawings = await this.getOwnersDrawingAccount();
+                if(owners_drawings){
+                    for (var owners_drawing in owners_drawings) {
+                        owners_drawing_amount = (owners_drawings[owners_drawing].credit * 1) - (owners_drawings[owners_drawing].debit * 1);
+                        total_owners_drawing_amount += owners_drawing_amount;
+                    }
+                } else {
+                    total_owners_drawing_amount = 0;
+                }
+                docH = 180;
+                doc.setFontSize(12);
+                doc.text(this.formatToCurrency(total_owners_drawing_amount),docH,docV,'right');
+                // OWNERS Drawing.                
+
+
+                // Owners Equity End
+                docV += 6;
+                docH = 15;
+                doc.setFontSize(16);
+                doc.text('Owner\'s Equity End',docH,docV);
+                docH = 180;
+                doc.setFontSize(12);
+                total_owners_equity_end = (total_owners_equity_begin_amount * 1) + (total_net_profit * 1) - (total_owners_drawing_amount * 1);
+                doc.text(this.formatToCurrency(total_owners_equity_end),docH,docV,'right');
+
 
                 this.isLoading = false;    
                 doc.save('test.pdf');
-
                             
 
             },
+            async getOwnersDrawingAccount(){
+                const response = await axios.get('api/asof?start=31020000&end=31020099&transaction_date='+this.transaction_date);
+                return response.data;
+            },
+            async getSalesRevenuesAccount(){
+                const response = await axios.get('api/asof?start=41010000&end=41010099&transaction_date='+this.transaction_date);
+                return response.data;
+            },
+            async getCostOfSalesAccount(){
+                const response = await axios.get('api/asof?start=51010000&end=51010099&transaction_date='+this.transaction_date);
+                return response.data;
+            },
+            async getExpensesAccount(){
+                const response = await axios.get('api/asof?start=62010000&end=62210099&transaction_date='+this.transaction_date);
+                return response.data;
+            },
             async getOwnersEquityBegAccount(){
                 var transactionYear = (new Date(this.transaction_date) ).getFullYear();
-                var lastYearDec31 = new Date((+transactionYear - +1), 12, 31);
+                var lastYearDec31 = new Date((+transactionYear - +1), 11, 31);
                 console.log(lastYearDec31);
                 const response = await axios.get('api/asof?start=31010000&end=31010099&transaction_date='+lastYearDec31);
                 return response.data;
