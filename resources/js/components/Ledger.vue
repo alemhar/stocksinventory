@@ -197,7 +197,13 @@
                     .catch(()=>{
                     //
                     });
-            }  
+            },
+            formatToCurrency(amount){
+                let currencyOptions = { style: 'currency', currency: 'USD', currencyDisplay: 'code' };
+                amount = Intl.NumberFormat('en-US',currencyOptions).format(amount);
+                amount = amount.replace(/[a-z]{3}/i, "").trim();
+                return amount;
+            }
         },
 
         created() {
@@ -229,10 +235,13 @@
            */
             runningBalance(){
                  return this.ledgers.data.map((ledger) => {
-                    
-                    this.running_balance = this.running_balance + Number(ledger.debit_amount - ledger.credit_amount);
-                    
-                    return this.running_balance.toFixed(2);
+                    if(ledger.account_type == 'ASSETS' || ledger.account_type == 'EXPENSES'){
+                      this.running_balance = this.running_balance + Number(ledger.debit_amount - ledger.credit_amount);
+                    } else {
+                      this.running_balance = this.running_balance + Number(ledger.credit_amount - ledger.debit_amount);
+                    }
+                    return this.formatToCurrency(this.running_balance);
+                    //return this.running_balance.toFixed(2);
                  });
             }  
           
