@@ -49,8 +49,8 @@
                             <td>{{ ledger.transaction_date }}</td>
                             <td>{{ ledger.transaction_no }}</td>
                             <td>{{ ledger.transaction_type }}</td>
-                            <td>{{ ledger.debit_amount }}</td>
-                            <td>{{ ledger.credit_amount }}</td>
+                            <td>{{ ledger.debit_amount | formatToCurrency }}</td>
+                            <td>{{ ledger.credit_amount | formatToCurrency }}</td>
                             <td>{{ runningBalance[index] }}</td>
                           </tr>
                           
@@ -205,7 +205,14 @@
                 return amount;
             }
         },
-
+        filters: {
+          formatToCurrency: (amount) => {
+                let currencyOptions = { style: 'currency', currency: 'USD', currencyDisplay: 'code' };
+                amount = Intl.NumberFormat('en-US',currencyOptions).format(amount);
+                amount = amount.replace(/[a-z]{3}/i, "").trim();
+                return amount;
+            }
+        },
         created() {
             this.initChartAccounts();
             this.user_id = document.querySelector('meta[name="user-id"]').getAttribute('content');
