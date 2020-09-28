@@ -192,7 +192,7 @@
                     .then((data)=>{
                         this.running_balance = 0;
                         this.ledgers = data.data;
-                        //console.log(this.ledgers);
+                        console.log(this.ledgers.data);
                     })
                     .catch(()=>{
                     //
@@ -220,8 +220,16 @@
             Witholding Tax Payable
             Output Tax
             */
+           /*
+           All assets and expenses
+            Debit minus credit
+
+            Everything else
+            Credit minus debit
+           */
             runningBalance(){
                  return this.ledgers.data.map((ledger) => {
+                    
                     this.running_balance = this.running_balance + Number(ledger.debit_amount - ledger.credit_amount);
                     
                     return this.running_balance.toFixed(2);
