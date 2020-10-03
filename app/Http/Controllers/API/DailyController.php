@@ -180,7 +180,8 @@ class DailyController extends Controller
         }
 
         $date = Carbon::create($transaction_date);
-        return $date->month;
+        return $date->month .'-'.$date->year;
+
         /*
 
 

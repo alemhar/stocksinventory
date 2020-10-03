@@ -230,7 +230,7 @@
             generateeBIR(){
                 const response = axios.get('api/monthlyvat?transaction_date='+this.transaction_date);
                 //return response.data;
-                console.log(response.data);
+                console.log(response);
             },
             async generateReportBS(){
                 this.isLoading = true;
