@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\DailyAccount;
+use Carbon\Carbon;
 
 class DailyController extends Controller
 {
@@ -134,6 +135,13 @@ class DailyController extends Controller
 
     public function runninng()
     {
+
+        
+
+
+        
+
+
         if(\Request::get('start')) {
             $start = \Request::get('start');
         }
@@ -160,5 +168,52 @@ class DailyController extends Controller
 
         return $transaction;
     }
+
+    public function monthlyTaxDeclaration()
+    {
+        
+        if(\Request::get('transaction_date')) {
+            $transaction_date = \Request::get('transaction_date');
+            
+        } else {
+            $transaction_date = '';
+        }
+
+        $date = Carbon::create($transaction_date);
+        return $date->month;
+        /*
+
+
+        if(\Request::get('month')) {
+            $month = \Request::get('month');
+        } else {
+            $month = '1';
+        }
+
+        $date = Carbon::create($current_year, $current_month, 1);
+        
+
+        if(\Request::get('year')) {
+            $year = \Request::get('year');
+        } else {
+            $year = date("Y");
+        }
+
+        
+        $transaction = DailyAccount::where(function($query) use ($from_transaction_date,$to_transaction_date){
+            $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
+            //$query->where('transaction_date','=', $transaction_date);
+        })
+        ->where('sub_account_type',$sub_account_type)
+        ->groupBy('account_code')
+        ->orderBy('account_code')
+        ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
+        ->get();
+        */
+
+
+
+    }    
+    
 
 }

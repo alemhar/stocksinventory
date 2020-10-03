@@ -83,19 +83,33 @@
                                     </div>
                                     </div>
                                 </div>
+
                                 <div class="col-4">
-                                
+
+
                                     <div class="card">
                                     <div class="card-header">
-                                        Featured
+                                        eBIR
                                     </div>
                                     <div class="card-body">
-                                        <h5 class="card-title">Special title treatment</h5>
-                                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                        <a href="#" class="btn btn-primary">Generate</a>
+                                        <h5 class="card-title">Generate eBIR file</h5>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text inputGroup-sizing-default">As of:</span>
+                                            </div>
+                                            <input  type="date" v-model="transaction_date" class="form-control col-12" id="inputFromDate" placeholder="Date">
+                                        </div>
+                                        <div style="visibility: hidden;" class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text inputGroup-sizing-default">To:</span>
+                                            </div>
+                                            <input  type="date" class="form-control col-12" id="inputToDate" placeholder="Date">
+                                        </div>
+                                        <a href="#" class="btn btn-primary float-right" @click="generateeBIR">Generate</a>
                                     </div>
                                     </div>
                                 </div>
+
                                 <div class="col-4">
                                 
                                     <div class="card">
@@ -202,6 +216,21 @@
                     //
                     });
                 
+            },
+            async generateeBIR(){
+                // Sales and Revenues
+                /*
+                var sales_revenues = null;
+                var sales_revenue_amount = 0;
+                var total_sales_revenue_amount = 0;
+                */
+                this.getExpensesAccount();     
+                 
+            },
+            getExpensesAccount(){
+                const response = axios.get('api/monthlyvat?transaction_date='+this.transaction_date);
+                //return response.data;
+                console.log(response.data);
             },
             async generateReportBS(){
                 this.isLoading = true;

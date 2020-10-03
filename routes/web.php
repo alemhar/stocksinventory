@@ -20,14 +20,6 @@ Route::get('/', function () {
 
 Route::get('/test', function () {
 
-    $transaction_date = Carbon::now();
-
-    $transaction = RunningAccount::
-    where('transaction_date','<=', $transaction_date)
-    ->selectRaw('transaction_date, debit_amount,credit_amount, account_name, id')
-    ->get();
-
-    return $transaction;
 
 });
 
@@ -235,7 +227,10 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-                                                             
+              
+// with sub domain
 Route::get('{path}','HomeController@index')->where( 'path', '([A-z\d\-\/_.]+)?' );
+
+// root domain
 //Route::get('{path}','HomeController@index')->where( 'path', '([A-z\d-/_.]+)?' );
 

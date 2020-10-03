@@ -78,6 +78,8 @@ Route::get('searchCD', 'API\CDController@search');
 Route::put('account', 'API\UserController@updateAccountInfo');
 Route::get('asof', 'API\DailyController@runninng');
 
+Route::get('monthlyvat', 'API\DailyController@monthlyTaxDeclaration');
+
 
 Route::delete('cd/cancel/{transaction_no}', 'API\CDController@cancelTransaction');
 Route::post('cd/confirm/{transaction_no}', 'API\CDController@confirmTransaction');
