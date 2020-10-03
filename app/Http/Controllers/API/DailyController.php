@@ -242,8 +242,7 @@ class DailyController extends Controller
         if($outputTaxGov > 0){
             $salesAndRevenuesGov = round($outputTaxGov / 0.12, 2);
         }
-
-
+        
         // Input Tax Capital Goods and Goods
         $start = 11051100;
         $end = 11051199;
@@ -289,47 +288,81 @@ class DailyController extends Controller
         }
 
 
-        // Total Petty Cash Fund, Cash In Bank - Bank, Inventory
+        $totalAdvancesDue = 0;
+        $totalPettyBankInventory = 0;
+        $totalNonCurrentAssets = 0;
+        $totalOtherCurrentAssets = 0;
 
- 
+
+        // Total Petty Cash Fund, Cash In Bank - Bank, Inventory
         $start = 11011200;
         $end = 11011499;
         
         
-        $transactions = DailyAccount::where(function($query) use ($start,$end){
-            $query->whereBetween('account_code', [$start, $end]);
-        })
-        ->where(function($query) use ($from_transaction_date, $to_transaction_date){
-            $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
-        })
-        ->groupBy('account_code')
-        ->orderBy('account_code')
-        ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
-        ->get();
-        foreach($transactions as $transaction){
-            $totalPettyBankInventory =  $transaction->credit - $transaction->debit;
-        }
-
+        $totalPettyBankInventory = $this->totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
         
-
-
+        // Total Advances and Due
+        $start = 11031300;
+        $end = 11031499;
         
-
-
-        $totalPettyBankInventory = 0;
+        $totalAdvancesDue = $this->totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
+        
+        // Total Other Current Assets
+        $start = 11050000;
+        $end = 11050099;
+        
+        $totalOtherCurrentAssets = $this->totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
+        
+        // Total Non Current Assets
+        $start = 15011100;
+        $end = 15011599;
+        
+        $totalNonCurrentAssets = $this->totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
         
         $salesAndRevenuesExempt = round($totalSalesAndRevenues - $salesAndRevenuesPrivate - $salesAndRevenuesGov,2);
         $totalOutputTax = $outputTaxPrivate + $outputTaxGov;
 
-        return json_encode(['total_sales_revenue' => $totalSalesAndRevenues,
-                            'output_tax_private' => $outputTaxPrivate,
-                            'output_tax_gov' => $outputTaxGov,
-                            'sales_revenues_private' => $salesAndRevenuesPrivate,
-                            'sales_revenues_gov' => $salesAndRevenuesGov,
-                            'sales_revenues_exempt' => $salesAndRevenuesExempt,
-                            'totalOutputTax' => $totalOutputTax,
-                            'inputTaxGoods' => $inputTaxGoods,
-                            'inputTaxServices' => $inputTaxServices
+        $A12 = $salesAndRevenuesPrivate;
+        $B12 = $outputTaxPrivate;
+        $A13 = $salesAndRevenuesGov;
+        $B13 = $outputTaxGov;
+        $A14 = 0;
+        $A15 = $salesAndRevenuesExempt;
+        $A16 = $totalSalesAndRevenues;
+        $B16 = $outputTaxPrivate + $outputTaxGov;
+
+        $P18 = $totalNonCurrentAssets + $totalOtherCurrentAssets + $totalAdvancesDue + $totalPettyBankInventory;
+        $E18 = 0;
+        if($inputTaxGoods > 0){
+            $E18 = round($inputTaxGoods / 0.12, 2);
+        }
+
+        $I18 = 0;
+        if($inputTaxServices > 0){
+            $I18 = round($inputTaxServices / 0.12, 2);
+        }
+        $M18 = $P18 - $E18 - $I18;
+        $F18 = $inputTaxGoods;
+        $J18 = $inputTaxServices;
+        $A19 = $F18 + $J18;
+
+        
+
+        return json_encode(['A12' => $A12,
+                            'B12' => $B12,
+                            'A13' => $A13,
+                            'B13' => $B13,
+                            'A14' => $A14,
+                            'A15' => $A15,
+                            'A16' => $A16,
+                            'B16' => $B16,
+                            'P18' => $P18,
+                            'E18' => $E18,
+                            'I18' => $I18,
+                            'M18' => $M18,
+                            'F18' => $F18,
+                            'J18' => $J18,
+                            'A19' => $A19
                             ]);
 
     }
