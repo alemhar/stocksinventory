@@ -322,17 +322,17 @@ class DailyController extends Controller
         $salesAndRevenuesExempt = round($totalSalesAndRevenues - $salesAndRevenuesPrivate - $salesAndRevenuesGov,2);
         $totalOutputTax = $outputTaxPrivate + $outputTaxGov;
 
-        $A12 = $salesAndRevenuesPrivate;
-        $B12 = $outputTaxPrivate;
-        $A13 = $salesAndRevenuesGov;
-        $B13 = $outputTaxGov;
-        $A14 = 0;
-        $A15 = $salesAndRevenuesExempt;
-        $A16 = $totalSalesAndRevenues;
-        $B16 = $outputTaxPrivate + $outputTaxGov;
+        $A12 = round($salesAndRevenuesPrivate,2);
+        $B12 = round($outputTaxPrivate,2);
+        $A13 = round($salesAndRevenuesGov,2);
+        $B13 = round($outputTaxGov,2);
+        $A14 = 0.00;
+        $A15 = round($salesAndRevenuesExempt,2);
+        $A16 = round($totalSalesAndRevenues,2);
+        $B16 = round($outputTaxPrivate + $outputTaxGov,2);
 
-        $P18 = $totalNonCurrentAssets + $totalOtherCurrentAssets + $totalAdvancesDue + $totalPettyBankInventory;
-        $E18 = 0;
+        $P18 = round($totalNonCurrentAssets + $totalOtherCurrentAssets + $totalAdvancesDue + $totalPettyBankInventory,2);
+        $E18 = 0.00;
         if($inputTaxGoods > 0){
             $E18 = round($inputTaxGoods / 0.12, 2);
         }
@@ -341,10 +341,10 @@ class DailyController extends Controller
         if($inputTaxServices > 0){
             $I18 = round($inputTaxServices / 0.12, 2);
         }
-        $M18 = $P18 - $E18 - $I18;
-        $F18 = $inputTaxGoods;
-        $J18 = $inputTaxServices;
-        $A19 = $F18 + $J18;
+        $M18 = round($P18 - $E18 - $I18,2);
+        $F18 = round($inputTaxGoods,2);
+        $J18 = round($inputTaxServices,2);
+        $A19 = round($F18 + $J18,2);
 
         
 
