@@ -165,16 +165,20 @@ class DailyController extends Controller
 
     public function monthlyTaxDeclaration()
     {
-        $salesAndRevenues = 0;
+        $totalSalesAndRevenues = 0;
+        $totalOutputTax = 0;
+        $totalInputTax = 0;
         $salesAndRevenuesPrivate = 0;
         $salesAndRevenuesGov = 0;
         $salesAndRevenuesExempt = 0;
-        
+
+        $inputTaxServices = 0;
+        $inputTaxGoods = 0;
         $outputTaxPrivate = 0;
         $outputTaxGov = 0;
+
         if(\Request::get('transaction_date')) {
             $transaction_date = \Request::get('transaction_date');
-            
         } else {
             $transaction_date = '';
         }
@@ -187,6 +191,9 @@ class DailyController extends Controller
         $start = 41010000;
         $end = 41010099;
         
+        $totalSalesAndRevenues = $this.totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
+        
+        /*
         $transactions = DailyAccount::where(function($query) use ($start,$end){
             $query->whereBetween('account_code', [$start, $end]);
         })
@@ -198,9 +205,9 @@ class DailyController extends Controller
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
         ->get();
         foreach($transactions as $transaction){
-            $salesAndRevenues =  $transaction->credit - $transaction->debit;
+            $totalSalesAndRevenues =  $transaction->credit - $transaction->debit;
         }
-
+        */
 
         // Output Tax Private
         $start = 21051100;
@@ -221,7 +228,7 @@ class DailyController extends Controller
             $outputTaxPrivate =  $transaction->credit - $transaction->debit;
         }
 
-        // Output Tax Private
+        // Output Tax Gov
         $start = 21051100;
         $end = 21051199;
         
@@ -250,17 +257,132 @@ class DailyController extends Controller
         }
 
 
-        $salesAndRevenuesExempt = round($salesAndRevenues - $salesAndRevenuesPrivate - $salesAndRevenuesGov,2);
+        // Input Tax Capital Goods and Goods
+        $start = 11051100;
+        $end = 11051199;
         
-        return json_encode(['sales_revenue' => $salesAndRevenues,
+        $transactions = DailyAccount::where(function($query) use ($start,$end){
+            $query->whereBetween('account_code', [$start, $end]);
+        })
+        ->where(function($query) use ($from_transaction_date, $to_transaction_date){
+            $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
+        })
+        ->where('type','<>','SERVICE')
+        ->where('type','<>','NA')
+        ->groupBy('account_code')
+        ->orderBy('account_code')
+        ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
+        ->get();
+        foreach($transactions as $transaction){
+            $inputTaxGoods =  $transaction->credit - $transaction->debit;
+        }
+
+        
+
+        // Input Tax Services
+        $start = 11051100;
+        $end = 11051199;
+        
+        $transactions = DailyAccount::where(function($query) use ($start,$end){
+            $query->whereBetween('account_code', [$start, $end]);
+        })
+        ->where(function($query) use ($from_transaction_date, $to_transaction_date){
+            $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
+        })
+        ->where('type','=','SERVICE')
+        ->where('type','<>','NA')
+        ->groupBy('account_code')
+        ->orderBy('account_code')
+        ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
+        ->get();
+        foreach($transactions as $transaction){
+            $inputTaxServices =  $transaction->credit - $transaction->debit;
+        }
+
+
+        // Total Petty Cash Fund, Cash In Bank - Bank, Inventory
+
+ 
+        $start = 11011200;
+        $end = 11011499;
+        
+        $transactions = DailyAccount::where(function($query) use ($start,$end){
+            $query->whereBetween('account_code', [$start, $end]);
+        })
+        ->where(function($query) use ($from_transaction_date, $to_transaction_date){
+            $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
+        })
+        ->groupBy('account_code')
+        ->orderBy('account_code')
+        ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
+        ->get();
+        foreach($transactions as $transaction){
+            $totalPettyBankInventory =  $transaction->credit - $transaction->debit;
+        }
+
+        // Total Petty Cash Fund, Cash In Bank - Bank, Inventory
+        $start = 11031300;
+        $end = 11011499;
+        
+        $transactions = DailyAccount::where(function($query) use ($start,$end){
+            $query->whereBetween('account_code', [$start, $end]);
+        })
+        ->where(function($query){
+            $query->where('transaction_date', [$from_transaction_date, $to_transaction_date]);
+        })
+        ->where(function($query) use ($from_transaction_date, $to_transaction_date){
+            $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
+        })
+        ->groupBy('account_code')
+        ->orderBy('account_code')
+        ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
+        ->get();
+        foreach($transactions as $transaction){
+            $totalPettyBankInventory =  $transaction->credit - $transaction->debit;
+        }
+
+
+        
+
+
+        $totalPettyBankInventory = 0;
+        
+        $salesAndRevenuesExempt = round($totalSalesAndRevenues - $salesAndRevenuesPrivate - $salesAndRevenuesGov,2);
+        $totalOutputTax = $outputTaxPrivate + $outputTaxGov;
+
+        return json_encode(['total_sales_revenue' => $totalSalesAndRevenues,
                             'output_tax_private' => $outputTaxPrivate,
                             'output_tax_gov' => $outputTaxGov,
                             'sales_revenues_private' => $salesAndRevenuesPrivate,
                             'sales_revenues_gov' => $salesAndRevenuesGov,
-                            'sales_revenues_exempt' => $salesAndRevenuesExempt
+                            'sales_revenues_exempt' => $salesAndRevenuesExempt,
+                            'totalOutputTax' => $totalOutputTax,
+                            'inputTaxGoods' => $inputTaxGoods,
+                            'inputTaxServices' => $inputTaxServices
                             ]);
 
-    }    
+    }
+    
+    public function totalCredit($start, $end, $from_transaction_date, $to_transaction_date){
+        
+        $totalCredit = 0;
+
+        $transactions = DailyAccount::where(function($query) use ($start,$end){
+            $query->whereBetween('account_code', [$start, $end]);
+        })
+        ->where(function($query){
+            $query->where('transaction_date', [$from_transaction_date, $to_transaction_date]);
+        })
+        ->groupBy('account_code')
+        ->orderBy('account_code')
+        ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
+        ->get();
+        foreach($transactions as $transaction){
+            $totalCredit =  $transaction->credit - $transaction->debit;
+        }
+
+        return $totalCredit;
+    }
     
 
 }
