@@ -217,7 +217,7 @@
                     });
                 
             },
-            async generateeBIR(){
+            generateeBIR(){
                 // Sales and Revenues
                 /*
                 var sales_revenues = null;
