@@ -370,8 +370,8 @@ class DailyController extends Controller
         $transactions = DailyAccount::where(function($query) use ($start,$end){
             $query->whereBetween('account_code', [$start, $end]);
         })
-        ->where(function($query){
-            $query->where('transaction_date', [$from_transaction_date, $to_transaction_date]);
+        ->where(function($query) use ($from_transaction_date, $to_transaction_date){
+            $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
         })
         ->groupBy('account_code')
         ->orderBy('account_code')
