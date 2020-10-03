@@ -192,7 +192,7 @@ class DailyController extends Controller
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
         ->get();
         
-        return $transaction;
+        return $transaction->data;
 
     }    
     
