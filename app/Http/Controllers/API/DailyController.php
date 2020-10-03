@@ -241,9 +241,8 @@ class DailyController extends Controller
         }
 
         if($outputTaxPrivate > 0){
-            //$salesAndRevenuesPrivate = round($outputTaxPrivate / 0.12, 2);
-            $salesAndRevenuesPrivate = $outputTaxPrivate / 0.12;
-            
+            $salesAndRevenuesPrivate = round($outputTaxPrivate / 0.12, 2) + 0.01;
+            //$salesAndRevenuesPrivate = $outputTaxPrivate / 0.12;
         }
 
         if($outputTaxGov > 0){
