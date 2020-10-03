@@ -191,7 +191,7 @@ class DailyController extends Controller
         $start = 41010000;
         $end = 41010099;
         
-        $totalSalesAndRevenues = $this.totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
+        $totalSalesAndRevenues = $this->totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
         
         /*
         $transactions = DailyAccount::where(function($query) use ($start,$end){
