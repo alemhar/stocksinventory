@@ -166,6 +166,10 @@ class DailyController extends Controller
     public function monthlyTaxDeclaration()
     {
         $salesAndRevenues = 0;
+        $salesAndRevenuesPrivate = 0;
+        $salesAndRevenuesGov = 0;
+        $salesAndRevenuesExempt = 0;
+        
         $outputTaxPrivate = 0;
         $outputTaxGov = 0;
         if(\Request::get('transaction_date')) {
@@ -236,9 +240,23 @@ class DailyController extends Controller
             $outputTaxGov =  $transaction->credit - $transaction->debit;
         }
 
+        if($outputTaxPrivate > 0){
+            $salesAndRevenuesPrivate = $outputTaxPrivate / 0.12;
+        }
+
+        if($outputTaxGov > 0){
+            $salesAndRevenuesGov = $outputTaxGov / 0.12;
+        }
+
+        $salesAndRevenuesExempt = $salesAndRevenues - $salesAndRevenuesPrivate - $salesAndRevenuesGov;
+        
         return json_encode(['sales_revenue' => $salesAndRevenues,
                             'output_tax_private' => $outputTaxPrivate,
-                            'output_tax_gov' => $outputTaxGov]);
+                            'output_tax_gov' => $outputTaxGov,
+                            'sales_revenues_private' => $salesAndRevenuesPrivate,
+                            'sales_revenues_gov' => $salesAndRevenuesGov,
+                            'sales_revenues_exempt' => $salesAndRevenuesExempt
+                            ]);
 
     }    
     
