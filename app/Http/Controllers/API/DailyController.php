@@ -136,12 +136,6 @@ class DailyController extends Controller
     public function runninng()
     {
 
-        
-
-
-        
-
-
         if(\Request::get('start')) {
             $start = \Request::get('start');
         }
@@ -179,40 +173,26 @@ class DailyController extends Controller
             $transaction_date = '';
         }
 
-        $date = Carbon::create($transaction_date);
-        return $date->month .'-'.$date->year;
-
-        /*
-
-
-        if(\Request::get('month')) {
-            $month = \Request::get('month');
-        } else {
-            $month = '1';
-        }
-
-        $date = Carbon::create($current_year, $current_month, 1);
+        $to_transaction_date = Carbon::create($transaction_date);
         
+        $from_transaction_date = Carbon::create($to_transaction_date->year, $to_transaction_date->month, 1);
 
-        if(\Request::get('year')) {
-            $year = \Request::get('year');
-        } else {
-            $year = date("Y");
-        }
 
+        $start = 41010000;
+        $end = 41010099;
         
-        $transaction = DailyAccount::where(function($query) use ($from_transaction_date,$to_transaction_date){
-            $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
-            //$query->where('transaction_date','=', $transaction_date);
+        $transaction = DailyAccount::where(function($query) use ($start,$end){
+            $query->whereBetween('account_code', [$start, $end]);
         })
-        ->where('sub_account_type',$sub_account_type)
+        ->where(function($query) use ($from_transaction_date, $to_transaction_date){
+            $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
+        })
         ->groupBy('account_code')
         ->orderBy('account_code')
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
         ->get();
-        */
-
-
+        
+        return $transaction;
 
     }    
     
