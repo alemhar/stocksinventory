@@ -322,30 +322,32 @@ class DailyController extends Controller
         $salesAndRevenuesExempt = round($totalSalesAndRevenues - $salesAndRevenuesPrivate - $salesAndRevenuesGov,2);
         $totalOutputTax = $outputTaxPrivate + $outputTaxGov;
 
-        $A12 = round($salesAndRevenuesPrivate,2);
-        $B12 = round($outputTaxPrivate,2);
-        $A13 = round($salesAndRevenuesGov,2);
-        $B13 = round($outputTaxGov,2);
-        $A14 = 0.00;
-        $A15 = round($salesAndRevenuesExempt,2);
-        $A16 = round($totalSalesAndRevenues,2);
-        $B16 = round($outputTaxPrivate + $outputTaxGov,2);
+        $A12 = number_format((float)$salesAndRevenuesPrivate, 2, '.', '');
+        $B12 = number_format((float)$outputTaxPrivate, 2, '.', '');
+        $A13 = number_format((float)$salesAndRevenuesGov, 2, '.', '');
+        $B13 = number_format((float)$outputTaxGov, 2, '.', '');
+        $A14 = number_format((float)0.00, 2, '.', '');
+        $A15 = number_format((float)$salesAndRevenuesExempt, 2, '.', '');
+        $A16 = number_format((float)$totalSalesAndRevenues, 2, '.', '');
+        $B16 = number_format((float)$outputTaxPrivate + $outputTaxGov, 2, '.', '');
 
-        $P18 = round($totalNonCurrentAssets + $totalOtherCurrentAssets + $totalAdvancesDue + $totalPettyBankInventory,2);
-        $E18 = 0.00;
+        $P18 = $totalNonCurrentAssets + $totalOtherCurrentAssets + $totalAdvancesDue + $totalPettyBankInventory;
+        $E18 = 0;
         if($inputTaxGoods > 0){
-            $E18 = round($inputTaxGoods / 0.12, 2);
+            $E18 = $inputTaxGoods / 0.12;
         }
 
         $I18 = 0;
         if($inputTaxServices > 0){
-            $I18 = round($inputTaxServices / 0.12, 2);
+            $I18 = $inputTaxServices / 0.12;
         }
-        $M18 = round($P18 - $E18 - $I18,2);
-        $F18 = round($inputTaxGoods,2);
-        $J18 = round($inputTaxServices,2);
-        $A19 = round($F18 + $J18,2);
-
+        $M18 = number_format((float)($P18 - $E18 - $I18), 2, '.', '');
+        $F18 = number_format((float)$inputTaxGoods, 2, '.', '');
+        $J18 = number_format((float)$inputTaxServices, 2, '.', '');
+        $A19 = number_format((float)($inputTaxGoods + $inputTaxServices), 2, '.', '');
+        $P18 = number_format((float)$P18, 2, '.', '');
+        $E18 = number_format((float)$E18, 2, '.', '');
+        $I18 = number_format((float)$I18, 2, '.', '');
         
 
         return json_encode(['A12' => $A12,
