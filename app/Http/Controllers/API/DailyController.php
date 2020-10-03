@@ -166,6 +166,7 @@ class DailyController extends Controller
     public function monthlyTaxDeclaration()
     {
         $salesAndRevenues = 0;
+        $outputTaxPrivate = 0;
         if(\Request::get('transaction_date')) {
             $transaction_date = \Request::get('transaction_date');
             
@@ -177,7 +178,7 @@ class DailyController extends Controller
         
         $from_transaction_date = Carbon::create($to_transaction_date->year, $to_transaction_date->month, 1);
 
-
+        // Sales and Revenues
         $start = 41010000;
         $end = 41010099;
         
@@ -191,13 +192,31 @@ class DailyController extends Controller
         ->orderBy('account_code')
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
         ->get();
-        
-        
         foreach($transactions as $transaction){
             $salesAndRevenues =  $transaction->credit - $transaction->debit;
         }
 
-        return $salesAndRevenues;
+
+        // Output Tax Private
+        $start = 21051100;
+        $end = 21051199;
+        
+        $transactions = DailyAccount::where(function($query) use ($start,$end){
+            $query->whereBetween('account_code', [$start, $end]);
+        })
+        ->where(function($query) use ($from_transaction_date, $to_transaction_date){
+            $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
+        })
+        ->where('entity_type','=','PRIVATE')
+        ->groupBy('account_code')
+        ->orderBy('account_code')
+        ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
+        ->get();
+        foreach($transactions as $transaction){
+            $outputTaxPrivate =  $transaction->debit - $transaction->credit;
+        }
+
+        return json_encode(['sales_revenue' => $salesAndRevenues, 'output_tax_private' => $outputTaxPrivate]);
 
     }    
     
