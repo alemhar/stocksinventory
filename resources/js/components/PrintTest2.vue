@@ -228,9 +228,15 @@
                  
             //},
             generateeBIR(){
-                const response = axios.get('api/monthlyvat?transaction_date='+this.transaction_date);
-                //return response.data;
-                console.log(response);
+                axios.get('api/monthlyvat?transaction_date='+this.transaction_date).then((response)=>{
+                    console.log(response);
+                    //this.company = response.data;
+                })
+                .catch(()=>{
+                //
+                });
+
+                //console.log(response);
             },
             async generateReportBS(){
                 this.isLoading = true;
