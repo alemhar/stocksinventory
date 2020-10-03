@@ -198,43 +198,41 @@ class DailyController extends Controller
         $start = 21051100;
         $end = 21051199;
         
-        $outputTaxPrivate = $this->totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
-
-        // $transactions = DailyAccount::where(function($query) use ($start,$end){
-        //     $query->whereBetween('account_code', [$start, $end]);
-        // })
-        // ->where(function($query) use ($from_transaction_date, $to_transaction_date){
-        //     $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
-        // })
-        // ->where('entity_type','=','PRIVATE')
-        // ->groupBy('account_code')
-        // ->orderBy('account_code')
-        // ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
-        // ->get();
-        // foreach($transactions as $transaction){
-        //     $outputTaxPrivate =  $transaction->credit - $transaction->debit;
-        // }
+        
+        $transactions = DailyAccount::where(function($query) use ($start,$end){
+            $query->whereBetween('account_code', [$start, $end]);
+        })
+        ->where(function($query) use ($from_transaction_date, $to_transaction_date){
+            $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
+        })
+        ->where('entity_type','=','PRIVATE')
+        ->groupBy('account_code')
+        ->orderBy('account_code')
+        ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
+        ->get();
+        foreach($transactions as $transaction){
+            $outputTaxPrivate =  $transaction->credit - $transaction->debit;
+        }
 
         // Output Tax Gov
         $start = 21051100;
         $end = 21051199;
         
-        $outputTaxGov = $this->totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
-
-        // $transactions = DailyAccount::where(function($query) use ($start,$end){
-        //     $query->whereBetween('account_code', [$start, $end]);
-        // })
-        // ->where(function($query) use ($from_transaction_date, $to_transaction_date){
-        //     $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
-        // })
-        // ->where('entity_type','<>','PRIVATE')
-        // ->groupBy('account_code')
-        // ->orderBy('account_code')
-        // ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
-        // ->get();
-        // foreach($transactions as $transaction){
-        //     $outputTaxGov =  $transaction->credit - $transaction->debit;
-        // }
+       
+        $transactions = DailyAccount::where(function($query) use ($start,$end){
+            $query->whereBetween('account_code', [$start, $end]);
+        })
+        ->where(function($query) use ($from_transaction_date, $to_transaction_date){
+            $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
+        })
+        ->where('entity_type','<>','PRIVATE')
+        ->groupBy('account_code')
+        ->orderBy('account_code')
+        ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
+        ->get();
+        foreach($transactions as $transaction){
+            $outputTaxGov =  $transaction->credit - $transaction->debit;
+        }
 
         if($outputTaxPrivate > 0){
             $salesAndRevenuesPrivate = round(($outputTaxPrivate / 0.12 ) + 0.01, 2) ;
@@ -250,47 +248,45 @@ class DailyController extends Controller
         $start = 11051100;
         $end = 11051199;
         
-        $inputTaxGoods =  $this->totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
-
-        // $transactions = DailyAccount::where(function($query) use ($start,$end){
-        //     $query->whereBetween('account_code', [$start, $end]);
-        // })
-        // ->where(function($query) use ($from_transaction_date, $to_transaction_date){
-        //     $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
-        // })
-        // ->where('type','<>','SERVICE')
-        // ->where('type','<>','NA')
-        // ->groupBy('account_code')
-        // ->orderBy('account_code')
-        // ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
-        // ->get();
-        // foreach($transactions as $transaction){
-        //     $inputTaxGoods =  $transaction->credit - $transaction->debit;
-        // }
+        
+        $transactions = DailyAccount::where(function($query) use ($start,$end){
+            $query->whereBetween('account_code', [$start, $end]);
+        })
+        ->where(function($query) use ($from_transaction_date, $to_transaction_date){
+            $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
+        })
+        ->where('type','<>','SERVICE')
+        ->where('type','<>','NA')
+        ->groupBy('account_code')
+        ->orderBy('account_code')
+        ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
+        ->get();
+        foreach($transactions as $transaction){
+            $inputTaxGoods =  $transaction->credit - $transaction->debit;
+        }
 
         
 
         // Input Tax Services
         $start = 11051100;
         $end = 11051199;
-        $inputTaxServices = $this->totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
+        
 
-
-        // $transactions = DailyAccount::where(function($query) use ($start,$end){
-        //     $query->whereBetween('account_code', [$start, $end]);
-        // })
-        // ->where(function($query) use ($from_transaction_date, $to_transaction_date){
-        //     $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
-        // })
-        // ->where('type','=','SERVICE')
-        // ->where('type','<>','NA')
-        // ->groupBy('account_code')
-        // ->orderBy('account_code')
-        // ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
-        // ->get();
-        // foreach($transactions as $transaction){
-        //     $inputTaxServices =  $transaction->credit - $transaction->debit;
-        // }
+        $transactions = DailyAccount::where(function($query) use ($start,$end){
+            $query->whereBetween('account_code', [$start, $end]);
+        })
+        ->where(function($query) use ($from_transaction_date, $to_transaction_date){
+            $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
+        })
+        ->where('type','=','SERVICE')
+        ->where('type','<>','NA')
+        ->groupBy('account_code')
+        ->orderBy('account_code')
+        ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
+        ->get();
+        foreach($transactions as $transaction){
+            $inputTaxServices =  $transaction->credit - $transaction->debit;
+        }
 
 
         // Total Petty Cash Fund, Cash In Bank - Bank, Inventory
@@ -299,21 +295,20 @@ class DailyController extends Controller
         $start = 11011200;
         $end = 11011499;
         
-        $totalPettyBankInventory = $this->totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
-
-        // $transactions = DailyAccount::where(function($query) use ($start,$end){
-        //     $query->whereBetween('account_code', [$start, $end]);
-        // })
-        // ->where(function($query) use ($from_transaction_date, $to_transaction_date){
-        //     $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
-        // })
-        // ->groupBy('account_code')
-        // ->orderBy('account_code')
-        // ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
-        // ->get();
-        // foreach($transactions as $transaction){
-        //     $totalPettyBankInventory =  $transaction->credit - $transaction->debit;
-        // }
+        
+        $transactions = DailyAccount::where(function($query) use ($start,$end){
+            $query->whereBetween('account_code', [$start, $end]);
+        })
+        ->where(function($query) use ($from_transaction_date, $to_transaction_date){
+            $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
+        })
+        ->groupBy('account_code')
+        ->orderBy('account_code')
+        ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
+        ->get();
+        foreach($transactions as $transaction){
+            $totalPettyBankInventory =  $transaction->credit - $transaction->debit;
+        }
 
         
 
