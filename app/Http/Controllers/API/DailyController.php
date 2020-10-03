@@ -165,7 +165,7 @@ class DailyController extends Controller
 
     public function monthlyTaxDeclaration()
     {
-        
+        $salesAndRevenues = 0;
         if(\Request::get('transaction_date')) {
             $transaction_date = \Request::get('transaction_date');
             
@@ -181,7 +181,7 @@ class DailyController extends Controller
         $start = 41010000;
         $end = 41010099;
         
-        $transaction = DailyAccount::where(function($query) use ($start,$end){
+        $transactions = DailyAccount::where(function($query) use ($start,$end){
             $query->whereBetween('account_code', [$start, $end]);
         })
         ->where(function($query) use ($from_transaction_date, $to_transaction_date){
@@ -192,7 +192,12 @@ class DailyController extends Controller
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
         ->get();
         
-        return $transaction->data;
+        
+        foreach($transactions as $transaction){
+            $salesAndRevenues =  $transaction->credit - $transaction->debit;
+        }
+
+        return $salesAndRevenues;
 
     }    
     
