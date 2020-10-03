@@ -241,14 +241,15 @@ class DailyController extends Controller
         }
 
         if($outputTaxPrivate > 0){
-            $salesAndRevenuesPrivate = $outputTaxPrivate / 0.12;
+            $salesAndRevenuesPrivate = round($outputTaxPrivate / 0.12, 2);
+            
         }
 
         if($outputTaxGov > 0){
-            $salesAndRevenuesGov = $outputTaxGov / 0.12;
+            $salesAndRevenuesGov = round($outputTaxGov / 0.12, 2);
         }
 
-        $salesAndRevenuesExempt = $salesAndRevenues - $salesAndRevenuesPrivate - $salesAndRevenuesGov;
+        $salesAndRevenuesExempt = round($salesAndRevenues - $salesAndRevenuesPrivate - $salesAndRevenuesGov,2);
         
         return json_encode(['sales_revenue' => $salesAndRevenues,
                             'output_tax_private' => $outputTaxPrivate,
