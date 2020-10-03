@@ -217,17 +217,17 @@
                     });
                 
             },
-            generateeBIR(){
+            //generateeBIR(){
                 // Sales and Revenues
                 /*
                 var sales_revenues = null;
                 var sales_revenue_amount = 0;
                 var total_sales_revenue_amount = 0;
                 */
-                this.getExpensesAccount();     
+                //this.getExpensesAccount();     
                  
-            },
-            getExpensesAccount(){
+            //},
+            generateeBIR(){
                 const response = axios.get('api/monthlyvat?transaction_date='+this.transaction_date);
                 //return response.data;
                 console.log(response.data);
