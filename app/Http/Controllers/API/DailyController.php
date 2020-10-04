@@ -585,19 +585,19 @@ $template =
    
 All Rights Reserved BIR 2012.";
     
-    
+
 
     
-    return $template;
+    return 'test';
     //Storage::put($filename, $template);
     //return Storage::download($filename);
 
-    $filenameXML = sys_get_temp_dir().'/'.$filename;
-    $filenamepathhandle = fopen($filenameXML,'w');
-    fwrite($filenamepathhandle,$template);
-    fclose($filenamepathhandle);
+    //$filenameXML = sys_get_temp_dir().'/'.$filename;
+    //$filenamepathhandle = fopen($filenameXML,'w');
+    //fwrite($filenamepathhandle,$template);
+    //fclose($filenamepathhandle);
 
-    return response()->download($filenameXML)->deleteFileAfterSend();
+    //return response()->download($filenameXML)->deleteFileAfterSend();
 
     //header('Content-Type: text/csv; charset=utf-8');
     //header("Content-Transfer-Encoding: Binary"); 
