@@ -316,7 +316,7 @@ class DailyController extends Controller
         $start = 11011400;
         $end = 11011499;
         
-
+        $totalInventory = 0;
         $transactions = DailyAccount::where(function($query) use ($start,$end){
             $query->whereBetween('account_code', [$start, $end]);
         })
@@ -380,6 +380,15 @@ class DailyController extends Controller
         $B16 = number_format((float)$outputTaxPrivate + $outputTaxGov, 2, '.', ',');
 
         $P18 = $totalNonCurrentAssets + $totalOtherCurrentAssets + $totalInventory + $totalOtherNonCurrentAssets + $totalExepenses;
+        
+        return json_encode(['totalNonCurrentAssets' => $totalNonCurrentAssets,
+        'totalOtherCurrentAssets' => $totalOtherCurrentAssets,
+        'totalInventory' => $totalInventory,
+        'totalOtherNonCurrentAssets' => $totalOtherNonCurrentAssets,
+        'totalExepenses' => $totalExepenses
+         ]);
+        
+         
         $E18 = 0;
         if($inputTaxGoods > 0){
             $E18 = $inputTaxGoods / 0.12;
