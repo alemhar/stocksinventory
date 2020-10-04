@@ -585,7 +585,6 @@ $template =
    
 All Rights Reserved BIR 2012.";
     
-//$template = "<?xml version='1.0'?>";    
     
 
     
