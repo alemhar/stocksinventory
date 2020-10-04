@@ -589,11 +589,17 @@ All Rights Reserved BIR 2012.";
     fwrite($filenamepathhandle,$template);
     fclose($filenamepathhandle);
 
-    header('Content-Type: text/csv; charset=utf-8');
-    header("Content-Transfer-Encoding: Binary"); 
-    header("Content-disposition: attachment; filename=\"" . basename($filenameXML) . "\""); 
-    readfile($filenameXML);
+    //header('Content-Type: text/csv; charset=utf-8');
+    //header("Content-Transfer-Encoding: Binary"); 
+    //header("Content-disposition: attachment; filename=\"" . basename($filenameXML) . "\""); 
+    //readfile($filenameXML);
     
+    $headers = [
+        'Content-Type' => 'text/xml',
+     ];
+
+    return response()->download($filenameXML, $filename, $headers);
+
     unlink($filenameXML);
     //exit();
 
