@@ -245,7 +245,7 @@
                 axios({
                     method: 'GET',
                     url: 'api/monthlyvat?transaction_date='+this.transaction_date+'&company_id='+this.company_id,
-                    responseType: 'blob',
+                    //responseType: 'blob',
                 }).then((response) => {
                         console.log(response);
                         /*    
