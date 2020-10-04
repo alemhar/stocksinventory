@@ -345,25 +345,25 @@ class DailyController extends Controller
         $start = 11050000;
         $end = 11050099;
         
-        $totalOtherCurrentAssets = $this->totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
+        $totalOtherCurrentAssets = $this->totalDebit($start, $end, $from_transaction_date, $to_transaction_date);
         
         // Total Non Current Assets
         $start = 15011100;
         $end = 15011599;
         
-        $totalNonCurrentAssets = $this->totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
+        $totalNonCurrentAssets = $this->totalDebit($start, $end, $from_transaction_date, $to_transaction_date);
         
         // Total Other Non Current Assets
         $start = 15020000;
         $end = 15020099;
         
-        $totalOtherNonCurrentAssets = $this->totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
+        $totalOtherNonCurrentAssets = $this->totalDebit($start, $end, $from_transaction_date, $to_transaction_date);
         
         // Total Expenses
         $start = 62010000;
         $end = 62210099;
         
-        $totalExepenses = $this->totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
+        $totalExepenses = $this->totalDebit($start, $end, $from_transaction_date, $to_transaction_date);
         
 
 
@@ -688,5 +688,25 @@ All Rights Reserved BIR 2012.";
         return $totalCredit;
     }
     
+    public function totalDebit($start, $end, $from_transaction_date, $to_transaction_date){
+        
+        $totalCredit = 0;
+
+        $transactions = DailyAccount::where(function($query) use ($start,$end){
+            $query->whereBetween('account_code', [$start, $end]);
+        })
+        ->where(function($query) use ($from_transaction_date, $to_transaction_date){
+            $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
+        })
+        ->groupBy('account_code')
+        ->orderBy('account_code')
+        ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
+        ->get();
+        foreach($transactions as $transaction){
+            $totalCredit =  $transaction->debit - $transaction->credit;
+        }
+
+        return $totalCredit;
+    }
 
 }
