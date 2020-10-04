@@ -431,7 +431,7 @@ class DailyController extends Controller
         
         $TIN = $TIN1.$TIN2.$TIN3.$BranchCode; 
         $FORM = '2550M'; 
-        $PERIOD = $to_transaction_date->month . $to_transaction_date->year;    
+        $PERIOD = str_pad($to_transaction_date->month, 2, "0", STR_PAD_LEFT) . $to_transaction_date->year;    
         $filename = $TIN.'-'.$FORM.'-'.$PERIOD.'.xml';
 
 $template = 
