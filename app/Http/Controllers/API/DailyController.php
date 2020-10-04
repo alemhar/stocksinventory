@@ -378,7 +378,6 @@ class DailyController extends Controller
         $A22 = ($outputTaxPrivate + $outputTaxGov) - $A21;
         $F23 = 0;
         $A24 = $A22 - $F23;
-        return $A22;
         $A20 = number_format((float)$A20, 2, '.', ',');
         $B20 = number_format((float)$B20, 2, '.', ',');
         $D20 = number_format((float)$D20, 2, '.', ',');
@@ -386,8 +385,8 @@ class DailyController extends Controller
         $C20 = number_format((float)$C20, 2, '.', ',');
         $F20 = number_format((float)$F20, 2, '.', ',');
         $A21 = number_format((float)$A21, 2, '.', ',');
-        $A22 = number_format((float)($A22*1), 2, '.', ',');
-        $A24 = number_format((float)$A22, 2, '.', ',');
+        $A22 = number_format((float)$A22, 2, '.', ',');
+        $A24 = number_format((float)$A24, 2, '.', ',');
         $A26 = number_format((float)0.00, 2, '.', ',');
 
 /*
