@@ -247,7 +247,7 @@
                     url: 'api/monthlyvat?transaction_date='+this.transaction_date+'&company_id='+this.company_id,
                     responseType: 'blob',
                 }).then((response) => {
-                        console.log(response.headers);
+                        console.log(response.headers.content-disposition);
                         var fileURL = window.URL.createObjectURL(new Blob([response.data]));
                         var fileLink = document.createElement('a');
                         fileLink.href = fileURL;
