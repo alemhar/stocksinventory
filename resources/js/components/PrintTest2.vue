@@ -245,18 +245,18 @@
                 axios({
                     method: 'GET',
                     url: 'api/monthlyvat?transaction_date='+this.transaction_date+'&company_id='+this.company_id,
-                    //responseType: 'blob',
+                    responseType: 'blob',
                 }).then((response) => {
                         console.log(response);
                         
-                        // var filename = response.headers['content-disposition'];
-                        // filename = filename.replace("attachment; filename=", "");  
-                        // var fileURL = window.URL.createObjectURL(new Blob([response.data]));
-                        // var fileLink = document.createElement('a');
-                        // fileLink.href = fileURL;
-                        // fileLink.setAttribute('download', filename);
-                        // document.body.appendChild(fileLink);
-                        // fileLink.click();
+                        var filename = response.headers['content-disposition'];
+                        filename = filename.replace("attachment; filename=", "");  
+                        var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+                        var fileLink = document.createElement('a');
+                        fileLink.href = fileURL;
+                        fileLink.setAttribute('download', filename);
+                        document.body.appendChild(fileLink);
+                        fileLink.click();
                         
                     }); 
 

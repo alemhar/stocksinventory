@@ -381,13 +381,6 @@ class DailyController extends Controller
 
         $P18 = $totalNonCurrentAssets + $totalOtherCurrentAssets + $totalInventory + $totalOtherNonCurrentAssets + $totalExepenses;
         
-        return json_encode(['totalNonCurrentAssets' => $totalNonCurrentAssets,
-        'totalOtherCurrentAssets' => $totalOtherCurrentAssets,
-        'totalInventory' => $totalInventory,
-        'totalOtherNonCurrentAssets' => $totalOtherNonCurrentAssets,
-        'totalExepenses' => $totalExepenses
-         ]);
-        
          
         $E18 = 0;
         if($inputTaxGoods > 0){
