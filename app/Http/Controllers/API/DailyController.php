@@ -456,7 +456,7 @@ $template =
 <div>frm2550m:OptSpecialTax2=truefrm2550m:OptSpecialTax2=</div>	
 <div>frm2550m:lstSpecialTax=0frm2550m:lstSpecialTax=</div>	
 <div>frm2550m:txtTax12A=".$A12."frm2550m:txtTax12A=</div>
-<div>frm2550m:txtTax12B=".$A12."frm2550m:txtTax12B=</div>
+<div>frm2550m:txtTax12B=".$B12."frm2550m:txtTax12B=</div>
 <div>frm2550m:txtTax13A=".$A13."frm2550m:txtTax13A=</div>
 <div>frm2550m:txtTax13B=".$B13."frm2550m:txtTax13B=</div>
 <div>frm2550m:txtTax14=".$A14."frm2550m:txtTax14=</div>	
