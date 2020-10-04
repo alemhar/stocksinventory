@@ -197,7 +197,6 @@ class DailyController extends Controller
         
 
         $to_transaction_date = Carbon::create($transaction_date);
-        
         $from_transaction_date = Carbon::create($to_transaction_date->year, $to_transaction_date->month, 1);
 
         // Sales and Revenues

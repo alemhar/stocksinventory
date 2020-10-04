@@ -95,7 +95,7 @@
                                         <h5 class="card-title">Generate eBIR file</h5>
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text inputGroup-sizing-default">As of:</span>
+                                                <span class="input-group-text inputGroup-sizing-default">Date:</span>
                                             </div>
                                             <input  type="date" v-model="transaction_date" class="form-control col-12" id="inputFromDate" placeholder="Date">
                                         </div>
