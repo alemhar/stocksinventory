@@ -455,10 +455,10 @@ $template =
 <div>frm2550m:OptSpecialTax1=falsefrm2550m:OptSpecialTax1=</div>	
 <div>frm2550m:OptSpecialTax2=truefrm2550m:OptSpecialTax2=</div>	
 <div>frm2550m:lstSpecialTax=0frm2550m:lstSpecialTax=</div>	
-<div>frm2550m:txtTax12A=".$A12."frm2550m:txtTax12A=</div>	// Output Tax Private / 12%
-<div>frm2550m:txtTax12B=".$A12."frm2550m:txtTax12B=</div>	// Output Tax Private
-<div>frm2550m:txtTax13A=".$A13."frm2550m:txtTax13A=</div>	// Output Tax Government / 12%
-<div>frm2550m:txtTax13B=".$B13."frm2550m:txtTax13B=</div>	// Output Tax Government
+<div>frm2550m:txtTax12A=".$A12."frm2550m:txtTax12A=</div>
+<div>frm2550m:txtTax12B=".$A12."frm2550m:txtTax12B=</div>
+<div>frm2550m:txtTax13A=".$A13."frm2550m:txtTax13A=</div>
+<div>frm2550m:txtTax13B=".$B13."frm2550m:txtTax13B=</div>
 <div>frm2550m:txtTax14=".$A14."frm2550m:txtTax14=</div>	
 <div>frm2550m:txtTax15=".$A15."frm2550m:txtTax15=</div>	
 <div>frm2550m:txtTax16A=".$A16."frm2550m:txtTax16A=</div>	
