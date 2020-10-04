@@ -341,7 +341,7 @@ class DailyController extends Controller
         $B13 = number_format((float)$outputTaxGov, 2, '.', ',');
         $A14 = number_format((float)0.00, 2, '.', ',');
         $A15 = number_format((float)$salesAndRevenuesExempt, 2, '.', ',');
-        $A16 = number_format((float)$totalSalesAndRevenues, 2, '.', '');
+        $A16 = number_format((float)$totalSalesAndRevenues, 2, '.', ',');
         $B16 = number_format((float)$outputTaxPrivate + $outputTaxGov, 2, '.', ',');
 
         $P18 = $totalNonCurrentAssets + $totalOtherCurrentAssets + $totalAdvancesDue + $totalPettyBankInventory;
@@ -355,13 +355,13 @@ class DailyController extends Controller
             $I18 = $inputTaxServices / 0.12;
         }
 
-        $M18 = number_format((float)($P18 - $E18 - $I18), 2, '.', '');
-        $F18 = number_format((float)$inputTaxGoods, 2, '.', '');
-        $J18 = number_format((float)$inputTaxServices, 2, '.', '');
-        $A19 = number_format((float)($inputTaxGoods + $inputTaxServices), 2, '.', '');
-        $P18 = number_format((float)$P18, 2, '.', '');
-        $E18 = number_format((float)$E18, 2, '.', '');
-        $I18 = number_format((float)$I18, 2, '.', '');
+        $M18 = number_format((float)($P18 - $E18 - $I18), 2, '.', ',');
+        $F18 = number_format((float)$inputTaxGoods, 2, '.', ',');
+        $J18 = number_format((float)$inputTaxServices, 2, '.', ',');
+        $A19 = number_format((float)($inputTaxGoods + $inputTaxServices), 2, '.', ',');
+        $P18 = number_format((float)$P18, 2, '.', ',');
+        $E18 = number_format((float)$E18, 2, '.', ',');
+        $I18 = number_format((float)$I18, 2, '.', ',');
 
         $A20 = 0;
         $B20 = 0;
@@ -375,16 +375,16 @@ class DailyController extends Controller
         $A24 = $A22 - $F23;
 
 
-        $A20 = number_format((float)$A20, 2, '.', '');
-        $B20 = number_format((float)$B20, 2, '.', '');
-        $D20 = number_format((float)$D20, 2, '.', '');
-        $E20 = number_format((float)$E20, 2, '.', '');
-        $C20 = number_format((float)$C20, 2, '.', '');
-        $F20 = number_format((float)$F20, 2, '.', '');
-        $A21 = number_format((float)$A21, 2, '.', '');
-        $A22 = number_format((float)$A22, 2, '.', '');
-        $A24 = number_format((float)$A22, 2, '.', '');
-        $A26 = number_format((float)0.00, 2, '.', '');
+        $A20 = number_format((float)$A20, 2, '.', ',');
+        $B20 = number_format((float)$B20, 2, '.', ',');
+        $D20 = number_format((float)$D20, 2, '.', ',');
+        $E20 = number_format((float)$E20, 2, '.', ',');
+        $C20 = number_format((float)$C20, 2, '.', ',');
+        $F20 = number_format((float)$F20, 2, '.', ',');
+        $A21 = number_format((float)$A21, 2, '.', ',');
+        $A22 = number_format((float)$A22, 2, '.', ',');
+        $A24 = number_format((float)$A22, 2, '.', ',');
+        $A26 = number_format((float)0.00, 2, '.', ',');
 
 /*
         1) TIN and Branch Code..
