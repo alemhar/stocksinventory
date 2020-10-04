@@ -21,6 +21,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   @if (Auth::check())
     <meta name="user-id" content="{{ Auth::user()->id }}" />
     <meta name="company-id" content="{{ Auth::user()->company_id }}" />
+    <meta name="user-email" content="{{ Auth::user()->email }}" />
   @endif
   <style>
     .nav-treeview .nav-icon{

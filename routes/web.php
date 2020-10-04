@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-
+    echo sys_get_temp_dir();
 
 });
 

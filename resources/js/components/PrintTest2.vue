@@ -191,7 +191,9 @@
               to_transaction_date: this.getDate(),
               transaction_date: this.getDate(),
               company: null,
-              company_id: document.querySelector('meta[name="company-id"]').getAttribute('content')
+              company_id: document.querySelector('meta[name="company-id"]').getAttribute('content'),
+              user_email: document.querySelector('meta[name="user-email"]').getAttribute('content'),
+              
               //report_type: 'IS',
               //active_debit_row: 0
           }
@@ -228,7 +230,7 @@
                  
             //},
             generateeBIR(){
-                axios.get('api/monthlyvat?transaction_date='+this.transaction_date).then((response)=>{
+                axios.get('api/monthlyvat?transaction_date='+this.transaction_date+'&company_id='+this.company_id).then((response)=>{
                     console.log(response);
                     //this.company = response.data;
                 })
