@@ -335,14 +335,14 @@ class DailyController extends Controller
         $salesAndRevenuesExempt = round($totalSalesAndRevenues - $salesAndRevenuesPrivate - $salesAndRevenuesGov,2);
         $totalOutputTax = $outputTaxPrivate + $outputTaxGov;
 
-        $A12 = number_format((float)$salesAndRevenuesPrivate, 2, '.', '');
-        $A12 = number_format((float)$outputTaxPrivate, 2, '.', '');
-        $A13 = number_format((float)$salesAndRevenuesGov, 2, '.', '');
-        $B13 = number_format((float)$outputTaxGov, 2, '.', '');
-        $A14 = number_format((float)0.00, 2, '.', '');
-        $A15 = number_format((float)$salesAndRevenuesExempt, 2, '.', '');
+        $A12 = number_format((float)$salesAndRevenuesPrivate, 2, '.', ',');
+        $B12 = number_format((float)$outputTaxPrivate, 2, '.', ',');
+        $A13 = number_format((float)$salesAndRevenuesGov, 2, '.', ',');
+        $B13 = number_format((float)$outputTaxGov, 2, '.', ',');
+        $A14 = number_format((float)0.00, 2, '.', ',');
+        $A15 = number_format((float)$salesAndRevenuesExempt, 2, '.', ',');
         $A16 = number_format((float)$totalSalesAndRevenues, 2, '.', '');
-        $B16 = number_format((float)$outputTaxPrivate + $outputTaxGov, 2, '.', '');
+        $B16 = number_format((float)$outputTaxPrivate + $outputTaxGov, 2, '.', ',');
 
         $P18 = $totalNonCurrentAssets + $totalOtherCurrentAssets + $totalAdvancesDue + $totalPettyBankInventory;
         $E18 = 0;
