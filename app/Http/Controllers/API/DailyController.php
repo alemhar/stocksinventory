@@ -181,7 +181,7 @@ class DailyController extends Controller
         //$transaction_date = $request['transaction_date'];
         //$company_id = $request['company_id'];
 
-        
+
         if(\Request::get('transaction_date')) {
             $transaction_date = \Request::get('transaction_date');
         } else {
@@ -196,8 +196,10 @@ class DailyController extends Controller
         
         
 
-        $to_transaction_date = Carbon::create($transaction_date);
-        $from_transaction_date = Carbon::create($to_transaction_date->year, $to_transaction_date->month, 1);
+        $input_date = Carbon::create($transaction_date);
+        $from_transaction_date = Carbon::create($input_date->year, $input_date->month, 1);
+        $to_transaction_date = Carbon::create($input_date->year, $input_date->month, $input_date->daysInMonth);
+
 
         // Sales and Revenues
         $start = 41010000;
