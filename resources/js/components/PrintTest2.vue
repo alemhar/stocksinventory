@@ -230,13 +230,23 @@
                  
             //},
             generateeBIR(){
-                axios.get('api/monthlyvat?transaction_date='+this.transaction_date+'&company_id='+this.company_id).then((response)=>{
-                    console.log(response);
+                axios({
+                method: 'post',
+                url: 'api/monthlyvat',
+                data: {
+                    transaction_date: this.transaction_date,
+                    company_id: this.company_id
+                },
+                config: { headers: {'Content-Type': 'multipart/form-data' }}
+                });    
+                
+                //axios.get('api/monthlyvat?transaction_date='+this.transaction_date+'&company_id='+this.company_id).then((response)=>{
+                    //console.log(response);
                     //this.company = response.data;
-                })
-                .catch(()=>{
+                //})
+                //.catch(()=>{
                 //
-                });
+                //});
 
                 //console.log(response);
             },

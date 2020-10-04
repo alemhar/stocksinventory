@@ -163,7 +163,7 @@ class DailyController extends Controller
         return $transaction;
     }
 
-    public function monthlyTaxDeclaration()
+    public function monthlyTaxDeclaration(Request $request)
     {
         $totalSalesAndRevenues = 0;
         $totalOutputTax = 0;
@@ -177,6 +177,10 @@ class DailyController extends Controller
         $outputTaxPrivate = 0;
         $outputTaxGov = 0;
 
+        $transaction_date = $request['transaction_date'];
+        $company_id = $request['company_id'];
+
+        /*
         if(\Request::get('transaction_date')) {
             $transaction_date = \Request::get('transaction_date');
         } else {
@@ -188,7 +192,7 @@ class DailyController extends Controller
         } else {
             $company_id = '';
         }
-
+        */
         
 
         $to_transaction_date = Carbon::create($transaction_date);
@@ -600,7 +604,7 @@ All Rights Reserved BIR 2012.";
 
     return response()->download($filenameXML, $filename, $headers);
 
-    unlink($filenameXML);
+    //unlink($filenameXML);
     //exit();
 
     }
