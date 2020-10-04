@@ -343,6 +343,13 @@ class DailyController extends Controller
         
         $totalOtherNonCurrentAssets = $this->totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
         
+        // Total Expenses
+        $start = 62010000;
+        $end = 62210099;
+        
+        $totalExepenses = $this->totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
+        
+
 
         $salesAndRevenuesExempt = round($totalSalesAndRevenues - $salesAndRevenuesPrivate - $salesAndRevenuesGov,2);
         $totalOutputTax = $outputTaxPrivate + $outputTaxGov;
@@ -356,7 +363,7 @@ class DailyController extends Controller
         $A16 = number_format((float)$totalSalesAndRevenues, 2, '.', ',');
         $B16 = number_format((float)$outputTaxPrivate + $outputTaxGov, 2, '.', ',');
 
-        $P18 = $totalNonCurrentAssets + $totalOtherCurrentAssets + $totalInventory + $totalOtherNonCurrentAssets;
+        $P18 = $totalNonCurrentAssets + $totalOtherCurrentAssets + $totalInventory + $totalOtherNonCurrentAssets + $totalExepenses;
         $E18 = 0;
         if($inputTaxGoods > 0){
             $E18 = $inputTaxGoods / 0.12;
