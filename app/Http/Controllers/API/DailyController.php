@@ -592,7 +592,10 @@ All Rights Reserved BIR 2012.";
     //Storage::put($filename, $template);
     //return Storage::download($filename);
 
-    $filenameXML = sys_get_temp_dir().'/'.$filename;
+    //$filenameXML = sys_get_temp_dir().'/'.$filename;
+
+    $filenameXML = tempnam(sys_get_temp_dir(),"TMP0");
+
     $filenamepathhandle = fopen($filenameXML,'w');
     fwrite($filenamepathhandle,$template);
     fclose($filenamepathhandle);
