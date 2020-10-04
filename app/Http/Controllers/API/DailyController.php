@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\DailyAccount;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class DailyController extends Controller
 {
@@ -586,23 +587,27 @@ All Rights Reserved BIR 2012.";
     
     
     
-    $filenameXML = sys_get_temp_dir().'/'.$filename;
-    
-    $filenamepathhandle = fopen($filenameXML,'w');
 
-    fwrite($filenamepathhandle,$template);
-    fclose($filenamepathhandle);
+    
+
+    Storage::put($filename, $template);
+    
+    return Storage::download($filename);
+
+    //$filenameXML = sys_get_temp_dir().'/'.$filename;
+    //$filenamepathhandle = fopen($filenameXML,'w');
+    //fwrite($filenamepathhandle,$template);
+    //fclose($filenamepathhandle);
 
     //header('Content-Type: text/csv; charset=utf-8');
     //header("Content-Transfer-Encoding: Binary"); 
     //header("Content-disposition: attachment; filename=\"" . basename($filenameXML) . "\""); 
     //readfile($filenameXML);
     
-    $headers = [
-        'Content-Type' => 'application/xml',
-     ];
-
-    return response()->download($filenameXML, $filename, $headers);
+    //$headers = [
+    //    'Content-Type' => 'application/xml',
+    // ];
+    //return response()->download($filenameXML, $filename, $headers);
 
     //unlink($filenameXML);
     //exit();
