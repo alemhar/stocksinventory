@@ -386,7 +386,7 @@ class DailyController extends Controller
         $C20 = number_format((float)$C20, 2, '.', ',');
         $F20 = number_format((float)$F20, 2, '.', ',');
         $A21 = number_format((float)$A21, 2, '.', ',');
-        $A22 = number_format((float)$A22, 2, '.', ',');
+        $A22 = number_format((float)($A22*1), 2, '.', ',');
         $A24 = number_format((float)$A22, 2, '.', ',');
         $A26 = number_format((float)0.00, 2, '.', ',');
 
