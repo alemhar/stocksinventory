@@ -241,7 +241,7 @@
                 config: { headers: {'Content-Type': 'multipart/form-data' }}
                 });    
                 */
-
+               
                 axios({
                     method: 'GET',
                     url: 'api/monthlyvat?transaction_date='+this.transaction_date+'&company_id='+this.company_id,

@@ -280,7 +280,7 @@ class DailyController extends Controller
         ->get();
         return $transactions;
         foreach($transactions as $transaction){
-            $inputTaxGoods =  $transaction->credit - $transaction->debit;
+            $inputTaxGoods =  $transaction->debit - $transaction->credit;
         }
 
         
@@ -302,7 +302,7 @@ class DailyController extends Controller
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
         ->get();
         foreach($transactions as $transaction){
-            $inputTaxServices =  $transaction->credit - $transaction->debit;
+            $inputTaxServices =  $transaction->debit - $transaction->credit;
         }
 
 
