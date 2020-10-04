@@ -588,7 +588,7 @@ All Rights Reserved BIR 2012.";
 
 
     
-    return 'test';
+    return $template;
     //Storage::put($filename, $template);
     //return Storage::download($filename);
 
