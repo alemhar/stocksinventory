@@ -445,7 +445,7 @@ $template =
 <div>frm2550m:txtLineBus=".$LineBus."frm2550m:txtLineBus=</div>	
 <div>frm2550m:txtTaxPayerName=".$TaxPayerName."frm2550m:txtTaxPayerName=</div>	
 <div>frm2550m:txtTelephoneNum=".$TelephoneNum."frm2550m:txtTelephoneNum=</div>	
-<div>frm2550m:txtAddress=".$RDOCAddressode."frm2550m:txtAddress=</div>	
+<div>frm2550m:txtAddress=".$Address."frm2550m:txtAddress=</div>	
 <div>frm2550m:txtZipCode=".$ZipCode."frm2550m:txtZipCode=</div>	
 <div>frm2550m:OptSpecialTax1=falsefrm2550m:OptSpecialTax1=</div>	
 <div>frm2550m:OptSpecialTax2=truefrm2550m:OptSpecialTax2=</div>	
