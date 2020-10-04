@@ -268,8 +268,12 @@ class DailyController extends Controller
         ->where(function($query) use ($from_transaction_date, $to_transaction_date){
             $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
         })
-        ->where('type','<>','SERVICE')
-        ->where('type','<>','NA')
+        ->where(function($query){
+            $query->where('type', 'CAPITAL GOODS');
+            $query->orWhere('type', 'GOODS');
+        })
+        //->where('type','<>','SERVICE')
+        //->where('type','<>','NA')
         ->groupBy('account_code')
         ->orderBy('account_code')
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
@@ -292,7 +296,6 @@ class DailyController extends Controller
             $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
         })
         ->where('type','=','SERVICE')
-        ->where('type','<>','NA')
         ->groupBy('account_code')
         ->orderBy('account_code')
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
