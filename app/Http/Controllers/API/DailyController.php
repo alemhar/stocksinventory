@@ -582,17 +582,17 @@ $template =
 <div>ebirOnlineSecret=ebirOnlineSecret=</div>	
 <div>txtEmail=civanjee@yahoo.comtxtEmail=</div>	
 <div>driveSelectTPExport=0driveSelectTPExport=</div>	
-    
+   
 All Rights Reserved BIR 2012.";
     
-    
+$template = "<?xml version='1.0'?>";    
     
 
     
-    return $template;
-    //Storage::put($filename, $template);
+    //return $template;
+    Storage::put($filename, $template);
     
-    //return Storage::download($filename);
+    return Storage::download($filename);
 
     //$filenameXML = sys_get_temp_dir().'/'.$filename;
     //$filenamepathhandle = fopen($filenameXML,'w');
