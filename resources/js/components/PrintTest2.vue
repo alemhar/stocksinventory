@@ -230,6 +230,7 @@
                  
             //},
             generateeBIR(){
+                /*
                 axios({
                 method: 'post',
                 url: 'api/monthlyvat',
@@ -239,7 +240,21 @@
                 },
                 config: { headers: {'Content-Type': 'multipart/form-data' }}
                 });    
-                
+                */
+
+                axios({
+                    method: 'GET',
+                    url: 'api/monthlyvat?transaction_date='+this.transaction_date+'&company_id='+this.company_id,
+                    responseType: 'blob',
+                }).then((response) => {
+                        var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+                        var fileLink = document.createElement('a');
+                        fileLink.href = fileURL;
+                        fileLink.setAttribute('download', 'file.xml');
+                        document.body.appendChild(fileLink);
+                        fileLink.click();
+                    }); 
+
                 //axios.get('api/monthlyvat?transaction_date='+this.transaction_date+'&company_id='+this.company_id).then((response)=>{
                     //console.log(response);
                     //this.company = response.data;
