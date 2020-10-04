@@ -19,8 +19,23 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    echo sys_get_temp_dir();
+    $from_transaction_date = Carbon::create(2020, 9, 1);
+    $to_transaction_date = Carbon::create(2020, 9, $from_transaction_date->daysInMonth);
 
+    $start = 62010000;
+    $end = 62210099;
+
+    $transactions = DailyAccount::where(function($query) use ($start,$end){
+        $query->whereBetween('account_code', [$start, $end]);
+    })
+    ->where(function($query) use ($from_transaction_date, $to_transaction_date){
+        $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
+    })
+    ->groupBy('account_code')
+    ->orderBy('account_code')
+    ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
+    ->get();
+    return $transactions;
 });
 
 Route::get('/test2', function () {
