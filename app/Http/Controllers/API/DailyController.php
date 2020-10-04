@@ -307,23 +307,23 @@ class DailyController extends Controller
 
 
         $totalAdvancesDue = 0;
-        $totalPettyBankInventory = 0;
+        $totalInventory = 0;
         $totalNonCurrentAssets = 0;
         $totalOtherCurrentAssets = 0;
 
 
-        // Total Petty Cash Fund, Cash In Bank - Bank, Inventory
-        $start = 11011200;
+        // Total  Inventory
+        $start = 11011400;
         $end = 11011499;
         
         
-        $totalPettyBankInventory = $this->totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
+        $totalInventory = $this->totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
         
         // Total Advances and Due
-        $start = 11031300;
-        $end = 11031499;
+        //$start = 11031300;
+        //$end = 11031499;
         
-        $totalAdvancesDue = $this->totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
+        //$totalAdvancesDue = $this->totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
         
         // Total Other Current Assets
         $start = 11050000;
@@ -356,7 +356,7 @@ class DailyController extends Controller
         $A16 = number_format((float)$totalSalesAndRevenues, 2, '.', ',');
         $B16 = number_format((float)$outputTaxPrivate + $outputTaxGov, 2, '.', ',');
 
-        $P18 = $totalNonCurrentAssets + $totalOtherCurrentAssets + $totalAdvancesDue + $totalPettyBankInventory + $totalOtherNonCurrentAssets;
+        $P18 = $totalNonCurrentAssets + $totalOtherCurrentAssets + $totalInventory + $totalOtherNonCurrentAssets;
         $E18 = 0;
         if($inputTaxGoods > 0){
             $E18 = $inputTaxGoods / 0.12;
