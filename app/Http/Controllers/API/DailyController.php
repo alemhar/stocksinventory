@@ -496,7 +496,7 @@ $template =
 <div>frm2550m:txtTax20E=0.00frm2550m:txtTax20E=</div>	
 <div>frm2550m:txtTax20F=".$F20."frm2550m:txtTax20F=</div>	
 <div>frm2550m:txtTax21=".$A21."frm2550m:txtTax21=</div>	
-<div>frm2550m:txtTax22=-".$A22."frm2550m:txtTax22=</div>	
+<div>frm2550m:txtTax22=".$A22."frm2550m:txtTax22=</div>	
 <div>frm2550m:txtTax23A=0.00frm2550m:txtTax23A=</div>	
 <div>frm2550m:txtTax23B=0.00frm2550m:txtTax23B=</div>	
 <div>frm2550m:txtTax23C=0.00frm2550m:txtTax23C=</div>	
@@ -504,12 +504,12 @@ $template =
 <div>frm2550m:txtTax23E=0.00frm2550m:txtTax23E=</div>	
 <div>frm2550m:txtTax23F=0.00frm2550m:txtTax23F=</div>	
 <div>frm2550m:txtTax23G=0.00frm2550m:txtTax23G=</div>	
-<div>frm2550m:txtTax24=-".$A24."frm2550m:txtTax24=</div>	
+<div>frm2550m:txtTax24=".$A24."frm2550m:txtTax24=</div>	
 <div>frm2550m:txtTax25A=0.00frm2550m:txtTax25A=</div>	
 <div>frm2550m:txtTax25B=0.00frm2550m:txtTax25B=</div>	
 <div>frm2550m:txtTax25C=0.00frm2550m:txtTax25C=</div>	
 <div>frm2550m:txtTax25D=0.00frm2550m:txtTax25D=</div>	
-<div>frm2550m:txtTax26=-".$A26."frm2550m:txtTax26=</div>	
+<div>frm2550m:txtTax26=".$A26."frm2550m:txtTax26=</div>	
 <div>frm2550m:txtAtcCde1=VB010frm2550m:txtAtcCde1=</div>	
 <div>frm2550m:txtAmountSales1=16,696.43frm2550m:txtAmountSales1=</div>	
 <div>frm2550m:txtOutputTax1=2,003.57frm2550m:txtOutputTax1=</div>	
