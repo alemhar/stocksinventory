@@ -241,14 +241,14 @@
                 config: { headers: {'Content-Type': 'multipart/form-data' }}
                 });    
                 */
-               
+
                 axios({
                     method: 'GET',
                     url: 'api/monthlyvat?transaction_date='+this.transaction_date+'&company_id='+this.company_id,
-                    //responseType: 'blob',
+                    responseType: 'blob',
                 }).then((response) => {
-                        console.log(response);
-                        /*
+                        //console.log(response);
+                        
                         var filename = response.headers['content-disposition'];
                         filename = filename.replace("attachment; filename=", "");  
                         var fileURL = window.URL.createObjectURL(new Blob([response.data]));
@@ -257,7 +257,7 @@
                         fileLink.setAttribute('download', filename);
                         document.body.appendChild(fileLink);
                         fileLink.click();
-                        */
+                        
                     }); 
 
                 //axios.get('api/monthlyvat?transaction_date='+this.transaction_date+'&company_id='+this.company_id).then((response)=>{
