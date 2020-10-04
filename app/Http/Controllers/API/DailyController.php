@@ -278,6 +278,7 @@ class DailyController extends Controller
         ->orderBy('account_code')
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
         ->get();
+        dd($transactions);
         foreach($transactions as $transaction){
             $inputTaxGoods =  $transaction->credit - $transaction->debit;
         }
