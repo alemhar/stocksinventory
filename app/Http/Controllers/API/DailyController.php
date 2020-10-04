@@ -370,7 +370,7 @@ class DailyController extends Controller
         $C20 = 0; //($A15/$A16) * ($inputTaxGoods + $inputTaxServices);
         $F20 = $A20 + $B20 + $C20 + $D20 + $E20;
         $A21 = $A19 - $F20;
-        $A22 = $B16 - $A21;
+        $A22 = $outputTaxPrivate + $outputTaxGov - $A21;
         $F23 = 0;
         $A24 = $A22 - $F23;
 
