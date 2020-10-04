@@ -595,14 +595,13 @@ All Rights Reserved BIR 2012.";
     //readfile($filenameXML);
     
     $headers = [
-        'Content-Type' => 'text/xml',
+        'Content-Type' => 'application/xml',
      ];
 
     return response()->download($filenameXML, $filename, $headers);
 
     unlink($filenameXML);
     //exit();
-
 
     }
     
