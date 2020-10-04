@@ -316,8 +316,24 @@ class DailyController extends Controller
         $start = 11011400;
         $end = 11011499;
         
+
+        $transactions = DailyAccount::where(function($query) use ($start,$end){
+            $query->whereBetween('account_code', [$start, $end]);
+        })
+        ->where(function($query) use ($from_transaction_date, $to_transaction_date){
+            $query->whereBetween('transaction_date', [$from_transaction_date, $to_transaction_date]);
+        })
+        ->where('transaction_type','<>','GENERAL')
+        ->groupBy('account_code')
+        ->orderBy('account_code')
+        ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
+        ->get();
+        foreach($transactions as $transaction){
+            $totalInventory =  $transaction->debit - $transaction->credit;
+        }
+
         
-        $totalInventory = $this->totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
+        //$totalInventory = $this->totalCredit($start, $end, $from_transaction_date, $to_transaction_date);
         
         // Total Advances and Due
         //$start = 11031300;
