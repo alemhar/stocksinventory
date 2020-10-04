@@ -225,7 +225,7 @@ class DailyController extends Controller
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
         ->get();
         foreach($transactions as $transaction){
-            $outputTaxPrivate =  $transaction->credit - $transaction->debit;
+            $outputTaxPrivate +=  $transaction->credit - $transaction->debit;
         }
 
         // Output Tax Gov
@@ -245,7 +245,7 @@ class DailyController extends Controller
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
         ->get();
         foreach($transactions as $transaction){
-            $outputTaxGov =  $transaction->credit - $transaction->debit;
+            $outputTaxGov +=  $transaction->credit - $transaction->debit;
         }
 
         if($outputTaxPrivate > 0){
@@ -280,7 +280,7 @@ class DailyController extends Controller
         ->get();
         //return $transactions;
         foreach($transactions as $transaction){
-            $inputTaxGoods =  $transaction->debit - $transaction->credit;
+            $inputTaxGoods +=  $transaction->debit - $transaction->credit;
         }
 
         
@@ -302,7 +302,7 @@ class DailyController extends Controller
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
         ->get();
         foreach($transactions as $transaction){
-            $inputTaxServices =  $transaction->debit - $transaction->credit;
+            $inputTaxServices +=  $transaction->debit - $transaction->credit;
         }
 
 
@@ -329,7 +329,7 @@ class DailyController extends Controller
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
         ->get();
         foreach($transactions as $transaction){
-            $totalInventory =  $transaction->debit - $transaction->credit;
+            $totalInventory +=  $transaction->debit - $transaction->credit;
         }
 
         
@@ -682,7 +682,7 @@ All Rights Reserved BIR 2012.";
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
         ->get();
         foreach($transactions as $transaction){
-            $totalCredit =  $transaction->credit - $transaction->debit;
+            $totalCredit +=  $transaction->credit - $transaction->debit;
         }
 
         return $totalCredit;
@@ -703,7 +703,7 @@ All Rights Reserved BIR 2012.";
         ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
         ->get();
         foreach($transactions as $transaction){
-            $totalCredit =  $transaction->debit - $transaction->credit;
+            $totalCredit +=  $transaction->debit - $transaction->credit;
         }
 
         return $totalCredit;

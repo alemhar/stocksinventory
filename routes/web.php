@@ -37,7 +37,8 @@ Route::get('/test', function () {
     ->selectRaw('sum(debit_amount) as debit,sum(credit_amount) as credit, account_name, id')
     ->get();
     foreach($transactions as $transaction){
-        $totalCredit =  $transaction->debit - $transaction->credit;
+
+        $totalCredit +=  $transaction->debit - $transaction->credit;
     }
 
     return $totalCredit;
