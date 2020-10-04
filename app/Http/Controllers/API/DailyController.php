@@ -582,18 +582,19 @@ All Rights Reserved BIR 2012.";
     
     
     
-    $filenamecsv = $_SERVER['DOCUMENT_ROOT'].'/bucket/'.$filename.'.csv';
+    $filenameXML = sys_get_temp_dir().'/'.$filename;
     
-    $filenamepathhandle = OpenResource($filenamecsv,'w');
+    $filenamepathhandle = fopen($filenameXML,'w');
 
-    fputcsv($filenamepathhandle, explode('|', $csvheadersFull));
+    fwrite($filenamepathhandle,$template);
     fclose($filenamepathhandle);
 
     header('Content-Type: text/csv; charset=utf-8');
     header("Content-Transfer-Encoding: Binary"); 
-    header("Content-disposition: attachment; filename=\"" . basename($filenamecsv) . "\""); 
-    readfile($filenamecsv );
-
+    header("Content-disposition: attachment; filename=\"" . basename($filenameXML) . "\""); 
+    readfile($filenameXML);
+    
+    unlink($filenameXML);
     //exit();
 
 
