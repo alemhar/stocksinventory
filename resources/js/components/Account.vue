@@ -245,8 +245,8 @@
         created() {
 
             axios.get("api/account")
-            .then(({ data }) => (console.log(data)));
-            //.then(({ data }) => (this.form.fill(data)));
+            .then(({ data }) => (this.form.fill(data)));
+            //.then(({ data }) => (console.log(data)));
             
             VueListen.$on('RefreshUsersInfo',() => {
                 axios.get("api/account")
