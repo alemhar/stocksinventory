@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\DailyAccount;
+use App\Company;
+
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
@@ -452,18 +454,34 @@ class DailyController extends Controller
 
         */
 
+        //Company::where('postal', $postal)->firstOrFail();
+        $company = Company::findOrFail($company_id);
+
         $RtnMonth = 0;
         $RtnYear = 0;
-        $TIN1 = '006';
-        $TIN2 = '047';
-        $TIN3 = '082';
-        $BranchCode = '000';
-        $RDOCode = '113';
-        $LineBus = 'CAR DEALER';
-        $TaxPayerName = 'DAVAO TOKYO MOTOR SALES';
-        $TelephoneNum = '0';
+        $TIN1 = $company->tin1;
+        $TIN2 = $company->tin2;
+        $TIN3 = $company->tin3;
+        $BranchCode = $company->branch_code;
+        $RDOCode = $company->rdo_code;
+        $LineBus = $company->line_of_business;
+        $TaxPayerName = $company->company;
+        $TelephoneNum = $company->phone;
         $Address = 'DAVAO CITY';
         $ZipCode = '8000';         
+        
+
+        // $TIN1 = '006';
+        // $TIN2 = '047';
+        // $TIN3 = '082';
+        // $BranchCode = '000';
+        // $RDOCode = '113';
+        // $LineBus = 'CAR DEALER';
+        // $TaxPayerName = 'DAVAO TOKYO MOTOR SALES';
+        // $TelephoneNum = '0';
+        // $Address = 'DAVAO CITY';
+        // $ZipCode = '8000';         
+        
         
         $TIN = $TIN1.$TIN2.$TIN3.$BranchCode; 
         $FORM = '2550M'; 
