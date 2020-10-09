@@ -176,23 +176,23 @@ class UserController extends Controller
 
     public function account()
     {
-        $user = auth('api')->user();
-        $company_id = $user->company_id;
+        $current_user = auth('api')->user();
+        $company_id = $current_user->company_id;
         $company = Company::findOrFail($company_id);
 
-        $user->company = $company->company;
-        $user->tin1 = $company->tin1;
-        $user->tin2 = $company->tin2;
-        $user->tin3 = $company->tin3;
-        $user->branch_code = $company->branch_code;
-        $user->rdo_code = $company->rdo_code;
-        $user->line_of_business = $company->line_of_business;
-        $user->zip_code = $company->zip_code;
-        $user->address = $company->address;
-        $user->address2 = $company->address2;
+        $current_user->company = $company->company;
+        $current_user->tin1 = $company->tin1;
+        $current_user->tin2 = $company->tin2;
+        $current_user->tin3 = $company->tin3;
+        $current_user->branch_code = $company->branch_code;
+        $current_user->rdo_code = $company->rdo_code;
+        $current_user->line_of_business = $company->line_of_business;
+        $current_user->zip_code = $company->zip_code;
+        $current_user->address = $company->address;
+        $current_user->address2 = $company->address2;
         
-        //dd($user);
-        return  $user;
+        //dd($current_user);
+        return  $current_user;
 
     }
 
