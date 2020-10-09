@@ -156,7 +156,8 @@ class UserController extends Controller
 
     public function account()
     {
-        return auth('api')->user();
+        $user auth('api')->user();
+        return  $user;
 
     }
 

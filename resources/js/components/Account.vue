@@ -77,30 +77,6 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="inputtin2" class="col-sm-2 control-label">TIN2</label>
-                                    <div class="col-sm-12">
-                                    <input type="text" v-model="form.tin2" class="form-control" id="inputtin2" placeholder="tin2"  :class="{ 'is-invalid': form.errors.has('tin2') }">
-                                     <has-error :form="form" field="tin2"></has-error>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="inputtin3" class="col-sm-2 control-label">TIN3</label>
-                                    <div class="col-sm-12">
-                                    <input type="text" v-model="form.tin3" class="form-control" id="inputtin3" placeholder="tin3"  :class="{ 'is-invalid': form.errors.has('tin3') }">
-                                     <has-error :form="form" field="tin3"></has-error>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="inputbranch_code" class="col-sm-2 control-label">Branch Code</label>
-                                    <div class="col-sm-12">
-                                    <input type="text" v-model="form.branch_code" class="form-control" id="inputbranch_code" placeholder="Branch Code"  :class="{ 'is-invalid': form.errors.has('branch_code') }">
-                                     <has-error :form="form" field="branch_code"></has-error>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
                                     <label for="inputrdo_code" class="col-sm-2 control-label">RDO Code</label>
                                     <div class="col-sm-12">
                                     <input type="text" v-model="form.rdo_code" class="form-control" id="inputrdo_code" placeholder="RDO Code"  :class="{ 'is-invalid': form.errors.has('rdo_code') }">
@@ -269,8 +245,9 @@
         created() {
 
             axios.get("api/account")
-            .then(({ data }) => (this.form.fill(data)));
-
+            .then(({ data }) => (console.log(data)));
+            //.then(({ data }) => (this.form.fill(data)));
+            
             VueListen.$on('RefreshUsersInfo',() => {
                 axios.get("api/account")
                 .then(({ data }) => (this.form.fill(data)));
