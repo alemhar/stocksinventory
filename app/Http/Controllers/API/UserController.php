@@ -178,18 +178,18 @@ class UserController extends Controller
     {
         $current_user = auth('api')->user();
         $company_id = $current_user->company_id;
-        $company = Company::findOrFail($company_id);
+        $current_company = Company::findOrFail($company_id);
 
-        $current_user->company = $company->company;
-        $current_user->tin1 = $company->tin1;
-        $current_user->tin2 = $company->tin2;
-        $current_user->tin3 = $company->tin3;
-        $current_user->branch_code = $company->branch_code;
-        $current_user->rdo_code = $company->rdo_code;
-        $current_user->line_of_business = $company->line_of_business;
-        $current_user->zip_code = $company->zip_code;
-        $current_user->address = $company->address;
-        $current_user->address2 = $company->address2;
+        $current_user->company = $current_company->company;
+        $current_user->tin1 = $current_company->tin1;
+        $current_user->tin2 = $current_company->tin2;
+        $current_user->tin3 = $current_company->tin3;
+        $current_user->branch_code = $current_company->branch_code;
+        $current_user->rdo_code = $current_company->rdo_code;
+        $current_user->line_of_business = $current_company->line_of_business;
+        $current_user->zip_code = $current_company->zip_code;
+        $current_user->address = $current_company->address;
+        $current_user->address2 = $current_company->address2;
         
         //dd($current_user);
         return  $current_user;
