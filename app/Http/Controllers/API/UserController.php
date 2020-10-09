@@ -154,20 +154,20 @@ class UserController extends Controller
             $address2 = '';
         }
 
-        $company = Company::findOrFail($company_id);
+        $current_company = Company::findOrFail($company_id);
 
-        $company->company = $company;
-        $company->address = $address;
-        $company->address2 = $address2;
-        $company->tin1 = $tin1;
-        $company->tin2 = $tin2;
-        $company->tin3 = $tin3;
-        $company->branch_code = $branch_code;
-        $company->rdo_code = $rdo_code;
-        $company->line_of_business = $line_of_business;
-        $company->zip_code = $zip_code;
+        $current_company->company = $company;
+        $current_company->address = $address;
+        $current_company->address2 = $address2;
+        $current_company->tin1 = $tin1;
+        $current_company->tin2 = $tin2;
+        $current_company->tin3 = $tin3;
+        $current_company->branch_code = $branch_code;
+        $current_company->rdo_code = $rdo_code;
+        $current_company->line_of_business = $line_of_business;
+        $current_company->zip_code = $zip_code;
 
-        $company->save();
+        $current_company->save();
 
         //return ['message' => "Success"];
 
@@ -271,17 +271,17 @@ class UserController extends Controller
         }
 
 
-        $company = Company::where('company_id', '=', $company_id)->firstOrFail();
+        $current_company = Company::where('company_id', '=', $company_id)->firstOrFail();
 
-        $company->tin1 = $tin1;
-        $company->tin2 = $tin2;
-        $company->tin3 = $tin3;
-        $company->branch_code = $branch_code;
-        $company->rdo_code = $rdo_code;
-        $company->line_of_business = $line_of_business;
-        $company->zip_code = $zip_code;
+        $current_company->tin1 = $tin1;
+        $current_company->tin2 = $tin2;
+        $current_company->tin3 = $tin3;
+        $current_company->branch_code = $branch_code;
+        $current_company->rdo_code = $rdo_code;
+        $current_company->line_of_business = $line_of_business;
+        $current_company->zip_code = $zip_code;
 
-        $company->save();
+        $current_company->save();
 
         return ['message' => 'User info updated!'];
     }
