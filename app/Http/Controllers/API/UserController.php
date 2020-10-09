@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Company;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -61,7 +62,7 @@ class UserController extends Controller
     public function updateAccountInfo(Request $request){
 
         $user = auth('api')->user();
-        
+        $company_id = $user->company_id;
         $this->validate($request,[
             'name' => 'required|string|max:191',
             'email' => 'required|string|email|max:191|unique:users,email,'.$user->id,
@@ -71,7 +72,6 @@ class UserController extends Controller
         $currentPhoto = $user->photo;
         
         if($request->photo != $currentPhoto){
-        //if($request->photo){
             
             $name = time().'.' . explode('/', explode(':', substr($request->photo, 0, strpos($request->photo, ';')))[1])[1];
 
@@ -94,6 +94,60 @@ class UserController extends Controller
         
         $user->update($request->all());
         
+        if(isset($request['tin1'])){
+            $tin1 = $request['tin1'];
+        } else {
+            $tin1 = '';
+        }
+        
+        if(isset($request['tin2'])){
+            $tin2 = $request['tin2'];
+        } else {
+            $tin2 = '';
+        }
+
+        if(isset($request['tin3'])){
+            $tin3 = $request['tin3'];
+        } else {
+            $tin3 = '';
+        }
+
+        if(isset($request['branch_code'])){
+            $branch_code = $request['branch_code'];
+        } else {
+            $branch_code = '';
+        }
+
+        if(isset($request['rdo_code'])){
+            $rdo_code = $request['rdo_code'];
+        } else {
+            $rdo_code = '';
+        }
+
+        if(isset($request['line_of_business'])){
+            $line_of_business = $request['line_of_business'];
+        } else {
+            $line_of_business = '';
+        }
+
+        if(isset($request['zip_code'])){
+            $zip_code = $request['zip_code'];
+        } else {
+            $zip_code = '';
+        }
+
+
+        $company = Company::where('company_id', '=', $company_id)->firstOrFail();
+
+        $company->tin1 = $tin1;
+        $company->tin2 = $tin2;
+        $company->tin3 = $tin3;
+        $company->branch_code = $branch_code;
+        $company->rdo_code = $rdo_code;
+        $company->line_of_business = $line_of_business;
+        $company->zip_code = $zip_code;
+
+        $company->save();
 
         //return ['message' => "Success"];
 
@@ -103,6 +157,7 @@ class UserController extends Controller
     public function account()
     {
         return auth('api')->user();
+
     }
 
     /**
@@ -126,14 +181,71 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-
+        $company_id = $user->company_id;
         $this->validate($request,[
             'name' => 'required|string|max:191',
             'email' => 'required|string|email|max:191|unique:users,email,'.$user->id,
             'password' => 'sometimes|required|min:6'
         ]);
-
+        
         $user->update($request->all());
+        
+        
+
+        if(isset($request['tin1'])){
+            $tin1 = $request['tin1'];
+        } else {
+            $tin1 = '';
+        }
+        
+        if(isset($request['tin2'])){
+            $tin2 = $request['tin2'];
+        } else {
+            $tin2 = '';
+        }
+
+        if(isset($request['tin3'])){
+            $tin3 = $request['tin3'];
+        } else {
+            $tin3 = '';
+        }
+
+        if(isset($request['branch_code'])){
+            $branch_code = $request['branch_code'];
+        } else {
+            $branch_code = '';
+        }
+
+        if(isset($request['rdo_code'])){
+            $rdo_code = $request['rdo_code'];
+        } else {
+            $rdo_code = '';
+        }
+
+        if(isset($request['line_of_business'])){
+            $line_of_business = $request['line_of_business'];
+        } else {
+            $line_of_business = '';
+        }
+
+        if(isset($request['zip_code'])){
+            $zip_code = $request['zip_code'];
+        } else {
+            $zip_code = '';
+        }
+
+
+        $company = Company::where('company_id', '=', $company_id)->firstOrFail();
+
+        $company->tin1 = $tin1;
+        $company->tin2 = $tin2;
+        $company->tin3 = $tin3;
+        $company->branch_code = $branch_code;
+        $company->rdo_code = $rdo_code;
+        $company->line_of_business = $line_of_business;
+        $company->zip_code = $zip_code;
+
+        $company->save();
 
         return ['message' => 'User info updated!'];
     }
