@@ -86,7 +86,7 @@
 
 
                                 <div class="form-group">
-                                    <label for="inputaddress" class="col-sm-2 control-label">Address 1</label>
+                                    <label for="inputaddress" class="col-sm-2 control-label">Address</label>
                                     <div class="col-sm-12">
                                     <input type="text" v-model="form.address" class="form-control" id="inputaddress" placeholder="Address 1"  :class="{ 'is-invalid': form.errors.has('address') }">
                                      <has-error :form="form" field="address"></has-error>
@@ -94,7 +94,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="inputaddress2" class="col-sm-2 control-label">Address 2</label>
+                                    <label for="inputaddress2" class="col-sm-2 control-label">Address</label>
                                     <div class="col-sm-12">
                                     <input type="text" v-model="form.address2" class="form-control" id="inputaddress2" placeholder="Address 2"  :class="{ 'is-invalid': form.errors.has('address2') }">
                                      <has-error :form="form" field="address2"></has-error>
