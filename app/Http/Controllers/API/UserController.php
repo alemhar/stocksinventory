@@ -157,8 +157,18 @@ class UserController extends Controller
     public function account()
     {
         $user = auth('api')->user();
-        dd($user);
-        //return  $user;
+        $company_id = $user->company_id;
+        $company = Company::where('company_id', '=', $company_id)->firstOrFail();
+
+        $user->tin1 = $company->$tin1;
+        $user->tin2 = $company->$tin2;
+        $user->tin3 = $company->$tin3;
+        $user->branch_code = $company->$branch_code;
+        $user->rdo_code = $company->$rdo_code;
+        $user->line_of_business = $company->$line_of_business;
+        $user->zip_code = $company->$zip_code;
+        //dd($user);
+        return  $user;
 
     }
 
