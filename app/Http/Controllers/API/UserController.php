@@ -160,13 +160,13 @@ class UserController extends Controller
         $company_id = $user->company_id;
         $company = Company::findOrFail($company_id);
 
-        $user->tin1 = $company->$tin1;
-        $user->tin2 = $company->$tin2;
-        $user->tin3 = $company->$tin3;
-        $user->branch_code = $company->$branch_code;
-        $user->rdo_code = $company->$rdo_code;
-        $user->line_of_business = $company->$line_of_business;
-        $user->zip_code = $company->$zip_code;
+        $user->tin1 = $company->tin1;
+        $user->tin2 = $company->tin2;
+        $user->tin3 = $company->tin3;
+        $user->branch_code = $company->branch_code;
+        $user->rdo_code = $company->rdo_code;
+        $user->line_of_business = $company->line_of_business;
+        $user->zip_code = $company->zip_code;
         //dd($user);
         return  $user;
 
