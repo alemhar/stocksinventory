@@ -68,11 +68,11 @@
 
                                 <div class="form-group">
                                     <label for="inputtin1" class="col-sm-2 control-label">TIN</label>
-                                    <div class="row">
-                                        <input type="text" v-model="form.tin1" class="form-control" id="inputtin1" placeholder="TIN1"  :class="{ 'is-invalid': form.errors.has('tin1') }">
-                                        <input type="text" v-model="form.tin2" class="form-control" id="inputtin2" placeholder="TIN2"  :class="{ 'is-invalid': form.errors.has('tin2') }">
-                                        <input type="text" v-model="form.tin3" class="form-control" id="inputtin3" placeholder="TIN3"  :class="{ 'is-invalid': form.errors.has('tin2') }">
-                                        <input type="text" v-model="form.branch_code" class="form-control" id="inputbranch_code" placeholder="BC"  :class="{ 'is-invalid': form.errors.has('branch_code') }">
+                                    <div class="row pl-4 pr-4">
+                                        <input type="text" v-model="form.tin1" class="form-control col-2 ml-1" id="inputtin1" placeholder="TIN1"  :class="{ 'is-invalid': form.errors.has('tin1') }">
+                                        <input type="text" v-model="form.tin2" class="form-control col-2 ml-1" id="inputtin2" placeholder="TIN2"  :class="{ 'is-invalid': form.errors.has('tin2') }">
+                                        <input type="text" v-model="form.tin3" class="form-control col-2 ml-1" id="inputtin3" placeholder="TIN3"  :class="{ 'is-invalid': form.errors.has('tin2') }">
+                                        <input type="text" v-model="form.branch_code" class="form-control col-2 ml-1" id="inputbranch_code" placeholder="BC"  :class="{ 'is-invalid': form.errors.has('branch_code') }">
                                     </div>
                                 </div>
                                 
