@@ -110,9 +110,12 @@
 
                                 <div class="form-group">
                                     <label for="inputtin1" class="col-sm-2 control-label">TIN1</label>
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-2">
                                     <input type="text" v-model="form.tin1" class="form-control" id="inputtin1" placeholder="TIN1"  :class="{ 'is-invalid': form.errors.has('tin1') }">
-                                     <has-error :form="form" field="tin1"></has-error>
+                                    </div>
+                                    <div class="col-sm-2">
+                                    <input type="text" v-model="form.tin2" class="form-control" id="inputtin2" placeholder="tin2"  :class="{ 'is-invalid': form.errors.has('tin2') }">
+                                     <has-error :form="form" field="tin2"></has-error>
                                     </div>
                                 </div>
                                 
