@@ -185,13 +185,14 @@
                     bio: '',
                     photo: '',
                     font_size: '',
+                    company: '',
                     tin1: '',
                     tin2: '',
                     tin3: '',
                     branch_code: '',
                     rdo_code: '',
-                    line_of_busines: '',
-                    address1: '',
+                    line_of_business: '',
+                    address: '',
                     address2: '',
                     zip_code: ''
                     
