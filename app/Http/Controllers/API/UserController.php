@@ -136,9 +136,29 @@ class UserController extends Controller
             $zip_code = '';
         }
 
+        if(isset($request['company'])){
+            $company = $request['company'];
+        } else {
+            $company = '';
+        }
+
+        if(isset($request['address'])){
+            $address = $request['address'];
+        } else {
+            $address = '';
+        }
+
+        if(isset($request['address2'])){
+            $address2 = $request['address2'];
+        } else {
+            $address2 = '';
+        }
 
         $company = Company::findOrFail($company_id);
 
+        $company->company = $company;
+        $company->address = $address;
+        $company->address2 = $address2;
         $company->tin1 = $tin1;
         $company->tin2 = $tin2;
         $company->tin3 = $tin3;
