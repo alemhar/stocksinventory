@@ -109,13 +109,18 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="inputtin1" class="col-sm-2 control-label">TIN1</label>
-                                    <div class="col-sm-2">
-                                    <input type="text" v-model="form.tin1" class="form-control" id="inputtin1" placeholder="TIN1"  :class="{ 'is-invalid': form.errors.has('tin1') }">
+                                    <label for="inputtin1" class="col control-label">TIN</label>
+                                    <div class="col">
+                                        <input type="text" v-model="form.tin1" class="form-control" id="inputtin1" placeholder="TIN1"  :class="{ 'is-invalid': form.errors.has('tin1') }">
                                     </div>
-                                    <div class="col-sm-2">
-                                    <input type="text" v-model="form.tin2" class="form-control" id="inputtin2" placeholder="tin2"  :class="{ 'is-invalid': form.errors.has('tin2') }">
-                                     <has-error :form="form" field="tin2"></has-error>
+                                    <div class="col">
+                                        <input type="text" v-model="form.tin2" class="form-control" id="inputtin2" placeholder="TIN2"  :class="{ 'is-invalid': form.errors.has('tin2') }">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" v-model="form.tin3" class="form-control" id="inputtin3" placeholder="TIN3"  :class="{ 'is-invalid': form.errors.has('tin2') }">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" v-model="form.branch_code" class="form-control" id="inputbranch_code" placeholder="BC"  :class="{ 'is-invalid': form.errors.has('branch_code') }">
                                     </div>
                                 </div>
                                 

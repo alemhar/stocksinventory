@@ -399,7 +399,7 @@
                 var doc = new jspdf();
                 doc.setFont("Sans Serif", 'normal');
                 doc.setFontSize(16);
-                doc.text(this.company.name,docH,docV);
+                doc.text(this.company.company,docH,docV);
                 docV += 6;
                 doc.setFontSize(12);
                 doc.text(this.company.address +' '+  this.company.address2 +' '+ this.company.city,docH,docV);
