@@ -137,7 +137,7 @@ class UserController extends Controller
         }
 
 
-        $company = Company::where('company_id', '=', $company_id)->firstOrFail();
+        $company = Company::::findOrFail($company_id);
 
         $company->tin1 = $tin1;
         $company->tin2 = $tin2;
@@ -158,7 +158,7 @@ class UserController extends Controller
     {
         $user = auth('api')->user();
         $company_id = $user->company_id;
-        $company = Company::where('company_id', '=', $company_id)->firstOrFail();
+        $company = Company::::findOrFail($company_id);
 
         $user->tin1 = $company->$tin1;
         $user->tin2 = $company->$tin2;
