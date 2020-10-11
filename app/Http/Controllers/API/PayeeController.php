@@ -43,10 +43,10 @@ class PayeeController extends Controller
         
         //return ['message' => 'I have received you request!'];
         $this->validate($request,[
-            'name' => 'required|string|max:191',
-            'address' => 'required|string|max:191',
-            'city' => 'required|string|max:191',
-            'phone' => 'required|string|max:191'
+            'name' => 'required|string|max:191' //,
+            //'address' => 'required|string|max:191',
+            //'city' => 'required|string|max:191',
+            //'phone' => 'required|string|max:191'
 
         ]);
 
@@ -55,7 +55,12 @@ class PayeeController extends Controller
             'address' => $request['address'],
             'city' => $request['city'],
             'tin' => $request['tin'],
-            'phone' => $request['phone']
+            'phone' => $request['phone'],
+            'contactemail' => $request['contactemail'],
+            'payable' => $request['payable'],
+            'receivable' => $request['receivable'],
+            'entity_type' => $request['entity_type']
+
         ]);
     }
 
