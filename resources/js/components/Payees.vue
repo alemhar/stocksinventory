@@ -69,25 +69,28 @@
             <div class="modal-body">
               
               <div class="form-group">
-                <label for="inputName" class="col-sm-2 control-label">Name</label>
+                <label for="inputName" class="col-sm-2 control-label pl-0">Name</label>
                 <input v-model="form.name" type="text" name="name"
                   placeholder="Name"
                   class="form-control" :class="{ 'is-invalid': form.errors.has('name') }" >
                 <has-error :form="form" field="name"></has-error>
               </div>
               <div class="form-group">
+                <label for="inputaddress" class="col-sm-2 control-label pl-0">Address</label>
                 <input v-model="form.address" type="text" name="address"
                   placeholder="Address"
                   class="form-control" :class="{ 'is-invalid': form.errors.has('address') }" >
                 <has-error :form="form" field="address"></has-error>
               </div>
               <div class="form-group">
+                <label for="inputcity" class="col-sm-2 control-label pl-0">City</label>
                 <input v-model="form.city" type="text" name="city"
                   placeholder="City"
                   class="form-control" :class="{ 'is-invalid': form.errors.has('city') }" >
                 <has-error :form="form" field="city"></has-error>
               </div>
               <div class="form-group">
+                <label for="inputphone" class="col-sm-2 control-label pl-0">Phone</label>
                 <input v-model="form.phone" type="text" name="phone"
                   placeholder="Phone"
                   class="form-control" :class="{ 'is-invalid': form.errors.has('phone') }" >
@@ -95,11 +98,48 @@
               </div>
 
               <div class="form-group">
+                  <label for="inputTIN" class="col-sm-2 control-label pl-0">TIN</label>
                   <input v-model="form.tin" name="tin" id="tin"
                   placeholder="TIN"
                   class="form-control" :class="{ 'is-invalid': form.errors.has('tin') }">
                   <has-error :form="form" field="tin"></has-error>
               </div>
+
+              <div class="form-group">
+                  <label for="inputcontactemail" class="col-sm-2 control-label pl-0">Email</label>
+                  <input v-model="form.contactemail" name="contactemail" id="tin"
+                  placeholder="Email"
+                  class="form-control" :class="{ 'is-invalid': form.errors.has('contactemail') }">
+                  <has-error :form="form" field="contactemail"></has-error>
+              </div>
+
+              <div class="form-group">
+                  <label for="inputpayable" class="col-sm-2 control-label pl-0">Payable</label>
+                  <input v-model="form.payable" name="payable" id="payable"
+                  placeholder="Payable"
+                  class="form-control" :class="{ 'is-invalid': form.errors.has('payable') }">
+                  <has-error :form="form" field="payable"></has-error>
+              </div>
+
+              <div class="form-group">
+                  <label for="inputreceivable" class="col-sm-2 control-label pl-0">Receivable</label>
+                  <input v-model="form.receivable" name="receivable" id="receivable"
+                  placeholder="Receivable"
+                  class="form-control" :class="{ 'is-invalid': form.errors.has('receivable') }">
+                  <has-error :form="form" field="receivable"></has-error>
+              </div>
+
+
+              <div class="form-group">
+                  <label for="inputreceivable" class="col-sm-2 control-label pl-0">Entity Type</label>
+                  <select v-model="form_item.tax_type" @change="computeTaxChange" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
+                    <option value="PRIVATE">PRIVATE</option>
+                    <option value="GOVERNMENT">GOVERNMENT</option>
+                    
+                  </select>
+              </div>
+
+
 
             </div>
             <div class="modal-footer">
