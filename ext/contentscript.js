@@ -26,8 +26,8 @@ document.onreadystatechange = function () {
         
         
           function fill_content(user_id,api_key){
+            //obj['Authorization'] = 'Bearer ' + api_key;  
             obj['Content-Type'] = 'application/x-www-form-urlencoded';
-            obj['Authorization'] = 'Bearer ' + api_key;  
             obj['Accept'] = 'application/json';  
               $.ajax({
                 type: "GET",
