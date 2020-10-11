@@ -22,7 +22,11 @@ class Payee extends Model
 
 
     protected $fillable = [
-        'name', 'address', 'tin', 'city', 'phone'
+		'name', 'address', 'tin', 'city', 'phone', 
+		'contactemail',
+		'payable',
+		'receivable',
+		'entity_type'
     ];
 
 
