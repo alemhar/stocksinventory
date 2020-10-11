@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row mt-1" v-if="$gate.isAdminOrUser()">
-        <div class="print-content"><h1>{{ company.name }}</h1></div>  
+        <div class="print-content"><h1>{{ company.company }}</h1></div>  
         <div class="print-content"><h3>{{ company.address }}, {{ company.address2 }} {{ company.city }} </h3></div>  
         <div class="col-md-12">
           <div class="box mt-4">
