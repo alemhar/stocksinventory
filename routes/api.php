@@ -17,6 +17,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+Route::get('/efps', function (Request $request) {
+    return $request;
+});
+
+
 Route::apiResources([
     'user' => 'API\UserController'
 ]);

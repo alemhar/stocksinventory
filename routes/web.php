@@ -22,6 +22,7 @@ Route::get('/', function () {
 });
 
 
+/*
 Route::get('/genapi', function () {
 
     $users = User::get();
@@ -33,7 +34,7 @@ Route::get('/genapi', function () {
     }
     return 'Completed';
 });
-
+*/
 
 
 Route::get('/test', function () {

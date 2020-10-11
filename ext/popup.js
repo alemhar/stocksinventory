@@ -104,9 +104,11 @@ function saveBackgroundColor(url, color) {
 // chrome.storage.local allows the extension data to be synced across multiple
 // user devices.
 function fill_description() {
-    var api_key = document.getElementById("api_key").value;
-    localStorage.setItem('api_key', api_key);    
-    alert('Saved!');
+
+    chrome.runtime.sendMessage({from: "popup",action: "fills"}, (response) => {
+      
+    });
+
     window.close();
 
     /*
@@ -129,15 +131,6 @@ function clear_description() {
 }
 
 
-function restore_options() {
-    api_key = localStorage.getItem('api_key');
-    document.getElementById('api_key').value = api_key;
-}
-
-function save_options() {
-    var api_key = document.getElementById('api_key').value;
-    localStorage.setItem('api_key', api_key);    
-}
 
 function msg_alert(){
 	  alert('Test');
