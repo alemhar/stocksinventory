@@ -16,17 +16,13 @@
                 <tbody><tr>
                   <th>ID</th>
                   <th>Name</th>
-                  <th>Address</th>
                   <th>TIN</th>
-                  <th>Created</th>
                   <th>Modify</th>
                 </tr>
                 <tr v-for="payee in payee.data" :key="payee.id">
                   <td>{{ payee.id }}</td>
                   <td>{{ payee.name }}</td>
-                  <td>{{ payee.address.substring(0,20) + ' ...' }}</td>
                   <td>{{ payee.tin }}</td>
-                  <td>{{ payee.created_at | formatDate }}</td>
                   <td>
                     <a href="#" @click="editPayee(payee)">Edit
                       <i class="fa fa-edit"></i>
