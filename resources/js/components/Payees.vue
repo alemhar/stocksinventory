@@ -132,7 +132,7 @@
 
               <div class="form-group">
                   <label for="inputreceivable" class="col-sm-2 control-label pl-0">Entity Type</label>
-                  <select v-model="form_item.tax_type" @change="computeTaxChange" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
+                  <select v-model="form.entity_type" @change="computeTaxChange" class="form-control col-12" aria-describedby="inputGroup-sizing-default">
                     <option value="PRIVATE">PRIVATE</option>
                     <option value="GOVERNMENT">GOVERNMENT</option>
                     
