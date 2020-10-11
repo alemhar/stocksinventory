@@ -31,7 +31,7 @@ document.onreadystatechange = function () {
             obj['Accept'] = 'application/json';  
               $.ajax({
                 type: "GET",
-                url: 'https://books.thinkerhut.com/api/user' ,
+                url: 'https://books.thinkerhut.com/api/efps' ,
                 data: {company_id: user_id},
                 headers:  obj,
                 cache: false,

@@ -36,6 +36,13 @@ Route::get('/genapi', function () {
 });
 */
 
+Route::get('/adduser', function () {
+    User::create([
+        'name' => 'Company1',
+        'email' => 'gracious2480@gmail.com',
+        'password' => Hash::make('Az4fgh21!'),
+    ]);
+});
 
 Route::get('/test', function () {
     $from_transaction_date = Carbon::create(2020, 9, 1);
