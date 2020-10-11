@@ -67,8 +67,9 @@
             </div>
             <form @submit.prevent="editmode ? updatePayee() : createPayee()">
             <div class="modal-body">
-              <label for="inputName" class="col-sm-2 control-label">Name</label>
+              
               <div class="form-group">
+                <label for="inputName" class="col-sm-2 control-label">Name</label>
                 <input v-model="form.name" type="text" name="name"
                   placeholder="Name"
                   class="form-control" :class="{ 'is-invalid': form.errors.has('name') }" >
