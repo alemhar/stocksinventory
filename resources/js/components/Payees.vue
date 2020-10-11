@@ -168,7 +168,11 @@
                   address: '',
                   city: '',
                   phone: '',
-                  tin: ''
+                  tin: '',
+                  contactemail: '',
+                  payable: '',
+                  receivable: '',
+                  entity_type: ''
               })
           }
         },
