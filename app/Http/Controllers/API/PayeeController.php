@@ -82,10 +82,10 @@ class PayeeController extends Controller
         $payee = Payee::findOrFail($id);
 
         $this->validate($request,[
-            'name' => 'required|string|max:191',
-            'address' => 'required|string|max:191',
-            'city' => 'required|string|max:191',
-            'phone' => 'required|string|max:191'
+            'name' => 'required|string|max:191' //,
+            //'address' => 'required|string|max:191',
+            //'city' => 'required|string|max:191',
+            //'phone' => 'required|string|max:191'
         ]);
 
         $payee->update($request->all());
