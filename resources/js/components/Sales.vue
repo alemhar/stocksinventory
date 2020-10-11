@@ -1021,10 +1021,10 @@
             } 
           },
           loadPayees(){
-            if(this.$gate.isAdminOrUser()){
+            //if(this.$gate.isAdminOrUser()){
                 axios.get("api/payee").then(({data}) => (this.payees = data ));
                 //axios.get("api/user").then(({ data }) => (this.users = data.data));
-            } 
+            //} 
           },
           loadChartAccounts(headerOrDetail = null){
               if(headerOrDetail == 'header'){
