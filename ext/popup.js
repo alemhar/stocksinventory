@@ -105,23 +105,20 @@ function saveBackgroundColor(url, color) {
 // user devices.
 function fill_description() {
 
-    chrome.runtime.sendMessage({from: "popup",action: "fills"}, (response) => {
-      
-    });
-
-    window.close();
-
-    /*
+    
+    
+    
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         alert(tabs[0].id);
       chrome.tabs.sendMessage(tabs[0].id, 
             {
-                "username": username,
-                "password": password
+              from: "popup",
+              action: "fill"
             }
             );
     });
-    */
+    //window.close();
+
     
 }
 
@@ -140,17 +137,13 @@ function msg_alert(){
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('ok').addEventListener('click', fill_description);
 	document.getElementById('cancel').addEventListener('click', clear_description);
-	restore_options();
+	//restore_options();
 });
 
+/*
 // Update the relevant fields with the new data
 function setDOMInfo(info) {
-   
-  //alert('test');
   document.getElementById('api_key').value   = info.api_key;
-  //document.getElementById('password').value   = info.password;
-  //document.getElementById('inputs').textContent  = info.inputs;
-  //document.getElementById('buttons').textContent = info.buttons;
 }
 
 function getDOMInfo() {
@@ -170,6 +163,8 @@ function getDOMInfo() {
         setDOMInfo);
   });
 }
+
+*/
 // Once the DOM is ready...
 /*
 window.addEventListener('DOMContentLoaded', function () {

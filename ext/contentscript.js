@@ -29,41 +29,36 @@ document.onreadystatechange = function () {
             obj['Content-Type'] = 'application/x-www-form-urlencoded';
             obj['Authorization'] = 'Bearer ' + api_key;  
             obj['Accept'] = 'application/json';  
-          
-
-            $.ajax({
-              type: "POST",
-              url: 'https://books.thinkerhut.com/api/efps' ,
-              
-              data: {company_id: user_id},
-              headers:  obj,
-              cache: false,
-              success: function(data)
-              {
-                console_log(data);
-                //response = JSON.parse(data);  
-                
-              }, 
-              complete: function(data)
-              {
-
-              }
-          
-            });
-            } 
+              $.ajax({
+                type: "GET",
+                url: 'https://books.thinkerhut.com/api/efps' ,
+                data: {company_id: user_id},
+                headers:  obj,
+                cache: false,
+                success: function(data)
+                {
+                  console_log(data);
+                }
+            
+              });
+          } 
         
           
-
           chrome.runtime.onMessage.addListener(
             (request, sender, sendResponse) => {
-              if (request.from === "popup" && request.action === "fill"){
-                
-                getcredentials(fill_content);
-                //user_id = localStorage.getItem('user_id');
-                //api_key = localStorage.getItem('api_key');		
-                //sendResponse({user_id: user_id,api_key: api_key});
-              }
-            });
+            
+            if (request.from === "popup" && request.action === "fill"){
+              alert('fill');
+            
+              getcredentials(fill_content);
+            }
+            return true;
+          });
+
+          // chrome.runtime.onMessage.addListener(
+          //   (request, sender, sendResponse) => {
+              
+          //   });
 
 
         }
