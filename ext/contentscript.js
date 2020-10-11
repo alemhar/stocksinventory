@@ -37,7 +37,7 @@ document.onreadystatechange = function () {
                 cache: false,
                 success: function(data)
                 {
-                  console_log(data);
+                  console.log(data);
                 }
             
               });
