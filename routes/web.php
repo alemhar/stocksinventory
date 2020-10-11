@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 Route::get('/genapi', function () {
 
-    $users = App\User::where('active', 1)->get();
+    $users = User::get();
     $token = '';
     foreach ($users as $user) {
         $token = Str::random(80);
