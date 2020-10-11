@@ -4,6 +4,8 @@ use App\Account;
 use Carbon\Carbon;
 use App\RunningAccount;
 use App\DailyAccount;
+use App\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +20,21 @@ use App\DailyAccount;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/genapi', function () {
+
+    $users = App\User::where('active', 1)->get();
+    $token = '';
+    foreach ($users as $user) {
+        $token = Str::random(80);
+        $user->api_token = hash('sha256', $token); 
+        $user->save();
+    }
+    return 'Completed';
+});
+
+
 
 Route::get('/test', function () {
     $from_transaction_date = Carbon::create(2020, 9, 1);

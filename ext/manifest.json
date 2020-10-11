@@ -1,0 +1,41 @@
+{
+  "manifest_version": 2,
+  "icons": {
+    "128": "icon_128.png"
+  },
+  "name": "Books: AIA Cloud Apps",
+  "short_name": "Books AIA",
+  "description": "This extension auto-populate description text.",
+  "version": "1.0",
+  "options_page": "options.html",       
+
+  "browser_action": {
+    "default_icon": "favicon.png",
+    
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": [
+       "background.js"
+
+    ]
+  },    
+  "content_scripts":[{
+      "matches":[
+          "https://www.google.com/*"
+          
+      ],
+      "js":[
+          "jquery-3.3.1.min.js","contentscript.js"
+      ],
+      "run_at": "document_end"
+      
+  }],    
+  "permissions": [
+    "activeTab",
+    "storage",
+    "tabs",
+    "https://app.sourcingsecret.com/*"  
+  ]
+}
+
