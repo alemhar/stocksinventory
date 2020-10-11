@@ -51,6 +51,9 @@
         <div class="row mt-5" v-if="!$gate.isAdminOrUser()">
           <not-found></not-found>
         </div>  
+
+
+
       <!-- Modal -->
       <div class="modal fade" id="PayeeDetails" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -64,7 +67,7 @@
             </div>
             <form @submit.prevent="editmode ? updatePayee() : createPayee()">
             <div class="modal-body">
-              
+              <label for="inputName" class="col-sm-2 control-label">Name</label>
               <div class="form-group">
                 <input v-model="form.name" type="text" name="name"
                   placeholder="Name"
