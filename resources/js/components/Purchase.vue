@@ -966,7 +966,7 @@
               readabilityObject: {
                 fontSize: user.font_size
               },
-              company: null,
+              company: {},
               company_id: document.querySelector('meta[name="company-id"]').getAttribute('content')
           }
         },

@@ -1006,7 +1006,7 @@
                 check_amount: 0
               },
               checks: [],
-              company: null,
+              company: {},
               company_id: document.querySelector('meta[name="company-id"]').getAttribute('content')
           }
         },
