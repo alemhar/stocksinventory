@@ -726,7 +726,7 @@
                   <th>Name</th>
                   <th>Option</th>
                 </tr>
-                <tr v-for="payee in payees.data" :key="payee.id">
+                <tr v-for="payee in payees" :key="payee.id">
                   <td>{{ payee.id }}</td>
                   <td>{{ payee.name }}</td> 
                   <td>
