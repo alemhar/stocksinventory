@@ -1031,7 +1031,7 @@
                 });
 */
             //if(this.$gate.isAdminOrUser()){
-                axios.get("api/payee").then(({data}) => (this.payees = data ));
+                axios.get("api/payee").then(({data}) => (this.payees = data.data ));
                 
             //} 
           },
