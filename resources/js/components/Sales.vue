@@ -1015,10 +1015,10 @@
         },
         methods: {
           loadBranch(){
-            if(this.$gate.isAdminOrUser()){
+            //if(this.$gate.isAdminOrUser()){
                 axios.get("api/branch").then(({data}) => (this.branches = data ));
                 
-            } 
+            //} 
           },
           loadPayees(){
 
