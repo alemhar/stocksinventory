@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-      <div class="print-content"><h1>{{ company.address }}</h1></div>  
+      <div class="print-content"><h1>{{ company.company }}</h1></div>  
 <div class="print-content"><h3>{{ company.address }}, {{ company.address2 }} {{ company.city }} </h3></div>
         <div class="row mt-1" v-if="$gate.isAdminOrUser()">
         <div class="col-md-12">
@@ -1007,7 +1007,7 @@
               wtax: [],
               wTaxExist: true,
               wTaxCodeInvalid: false,
-              company: null,
+              company: {},
               company_id: document.querySelector('meta[name="company-id"]').getAttribute('content')
 
 
