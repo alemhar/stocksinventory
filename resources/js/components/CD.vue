@@ -24,7 +24,7 @@
               </div>
               <div class="box-body row">
                 <!--Left Col-->
-                <div class="col-8">
+                <div class="col-md-12 col-lg-8">
                   <div class="input-group mb-2">
 
                     <div class="input-group-prepend">
@@ -97,7 +97,7 @@
 
                 </div>
                 <!--Right Col-->
-                <div class="col-4">
+                <div class="col-md-12 col-lg-4">
                   <div class="input-group mb-2">
                     <!--label for="inputReferenceNo">Reference No.</label -->
                     <div class="input-group-prepend">
