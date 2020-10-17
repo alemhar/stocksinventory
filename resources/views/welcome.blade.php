@@ -82,7 +82,7 @@
 
             <div class="content">
                 <div class="title">
-                    <img src="img/aia_logo_150dpi.png">
+                    <img src="img/aia_logo_150dpi.png" class="img-fluid"> 
                     <!-- AIA Books ® -->
                 </div>
 
