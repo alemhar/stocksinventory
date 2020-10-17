@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <link rel="stylesheet" type="text/css" href="/css/app.css">
         <title>AIA Books</title>
 
         <!-- Fonts -->
@@ -82,7 +82,7 @@
 
             <div class="content">
                 <div class="title">
-                    <img src="img/aia_logo_150dpi.png" class="img-fluid col-10"> 
+                    <img src="img/aia_logo_150dpi.png" class="img-fluid"> 
                     <!-- AIA Books ® -->
                 </div>
 
