@@ -474,6 +474,7 @@ class CDController extends Controller
             $credit_amount = 0;
             $debit_amount = 0;
             $depreciated_id = $depreciatiable->id;
+            $temp = [];
             do{
                     $amount = number_format($depreciation,2);
                 if($credit){
@@ -488,8 +489,9 @@ class CDController extends Controller
 
                  array_push($temp,$account_code);   
                 
-                 // Get the counter part of the initiating account title
-            
+
+                // Get the counter part of the initiating account title
+            try{
                 $account_name = $depreciation_accounts[$account_code]['account_name'];
                 $account_code = $depreciation_accounts[$account_code]['counterpart_code'];
 
@@ -549,7 +551,11 @@ class CDController extends Controller
                 
                 $account_code = $counterpart_code;
                 $transaction = null;
-    
+            }
+            catch {
+                dd($temp);
+            }
+            
             } while(!$credit);
 
             $this->insert_transactions($transactions); 
