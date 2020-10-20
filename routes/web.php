@@ -143,7 +143,7 @@ Route::get('/test2', function () {
         }
     }    
     
-    dd($depreciation_accounts);
+    //dd($depreciation_accounts);
     $depreciations = [];
     $depreciatiables = Transaction::whereBetween('account_code', [15011200, 15011550])
     ->where('amount', '>', DB::raw('total_deduction + salvage_value'))
@@ -204,7 +204,6 @@ Route::get('/test2', function () {
             array_push($temp,$account_code);   
             
             // Get the counter part of the initiating account title
-        
             $account_name = $depreciation_accounts[$account_code]['account_name'];
             $account_code = $depreciation_accounts[$account_code]['counterpart_code'];
 
