@@ -211,7 +211,6 @@ Route::get('/test2', function () {
             $account_name = $depreciation_accounts[$account_code]['account_name'];
             $account_code = $depreciation_accounts[$account_code]['counterpart_code'];
               
-            try {    
             //return $depreciation_accounts;
             $account_type = $depreciation_accounts[$account_code]['account_type'];
             $sub_account_type = $depreciation_accounts[$account_code]['sub_account_type'];
@@ -261,9 +260,7 @@ Route::get('/test2', function () {
             
             //$account_code = $counterpart_code;
             $transaction = null;
-            } catch(Exception $e) {
-                dd($temp);
-            }
+            
         } while(!$credit);     
     }
 
