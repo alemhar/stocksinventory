@@ -189,7 +189,7 @@ Route::get('/test2', function () {
         $amount = 0;
         $credit_amount = 0;
         $debit_amount = 0;
-
+        
         do{
             $amount = number_format($depreciation,2);
             if($credit){
@@ -202,12 +202,12 @@ Route::get('/test2', function () {
                 $debit_amount = number_format($depreciation,2);
             }
 
-            //array_push($temp,$account_code);   
+            array_push($temp,$account_code);   
             
             // Get the counter part of the initiating account title
             $account_name = $depreciation_accounts[$account_code]['account_name'];
             $account_code = $depreciation_accounts[$account_code]['counterpart_code'];
-
+            try {    
             //return $depreciation_accounts;
             $account_type = $depreciation_accounts[$account_code]['account_type'];
             $sub_account_type = $depreciation_accounts[$account_code]['sub_account_type'];
@@ -257,7 +257,9 @@ Route::get('/test2', function () {
             
             $account_code = $counterpart_code;
             $transaction = null;
-
+            } catch(Exception $e) {
+                dd($temp);
+            }
         } while(!$credit);     
     }
 
