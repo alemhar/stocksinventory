@@ -143,7 +143,7 @@ Route::get('/test2', function () {
         }
     }    
     
-
+    dd($depreciation_accounts);
     $depreciations = [];
     $depreciatiables = Transaction::whereBetween('account_code', [15011200, 15011550])
     ->where('amount', '>', DB::raw('total_deduction + salvage_value'))
