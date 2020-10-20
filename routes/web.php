@@ -180,9 +180,6 @@ Route::get('/test2', function () {
             $depreciation = $remainingBalance;
         }
         
-        
-        
-
 
         $transactions = [];
         $account_code = $depreciatiable->account_code;
@@ -192,7 +189,7 @@ Route::get('/test2', function () {
         $debit_amount = 0;
 
         do{
-                $amount = number_format($depreciation,2);
+            $amount = number_format($depreciation,2);
             if($credit){
                 $credit = false;
                 $credit_amount = number_format($depreciation,2);
@@ -202,31 +199,36 @@ Route::get('/test2', function () {
                 $credit_amount = 0;
                 $debit_amount = number_format($depreciation,2);
             }
-            $account_code = $depreciation_accounts[$account_code]['counterpart_code'];
+
+            array_push($temp,$account_code);   
+            
+            // Get the counter part of the initiating account title
+        
             $account_name = $depreciation_accounts[$account_code]['account_name'];
+            $account_code = $depreciation_accounts[$account_code]['counterpart_code'];
+
+            //return $depreciation_accounts;
             $account_type = $depreciation_accounts[$account_code]['account_type'];
             $sub_account_type = $depreciation_accounts[$account_code]['sub_account_type'];
             $main_code = $depreciation_accounts[$account_code]['main_code'];
             $main_account = $depreciation_accounts[$account_code]['main_account'];
             $type = $depreciation_accounts[$account_code]['type'];
+
             $counterpart_code = $depreciation_accounts[$account_code]['counterpart_code'];
             $counterpart_name = $depreciation_accounts[$account_code]['counterpart_name'];
             
-
-            $transaction = new stdClass();
+            $transaction = new \stdClass();
             $transaction->account_type = $account_type;
             $transaction->sub_account_type = $sub_account_type;
             $transaction->main_code = $main_code;
             $transaction->main_account = $main_account;
             $transaction->type = $type;
-            $transaction->counterpart_code = $counterpart_code;
-            $transaction->counterpart_name = $counterpart_name;
             $transaction->transaction_entry_id = 0;
             $transaction->payee_id = 0;
             $transaction->branch_id = 0;
             $transaction->account_code = $account_code;
             $transaction->account_name = $account_name;
-            $transaction->reference_no = 0;
+            $transaction->reference_no = $transaction_no;
             $transaction->transaction_no = $transaction_no;
             $transaction->transaction_type = 'DEPRECIATION';
             $transaction->transaction_date = $previous_month_last_date;
@@ -241,12 +243,19 @@ Route::get('/test2', function () {
             $transaction->user_id = 999;
             $transaction->status = 'CONFIRMED';
             $transaction->depreciation_date = $previous_month_last_date;
-            $transaction->depreciated_id = 0;
+            $transaction->depreciated_id = $depreciated_id;
             $transaction->useful_life = 0;
             $transaction->salvage_value = 0;
+            $transaction->taxed = 'NA';
+            $transaction->tax_of_id = 0;
+            $transaction->tax_of_account = 0;
+            $transaction->entity_type = 'NA';
+            $transaction->description = 'Depreciation';
+            
             array_push($transactions,$transaction);
-
+            
             $account_code = $counterpart_code;
+            $transaction = null;
 
         } while(!$credit);     
     }
