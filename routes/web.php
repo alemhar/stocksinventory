@@ -189,7 +189,7 @@ Route::get('/test2', function () {
         $amount = 0;
         $credit_amount = 0;
         $debit_amount = 0;
-        
+        $temp = [];
         do{
             $amount = number_format($depreciation,2);
             if($credit){
