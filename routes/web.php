@@ -160,9 +160,8 @@ Route::get('/test2', function () {
     
 
     foreach($depreciatiables as $depreciatiable){
+        dd(abs(strtotime($previous_month_last_date) - strtotime($depreciatiable->transaction_date)));
         
-        dd(date($previous_month_last_date) - date($depreciatiable->transaction_date));
-
         if($depreciatiable->transaction_date){
             continue;
         }
