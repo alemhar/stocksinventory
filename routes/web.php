@@ -143,12 +143,12 @@ Route::get('/test2', function () {
         }
     }    
     
-    //dd($depreciation_accounts);
+    dd($depreciation_accounts);
     $depreciations = [];
     $depreciatiables = Transaction::whereBetween('account_code', [15011200, 15011550])
     ->where('amount', '>', DB::raw('total_deduction + salvage_value'))
     ->get();
-    dd($depreciatiables);
+    //dd($depreciatiables);
 
     $current_month = date('m');
     $current_year = date('Y');
@@ -157,24 +157,25 @@ Route::get('/test2', function () {
     $daysInMonth = $date->daysInMonth; 
     $previous_month_last_date = $year_month.'-'.$daysInMonth;
 
-
+    
     foreach($depreciatiables as $depreciatiable){
         sleep(1);
         $transaction_no = time().'999';
-        
+        $depreciation = 0;
+        // This script will run every weekend.
+        // Check if entry has already been depreciated last month, if yes then skip.    
         $depreciation_entry = Transaction::where([
             'depreciated_id' => $depreciatiable->id,
             'transaction_type' => 'DEPRECIATION',
             'depreciation_date' => $previous_month_last_date
         ])->get();
-
-
         if (count($depreciation_entry) > 0) {
             continue;
         }    
 
         
         $depreciation = $depreciatiable->amount/$depreciatiable->useful_life;
+
         $remainingBalance = $depreciatiable->amount - $depreciatiable->total_deduction - $depreciatiable->salvage_value;
         if($depreciation > $remainingBalance){
             $depreciation = $remainingBalance;
