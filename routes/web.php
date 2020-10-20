@@ -157,9 +157,12 @@ Route::get('/test2', function () {
     $daysInMonth = $date->daysInMonth; 
     $previous_month_last_date = $year_month.'-'.$daysInMonth;
 
-    dd($previous_month_last_date - $depreciatiable->transaction_date);
+    
 
     foreach($depreciatiables as $depreciatiable){
+
+        dd($previous_month_last_date - $depreciatiable->transaction_date);
+        
         if($depreciatiable->transaction_date){
             continue;
         }
