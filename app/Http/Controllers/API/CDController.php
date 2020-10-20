@@ -505,13 +505,6 @@ class CDController extends Controller
                 $counterpart_code = $depreciation_accounts[$account_code]['counterpart_code'];
                 $counterpart_name = $depreciation_accounts[$account_code]['counterpart_name'];
 
-
-                
-                
-
-                
-                
-                
                 $transaction = new \stdClass();
                 $transaction->account_type = $account_type;
                 $transaction->sub_account_type = $sub_account_type;
