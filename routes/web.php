@@ -157,8 +157,12 @@ Route::get('/test2', function () {
     $daysInMonth = $date->daysInMonth; 
     $previous_month_last_date = $year_month.'-'.$daysInMonth;
 
-    
+    dd($previous_month_last_date - $depreciatiable->transaction_date);
+
     foreach($depreciatiables as $depreciatiable){
+        if($depreciatiable->transaction_date){
+            continue;
+        }
         sleep(1);
         $transaction_no = time().'999';
         
@@ -170,11 +174,13 @@ Route::get('/test2', function () {
             'transaction_type' => 'DEPRECIATION',
             'depreciation_date' => $previous_month_last_date
         ])->get();
+
         if (count($depreciation_entry) > 0) {
             continue;
         }    
+
+
         $depreciated_id = $depreciatiable->id;
-        
         $depreciation = $depreciatiable->amount/$depreciatiable->useful_life;
 
         $remainingBalance = $depreciatiable->amount - $depreciatiable->total_deduction - $depreciatiable->salvage_value;

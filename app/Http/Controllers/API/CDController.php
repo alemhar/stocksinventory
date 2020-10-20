@@ -487,11 +487,11 @@ class CDController extends Controller
                     $debit_amount = number_format($depreciation,2);
                 }
 
-                 array_push($temp,$account_code);   
+                // array_push($temp,$account_code);   
                 
 
                 // Get the counter part of the initiating account title
-            try {
+            
                 $account_name = $depreciation_accounts[$account_code]['account_name'];
                 $account_code = $depreciation_accounts[$account_code]['counterpart_code'];
 
@@ -542,11 +542,9 @@ class CDController extends Controller
                 
                 array_push($transactions,$transaction);
                 
-                $account_code = $counterpart_code;
+                //$account_code = $counterpart_code;
                 $transaction = null;
-            } catch(Exception $e) {
-                dd($temp);
-            }
+            
 
             } while(!$credit);
 
