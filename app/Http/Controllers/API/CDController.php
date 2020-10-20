@@ -491,7 +491,7 @@ class CDController extends Controller
                 
 
                 // Get the counter part of the initiating account title
-            try{
+            try {
                 $account_name = $depreciation_accounts[$account_code]['account_name'];
                 $account_code = $depreciation_accounts[$account_code]['counterpart_code'];
 
@@ -551,11 +551,10 @@ class CDController extends Controller
                 
                 $account_code = $counterpart_code;
                 $transaction = null;
-            }
-            catch {
+            } catch(Exception $e) {
                 dd($temp);
             }
-            
+
             } while(!$credit);
 
             $this->insert_transactions($transactions); 
