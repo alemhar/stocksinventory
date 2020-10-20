@@ -161,6 +161,7 @@ Route::get('/test2', function () {
     foreach($depreciatiables as $depreciatiable){
         sleep(1);
         $transaction_no = time().'999';
+        
         $depreciation = 0;
         // This script will run every weekend.
         // Check if entry has already been depreciated last month, if yes then skip.    
@@ -172,7 +173,7 @@ Route::get('/test2', function () {
         if (count($depreciation_entry) > 0) {
             continue;
         }    
-
+        $depreciated_id = $depreciatiable->id;
         
         $depreciation = $depreciatiable->amount/$depreciatiable->useful_life;
 
