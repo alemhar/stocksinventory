@@ -397,6 +397,171 @@ class CDController extends Controller
 
 
     public function depreciate_transactions(){
+
+        $depreciation_accounts = [];
+        $ranges = [];
+        array_push($ranges, [15011200, 15011550]);
+        array_push($ranges, [15015000, 15020000]);
+        array_push($ranges, [62200000, 62201400]);
+        
+        foreach($ranges as $range){
+            $accounts = Account::whereBetween('account_code', $range)
+                    ->get();
+            foreach($accounts as $account){
+                $depreciation_accounts[$account->account_code] = 
+                ['account_type' => $account->account_type,
+                'sub_account_type' => $account->sub_account_type,
+                'main_code' => $account->main_code,
+                'main_account' => $account->main_account,
+                'account_code' => $account->account_code,
+                'account_name' => $account->account_name,
+                'type' => $account->type,
+                'counterpart_code' => $account->counterpart_code,
+                'counterpart_name' => $account->counterpart_name
+                ];
+            }
+        }    
+        
+        //dd($depreciation_accounts);
+        $depreciations = [];
+        $depreciatiables = Transaction::whereBetween('account_code', [15011200, 15011550])
+        ->where('amount', '>', DB::raw('total_deduction + salvage_value'))
+        ->get();
+        //dd($depreciatiables);
+
+        $current_month = date('m');
+        $current_year = date('Y');
+        $date = Carbon::create($current_year, $current_month, 1);
+        $year_month = $date->subMonth()->format('Y-m'); 
+        $daysInMonth = $date->daysInMonth; 
+        $previous_month_last_date = $year_month.'-'.$daysInMonth;
+
+        
+
+        foreach($depreciatiables as $depreciatiable){
+            // This script will run every weekend.
+            // Check if entry/purchase is already 1 month old. 
+            $d1 = new DateTime($previous_month_last_date);
+            $d2 = new DateTime($depreciatiable->transaction_date);
+            $interval = $d1->diff($d2);
+            if($interval->d < 30){
+                continue;
+            }
+
+
+            sleep(1);
+            $transaction_no = time().'999';
+            
+            $depreciation = 0;
+            // This script will run every weekend.
+            // Check if entry has already been depreciated last month, if yes then skip.    
+            $depreciation_entry = Transaction::where([
+                'depreciated_id' => $depreciatiable->id,
+                'transaction_type' => 'DEPRECIATION',
+                'depreciation_date' => $previous_month_last_date
+            ])->get();
+            
+            /* For future update (if count <> 2 sent notification) */    
+            if (count($depreciation_entry) > 0) {
+                continue;
+            }    
+
+            
+            $depreciated_id = $depreciatiable->id;
+            $depreciation = $depreciatiable->amount/$depreciatiable->useful_life;
+
+            $remainingBalance = $depreciatiable->amount - $depreciatiable->total_deduction - $depreciatiable->salvage_value;
+            if($depreciation > $remainingBalance){
+                $depreciation = $remainingBalance;
+            }
+            
+
+            $transactions = [];
+            $account_code = $depreciatiable->account_code;
+            $credit = true;
+            $amount = 0;
+            $credit_amount = 0;
+            $debit_amount = 0;
+            $temp = [];
+            do{
+                $amount = number_format($depreciation,2);
+                
+                if($credit){
+                    $credit = false;
+                    $credit_amount = number_format($depreciation,2);
+                    $debit_amount = 0;
+                } else {
+                    $credit = true;
+                    $credit_amount = 0;
+                    $debit_amount = number_format($depreciation,2);
+                    
+                }
+
+                //array_push($temp,$account_code); 
+                
+                // Get the counter part of the initiating account title
+                $account_name = $depreciation_accounts[$account_code]['account_name'];
+                $account_code = $depreciation_accounts[$account_code]['counterpart_code'];
+                
+                //return $depreciation_accounts;
+                $account_type = $depreciation_accounts[$account_code]['account_type'];
+                $sub_account_type = $depreciation_accounts[$account_code]['sub_account_type'];
+                $main_code = $depreciation_accounts[$account_code]['main_code'];
+                $main_account = $depreciation_accounts[$account_code]['main_account'];
+                $type = $depreciation_accounts[$account_code]['type'];
+
+                $counterpart_code = $depreciation_accounts[$account_code]['counterpart_code'];
+                $counterpart_name = $depreciation_accounts[$account_code]['counterpart_name'];
+                
+                $transaction = new \stdClass();
+                $transaction->account_type = $account_type;
+                $transaction->sub_account_type = $sub_account_type;
+                $transaction->main_code = $main_code;
+                $transaction->main_account = $main_account;
+                $transaction->type = $type;
+                $transaction->transaction_entry_id = 0;
+                $transaction->payee_id = 0;
+                $transaction->branch_id = 0;
+                $transaction->account_code = $account_code;
+                $transaction->account_name = $account_name;
+                $transaction->reference_no = $transaction_no;
+                $transaction->transaction_no = $transaction_no;
+                $transaction->transaction_type = 'DEPRECIATION';
+                $transaction->transaction_date = $previous_month_last_date;
+                $transaction->amount = $amount;
+                $transaction->credit_amount = $credit_amount;
+                $transaction->debit_amount = $debit_amount;
+                $transaction->total_payment = 0;
+                $transaction->amount_ex_tax = 0;
+                $transaction->vat = 0;
+                $transaction->wtax_code = 0;
+                $transaction->wtax = 0;
+                $transaction->user_id = 999;
+                $transaction->status = 'CONFIRMED';
+                $transaction->depreciation_date = $previous_month_last_date;
+                $transaction->depreciated_id = $depreciated_id;
+                $transaction->useful_life = 0;
+                $transaction->salvage_value = 0;
+                $transaction->taxed = 'NA';
+                $transaction->tax_of_id = 0;
+                $transaction->tax_of_account = 0;
+                $transaction->entity_type = 'NA';
+                $transaction->description = 'Depreciation';
+                
+                array_push($transactions,$transaction);
+                
+                //$account_code = $counterpart_code;
+                $transaction = null;
+                
+            } while(!$credit);     
+        
+            // Add depreciation to total deduction
+            $currentDepreciatiable = Transaction::findOrFail($depreciated_id);
+            $currentDepreciatiable->total_deduction += $depreciation;
+            $currentDepreciatiable->save();
+            
+
+        /* 
         $temp = [];
         $depreciation_accounts = [];
         $ranges = [];
@@ -448,7 +613,6 @@ class CDController extends Controller
                 'depreciation_date' => $previous_month_last_date
             ])->get();
     
-            /* For future update (if count <> 2 sent notification) */    
             if (count($depreciation_entry) > 0) {
 
                 continue;
@@ -547,7 +711,7 @@ class CDController extends Controller
             
 
             } while(!$credit);
-
+            */
             $this->insert_transactions($transactions); 
             // total_deduction ******************* reflect deduction on the depreciatable account.. 
 
@@ -602,14 +766,46 @@ class CDController extends Controller
         
         $transaction_no = \Request::get('transaction_no');
         
+           
+            /*
+            payee_id: this.form.payee_id,
+            amount: this.form.amount,
+            operation: 'sub',
+            account: 'payable',
+            */
 
-        
-            $transaction = Transaction::where('transaction_no',$transaction_no)
-            ->update(['status' => 'REVERSE']);
+            $transaction = Transaction::where('transaction_no', $transaction_no)->firstOrFail();
+            $transaction->status = 'REVERSE';
+
+            $payee_id = $transaction->payee_id;
+            $main_transaction_id = $transaction->depreciated_id;
+
+            $main_transaction = Transaction::findOrFail($main_transaction_id);
+
+            $payee = $payee = Payee::findOrFail($payee_id);
+            if($transaction->transaction_type == 'PAYMENT'){
+                $payee->payable -= $transaction->amount;
+                $main_transaction->total_payment -= $transaction->amount;
+                //$main_transaction
+            }
+            if($transaction->transaction_type == 'COLLECTION'){
+                $payee->receivable -= $transaction->amount;
+                $main_transaction->total_collection -= $transaction->amount;
+            }
+            $payee->save();
+            $transaction->save();
+            $main_transaction->save();
+
+            //$transaction = Transaction::where('transaction_no',$transaction_no)
+            //->update(['status' => 'REVERSE']);
+            
             $transaction_items = TransactionItem::where('transaction_no',$transaction_no)
             ->update(['status' => 'REVERSE']);
         
             // Add logic for reversing payment/collection ******************
+
+
+
 
             return ['message' => 'Transactions reversed.'];
     }

@@ -1238,7 +1238,7 @@
                 user_id: this.form.user_id,
                 status: 'CONFIRMED',
                 depreciation_date: this.form.transaction_date,
-                depreciated_id: 0,
+                depreciated_id: this.current_sale_id, // sales_id needed for reverse transaction
                 useful_life: 0,
                 salvage_value: 0,
                 description: '',

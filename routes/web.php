@@ -160,17 +160,16 @@ Route::get('/test2', function () {
     
 
     foreach($depreciatiables as $depreciatiable){
-        dd($previous_month_last_date .' '. $depreciatiable->transaction_date);
-        
+        // This script will run every weekend.
+        // Check if entry/purchase is already 1 month old. 
         $d1 = new DateTime($previous_month_last_date);
         $d2 = new DateTime($depreciatiable->transaction_date);
-
         $interval = $d1->diff($d2);
-        dd($interval->d);
-
-        if($depreciatiable->transaction_date){
+        if($interval->d < 30){
             continue;
         }
+
+
         sleep(1);
         $transaction_no = time().'999';
         
