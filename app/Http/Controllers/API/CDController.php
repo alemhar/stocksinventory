@@ -10,7 +10,7 @@ use App\TransactionItem;
 use App\DailyAccount;
 use App\RunningAccount;
 use Carbon\Carbon;
-
+use App\Payee;
 use App\Account;
 use DB;
 
